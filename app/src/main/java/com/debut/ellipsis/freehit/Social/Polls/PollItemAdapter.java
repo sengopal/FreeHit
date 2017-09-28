@@ -1,7 +1,6 @@
 package com.debut.ellipsis.freehit.Social.Polls;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +13,6 @@ import android.widget.TextView;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
-
-import static android.content.Context.MODE_PRIVATE;
-import static com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity.MY_PREFS_NAME;
 
 
 public class PollItemAdapter extends ArrayAdapter {
@@ -37,13 +33,13 @@ public class PollItemAdapter extends ArrayAdapter {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.social_polls_list_item, parent, false);
         }
-        SharedPreferences prefs = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        final SharedPreferences.Editor editor = prefs.edit();
+//        SharedPreferences prefs = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+//        final SharedPreferences.Editor editor = prefs.edit();
         final PollCardItem currentPoll = (PollCardItem) getItem(position);
         final Button submit = (Button) listItemView.findViewById(R.id.poll_submit);
         TextView pollTitle = (TextView) listItemView.findViewById(R.id.poll_title);
         pollTitle.setText(currentPoll.getpTitle());
-        editor.putBoolean("has_voted_"+position,currentPoll.gethasVoted());
+//        editor.putBoolean("has_voted_"+position,currentPoll.gethasVoted());
         final TextView submittedText = (TextView) listItemView.findViewById(R.id.submittedText_poll);
         submittedText.setVisibility(View.GONE);
 
@@ -80,7 +76,7 @@ public class PollItemAdapter extends ArrayAdapter {
                     RadioButton clicked = (RadioButton) finalListItemView.findViewById(selectedId);
                     int cid = (currentPoll.getcId(clicked.getText().toString()));
                     submittedText.setVisibility(View.VISIBLE);
-                    editor.putBoolean("has_voted_"+position,true);
+//                    editor.putBoolean("has_voted_"+position,true);
                     option1.setVisibility(View.GONE);
                     option2.setVisibility(View.GONE);
                     option3.setVisibility(View.GONE);
@@ -97,14 +93,14 @@ public class PollItemAdapter extends ArrayAdapter {
 
                     }
                });
-        if(prefs.getBoolean("has_voted_"+position,true)){
-            submittedText.setVisibility(View.VISIBLE);
-            option1.setVisibility(View.GONE);
-            option2.setVisibility(View.GONE);
-            option3.setVisibility(View.GONE);
-            option4.setVisibility(View.GONE);
-            submit.setVisibility(View.GONE);
-        }
+//        if(prefs.getBoolean("has_voted_"+position,true)){
+//            submittedText.setVisibility(View.VISIBLE);
+//            option1.setVisibility(View.GONE);
+//            option2.setVisibility(View.GONE);
+//            option3.setVisibility(View.GONE);
+//            option4.setVisibility(View.GONE);
+//            submit.setVisibility(View.GONE);
+//        }
 
 
     return listItemView;
