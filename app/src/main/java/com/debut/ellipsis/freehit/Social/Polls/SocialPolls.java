@@ -43,7 +43,8 @@ public class SocialPolls extends Fragment implements LoaderManager.LoaderCallbac
     public TextView mEmptyStateTextView;
     private PollItemAdapter mAdapter;
     private ProgressBar mProgressBar;
-
+    private SwipeRefreshLayout refLayout;
+   private View rootView;
     public SocialPolls() {
         // Required empty public constructor
     }
@@ -52,12 +53,12 @@ public class SocialPolls extends Fragment implements LoaderManager.LoaderCallbac
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        myFragment=this;
+        myFragment = this;
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.item, container, false);
         ListView PollsListView = (ListView) rootView.findViewById(R.id.list);
         final View fragView = inflater.inflate(R.layout.social_polls_list_item, container, false);
-        final RadioGroup rGroup =(RadioGroup) fragView.findViewById(R.id.poll_group);
+        final RadioGroup rGroup = (RadioGroup) fragView.findViewById(R.id.poll_group);
         mEmptyStateTextView = (TextView) (fragView.findViewById(R.id.empty_view));
         PollsListView.setEmptyView(mEmptyStateTextView);
 //
@@ -76,8 +77,9 @@ public class SocialPolls extends Fragment implements LoaderManager.LoaderCallbac
 //            }
 //        });
 
+
         // Create a new adapter that takes an empty list of subjects as input
-        mAdapter = new PollItemAdapter(getActivity(), new ArrayList<PollCardItem>());
+        mAdapter = new PollItemAdapter(getActivity(), new ArrayList<PollCardItem>(), this);
 
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
@@ -114,11 +116,21 @@ public class SocialPolls extends Fragment implements LoaderManager.LoaderCallbac
         }
 
         // Finding a reference to the refresh layout
-        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
+        refLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
         refLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
         refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                                            @Override
                                            public void onRefresh() {
+                                               resetLoader();
+                                           }
+
+
+            // ------------------------------- NOTE -----------------------
+            // IT MIGHT BE BETTER TO HANDLE IT THIS WAY IN EVERY FRAGMENT, ALLOWS US TO CALL REFRESHES ON OTHER FRAGMENTS EXPLICITLY FROM A DFIFERENT CLASS / FRAGMENT// ------------------------------- NOTE -----------------------
+            // ------------------------------- NOTE -----------------------
+
+
+            /*
                                                // Checking if connected or not on refresh
                                                refLayout.setRefreshing(true);
                                                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -144,14 +156,14 @@ public class SocialPolls extends Fragment implements LoaderManager.LoaderCallbac
 
                                                }
                                                refLayout.setRefreshing(false);
-                                           }
+                                           }*/
+
                                        }
         );
 
 
         return rootView;
     }
-
 
 
     @Override
@@ -172,10 +184,8 @@ public class SocialPolls extends Fragment implements LoaderManager.LoaderCallbac
         // If there is a valid list of {@link News}s, then add them to the adapter's
         // data set. This will trigger the ListView to update.
         if (Polls != null && !Polls.isEmpty() && mAdapter.getCount() < 1) {
-
             mAdapter.addAll(Polls);
         }
-
     }
 
 
@@ -186,7 +196,37 @@ public class SocialPolls extends Fragment implements LoaderManager.LoaderCallbac
         mAdapter.clear();
     }
 
-}
+    public void resetLoader() {
+        // Get a reference to the ConnectivityManager to check state of network connectivity
+        final ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        // Get details on the currently active default data network refLayout.setRefreshing(true);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+//                LoaderManager loaderManager = getLoaderManager();
+            mAdapter.clear();
+//                mAdapter.clear();
+            getLoaderManager().restartLoader(NEWS_LOADER_ID, null, SocialPolls.this);
+            mAdapter.notifyDataSetChanged();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    refLayout.setRefreshing(false);
+                }
+            }, 500);
+
+        } else {
+            // Otherwise, display error
+            // First, hide loading indicator so error message will be visible
+            mAdapter.clear();
+            mAdapter.add(new NewsItem("No connection", "Looks like you have no connection, switch on your internet connection and try refreshing to see the latest news."));
+            mAdapter.notifyDataSetChanged();
+
+        }
+        refLayout.setRefreshing(false);
+    }
+    }
+
+
 
 
 

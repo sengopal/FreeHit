@@ -1,13 +1,9 @@
 package com.debut.ellipsis.freehit.Social.Polls;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
-import com.debut.ellipsis.freehit.News.NewsArticle;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
@@ -30,11 +25,10 @@ import static com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity.MY_PREFS_NAM
 
 public class PollItemAdapter extends ArrayAdapter {
 
-    Fragment frg = SocialPolls.myFragment;
-
-    public PollItemAdapter(Context context, List<PollCardItem> polls) {
+    Fragment frg;
+    public PollItemAdapter(Context context, List<PollCardItem> polls, Fragment frag) {
         super(context, 0, polls);
-
+        frg = frag;
     }
 
     @Override
@@ -181,7 +175,7 @@ public class PollItemAdapter extends ArrayAdapter {
             public void onClick(View v) {
 
                 int cid = 0;
-                if (option1.isChecked() || option2.isChecked() || option3.isChecked() || option4.isChecked()) {
+                if (rGroup.getCheckedRadioButtonId() >= 0) {
                     int selectedId = rGroup.getCheckedRadioButtonId();
                     RadioButton clicked = (RadioButton) finalListItemView.findViewById(selectedId);
                     cid = (currentPoll.getcId(clicked.getText().toString()));
@@ -194,7 +188,7 @@ public class PollItemAdapter extends ArrayAdapter {
                             QueryUtilPolls.fetchPollData(url);
                         }
                     }.start();
-                    
+                    ((SocialPolls) frg).resetLoader();
                     option1.setVisibility(View.GONE);
                     option2.setVisibility(View.GONE);
                     option3.setVisibility(View.GONE);
@@ -205,51 +199,50 @@ public class PollItemAdapter extends ArrayAdapter {
                     option_2.setVisibility(View.VISIBLE);
                     option_3.setVisibility(View.VISIBLE);
                     option_4.setVisibility(View.VISIBLE);
-                    if (!currentPoll.getpOption(0).isEmpty()) {
-                        option_1_percentage.setVisibility(View.VISIBLE);
-                        option_1_progressBar.setVisibility(View.VISIBLE);
-                        option_1_progressBar.setProgressColor(Color.parseColor("#00796b"));
-                        option_1_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
-                        if (finalTotalVotes != 0) {
+                            if (!currentPoll.getpOption(0).isEmpty()) {
+                                option_1_percentage.setVisibility(View.VISIBLE);
+                                option_1_progressBar.setVisibility(View.VISIBLE);
+                                option_1_progressBar.setProgressColor(Color.parseColor("#00796b"));
+                                option_1_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
+                                if (finalTotalVotes != 0) {
 
-                            option_2_progressBar.setMax(100);
-                            option_2_progressBar.setProgress((currentPoll.getpValue(1) / (float) finalTotalVotes) * 100);
-                        }
-                    }
-                    if (!currentPoll.getpOption(1).isEmpty()) {
-                        option_2_percentage.setVisibility(View.VISIBLE);
-                        option_2_progressBar.setVisibility(View.VISIBLE);
-                        option_2_progressBar.setProgressColor(Color.parseColor("#00796b"));
-                        option_2_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
-                        if (finalTotalVotes != 0) {
+                                    option_2_progressBar.setMax(100);
+                                    option_2_progressBar.setProgress((currentPoll.getpValue(1) / (float) finalTotalVotes) * 100);
+                                }
+                            }
+                            if (!currentPoll.getpOption(1).isEmpty()) {
+                                option_2_percentage.setVisibility(View.VISIBLE);
+                                option_2_progressBar.setVisibility(View.VISIBLE);
+                                option_2_progressBar.setProgressColor(Color.parseColor("#00796b"));
+                                option_2_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
+                                if (finalTotalVotes != 0) {
 
-                            option_2_progressBar.setMax(100);
-                            option_2_progressBar.setProgress((currentPoll.getpValue(1) / (float) finalTotalVotes) * 100);
-                        }
-                    }
-                    if (!currentPoll.getpOption(2).isEmpty()) {
-                        option_3_percentage.setVisibility(View.VISIBLE);
-                        option_3_progressBar.setVisibility(View.VISIBLE);
-                        option_3_progressBar.setProgressColor(Color.parseColor("#00796b"));
-                        option_3_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
-                        if (finalTotalVotes != 0) {
+                                    option_2_progressBar.setMax(100);
+                                    option_2_progressBar.setProgress((currentPoll.getpValue(1) / (float) finalTotalVotes) * 100);
+                                }
+                            }
+                            if (!currentPoll.getpOption(2).isEmpty()) {
+                                option_3_percentage.setVisibility(View.VISIBLE);
+                                option_3_progressBar.setVisibility(View.VISIBLE);
+                                option_3_progressBar.setProgressColor(Color.parseColor("#00796b"));
+                                option_3_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
+                                if (finalTotalVotes != 0) {
 
-                            option_2_progressBar.setMax(100);
-                            option_2_progressBar.setProgress((currentPoll.getpValue(2) / (float) finalTotalVotes) * 100);
-                        }
-                    }
-                    if (!currentPoll.getpOption(3).isEmpty()) {
-                        option_4_percentage.setVisibility(View.VISIBLE);
-                        option_4_progressBar.setVisibility(View.VISIBLE);
-                        option_4_progressBar.setProgressColor(Color.parseColor("#00796b"));
-                        option_4_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
-                        if (finalTotalVotes != 0) {
+                                    option_2_progressBar.setMax(100);
+                                    option_2_progressBar.setProgress((currentPoll.getpValue(2) / (float) finalTotalVotes) * 100);
+                                }
+                            }
+                            if (!currentPoll.getpOption(3).isEmpty()) {
+                                option_4_percentage.setVisibility(View.VISIBLE);
+                                option_4_progressBar.setVisibility(View.VISIBLE);
+                                option_4_progressBar.setProgressColor(Color.parseColor("#00796b"));
+                                option_4_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
+                                if (finalTotalVotes != 0) {
 
-                            option_4_progressBar.setMax(100);
-                            option_4_progressBar.setProgress((currentPoll.getpValue(3) / (float) finalTotalVotes) * 100);
-                        }
-                    }
-
+                                    option_4_progressBar.setMax(100);
+                                    option_4_progressBar.setProgress((currentPoll.getpValue(3) / (float) finalTotalVotes) * 100);
+                                }
+                            }
                 } else {
                     LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(getContext().LAYOUT_INFLATER_SERVICE);
                     View layouttoast = inflater.inflate(R.layout.custom_toast, (ViewGroup) finalListItemView1.findViewById(R.id.toastcustom));
@@ -260,7 +253,6 @@ public class PollItemAdapter extends ArrayAdapter {
                     mytoast.setDuration(Toast.LENGTH_SHORT);
                     mytoast.show();
                 }
-
 
 
             }
