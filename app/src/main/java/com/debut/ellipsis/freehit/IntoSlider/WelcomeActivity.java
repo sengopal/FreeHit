@@ -134,8 +134,8 @@ public class WelcomeActivity extends AppCompatActivity {
 
         int[] colorsActive = getResources().getIntArray(R.array.array_dot_active);
         int[] colorsInactive = getResources().getIntArray(R.array.array_dot_inactive);
-        int width = getResources().getDimensionPixelSize(R.dimen._20sdp);;
-        int height = getResources().getDimensionPixelSize(R.dimen._20sdp);;
+        int width = getResources().getDimensionPixelSize(R.dimen._15sdp);;
+        int height = getResources().getDimensionPixelSize(R.dimen._15sdp);
         dotsLayout.removeAllViews();
         for (int i = 0; i < dots.length; i++) {
             dots[i] = new ImageView(this);
