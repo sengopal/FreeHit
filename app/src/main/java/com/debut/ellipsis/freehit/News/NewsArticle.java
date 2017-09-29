@@ -54,7 +54,7 @@ public class NewsArticle extends AppCompatActivity implements LoaderManager.Load
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.news_article);
+        setContentView(R.layout.news_article_individual_item);
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         news_article_id = getIntent().getIntExtra("news_article_id", 0);
         URL =

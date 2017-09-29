@@ -16,7 +16,7 @@ public class Info_Fragment extends Fragment {
                              Bundle savedInstanceState) {
 
 
-        View rootView = inflater.inflate(R.layout.fragment_stats_info, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_stats_player_info, container, false);
 
 
         return rootView;

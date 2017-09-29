@@ -103,9 +103,9 @@
 
         <include
             android:id="@+id/pollItem_result"
-            layout="@layout/polls_result"
+            layout="@layout/fragment_social_polls_result"
             android:visibility="invisible"
-             />
+            />
     </RelativeLayout>
 
 

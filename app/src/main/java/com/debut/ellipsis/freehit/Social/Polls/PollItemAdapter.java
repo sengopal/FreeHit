@@ -47,7 +47,7 @@ public class PollItemAdapter extends ArrayAdapter {
         View listItemView = convertView;
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.social_polls_list_item, parent, false);
+                    R.layout.fragment_social_polls_list_item, parent, false);
         }
 
 

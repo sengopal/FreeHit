@@ -57,7 +57,7 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.item, container, false);
-        View fragView = inflater.inflate(R.layout.fragment_news, container, false);
+        View fragView = inflater.inflate(R.layout.fragment_news_list_item, container, false);
 
 
         //Finding a reference to the AVLoading bar
