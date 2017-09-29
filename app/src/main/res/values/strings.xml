@@ -82,4 +82,21 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+
+
+    <string name="info">Match Info : </string>
+    <string name="match">Match : </string>
+    <string name="series">Series : </string>
+    <string name="date">Date : </string>
+    <string name="lastTime">Time : </string>
+    <string name="venue">Stadium : </string>
+    <string name="umpires">Umpires:</string>
+    <string name="third_umpires">3rd Umpires : </string>
+    <string name="referee">Referee : </string>
+    <string name="PlayingX1">Playing XI : </string>
+    <string name="weather">Weather : </string>
+
+
+
+
 </resources>

@@ -99,7 +99,7 @@ public class UpcomingMatchCard extends Fragment implements LoaderManager.LoaderC
 
 
         indicator = (PageIndicatorView) rootView.findViewById(R.id.indicator);
-
+        indicator.setVisibility(View.INVISIBLE);
         indicator.setViewPager(viewPager);
 
         layout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {

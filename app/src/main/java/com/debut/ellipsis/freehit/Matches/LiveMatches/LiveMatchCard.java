@@ -103,6 +103,7 @@ public class LiveMatchCard extends Fragment implements LoaderManager.LoaderCallb
 
 
         indicator = (PageIndicatorView) rootView.findViewById(R.id.indicator);
+        indicator.setVisibility(View.GONE);
         indicator.setViewPager(viewPager);
 
         layout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {

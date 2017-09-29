@@ -37,10 +37,10 @@
 
             <com.rd.PageIndicatorView
                 android:id="@+id/indicator"
-                android:layout_below="@+id/blank_for_pageindicators"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"
-                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
+                android:visibility="invisible"
                 />
 
             <ImageView
