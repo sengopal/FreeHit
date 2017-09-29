@@ -26,7 +26,7 @@ public class PlayerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
-        setContentView(R.layout.player_activity);
+        setContentView(R.layout.fragment_stats_player_activity);
         toolbar = (Toolbar) findViewById(R.id.toolbar_player);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

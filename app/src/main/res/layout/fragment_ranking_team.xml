@@ -88,7 +88,7 @@
 
         <include
             android:id="@+id/ListViewForTeamRankings"
-            layout="@layout/item" />
+            layout="@layout/list_common" />
     </RelativeLayout>
 
 </RelativeLayout>

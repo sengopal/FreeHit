@@ -52,7 +52,7 @@ public class LiveMatchCard extends Fragment implements LoaderManager.LoaderCallb
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.match_cards_item, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_matches_match_cards_item, container, false);
 
 
         // Get a reference to the ConnectivityManager to check state of network connectivity

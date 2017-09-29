@@ -37,7 +37,7 @@ public class UpcomingMatchesActivity extends AppCompatActivity implements Loader
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.complete_match_list);
+        setContentView(R.layout.fragment_matches_complete_match_list);
 
         setTitle(R.string.upcoming_list);
 

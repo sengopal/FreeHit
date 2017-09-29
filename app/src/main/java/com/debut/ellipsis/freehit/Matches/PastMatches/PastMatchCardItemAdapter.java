@@ -51,7 +51,7 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container,final int position) {
-        View view = this.layoutInflater.inflate(R.layout.past_match_card, container, false);
+        View view = this.layoutInflater.inflate(R.layout.fragment_matches_past_match_card, container, false);
 
         TextView textViewMatchName = (TextView) view.findViewById(R.id.match_name_past);
         textViewMatchName.setText(this.dataObjectList.get(position).getmMatchName());

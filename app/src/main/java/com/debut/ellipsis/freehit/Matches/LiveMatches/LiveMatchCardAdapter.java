@@ -58,7 +58,7 @@ public class LiveMatchCardAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, final int position) {
-        View view = this.layoutInflater.inflate(R.layout.live_match_card, container, false);
+        View view = this.layoutInflater.inflate(R.layout.fragment_matches_live_match_card, container, false);
         String originalMatchName = this.dataObjectList.get(position).getmMatchSeriesName();
 
         String match_name = null;

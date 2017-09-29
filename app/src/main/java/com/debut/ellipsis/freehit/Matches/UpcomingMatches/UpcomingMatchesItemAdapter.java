@@ -49,7 +49,7 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container,final int position) {
-        View view = this.layoutInflater.inflate(R.layout.upcoming_match_card, container, false);
+        View view = this.layoutInflater.inflate(R.layout.fragment_matches_upcoming_match_card, container, false);
 
         TextView textViewMatchName = (TextView) view.findViewById(R.id.match_name_upcoming);
         textViewMatchName.setText(this.dataObjectList.get(position).getmMatchName());

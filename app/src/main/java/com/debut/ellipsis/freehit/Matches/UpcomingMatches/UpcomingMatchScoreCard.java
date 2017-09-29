@@ -32,7 +32,7 @@ public class UpcomingMatchScoreCard extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.upcoming_match_scorecard);
+        setContentView(R.layout.fragment_matches_upcoming_match_scorecard);
         overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
         match_id=getIntent().getStringExtra("match_id");
         match_name=getIntent().getStringExtra("match_name");

@@ -56,7 +56,7 @@ public class SocialPolls extends Fragment implements LoaderManager.LoaderCallbac
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.item, container, false);
+        View rootView = inflater.inflate(R.layout.list_common, container, false);
         ListView PollsListView = (ListView) rootView.findViewById(R.id.list);
         fragView = inflater.inflate(R.layout.fragment_social_polls_list_item, container, false);
         final RadioGroup rGroup =(RadioGroup) fragView.findViewById(R.id.poll_group);

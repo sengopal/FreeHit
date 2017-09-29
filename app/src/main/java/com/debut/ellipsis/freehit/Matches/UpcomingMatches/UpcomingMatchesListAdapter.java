@@ -82,7 +82,7 @@ public class UpcomingMatchesListAdapter extends RecyclerView.Adapter<UpcomingMat
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View contactView = inflater.inflate(R.layout.item_upcoming_match_list, parent, false);
+        View contactView = inflater.inflate(R.layout.fragment_matches_upcoming_match_list_item, parent, false);
 
         // Return a new holder instance
         ViewHolder viewHolder = new ViewHolder(contactView);
