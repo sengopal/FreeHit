@@ -1,6 +1,8 @@
 package com.debut.ellipsis.freehit.Social;
 
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -28,6 +30,10 @@ public class SocialMainFragment extends Fragment {
 
     public ViewPager viewPager;
     private TabLayout tabLayout;
+    private int[] tabIcons = {
+            R.drawable.poll,
+            R.drawable.twitter
+    };
 
     public static final String LOG_TAG = MatchesFragment.class.getSimpleName();
 
@@ -58,10 +64,12 @@ public class SocialMainFragment extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+                tab.getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
+                tab.getIcon().setColorFilter(Color.parseColor("#a8a8a8"), PorterDuff.Mode.SRC_IN);
 
             }
 
@@ -70,7 +78,18 @@ public class SocialMainFragment extends Fragment {
 
             }
         });
+
+        setupTabIcons();
+
         return rootView;
+    }
+
+    private void setupTabIcons() {
+        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
+        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
+
+        tabLayout.getTabAt(0).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(1).getIcon().setColorFilter(Color.parseColor("#a8a8a8"), PorterDuff.Mode.SRC_IN);
     }
 
 
