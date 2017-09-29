@@ -1,6 +1,5 @@
 package com.debut.ellipsis.freehit.Matches.UpcomingMatches;
 
-import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;

@@ -45,7 +45,7 @@
 
             <ImageView
                 android:id="@+id/empty_view"
-                android:src="@drawable/emptyview"
+                android:src="@drawable/empty_view"
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_100sdp"
                 android:layout_centerHorizontal="true"
