@@ -11,5 +11,6 @@
         android:layout_marginTop="5dp"
         android:textAlignment="center"
         android:textColor="@color/black"
+        android:background="@drawable/cell_shape"
         android:textSize="15dp" />
 </LinearLayout>

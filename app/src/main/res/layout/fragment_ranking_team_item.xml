@@ -1,17 +1,14 @@
 <RelativeLayout
-
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.debut.ellipsis.freehit.Stats.Rankings.TeamRankingFragment">
+    android:layout_height="match_parent">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/parent_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
-        android:layout_marginTop="@dimen/_10sdp"
         android:orientation="horizontal"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="50dp">
@@ -21,17 +18,25 @@
             android:layout_width="@dimen/_33sdp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginLeft="@dimen/_8sdp"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_8sdp"
-            android:text="RANK"
+            android:text="1"
             android:textAlignment="viewStart"
-            android:textColor="@android:color/black"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.5" />
+
+        <ImageView
+            android:id="@+id/team_flag"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/matches"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintLeft_toRightOf="@+id/rank" />
 
         <TextView
             android:id="@+id/team"
@@ -40,13 +45,13 @@
             android:layout_marginBottom="@dimen/_8sdp"
             android:layout_marginLeft="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_8sdp"
-            android:text="TEAM"
-            android:textColor="@android:color/black"
+            android:text="NEW ZEALAND"
+            android:textAlignment="center"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/rank"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.5" />
 
         <TextView
             android:id="@+id/ratings"
@@ -55,43 +60,29 @@
             android:layout_marginBottom="@dimen/_8sdp"
             android:layout_marginLeft="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_8sdp"
-            android:text="RATINGS"
-            android:textColor="@android:color/black"
+            android:text="111"
+            android:textAlignment="center"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/team"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.5" />
 
         <TextView
             android:id="@+id/points"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_8sdp"
             android:layout_marginLeft="@dimen/_35sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_8sdp"
-            android:text="POINTS"
-            android:textColor="@android:color/black"
+            android:text="5123"
+            android:textAlignment="center"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@+id/ratings"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintLeft_toRightOf="@+id/ratings" />
 
     </android.support.constraint.ConstraintLayout>
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/parent_layout"
-        android:layout_marginTop="@dimen/_10sdp">
-
-        <include
-            android:id="@+id/ListViewForTeamRankings"
-            layout="@layout/list_common" />
-    </RelativeLayout>
-
 </RelativeLayout>
-
-
