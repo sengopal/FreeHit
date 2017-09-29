@@ -1,20 +1,14 @@
 package com.debut.ellipsis.freehit.Stats.Player;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ListAdapter;
-import android.widget.ListView;
 
 import com.debut.ellipsis.freehit.R;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 
 public class Batting_Fragment extends Fragment{

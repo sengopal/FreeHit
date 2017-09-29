@@ -1,21 +1,14 @@
 package com.debut.ellipsis.freehit.Stats.Player;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.debut.ellipsis.freehit.R;
-
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.GridView;
 
 public class Batting_Item_adapter extends BaseAdapter {
     private Context mContext;

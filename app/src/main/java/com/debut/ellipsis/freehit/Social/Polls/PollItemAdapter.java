@@ -1,15 +1,10 @@
 package com.debut.ellipsis.freehit.Social.Polls;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -200,7 +195,7 @@ public class PollItemAdapter extends ArrayAdapter {
                         }
                     }.start();
 
-                    ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction().detach(frg).attach(frg).commit();
+                    ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction().detach(frg).attach(frg).commitNow();
 
                     option1.setVisibility(View.GONE);
                     option2.setVisibility(View.GONE);
