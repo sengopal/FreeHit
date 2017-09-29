@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:fontFamily="sans-serif-medium"
-        android:textSize="25sp"
+        android:textSize="@dimen/_20ssp"
         tools:text="MATCHES WON"/>
 
 
@@ -34,14 +34,14 @@
                 android:textColor="#000000"
                 android:fontFamily="sans-serif-light"
                 android:gravity="center_horizontal"
-                android:padding="5dp"
-                android:textSize="30sp"
+                android:padding="@dimen/_5sdp"
+                android:textSize="@dimen/_25ssp"
                 tools:text="47" />
 
         </LinearLayout>
 
         <View
-            android:layout_width="1dp"
+            android:layout_width="@dimen/_1sdp"
             android:layout_height="match_parent"
             android:background="@android:color/darker_gray" />
         <!--......Team B...... -->
@@ -59,8 +59,8 @@
                 android:textColor="#000000"
                 android:fontFamily="sans-serif-light"
                 android:gravity="center_horizontal"
-                android:padding="5dp"
-                android:textSize="30sp"
+                android:padding="@dimen/_5sdp"
+                android:textSize="@dimen/_25ssp"
                 tools:text="55" />
 
         </LinearLayout>
@@ -69,7 +69,7 @@
     <TextView
         android:layout_below="@+id/LinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/_1sdp"
         android:background="@color/divider"/>
 
 </RelativeLayout>

@@ -22,9 +22,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:padding="5dp"
+                android:padding="@dimen/_5sdp"
                 tools:text="TEAM A"
-                android:textSize="25sp"
+                android:textSize="@dimen/_20ssp"
                 android:fontFamily="sans-serif-medium"
                 />
 
@@ -48,9 +48,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:padding="5dp"
+                android:padding="@dimen/_5sdp"
                 tools:text="TEAM B"
-                android:textSize="25sp"
+                android:textSize="@dimen/_20ssp"
                 android:fontFamily="sans-serif-medium"
                 />
 
@@ -78,9 +78,9 @@
                 android:id="@+id/no_of_matches"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:padding="@dimen/_5sdp"
                 tools:text="MATCHES: 153"
-                android:textSize="20sp"
+                android:textSize="@dimen/_15ssp"
                 android:fontFamily="sans-serif-medium"
                 />
         </LinearLayout>
@@ -102,9 +102,9 @@
                 android:id="@+id/tied_matches"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:padding="@dimen/_5sdp"
                 tools:text="TIED: 0"
-                android:textSize="20sp"
+                android:textSize="@dimen/_15ssp"
                 android:fontFamily="sans-serif-medium"
                 />
         </LinearLayout>
@@ -125,9 +125,9 @@
                 android:id="@+id/drawn_NR_matches"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:padding="@dimen/_5sdp"
                 tools:text="DRAWN: 51 "
-                android:textSize="20sp"
+                android:textSize="@dimen/_15ssp"
                 android:fontFamily="sans-serif-medium"
                 />
         </LinearLayout>

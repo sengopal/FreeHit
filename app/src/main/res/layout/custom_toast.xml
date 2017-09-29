@@ -12,12 +12,12 @@
         android:gravity="center">
         <TextView
             android:id="@+id/texttoast"
-            android:paddingLeft="10dip"
-            android:paddingRight="10dip"
+            android:paddingLeft="@dimen/_10sdp"
+            android:paddingRight="@dimen/_10sdp"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:textColor="#ffffff"
-            android:textSize="20sp"
+            android:textSize="@dimen/_20ssp"
             android:gravity="center"/>
     </LinearLayout>
 </LinearLayout>

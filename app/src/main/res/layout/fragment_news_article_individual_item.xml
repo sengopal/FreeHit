@@ -19,7 +19,7 @@
             <ImageView
                 android:id="@+id/news_article_image"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="@dimen/_165sdp"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.7" />
@@ -48,18 +48,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingBottom="24dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
+            android:paddingBottom="@dimen/_15sdp"
+            android:paddingLeft="@dimen/_15sdp"
+            android:paddingRight="@dimen/_15sdp">
 
             <TextView
                 android:id="@+id/news_article_heading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:textAllCaps="true"
                 android:textColor="@android:color/black"
-                android:textSize="20dp"
+                android:textSize="@dimen/_15ssp"
                 android:textStyle="bold"
                 tools:text="THIS THE HEADING FOR THE NEWS ARTICLE" />
 
@@ -67,7 +67,7 @@
                 android:id="@+id/news_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="@dimen/_12ssp"
                 tools:text="27 September 2017" />
 
 
@@ -77,8 +77,8 @@
 
                 <ImageView
                     android:id="@+id/news_tag_image"
-                    android:layout_width="10dp"
-                    android:layout_height="20dp"
+                    android:layout_width="@dimen/_8sdp"
+                    android:layout_height="@dimen/_15sdp"
                     android:src="@drawable/tag"
                     android:visibility="invisible"/>
 
@@ -86,16 +86,16 @@
                     android:id="@+id/news_tag"
                     android:layout_toEndOf="@+id/news_tag_image"
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_height="@dimen/_15sdp"
                     android:layout_marginStart="5dp"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/_12ssp"
                     tools:text="David Andrew Warner" />
 
                 <ImageView
                     android:id="@+id/news_tag_image_1"
                     android:layout_below="@+id/news_tag_image"
-                    android:layout_width="10dp"
-                    android:layout_height="20dp"
+                    android:layout_width="@dimen/_8sdp"
+                    android:layout_height="@dimen/_15sdp"
                     android:src="@drawable/tag"
                     android:visibility="invisible"/>
 
@@ -104,16 +104,16 @@
                     android:layout_below="@+id/news_tag"
                     android:layout_toEndOf="@+id/news_tag_image"
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_height="@dimen/_15sdp"
                     android:layout_marginStart="5dp"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/_12ssp"
                     tools:text="David Andrew Warner" />
 
                 <ImageView
                     android:id="@+id/news_tag_image_2"
                     android:layout_below="@+id/news_tag_image_1"
-                    android:layout_width="10dp"
-                    android:layout_height="20dp"
+                    android:layout_width="@dimen/_8sdp"
+                    android:layout_height="@dimen/_15sdp"
                     android:src="@drawable/tag"
                     android:visibility="invisible"/>
 
@@ -122,9 +122,9 @@
                     android:layout_below="@+id/news_tag_1"
                     android:layout_toEndOf="@+id/news_tag_image"
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_height="@dimen/_15sdp"
                     android:layout_marginStart="5dp"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/_12ssp"
                     tools:text="David Andrew Warner" />
 
 
@@ -135,10 +135,10 @@
                 android:id="@+id/news_article_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp"
+                android:paddingTop="@dimen/_10sdp"
                 android:paddingBottom="10dip"
                 android:textColor="@android:color/black"
-                android:textSize="15dp"
+                android:textSize="@dimen/_13ssp"
                 tools:text="aasfdfdfdafd" />
         </LinearLayout>
 

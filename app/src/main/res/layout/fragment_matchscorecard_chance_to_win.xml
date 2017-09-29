@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:id="@+id/linearlayout"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="@dimen/_150sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
@@ -25,9 +25,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:padding="5dp"
+                android:padding="@dimen/_5sdp"
                 tools:text="TEAM A"
-                android:textSize="25sp"
+                android:textSize="@dimen/_20ssp"
                 android:fontFamily="sans-serif-medium"
                 />
 
@@ -36,16 +36,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:paddingBottom="5dp"
+                android:paddingBottom="@dimen/_5sdp"
                 tools:text="36%"
-                android:textSize="56sp"
+                android:textSize="@dimen/_50ssp"
                 android:textColor="#000000"
                 android:fontFamily="sans-serif-light"/>
 
         </LinearLayout>
 
         <View
-            android:layout_width="1dp"
+            android:layout_width="@dimen/_1sdp"
             android:layout_height="match_parent"
             android:background="@android:color/darker_gray"
             />
@@ -63,9 +63,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:padding="5dp"
+                android:padding="@dimen/_5sdp"
                 tools:text="TEAM A"
-                android:textSize="25sp"
+                android:textSize="@dimen/_20ssp"
                 android:fontFamily="sans-serif-medium"
                 />
 
@@ -74,9 +74,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:paddingBottom="5dp"
+                android:paddingBottom="@dimen/_5sdp"
                 tools:text="64%"
-                android:textSize="56sp"
+                android:textSize="@dimen/_50ssp"
                 android:textColor="#000000"
                 android:fontFamily="sans-serif-light"/>
 
@@ -90,9 +90,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:paddingTop="20dp"
+        android:paddingTop="@dimen/_20sdp"
         tools:text="DRAW"
-        android:textSize="25sp"
+        android:textSize="@dimen/_20ssp"
         android:fontFamily="sans-serif-medium"/>
 
     <TextView
@@ -101,9 +101,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:paddingBottom="5dp"
+        android:paddingBottom="@dimen/_5sdp"
         tools:text="0%"
-        android:textSize="56sp"
+        android:textSize="@dimen/_50ssp"
         android:textColor="#000000"
         android:fontFamily="sans-serif-light"/>
 

@@ -31,22 +31,22 @@
         <RelativeLayout
             android:gravity="center_horizontal"
             android:id="@+id/inningsNumBtnLayout"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingBottom="@dimen/activity_horizontal_margin"
+            android:paddingLeft="@dimen/_14sdp"
+            android:paddingTop="@dimen/_14sdp"
+            android:paddingRight="@dimen/_14sdp"
+            android:paddingBottom="@dimen/_14sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
                 android:textColor="@android:color/black"
                 android:id="@+id/test"
                 android:background="@drawable/btn_bg_color"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:paddingLeft="@dimen/_8sdp"
+                android:paddingRight="@dimen/_8sdp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="test"
-                android:onClick="gameTypeBtnClick"
+                android:onClick="FormatTypeOnClick"
                 android:textAllCaps="true" />
             <Button
                 android:textColor="@android:color/black"
@@ -56,18 +56,18 @@
                 android:layout_height="wrap_content"
                 android:text="odi"
                 android:layout_toRightOf="@+id/test"
-                android:onClick="gameTypeBtnClick" />
+                android:onClick="FormatTypeOnClick" />
             <Button
                 android:textColor="@android:color/black"
                 android:id="@+id/t20"
                 android:background="@drawable/btn_bg_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="t20"
                 android:layout_toRightOf="@id/odi"
-                android:onClick="gameTypeBtnClick" />
+                android:onClick="FormatTypeOnClick" />
         </RelativeLayout>
+
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager_rankings"
             android:layout_below="@+id/inningsNumBtnLayout"
