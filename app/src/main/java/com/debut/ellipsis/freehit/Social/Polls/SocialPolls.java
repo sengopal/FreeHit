@@ -33,7 +33,7 @@ import java.util.List;
  */
 public class SocialPolls extends Fragment implements LoaderManager.LoaderCallbacks<List<PollCardItem>> {
 
-    public static Fragment myFragment;
+
 
     public static final String LOG_TAG = SocialPolls.class.getSimpleName();
 
@@ -54,7 +54,7 @@ public class SocialPolls extends Fragment implements LoaderManager.LoaderCallbac
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        myFragment=this;
+
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.item, container, false);
         ListView PollsListView = (ListView) rootView.findViewById(R.id.list);
