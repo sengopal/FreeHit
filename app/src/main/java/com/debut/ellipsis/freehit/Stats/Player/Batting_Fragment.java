@@ -33,7 +33,7 @@ public class Batting_Fragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_stats_batting, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_stats_player_batting, container, false);
         GridView androidGridView;
         Batting_Item_adapter adapterViewAndroid = new Batting_Item_adapter(getContext(), gridViewString );
         androidGridView=(GridView)rootView.findViewById(R.id.grid_view_image_text);

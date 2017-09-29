@@ -33,7 +33,7 @@ public class PastMatchesActivity extends AppCompatActivity implements LoaderMana
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.complete_match_list);
+        setContentView(R.layout.fragment_matches_complete_match_list);
 
         setTitle(R.string.past_list);
 

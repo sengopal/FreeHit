@@ -91,7 +91,7 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View MatchView = inflater.inflate(R.layout.item_past_match_list, parent, false);
+        View MatchView = inflater.inflate(R.layout.fragment_matches_past_match_list_item, parent, false);
 
         // Return a new holder instance
         PastMatchesListAdapter.ViewHolder viewHolder = new PastMatchesListAdapter.ViewHolder(MatchView);

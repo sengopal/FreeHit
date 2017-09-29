@@ -24,7 +24,7 @@ public class HeatMapFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_heat_map, container, false);
+        return inflater.inflate(R.layout.fragment_matchscorecard_heat_map, container, false);
     }
 
 }

@@ -1,10 +1,16 @@
 package com.debut.ellipsis.freehit.Social.Polls;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTabHost;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +23,7 @@ import android.widget.Toast;
 
 import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
 import com.debut.ellipsis.freehit.R;
+import com.debut.ellipsis.freehit.Social.SocialMainFragment;
 
 import java.util.List;
 
@@ -26,7 +33,7 @@ import static com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity.MY_PREFS_NAM
 
 public class PollItemAdapter extends ArrayAdapter {
 
-    Fragment frg = SocialPolls.myFragment;
+    Fragment frg = SocialMainFragment.myFragment;
 
     public PollItemAdapter(Context context, List<PollCardItem> polls) {
         super(context, 0, polls);
@@ -40,7 +47,7 @@ public class PollItemAdapter extends ArrayAdapter {
         View listItemView = convertView;
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.social_polls_list_item, parent, false);
+                    R.layout.fragment_social_polls_list_item, parent, false);
         }
 
 
@@ -49,6 +56,9 @@ public class PollItemAdapter extends ArrayAdapter {
 
         final PollCardItem currentPoll = (PollCardItem) getItem(position);
         final Button submit = (Button) listItemView.findViewById(R.id.poll_submit);
+
+        final Button view_results = (Button) listItemView.findViewById(R.id.poll_results_view);
+
         TextView pollTitle = (TextView) listItemView.findViewById(R.id.poll_title);
         pollTitle.setText(currentPoll.getpTitle());
 
@@ -78,6 +88,9 @@ public class PollItemAdapter extends ArrayAdapter {
 
         // POLL RESULT
         final View pollresult = listItemView.findViewById(R.id.pollItem_result);
+
+        final Button back_from_results = (Button) pollresult.findViewById(R.id.poll_results_back);
+
         final TextView option_1 = (TextView) pollresult.findViewById(R.id.option_1);
         option_1.setText(currentPoll.getpOption(0));
         if (currentPoll.getpOption(0).isEmpty()) {
@@ -175,7 +188,7 @@ public class PollItemAdapter extends ArrayAdapter {
 
 
         final int finalTotalVotes = totalVotes;
-        final View finalListItemView2 = listItemView;
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -195,25 +208,24 @@ public class PollItemAdapter extends ArrayAdapter {
                         }
                     }.start();
 
-                    ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction().detach(frg).attach(frg).commitNow();
-
                     option1.setVisibility(View.GONE);
                     option2.setVisibility(View.GONE);
                     option3.setVisibility(View.GONE);
                     option4.setVisibility(View.GONE);
                     submit.setVisibility(View.GONE);
+                    view_results.setVisibility(View.GONE);
                     pollresult.setVisibility(View.VISIBLE);
                     option_1.setVisibility(View.VISIBLE);
                     option_2.setVisibility(View.VISIBLE);
                     option_3.setVisibility(View.VISIBLE);
                     option_4.setVisibility(View.VISIBLE);
+                    back_from_results.setVisibility(View.GONE);
                     if (!currentPoll.getpOption(0).isEmpty()) {
                         option_1_percentage.setVisibility(View.VISIBLE);
                         option_1_progressBar.setVisibility(View.VISIBLE);
                         option_1_progressBar.setProgressColor(Color.parseColor("#00796b"));
                         option_1_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
                         if (finalTotalVotes != 0) {
-
                             option_1_progressBar.setMax(100);
                             option_1_progressBar.setProgress((currentPoll.getpValue(0) / (float) finalTotalVotes) * 100);
                         }
@@ -235,7 +247,6 @@ public class PollItemAdapter extends ArrayAdapter {
                         option_3_progressBar.setProgressColor(Color.parseColor("#00796b"));
                         option_3_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
                         if (finalTotalVotes != 0) {
-
                             option_3_progressBar.setMax(100);
                             option_3_progressBar.setProgress((currentPoll.getpValue(2) / (float) finalTotalVotes) * 100);
                         }
@@ -246,11 +257,12 @@ public class PollItemAdapter extends ArrayAdapter {
                         option_4_progressBar.setProgressColor(Color.parseColor("#00796b"));
                         option_4_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
                         if (finalTotalVotes != 0) {
-
                             option_4_progressBar.setMax(100);
                             option_4_progressBar.setProgress((currentPoll.getpValue(3) / (float) finalTotalVotes) * 100);
                         }
                     }
+
+
 
                 } else {
                     LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(getContext().LAYOUT_INFLATER_SERVICE);
@@ -267,6 +279,97 @@ public class PollItemAdapter extends ArrayAdapter {
             }
         });
 
+
+
+        view_results.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final String url = "https://freehit-api.herokuapp.com/polls?id=" + currentPoll.getpId();
+                new Thread() {
+                    public void run() {
+                        QueryUtilPolls.fetchPollData(url);
+                    }
+                }.start();
+
+                option1.setVisibility(View.GONE);
+                option2.setVisibility(View.GONE);
+                option3.setVisibility(View.GONE);
+                option4.setVisibility(View.GONE);
+                submit.setVisibility(View.GONE);
+                view_results.setVisibility(View.GONE);
+                pollresult.setVisibility(View.VISIBLE);
+                option_1.setVisibility(View.VISIBLE);
+                option_2.setVisibility(View.VISIBLE);
+                option_3.setVisibility(View.VISIBLE);
+                option_4.setVisibility(View.VISIBLE);
+                back_from_results.setVisibility(View.VISIBLE);
+                if (!currentPoll.getpOption(0).isEmpty()) {
+                    option_1_percentage.setVisibility(View.VISIBLE);
+                    option_1_progressBar.setVisibility(View.VISIBLE);
+                    option_1_progressBar.setProgressColor(Color.parseColor("#00796b"));
+                    option_1_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
+                    if (finalTotalVotes != 0) {
+                        option_1_progressBar.setMax(100);
+                        option_1_progressBar.setProgress((currentPoll.getpValue(0) / (float) finalTotalVotes) * 100);
+                    }
+                }
+                if (!currentPoll.getpOption(1).isEmpty()) {
+                    option_2_percentage.setVisibility(View.VISIBLE);
+                    option_2_progressBar.setVisibility(View.VISIBLE);
+                    option_2_progressBar.setProgressColor(Color.parseColor("#00796b"));
+                    option_2_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
+                    if (finalTotalVotes != 0) {
+
+                        option_2_progressBar.setMax(100);
+                        option_2_progressBar.setProgress((currentPoll.getpValue(1) / (float) finalTotalVotes) * 100);
+                    }
+                }
+                if (!currentPoll.getpOption(2).isEmpty()) {
+                    option_3_percentage.setVisibility(View.VISIBLE);
+                    option_3_progressBar.setVisibility(View.VISIBLE);
+                    option_3_progressBar.setProgressColor(Color.parseColor("#00796b"));
+                    option_3_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
+                    if (finalTotalVotes != 0) {
+                        option_3_progressBar.setMax(100);
+                        option_3_progressBar.setProgress((currentPoll.getpValue(2) / (float) finalTotalVotes) * 100);
+                    }
+                }
+                if (!currentPoll.getpOption(3).isEmpty()) {
+                    option_4_percentage.setVisibility(View.VISIBLE);
+                    option_4_progressBar.setVisibility(View.VISIBLE);
+                    option_4_progressBar.setProgressColor(Color.parseColor("#00796b"));
+                    option_4_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
+                    if (finalTotalVotes != 0) {
+                        option_4_progressBar.setMax(100);
+                        option_4_progressBar.setProgress((currentPoll.getpValue(3) / (float) finalTotalVotes) * 100);
+                    }
+                }
+
+            }
+
+        });
+
+
+        back_from_results.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                option1.setVisibility(View.VISIBLE);
+                option2.setVisibility(View.VISIBLE);
+                option3.setVisibility(View.VISIBLE);
+                option4.setVisibility(View.VISIBLE);
+                submit.setVisibility(View.VISIBLE);
+                view_results.setVisibility(View.VISIBLE);
+                pollresult.setVisibility(View.INVISIBLE);
+
+            }
+
+        });
+
+
+
+
         SharedPreferences prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         boolean name = prefs.getBoolean("has_voted_" + position, false);
         if (name) {
@@ -281,11 +384,13 @@ public class PollItemAdapter extends ArrayAdapter {
             option3.setVisibility(View.GONE);
             option4.setVisibility(View.GONE);
             submit.setVisibility(View.GONE);
+            view_results.setVisibility(View.GONE);
             pollresult.setVisibility(View.VISIBLE);
             option_1.setVisibility(View.VISIBLE);
             option_2.setVisibility(View.VISIBLE);
             option_3.setVisibility(View.VISIBLE);
             option_4.setVisibility(View.VISIBLE);
+            back_from_results.setVisibility(View.GONE);
             if (!currentPoll.getpOption(0).isEmpty()) {
                 option_1_percentage.setVisibility(View.VISIBLE);
                 option_1_progressBar.setVisibility(View.VISIBLE);

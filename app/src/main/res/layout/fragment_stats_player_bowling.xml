@@ -2,31 +2,31 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#8c898f">
+    android:layout_height="match_parent"
+    >
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <GridView
-                android:id="@+id/grid_view_image_text"
+                android:id="@+id/grid_view_bowling"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#8c898f"
-                android:columnWidth="55dp"
+                android:layout_height="match_parent"
+                android:columnWidth="@dimen/_50sdp"
                 android:gravity="center"
-                android:horizontalSpacing="2dp"
+                android:horizontalSpacing="@dimen/_2sdp"
                 android:numColumns="5"
-                android:padding="5dp"
-                android:stretchMode="columnWidth" />
+                android:padding="@dimen/_4sdp"
+                android:stretchMode="columnWidth"
+                />
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

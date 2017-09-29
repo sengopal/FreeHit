@@ -10,9 +10,6 @@ import android.widget.TextView;
 
 import com.debut.ellipsis.freehit.R;
 
-/**
- * Created by Jayanth on 29-09-2017.
- */
 
 public class Bowling_item_adapter extends BaseAdapter {
     private Context mContext;
@@ -49,7 +46,7 @@ public class Bowling_item_adapter extends BaseAdapter {
         if (convertView == null) {
 
             gridViewAndroid = new View(mContext);
-            gridViewAndroid = inflater.inflate(R.layout.stats_bowling_adapter, null);
+            gridViewAndroid = inflater.inflate(R.layout.fragment_stats_bowling_adapter, null);
             TextView textViewAndroid = (TextView) gridViewAndroid.findViewById(R.id.bowling_text);
             textViewAndroid.setText(gridViewString[i]);
             textViewAndroid.setBackgroundColor(Color.parseColor("#d9d5dc"));

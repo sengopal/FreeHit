@@ -46,7 +46,7 @@ public class CountryListAdapter extends BaseAdapter {
         Country country = countries.get(position);
 
         if (view == null)
-            view = inflater.inflate(R.layout.row, null);
+            view = inflater.inflate(R.layout.country_picker_row, null);
 
         Cell cell = Cell.from(view);
         cell.textView.setText(country.getName());

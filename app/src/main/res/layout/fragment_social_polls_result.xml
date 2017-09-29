@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -14,27 +14,27 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            >
+            android:layout_marginTop="@dimen/_15sdp">
 
             <TextView
                 android:id="@+id/option_1"
-                android:layout_width="100dp"
-                android:layout_height="20dp"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_18sdp"
                 android:textColor="@android:color/black"
                 tools:text="Option 1" />
 
             <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
                 android:id="@+id/progress_bar_option1"
-                android:layout_width="100dp"
-                app:rcBackgroundPadding="5dp"
-                android:layout_height="20dp"
-                android:layout_toEndOf="@+id/option_1" />
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_toEndOf="@+id/option_1"
+                app:rcBackgroundPadding="5dp" />
 
             <TextView
                 android:id="@+id/percentage_option_1"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_marginStart="@dimen/_8sdp"
                 android:layout_toEndOf="@+id/progress_bar_option1"
                 android:textColor="@android:color/black"
                 tools:text="21%" />
@@ -47,23 +47,23 @@
 
             <TextView
                 android:id="@+id/option_2"
-                android:layout_width="100dp"
-                android:layout_height="20dp"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_18sdp"
                 android:textColor="@android:color/black"
                 tools:text="Option 2" />
 
             <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
                 android:id="@+id/progress_bar_option2"
-                android:layout_width="100dp"
-                app:rcBackgroundPadding="5dp"
-                android:layout_height="20dp"
-
-                android:layout_toEndOf="@+id/option_2" />
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_toEndOf="@+id/option_2"
+                app:rcBackgroundPadding="5dp" />
 
             <TextView
                 android:id="@+id/percentage_option_2"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_marginStart="@dimen/_8sdp"
                 android:layout_toEndOf="@+id/progress_bar_option2"
                 android:textColor="@android:color/black"
                 tools:text="21%" />
@@ -76,23 +76,24 @@
 
             <TextView
                 android:id="@+id/option_3"
-                android:layout_width="100dp"
-                android:layout_height="20dp"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_18sdp"
                 android:textColor="@android:color/black"
                 tools:text="Option 3" />
 
             <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
                 android:id="@+id/progress_bar_option3"
-                android:layout_width="100dp"
-                app:rcBackgroundPadding="5dp"
-                android:layout_height="20dp"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_toEndOf="@+id/option_3"
 
-                android:layout_toEndOf="@+id/option_3" />
+                app:rcBackgroundPadding="5dp" />
 
             <TextView
                 android:id="@+id/percentage_option_3"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_marginStart="@dimen/_8sdp"
                 android:layout_toEndOf="@+id/progress_bar_option3"
                 android:textColor="@android:color/black"
                 tools:text="21%" />
@@ -101,32 +102,43 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp">
 
             <TextView
                 android:id="@+id/option_4"
-                android:layout_width="100dp"
-                android:layout_height="20dp"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_18sdp"
                 android:textColor="@android:color/black"
                 tools:text="Option 4" />
 
             <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
                 android:id="@+id/progress_bar_option4"
-                android:layout_width="100dp"
-                app:rcBackgroundPadding="5dp"
-                android:layout_height="20dp"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_toEndOf="@+id/option_4"
 
-                android:layout_toEndOf="@+id/option_4" />
+                app:rcBackgroundPadding="5dp" />
 
             <TextView
                 android:id="@+id/percentage_option_4"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_marginStart="@dimen/_8sdp"
                 android:layout_toEndOf="@+id/progress_bar_option4"
                 android:textColor="@android:color/black"
                 tools:text="21%" />
         </RelativeLayout>
+
+        <Button
+            android:id="@+id/poll_results_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:background="@color/color_white"
+            android:padding="@dimen/_5sdp"
+            android:text="back" />
 
     </LinearLayout>
 

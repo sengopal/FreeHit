@@ -32,7 +32,7 @@ public class NewsItemAdapter extends ArrayAdapter<NewsItem> {
         View listItemView = convertView;
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.fragment_news, parent, false);
+                    R.layout.fragment_news_list_item, parent, false);
         }
 
 
