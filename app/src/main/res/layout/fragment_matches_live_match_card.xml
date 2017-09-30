@@ -168,6 +168,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:textSize="@dimen/_11sdp"
+                android:textColor="@android:color/black"
                 tools:text="India beat Sri Lanka by 168 runs/Australia trail or lead by" />
 
             <TextView

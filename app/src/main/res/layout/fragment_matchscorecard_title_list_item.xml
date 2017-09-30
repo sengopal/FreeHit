@@ -9,17 +9,18 @@
     <TextView
         android:id="@+id/Player_name"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_28sdp"
+        android:layout_height="wrap_content"
         android:paddingStart="@dimen/_20sdp"
-        android:paddingTop="@dimen/_10sdp"
+        android:paddingTop="@dimen/_3sdp"
         android:textColor="@android:color/black"
         android:textSize="@dimen/_12ssp"
+        android:textAllCaps="true"
         tools:text="CHRIS GAYLE" />
 
     <TextView
         android:id="@+id/player_out_type"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_20sdp"
+        android:layout_height="@dimen/_18sdp"
         android:paddingStart="@dimen/_20sdp"
         android:textSize="@dimen/_10ssp"
         tools:text="c Liam Plunkett b Tom Curran" />
@@ -31,8 +32,9 @@
         android:layout_gravity="center_horizontal"
         android:background="@drawable/cell_shape"
         android:orientation="horizontal"
-        android:paddingEnd="@dimen/_5sdp"
-        android:paddingStart="@dimen/_5sdp">
+        android:paddingEnd="@dimen/_8sdp"
+        android:paddingStart="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_5sdp">
 
 
         <TextView
@@ -43,14 +45,14 @@
             android:layout_marginStart="@dimen/_2sdp"
             android:text="4 * "
             android:textColor="@android:color/black"
-            android:textSize="@dimen/_10ssp" />
+            android:textSize="@dimen/_8ssp" />
 
         <TextView
             android:id="@+id/FourValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_5sdp"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_8ssp"
@@ -66,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
             android:text="6 * "
             android:textColor="@android:color/black"
             android:textSize="@dimen/_8ssp" />
@@ -76,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_5sdp"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_8ssp"
@@ -92,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
             android:text="D* "
             android:textColor="@android:color/black"
             android:textSize="@dimen/_8ssp" />
@@ -102,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_5sdp"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_8ssp"
@@ -118,7 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
             android:text="R : "
             android:textColor="@android:color/black"
             android:textSize="@dimen/_8ssp" />
@@ -128,7 +130,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_5sdp"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_8ssp"
@@ -144,7 +146,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
             android:text="B : "
             android:textColor="@android:color/black"
             android:textSize="@dimen/_8ssp" />
@@ -154,7 +156,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_5sdp"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_8ssp"
@@ -170,7 +172,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
             android:text="SR : "
             android:textColor="@android:color/black"
             android:textSize="@dimen/_8ssp" />
@@ -180,7 +182,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_5sdp"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_8ssp"

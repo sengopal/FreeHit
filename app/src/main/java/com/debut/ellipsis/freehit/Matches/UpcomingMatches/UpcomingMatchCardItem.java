@@ -21,11 +21,9 @@ public class UpcomingMatchCardItem {
 
     private String mViewMore;
 
-    private String mSeparator;
-
     private String mMatchID;
 
-    public UpcomingMatchCardItem(String MatchID,String MatchName,String SeriesName,String StadiumName,String Team1LogoURL,String Team1SN,String Team2LogoURL,String Team2SN,String MatchDate,String Separator){
+    public UpcomingMatchCardItem(String MatchID,String MatchName,String SeriesName,String StadiumName,String Team1LogoURL,String Team1SN,String Team2LogoURL,String Team2SN,String MatchDate){
         mMatchID=MatchID;
         mMatchName=MatchName;
         mSeriesName=SeriesName;
@@ -35,7 +33,6 @@ public class UpcomingMatchCardItem {
         mTeam2LogoURL=Team2LogoURL;
         mTeam2SN=Team2SN;
         mMatchDate=MatchDate;
-        mSeparator=Separator;
     }
 
 
@@ -77,11 +74,6 @@ public class UpcomingMatchCardItem {
 
     public String getmViewMore(){
         return mViewMore;
-    }
-
-    public String getmSeparator()
-    {
-        return mSeparator;
     }
 
     public String getmMatchID()

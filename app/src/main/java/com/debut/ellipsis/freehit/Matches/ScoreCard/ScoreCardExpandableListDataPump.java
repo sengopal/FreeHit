@@ -45,7 +45,7 @@ public class ScoreCardExpandableListDataPump {
 
             ch_list = new ArrayList<ScoreCardItem>();
             for (; j < size; j++) {
-                ScoreCardItem ch = new ScoreCardItem("CHRIS GAYLE","c Liam Plunkett b Tom Curran","1","5","18","40","29","137.93");
+                ScoreCardItem ch = new ScoreCardItem("christopher henry gayle","c Liam Plunkett b Tom Curran","99","99","999","999","999","999.99");
 
                 ch_list.add(ch);
             }

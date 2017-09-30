@@ -54,9 +54,6 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
         TextView textViewMatchName = (TextView) view.findViewById(R.id.match_name_upcoming);
         textViewMatchName.setText(this.dataObjectList.get(position).getmMatchName());
 
-        TextView Separator = (TextView) view.findViewById(R.id.match_series_separator);
-        Separator.setText(this.dataObjectList.get(position).getmSeparator());
-
         TextView textViewSeriesName = (TextView) view.findViewById(R.id.series_name_upcoming);
         textViewSeriesName.setText(this.dataObjectList.get(position).getmSeriesName());
 
