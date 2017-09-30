@@ -1,5 +1,6 @@
 package com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements;
 
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,20 +12,19 @@ import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
 
-
-public class ScoreCardExpandableListAdapter extends BaseExpandableListAdapter {
+public class ScoreCardExpandableListAdapterBowling extends BaseExpandableListAdapter {
 
     private Context context;
-    private ArrayList<ScoreCardItemListItem> groups;
+    private ArrayList<ScoreCardItemListBowling> groups;
 
-    public ScoreCardExpandableListAdapter(Context context, ArrayList<ScoreCardItemListItem> groups) {
+    public ScoreCardExpandableListAdapterBowling(Context context, ArrayList<ScoreCardItemListBowling> groups) {
         this.context = context;
         this.groups = groups;
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        ArrayList<ScoreCardItem> chList = groups.get(groupPosition).getItems();
+        ArrayList<ScoreCardItemBowling> chList = groups.get(groupPosition).getItems();
         return chList.get(childPosition);
     }
 
@@ -37,43 +37,46 @@ public class ScoreCardExpandableListAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
 
-        ScoreCardItem currentPlayer = (ScoreCardItem) getChild(groupPosition, childPosition);
+        ScoreCardItemBowling currentPlayer = (ScoreCardItemBowling) getChild(groupPosition, childPosition);
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) context
                     .getSystemService(context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.fragment_matchscorecard_title_list_item, null);
+            convertView = infalInflater.inflate(R.layout.fragment_matchscorecard_title_list_item_bowling, null);
         }
 
-        TextView PlayerName = (TextView) convertView.findViewById(R.id.Player_name);
-        PlayerName.setText(currentPlayer.getmPlayerName());
+        TextView BowlerName = (TextView) convertView.findViewById(R.id.bowler_name);
+        BowlerName.setText(currentPlayer.getmBowlerName());
 
-        TextView PlayerOutType = (TextView) convertView.findViewById(R.id.player_out_type);
-        PlayerOutType.setText(currentPlayer.getmPlayerOutType());
+        TextView Wickets = (TextView) convertView.findViewById(R.id.WicketsValue);
+        Wickets.setText(currentPlayer.getmWickets());
 
-        TextView NumberOfFours = (TextView) convertView.findViewById(R.id.FourValue);
-        NumberOfFours.setText(currentPlayer.getmNumberOfFours());
+        TextView BowlerRuns = (TextView) convertView.findViewById(R.id.BowlerRunsValue);
+        BowlerRuns.setText(currentPlayer.getmBowlerRuns());
 
-        TextView NumberOfSixes = (TextView) convertView.findViewById(R.id.SixValue);
-        NumberOfSixes.setText(currentPlayer.getmNumberOfSixes());
+        TextView EconomyRate = (TextView) convertView.findViewById(R.id.EconomyRateValue);
+        EconomyRate.setText(currentPlayer.getmEconomyRate());
 
-        TextView NumberOfDots= (TextView) convertView.findViewById(R.id.DotValue);
-        NumberOfDots.setText(currentPlayer.getmNumberOfDots());
+        TextView Overs = (TextView) convertView.findViewById(R.id.OversValue);
+        Overs.setText(currentPlayer.getmOvers());
 
-        TextView NumberOfRuns= (TextView) convertView.findViewById(R.id.RunsValue);
-        NumberOfRuns.setText(currentPlayer.getmRuns());
+        TextView Maiden = (TextView) convertView.findViewById(R.id.MaidensValue);
+        Maiden.setText(currentPlayer.getmMaidens());
 
-        TextView NumberOfBalls= (TextView) convertView.findViewById(R.id.BallsValue);
-        NumberOfBalls.setText(currentPlayer.getmBalls());
+        TextView NoBalls = (TextView) convertView.findViewById(R.id.NoBallsValue);
+        NoBalls.setText(currentPlayer.getmNoBalls());
 
-        TextView StrikeRate= (TextView) convertView.findViewById(R.id.StrikeRateValue);
-        StrikeRate.setText(currentPlayer.getmStrikeRate());
+        TextView Wides = (TextView) convertView.findViewById(R.id.WidesValue);
+        Wides.setText(currentPlayer.getmWides());
+
+        TextView Dots = (TextView) convertView.findViewById(R.id.DotsValue);
+        Dots.setText(currentPlayer.getmDots());
 
         return convertView;
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        ArrayList<ScoreCardItem> chList = groups.get(groupPosition).getItems();
+        ArrayList<ScoreCardItemBowling> chList = groups.get(groupPosition).getItems();
         return chList.size();
     }
 
@@ -95,7 +98,7 @@ public class ScoreCardExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
-        ScoreCardItemListItem group = (ScoreCardItemListItem) getGroup(groupPosition);
+        ScoreCardItemListBowling group = (ScoreCardItemListBowling) getGroup(groupPosition);
         if (convertView == null) {
             LayoutInflater inf = (LayoutInflater) context
                     .getSystemService(context.LAYOUT_INFLATER_SERVICE);

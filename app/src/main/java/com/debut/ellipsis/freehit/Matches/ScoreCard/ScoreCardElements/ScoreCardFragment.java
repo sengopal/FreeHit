@@ -20,9 +20,13 @@ import java.util.ArrayList;
  */
 public class ScoreCardFragment extends Fragment {
 
-    private ScoreCardExpandableListAdapter ExpAdapter;
-    private ArrayList<ScoreCardItemListItem> ExpListItems;
-    private ExpandableListView ExpandList;
+    private ScoreCardExpandableListAdapterBatting ExpAdapterBatting;
+    private ArrayList<ScoreCardItemListBatting> ExpListItemsBatting;
+    private ExpandableListView ExpandListBatting;
+
+    private ScoreCardExpandableListAdapterBowling ExpAdapterBowling;
+    private ArrayList<ScoreCardItemListBowling> ExpListItemsBowling;
+    private ExpandableListView ExpandListBowling;
 
     public ScoreCardFragment() {
         // Required empty public constructor
@@ -37,13 +41,15 @@ public class ScoreCardFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_matchscorecard_scorecard, container, false);
 
+
+        // BATTING
         View expandableListBatting = rootView.findViewById(R.id.expandable_match_scoreCard_batting);
-        ExpandList = (ExpandableListView) expandableListBatting.findViewById(R.id.expandable_match_scoreCard);
-        ExpListItems = ScoreCardExpandableListDataPump.getData();
-        ExpAdapter = new ScoreCardExpandableListAdapter(getActivity(), ExpListItems);
-        ExpandList.setAdapter(ExpAdapter);
-        setExpandableListViewHeight(ExpandList, -1);
-        ExpandList.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+        ExpandListBatting = (ExpandableListView) expandableListBatting.findViewById(R.id.expandable_match_scoreCard);
+        ExpListItemsBatting = ScoreCardExpandableListDataPump.getDataBatting();
+        ExpAdapterBatting = new ScoreCardExpandableListAdapterBatting(getActivity(), ExpListItemsBatting);
+        ExpandListBatting.setAdapter(ExpAdapterBatting);
+        setExpandableListViewHeight(ExpandListBatting, -1);
+        ExpandListBatting.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
 
 
             //THIS IS WHERE YOU HAVE TO CALL THE QUERY UTIL CLASS
@@ -55,7 +61,7 @@ public class ScoreCardFragment extends Fragment {
 
 
         // WHEN LIST WILL BE COLLAPSED , No USE FOR US , SHALL BE REMOVED LATER WHILE PARSING
-        ExpandList.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
+        ExpandListBatting.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
 
             @Override
             public void onGroupCollapse(int groupPosition) {
@@ -66,7 +72,7 @@ public class ScoreCardFragment extends Fragment {
 
 
         // FOR CHILD DATA OnClick
-        ExpandList.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+        ExpandListBatting.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
@@ -75,6 +81,51 @@ public class ScoreCardFragment extends Fragment {
                 return false;
             }
         });
+
+
+
+        //BOWLING
+        View expandableListBowling = rootView.findViewById(R.id.expandable_match_scoreCard_bowling);
+        ExpandListBowling = (ExpandableListView) expandableListBowling.findViewById(R.id.expandable_match_scoreCard);
+        ExpListItemsBowling = ScoreCardExpandableListDataPump.getDataBowling();
+        ExpAdapterBowling = new ScoreCardExpandableListAdapterBowling(getActivity(), ExpListItemsBowling);
+        ExpandListBowling.setAdapter(ExpAdapterBowling);
+        setExpandableListViewHeight(ExpandListBowling, -1);
+        ExpandListBowling.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+
+
+            //THIS IS WHERE YOU HAVE TO CALL THE QUERY UTIL CLASS
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                Toast.makeText(getContext(), " List Expanded.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        // WHEN LIST WILL BE COLLAPSED , No USE FOR US , SHALL BE REMOVED LATER WHILE PARSING
+        ExpandListBowling.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
+
+            @Override
+            public void onGroupCollapse(int groupPosition) {
+                Toast.makeText(getContext(), " List Collapsed.", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+        // FOR CHILD DATA OnClick
+        ExpandListBowling.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v,
+                                        int groupPosition, int childPosition, long id) {
+                Toast.makeText(
+                        getContext(), "CHILD CLICKED", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+
+
+
 
         return rootView;
     }

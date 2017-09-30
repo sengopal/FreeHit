@@ -19,16 +19,16 @@
             android:textAppearance="?android:textAppearanceLarge"
             android:textColor="@android:color/black"
             android:textStyle="bold"
+            android:textSize="@dimen/_18sdp"
             tools:text="Virat once again plays a captains knock" />
 
         <ImageView
             android:id="@+id/image_view"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_180sdp"
+            android:layout_height="@dimen/_150sdp"
             android:layout_below="@+id/header_text_view"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/_8sdp"
-            android:paddingTop="@dimen/_50sdp"
             android:scaleType="centerCrop"
             tools:src="@drawable/matches" />
 
@@ -64,8 +64,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/news_tag"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:paddingBottom="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_8sdp"
             android:paddingEnd="@dimen/_8sdp"
             android:paddingStart="@dimen/_8sdp"
             android:scrollHorizontally="true"
