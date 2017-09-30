@@ -22,7 +22,7 @@
         android:layout_below="@+id/batting_heading"
         android:id="@+id/expandable_match_scoreCard_batting"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_220sdp"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="0.5dp"
         android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft" />

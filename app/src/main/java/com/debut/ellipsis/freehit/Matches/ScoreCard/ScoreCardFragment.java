@@ -14,8 +14,6 @@ import android.widget.Toast;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,11 +37,11 @@ public class ScoreCardFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_matchscorecard_scorecard, container, false);
 
-        ExpandList = (ExpandableListView)rootView.findViewById(R.id.expandable_match_scoreCard_batting);
+        ExpandList = (ExpandableListView) rootView.findViewById(R.id.expandable_match_scoreCard_batting);
         ExpListItems = ScoreCardExpandableListDataPump.getData();
         ExpAdapter = new ScoreCardExpandableListAdapter(getActivity(), ExpListItems);
         ExpandList.setAdapter(ExpAdapter);
-        setExpandableListViewHeight(ExpandList, -1);
+        /*setExpandableListViewHeight(ExpandList, -1);*/
         ExpandList.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
 
 
@@ -60,7 +58,7 @@ public class ScoreCardFragment extends Fragment {
 
             @Override
             public void onGroupCollapse(int groupPosition) {
-                Toast.makeText(getContext()," List Collapsed.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), " List Collapsed.", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -80,6 +78,8 @@ public class ScoreCardFragment extends Fragment {
         return rootView;
     }
 
+    // To control size of expandable listview based upon number of main list items
+    // Call has been commented cause for now size has been made static , we'll discuss about this
     private void setExpandableListViewHeight(ExpandableListView listView, int group) {
         ExpandableListAdapter listAdapter = listView.getExpandableListAdapter();
         if (listAdapter == null) {
@@ -96,7 +96,7 @@ public class ScoreCardFragment extends Fragment {
             }
             view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
             totalHeight += view.getMeasuredHeight();
-            if(((listView.isGroupExpanded(i)) && (i != group)) || ((!listView.isGroupExpanded(i)) && (i == group))) {
+            if (((listView.isGroupExpanded(i)) && (i != group)) || ((!listView.isGroupExpanded(i)) && (i == group))) {
                 View listItem = null;
                 for (int j = 0; j < listAdapter.getChildrenCount(i); j++) {
                     listItem = listAdapter.getChildView(i, j, false, listItem, listView);
