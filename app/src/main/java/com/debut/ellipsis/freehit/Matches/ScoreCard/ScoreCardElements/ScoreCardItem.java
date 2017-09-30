@@ -1,4 +1,4 @@
-package com.debut.ellipsis.freehit.Matches.ScoreCard;
+package com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements;
 
 
 public class ScoreCardItem {

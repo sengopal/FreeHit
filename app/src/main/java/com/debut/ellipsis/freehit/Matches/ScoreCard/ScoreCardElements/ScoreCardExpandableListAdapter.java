@@ -1,7 +1,6 @@
-package com.debut.ellipsis.freehit.Matches.ScoreCard;
+package com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +10,6 @@ import android.widget.TextView;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 
 public class ScoreCardExpandableListAdapter extends BaseExpandableListAdapter {

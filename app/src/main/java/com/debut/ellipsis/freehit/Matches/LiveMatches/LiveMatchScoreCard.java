@@ -16,7 +16,7 @@ import com.debut.ellipsis.freehit.Matches.ScoreCard.CommentaryFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHeadFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.HeatMapFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.InfoFragment;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardFragment;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements.ScoreCardFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.SpiderFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.SummaryFragment;
 import com.debut.ellipsis.freehit.R;

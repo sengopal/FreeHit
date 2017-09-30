@@ -14,7 +14,6 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
-import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 
@@ -36,8 +35,6 @@ public class NewsItemAdapter extends ArrayAdapter<NewsItem> {
         }
 
 
-        //Initializing the AVLoadingIndicator
-        final AVLoadingIndicatorView loader = (AVLoadingIndicatorView) listItemView.findViewById(R.id.avi);
 
         NewsItem currentnews = getItem(position);
 
@@ -74,7 +71,6 @@ public class NewsItemAdapter extends ArrayAdapter<NewsItem> {
             imageloader.displayImage(imageurl, imageToShow, options, new ImageLoadingListener() {
                 @Override
                 public void onLoadingStarted(String imageUri, View view) {
-                    loader.show();
                     imageToShow.setImageResource(R.drawable.matches);
                 }
 
@@ -85,7 +81,6 @@ public class NewsItemAdapter extends ArrayAdapter<NewsItem> {
 
                 @Override
                 public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                    loader.hide();
                 }
 
                 @Override
@@ -94,7 +89,6 @@ public class NewsItemAdapter extends ArrayAdapter<NewsItem> {
                 }
             });
         }
-        loader.hide();
         return listItemView;
 
     }

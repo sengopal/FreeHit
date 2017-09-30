@@ -1,9 +1,7 @@
-package com.debut.ellipsis.freehit.Matches.ScoreCard;
+package com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class ScoreCardExpandableListDataPump {
 
