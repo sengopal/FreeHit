@@ -14,7 +14,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -23,9 +22,6 @@ import com.debut.ellipsis.freehit.News.NewsFragment;
 import com.debut.ellipsis.freehit.Settings.CustomSettings;
 import com.debut.ellipsis.freehit.Social.SocialMainFragment;
 import com.debut.ellipsis.freehit.Stats.StatsMain.StatsFragment;
-import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.twitter.sdk.android.core.Twitter;
 
 import java.io.File;
@@ -57,11 +53,11 @@ public class MainActivity extends AppCompatActivity {
         Twitter.initialize(this);
 
 
-        // Initializing the ImageLoader, any changes to configuration here is global
+        /*// Initializing the ImageLoader, any changes to configuration here is global
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
                 .memoryCache(new LRULimitedMemoryCache(2 * 1024 * 1024)).
                         build();
-        ImageLoader.getInstance().init(config);
+        ImageLoader.getInstance().init(config);*/
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -96,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
         setupTabIcons();
     }
+
 
     private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
@@ -169,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(0,R.anim.exit_to_right);
+        overridePendingTransition(0, R.anim.exit_to_right);
     }
 
     @Override
@@ -186,7 +183,8 @@ public class MainActivity extends AppCompatActivity {
         try {
             File dir = context.getCacheDir();
             deleteDir(dir);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
     }
 
     public static boolean deleteDir(File dir) {
@@ -199,10 +197,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             return dir.delete();
-        } else if(dir!= null && dir.isFile()) {
+        } else if (dir != null && dir.isFile()) {
             return dir.delete();
         } else {
             return false;
         }
     }
-    }
+}

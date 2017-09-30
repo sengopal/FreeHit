@@ -3,7 +3,6 @@ package com.debut.ellipsis.freehit.Matches.PastMatches;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +11,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.debut.ellipsis.freehit.R;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.util.List;
 
@@ -150,8 +146,11 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
         RelativeLayout RLcontainer = viewHolder.rlcontainer;
 
 
-        setImage(logo_string1, imageViewTeam1Logo);
-        setImage(logo_string2, imageViewTeam2Logo);
+        /*setImage(logo_string1, imageViewTeam1Logo);
+        setImage(logo_string2, imageViewTeam2Logo);*/
+
+        Glide.with(getContext()).load(logo_string1).placeholder(R.drawable.matches).into(imageViewTeam1Logo);
+        Glide.with(getContext()).load(logo_string2).placeholder(R.drawable.matches).into(imageViewTeam2Logo);
 
         View.OnClickListener mClickListener;
 
@@ -174,7 +173,7 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
 
     }
 
-    private void setImage(String url, ImageView imageview) {
+    /*private void setImage(String url, ImageView imageview) {
         ImageLoader imageLoader = ImageLoader.getInstance();
         DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true).build();
         imageLoader.displayImage(url, imageview, new ImageLoadingListener() {
@@ -200,7 +199,7 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
             }
         });
 
-    }
+    }*/
 
     // Returns the total count of items in the list
     @Override

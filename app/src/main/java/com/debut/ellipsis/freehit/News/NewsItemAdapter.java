@@ -1,7 +1,6 @@
 package com.debut.ellipsis.freehit.News;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.debut.ellipsis.freehit.R;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.util.ArrayList;
 
@@ -33,7 +29,6 @@ public class NewsItemAdapter extends ArrayAdapter<NewsItem> {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.fragment_news_list_item, parent, false);
         }
-
 
 
         NewsItem currentnews = getItem(position);
@@ -58,7 +53,9 @@ public class NewsItemAdapter extends ArrayAdapter<NewsItem> {
 
         final ImageView imageToShow = (ImageView) listItemView.findViewById(R.id.image_view);
 
-        //Getting an instance of the ImageLoader (Initialized with global configs in MainActivity)
+
+        Glide.with(getContext()).load(currentnews.getMurlofimage()).centerCrop().placeholder(R.drawable.matches).into(imageToShow);
+        /*//Getting an instance of the ImageLoader (Initialized with global configs in MainActivity)
 
         ImageLoader imageloader = ImageLoader.getInstance();
         //Defining options for the display, cache is set to false by default so this is necessary.
@@ -88,7 +85,7 @@ public class NewsItemAdapter extends ArrayAdapter<NewsItem> {
 
                 }
             });
-        }
+        }*/
         return listItemView;
 
     }

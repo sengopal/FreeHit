@@ -6,27 +6,7 @@ import java.util.ArrayList;
 public class ScoreCardExpandableListDataPump {
 
     public static ArrayList<ScoreCardItemListItem> getData() {
-        /*HashMap<String, List<String>> expandableListDetail = new HashMap<String, List<String>>();*/
 
-        /*List<String> team1 = new ArrayList<String>();
-        team1.add("India");
-        team1.add("RCB");
-        team1.add("New Zealand");
-        team1.add("England");
-        team1.add("South Africa");
-
-        List<String> team2 = new ArrayList<String>();
-        team2.add("Manchester United");
-        team2.add("Real Madrid C.F.");
-        team2.add("Leicester City F.C.");
-        team2.add("Paris Saint-Germain F.C.");
-        team2.add("Manchester United F.C.");
-
-
-        expandableListDetail.put("Team 1", team1);
-        expandableListDetail.put("Team 2", team2);
-
-        return expandableListDetail;*/
 
         String group_names[] = { "TEAM 1 1st Innings", "TEAM 2 1st Innings", "TEAM 1 2nd Innings", "TEAM 2 2nd Innings" };
 

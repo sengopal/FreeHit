@@ -71,8 +71,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_2sdp"
-                    android:src="@drawable/matches"
-                    android:tag="image_tag" />
+                    android:src="@drawable/matches" />
 
                 <TextView
                     android:id="@+id/sn_team_1_upcoming"
@@ -101,8 +100,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="@dimen/_2sdp"
-                    android:src="@drawable/matches"
-                    android:tag="image_tag" />
+                    android:src="@drawable/matches" />
 
                 <TextView
                     android:id="@+id/sn_team_2_upcoming"
