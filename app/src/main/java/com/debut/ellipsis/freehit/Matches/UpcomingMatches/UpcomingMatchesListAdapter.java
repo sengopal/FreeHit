@@ -12,11 +12,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.debut.ellipsis.freehit.R;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.util.List;
 
@@ -124,8 +121,11 @@ public class UpcomingMatchesListAdapter extends RecyclerView.Adapter<UpcomingMat
         TextView MatchDate = viewHolder.MatchDate;
         MatchDate.setText(upcomingMatchCards.getmMatchDate());
 
-        setImage(logo_string1, imageViewTeam1Logo);
-        setImage(logo_string2, imageViewTeam2Logo);
+        /*setImage(logo_string1, imageViewTeam1Logo);
+        setImage(logo_string2, imageViewTeam2Logo);*/
+
+        Glide.with(getContext()).load(logo_string1).placeholder(R.drawable.matches).into(imageViewTeam1Logo);
+        Glide.with(getContext()).load(logo_string2).placeholder(R.drawable.matches).into(imageViewTeam2Logo);
 
         RelativeLayout RLcontainer = viewHolder.rlcontainer;
 
@@ -141,7 +141,7 @@ public class UpcomingMatchesListAdapter extends RecyclerView.Adapter<UpcomingMat
                 UpcomingMatchScoreCardIntent.putExtra("match_name", upcomingMatchCards.getmMatchName());
                     /*ActivityOptions.makeCustomAnimation(context,R.anim.animation_entry,R.anim.animation_exit);*/
                 UpcomingMatchScoreCardIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    getContext().startActivity(UpcomingMatchScoreCardIntent);
+                getContext().startActivity(UpcomingMatchScoreCardIntent);
 
             }
         };
@@ -150,7 +150,7 @@ public class UpcomingMatchesListAdapter extends RecyclerView.Adapter<UpcomingMat
 
     }
 
-    private void setImage(String url, ImageView imageview) {
+    /*private void setImage(String url, ImageView imageview) {
         ImageLoader imageLoader = ImageLoader.getInstance();
         DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true).build();
         imageLoader.displayImage(url, imageview, new ImageLoadingListener() {
@@ -176,11 +176,11 @@ public class UpcomingMatchesListAdapter extends RecyclerView.Adapter<UpcomingMat
             }
         });
 
-    }
+    }*/
 
     // Returns the total count of items in the list
     @Override
     public int getItemCount() {
-        return mUpcomingMatchCards.size()-1;
+        return mUpcomingMatchCards.size() - 1;
     }
 }

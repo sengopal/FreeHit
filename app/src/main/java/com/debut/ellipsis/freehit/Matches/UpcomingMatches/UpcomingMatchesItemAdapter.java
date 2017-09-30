@@ -2,7 +2,6 @@ package com.debut.ellipsis.freehit.Matches.UpcomingMatches;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
@@ -11,11 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.debut.ellipsis.freehit.R;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.util.List;
 
@@ -47,14 +43,11 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container,final int position) {
+    public Object instantiateItem(ViewGroup container, final int position) {
         View view = this.layoutInflater.inflate(R.layout.fragment_matches_upcoming_match_card, container, false);
 
         TextView textViewMatchName = (TextView) view.findViewById(R.id.match_name_upcoming);
         textViewMatchName.setText(this.dataObjectList.get(position).getmMatchName());
-
-        TextView Separator = (TextView) view.findViewById(R.id.match_series_separator);
-        Separator.setText(this.dataObjectList.get(position).getmSeparator());
 
         TextView textViewSeriesName = (TextView) view.findViewById(R.id.series_name_upcoming);
         textViewSeriesName.setText(this.dataObjectList.get(position).getmSeriesName());
@@ -86,14 +79,13 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(position==5){
+                if (position == 5) {
                     // Intent to move to list view for Click to view more
                     // Create a new intent to open the {@link UpcomingMatchesActivity}
                     Intent UpcomingIntent = new Intent(context, UpcomingMatchesActivity.class);
                     // Start the new activity
                     context.startActivity(UpcomingIntent);
-                }
-                else {
+                } else {
                     Intent UpcomingMatchScoreCardIntent = new Intent(context, UpcomingMatchScoreCard.class);
                     UpcomingMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getmMatchID());
                     UpcomingMatchScoreCardIntent.putExtra("match_name", dataObjectList.get(position).getmMatchName() + "(" + dataObjectList.get(position).getmTeam1SN() + " vs " + dataObjectList.get(position).getmTeam2SN() + ")");
@@ -107,8 +99,12 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
         logo_string1 = this.dataObjectList.get(position).getmTeam1LogoURL();
         logo_string2 = this.dataObjectList.get(position).getmTeam2LogoURL();
 
-        setImage(logo_string1, imageViewTeam1Logo);
-        setImage(logo_string2, imageViewTeam2Logo);
+        if (position < 5) {
+            Glide.with(context).load(logo_string1).placeholder(R.drawable.matches).into(imageViewTeam1Logo);
+            Glide.with(context).load(logo_string2).placeholder(R.drawable.matches).into(imageViewTeam2Logo);
+        }
+        /*setImage(logo_string1, imageViewTeam1Logo);
+        setImage(logo_string2, imageViewTeam2Logo);*/
         container.addView(view);
         return view;
 
@@ -119,7 +115,7 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
         container.removeView((View) object);
     }
 
-    public void setImage(String url, ImageView imageview) {
+    /*public void setImage(String url, ImageView imageview) {
         ImageLoader imageLoader = ImageLoader.getInstance();
         DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true).build();
         imageLoader.displayImage(url, imageview, new ImageLoadingListener() {
@@ -145,5 +141,5 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
             }
         });
 
-    }
+    }*/
 }

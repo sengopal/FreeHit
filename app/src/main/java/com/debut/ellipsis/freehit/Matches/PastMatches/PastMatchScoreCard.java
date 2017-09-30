@@ -10,11 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.debut.ellipsis.freehit.Matches.ScoreCard.CommentaryFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHeadFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.HeatMapFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.InfoFragment;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardFragment;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements.ScoreCardFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.SpiderFragment;
 import com.debut.ellipsis.freehit.R;
 
@@ -77,7 +76,6 @@ public class PastMatchScoreCard extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new InfoFragment(), "INFO");
         adapter.addFrag(new ScoreCardFragment(), "SCORE CARD");
-        adapter.addFrag(new CommentaryFragment(), "COMMENTARY");
         adapter.addFrag(new HeadToHeadFragment(), "HEAD-TO-HEAD");
         adapter.addFrag(new SpiderFragment(), "SPIDER");
         adapter.addFrag(new HeatMapFragment(), "HEAT MAP");

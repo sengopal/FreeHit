@@ -23,7 +23,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.debut.ellipsis.freehit.R;
-import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,9 +58,6 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
         View rootView = inflater.inflate(R.layout.list_common, container, false);
         View fragView = inflater.inflate(R.layout.fragment_news_list_item, container, false);
 
-
-        //Finding a reference to the AVLoading bar
-        AVLoadingIndicatorView loader = (AVLoadingIndicatorView) fragView.findViewById(R.id.avi);
 
         // Find a reference to the {@link ListView} in the layout
         ListView NewsListView = (ListView) rootView.findViewById(R.id.list);

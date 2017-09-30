@@ -45,7 +45,6 @@ public class LiveMatchCard extends Fragment implements LoaderManager.LoaderCallb
     public PageIndicatorView indicator;
     private LiveMatchCardAdapter mAdapter;
     private ProgressBar mProgressBar;
-    public ImageView mEmptyStateTextView;
 
 
     @Override
@@ -76,9 +75,6 @@ public class LiveMatchCard extends Fragment implements LoaderManager.LoaderCallb
             View progressBar = rootView.findViewById(R.id.progress_bar);
             progressBar.setVisibility(View.GONE);
 
-            mEmptyStateTextView = (ImageView)rootView.findViewById(R.id.empty_view);
-            // Update empty state with no connection error message
-            mEmptyStateTextView.setVisibility(View.VISIBLE);
         }
         final PullRefreshLayout layout = (PullRefreshLayout)rootView.findViewById(R.id.swipeRefreshLayout);
 
@@ -102,6 +98,7 @@ public class LiveMatchCard extends Fragment implements LoaderManager.LoaderCallb
 
 
         indicator = (PageIndicatorView) rootView.findViewById(R.id.indicator);
+        indicator.setVisibility(View.INVISIBLE);
         indicator.setViewPager(viewPager);
 
         layout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
@@ -141,6 +138,7 @@ public class LiveMatchCard extends Fragment implements LoaderManager.LoaderCallb
     @Override
     public Loader<List<LiveMatchCardItem>> onCreateLoader(int i, Bundle bundle) {
         // Create a new loader for the given URL
+
         return new LiveMatchCardLoader(getActivity(), URL);
 
     }
@@ -158,7 +156,6 @@ public class LiveMatchCard extends Fragment implements LoaderManager.LoaderCallb
             // This is the inner viewPager so commenting it out for now
             viewPager.setAdapter(mAdapter);
             indicator.setViewPager(viewPager);
-            indicator.setVisibility(View.INVISIBLE);
             IndicatorConfig();
 
 
@@ -169,8 +166,8 @@ public class LiveMatchCard extends Fragment implements LoaderManager.LoaderCallb
     private void IndicatorConfig(){
         indicator.setVisibility(View.VISIBLE);
         indicator.setAnimationType(AnimationType.DROP);
-        indicator.setUnselectedColor(R.color.dot_light_screen1);
-        indicator.setSelectedColor(R.color.dot_dark_screen1);
+        indicator.setUnselectedColor(Color.parseColor("#F06292"));
+        indicator.setSelectedColor(Color.parseColor("#E91E63"));
         indicator.setInteractiveAnimation(true);
         indicator.setAnimationDuration(500);
 

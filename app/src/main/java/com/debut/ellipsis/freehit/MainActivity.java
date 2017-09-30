@@ -1,6 +1,7 @@
 package com.debut.ellipsis.freehit;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
@@ -21,11 +22,9 @@ import com.debut.ellipsis.freehit.News.NewsFragment;
 import com.debut.ellipsis.freehit.Settings.CustomSettings;
 import com.debut.ellipsis.freehit.Social.SocialMainFragment;
 import com.debut.ellipsis.freehit.Stats.StatsMain.StatsFragment;
-import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.twitter.sdk.android.core.Twitter;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,11 +53,11 @@ public class MainActivity extends AppCompatActivity {
         Twitter.initialize(this);
 
 
-        // Initializing the ImageLoader, any changes to configuration here is global
+        /*// Initializing the ImageLoader, any changes to configuration here is global
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
                 .memoryCache(new LRULimitedMemoryCache(2 * 1024 * 1024)).
                         build();
-        ImageLoader.getInstance().init(config);
+        ImageLoader.getInstance().init(config);*/
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -93,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
         setupTabIcons();
     }
+
 
     private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
@@ -166,6 +166,41 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(0,R.anim.exit_to_right);
+        overridePendingTransition(0, R.anim.exit_to_right);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try {
+            deleteCache(getApplicationContext()); //if trimCache is static
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteCache(Context context) {
+        try {
+            File dir = context.getCacheDir();
+            deleteDir(dir);
+        } catch (Exception e) {
+        }
+    }
+
+    public static boolean deleteDir(File dir) {
+        if (dir != null && dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+            return dir.delete();
+        } else if (dir != null && dir.isFile()) {
+            return dir.delete();
+        } else {
+            return false;
+        }
     }
 }

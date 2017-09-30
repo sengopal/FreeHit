@@ -5,7 +5,6 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Loader;
 import android.content.res.ColorStateList;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -20,11 +19,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.debut.ellipsis.freehit.R;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import static com.debut.ellipsis.freehit.News.NewsArticleLoader.news;
 
@@ -159,7 +155,12 @@ public class NewsArticle extends AppCompatActivity implements LoaderManager.Load
 
         final String ImageURL = news.getMurlofimage();
 
-        ImageLoader imageloader = ImageLoader.getInstance();
+        Glide.with(getApplicationContext()).load(ImageURL).centerCrop().placeholder(R.drawable.matches).into(articleImage);
+
+
+        //USING GLIDE LIBRARY NOW
+
+        /*ImageLoader imageloader = ImageLoader.getInstance();
         //Defining options for the display, cache is set to false by default so this is necessary.
 
         DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true).build();
@@ -184,12 +185,12 @@ public class NewsArticle extends AppCompatActivity implements LoaderManager.Load
             public void onLoadingCancelled(String imageUri, View view) {
 
             }
-        });
+        });*/
     }
 
     @Override
     public void onLoaderReset(Loader<NewsArticleItem> loader) {
-        loader = null;
+        /*loader = null;*/
 
     }
 }

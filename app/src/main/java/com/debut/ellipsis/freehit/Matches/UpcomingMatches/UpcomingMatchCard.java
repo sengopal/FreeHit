@@ -46,7 +46,6 @@ public class UpcomingMatchCard extends Fragment implements LoaderManager.LoaderC
     public Random rand;
     private UpcomingMatchesItemAdapter mAdapter;
     private ProgressBar mProgressBar;
-    public ImageView mEmptyStateTextView;
 
 
     @Override
@@ -77,9 +76,7 @@ public class UpcomingMatchCard extends Fragment implements LoaderManager.LoaderC
             mProgressBar= (ProgressBar) rootView.findViewById(R.id.progress_bar);
             mProgressBar.setVisibility(View.GONE);
 
-            mEmptyStateTextView = (ImageView)rootView.findViewById(R.id.empty_view);
             // Update empty state with no connection error message
-            mEmptyStateTextView.setVisibility(View.VISIBLE);
         }
 
         mProgressBar = (ProgressBar)rootView.findViewById(R.id.progress_bar);
@@ -99,7 +96,7 @@ public class UpcomingMatchCard extends Fragment implements LoaderManager.LoaderC
 
 
         indicator = (PageIndicatorView) rootView.findViewById(R.id.indicator);
-
+        indicator.setVisibility(View.INVISIBLE);
         indicator.setViewPager(viewPager);
 
         layout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
@@ -167,8 +164,8 @@ public class UpcomingMatchCard extends Fragment implements LoaderManager.LoaderC
 
     private void IndicatorConfig(){
         indicator.setAnimationType(AnimationType.DROP);
-        indicator.setUnselectedColor(R.color.dot_light_screen1);
-        indicator.setSelectedColor(R.color.dot_dark_screen1);
+        indicator.setUnselectedColor(Color.parseColor("#F06292"));
+        indicator.setSelectedColor(Color.parseColor("#E91E63"));
         indicator.setInteractiveAnimation(true);
         indicator.setAnimationDuration(500);
 

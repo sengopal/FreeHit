@@ -1,13 +1,47 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardFragment">
+    android:paddingBottom="@dimen/_8sdp"
+    android:paddingLeft="@dimen/_8sdp"
+    android:paddingRight="@dimen/_8sdp"
+    android:paddingTop="@dimen/_8sdp">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/batting_heading"
+        style="@style/TextAppearance.AppCompat.Headline"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="SCORE CARD" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/tw__composer_light_gray"
+        android:padding="@dimen/_8sdp"
+        android:text="BATTING"
+        android:gravity="center_horizontal"
+        android:textAllCaps="true" />
 
-</FrameLayout>
+    <ExpandableListView
+        android:layout_below="@+id/batting_heading"
+        android:id="@+id/expandable_match_scoreCard_batting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="@dimen/_1sdp"
+        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft" />
+
+    <TextView
+        android:id="@+id/bowling_heading"
+        android:layout_below="@+id/expandable_match_scoreCard_batting"
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/tw__composer_light_gray"
+        android:padding="@dimen/_8sdp"
+        android:text="BOWLING"
+        android:gravity="center_horizontal"
+        android:textAllCaps="true" />
+
+</RelativeLayout>
+
+
+

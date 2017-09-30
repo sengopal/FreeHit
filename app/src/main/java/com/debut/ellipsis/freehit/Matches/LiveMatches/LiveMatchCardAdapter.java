@@ -3,7 +3,6 @@ package com.debut.ellipsis.freehit.Matches.LiveMatches;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
@@ -12,11 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.debut.ellipsis.freehit.R;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -165,8 +161,11 @@ public class LiveMatchCardAdapter extends PagerAdapter {
         logo_string1 = this.dataObjectList.get(position).getmTeam1LogoURL();
         logo_string2 = this.dataObjectList.get(position).getmTeam2LogoURL();
 
-        setImage(logo_string1, imageViewTeam1Logo);
-        setImage(logo_string2, imageViewTeam2Logo);
+        Glide.with(context).load(logo_string1).placeholder(R.drawable.matches).into(imageViewTeam1Logo);
+        Glide.with(context).load(logo_string2).placeholder(R.drawable.matches).into(imageViewTeam2Logo);
+
+        /*setImage(logo_string1, imageViewTeam1Logo);
+        setImage(logo_string2, imageViewTeam2Logo);*/
         container.addView(view);
         return view;
 
@@ -178,7 +177,7 @@ public class LiveMatchCardAdapter extends PagerAdapter {
         container.removeView((View) object);
     }
 
-    public void setImage(String url, ImageView imageview) {
+    /*public void setImage(String url, ImageView imageview) {
         ImageLoader imageLoader = ImageLoader.getInstance();
         DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true).build();
         imageLoader.displayImage(url, imageview, new ImageLoadingListener() {
@@ -204,6 +203,6 @@ public class LiveMatchCardAdapter extends PagerAdapter {
             }
         });
 
-    }
+    }*/
 
 }

@@ -45,7 +45,6 @@ public class PastMatchCard extends Fragment implements LoaderManager.LoaderCallb
     public PageIndicatorView indicator;
     private PastMatchCardItemAdapter mAdapter;
     private ProgressBar mProgressBar;
-    public ImageView mEmptyStateTextView;
 
 
     @Override
@@ -57,6 +56,7 @@ public class PastMatchCard extends Fragment implements LoaderManager.LoaderCallb
         // Get a reference to the ConnectivityManager to check state of network connectivity
         final ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 
+        mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
         // Get details on the currently active default data network
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
@@ -73,15 +73,10 @@ public class PastMatchCard extends Fragment implements LoaderManager.LoaderCallb
         else {
             // Otherwise, display error
             // First, hide loading indicator so error message will be visible
-            View progressBar = rootView.findViewById(R.id.progress_bar);
-            progressBar.setVisibility(View.GONE);
-
-            mEmptyStateTextView = (ImageView)rootView.findViewById(R.id.empty_view);
-            // Update empty state with no connection error message
-            mEmptyStateTextView.setVisibility(View.VISIBLE);
+            mProgressBar.setVisibility(View.GONE);
         }
 
-        mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
+
         int colorCodeDark = Color.parseColor("#F44336");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mProgressBar.setIndeterminateTintList(ColorStateList.valueOf(colorCodeDark));
@@ -164,8 +159,8 @@ public class PastMatchCard extends Fragment implements LoaderManager.LoaderCallb
     private void IndicatorConfig(){
         indicator.setVisibility(View.VISIBLE);
         indicator.setAnimationType(AnimationType.DROP);
-        indicator.setUnselectedColor(R.color.dot_light_screen2);
-        indicator.setSelectedColor(R.color.dot_dark_screen2);
+        indicator.setUnselectedColor(Color.parseColor("#F06292"));
+        indicator.setSelectedColor(Color.parseColor("#E91E63"));
         indicator.setInteractiveAnimation(true);
         indicator.setAnimationDuration(500);
 

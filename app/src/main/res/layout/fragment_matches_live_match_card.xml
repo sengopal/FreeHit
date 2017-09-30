@@ -79,8 +79,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/_3sdp"
-                        android:src="@drawable/matches"
-                        android:tag="image_tag" />
+                        android:src="@drawable/matches" />
 
                     <TextView
                         android:id="@+id/sn_team_1_live"
@@ -125,8 +124,7 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_alignParentEnd="true"
                         android:paddingStart="5dp"
-                        android:src="@drawable/matches"
-                        android:tag="image_tag" />
+                        android:src="@drawable/matches" />
 
                     <TextView
                         android:id="@+id/sn_team_2_live"
@@ -168,6 +166,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:textSize="@dimen/_11sdp"
+                android:textColor="@android:color/black"
                 tools:text="India beat Sri Lanka by 168 runs/Australia trail or lead by" />
 
             <TextView

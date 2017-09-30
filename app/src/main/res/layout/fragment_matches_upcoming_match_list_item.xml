@@ -9,41 +9,31 @@
     android:tag="cards main container">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true">
+        android:layout_gravity="center_horizontal">
 
         <TextView
             android:id="@+id/match_name_upcoming"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/_8sdp"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="@dimen/_6sdp"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/_11ssp"
-            tools:text="4th ODI" />
+            android:textSize="@dimen/_12ssp"
+            tools:text="Sri Lanka Vs India, 4th ODI" />
 
-        <TextView
-            android:id="@+id/match_series_separator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/match_name_upcoming"
-            android:paddingStart="@dimen/_2sdp"
-            android:paddingTop="@dimen/_8sdp"
-            android:text="-"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/_10ssp" />
 
         <TextView
             android:id="@+id/series_name_upcoming"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/match_series_separator"
-            android:gravity="center_horizontal"
-            android:paddingStart="@dimen/_2sdp"
-            android:paddingTop="@dimen/_8sdp"
-            android:textColor="@android:color/black"
+            android:layout_below="@+id/match_name_upcoming"
+            android:layout_centerHorizontal="true"
+            android:paddingEnd="@dimen/_8sdp"
+            android:paddingStart="@dimen/_8sdp"
             android:textSize="@dimen/_10ssp"
-            tools:text="India Tour of SriLanka,5 ODIs,2010" />
+            tools:text="India Tour of Sri Lanka, 2017" />
 
         <TextView
             android:id="@+id/stadium_upcoming"
@@ -51,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/series_name_upcoming"
             android:layout_centerHorizontal="true"
-            android:paddingTop="@dimen/_5sdp"
+            android:textSize="@dimen/_10ssp"
             tools:text="M Chinnaswamy ,Bangalore , India" />
 
 
@@ -61,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="@dimen/_10sdp">
+        android:paddingTop="@dimen/_18sdp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -81,8 +71,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_2sdp"
-                    android:src="@drawable/matches"
-                    android:tag="image_tag" />
+                    android:src="@drawable/matches" />
 
                 <TextView
                     android:id="@+id/sn_team_1_upcoming"
@@ -111,8 +100,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="@dimen/_2sdp"
-                    android:src="@drawable/matches"
-                    android:tag="image_tag" />
+                    android:src="@drawable/matches" />
 
                 <TextView
                     android:id="@+id/sn_team_2_upcoming"
