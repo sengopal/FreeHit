@@ -28,7 +28,7 @@
                 android:layout_centerHorizontal="true"
                 android:paddingTop="@dimen/_5sdp"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_12sdp"
                 tools:text="Sri Lanka Vs India, 4th ODI" />
 
 
@@ -40,7 +40,7 @@
                 android:layout_centerHorizontal="true"
                 android:paddingEnd="@dimen/_10sdp"
                 android:paddingStart="@dimen/_5sdp"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 tools:text="India Tour of Sri Lanka, 2017" />
 
             <TextView
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/series_name_past"
                 android:layout_centerHorizontal="true"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 tools:text="M Chinnaswamy ,Bangalore , India" />
 
             <TextView
@@ -61,7 +61,7 @@
                 android:layout_marginTop="@dimen/_20sdp"
                 android:gravity="center"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/_20ssp"
+                android:textSize="@dimen/_20sdp"
                 tools:text="@string/matches_view_more" />
         </RelativeLayout>
 
@@ -98,7 +98,7 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_toEndOf="@+id/team_logo_1_past"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_20ssp"
+                        android:textSize="@dimen/_20sdp"
                         tools:text="SN" />
 
                     <TextView
@@ -107,7 +107,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_33sdp"
                         android:layout_toEndOf="@+id/team_logo_1_past"
-                        android:textSize="@dimen/_12ssp"
+                        android:textSize="@dimen/_12sdp"
                         tools:text="207 (42.4)" />
 
                     <TextView
@@ -116,7 +116,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/innings1_team1_past"
                         android:layout_toEndOf="@+id/team_logo_1_past"
-                        android:textSize="@dimen/_12ssp"
+                        android:textSize="@dimen/_12sdp"
                         tools:text="207 (42.4)" />
 
 
@@ -143,7 +143,7 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_toStartOf="@+id/team_logo_2_past"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_20ssp"
+                        android:textSize="@dimen/_20sdp"
                         tools:text="IND" />
 
                     <TextView
@@ -152,7 +152,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_33sdp"
                         android:layout_toStartOf="@+id/team_logo_2_past"
-                        android:textSize="@dimen/_12ssp"
+                        android:textSize="@dimen/_12sdp"
                         tools:text="375/5 (50.0)" />
 
                     <TextView
@@ -161,7 +161,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/innings1_team2_past"
                         android:layout_toStartOf="@+id/team_logo_2_past"
-                        android:textSize="@dimen/_12ssp"
+                        android:textSize="@dimen/_12sdp"
                         tools:text="375/5 (50.0)" />
 
                 </RelativeLayout>

@@ -29,7 +29,7 @@
                 android:layout_centerHorizontal="true"
                 android:paddingTop="@dimen/_5sdp"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_12sdp"
                 tools:text="Sri Lanka Vs India, 4th ODI" />
 
 
@@ -41,14 +41,14 @@
                 android:layout_centerHorizontal="true"
                 android:paddingEnd="@dimen/_10sdp"
                 android:paddingStart="@dimen/_5sdp"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 tools:text="India Tour of Sri Lanka, 2017" />
 
             <TextView
                 android:id="@+id/stadium_live"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 android:layout_below="@+id/series_name_live"
                 android:layout_centerHorizontal="true"
                 tools:text="M Chinnaswamy ,Bangalore , India" />
@@ -88,7 +88,7 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_toEndOf="@+id/team_logo_1_live"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_12ssp"
+                        android:textSize="@dimen/_12sdp"
                         tools:text="SN" />
 
                     <TextView
@@ -97,7 +97,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_30sdp"
                         android:layout_toEndOf="@+id/team_logo_1_live"
-                        android:textSize="@dimen/_10ssp"
+                        android:textSize="@dimen/_10sdp"
                         tools:text="207 (42.4)" />
 
                     <TextView
@@ -106,7 +106,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/innings1_team1_live"
                         android:layout_toEndOf="@+id/team_logo_1_live"
-                        android:textSize="@dimen/_10ssp"
+                        android:textSize="@dimen/_10sdp"
                         tools:text="207 (42.4)" />
 
 
@@ -133,7 +133,7 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_toStartOf="@+id/team_logo_2_live"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_12ssp"
+                        android:textSize="@dimen/_12sdp"
                         tools:text="IND" />
 
                     <TextView
@@ -142,7 +142,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_30sdp"
                         android:layout_toStartOf="@+id/team_logo_2_live"
-                        android:textSize="@dimen/_10ssp"
+                        android:textSize="@dimen/_10sdp"
                         tools:text="375/5 (50.0)" />
 
                     <TextView
@@ -151,7 +151,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/innings1_team2_live"
                         android:layout_toStartOf="@+id/team_logo_2_live"
-                        android:textSize="@dimen/_10ssp"
+                        android:textSize="@dimen/_10sdp"
                         tools:text="375/5 (50.0)" />
 
 

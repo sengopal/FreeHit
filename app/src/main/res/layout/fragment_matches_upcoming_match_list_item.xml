@@ -20,7 +20,7 @@
             android:layout_centerHorizontal="true"
             android:paddingTop="@dimen/_6sdp"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_12sdp"
             tools:text="Sri Lanka Vs India, 4th ODI" />
 
 
@@ -32,7 +32,7 @@
             android:layout_centerHorizontal="true"
             android:paddingEnd="@dimen/_8sdp"
             android:paddingStart="@dimen/_8sdp"
-            android:textSize="@dimen/_10ssp"
+            android:textSize="@dimen/_10sdp"
             tools:text="India Tour of Sri Lanka, 2017" />
 
         <TextView
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/series_name_upcoming"
             android:layout_centerHorizontal="true"
-            android:textSize="@dimen/_10ssp"
+            android:textSize="@dimen/_10sdp"
             tools:text="M Chinnaswamy ,Bangalore , India" />
 
 
@@ -81,7 +81,7 @@
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_toEndOf="@+id/team_logo_1_upcoming"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/_15ssp"
+                    android:textSize="@dimen/_15sdp"
                     tools:text="SN" />
 
 
@@ -110,7 +110,7 @@
                     android:layout_marginEnd="@dimen/_15sdp"
                     android:layout_toStartOf="@+id/team_logo_2_upcoming"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/_15ssp"
+                    android:textSize="@dimen/_15sdp"
                     tools:text="IND" />
 
 
@@ -126,7 +126,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:paddingTop="@dimen/_8sdp"
-            android:textSize="@dimen/_11ssp"
+            android:textSize="@dimen/_11sdp"
             tools:text="Sep 03 2017, Sun" />
 
 

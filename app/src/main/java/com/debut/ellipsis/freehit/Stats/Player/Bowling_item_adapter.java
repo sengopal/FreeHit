@@ -46,8 +46,8 @@ public class Bowling_item_adapter extends BaseAdapter {
         if (convertView == null) {
 
             gridViewAndroid = new View(mContext);
-            gridViewAndroid = inflater.inflate(R.layout.fragment_stats_bowling_adapter, null);
-            TextView textViewAndroid = (TextView) gridViewAndroid.findViewById(R.id.bowling_text);
+            gridViewAndroid = inflater.inflate(R.layout.fragment_stats_player_adapter, null);
+            TextView textViewAndroid = (TextView) gridViewAndroid.findViewById(R.id.android_gridView_text);
             textViewAndroid.setText(gridViewString[i]);
             textViewAndroid.setBackgroundColor(Color.parseColor("#d9d5dc"));
 

@@ -30,10 +30,10 @@ public class Bowling_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_stats_player_bowling, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_stats_player_batting_bowling_gridview, container, false);
         GridView androidGridView;
         Bowling_item_adapter adapterViewAndroid = new Bowling_item_adapter(getContext(), gridViewString );
-        androidGridView=(GridView)rootView.findViewById(R.id.grid_view_bowling);
+        androidGridView=(GridView)rootView.findViewById(R.id.grid_view_batting_bowling);
 
 
 

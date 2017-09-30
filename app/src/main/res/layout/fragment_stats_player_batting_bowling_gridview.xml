@@ -17,7 +17,7 @@
             android:orientation="vertical">
 
             <GridView
-                android:id="@+id/grid_view_bowling"
+                android:id="@+id/grid_view_batting_bowling"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:columnWidth="@dimen/_50sdp"
