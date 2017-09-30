@@ -2,8 +2,7 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -14,19 +13,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:gravity="center">
 
             <GridView
                 android:id="@+id/grid_view_batting_bowling"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:columnWidth="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
                 android:gravity="center"
-                android:horizontalSpacing="@dimen/_2sdp"
+                android:horizontalSpacing="@dimen/_1sdp"
                 android:numColumns="5"
-                android:padding="@dimen/_4sdp"
-                android:stretchMode="columnWidth"
-                />
+                android:stretchMode="columnWidth" />
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

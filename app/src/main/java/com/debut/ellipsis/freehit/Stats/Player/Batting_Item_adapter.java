@@ -26,6 +26,9 @@ public class Batting_Item_adapter extends BaseAdapter {
         mContext = context;
         // this.gridViewImageId = gridViewImageId;
         this.gridViewString = gridViewString;
+
+
+
     }
 
     @Override

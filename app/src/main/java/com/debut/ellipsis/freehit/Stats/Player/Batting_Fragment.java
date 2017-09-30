@@ -24,7 +24,7 @@ public class Batting_Fragment extends Fragment{
             "4s","10" ,  "10",  "10",  "10",
             "6s","10" ,  "10",  "10",  "10",
             "Avg","10" ,  "10",  "10",  "10",
-            "Strike \nRate","10" ,  "10",  "10",  "10",
+            "Strike\nRate","10" ,  "10",  "10",  "10",
 
 
     } ;
@@ -37,7 +37,6 @@ public class Batting_Fragment extends Fragment{
         GridView androidGridView;
         Batting_Item_adapter adapterViewAndroid = new Batting_Item_adapter(getContext(), gridViewString );
         androidGridView=(GridView)rootView.findViewById(R.id.grid_view_batting_bowling);
-
         androidGridView.setAdapter(adapterViewAndroid);
         setGridViewHeightBasedOnChildren(androidGridView,5);
 

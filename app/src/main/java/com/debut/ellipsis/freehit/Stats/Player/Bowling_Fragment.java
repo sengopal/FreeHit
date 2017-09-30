@@ -25,7 +25,7 @@ public class Bowling_Fragment extends Fragment {
             "5w","10" ,  "10",  "10",  "10",
             "Avg","10" ,  "10",  "10",  "10",
             "Economy","10" ,  "10",  "10",  "10",
-            "Strike Rate","10" ,  "10",  "10",  "10",} ;
+            "Strike\nRate","10" ,  "10",  "10",  "10",} ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
