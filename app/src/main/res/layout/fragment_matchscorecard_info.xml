@@ -195,6 +195,36 @@
 
                         <TableRow
                             android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:paddingBottom="@dimen/_8sdp"
+                            android:paddingLeft="@dimen/_8sdp"
+                            android:paddingRight="@dimen/_8sdp"
+                            android:paddingTop="@dimen/_8sdp">
+
+                            <TextView
+                                android:id="@+id/match_info_series_toss_status_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_20sdp"
+                                android:text="@string/toss"
+                                android:textSize="@dimen/_13ssp" />
+
+                            <TextView
+                                android:id="@+id/match_info_toss_status"
+                                android:layout_width="@dimen/_250sdp"
+                                android:layout_height="@dimen/_28sdp"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/_13ssp"
+                                tools:text="England won the toss and elected to field" />
+                        </TableRow>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:background="@color/divider" />
+
+                        <TableRow
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/white"
                             android:paddingBottom="@dimen/_8sdp"
@@ -360,6 +390,7 @@
                                 android:layout_height="@dimen/_20sdp"
                                 android:text="@string/weather"
                                 android:textSize="@dimen/_13ssp" />
+
 
                             <TextView
                                 android:id="@+id/match_info_weather"
