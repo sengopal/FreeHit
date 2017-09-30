@@ -41,7 +41,7 @@ public class ScoreCardFragment extends Fragment {
         ExpListItems = ScoreCardExpandableListDataPump.getData();
         ExpAdapter = new ScoreCardExpandableListAdapter(getActivity(), ExpListItems);
         ExpandList.setAdapter(ExpAdapter);
-        /*setExpandableListViewHeight(ExpandList, -1);*/
+        setExpandableListViewHeight(ExpandList, -1);
         ExpandList.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
 
 
@@ -79,7 +79,7 @@ public class ScoreCardFragment extends Fragment {
     }
 
     // To control size of expandable listview based upon number of main list items
-    // Call has been commented cause for now size has been made static , we'll discuss about this
+    // we'll discuss this feature after the live demo
     private void setExpandableListViewHeight(ExpandableListView listView, int group) {
         ExpandableListAdapter listAdapter = listView.getExpandableListAdapter();
         if (listAdapter == null) {

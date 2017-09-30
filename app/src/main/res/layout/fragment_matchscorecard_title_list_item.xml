@@ -24,16 +24,15 @@
         android:textSize="@dimen/_10ssp"
         tools:text="c Liam Plunkett b Tom Curran" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_1sdp"
-        android:background="@color/divider" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/_30sdp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/cell_shape"
+        android:orientation="horizontal"
+        android:paddingEnd="@dimen/_5sdp"
+        android:paddingStart="@dimen/_5sdp">
 
 
         <TextView
@@ -43,6 +42,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/_2sdp"
             android:text="4 * "
+            android:textColor="@android:color/black"
             android:textSize="@dimen/_10ssp" />
 
         <TextView
@@ -52,6 +52,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="@dimen/_8sdp"
             android:layout_marginStart="@dimen/_5sdp"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/_8ssp"
             tools:text="1" />
 
@@ -67,6 +68,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/_10sdp"
             android:text="6 * "
+            android:textColor="@android:color/black"
             android:textSize="@dimen/_8ssp" />
 
         <TextView
@@ -76,6 +78,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="@dimen/_8sdp"
             android:layout_marginStart="@dimen/_5sdp"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/_8ssp"
             tools:text="5" />
 
@@ -91,6 +94,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/_10sdp"
             android:text="D* "
+            android:textColor="@android:color/black"
             android:textSize="@dimen/_8ssp" />
 
         <TextView
@@ -100,6 +104,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="@dimen/_8sdp"
             android:layout_marginStart="@dimen/_5sdp"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/_8ssp"
             tools:text="5" />
 
@@ -115,6 +120,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/_10sdp"
             android:text="R : "
+            android:textColor="@android:color/black"
             android:textSize="@dimen/_8ssp" />
 
         <TextView
@@ -124,6 +130,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="@dimen/_8sdp"
             android:layout_marginStart="@dimen/_5sdp"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/_8ssp"
             tools:text="40" />
 
@@ -139,6 +146,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/_10sdp"
             android:text="B : "
+            android:textColor="@android:color/black"
             android:textSize="@dimen/_8ssp" />
 
         <TextView
@@ -148,6 +156,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="@dimen/_8sdp"
             android:layout_marginStart="@dimen/_5sdp"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/_8ssp"
             tools:text="29" />
 
@@ -163,6 +172,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/_10sdp"
             android:text="SR : "
+            android:textColor="@android:color/black"
             android:textSize="@dimen/_8ssp" />
 
         <TextView
@@ -172,15 +182,13 @@
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="@dimen/_8sdp"
             android:layout_marginStart="@dimen/_5sdp"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/_8ssp"
             tools:text="137.93" />
 
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_1sdp"
-        android:background="@color/divider" />
+
 </LinearLayout>
 
