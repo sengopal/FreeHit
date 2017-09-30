@@ -19,6 +19,7 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class ScoreCardFragment extends Fragment {
+    private int lastExpandedPosition = -1;
 
     private ScoreCardExpandableListAdapterBatting ExpAdapterBatting;
     private ArrayList<ScoreCardItemListBatting> ExpListItemsBatting;
@@ -70,6 +71,12 @@ public class ScoreCardFragment extends Fragment {
             @Override
             public void onGroupExpand(int groupPosition) {
                 Toast.makeText(getContext(), " List Expanded.", Toast.LENGTH_SHORT).show();
+                if (lastExpandedPosition != -1
+                        && groupPosition != lastExpandedPosition) {
+                    ExpandListBatting.collapseGroup(lastExpandedPosition);
+                }
+                lastExpandedPosition = groupPosition;
+                setExpandableListViewHeight(ExpandListBatting, -1);
             }
         });
 
@@ -125,6 +132,12 @@ public class ScoreCardFragment extends Fragment {
             @Override
             public void onGroupExpand(int groupPosition) {
                 Toast.makeText(getContext(), " List Expanded.", Toast.LENGTH_SHORT).show();
+                if (lastExpandedPosition != -1
+                        && groupPosition != lastExpandedPosition) {
+                    ExpandListBowling.collapseGroup(lastExpandedPosition);
+                }
+                lastExpandedPosition = groupPosition;
+                setExpandableListViewHeight(ExpandListBowling, -1);
             }
         });
 
