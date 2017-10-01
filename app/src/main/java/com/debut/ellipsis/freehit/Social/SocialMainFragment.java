@@ -79,7 +79,7 @@ public class SocialMainFragment extends Fragment {
             }
         });
 
-        setupTabIcons();
+
 
         return rootView;
     }

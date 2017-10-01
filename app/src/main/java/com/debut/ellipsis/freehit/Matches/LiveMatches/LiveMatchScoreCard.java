@@ -17,6 +17,7 @@ import com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHeadFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.HeatMapFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.InfoFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements.ScoreCardFragment;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements.TwitterFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.SpiderFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.SummaryFragment;
 import com.debut.ellipsis.freehit.R;
@@ -80,6 +81,7 @@ public class LiveMatchScoreCard extends AppCompatActivity {
         adapter.addFrag(new SummaryFragment(), "SUMMARY");
         adapter.addFrag(new ScoreCardFragment(), "SCORE CARD");
         adapter.addFrag(new CommentaryFragment(), "COMMENTARY");
+        adapter.addFrag(new TwitterFragment(),"TWEETS");
         adapter.addFrag(new HeadToHeadFragment(), "HEAD-TO-HEAD");
         adapter.addFrag(new SpiderFragment(), "SPIDER");
         adapter.addFrag(new ChanceToWinFragment(), "WIN %");

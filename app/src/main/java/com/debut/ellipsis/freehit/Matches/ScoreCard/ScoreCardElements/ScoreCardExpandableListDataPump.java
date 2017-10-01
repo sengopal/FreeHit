@@ -39,7 +39,7 @@ public class ScoreCardExpandableListDataPump {
     public static ArrayList<ScoreCardItemListBowling> getDataBowling() {
 
 
-        String group_names[] = { "WI 1st Innings", "ENG 1st Innings"/*, "WI 2nd Innings", "ENG 2nd Innings"*/};
+        String group_names[] = { "WI 1st Innings", "ENG 1st Innings", "WI 2nd Innings", "ENG 2nd Innings"};
 
         ArrayList<ScoreCardItemListBowling> list = new ArrayList<ScoreCardItemListBowling>();
 
