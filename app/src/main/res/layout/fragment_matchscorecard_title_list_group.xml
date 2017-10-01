@@ -9,9 +9,9 @@
         android:id="@+id/Scorecard_team_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
+        android:layout_marginTop="@dimen/_8sdp"
         android:paddingStart="?android:attr/expandableListPreferredItemPaddingLeft"
-        android:paddingTop="10dp"
+        android:layout_marginBottom="@dimen/_8sdp"
         android:textStyle="bold"
         android:textColor="@android:color/black"
         android:textSize="@dimen/_12sdp" />

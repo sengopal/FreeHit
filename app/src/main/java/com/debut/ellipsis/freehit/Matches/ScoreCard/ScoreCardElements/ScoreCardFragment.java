@@ -77,6 +77,7 @@ public class ScoreCardFragment extends Fragment {
                 }
                 lastExpandedPosition = groupPosition;
                 setExpandableListViewHeight(ExpandListBatting, -1);
+                ExpandListBatting.setSelection(0);
             }
         });
 
@@ -102,6 +103,8 @@ public class ScoreCardFragment extends Fragment {
                 return false;
             }
         });
+
+
 
 
 
@@ -138,6 +141,7 @@ public class ScoreCardFragment extends Fragment {
                 }
                 lastExpandedPosition = groupPosition;
                 setExpandableListViewHeight(ExpandListBowling, -1);
+                ExpandListBowling.setSelection(0);
             }
         });
 

@@ -1,12 +1,9 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/_8sdp"
-    android:paddingLeft="@dimen/_8sdp"
-    android:paddingRight="@dimen/_8sdp"
-    android:paddingTop="@dimen/_8sdp">
+    android:background="@android:color/white">
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -29,6 +26,7 @@
                 android:background="@color/tw__composer_light_gray"
                 android:gravity="center_horizontal"
                 android:padding="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:text="BATTING"
                 android:textAllCaps="true"
                 android:textSize="@dimen/_20sdp" />
@@ -52,6 +50,7 @@
                 android:gravity="center_horizontal"
                 android:padding="@dimen/_8sdp"
                 android:text="BOWLING"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:textAllCaps="true"
                 android:textSize="@dimen/_20sdp" />
 
@@ -60,11 +59,12 @@
                 layout="@layout/expandablelistview_common"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_8sdp"
                 android:visibility="visible" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
 
 
 
