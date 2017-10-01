@@ -1,4 +1,4 @@
-package com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements;
+package com.debut.ellipsis.freehit.Matches.ScoreCard;
 
 
 import android.content.Intent;
