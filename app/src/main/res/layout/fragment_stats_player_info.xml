@@ -136,6 +136,12 @@
                 android:layout_below="@+id/ICC"
                 android:background="@color/divider"
                 android:textSize="@dimen/_1sdp" />
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                style="@style/Base.Widget.AppCompat.ProgressBar"/>
 
 
             <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -332,6 +338,8 @@
                 android:text="MAN OF THE MATCH"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/_20sdp" />
+
+
 
             <TextView
                 android:layout_width="match_parent"
