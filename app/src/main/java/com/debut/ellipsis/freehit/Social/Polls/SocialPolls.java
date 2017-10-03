@@ -98,8 +98,8 @@ public class SocialPolls extends Fragment implements LoaderManager.LoaderCallbac
         } else {
             // Otherwise, display error
             // First, hide loading indicator so error message will be visible
-            mAdapter.add(new NewsItem("No connection", "Looks like you have no connection, switch on your internet connection and try refreshing to see the latest news."));
-            return rootView;
+            /*mAdapter.add(new NewsItem("No connection", "Looks like you have no connection, switch on your internet connection and try refreshing to see the latest news."));
+            return rootView;*/
 
         }
 
@@ -129,8 +129,8 @@ public class SocialPolls extends Fragment implements LoaderManager.LoaderCallbac
                                                    // Otherwise, display error
                                                    // First, hide loading indicator so error message will be visible
                                                    mAdapter.clear();
-                                                   mAdapter.add(new NewsItem("No connection", "Looks like you have no connection, switch on your internet connection and try refreshing to see the latest news."));
-                                                   mAdapter.notifyDataSetChanged();
+                                                   /*mAdapter.add(new NewsItem("No connection", "Looks like you have no connection, switch on your internet connection and try refreshing to see the latest news."));
+                                                   */mAdapter.notifyDataSetChanged();
 
                                                }
                                                refLayout.setRefreshing(false);

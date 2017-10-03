@@ -1,96 +1,118 @@
 package com.debut.ellipsis.freehit.News;
 
 
-import android.app.LoaderManager;
-import android.content.Context;
-import android.content.Loader;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.debut.ellipsis.freehit.APIInterface;
+import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.R;
 
-import static com.debut.ellipsis.freehit.News.NewsArticleLoader.news;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class NewsArticle extends AppCompatActivity implements LoaderManager.LoaderCallbacks<NewsArticleItem> {
+
+import android.widget.TextView;
+
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class NewsArticle extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private int news_article_id;
-    public static final String LOG_TAG = NewsArticle.class.getSimpleName();
-
-    public View loadingIndicator;
-    //the website url of the api
-    private static String URL =
-            "http://freehit-api.herokuapp.com/news?id=";
-
-    private static final int NEWS_ARTICLE_LOADER_ID = 1;
-
-    private NewsArticleItem newsItem;
-    public TextView mEmptyStateTextView;
+    APIInterface apiInterface;
+    private NewsItemAdapter mAdapter;
     private ProgressBar mProgressBar;
+    private String match_id;
 
     public NewsArticle() {
         // Required empty public constructor
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_news_article_individual_item);
-        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
-        news_article_id = getIntent().getIntExtra("news_article_id", 0);
-        URL =
-                "http://freehit-api.herokuapp.com/news?id=";
-        URL += news_article_id;
+        match_id = getIntent().getStringExtra("match_id");
+        apiInterface = ApiClient.getClient().create(APIInterface.class);
+        mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        System.out.println(match_id);
 
-        Log.e(LOG_TAG, URL);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        //removing text from collapsing toolbar
         setTitle(" ");
 
-        // Get a reference to the ConnectivityManager to check state of network connectivity
-        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        // Get details on the currently active default data network
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        /**
+         GET List Users
+         **/
+        Call<NewsArticleItem> call = apiInterface.doGetNewsArticle(match_id);
+        call.enqueue(new Callback<NewsArticleItem>() {
+            @Override
+            public void onResponse(Call<NewsArticleItem> call, Response<NewsArticleItem> response) {
 
-        // If there is a network connection, fetch data
-        if (networkInfo != null && networkInfo.isConnected()) {
-            // Get a reference to the LoaderManager, in order to interact with loaders.
-            LoaderManager loaderManager = getLoaderManager();
-            // Initialize the loader. Pass in the int ID constant defined above and pass in null for
-            // the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
-            // because this activity implements the LoaderCallbacks interface).
+                NewsArticleItem newsArticle = response.body();
 
-            loaderManager.initLoader(NEWS_ARTICLE_LOADER_ID, null, this).forceLoad();
-            Log.i(LOG_TAG, "TEST:Calling initLoader() ....");
-        }
+                TextView headline = (TextView) findViewById(R.id.news_article_heading);
+                headline.setText(newsArticle.getTitle());
 
-        mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
-        int colorCodeDark = Color.parseColor("#F44336");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mProgressBar.setIndeterminateTintList(ColorStateList.valueOf(colorCodeDark));
-        }
+                TextView article_description = (TextView) findViewById(R.id.news_article_description);
+                article_description.setText(newsArticle.getDesc());
+
+                TextView date = (TextView) findViewById(R.id.news_date);
+                date.setText(newsArticle.getDate());
+
+                TextView news_tag_1 = (TextView) findViewById(R.id.news_tag);
+                news_tag_1.setText(newsArticle.getTag1());
+
+                TextView news_tag_2 = (TextView) findViewById(R.id.news_tag_1);
+                news_tag_2.setText(newsArticle.getTag2());
+
+                TextView news_tag_3 = (TextView) findViewById(R.id.news_tag_2);
+                news_tag_3.setText(newsArticle.getTag3());
+
+                ImageView tag_1 = (ImageView) findViewById(R.id.news_tag_image);
+                tag_1.setVisibility(View.VISIBLE);
+
+                ImageView tag_2 = (ImageView) findViewById(R.id.news_tag_image_1);
+                tag_2.setVisibility(View.VISIBLE);
+
+                ImageView tag_3 = (ImageView) findViewById(R.id.news_tag_image_2);
+                tag_3.setVisibility(View.VISIBLE);
+
+                mProgressBar.setVisibility(View.GONE);
+
+                final ImageView articleImage = (ImageView) findViewById(R.id.news_article_image);
+
+                final String ImageURL = newsArticle.getImage();
+
+                Glide.with(getApplicationContext()).load(ImageURL).centerCrop().placeholder(R.drawable.matches).into(articleImage);
+
+
+            }
+
+            @Override
+            public void onFailure(Call<NewsArticleItem> call, Throwable t) {
+                call.cancel();
+            }
+        });
 
 
     }
-
     @Override
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -112,85 +134,4 @@ public class NewsArticle extends AppCompatActivity implements LoaderManager.Load
 
     }
 
-    @Override
-    public Loader<NewsArticleItem> onCreateLoader(int i, Bundle bundle) {
-        // Create a new loader for the given URL
-        return new NewsArticleLoader(getApplicationContext(), URL);
-
-    }
-
-    @Override
-    public void onLoadFinished(final Loader<NewsArticleItem> loader, NewsArticleItem News) {
-
-        mProgressBar.setVisibility(View.GONE);
-
-        TextView headline = (TextView) findViewById(R.id.news_article_heading);
-        headline.setText(news.getMheadline());
-
-        TextView article_description = (TextView) findViewById(R.id.news_article_description);
-        article_description.setText(news.getMnewsArticle());
-
-        TextView date = (TextView) findViewById(R.id.news_date);
-        date.setText(news.getMdate());
-
-        TextView news_tag_1 = (TextView) findViewById(R.id.news_tag);
-        news_tag_1.setText(news.getmTag1());
-
-        TextView news_tag_2 = (TextView) findViewById(R.id.news_tag_1);
-        news_tag_2.setText(news.getmTag2());
-
-        TextView news_tag_3 = (TextView) findViewById(R.id.news_tag_2);
-        news_tag_3.setText(news.getmTag3());
-
-        ImageView tag_1 = (ImageView) findViewById(R.id.news_tag_image);
-        tag_1.setVisibility(View.VISIBLE);
-
-        ImageView tag_2 = (ImageView) findViewById(R.id.news_tag_image_1);
-        tag_2.setVisibility(View.VISIBLE);
-
-        ImageView tag_3 = (ImageView) findViewById(R.id.news_tag_image_2);
-        tag_3.setVisibility(View.VISIBLE);
-
-        final ImageView articleImage = (ImageView) findViewById(R.id.news_article_image);
-
-        final String ImageURL = news.getMurlofimage();
-
-        Glide.with(getApplicationContext()).load(ImageURL).centerCrop().placeholder(R.drawable.matches).into(articleImage);
-
-
-        //USING GLIDE LIBRARY NOW
-
-        /*ImageLoader imageloader = ImageLoader.getInstance();
-        //Defining options for the display, cache is set to false by default so this is necessary.
-
-        DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true).build();
-
-        //Straight forward abstract classes, loader is optional
-        imageloader.displayImage(ImageURL, articleImage, options, new ImageLoadingListener() {
-            @Override
-            public void onLoadingStarted(String imageUri, View view) {
-                articleImage.setImageResource(R.drawable.matches);
-            }
-
-            @Override
-            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                articleImage.setImageResource(R.drawable.matches);
-            }
-
-            @Override
-            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-            }
-
-            @Override
-            public void onLoadingCancelled(String imageUri, View view) {
-
-            }
-        });*/
-    }
-
-    @Override
-    public void onLoaderReset(Loader<NewsArticleItem> loader) {
-        /*loader = null;*/
-
-    }
 }
