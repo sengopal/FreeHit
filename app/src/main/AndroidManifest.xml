@@ -64,7 +64,6 @@
         <activity android:name=".Stats.Records.RecordsActivity"/>
 
 
-
     </application>
 
 </manifest>

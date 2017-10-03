@@ -1,92 +1,103 @@
 package com.debut.ellipsis.freehit.News;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.debut.ellipsis.freehit.R;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
-public class NewsItemAdapter extends ArrayAdapter<NewsItem> {
+public class NewsItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.freehit.News.NewsItemAdapter.NewsViewHolder> {
 
-    public NewsItemAdapter(Context context, ArrayList<NewsItem> items) {
+    private List<NewsItem> newsItems;
+    private int rowLayout;
+    private Context context;
 
 
-        super(context, 0, items);
+    public static class NewsViewHolder extends RecyclerView.ViewHolder {
+        RelativeLayout newsLayout;
+        ImageView image;
+        TextView title;
+        TextView desc;
+        TextView date;
+        TextView tag;
+        RelativeLayout rlcontainer;
+
+
+        public NewsViewHolder(View v) {
+            super(v);
+            newsLayout = (RelativeLayout) v.findViewById(R.id.news_layout);
+            image = (ImageView) v.findViewById(R.id.image_view);
+            title = (TextView) v.findViewById(R.id.header_text_view);
+            desc = (TextView) v.findViewById(R.id.summary_text_view);
+            date = (TextView) v.findViewById(R.id.news_date);
+            tag = (TextView) v.findViewById(R.id.news_tag);
+            rlcontainer = (RelativeLayout) v.findViewById(R.id.news_layout);
+        }
+    }
+
+    public NewsItemAdapter(List<NewsItem> news, int rowLayout, Context context) {
+        this.newsItems = news;
+        this.rowLayout = rowLayout;
+        this.context = context;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View listItemView = convertView;
-        if (listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.fragment_news_list_item, parent, false);
+    public com.debut.ellipsis.freehit.News.NewsItemAdapter.NewsViewHolder onCreateViewHolder(ViewGroup parent,
+                                                                                                              int viewType) {
+        View view = null;
+        if (viewType == 0) {
+            view = LayoutInflater.from(parent.getContext()).inflate(rowLayout, parent, false);
         }
+        return new com.debut.ellipsis.freehit.News.NewsItemAdapter.NewsViewHolder(view);
+
+    }
 
 
-        NewsItem currentnews = getItem(position);
+    @Override
+    public void onBindViewHolder(com.debut.ellipsis.freehit.News.NewsItemAdapter.NewsViewHolder holder, final int position) {
+        holder.title.setText(newsItems.get(position).getTitle());
+        holder.desc.setText(newsItems.get(position).getDesc());
+        holder.date.setText(newsItems.get(position).getDate());
+        holder.tag.setText(newsItems.get(position).getTag());
+        Glide.with(context).load(newsItems.get(position).getImage()).centerCrop().placeholder(R.drawable.matches).into(holder.image);
 
-        String imageurl = currentnews.getMurlofimage();
+        RelativeLayout RLcontainer = holder.rlcontainer;
 
-
-        TextView studentName = (TextView) listItemView.findViewById(R.id.header_text_view);
-        studentName.setText(currentnews.getMheadline());
-
-        TextView date = (TextView) listItemView.findViewById(R.id.news_date);
-        date.setText(currentnews.getMdate());
-
-        TextView newsTag = (TextView) listItemView.findViewById(R.id.news_tag);
-        newsTag.setText(currentnews.getMtag());
-
-        ImageView news_tag = (ImageView) listItemView.findViewById(R.id.news_tag_image);
-        news_tag.setVisibility(View.VISIBLE);
-
-        TextView subjectTextView = (TextView) listItemView.findViewById(R.id.summary_text_view);
-        subjectTextView.setText(currentnews.getMdescription());
-
-        final ImageView imageToShow = (ImageView) listItemView.findViewById(R.id.image_view);
+        View.OnClickListener mClickListener;
 
 
-        Glide.with(getContext()).load(currentnews.getMurlofimage()).centerCrop().placeholder(R.drawable.matches).into(imageToShow);
-        /*//Getting an instance of the ImageLoader (Initialized with global configs in MainActivity)
+        mClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-        ImageLoader imageloader = ImageLoader.getInstance();
-        //Defining options for the display, cache is set to false by default so this is necessary.
+                Intent UpcomingMatchScoreCardIntent = new Intent(context, NewsArticle.class);
 
-        DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true).build();
+                String pos = String.valueOf(position);
+                UpcomingMatchScoreCardIntent.putExtra("match_id", newsItems.get(position).getId().toString());
+                    /*ActivityOptions.makeCustomAnimation(context,R.anim.animation_entry,R.anim.animation_exit);*/
+                UpcomingMatchScoreCardIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(UpcomingMatchScoreCardIntent);
+
+            }
+        };
+        RLcontainer.setOnClickListener(mClickListener);
 
 
-        if(currentnews.getMurlofimage()!=null) {
-            //Straight forward abstract classes, loader is optional
-            imageloader.displayImage(imageurl, imageToShow, options, new ImageLoadingListener() {
-                @Override
-                public void onLoadingStarted(String imageUri, View view) {
-                    imageToShow.setImageResource(R.drawable.matches);
-                }
+    }
 
-                @Override
-                public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                    imageToShow.setImageResource(R.drawable.matches);
-                }
-
-                @Override
-                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                }
-
-                @Override
-                public void onLoadingCancelled(String imageUri, View view) {
-
-                }
-            });
-        }*/
-        return listItemView;
-
+    @Override
+    public int getItemCount() {
+        return newsItems.size();
     }
 }

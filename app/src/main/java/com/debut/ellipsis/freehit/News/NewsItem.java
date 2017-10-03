@@ -1,65 +1,62 @@
 package com.debut.ellipsis.freehit.News;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NewsItem {
+    @SerializedName("image")
+    private String image;
+    @SerializedName("title")
+    private String title;
+    @SerializedName("desc")
+    private String desc;
+    @SerializedName("date")
+    private String date;
+    @SerializedName("tag")
+    private String tag;
+    @SerializedName("id")
+    private int id;
+    @SerializedName("result")
+    public List<NewsItem> results = new ArrayList<>();
 
-    private String mheadline;
-
-    private String mdescription;
-
-    private String murlofimage;
-
-    private int mnewsID;
-
-    private String mdate;
-
-    private String mTag;
-
-    public NewsItem(int newsID, String headline, String description, String urlofimage, String Date, String Tag) {
-        mnewsID = newsID;
-        mheadline = headline;
-        mdescription = description;
-        murlofimage = urlofimage;
-        mdate = Date;
-        mTag = Tag;
+    public NewsItem(String imageURL, String title, String desc, String date, String tag, Integer id) {
+        this.image = imageURL;
+        this.title = title;
+        this.desc = desc;
+        this.date = date;
+        this.tag = tag;
+        this.id = id;
     }
 
-    //Whem there is no image from server
-    public NewsItem(int newsID, String headline, String description, String Date, String Tag) {
-        mnewsID = newsID;
-        mheadline = headline;
-        mdescription = description;
-        mdate = Date;
-        mTag = Tag;
+    public String getImage() {
+        return image;
     }
 
-    // Constructor in case of no connection, passing google so app doens't crash (Alternative is to check every time we pass a item, too much work)
-    public NewsItem(String headline, String description) {
-        mheadline = headline;
-        mdescription = description;
+    public String getTitle() {
+        return title;
     }
 
-    public String getMheadline() {
-        return mheadline;
+    public String getDesc() {
+        return desc;
     }
 
-    public String getMdescription() {
-        return mdescription;
+    public String getDate() {
+        return date;
     }
 
-    public String getMurlofimage() {
-        return murlofimage;
+    public String getTag() {
+        return tag;
     }
 
-    public int getMnewsID() {
-        return mnewsID;
+    public Integer getId() {
+        return id;
     }
 
-    public String getMdate() {
-        return mdate;
+    public List<NewsItem> getResults() {
+        return results;
     }
 
-    public String getMtag() {
-        return mTag;
-    }
+
 }
