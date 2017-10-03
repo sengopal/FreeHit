@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:fontFamily="sans-serif-medium"
-        android:textSize="@dimen/_20ssp"
+        android:textSize="@dimen/_20sdp"
         tools:text="MATCHES WON"/>
 
 
@@ -35,7 +35,7 @@
                 android:fontFamily="sans-serif-light"
                 android:gravity="center_horizontal"
                 android:padding="@dimen/_5sdp"
-                android:textSize="@dimen/_25ssp"
+                android:textSize="@dimen/_25sdp"
                 tools:text="47" />
 
         </LinearLayout>
@@ -60,7 +60,7 @@
                 android:fontFamily="sans-serif-light"
                 android:gravity="center_horizontal"
                 android:padding="@dimen/_5sdp"
-                android:textSize="@dimen/_25ssp"
+                android:textSize="@dimen/_25sdp"
                 tools:text="55" />
 
         </LinearLayout>

@@ -18,7 +18,7 @@
         android:layout_marginRight="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:textColor="#000000"
-        android:textSize="@dimen/_15ssp"
+        android:textSize="@dimen/_15sdp"
         tools:text="The title of the poll, it's a very interesting poll if you ask me, you should check it out. " />
 
 <RelativeLayout
@@ -84,7 +84,7 @@
     <Button
         android:id="@+id/poll_results_view"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/_25ssp"
+        android:layout_height="@dimen/_25sdp"
         android:layout_below="@id/poll_submit"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp"
@@ -101,7 +101,7 @@
         android:layout_centerInParent="true"
         android:layout_centerVertical="true"
         android:textAppearance="?android:textAppearanceMedium"
-        android:textSize="@dimen/_20ssp" />
+        android:textSize="@dimen/_20sdp" />
 
     <RelativeLayout
         android:layout_width="wrap_content"

@@ -24,7 +24,7 @@ public class Batting_Fragment extends Fragment{
             "4s","10" ,  "10",  "10",  "10",
             "6s","10" ,  "10",  "10",  "10",
             "Avg","10" ,  "10",  "10",  "10",
-            "Strike \nRate","10" ,  "10",  "10",  "10",
+            "Strike\nRate","10" ,  "10",  "10",  "10",
 
 
     } ;
@@ -33,11 +33,10 @@ public class Batting_Fragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_stats_player_batting, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_stats_player_batting_bowling_gridview, container, false);
         GridView androidGridView;
         Batting_Item_adapter adapterViewAndroid = new Batting_Item_adapter(getContext(), gridViewString );
-        androidGridView=(GridView)rootView.findViewById(R.id.grid_view_image_text);
-
+        androidGridView=(GridView)rootView.findViewById(R.id.grid_view_batting_bowling);
         androidGridView.setAdapter(adapterViewAndroid);
         setGridViewHeightBasedOnChildren(androidGridView,5);
 

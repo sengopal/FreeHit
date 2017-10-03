@@ -13,7 +13,7 @@
         android:paddingStart="@dimen/_20sdp"
         android:paddingTop="@dimen/_3sdp"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/_12ssp"
+        android:textSize="@dimen/_12sdp"
         android:textAllCaps="true"
         tools:text="CHRIS GAYLE" />
 
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_18sdp"
         android:paddingStart="@dimen/_20sdp"
-        android:textSize="@dimen/_10ssp"
+        android:textSize="@dimen/_10sdp"
         tools:text="c Liam Plunkett b Tom Curran" />
 
 
@@ -45,7 +45,7 @@
             android:layout_marginStart="@dimen/_2sdp"
             android:text="4 * "
             android:textColor="@android:color/black"
-            android:textSize="@dimen/_8ssp" />
+            android:textSize="@dimen/_8sdp" />
 
         <TextView
             android:id="@+id/FourValue"
@@ -55,7 +55,7 @@
             android:layout_marginEnd="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_5sdp"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/_8ssp"
+            android:textSize="@dimen/_8sdp"
             tools:text="1" />
 
         <View
@@ -71,7 +71,7 @@
             android:layout_marginStart="@dimen/_5sdp"
             android:text="6 * "
             android:textColor="@android:color/black"
-            android:textSize="@dimen/_8ssp" />
+            android:textSize="@dimen/_8sdp" />
 
         <TextView
             android:id="@+id/SixValue"
@@ -81,7 +81,7 @@
             android:layout_marginEnd="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_5sdp"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/_8ssp"
+            android:textSize="@dimen/_8sdp"
             tools:text="5" />
 
         <View
@@ -97,7 +97,7 @@
             android:layout_marginStart="@dimen/_5sdp"
             android:text="D* "
             android:textColor="@android:color/black"
-            android:textSize="@dimen/_8ssp" />
+            android:textSize="@dimen/_8sdp" />
 
         <TextView
             android:id="@+id/DotValue"
@@ -107,7 +107,7 @@
             android:layout_marginEnd="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_5sdp"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/_8ssp"
+            android:textSize="@dimen/_8sdp"
             tools:text="5" />
 
         <View
@@ -123,7 +123,7 @@
             android:layout_marginStart="@dimen/_5sdp"
             android:text="R : "
             android:textColor="@android:color/black"
-            android:textSize="@dimen/_8ssp" />
+            android:textSize="@dimen/_8sdp" />
 
         <TextView
             android:id="@+id/RunsValue"
@@ -133,7 +133,7 @@
             android:layout_marginEnd="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_5sdp"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/_8ssp"
+            android:textSize="@dimen/_8sdp"
             tools:text="40" />
 
         <View
@@ -149,7 +149,7 @@
             android:layout_marginStart="@dimen/_5sdp"
             android:text="B : "
             android:textColor="@android:color/black"
-            android:textSize="@dimen/_8ssp" />
+            android:textSize="@dimen/_8sdp" />
 
         <TextView
             android:id="@+id/BallsValue"
@@ -159,7 +159,7 @@
             android:layout_marginEnd="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_5sdp"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/_8ssp"
+            android:textSize="@dimen/_8sdp"
             tools:text="29" />
 
         <View
@@ -175,7 +175,7 @@
             android:layout_marginStart="@dimen/_5sdp"
             android:text="SR : "
             android:textColor="@android:color/black"
-            android:textSize="@dimen/_8ssp" />
+            android:textSize="@dimen/_8sdp" />
 
         <TextView
             android:id="@+id/StrikeRateValue"
@@ -185,7 +185,7 @@
             android:layout_marginEnd="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_5sdp"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/_8ssp"
+            android:textSize="@dimen/_8sdp"
             tools:text="137.93" />
 
 

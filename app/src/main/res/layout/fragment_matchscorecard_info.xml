@@ -35,6 +35,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_span="2"
+                        android:textSize="@dimen/_20sdp"
                         android:padding="@dimen/_8sdp"
                         android:text="@string/PlayingX1"
                         android:textAllCaps="true" />
@@ -61,7 +62,7 @@
                         android:layout_height="@dimen/_20sdp"
                         android:layout_marginLeft="@dimen/_8sdp"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_15ssp"
+                        android:textSize="@dimen/_15sdp"
                         tools:text="Sri Lanka" />
                 </TableRow>
 
@@ -91,7 +92,7 @@
                         android:layout_height="@dimen/_20sdp"
                         android:layout_marginLeft="@dimen/_8sdp"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_15ssp"
+                        android:textSize="@dimen/_15sdp"
                         tools:text="India" />
 
                 </TableRow>
@@ -129,6 +130,7 @@
                                 android:layout_gravity="center_horizontal"
                                 android:layout_span="2"
                                 android:padding="@dimen/activity_vertical_margin"
+                                android:textSize="@dimen/_20sdp"
                                 android:text="@string/info"
                                 android:textAllCaps="true" />
                         </TableRow>
@@ -147,7 +149,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_20sdp"
                                 android:text="@string/match"
-                                android:textSize="@dimen/_13ssp" />
+                                android:textSize="@dimen/_13sdp" />
 
                             <TextView
                                 android:id="@+id/match_info_match_name"
@@ -155,7 +157,7 @@
                                 android:layout_height="@dimen/_20sdp"
                                 tools:text="England Vs West Indies, 5th ODI"
                                 android:textColor="@android:color/black"
-                                android:textSize="@dimen/_13ssp" />
+                                android:textSize="@dimen/_13sdp" />
                         </TableRow>
 
                         <TextView
@@ -177,14 +179,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_20sdp"
                                 android:text="@string/series"
-                                android:textSize="@dimen/_13ssp" />
+                                android:textSize="@dimen/_13sdp" />
 
                             <TextView
                                 android:id="@+id/match_info_series_name"
                                 android:layout_width="@dimen/_250sdp"
                                 android:layout_height="@dimen/_20sdp"
                                 android:textColor="@android:color/black"
-                                android:textSize="@dimen/_13ssp"
+                                android:textSize="@dimen/_13sdp"
                                 tools:text="West Indies tour of England, 2017" />
                         </TableRow>
 
@@ -207,14 +209,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_20sdp"
                                 android:text="@string/toss"
-                                android:textSize="@dimen/_13ssp" />
+                                android:textSize="@dimen/_13sdp" />
 
                             <TextView
                                 android:id="@+id/match_info_toss_status"
                                 android:layout_width="@dimen/_250sdp"
                                 android:layout_height="@dimen/_28sdp"
                                 android:textColor="@android:color/black"
-                                android:textSize="@dimen/_13ssp"
+                                android:textSize="@dimen/_13sdp"
                                 tools:text="England won the toss and elected to field" />
                         </TableRow>
 
@@ -237,14 +239,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_20sdp"
                                 android:text="@string/date"
-                                android:textSize="@dimen/_13ssp" />
+                                android:textSize="@dimen/_13sdp" />
 
                             <TextView
                                 android:id="@+id/match_info_date"
                                 android:layout_width="@dimen/_250sdp"
                                 android:layout_height="@dimen/_20sdp"
                                 android:textColor="@android:color/black"
-                                android:textSize="@dimen/_13ssp"
+                                android:textSize="@dimen/_13sdp"
                                 tools:text="29 Sep 2017 , Fri" />
                         </TableRow>
 
@@ -267,14 +269,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_20sdp"
                                 android:text="@string/lastTime"
-                                android:textSize="@dimen/_13ssp" />
+                                android:textSize="@dimen/_13sdp" />
 
                             <TextView
                                 android:id="@+id/match_info_time"
                                 android:layout_width="@dimen/_250sdp"
                                 android:layout_height="@dimen/_20sdp"
                                 android:textColor="@android:color/black"
-                                android:textSize="@dimen/_13ssp"
+                                android:textSize="@dimen/_13sdp"
                                 tools:text="16 : 30 (IST)" />
                         </TableRow>
 
@@ -297,7 +299,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_20sdp"
                                 android:text="@string/venue"
-                                android:textSize="@dimen/_13ssp" />
+                                android:textSize="@dimen/_13sdp" />
 
                             <TextView
                                 android:id="@+id/match_info_stadium"
@@ -305,7 +307,7 @@
                                 android:layout_height="@dimen/_20sdp"
                                 android:layout_marginLeft="@dimen/_2sdp"
                                 android:textColor="@android:color/black"
-                                android:textSize="@dimen/_13ssp"
+                                android:textSize="@dimen/_13sdp"
                                 tools:text="The Rose Bowl, Southampton" />
                         </TableRow>
 
@@ -327,7 +329,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_20sdp"
                                 android:text="@string/umpires"
-                                android:textSize="@dimen/_13ssp" />
+                                android:textSize="@dimen/_13sdp" />
 
                             <TextView
                                 android:id="@+id/match_info_umpires"
@@ -335,7 +337,7 @@
                                 android:layout_height="@dimen/_29sdp"
                                 android:layout_marginLeft="@dimen/_2sdp"
                                 android:textColor="@android:color/black"
-                                android:textSize="@dimen/_13ssp"
+                                android:textSize="@dimen/_13sdp"
                                 tools:text="Simon Fry (AUS),Michael Gough (ENG) and Rod Tucker (AUS)" />
                         </TableRow>
 
@@ -358,7 +360,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_20sdp"
                                 android:text="@string/referee"
-                                android:textSize="@dimen/_13ssp" />
+                                android:textSize="@dimen/_13sdp" />
 
                             <TextView
                                 android:id="@+id/match_info_rederee"
@@ -366,7 +368,7 @@
                                 android:layout_height="@dimen/_20sdp"
                                 android:layout_marginLeft="@dimen/_2sdp"
                                 android:textColor="@android:color/black"
-                                android:textSize="@dimen/_13ssp"
+                                android:textSize="@dimen/_13sdp"
                                 tools:text="Javagal Srinath (IND)" />
                         </TableRow>
 
@@ -389,7 +391,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_20sdp"
                                 android:text="@string/weather"
-                                android:textSize="@dimen/_13ssp" />
+                                android:textSize="@dimen/_13sdp" />
 
 
                             <TextView
@@ -398,7 +400,7 @@
                                 android:layout_height="@dimen/_20sdp"
                                 android:layout_marginLeft="@dimen/_2sdp"
                                 android:textColor="@android:color/black"
-                                android:textSize="@dimen/_13ssp"
+                                android:textSize="@dimen/_13sdp"
                                 tools:text="CLEAR" />
                         </TableRow>
 

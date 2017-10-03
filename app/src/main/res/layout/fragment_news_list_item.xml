@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/image_view"
             android:paddingStart="@dimen/_15sdp"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_12sdp"
             tools:text="27 September 2017" />
 
         <ImageView
@@ -55,7 +55,7 @@
             android:layout_below="@+id/news_date"
             android:layout_marginStart="5dp"
             android:layout_toRightOf="@+id/news_tag_image"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_12sdp"
             tools:text="David Andrew Warner" />
 
         <TextView
@@ -71,7 +71,7 @@
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/black"
             android:textStyle="italic"
-            android:textSize="@dimen/_15ssp"
+            android:textSize="@dimen/_15sdp"
             tools:text="Description text of the news article you should read and waste some time . This  is getting to be too long, but I have to write enough text to test the code." />
 
         <TextView
@@ -82,7 +82,7 @@
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textSize="@dimen/_25ssp" />
+            android:textSize="@dimen/_25sdp" />
 
 
 

@@ -37,7 +37,8 @@ public class ScoreCardFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_matchscorecard_scorecard, container, false);
 
-        ExpandList = (ExpandableListView) rootView.findViewById(R.id.expandable_match_scoreCard_batting);
+        View expandableListBatting = rootView.findViewById(R.id.expandable_match_scoreCard_batting);
+        ExpandList = (ExpandableListView) expandableListBatting.findViewById(R.id.expandable_match_scoreCard);
         ExpListItems = ScoreCardExpandableListDataPump.getData();
         ExpAdapter = new ScoreCardExpandableListAdapter(getActivity(), ExpListItems);
         ExpandList.setAdapter(ExpAdapter);

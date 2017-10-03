@@ -8,9 +8,9 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/listPreferredItemHeight"
-        android:paddingEnd="@dimen/_12ssp"
-        android:paddingLeft="@dimen/_12ssp"
-        android:paddingRight="@dimen/_12ssp"
+        android:paddingEnd="@dimen/_12sdp"
+        android:paddingLeft="@dimen/_12sdp"
+        android:paddingRight="@dimen/_12sdp"
         android:paddingStart="@dimen/_12sdp">
 
         <ImageView
