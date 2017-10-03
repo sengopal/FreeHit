@@ -25,6 +25,7 @@ public class ScoreCardExpandableListDataPump {
                          ScoreCardItem ch = new ScoreCardItem("christopher henry gayle", "c Liam Plunkett b Tom Curran", "99", "99", "999", "999", "999", "999.99");
                          ch_list.add(ch);
                      }
+                gru.setItems(ch_list);
                 list.add(gru);
                 size = size + 10;
             }
