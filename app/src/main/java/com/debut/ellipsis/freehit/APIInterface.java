@@ -1,5 +1,6 @@
 package com.debut.ellipsis.freehit;
 
+import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchCardItem;
 import com.debut.ellipsis.freehit.News.NewsArticleItem;
 import com.debut.ellipsis.freehit.News.NewsItem;
 
@@ -14,4 +15,12 @@ public interface APIInterface {
 
     @GET("news?")
     Call<NewsArticleItem> doGetNewsArticle(@Query("id") String id);
+
+    @GET("past?max=6")
+    Call<PastMatchCardItem> doGetPastCardResources();
+
+    @GET("past?max=50")
+    Call<PastMatchCardItem> doGetCompletePastCardResources();
+
+
 }

@@ -21,7 +21,6 @@ import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.debut.ellipsis.freehit.News.NewsItem;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;

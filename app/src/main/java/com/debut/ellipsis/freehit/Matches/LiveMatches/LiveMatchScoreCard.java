@@ -17,9 +17,9 @@ import com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHeadFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.HeatMapFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.InfoFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements.ScoreCardFragment;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.TwitterFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.SpiderFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.SummaryFragment;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.TwitterFragment;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;

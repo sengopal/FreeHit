@@ -17,9 +17,7 @@ import com.debut.ellipsis.freehit.R;
 import java.util.List;
 
 public class PastMatchCardItemAdapter extends PagerAdapter {
-
-    private static final String DATE_SEPARATOR = "T";
-
+    int cardLayout;
     private Context context;
     private List<PastMatchCardItem> dataObjectList;
     private LayoutInflater layoutInflater;
@@ -47,48 +45,43 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, final int position) {
         View view = this.layoutInflater.inflate(R.layout.fragment_matches_past_match_card, container, false);
-
         TextView textViewMatchName = (TextView) view.findViewById(R.id.match_name_past);
-        textViewMatchName.setText(this.dataObjectList.get(position).getmMatchName());
-
-
+        textViewMatchName.setText(this.dataObjectList.get(position).getTitle());
         TextView textViewSeriesName = (TextView) view.findViewById(R.id.series_name_past);
-        textViewSeriesName.setText(this.dataObjectList.get(position).getmSeriesName());
-
+        textViewSeriesName.setText(this.dataObjectList.get(position).getTour());
         TextView textViewStadiumName = (TextView) view.findViewById(R.id.stadium_past);
-        textViewStadiumName.setText(this.dataObjectList.get(position).getmStadiumName());
-
+        textViewStadiumName.setText(this.dataObjectList.get(position).getStadium());
         imageViewTeam1Logo = (ImageView) view.findViewById(R.id.team_logo_1_past);
-
 
         imageViewTeam2Logo = (ImageView) view.findViewById(R.id.team_logo_2_past);
 
 
         TextView shortName1 = (TextView) view.findViewById(R.id.sn_team_1_past);
-        shortName1.setText(this.dataObjectList.get(position).getmTeam1SN());
+        shortName1.setText(this.dataObjectList.get(position).getTeam1Info().getSn());
 
         TextView team1Innings1 = (TextView) view.findViewById(R.id.innings1_team1_past);
-        team1Innings1.setText(this.dataObjectList.get(position).getmTeam1Innings1());
+        team1Innings1.setText(this.dataObjectList.get(position).getTeam1Info().getInn1());
 
         TextView team1Innings2 = (TextView) view.findViewById(R.id.innings2_team1_past);
-        team1Innings2.setText(this.dataObjectList.get(position).getmTeam1Innings2());
+        team1Innings2.setText(this.dataObjectList.get(position).getTeam1Info().getInn2());
 
 
         TextView shortName2 = (TextView) view.findViewById(R.id.sn_team_2_past);
-        shortName2.setText(this.dataObjectList.get(position).getmTeam2SN());
+        shortName2.setText(this.dataObjectList.get(position).getTeam2Info().getSn());
 
         TextView team2Innings1 = (TextView) view.findViewById(R.id.innings1_team2_past);
-        team2Innings1.setText(this.dataObjectList.get(position).getmTeam2Innings1());
+        team2Innings1.setText(this.dataObjectList.get(position).getTeam2Info().getInn1());
 
         TextView team2Innings2 = (TextView) view.findViewById(R.id.innings2_team2_past);
-        team2Innings2.setText(this.dataObjectList.get(position).getmTeam2Innings2());
+        team2Innings2.setText(this.dataObjectList.get(position).getTeam2Info().getInn2());
 
 
         TextView MatchResult = (TextView) view.findViewById(R.id.match_result_past);
-        MatchResult.setText(this.dataObjectList.get(position).getmMatchResult());
+        MatchResult.setText(this.dataObjectList.get(position).getResult());
 
-        String originalMatchDate = this.dataObjectList.get(position).getmMatchDate();
+        String originalMatchDate = this.dataObjectList.get(position).getTime();
 
+        TextView viewMore = (TextView) view.findViewById(R.id.past_view_more);
 //        // Check whether the originalLocation string contains the " of " text
 //        if (originalMatchDate.contains(DATE_SEPARATOR)) {
 //            // Split the string into different parts (as an array of Strings)
@@ -101,42 +94,66 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
 //        }
 
 
-        TextView ViewMore = (TextView) view.findViewById(R.id.past_view_more);
-        ViewMore.setText(this.dataObjectList.get(position).getmViewMore());
+
 
         TextView MatchDate = (TextView) view.findViewById(R.id.match_date_past);
-        MatchDate.setText(this.dataObjectList.get(position).getmMatchDate());
+        MatchDate.setText(this.dataObjectList.get(position).getTime());
 
         final CardView cardView = (CardView) view.findViewById(R.id.card_view);
 
-        cardView.setOnClickListener(new View.OnClickListener() {
+
+
+        // Initializing Logo URLS
+        logo_string1 = this.dataObjectList.get(position).getTeam1Info().getImage();
+        logo_string2 = this.dataObjectList.get(position).getTeam2Info().getImage();
+        if (position < 5) {
+
+
+            Glide.with(context).load(logo_string1).placeholder(R.drawable.matches).into(imageViewTeam1Logo);
+            Glide.with(context).load(logo_string2).placeholder(R.drawable.matches).into(imageViewTeam2Logo);
+        }
+        if (position == 5) {
+            textViewMatchName.setVisibility(View.INVISIBLE);
+            textViewSeriesName.setVisibility(View.INVISIBLE);
+            textViewStadiumName.setVisibility(View.INVISIBLE);
+            imageViewTeam1Logo.setVisibility(View.INVISIBLE);
+            imageViewTeam2Logo.setVisibility(View.INVISIBLE);
+            shortName1.setVisibility(View.INVISIBLE);
+            shortName2.setVisibility(View.INVISIBLE);
+            team1Innings1.setVisibility(View.INVISIBLE);
+            team1Innings2.setVisibility(View.INVISIBLE);
+            team2Innings1.setVisibility(View.INVISIBLE);
+            team2Innings2.setVisibility(View.INVISIBLE);
+            MatchResult.setVisibility(View.INVISIBLE);
+            MatchDate.setVisibility(View.INVISIBLE);
+            viewMore.setText("Click to view more!");
+            viewMore.setVisibility(View.VISIBLE);
+        }
+
+
+
+            cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (position == 5) {
                     // Intent to move to list view for Click to view more
                     // Create a new intent to open the {@link UpcomingMatchesActivity}
-                    Intent PastIntent = new Intent(context, PastMatchesActivity.class);
-
+                    Intent UpcomingIntent = new Intent(context, PastMatchesActivity.class);
                     // Start the new activity
-                    context.startActivity(PastIntent);
+                    context.startActivity(UpcomingIntent);
                 } else {
-                    Intent PastMatchScoreCardIntent = new Intent(context, PastMatchScoreCard.class);
-                    PastMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getmMatchID());
-                    PastMatchScoreCardIntent.putExtra("match_name", dataObjectList.get(position).getmMatchName());
+                    Intent UpcomingMatchScoreCardIntent = new Intent(context, PastMatchScoreCard.class);
+                    UpcomingMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getNdid());
+                    UpcomingMatchScoreCardIntent.putExtra("match_name", dataObjectList.get(position).getTitle() + "(" + dataObjectList.get(position).getTeam1Info().getSn() + " vs " + dataObjectList.get(position).getTeam2Info().getSn() + ")");
                     /*ActivityOptions.makeCustomAnimation(context,R.anim.animation_entry,R.anim.animation_exit);*/
-                    context.startActivity(PastMatchScoreCardIntent);
+                    context.startActivity(UpcomingMatchScoreCardIntent);
                 }
             }
         });
 
-        // Initializing Logo URLS
-        logo_string1 = this.dataObjectList.get(position).getmTeam1LogoURL();
-        logo_string2 = this.dataObjectList.get(position).getmTeam2LogoURL();
 
-        if (position < 5) {
-            Glide.with(context).load(logo_string1).placeholder(R.drawable.matches).into(imageViewTeam1Logo);
-            Glide.with(context).load(logo_string2).placeholder(R.drawable.matches).into(imageViewTeam2Logo);
-        }
+
+
        /* setImage(logo_string1, imageViewTeam1Logo);
         setImage(logo_string2, imageViewTeam2Logo);*/
         container.addView(view);
@@ -148,31 +165,4 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
         container.removeView((View) object);
     }
 
-   /* public void setImage(String url, ImageView imageview) {
-        ImageLoader imageLoader = ImageLoader.getInstance();
-        DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true).build();
-        imageLoader.displayImage(url, imageview, new ImageLoadingListener() {
-
-            @Override
-            public void onLoadingStarted(String imageUri, View view) {
-
-            }
-
-            @Override
-            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-
-            }
-
-            @Override
-            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-
-            }
-
-            @Override
-            public void onLoadingCancelled(String imageUri, View view) {
-
-            }
-        });
-
-    }*/
 }

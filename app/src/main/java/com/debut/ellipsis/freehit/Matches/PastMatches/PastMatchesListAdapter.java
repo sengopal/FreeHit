@@ -1,6 +1,5 @@
 package com.debut.ellipsis.freehit.Matches.PastMatches;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -16,141 +15,84 @@ import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
 
-public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesListAdapter.ViewHolder> {
+
+public class PastMatchesListAdapter extends RecyclerView.Adapter <PastMatchesListAdapter.PastViewHolder>{
+    private List<PastMatchCardItem> pastMatchCardItems;
+    private Context context;
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        // Your holder should contain a member variable
-        // for any view that will be set as you render a row
-        public TextView textViewMatchName;
-        public TextView textViewSeriesName;
-        public TextView textViewStadiumName;
-        public ImageView imageViewTeam1Logo;
-        public ImageView imageViewTeam2Logo;
-        public TextView shortName1;
-        public TextView shortName2;
-        public TextView innings1Team1;
-        public TextView innings2Team1;
-        public TextView innings1Team2;
-        public TextView innings2Team2;
-        public TextView matchResult;
-        public TextView MatchDate;
-        public RelativeLayout rlcontainer;
 
-        // We also create a constructor that accepts the entire item row
-        // and does the view lookups to find each subview
-        public ViewHolder(View itemView) {
-            // Stores the itemView in a public final member variable that can be used
-            // to access the context from any ViewHolder instance.
-            super(itemView);
+    public static class PastViewHolder extends RecyclerView.ViewHolder {
+        RelativeLayout pastLayout;
+        ImageView team1image;
+        ImageView team2image;
+        TextView title;
+        TextView series;
+        TextView stadium;
+        TextView sn1;
+        TextView t1inn1;
+        TextView t1inn2;
+        TextView sn2;
+        TextView t2inn1;
+        TextView t2inn2;
+        TextView result;
+        TextView date;
+        RelativeLayout rlcontainer;
+//        RelativeLayout rlcontainer;
 
-            textViewMatchName = (TextView) itemView.findViewById(R.id.match_name_past);
-            textViewSeriesName = (TextView) itemView.findViewById(R.id.series_name_past);
-            textViewStadiumName = (TextView) itemView.findViewById(R.id.stadium_past);
-            imageViewTeam1Logo = (ImageView) itemView.findViewById(R.id.team_logo_1_past);
-            imageViewTeam2Logo = (ImageView) itemView.findViewById(R.id.team_logo_2_past);
-            shortName1 = (TextView) itemView.findViewById(R.id.sn_team_1_past);
-            shortName2 = (TextView) itemView.findViewById(R.id.sn_team_2_past);
-            innings1Team1 = (TextView) itemView.findViewById(R.id.innings1_team1_past);
-            innings2Team1 = (TextView) itemView.findViewById(R.id.innings2_team1_past);
-            innings1Team2 = (TextView) itemView.findViewById(R.id.innings1_team2_past);
-            innings2Team2 = (TextView) itemView.findViewById(R.id.innings2_team2_past);
-            matchResult = (TextView) itemView.findViewById(R.id.match_result_past);
-            MatchDate = (TextView) itemView.findViewById(R.id.match_date_past);
+        public PastViewHolder(View v) {
+            super(v);
+             pastLayout = (RelativeLayout) v.findViewById(R.id.rlcontainer);
+             team1image = (ImageView) v.findViewById(R.id.team_logo_1_past);
+             team2image = (ImageView) v.findViewById(R.id.team_logo_2_past);
+             title = (TextView) v.findViewById(R.id.match_name_past);
+             series = (TextView) v.findViewById(R.id.series_name_past);
+             stadium = (TextView) v.findViewById(R.id.stadium_past);
+             sn1 = (TextView) v.findViewById(R.id.sn_team_1_past);
+             t1inn1 = (TextView) v.findViewById(R.id.innings1_team1_past);
+             t1inn2 = (TextView) v.findViewById(R.id.innings2_team1_past);
+             sn2 = (TextView) v.findViewById(R.id.sn_team_2_past);
+             t2inn1 = (TextView) v.findViewById(R.id.innings1_team2_past);
+             t2inn2 = (TextView) v.findViewById(R.id.innings2_team2_past);
+             result = (TextView) v.findViewById(R.id.match_result_past);
+             date = (TextView) v.findViewById(R.id.match_date_past);
             rlcontainer = (RelativeLayout) itemView.findViewById(R.id.rlcontainer);
+        }
+    }
+    PastMatchesListAdapter(List<PastMatchCardItem> past, Context context){
+        this.pastMatchCardItems = past;
+        this.context = context;
+    }
 
+        @Override
+    public PastMatchesListAdapter.PastViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            final Context context = parent.getContext();
+            LayoutInflater inflater = LayoutInflater.from(context);
+
+            View contactView = inflater.inflate(R.layout.fragment_matches_past_match_list_item, parent, false);
+
+            PastViewHolder viewHolder = new PastViewHolder(contactView);
+            return viewHolder;
         }
 
-
-    }
-
-    // Store a member variable for the contacts
-    private List<PastMatchCardItem> mPastMatchCards;
-    // Store the context for easy access
-    private Context mContext;
-
-    // Pass in the contact array into the constructor
-    public PastMatchesListAdapter(Context context, List<PastMatchCardItem> PastMatchCards) {
-        mPastMatchCards = PastMatchCards;
-        mContext = context;
-    }
-
-    // Easy access to the context object in the recyclerview
-    private Context getContext() {
-        return mContext;
-    }
-
-    // Usually involves inflating a layout from XML and returning the holder
     @Override
-    public PastMatchesListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
+    public void onBindViewHolder(PastMatchesListAdapter.PastViewHolder holder, final int position) {
+            holder.date.setText(pastMatchCardItems.get(position).getDate());
+            holder.result.setText(pastMatchCardItems.get(position).getResult());
+            holder.series.setText(pastMatchCardItems.get(position).getTour());
+            holder.sn1.setText(pastMatchCardItems.get(position).getTeam1Info().getSn());
+            holder.t1inn1.setText(pastMatchCardItems.get(position).getTeam1Info().getInn1());
+         holder.t1inn2.setText(pastMatchCardItems.get(position).getTeam1Info().getInn2());
+            holder.sn2.setText(pastMatchCardItems.get(position).getTeam2Info().getSn());
+         holder.t2inn1.setText(pastMatchCardItems.get(position).getTeam2Info().getInn1());
+        holder.t2inn2.setText(pastMatchCardItems.get(position).getTeam2Info().getInn2());
+        holder.stadium.setText(pastMatchCardItems.get(position).getStadium());
+        holder.title.setText(pastMatchCardItems.get(position).getTitle());
+        RelativeLayout relativeLayout = holder.pastLayout;
+        Glide.with(context).load(pastMatchCardItems.get(position).getTeam1Info().getImage()).placeholder(R.drawable.matches).into(holder.team1image);
+        Glide.with(context).load(pastMatchCardItems.get(position).getTeam2Info().getImage()).placeholder(R.drawable.matches).into(holder.team2image);
 
-        // Inflate the custom layout
-        View MatchView = inflater.inflate(R.layout.fragment_matches_past_match_list_item, parent, false);
-
-        // Return a new holder instance
-        PastMatchesListAdapter.ViewHolder viewHolder = new PastMatchesListAdapter.ViewHolder(MatchView);
-        return viewHolder;
-    }
-
-    // Involves populating data into the item through holder
-    @Override
-    public void onBindViewHolder(PastMatchesListAdapter.ViewHolder viewHolder, int position) {
-        // Get the data model based on position
-        final PastMatchCardItem pastMatchCard = mPastMatchCards.get(position);
-
-        // Set item views based on your views and data model
-
-        TextView textViewMatchName = viewHolder.textViewMatchName;
-        textViewMatchName.setText(pastMatchCard.getmMatchName());
-
-        TextView textViewSeriesName = viewHolder.textViewSeriesName;
-        textViewSeriesName.setText(pastMatchCard.getmSeriesName());
-
-        TextView textViewStadiumName = viewHolder.textViewStadiumName;
-        textViewStadiumName.setText(pastMatchCard.getmStadiumName());
-
-        String logo_string1 = pastMatchCard.getmTeam1LogoURL();
-
-        String logo_string2 = pastMatchCard.getmTeam2LogoURL();
-
-        ImageView imageViewTeam1Logo = viewHolder.imageViewTeam1Logo;
-
-        ImageView imageViewTeam2Logo = viewHolder.imageViewTeam2Logo;
-
-        TextView shortName1 = viewHolder.shortName1;
-        shortName1.setText(pastMatchCard.getmTeam1SN());
-
-        TextView shortName2 = viewHolder.shortName2;
-        shortName2.setText(pastMatchCard.getmTeam2SN());
-
-        TextView innings1Team1 = viewHolder.innings1Team1;
-        innings1Team1.setText(pastMatchCard.getmTeam1Innings1());
-
-        TextView innings2Team1 = viewHolder.innings2Team1;
-        innings2Team1.setText(pastMatchCard.getmTeam1Innings2());
-
-        TextView innings1Team2 = viewHolder.innings1Team2;
-        innings1Team2.setText(pastMatchCard.getmTeam2Innings1());
-
-        TextView innings2Team2 = viewHolder.innings2Team2;
-        innings2Team2.setText(pastMatchCard.getmTeam2Innings2());
-
-        TextView matchResult = viewHolder.matchResult;
-        matchResult.setText(pastMatchCard.getmMatchResult());
-
-        TextView MatchDate = viewHolder.MatchDate;
-        MatchDate.setText(pastMatchCard.getmMatchDate());
-
-        RelativeLayout RLcontainer = viewHolder.rlcontainer;
-
-
-        /*setImage(logo_string1, imageViewTeam1Logo);
-        setImage(logo_string2, imageViewTeam2Logo);*/
-
-        Glide.with(getContext()).load(logo_string1).placeholder(R.drawable.matches).into(imageViewTeam1Logo);
-        Glide.with(getContext()).load(logo_string2).placeholder(R.drawable.matches).into(imageViewTeam2Logo);
+        RelativeLayout RLcontainer = holder.rlcontainer;
 
         View.OnClickListener mClickListener;
 
@@ -159,51 +101,22 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
             @Override
             public void onClick(View view) {
 
-                Intent PastMatchScoreCardIntent = new Intent(getContext(), PastMatchScoreCard.class);
-                PastMatchScoreCardIntent.putExtra("match_id", pastMatchCard.getmMatchID());
-                PastMatchScoreCardIntent.putExtra("match_name", pastMatchCard.getmMatchName());
-
+                Intent UpcomingMatchScoreCardIntent = new Intent(context, PastMatchScoreCard.class);
+                UpcomingMatchScoreCardIntent.putExtra("match_id", pastMatchCardItems.get(position).getNdid());
+                UpcomingMatchScoreCardIntent.putExtra("match_name", pastMatchCardItems.get(position).getTitle());
                     /*ActivityOptions.makeCustomAnimation(context,R.anim.animation_entry,R.anim.animation_exit);*/
-                PastMatchScoreCardIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                getContext().startActivity(PastMatchScoreCardIntent);
+                UpcomingMatchScoreCardIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(UpcomingMatchScoreCardIntent);
 
             }
         };
         RLcontainer.setOnClickListener(mClickListener);
 
+
     }
 
-    /*private void setImage(String url, ImageView imageview) {
-        ImageLoader imageLoader = ImageLoader.getInstance();
-        DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true).build();
-        imageLoader.displayImage(url, imageview, new ImageLoadingListener() {
-
-            @Override
-            public void onLoadingStarted(String imageUri, View view) {
-
-            }
-
-            @Override
-            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-
-            }
-
-            @Override
-            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-
-            }
-
-            @Override
-            public void onLoadingCancelled(String imageUri, View view) {
-
-            }
-        });
-
-    }*/
-
-    // Returns the total count of items in the list
     @Override
     public int getItemCount() {
-        return mPastMatchCards.size() - 1;
+        return pastMatchCardItems.size();
     }
 }

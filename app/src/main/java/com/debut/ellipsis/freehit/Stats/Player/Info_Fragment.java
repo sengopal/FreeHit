@@ -2,24 +2,18 @@ package com.debut.ellipsis.freehit.Stats.Player;
 
 
 import android.content.Context;
-import android.content.Loader;
-import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v4.app.LoaderManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager;
 
 import com.debut.ellipsis.freehit.Matches.LiveMatches.LiveMatchCardItem;
 import com.debut.ellipsis.freehit.R;
