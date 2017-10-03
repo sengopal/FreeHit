@@ -21,7 +21,6 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.debut.ellipsis.freehit.Matches.LiveMatches.QueryUtilLiveMatchCard.extractFeatureFromJson;
 
 public class QueryUtilStats {
     public static final String LOG_TAG = com.debut.ellipsis.freehit.Stats.Player.QueryUtilStats.class.getSimpleName();

@@ -55,7 +55,7 @@ public class LiveMatchCardAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, final int position) {
         View view = this.layoutInflater.inflate(R.layout.fragment_matches_live_match_card, container, false);
-        String originalMatchName = this.dataObjectList.get(position).getmMatchSeriesName();
+        String originalMatchName = this.dataObjectList.get(position).getTour();
 
         String match_name = null;
         String series_name = null;
@@ -81,7 +81,7 @@ public class LiveMatchCardAdapter extends PagerAdapter {
         textViewSeriesName.setText(series_name);
 
         TextView textViewStadiumName = (TextView) view.findViewById(R.id.stadium_live);
-        textViewStadiumName.setText(this.dataObjectList.get(position).getmStadiumName());
+        textViewStadiumName.setText(this.dataObjectList.get(position).getStadium());
 
         imageViewTeam1Logo = (ImageView) view.findViewById(R.id.team_logo_1_live);
 
@@ -90,30 +90,30 @@ public class LiveMatchCardAdapter extends PagerAdapter {
 
 
         TextView shortName1 = (TextView) view.findViewById(R.id.sn_team_1_live);
-        shortName1.setText(this.dataObjectList.get(position).getmTeam1SN());
+        shortName1.setText(this.dataObjectList.get(position).getTeam1().getSn());
 
         TextView team1Innings1 = (TextView) view.findViewById(R.id.innings1_team1_live);
-        team1Innings1.setText(this.dataObjectList.get(position).getmTeam1Innings1());
+        team1Innings1.setText(this.dataObjectList.get(position).getTeam1().getInn1());
 
         TextView team1Innings2 = (TextView) view.findViewById(R.id.innings2_team1_live);
-        team1Innings2.setText(this.dataObjectList.get(position).getmTeam1Innings2());
+        team1Innings2.setText(this.dataObjectList.get(position).getTeam1().getInn2());
 
 
         TextView shortName2 = (TextView) view.findViewById(R.id.sn_team_2_live);
-        shortName2.setText(this.dataObjectList.get(position).getmTeam2SN());
+        shortName2.setText(this.dataObjectList.get(position).getTeam2().getSn());
 
         TextView team2Innings1 = (TextView) view.findViewById(R.id.innings1_team2_live);
-        team2Innings1.setText(this.dataObjectList.get(position).getmTeam2Innings1());
+        team2Innings1.setText(this.dataObjectList.get(position).getTeam2().getInn1());
 
         TextView team2Innings2 = (TextView) view.findViewById(R.id.innings2_team2_live);
-        team2Innings2.setText(this.dataObjectList.get(position).getmTeam2Innings2());
+        team2Innings2.setText(this.dataObjectList.get(position).getTeam2().getInn2());
 
 
         TextView MatchResult = (TextView) view.findViewById(R.id.match_target_trail_leadBy_live);
-        MatchResult.setText(this.dataObjectList.get(position).getmResultOrTargetOrTrailByOrLeadBy());
+        MatchResult.setText(this.dataObjectList.get(position).getMresult());
 
 
-        String originalMatchDate = this.dataObjectList.get(position).getmMatchDate();
+        String originalMatchDate = this.dataObjectList.get(position).getDate().getFinaldate();
 
         // Check whether the originalLocation string contains the " of " text
         if (originalMatchDate.contains(DATE_SEPARATOR)) {
@@ -133,10 +133,10 @@ public class LiveMatchCardAdapter extends PagerAdapter {
             @Override
             public void onClick(View v) {
                 Intent LiveMatchScoreCardIntent = new Intent(context, LiveMatchScoreCard.class);
-                LiveMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getmMatchID());
-                LiveMatchScoreCardIntent.putExtra("match_name", finalMatch_name + "(" + dataObjectList.get(position).getmTeam1SN() + " vs " + dataObjectList.get(position).getmTeam2SN() + ")");
-                LiveMatchScoreCardIntent.putExtra("Team1Name",dataObjectList.get(position).getmTeam1SN() );
-                LiveMatchScoreCardIntent.putExtra("Team2Name",dataObjectList.get(position).getmTeam2SN());
+                LiveMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getId());
+                LiveMatchScoreCardIntent.putExtra("match_name", finalMatch_name + "(" + dataObjectList.get(position).getTeam1().getSn() + " vs " + dataObjectList.get(position).getTeam2().getSn() + ")");
+                LiveMatchScoreCardIntent.putExtra("Team1Name",dataObjectList.get(position).getTeam1().getSn() );
+                LiveMatchScoreCardIntent.putExtra("Team2Name",dataObjectList.get(position).getTeam2().getSn());
                 /*ActivityOptions.makeCustomAnimation(context,R.anim.enter_from_right,R.anim.exit_to_right);*/
                 context.startActivity(LiveMatchScoreCardIntent);
 
@@ -160,8 +160,8 @@ public class LiveMatchCardAdapter extends PagerAdapter {
 
 
         // Initializing Logo URLS
-        logo_string1 = this.dataObjectList.get(position).getmTeam1LogoURL();
-        logo_string2 = this.dataObjectList.get(position).getmTeam2LogoURL();
+        logo_string1 = this.dataObjectList.get(position).getTeam1().getImage();
+        logo_string2 = this.dataObjectList.get(position).getTeam2().getImage();
 
         Glide.with(context).load(logo_string1).placeholder(R.drawable.matches).into(imageViewTeam1Logo);
         Glide.with(context).load(logo_string2).placeholder(R.drawable.matches).into(imageViewTeam2Logo);
@@ -179,32 +179,5 @@ public class LiveMatchCardAdapter extends PagerAdapter {
         container.removeView((View) object);
     }
 
-    /*public void setImage(String url, ImageView imageview) {
-        ImageLoader imageLoader = ImageLoader.getInstance();
-        DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true).build();
-        imageLoader.displayImage(url, imageview, new ImageLoadingListener() {
-
-            @Override
-            public void onLoadingStarted(String imageUri, View view) {
-
-            }
-
-            @Override
-            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-
-            }
-
-            @Override
-            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-
-            }
-
-            @Override
-            public void onLoadingCancelled(String imageUri, View view) {
-
-            }
-        });
-
-    }*/
 
 }

@@ -1,5 +1,7 @@
 package com.debut.ellipsis.freehit;
 
+import com.debut.ellipsis.freehit.Matches.LiveMatches.LiveMatchCardItem;
+import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchCardItem;
 import com.debut.ellipsis.freehit.News.NewsArticleItem;
 import com.debut.ellipsis.freehit.News.NewsItem;
 
@@ -14,4 +16,66 @@ public interface APIInterface {
 
     @GET("news?")
     Call<NewsArticleItem> doGetNewsArticle(@Query("id") String id);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @GET("upcoming?max=6")
+    Call<UpcomingMatchCardItem> doGetUpcomingMatchListResources();
+
+    @GET("upcoming?max=25")
+    Call<UpcomingMatchCardItem> doGetUpcomingCompleteMatchListResources();
+
+    @GET("live")
+    Call<LiveMatchCardItem> doGetLiveMatchResources();
+
+
 }
