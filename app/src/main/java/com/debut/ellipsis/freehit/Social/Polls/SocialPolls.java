@@ -76,6 +76,9 @@ public class SocialPolls extends Fragment implements LoaderManager.LoaderCallbac
             mProgressBar.setIndeterminateTintList(ColorStateList.valueOf(colorCodeDark));
         }
 
+
+
+
         // Get a reference to the ConnectivityManager to check state of network connectivity
         final ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 

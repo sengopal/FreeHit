@@ -127,6 +127,7 @@
             android:layout_gravity="center_horizontal"
             android:paddingTop="@dimen/_8sdp"
             android:textSize="@dimen/_11sdp"
+            android:textColor="@color/black"
             tools:text="Sep 03 2017, Sun" />
 
 

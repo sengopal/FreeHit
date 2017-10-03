@@ -9,6 +9,8 @@
         android:id="@+id/expandable_match_scoreCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="@dimen/_1sdp"
         android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft" />

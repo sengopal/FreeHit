@@ -1,7 +1,7 @@
 package com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements;
 
 
-public class ScoreCardItem {
+public class ScoreCardItemBatting {
 
     private String mPlayerName;
 
@@ -19,7 +19,7 @@ public class ScoreCardItem {
 
     private String mStrikeRate;
 
-    public ScoreCardItem(String PlayerName, String PlayerOutType, String NumberOfFOurs, String NumberOfSixes, String NumberOfDots, String Runs, String Balls, String StrikeRate) {
+    public ScoreCardItemBatting(String PlayerName, String PlayerOutType, String NumberOfFOurs, String NumberOfSixes, String NumberOfDots, String Runs, String Balls, String StrikeRate) {
         mPlayerName = PlayerName;
         mPlayerOutType = PlayerOutType;
         mNumberOfFours = NumberOfFOurs;

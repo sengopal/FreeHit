@@ -3,10 +3,10 @@ package com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements;
 
 import java.util.ArrayList;
 
-public class ScoreCardItemListItem {
+public class ScoreCardItemListBowling {
 
     private String Name;
-    private ArrayList<ScoreCardItem> Items;
+    private ArrayList<ScoreCardItemBowling> Items;
 
     public String getName() {
         return Name;
@@ -16,11 +16,11 @@ public class ScoreCardItemListItem {
         this.Name = name;
     }
 
-    public ArrayList<ScoreCardItem> getItems() {
+    public ArrayList<ScoreCardItemBowling> getItems() {
         return Items;
     }
 
-    public void setItems(ArrayList<ScoreCardItem> Items) {
+    public void setItems(ArrayList<ScoreCardItemBowling> Items) {
         this.Items = Items;
     }
 }
