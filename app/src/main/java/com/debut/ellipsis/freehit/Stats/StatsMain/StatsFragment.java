@@ -16,6 +16,7 @@ import com.debut.ellipsis.freehit.Stats.Rankings.RankingActivity;
 import com.debut.ellipsis.freehit.Stats.Records.RecordsActivity;
 import com.debut.ellipsis.freehit.Stats.Series.SeriesActivity;
 import com.debut.ellipsis.freehit.Stats.Team.TeamActivity;
+import com.debut.ellipsis.freehit.Stats.Team.TeamActivityListView;
 
 import java.util.ArrayList;
 
@@ -61,7 +62,7 @@ StatsFragment extends Fragment {
 
                 }
                 else if (position==1){
-                    Intent TeamIntent = new Intent(getActivity(), TeamActivity.class);
+                    Intent TeamIntent = new Intent(getActivity(), TeamActivityListView.class);
                     startActivity(TeamIntent);
                     getActivity().overridePendingTransition(0,0);
 

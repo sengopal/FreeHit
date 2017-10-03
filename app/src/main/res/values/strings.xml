@@ -91,4 +91,19 @@
     <!-- For Settings gear Icon -->
     <string name="settings_menu_item">Settings</string>
     <string name="settings_title">FreeHit Settings</string>
+
+    <!--For Countries -->
+    <string name="afg">Afghanistan</string>
+    <string name="aus">Australia</string>
+    <string name="ban">Bangladesh</string>
+    <string name="eng">England</string>
+    <string name="ind">India</string>
+    <string name="ire">Ireland</string>
+    <string name="nz">New Zeland</string>
+    <string name="pak">Pakistan</string>
+    <string name="sa">South Africa</string>
+    <string name="sl">Sri Lanka</string>
+    <string name="wi">West Indies</string>
+    <string name="zw">Zimbawbe</string>
+
 </resources>
