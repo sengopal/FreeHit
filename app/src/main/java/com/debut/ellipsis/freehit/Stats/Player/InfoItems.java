@@ -1,9 +1,7 @@
 package com.debut.ellipsis.freehit.Stats.Player;
 
-import com.debut.ellipsis.freehit.News.NewsItem;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
 import java.util.List;
 
 

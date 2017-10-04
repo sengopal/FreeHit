@@ -3,8 +3,6 @@ package com.debut.ellipsis.freehit.News;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 public class NewsArticleItem {
     @SerializedName("image")
     private String image;

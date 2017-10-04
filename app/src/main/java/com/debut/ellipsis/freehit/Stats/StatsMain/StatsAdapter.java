@@ -28,7 +28,7 @@ public class StatsAdapter extends ArrayAdapter<StatsItem> {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_stats, parent, false);
         }
 
-        final StatsItem currentItem = getItem(position);
+        StatsItem currentItem = getItem(position);
 
 
         TextView statsNameTextView = (TextView) listItemView.findViewById(R.id.stats_name);

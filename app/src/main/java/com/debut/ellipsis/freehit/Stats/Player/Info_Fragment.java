@@ -1,5 +1,6 @@
 package com.debut.ellipsis.freehit.Stats.Player;
 
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;

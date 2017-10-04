@@ -5,21 +5,20 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.APIInterface;
+import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,7 +57,6 @@ public class NewsFragment extends Fragment {
 
 
                 List<NewsItem> news = response.body().getResults();
-
                 recyclerView.setAdapter(new NewsItemAdapter(news, R.layout.fragment_news_list_item, getContext()));
             }
 
