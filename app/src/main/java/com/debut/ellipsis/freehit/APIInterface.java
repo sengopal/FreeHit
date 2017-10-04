@@ -1,10 +1,7 @@
 package com.debut.ellipsis.freehit;
 
-import com.debut.ellipsis.freehit.Matches.LiveMatches.LiveMatchCardItem;
-import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchCardItem;
 import com.debut.ellipsis.freehit.News.NewsArticleItem;
 import com.debut.ellipsis.freehit.News.NewsItem;
-import com.debut.ellipsis.freehit.Social.Polls.PollCardItem;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -17,6 +14,8 @@ public interface APIInterface {
 
     @GET("news?")
     Call<NewsArticleItem> doGetNewsArticle(@Query("id") String id);
+    @GET("playerbio")
+    Call<InfoItems>doGetInfoResources();
 
 
 
