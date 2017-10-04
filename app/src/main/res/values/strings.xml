@@ -28,6 +28,9 @@
     <!--FOR EMPTY VIEW OF NEWS FRAGMENT-->
     <string name="EmptyNews">NO NEWS FOUND</string>
 
+    <!--FOR EMPTY VIEW OF MATCHES FRAGMENT-->
+    <string name="EmptyMatches">NO MATCHES FOUND</string>
+
     <!--FOR TOOLS IN LIVE,UPCOMING,PAST MATCHES-->
     <string name="matches_view_more">Click To View More</string>
 

@@ -45,7 +45,7 @@ public class SocialPolls extends Fragment {
         final RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.news_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        /*mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar); */
+        mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
 
         /**
          GET List Resources
@@ -54,6 +54,9 @@ public class SocialPolls extends Fragment {
         call.enqueue(new Callback<PollCardItem>() {
             @Override
             public void onResponse(Call<PollCardItem> call, Response<PollCardItem> response) {
+
+                mProgressBar.setVisibility(View.INVISIBLE);
+
 
                 List<PollCardItem> polls = response.body().getResults();
 

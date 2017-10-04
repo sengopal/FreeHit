@@ -40,7 +40,7 @@ public class PastMatchesActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar_for_match_list);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle(R.string.upcoming_list);
+        setTitle(R.string.past_list);
 
         Call<PastMatchCardItem> call = apiInterface.doGetCompletePastCardResources();
         call.enqueue(new Callback<PastMatchCardItem>() {

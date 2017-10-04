@@ -25,12 +25,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class Home extends Fragment {
+public class TeamNews extends Fragment {
     APIInterface apiInterface;
     private NewsItemAdapter mAdapter;
     private ProgressBar mProgressBar;
 
-    public Home(){
+    public TeamNews(){
 
     }
 
@@ -53,6 +53,8 @@ public class Home extends Fragment {
 
         final TextView emptyView = (TextView) rootView.findViewById(R.id.empty_view);
 
+        mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
+
         /**
          GET List Resources
          **/
@@ -61,17 +63,21 @@ public class Home extends Fragment {
             @Override
             public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
 
-
                 Log.d("TAG",response.code()+"");
+                mProgressBar.setVisibility(View.INVISIBLE);
 
                 List<NewsItem> news = response.body().getResults();
+                if(news.size()==0) {
+                    System.out.println("Empty View");
+                    emptyView.setText(R.string.EmptyNews);
+                    emptyView.setVisibility(View.VISIBLE);
+                }
                 recyclerView.setAdapter(new NewsItemAdapter(news, R.layout.fragment_news_list_item, getContext()));
             }
 
             @Override
             public void onFailure(Call<NewsItem> call, Throwable t) {
-                emptyView.setText(R.string.EmptyNews);
-                emptyView.setVisibility(View.VISIBLE);
+
                 call.cancel();
             }
         });

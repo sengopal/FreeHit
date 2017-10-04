@@ -85,15 +85,6 @@
             android:layout_height="@dimen/_1sdp"
             android:background="@color/divider" />
 
-        <TextView
-            android:id="@+id/empty_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerInParent="true"
-            android:layout_centerVertical="true"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textSize="@dimen/_25sdp" />
 
 
     </RelativeLayout>

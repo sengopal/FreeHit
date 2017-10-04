@@ -49,7 +49,7 @@ public class PollCardItem {
     }
     public int getTotalVotes(){
         int sum = 0;
-        for (int i = 0; i < cvotes.size()-1; i++) {
+        for (int i = 0; i < cvotes.size(); i++) {
             sum += cvotes.get(i);
         }
         return sum;}

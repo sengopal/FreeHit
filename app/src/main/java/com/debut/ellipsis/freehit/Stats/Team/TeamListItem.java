@@ -1,25 +1,25 @@
 package com.debut.ellipsis.freehit.Stats.Team;
 
 
-public class TeamActivityListItem {
+public class TeamListItem {
 
-    private int mStatsIcon;
+    private int mTeamIcon;
 
-    private int mStatsName;
+    private int mTeamName;
 
 
-    public TeamActivityListItem(int StatsIcon, int StatsName) {
-        mStatsIcon = StatsIcon;
-        mStatsName = StatsName;
+    public TeamListItem(int TeamIcon, int TeamName) {
+        mTeamIcon = TeamIcon;
+        mTeamName = TeamName;
 
     }
 
-    public int getmStatsIcon() {
-        return mStatsIcon;
+    public int getmTeamIcon() {
+        return mTeamIcon;
     }
 
-    public int getmStatsName() {
-        return mStatsName;
+    public int getmTeamName() {
+        return mTeamName;
     }
 
 }

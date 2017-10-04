@@ -25,15 +25,14 @@ public class TeamActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
-        setContentView(R.layout.stats_team);
+        setContentView(R.layout.fragment_stats_team_activity);
         Intent i=getIntent();
         int Team = i.getIntExtra("CountryName",0);
         String tempTeamName = this.getApplicationContext().getString(Team);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar_team);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
         setTitle(tempTeamName.toUpperCase());
 
         viewPager = (ViewPager) findViewById(R.id.viewpager_teams);
@@ -43,7 +42,7 @@ public class TeamActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
 
-    }
+}
 
     @Override
 
@@ -67,8 +66,8 @@ public class TeamActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         TeamActivity.ViewPagerAdapter adapter = new TeamActivity.ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new Home(), "NEWS");
-        adapter.addFrag(new Schedule(), "SCHEDULE");
+        adapter.addFrag(new TeamNews(), "NEWS");
+        adapter.addFrag(new TeamMatchesFragment(), "SCHEDULE");
         viewPager.setAdapter(adapter);
     }
 

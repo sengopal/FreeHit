@@ -59,7 +59,7 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter <PastMatchesLis
             rlcontainer = (RelativeLayout) itemView.findViewById(R.id.rlcontainer);
         }
     }
-    PastMatchesListAdapter(List<PastMatchCardItem> past, Context context){
+    public PastMatchesListAdapter(List<PastMatchCardItem> past, Context context){
         this.pastMatchCardItems = past;
         this.context = context;
     }
