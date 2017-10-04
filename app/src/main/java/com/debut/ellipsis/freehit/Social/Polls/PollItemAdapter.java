@@ -177,7 +177,7 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
                     holder.title.setVisibility(View.VISIBLE);
                     pGroupLay.setVisibility(View.INVISIBLE);
 
-                    editor.putBoolean("has_voted_" + PollCardItems.get(position).getId(), true);
+                    editor.putBoolean("has_voted_" + PollCardItems.get(position).getNdid(), true);
                     editor.apply();
 
                     int selectedId = holder.rGroup.getCheckedRadioButtonId();
@@ -199,7 +199,6 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
                             if (PollCardItems.get(position).getCount() == 2) {
                                 progress1.setMax(100);
                                 progress1.setProgress(PollResult(poll.getCvotes(0), total));
-                                System.out.println(PollResult(poll.getCvotes(0), total));
                                 progress2.setMax(100);
                                 progress2.setProgress(PollResult(poll.getCvotes(1), total));
                                 progress3.setVisibility(View.INVISIBLE);
@@ -214,7 +213,6 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
                             if (PollCardItems.get(position).getCount() == 3) {
                                 progress1.setMax(100);
                                 progress1.setProgress(PollResult(poll.getCvotes(0), total));
-                                System.out.println(PollResult(poll.getCvotes(0), total));
                                 progress2.setMax(100);
                                 progress2.setProgress(PollResult(poll.getCvotes(1), total));
                                 progress3.setMax(100);
@@ -230,7 +228,6 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
                             if (PollCardItems.get(position).getCount() == 4) {
                                 progress1.setMax(100);
                                 progress1.setProgress(PollResult(poll.getCvotes(0), total));
-                                System.out.println(PollResult(poll.getCvotes(0), total));
                                 progress2.setMax(100);
                                 progress2.setProgress(PollResult(poll.getCvotes(1), total));
                                 progress3.setMax(100);
@@ -261,9 +258,9 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
 
 
         SharedPreferences prefs = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        boolean name = prefs.getBoolean("has_voted_" + PollCardItems.get(position).getId(), false);
+        boolean name = prefs.getBoolean("has_voted_" + PollCardItems.get(position).getNdid(), false);
         if (name) {
-            System.out.println("WOKRING");
+            System.out.println(prefs.getBoolean("has_voted_" + PollCardItems.get(position).getNdid(), false));
             holder.submit.setVisibility(View.INVISIBLE);
 
             pGroupLay.setVisibility(View.INVISIBLE);

@@ -133,7 +133,7 @@ public class LiveMatchCardAdapter extends PagerAdapter {
             @Override
             public void onClick(View v) {
                 Intent LiveMatchScoreCardIntent = new Intent(context, LiveMatchScoreCard.class);
-                LiveMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getId());
+                LiveMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getNdid());
                 LiveMatchScoreCardIntent.putExtra("match_name", finalMatch_name + "(" + dataObjectList.get(position).getTeam1().getSn() + " vs " + dataObjectList.get(position).getTeam2().getSn() + ")");
                 LiveMatchScoreCardIntent.putExtra("Team1Name", dataObjectList.get(position).getTeam1().getSn());
                 LiveMatchScoreCardIntent.putExtra("Team2Name", dataObjectList.get(position).getTeam2().getSn());

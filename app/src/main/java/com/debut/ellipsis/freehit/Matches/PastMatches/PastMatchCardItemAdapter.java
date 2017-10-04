@@ -79,19 +79,7 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
         TextView MatchResult = (TextView) view.findViewById(R.id.match_result_past);
         MatchResult.setText(this.dataObjectList.get(position).getResult());
 
-        String originalMatchDate = this.dataObjectList.get(position).getTime();
-
         TextView viewMore = (TextView) view.findViewById(R.id.past_view_more);
-//        // Check whether the originalLocation string contains the " of " text
-//        if (originalMatchDate.contains(DATE_SEPARATOR)) {
-//            // Split the string into different parts (as an array of Strings)
-//            // based on the "T" text. We expect an array of 2 Strings, where
-//            // the first String will be "2017-09-04" and the second String will be "04:00:00.000Z".
-//            String[] parts = originalMatchDate.split(DATE_SEPARATOR);
-//            // originalMatchDate should be "2017-09-04"--> "04 Sep 2017"
-//            originalMatchDate = parts[0];
-//
-//        }
 
 
         TextView MatchDate = (TextView) view.findViewById(R.id.match_date_past);
@@ -141,17 +129,11 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
                     Intent UpcomingMatchScoreCardIntent = new Intent(context, PastMatchScoreCard.class);
                     UpcomingMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getNdid());
                     UpcomingMatchScoreCardIntent.putExtra("match_name", dataObjectList.get(position).getTitle() + "(" + dataObjectList.get(position).getTeam1Info().getSn() + " vs " + dataObjectList.get(position).getTeam2Info().getSn() + ")");
-                    /*ActivityOptions.makeCustomAnimation(context,R.anim.animation_entry,R.anim.animation_exit);*/
                     context.startActivity(UpcomingMatchScoreCardIntent);
                 }
             }
         });
 
-
-
-
-       /* setImage(logo_string1, imageViewTeam1Logo);
-        setImage(logo_string2, imageViewTeam2Logo);*/
         container.addView(view);
         return view;
     }

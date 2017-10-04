@@ -77,7 +77,7 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
 
     @Override
     public void onBindViewHolder(PastMatchesListAdapter.PastViewHolder holder, final int position) {
-        holder.date.setText(pastMatchCardItems.get(position).getDate());
+        holder.date.setText(pastMatchCardItems.get(position).getTime());
         holder.result.setText(pastMatchCardItems.get(position).getResult());
         holder.series.setText(pastMatchCardItems.get(position).getTour());
         holder.sn1.setText(pastMatchCardItems.get(position).getTeam1Info().getSn());
