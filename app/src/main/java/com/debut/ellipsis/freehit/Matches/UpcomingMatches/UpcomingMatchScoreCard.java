@@ -33,9 +33,9 @@ public class UpcomingMatchScoreCard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_matches_upcoming_match_scorecard);
-        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
-        match_id=getIntent().getStringExtra("match_id");
-        match_name=getIntent().getStringExtra("match_name");
+        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+        match_id = getIntent().getStringExtra("match_id");
+        match_name = getIntent().getStringExtra("match_name");
 
         setTitle(match_name);
 
@@ -55,10 +55,10 @@ public class UpcomingMatchScoreCard extends AppCompatActivity {
     @Override
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
-                overridePendingTransition(0,R.anim.exit_to_right);
+                overridePendingTransition(0, R.anim.exit_to_right);
                 return true;
 
         }
@@ -69,14 +69,14 @@ public class UpcomingMatchScoreCard extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         UpcomingMatchScoreCard.super.onBackPressed();
-        overridePendingTransition(0,R.anim.exit_to_right);
+        overridePendingTransition(0, R.anim.exit_to_right);
 
     }
 
     private void setupViewPager(ViewPager viewPager) {
         UpcomingMatchScoreCard.ViewPagerAdapter adapter = new UpcomingMatchScoreCard.ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new InfoFragment(), "INFO");
-        adapter.addFrag(new CountDownAndFormFragment(),"SUMMARY");
+        adapter.addFrag(new CountDownAndFormFragment(), "SUMMARY");
         adapter.addFrag(new SquadsFragment(), "SQUADS");
         adapter.addFrag(new CommentaryFragment(), "COMMENTARY");
         adapter.addFrag(new HeadToHeadFragment(), "HEAD-TO-HEAD");

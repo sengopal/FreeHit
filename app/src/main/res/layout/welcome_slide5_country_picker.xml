@@ -46,7 +46,7 @@
             android:textColor="@android:color/white"
             android:text="@string/select_team_button"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:onClick="select_country"/>
+            android:onClick="select_country" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -26,7 +26,7 @@ public class InfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Intent i = getActivity().getIntent();
-        Toast.makeText(this.getActivity(),i.getStringExtra("match_id") , Toast.LENGTH_SHORT).show();
+        Toast.makeText(this.getActivity(), i.getStringExtra("match_id"), Toast.LENGTH_SHORT).show();
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_matchscorecard_info, container, false);
     }

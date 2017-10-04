@@ -21,7 +21,6 @@ public class Batting_Item_adapter extends BaseAdapter {
         this.gridViewString = gridViewString;
 
 
-
     }
 
     @Override

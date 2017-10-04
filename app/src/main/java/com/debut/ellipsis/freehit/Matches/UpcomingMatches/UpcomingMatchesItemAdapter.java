@@ -38,7 +38,6 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
     }
 
 
-
     @Override
     public boolean isViewFromObject(View view, Object object) {
         return view == object;
@@ -79,7 +78,7 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
 
         final CardView cardView = (CardView) view.findViewById(R.id.card_view);
 
-        if(position == 5) {
+        if (position == 5) {
             ViewMore.setVisibility(View.VISIBLE);
             textViewMatchName.setVisibility(View.INVISIBLE);
             textViewSeriesName.setVisibility(View.INVISIBLE);
@@ -128,7 +127,7 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
         container.removeView((View) object);
     }
 
-    public void setViewMore(){
+    public void setViewMore() {
 
     }
 }

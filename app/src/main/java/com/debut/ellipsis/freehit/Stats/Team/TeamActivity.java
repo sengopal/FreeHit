@@ -24,10 +24,10 @@ public class TeamActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
+        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         setContentView(R.layout.fragment_stats_team_activity);
-        Intent i=getIntent();
-        int Team = i.getIntExtra("CountryName",0);
+        Intent i = getIntent();
+        int Team = i.getIntExtra("CountryName", 0);
         String tempTeamName = this.getApplicationContext().getString(Team);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar_team);
@@ -42,15 +42,15 @@ public class TeamActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
 
-}
+    }
 
     @Override
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
-                overridePendingTransition(0,R.anim.exit_to_right);
+                overridePendingTransition(0, R.anim.exit_to_right);
                 return true;
 
         }
@@ -60,7 +60,7 @@ public class TeamActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         TeamActivity.super.onBackPressed();
-        overridePendingTransition(0,R.anim.exit_to_right);
+        overridePendingTransition(0, R.anim.exit_to_right);
 
     }
 
@@ -99,7 +99,6 @@ public class TeamActivity extends AppCompatActivity {
             return mFragmentTitleList.get(position);
         }
     }
-
 
 
 }

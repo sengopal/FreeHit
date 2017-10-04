@@ -63,7 +63,6 @@ public class ScoreCardFragment extends Fragment {
         });
 
 
-
         ExpandListBatting.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
 
 
@@ -103,9 +102,6 @@ public class ScoreCardFragment extends Fragment {
                 return false;
             }
         });
-
-
-
 
 
         //BOWLING
@@ -169,8 +165,6 @@ public class ScoreCardFragment extends Fragment {
         });
 
 
-
-
         return rootView;
     }
 
@@ -211,7 +205,6 @@ public class ScoreCardFragment extends Fragment {
         listView.requestLayout();
 
     }
-
 
 
     private void setExpandableListViewHeight(ExpandableListView listView, int group) {

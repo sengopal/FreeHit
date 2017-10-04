@@ -66,11 +66,10 @@ public class SocialPolls extends Fragment {
             @Override
             public void onFailure(Call<PollCardItem> call, Throwable t) {
 
-                Toast.makeText(getContext(), "Error: "+t.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Error: " + t.toString(), Toast.LENGTH_SHORT).show();
                 call.cancel();
             }
         });
-
 
 
         return rootView;

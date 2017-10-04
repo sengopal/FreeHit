@@ -21,7 +21,7 @@ public class NewsArticleItem {
     @SerializedName("id")
     private int id;
 
-    public NewsArticleItem(String imageURL, String title, String desc, String date, String tag1,String tag2,String tag3, Integer id) {
+    public NewsArticleItem(String imageURL, String title, String desc, String date, String tag1, String tag2, String tag3, Integer id) {
         this.image = imageURL;
         this.title = title;
         this.desc = desc;

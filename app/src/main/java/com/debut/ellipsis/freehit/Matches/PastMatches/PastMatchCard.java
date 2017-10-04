@@ -40,22 +40,22 @@ public class PastMatchCard extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       final View rootView = inflater.inflate(R.layout.fragment_matches_match_cards_item, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_matches_match_cards_item, container, false);
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
         Call<PastMatchCardItem> call = apiInterface.doGetPastCardResources();
         call.enqueue(new Callback<PastMatchCardItem>() {
             @Override
             public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
-                ViewPager vp =(ViewPager) rootView.findViewById(R.id.viewpager);
+                ViewPager vp = (ViewPager) rootView.findViewById(R.id.viewpager);
 
-                mProgressBar= (ProgressBar) rootView.findViewById(R.id.progress_bar);
+                mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
                 mProgressBar.setVisibility(View.GONE);
                 indicator = (PageIndicatorView) rootView.findViewById(R.id.indicator);
                 indicator.setVisibility(View.INVISIBLE);
                 indicator.setViewPager(vp);
                 List<PastMatchCardItem> poll = response.body().getResults();
-                mAdapter= new PastMatchCardItemAdapter(getActivity(), poll);
+                mAdapter = new PastMatchCardItemAdapter(getActivity(), poll);
                 indicator.setCount(mAdapter.getCount());
                 IndicatorConfig();
                 vp.setAdapter(new PastMatchCardItemAdapter(getContext(), poll));
@@ -63,13 +63,13 @@ public class PastMatchCard extends Fragment {
 
             @Override
             public void onFailure(Call<PastMatchCardItem> call, Throwable t) {
-                Toast.makeText(getActivity(), "Failed"+t.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Failed" + t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
         return rootView;
     }
 
-    private void IndicatorConfig(){
+    private void IndicatorConfig() {
         indicator.setAnimationType(AnimationType.DROP);
         indicator.setUnselectedColor(Color.parseColor("#F06292"));
         indicator.setSelectedColor(Color.parseColor("#E91E63"));

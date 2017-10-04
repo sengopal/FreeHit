@@ -607,7 +607,8 @@
 
                             <TextView
                                 android:id="@+id/MOTM_T20"
-                                android:layout_height="@dimen/_58sdp"                                android:layout_weight="1"
+                                android:layout_height="@dimen/_58sdp"
+                                android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
@@ -618,7 +619,8 @@
 
                             <TextView
                                 android:id="@+id/MOTM_WorldCup"
-                                android:layout_height="@dimen/_58sdp"                                android:layout_weight="1"
+                                android:layout_height="@dimen/_58sdp"
+                                android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
@@ -629,7 +631,8 @@
 
                             <TextView
                                 android:id="@+id/MOTM_IPL"
-                                android:layout_height="@dimen/_58sdp"                                android:layout_weight="1"
+                                android:layout_height="@dimen/_58sdp"
+                                android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
@@ -640,7 +643,8 @@
 
                             <TextView
                                 android:id="@+id/MOTM_CL"
-                                android:layout_height="@dimen/_58sdp"                                android:layout_weight="1"
+                                android:layout_height="@dimen/_58sdp"
+                                android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
                                 android:padding="@dimen/_18ssp"

@@ -92,6 +92,8 @@
 
     <RelativeLayout
         android:id="@+id/rlforPollResult"
+        android:layout_below="@id/poll_title"
+        android:layout_marginTop="@dimen/_5sdp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -105,7 +107,7 @@
         android:layout_below="@+id/rlforPollResult"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1sdp"
-        android:background="@color/divider"/>
+        android:background="@color/divider" />
 
 
 </RelativeLayout>

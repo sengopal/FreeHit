@@ -21,7 +21,7 @@ public interface APIInterface {
     Call<NewsArticleItem> doGetNewsArticle(@Query("id") String id);
 
     @GET("playerbio")
-    Call<InfoItems>doGetInfoResources();
+    Call<InfoItems> doGetInfoResources();
 
     @GET("upcoming?max=6")
     Call<UpcomingMatchCardItem> doGetUpcomingMatchListResources();

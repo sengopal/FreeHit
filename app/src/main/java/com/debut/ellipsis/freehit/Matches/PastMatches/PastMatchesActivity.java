@@ -30,7 +30,7 @@ public class PastMatchesActivity extends AppCompatActivity {
     private RecyclerView rv;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_matches_complete_match_list);
         apiInterface = ApiClient.getClient().create(APIInterface.class);
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
@@ -48,7 +48,7 @@ public class PastMatchesActivity extends AppCompatActivity {
             public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
                 List<PastMatchCardItem> pastMatchcardItems = response.body().getResults();
                 mProgressBar.setVisibility(View.GONE);
-                MatchListAdapter = new PastMatchesListAdapter(pastMatchcardItems,getApplicationContext());
+                MatchListAdapter = new PastMatchesListAdapter(pastMatchcardItems, getApplicationContext());
                 rv.setAdapter(MatchListAdapter);
             }
 
@@ -60,21 +60,21 @@ public class PastMatchesActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch(item.getItemId()){
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
-                overridePendingTransition(0,R.anim.exit_to_right);
+                overridePendingTransition(0, R.anim.exit_to_right);
                 return true;
         }
-    return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
     }
 
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         PastMatchesActivity.super.onBackPressed();
-        overridePendingTransition(0,R.anim.exit_to_right);
+        overridePendingTransition(0, R.anim.exit_to_right);
     }
 }
 

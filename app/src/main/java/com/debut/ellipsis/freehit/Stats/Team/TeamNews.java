@@ -30,7 +30,7 @@ public class TeamNews extends Fragment {
     private NewsItemAdapter mAdapter;
     private ProgressBar mProgressBar;
 
-    public TeamNews(){
+    public TeamNews() {
 
     }
 
@@ -41,7 +41,7 @@ public class TeamNews extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_news_list, container, false);
 
         Intent i = getActivity().getIntent();
-        int Team = i.getIntExtra("CountryName",0);
+        int Team = i.getIntExtra("CountryName", 0);
         String twmpTeamName = this.getContext().getString(Team);
 
         String teamName = twmpTeamName.toLowerCase();
@@ -63,11 +63,11 @@ public class TeamNews extends Fragment {
             @Override
             public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
 
-                Log.d("TAG",response.code()+"");
+                Log.d("TAG", response.code() + "");
                 mProgressBar.setVisibility(View.INVISIBLE);
 
                 List<NewsItem> news = response.body().getResults();
-                if(news.size()==0) {
+                if (news.size() == 0) {
                     System.out.println("Empty View");
                     emptyView.setText(R.string.EmptyNews);
                     emptyView.setVisibility(View.VISIBLE);
@@ -81,7 +81,6 @@ public class TeamNews extends Fragment {
                 call.cancel();
             }
         });
-
 
 
         return rootView;

@@ -126,36 +126,6 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
 
         holder.title.setText(PollCardItems.get(position).getQuestion());
 
-        /*if (PollCardItems.get(position).getCtitle(0) != null) {
-            holder.button1.setText(PollCardItems.get(position).getCtitle(0));
-            option1.setText(PollCardItems.get(position).getCtitle(0));
-        } else {
-            option4.setText("");
-            holder.button1.setVisibility(View.INVISIBLE);
-        }
-        if (PollCardItems.get(position).getCtitle(1) != null) {
-            holder.button2.setText(PollCardItems.get(position).getCtitle(1));
-            option2.setText(PollCardItems.get(position).getCtitle(1));
-        } else {
-            option4.setText("");
-            holder.button2.setVisibility(View.INVISIBLE);
-        }
-        if (PollCardItems.get(position).getCtitle(2) != null) {
-            holder.button3.setText(PollCardItems.get(position).getCtitle(2));
-            option3.setText(PollCardItems.get(position).getCtitle(2));
-        } else {
-            option4.setText("");
-            holder.button3.setVisibility(View.INVISIBLE);
-        }
-        if (PollCardItems.get(position).getCtitle(3) != null) {
-            holder.button4.setText(PollCardItems.get(position).getCtitle(3));
-
-            option4.setText(PollCardItems.get(position).getCtitle(3));
-        } else {
-            option4.setText("");
-            holder.button4.setVisibility(View.INVISIBLE);
-        }
-*/
         if (PollCardItems.get(position).getCount() == 2) {
             holder.button1.setText(PollCardItems.get(position).getCtitle(0));
             option1.setText(PollCardItems.get(position).getCtitle(0));
@@ -204,7 +174,7 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
             public void onClick(View v) {
                 if (holder.button1.isChecked() || holder.button2.isChecked() || holder.button3.isChecked() || holder.button4.isChecked()) {
                     holder.submit.setVisibility(View.INVISIBLE);
-                    holder.title.setVisibility(View.INVISIBLE);
+                    holder.title.setVisibility(View.VISIBLE);
                     pGroupLay.setVisibility(View.INVISIBLE);
 
                     editor.putBoolean("has_voted_" + PollCardItems.get(position).getId(), true);
@@ -295,7 +265,7 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
         if (name) {
             System.out.println("WOKRING");
             holder.submit.setVisibility(View.INVISIBLE);
-            holder.title.setVisibility(View.INVISIBLE);
+            holder.title.setVisibility(View.VISIBLE);
             pGroupLay.setVisibility(View.INVISIBLE);
 
             APIInterface apiInterface = ApiClient.getClient().create(APIInterface.class);

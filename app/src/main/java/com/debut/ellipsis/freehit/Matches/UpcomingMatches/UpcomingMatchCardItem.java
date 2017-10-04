@@ -83,8 +83,7 @@ public class UpcomingMatchCardItem {
         return results;
     }
 
-    public class Date
-    {
+    public class Date {
 
         @SerializedName("day")
         private String day;
@@ -120,8 +119,7 @@ public class UpcomingMatchCardItem {
         }
     }
 
-    public class Team
-    {
+    public class Team {
         @SerializedName("name")
         private String name;
         @SerializedName("image")

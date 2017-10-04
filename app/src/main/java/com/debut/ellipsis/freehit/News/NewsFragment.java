@@ -67,7 +67,6 @@ public class NewsFragment extends Fragment {
         });
 
 
-
         return rootView;
     }
 

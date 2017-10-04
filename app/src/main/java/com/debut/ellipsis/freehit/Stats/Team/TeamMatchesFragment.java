@@ -11,9 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.debut.ellipsis.freehit.Matches.LiveMatches.LiveMatchCard;
-import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchCard;
-import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchCard;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;

@@ -1,5 +1,4 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,8 +8,7 @@
         android:id="@+id/linearlayout"
         android:layout_marginTop="@dimen/_150sdp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
         <!--.....Team A...... -->
 
         <LinearLayout
@@ -28,8 +26,7 @@
                 android:padding="@dimen/_5sdp"
                 tools:text="TEAM A"
                 android:textSize="@dimen/_20sdp"
-                android:fontFamily="sans-serif-medium"
-                />
+                android:fontFamily="sans-serif-medium" />
 
             <TextView
                 android:id="@+id/team1_win_percentage"
@@ -40,15 +37,14 @@
                 tools:text="36%"
                 android:textSize="@dimen/_50sdp"
                 android:textColor="#000000"
-                android:fontFamily="sans-serif-light"/>
+                android:fontFamily="sans-serif-light" />
 
         </LinearLayout>
 
         <View
             android:layout_width="@dimen/_1sdp"
             android:layout_height="match_parent"
-            android:background="@android:color/darker_gray"
-            />
+            android:background="@android:color/darker_gray" />
         <!--......Team B...... -->
 
         <LinearLayout
@@ -66,8 +62,7 @@
                 android:padding="@dimen/_5sdp"
                 tools:text="TEAM A"
                 android:textSize="@dimen/_20sdp"
-                android:fontFamily="sans-serif-medium"
-                />
+                android:fontFamily="sans-serif-medium" />
 
             <TextView
                 android:id="@+id/team2_win_percentage"
@@ -78,12 +73,13 @@
                 tools:text="64%"
                 android:textSize="@dimen/_50sdp"
                 android:textColor="#000000"
-                android:fontFamily="sans-serif-light"/>
+                android:fontFamily="sans-serif-light" />
 
         </LinearLayout>
 
 
     </LinearLayout>
+
     <TextView
         android:id="@+id/draw_tag"
         android:layout_below="@+id/linearlayout"
@@ -93,7 +89,7 @@
         android:paddingTop="@dimen/_20sdp"
         tools:text="DRAW"
         android:textSize="@dimen/_20sdp"
-        android:fontFamily="sans-serif-medium"/>
+        android:fontFamily="sans-serif-medium" />
 
     <TextView
         android:id="@+id/draw_percentage"
@@ -105,21 +101,21 @@
         tools:text="0%"
         android:textSize="@dimen/_50sdp"
         android:textColor="#000000"
-        android:fontFamily="sans-serif-light"/>
+        android:fontFamily="sans-serif-light" />
 
     <TextView
         android:id="@+id/empty_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:textAppearance="?android:textAppearanceMedium"/>
+        android:textAppearance="?android:textAppearanceMedium" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        style="@style/Base.Widget.AppCompat.ProgressBar"/>
+        style="@style/Base.Widget.AppCompat.ProgressBar" />
 
 
 </RelativeLayout>

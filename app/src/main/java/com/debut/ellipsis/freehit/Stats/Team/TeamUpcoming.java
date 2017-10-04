@@ -4,10 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +40,7 @@ public class TeamUpcoming extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_stats_team_complete_match_list, container, false);
 
         Intent i = getActivity().getIntent();
-        int Team = i.getIntExtra("CountryName",0);
+        int Team = i.getIntExtra("CountryName", 0);
         String tempTeamName = this.getContext().getString(Team);
 
         CountryHash countryHash = new CountryHash();
@@ -67,7 +65,7 @@ public class TeamUpcoming extends Fragment {
 
                 List<UpcomingMatchCardItem> upcomingMatchesList = response.body().getResults();
                 mProgressBar.setVisibility(View.GONE);
-                if(upcomingMatchesList.size()==0) {
+                if (upcomingMatchesList.size() == 0) {
                     System.out.println("Empty View");
                     emptyView.setText(R.string.EmptyMatches);
                     emptyView.setVisibility(View.VISIBLE);

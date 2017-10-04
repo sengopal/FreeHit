@@ -12,7 +12,7 @@
         android:drawableLeft="@drawable/ic_search"
         android:hint="@string/search"
         android:imeOptions="actionSearch"
-        android:maxLines="1"/>
+        android:maxLines="1" />
 
     <ListView
         android:id="@+id/country_code_picker_listview"

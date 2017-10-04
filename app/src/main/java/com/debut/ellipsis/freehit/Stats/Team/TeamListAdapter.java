@@ -22,7 +22,7 @@ public class TeamListAdapter extends ArrayAdapter<TeamListItem> {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        View  listItemView = convertView;
+        View listItemView = convertView;
 
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.country_picker_row, parent, false);
@@ -36,7 +36,6 @@ public class TeamListAdapter extends ArrayAdapter<TeamListItem> {
 
         ImageView statsIcon = (ImageView) listItemView.findViewById(R.id.row_icon);
         statsIcon.setImageResource(currentItem.getmTeamIcon());
-
 
 
         return listItemView;
