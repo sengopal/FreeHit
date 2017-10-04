@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 
+import com.debut.ellipsis.freehit.APIInterface;
+import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.R;
 
 
@@ -34,6 +36,7 @@ public class Batting_Fragment extends Fragment{
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_stats_player_batting_bowling_gridview, container, false);
+        APIInterface apiInterface = ApiClient.getClient().create(APIInterface.class);
         GridView androidGridView;
         Batting_Item_adapter adapterViewAndroid = new Batting_Item_adapter(getContext(), gridViewString );
         androidGridView=(GridView)rootView.findViewById(R.id.grid_view_batting_bowling);
