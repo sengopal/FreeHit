@@ -75,7 +75,7 @@ public class SocialPolls extends Fragment {
                         List<PollCardItem> polls = response.body().getResults();
                         emptyView.setVisibility(View.INVISIBLE);
                         if (polls.size() == 0) {
-                            emptyView.setText(R.string.EmptyNews);
+                            emptyView.setText(R.string.EmptyPolls);
                             emptyView.setVisibility(View.VISIBLE);
                         }
                         recyclerView.setVisibility(View.VISIBLE);
@@ -83,16 +83,14 @@ public class SocialPolls extends Fragment {
                     }
                 } else {
                     List<PollCardItem> polls = new ArrayList<PollCardItem>(1);
+                    mProgressBar.setVisibility(View.INVISIBLE);
                     recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item, getContext()));
-//                    recyclerView.setVisibility(View.INVISIBLE);
-                    refLayout.setVisibility(View.VISIBLE);
                     emptyView.setText("CONNECT AND REOPEN THE APP");
                 }
             }
 
             @Override
-            public void onFailure(Call<PollCardItem> call, Throwable t) {
-                refLayout.setVisibility(View.VISIBLE);
+            public void onFailure(Call<PollCardItem> call, Throwable t) {;
                 List<PollCardItem> polls = new ArrayList<PollCardItem>(1);
                 recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item, getContext()));
                 emptyView.setText("CHECK YOUR INTERNET CONNECTION");
@@ -120,7 +118,7 @@ public class SocialPolls extends Fragment {
                                                            if (getActivity() != null) {
                                                                List<PollCardItem> polls = response.body().getResults();
                                                                if (polls.size() == 0) {
-                                                                   emptyView.setText(R.string.EmptyNews);
+                                                                   emptyView.setText(R.string.EmptyPolls);
                                                                    emptyView.setVisibility(View.VISIBLE);
                                                                }
                                                                recyclerView.setVisibility(View.VISIBLE);
@@ -132,16 +130,17 @@ public class SocialPolls extends Fragment {
                                                        @Override
                                                        public void onFailure(Call<PollCardItem> call, Throwable t) {
                                                            mProgressBar.setVisibility(View.INVISIBLE);
-
+                                                           recyclerView.setVisibility(View.INVISIBLE);
                                                            emptyView.setText("CHECK YOUR INTERNET CONNECTION");
                                                            call.cancel();
 
                                                        }
                                                    });
-                                               } else
-
+                                               }
+                                               else
                                                {
                                                    recyclerView.setVisibility(View.INVISIBLE);
+                                                   mProgressBar.setVisibility(View.INVISIBLE);
                                                    emptyView.setText("CHECK YOUR INTERNET CONNECTION");
                                                    emptyView.setVisibility(View.VISIBLE);
                                                }

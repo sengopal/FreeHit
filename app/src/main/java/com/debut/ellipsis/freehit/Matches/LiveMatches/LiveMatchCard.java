@@ -33,6 +33,7 @@ public class LiveMatchCard extends Fragment {
     private ProgressBar mProgressBar;
     public ViewPager viewPager;
     public PageIndicatorView indicator;
+    public TextView emptyview;
 
     public LiveMatchCard() {
         // Required empty public constructor
@@ -50,6 +51,8 @@ public class LiveMatchCard extends Fragment {
         indicator.setViewPager(viewPager);
 
         mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
+
+        emptyview = (TextView) rootView.findViewById(R.id.empty_view);
 
         final PullRefreshLayout layout = (PullRefreshLayout)rootView.findViewById(R.id.swipeRefreshLayout);
 
@@ -70,6 +73,10 @@ public class LiveMatchCard extends Fragment {
                 viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
                 mProgressBar.setVisibility(View.GONE);
                 if(getActivity()!=null) {
+                    if (LiveMatches.size() == 0) {
+                        emptyview.setText(R.string.EmptyLiveMatches);
+                        emptyview.setVisibility(View.VISIBLE);
+                    }
                     mAdapter = new LiveMatchCardAdapter(getActivity(), LiveMatches);
                     indicator.setViewPager(viewPager);
                     indicator.setCount(mAdapter.getCount());
@@ -81,6 +88,9 @@ public class LiveMatchCard extends Fragment {
 
             @Override
             public void onFailure(Call<LiveMatchCardItem> call, Throwable t) {
+                layout.setRefreshing(true);
+                emptyview.setText("CHECK YOUR INTERNET CONNECTION");
+                mProgressBar.setVisibility(View.INVISIBLE);
                 call.cancel();
             }
         });

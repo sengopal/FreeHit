@@ -65,7 +65,7 @@ public class TeamPast extends Fragment {
                 mProgressBar.setVisibility(View.GONE);
                 if (pastMatchesList.size() == 0) {
                     System.out.println("Empty View");
-                    emptyView.setText(R.string.EmptyMatches);
+                    emptyView.setText(R.string.EmptyLiveMatches);
                     emptyView.setVisibility(View.VISIBLE);
                 }
 

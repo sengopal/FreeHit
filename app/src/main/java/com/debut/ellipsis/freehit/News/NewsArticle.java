@@ -1,6 +1,8 @@
 package com.debut.ellipsis.freehit.News;
 
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.debut.ellipsis.freehit.APIInterface;
@@ -53,8 +56,26 @@ public class NewsArticle extends AppCompatActivity {
         setTitle(" ");
 
 
+        // Get a reference to the ConnectivityManager to check state of network connectivity
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(getApplicationContext().CONNECTIVITY_SERVICE);
+
+        // Get details on the currently active default data network
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        // If there is a network connection, fetch data
+        if (networkInfo != null && networkInfo.isConnected()) {
+        } else {
+            // Otherwise, display error
+            // First, hide loading indicator so error message will be visible
+            View progressBar = findViewById(R.id.progress_bar);
+            progressBar.setVisibility(View.GONE);
+
+            Toast.makeText(getApplicationContext(),R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+        }
+
+
         /**
-         GET NEws ARticel
+         GET News Article
          **/
         Call<NewsArticleItem> call = apiInterface.doGetNewsArticle(match_id);
         call.enqueue(new Callback<NewsArticleItem>() {
