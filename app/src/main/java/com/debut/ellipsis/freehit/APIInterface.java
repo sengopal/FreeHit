@@ -89,7 +89,7 @@ public interface APIInterface {
     Call<PollCardItem> doVotePollListResources(@Query("id") String id, @Query("cid") String cid);
 
     @GET("polls?")
-    Call<PollCardItem> doGetSinglePollResources(@Query("id") String id)
+    Call<PollCardItem> doGetSinglePollResources(@Query("id") String id);
 
 
 
