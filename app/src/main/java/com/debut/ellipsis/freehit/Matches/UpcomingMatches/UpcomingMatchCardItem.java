@@ -1,83 +1,149 @@
 package com.debut.ellipsis.freehit.Matches.UpcomingMatches;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UpcomingMatchCardItem {
+    @SerializedName("id")
+    private int id;
+    @SerializedName("ndid")
+    private String ndid;
+    @SerializedName("tour")
+    private String tour;
+    @SerializedName("title")
+    private String title;
+    @SerializedName("match")
+    private String match;
+    @SerializedName("stadium")
+    private String stadium;
+    @SerializedName("time")
+    private String time;
+    @SerializedName("date")
+    private Date date;
+    @SerializedName("team1info")
+    private Team team1;
+    @SerializedName("team2info")
+    private Team team2;
+    @SerializedName("result")
+    public List<UpcomingMatchCardItem> results = new ArrayList<>();
 
-    private String mMatchName;
-
-    private String mSeriesName;
-
-    private String mStadiumName;
-
-    private String mTeam1LogoURL;
-
-    private String mTeam1SN;
-
-    private String mTeam2LogoURL;
-
-    private String mTeam2SN;
-
-    private String mMatchDate;
-
-    private String mViewMore;
-
-    private String mMatchID;
-
-    public UpcomingMatchCardItem(String MatchID,String MatchName,String SeriesName,String StadiumName,String Team1LogoURL,String Team1SN,String Team2LogoURL,String Team2SN,String MatchDate){
-        mMatchID=MatchID;
-        mMatchName=MatchName;
-        mSeriesName=SeriesName;
-        mStadiumName=StadiumName;
-        mTeam1LogoURL=Team1LogoURL;
-        mTeam1SN=Team1SN;
-        mTeam2LogoURL=Team2LogoURL;
-        mTeam2SN=Team2SN;
-        mMatchDate=MatchDate;
+    public UpcomingMatchCardItem(int id, String ndid, String tour, String title, String match, String stadium, String time) {
+        this.id = id;
+        this.ndid = ndid;
+        this.tour = tour;
+        this.title = title;
+        this.match = match;
+        this.stadium = stadium;
+        this.time = time;
     }
 
-
-    public UpcomingMatchCardItem(String ViewMore){
-        mViewMore=ViewMore;
+    public int getId() {
+        return id;
     }
 
-    public String getmMatchName() {
-        return mMatchName;
+    public String getMatch() {
+        return match;
     }
 
-    public String getmSeriesName() {
-        return mSeriesName;
+    public Date getDate() {
+        return date;
     }
 
-    public String getmStadiumName() {
-        return mStadiumName;
+    public String getNdid() {
+        return ndid;
     }
 
-    public String getmTeam1LogoURL() {
-        return mTeam1LogoURL;
+    public String getStadium() {
+        return stadium;
     }
 
-    public String getmTeam1SN() {
-        return mTeam1SN;
+    public String getTitle() {
+        return title;
     }
 
-    public String getmTeam2LogoURL() {
-        return mTeam2LogoURL;
+    public String getTime() {
+        return time;
     }
 
-    public String getmTeam2SN() {
-        return mTeam2SN;
+    public String getTour() {
+        return tour;
     }
 
-    public String getmMatchDate() {
-        return mMatchDate;
+    public Team getTeam1() {
+        return team1;
     }
 
-    public String getmViewMore(){
-        return mViewMore;
+    public Team getTeam2() {
+        return team2;
     }
 
-    public String getmMatchID()
-    {
-        return mMatchID;
+    public List<UpcomingMatchCardItem> getResults() {
+        return results;
+    }
+
+    public class Date {
+
+        @SerializedName("day")
+        private String day;
+        @SerializedName("month")
+        private String month;
+        @SerializedName("year")
+        private String year;
+        @SerializedName("final")
+        private String finaldate;
+
+        public Date(String day, String month, String year, String finaldate) {
+            this.day = day;
+            this.month = month;
+            this.year = year;
+            this.finaldate = finaldate;
+
+        }
+
+        public String getDay() {
+            return day;
+        }
+
+        public String getMonth() {
+            return month;
+        }
+
+        public String getYear() {
+            return year;
+        }
+
+        public String getFinaldate() {
+            return finaldate;
+        }
+    }
+
+    public class Team {
+        @SerializedName("name")
+        private String name;
+        @SerializedName("image")
+        private String image;
+        @SerializedName("sn")
+        private String sn;
+
+        public Team(String name, String image, String sn) {
+            this.name = name;
+            this.image = image;
+            this.sn = sn;
+
+        }
+
+        public String getImage() {
+            return image;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getSn() {
+            return sn;
+        }
     }
 }

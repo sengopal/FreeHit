@@ -4,13 +4,12 @@ package com.debut.ellipsis.freehit.News;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.debut.ellipsis.freehit.APIInterface;
@@ -20,9 +19,6 @@ import com.debut.ellipsis.freehit.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-
-import android.widget.TextView;
 
 
 /**
@@ -58,7 +54,7 @@ public class NewsArticle extends AppCompatActivity {
 
 
         /**
-         GET List Users
+         GET NEws ARticel
          **/
         Call<NewsArticleItem> call = apiInterface.doGetNewsArticle(match_id);
         call.enqueue(new Callback<NewsArticleItem>() {
@@ -113,6 +109,7 @@ public class NewsArticle extends AppCompatActivity {
 
 
     }
+
     @Override
 
     public boolean onOptionsItemSelected(MenuItem item) {

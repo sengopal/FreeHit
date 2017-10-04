@@ -1,6 +1,5 @@
 package com.debut.ellipsis.freehit.Stats.Team;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -25,26 +24,16 @@ public class TeamActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
-        setContentView(R.layout.stats_team);
-        Intent i=getIntent();
-        int pos= i.getIntExtra("statname",0);
+        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+        setContentView(R.layout.fragment_stats_team_activity);
+        Intent i = getIntent();
+        int Team = i.getIntExtra("CountryName", 0);
+        String tempTeamName = this.getApplicationContext().getString(Team);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar_team);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Bundle bundle = new Bundle();
-        bundle.putString("p1", String.valueOf(pos));
-        // set Fragmentclass Arguments
-        Home fragobj = new Home();
-        fragobj.setArguments(bundle);
-
-        Bundle bundle2 = new Bundle();
-        bundle.putString("p2", String.valueOf(pos));
-        // set Fragmentclass Arguments
-        Schedule fragobj2 = new Schedule();
-        fragobj2.setArguments(bundle2);
-
-
+        setTitle(tempTeamName.toUpperCase());
 
         viewPager = (ViewPager) findViewById(R.id.viewpager_teams);
         setupViewPager(viewPager);
@@ -58,10 +47,10 @@ public class TeamActivity extends AppCompatActivity {
     @Override
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
-                overridePendingTransition(0,R.anim.exit_to_right);
+                overridePendingTransition(0, R.anim.exit_to_right);
                 return true;
 
         }
@@ -71,14 +60,14 @@ public class TeamActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         TeamActivity.super.onBackPressed();
-        overridePendingTransition(0,R.anim.exit_to_right);
+        overridePendingTransition(0, R.anim.exit_to_right);
 
     }
 
     private void setupViewPager(ViewPager viewPager) {
         TeamActivity.ViewPagerAdapter adapter = new TeamActivity.ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new Home(), "Home");
-        adapter.addFrag(new Schedule(), "BATTING");
+        adapter.addFrag(new TeamNews(), "NEWS");
+        adapter.addFrag(new TeamMatchesFragment(), "SCHEDULE");
         viewPager.setAdapter(adapter);
     }
 
@@ -110,7 +99,6 @@ public class TeamActivity extends AppCompatActivity {
             return mFragmentTitleList.get(position);
         }
     }
-
 
 
 }

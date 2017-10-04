@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<RelativeLayout
-    android:id="@+id/parent_layout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_centerHorizontal="true">
 
     <TextView
@@ -21,54 +18,56 @@
         android:textSize="@dimen/_15sdp"
         tools:text="The title of the poll, it's a very interesting poll if you ask me, you should check it out. " />
 
-<RelativeLayout
-    android:layout_marginTop="@dimen/_10sdp"
-    android:id="@+id/poll_group_layout"
-    android:layout_below="@id/poll_title"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center_horizontal">
-
-    <RadioGroup
-        android:id="@+id/poll_group"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/poll_group_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_10sdp"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
+        android:layout_below="@id/poll_title"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:gravity="center_horizontal">
 
-        <RadioButton
-            android:id="@+id/option_1"
+        <RadioGroup
+            android:id="@+id/poll_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_2sdp"
-            tools:text="1" />
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
-        <RadioButton
-            android:id="@+id/option_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/_2sdp"
-            tools:text="O2" />
+            <RadioButton
+                android:id="@+id/option_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_2sdp"
+                android:textSize="@dimen/_10sdp"
+                tools:text="abbbaaa" />
 
-        <RadioButton
-            android:id="@+id/option_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/_2sdp"
-            tools:text="O3" />
+            <RadioButton
+                android:id="@+id/option_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_2sdp"
+                android:textSize="@dimen/_10sdp"
+                tools:text="jabbbb" />
 
-        <RadioButton
-            android:id="@+id/option_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/_2sdp"
-            tools:text="O4" />
+            <RadioButton
+                android:id="@+id/option_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_2sdp"
+                android:textSize="@dimen/_10sdp"
+                tools:text="tabbbaa" />
 
-    </RadioGroup>
-</RelativeLayout>
+            <RadioButton
+                android:id="@+id/option_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_2sdp"
+                android:textSize="@dimen/_10sdp"
+                tools:text="rambaaa" />
+
+        </RadioGroup>
+    </RelativeLayout>
 
     <Button
         android:id="@+id/poll_submit"
@@ -76,22 +75,10 @@
         android:layout_height="@dimen/_25sdp"
         android:layout_below="@id/poll_group_layout"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:background="@color/color_white"
         android:padding="@dimen/_5sdp"
         android:text="Submit" />
-
-    <Button
-        android:id="@+id/poll_results_view"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_25sdp"
-        android:layout_below="@id/poll_submit"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:background="@color/color_white"
-        android:padding="@dimen/_5sdp"
-        android:text="View results" />
 
     <TextView
         android:id="@+id/empty_view"
@@ -104,16 +91,23 @@
         android:textSize="@dimen/_20sdp" />
 
     <RelativeLayout
+        android:id="@+id/rlforPollResult"
+        android:layout_below="@id/poll_title"
+        android:layout_marginTop="@dimen/_5sdp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/poll_title">
+        android:layout_height="wrap_content">
 
         <include
             android:id="@+id/pollItem_result"
             layout="@layout/fragment_social_polls_result"
-            android:visibility="invisible"
-            />
+            android:visibility="invisible" />
     </RelativeLayout>
+
+    <TextView
+        android:layout_below="@+id/rlforPollResult"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/divider" />
 
 
 </RelativeLayout>

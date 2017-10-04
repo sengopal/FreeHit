@@ -8,7 +8,7 @@ public class ScoreCardExpandableListDataPump {
     public static ArrayList<ScoreCardItemListBatting> getDataBatting() {
 
 
-        String group_names[] = { "WI 1st Innings\n288/6(50.0)\nExtras: 11 (B: 0, LB: 2, NB: 0, WD: 9, P: 0)", "ENG 1st Innings\n294/1(38.0)\nExtras: 6 (B: 0, LB: 0, NB: 0, WD: 6, P: 0)", "WI 2nd Innings\n288/6(50.0)\nExtras: 6 (B: 0, LB: 0, NB: 0, WD: 6, P: 0)", "ENG 2nd Innings\n288/6(50.0)\nExtras: 6 (B: 0, LB: 0, NB: 0, WD: 6, P: 0)" };
+        String group_names[] = {"WI 1st Innings\n288/6(50.0)\nExtras: 11 (B: 0, LB: 2, NB: 0, WD: 9, P: 0)", "ENG 1st Innings\n294/1(38.0)\nExtras: 6 (B: 0, LB: 0, NB: 0, WD: 6, P: 0)", "WI 2nd Innings\n288/6(50.0)\nExtras: 6 (B: 0, LB: 0, NB: 0, WD: 6, P: 0)", "ENG 2nd Innings\n288/6(50.0)\nExtras: 6 (B: 0, LB: 0, NB: 0, WD: 6, P: 0)"};
 
         ArrayList<ScoreCardItemListBatting> list = new ArrayList<ScoreCardItemListBatting>();
 
@@ -23,7 +23,7 @@ public class ScoreCardExpandableListDataPump {
 
             ch_list = new ArrayList<ScoreCardItemBatting>();
             for (; j < size; j++) {
-                ScoreCardItemBatting ch = new ScoreCardItemBatting("christopher henry gayle","c Liam Plunkett b Tom Curran","99","99","999","999","999","999.99");
+                ScoreCardItemBatting ch = new ScoreCardItemBatting("christopher henry gayle", "c Liam Plunkett b Tom Curran", "99", "99", "999", "999", "999", "999.99");
 
                 ch_list.add(ch);
             }
@@ -39,7 +39,7 @@ public class ScoreCardExpandableListDataPump {
     public static ArrayList<ScoreCardItemListBowling> getDataBowling() {
 
 
-        String group_names[] = { "WI 1st Innings", "ENG 1st Innings", "WI 2nd Innings", "ENG 2nd Innings"};
+        String group_names[] = {"WI 1st Innings", "ENG 1st Innings", "WI 2nd Innings", "ENG 2nd Innings"};
 
         ArrayList<ScoreCardItemListBowling> list = new ArrayList<ScoreCardItemListBowling>();
 
@@ -54,7 +54,7 @@ public class ScoreCardExpandableListDataPump {
 
             ch_list = new ArrayList<ScoreCardItemBowling>();
             for (; j < size; j++) {
-                ScoreCardItemBowling ch = new ScoreCardItemBowling("Jake Ball","10","999","99.99","999","99","99","99","999");
+                ScoreCardItemBowling ch = new ScoreCardItemBowling("Jake Ball", "10", "999", "99.99", "999", "99", "99", "99", "999");
 
                 ch_list.add(ch);
             }
@@ -66,5 +66,5 @@ public class ScoreCardExpandableListDataPump {
 
         return list;
     }
-        
-    }
+
+}

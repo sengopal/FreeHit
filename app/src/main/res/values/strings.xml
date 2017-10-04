@@ -28,6 +28,9 @@
     <!--FOR EMPTY VIEW OF NEWS FRAGMENT-->
     <string name="EmptyNews">NO NEWS FOUND</string>
 
+    <!--FOR EMPTY VIEW OF MATCHES FRAGMENT-->
+    <string name="EmptyMatches">NO MATCHES FOUND</string>
+
     <!--FOR TOOLS IN LIVE,UPCOMING,PAST MATCHES-->
     <string name="matches_view_more">Click To View More</string>
 
@@ -59,7 +62,7 @@
     <string name="settings_team_India_label">India</string>
     <string name="settings_team_NewZealand_label">New Zealand</string>
     <string name="settings_team_Pakistan_label">Pakistan</string>
-    <string name="settings_team_SouthAfrica_label">SouthAfrica</string>
+    <string name="settings_team_SouthAfrica_label">South Africa</string>
     <string name="settings_team_SriLanka_label">Sri Lanka</string>
     <string name="settings_team_WestIndies_label">West Indies</string>
     <string name="settings_team_Zimbabwe_label">Zimbabwe</string>
@@ -92,18 +95,5 @@
     <string name="settings_menu_item">Settings</string>
     <string name="settings_title">FreeHit Settings</string>
 
-    <!--For Countries -->
-    <string name="afg">Afghanistan</string>
-    <string name="aus">Australia</string>
-    <string name="ban">Bangladesh</string>
-    <string name="eng">England</string>
-    <string name="ind">India</string>
-    <string name="ire">Ireland</string>
-    <string name="nz">New Zeland</string>
-    <string name="pak">Pakistan</string>
-    <string name="sa">South Africa</string>
-    <string name="sl">Sri Lanka</string>
-    <string name="wi">West Indies</string>
-    <string name="zw">Zimbawbe</string>
 
 </resources>

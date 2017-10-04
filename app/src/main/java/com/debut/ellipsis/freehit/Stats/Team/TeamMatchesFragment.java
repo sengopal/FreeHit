@@ -1,4 +1,4 @@
-package com.debut.ellipsis.freehit.Matches;
+package com.debut.ellipsis.freehit.Stats.Team;
 
 
 import android.os.Bundle;
@@ -11,9 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.debut.ellipsis.freehit.Matches.LiveMatches.LiveMatchCard;
-import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchCard;
-import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchCard;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
@@ -23,14 +20,14 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MatchesFragment extends Fragment {
+public class TeamMatchesFragment extends Fragment {
 
     public ViewPager viewPager;
     private TabLayout tabLayout;
 
-    public static final String LOG_TAG = MatchesFragment.class.getSimpleName();
+    public static final String LOG_TAG = com.debut.ellipsis.freehit.Matches.MatchesFragment.class.getSimpleName();
 
-    public MatchesFragment() {
+    public TeamMatchesFragment() {
         // Required empty public constructor
     }
 
@@ -72,9 +69,8 @@ public class MatchesFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFrag(new LiveMatchCard(), "LIVE");
-        adapter.addFrag(new UpcomingMatchCard(), "UPCOMING");
-        adapter.addFrag(new PastMatchCard(), "PAST");
+        adapter.addFrag(new TeamUpcoming(), "UPCOMING");
+        adapter.addFrag(new TeamPast(), "PAST");
         viewPager.setAdapter(adapter);
 
     }
@@ -108,6 +104,3 @@ public class MatchesFragment extends Fragment {
         }
     }
 }
-
-
-

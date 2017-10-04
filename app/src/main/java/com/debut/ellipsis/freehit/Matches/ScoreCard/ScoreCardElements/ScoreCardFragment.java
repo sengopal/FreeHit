@@ -63,7 +63,6 @@ public class ScoreCardFragment extends Fragment {
         });
 
 
-
         ExpandListBatting.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
 
 
@@ -103,9 +102,6 @@ public class ScoreCardFragment extends Fragment {
                 return false;
             }
         });
-
-
-
 
 
         //BOWLING
@@ -169,8 +165,6 @@ public class ScoreCardFragment extends Fragment {
         });
 
 
-
-
         return rootView;
     }
 
@@ -213,15 +207,13 @@ public class ScoreCardFragment extends Fragment {
     }
 
 
-
     private void setExpandableListViewHeight(ExpandableListView listView, int group) {
         ExpandableListAdapter listAdapter = listView.getExpandableListAdapter();
         if (listAdapter == null) {
             return;
         }
-
         int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
-        int totalHeight = 0;
+        int totalHeight = 100;
         View view = null;
         for (int i = 0; i < listAdapter.getGroupCount(); i++) {
             view = listAdapter.getGroupView(i, false, view, listView);

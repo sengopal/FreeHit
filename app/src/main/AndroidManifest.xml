@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CLEAR_APP_CACHE"/>
+    <uses-permission android:name="android.permission.CLEAR_APP_CACHE" />
     <!-- PERMISSION FOR WRITING TO EXTERNAL SD CARD IN CASE OF CACHE PICTURES -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -38,14 +38,14 @@
         <activity android:name=".Matches.PastMatches.PastMatchScoreCard" />
         <activity android:name=".Matches.LiveMatches.LiveMatchScoreCard" />
         <activity android:name=".Matches.UpcomingMatches.UpcomingMatchScoreCard" />
-        <activity android:name=".IntoSlider.WelcomeActivity"/>
+        <activity android:name=".IntoSlider.WelcomeActivity" />
 
         <activity
             android:name=".News.NewsArticle"
             android:label="News ">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.debut.ellipsis.freehit.MainActivity"/>
+                android:value="com.debut.ellipsis.freehit.MainActivity" />
         </activity>
 
         <activity
@@ -53,15 +53,19 @@
             android:label="Settings">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.debut.ellipsis.freehit.MainActivity"/>
+                android:value="com.debut.ellipsis.freehit.MainActivity" />
         </activity>
 
-        <activity android:name=".Stats.Player.PlayerActivity"
-            android:label="Player Info"/>
-        <activity android:name=".Stats.Team.TeamActivity"/>
-        <activity android:name=".Stats.Series.SeriesActivity"/>
-        <activity android:name=".Stats.Rankings.RankingActivity"/>
-        <activity android:name=".Stats.Records.RecordsActivity"/>
+        <activity
+            android:name=".Stats.Player.PlayerActivity"
+            android:label="Player Info" />
+        <activity android:name=".Stats.Team.TeamActivity" />
+        <activity android:name=".Stats.Series.SeriesActivity" />
+        <activity android:name=".Stats.Rankings.RankingActivity" />
+        <activity android:name=".Stats.Records.RecordsActivity" />
+        <activity
+            android:name=".Stats.Team.TeamListView"
+            android:windowSoftInputMode="stateHidden" />
 
 
     </application>

@@ -19,21 +19,21 @@
             <TextView
                 android:id="@+id/option_1"
                 android:layout_width="@dimen/_80sdp"
-                android:layout_height="@dimen/_18sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:textColor="@android:color/black"
                 tools:text="Option 1" />
 
             <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
                 android:id="@+id/progress_bar_option1"
-                android:layout_width="@dimen/_80sdp"
-                android:layout_height="@dimen/_18sdp"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_toEndOf="@+id/option_1"
                 app:rcBackgroundPadding="5dp" />
 
             <TextView
                 android:id="@+id/percentage_option_1"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_18sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_toEndOf="@+id/progress_bar_option1"
                 android:textColor="@android:color/black"
@@ -48,21 +48,21 @@
             <TextView
                 android:id="@+id/option_2"
                 android:layout_width="@dimen/_80sdp"
-                android:layout_height="@dimen/_18sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:textColor="@android:color/black"
                 tools:text="Option 2" />
 
             <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
                 android:id="@+id/progress_bar_option2"
-                android:layout_width="@dimen/_80sdp"
-                android:layout_height="@dimen/_18sdp"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_toEndOf="@+id/option_2"
                 app:rcBackgroundPadding="5dp" />
 
             <TextView
                 android:id="@+id/percentage_option_2"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_18sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_toEndOf="@+id/progress_bar_option2"
                 android:textColor="@android:color/black"
@@ -77,14 +77,14 @@
             <TextView
                 android:id="@+id/option_3"
                 android:layout_width="@dimen/_80sdp"
-                android:layout_height="@dimen/_18sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:textColor="@android:color/black"
                 tools:text="Option 3" />
 
             <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
                 android:id="@+id/progress_bar_option3"
-                android:layout_width="@dimen/_80sdp"
-                android:layout_height="@dimen/_18sdp"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_toEndOf="@+id/option_3"
 
                 app:rcBackgroundPadding="5dp" />
@@ -92,7 +92,7 @@
             <TextView
                 android:id="@+id/percentage_option_3"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_18sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_toEndOf="@+id/progress_bar_option3"
                 android:textColor="@android:color/black"
@@ -108,14 +108,14 @@
             <TextView
                 android:id="@+id/option_4"
                 android:layout_width="@dimen/_80sdp"
-                android:layout_height="@dimen/_18sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:textColor="@android:color/black"
                 tools:text="Option 4" />
 
             <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
                 android:id="@+id/progress_bar_option4"
-                android:layout_width="@dimen/_80sdp"
-                android:layout_height="@dimen/_18sdp"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_toEndOf="@+id/option_4"
 
                 app:rcBackgroundPadding="5dp" />
@@ -123,22 +123,12 @@
             <TextView
                 android:id="@+id/percentage_option_4"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_18sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_toEndOf="@+id/progress_bar_option4"
                 android:textColor="@android:color/black"
                 tools:text="21%" />
         </RelativeLayout>
-
-        <Button
-            android:id="@+id/poll_results_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:background="@color/color_white"
-            android:padding="@dimen/_5sdp"
-            android:text="back" />
 
     </LinearLayout>
 

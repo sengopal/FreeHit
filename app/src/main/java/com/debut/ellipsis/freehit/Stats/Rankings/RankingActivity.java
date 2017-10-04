@@ -43,10 +43,10 @@ public class RankingActivity extends AppCompatActivity {
     @Override
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
-                overridePendingTransition(0,R.anim.exit_to_right);
+                overridePendingTransition(0, R.anim.exit_to_right);
                 return true;
 
 
@@ -57,7 +57,7 @@ public class RankingActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         RankingActivity.super.onBackPressed();
-        overridePendingTransition(0,R.anim.exit_to_right);
+        overridePendingTransition(0, R.anim.exit_to_right);
     }
 
     private void setupViewPager(ViewPager viewPager) {

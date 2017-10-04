@@ -11,37 +11,37 @@ import android.widget.ListAdapter;
 import com.debut.ellipsis.freehit.R;
 
 
-
 public class Bowling_Fragment extends Fragment {
     String[] gridViewString = {
             "Bowling", "Test", "Odi", "T20", "IPL",
-            "Innings", "10" ,  "10",  "10",  "10",
-            "Over", "10" ,  "10",  "10",  "10",
-            "Matches" , "10" ,  "10",  "10",  "10",
-            "Runs", "10" ,  "10",  "10",  "10",
-            "Wickets","10" ,  "10",  "10",  "10",
-            "Best","10" ,  "10",  "10",  "10",
-            "3w","10" ,  "10",  "10",  "10",
-            "5w","10" ,  "10",  "10",  "10",
-            "Avg","10" ,  "10",  "10",  "10",
-            "Economy","10" ,  "10",  "10",  "10",
-            "Strike\nRate","10" ,  "10",  "10",  "10",} ;
+            "Innings", "10", "10", "10", "10",
+            "Over", "10", "10", "10", "10",
+            "Matches", "10", "10", "10", "10",
+            "Runs", "10", "10", "10", "10",
+            "Wickets", "10", "10", "10", "10",
+            "Best", "10", "10", "10", "10",
+            "3w", "10", "10", "10", "10",
+            "5w", "10", "10", "10", "10",
+            "Avg", "10", "10", "10", "10",
+            "Economy", "10", "10", "10", "10",
+            "Strike\nRate", "10", "10", "10", "10",};
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_stats_player_batting_bowling_gridview, container, false);
         GridView androidGridView;
-        Bowling_item_adapter adapterViewAndroid = new Bowling_item_adapter(getContext(), gridViewString );
-        androidGridView=(GridView)rootView.findViewById(R.id.grid_view_batting_bowling);
-
+        Bowling_item_adapter adapterViewAndroid = new Bowling_item_adapter(getContext(), gridViewString);
+        androidGridView = (GridView) rootView.findViewById(R.id.grid_view_batting_bowling);
 
 
         androidGridView.setAdapter(adapterViewAndroid);
-        setGridViewHeightBasedOnChildren(androidGridView,5);
+        setGridViewHeightBasedOnChildren(androidGridView, 5);
 
         return rootView;
     }
+
     public void setGridViewHeightBasedOnChildren(GridView gridView, int columns) {
         ListAdapter listAdapter = gridView.getAdapter();
         if (listAdapter == null) {
@@ -58,8 +58,8 @@ public class Bowling_Fragment extends Fragment {
         totalHeight = listItem.getMeasuredHeight();
 
         float x = 1;
-        if( items > columns ){
-            x = items/columns;
+        if (items > columns) {
+            x = items / columns;
             rows = (int) (x + 1);
             totalHeight *= rows;
         }

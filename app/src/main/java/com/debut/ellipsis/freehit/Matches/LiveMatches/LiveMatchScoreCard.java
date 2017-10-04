@@ -17,9 +17,9 @@ import com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHeadFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.HeatMapFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.InfoFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements.ScoreCardFragment;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.TwitterFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.SpiderFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.SummaryFragment;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.TwitterFragment;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
@@ -36,10 +36,10 @@ public class LiveMatchScoreCard extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
+        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         setContentView(R.layout.fragment_matches_live_match_scorecard);
-        match_id=getIntent().getStringExtra("match_id");
-        match_name=getIntent().getStringExtra("match_name");
+        match_id = getIntent().getStringExtra("match_id");
+        match_name = getIntent().getStringExtra("match_name");
         setTitle(match_name);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar_live);
@@ -58,10 +58,10 @@ public class LiveMatchScoreCard extends AppCompatActivity {
     @Override
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
-                overridePendingTransition(0,R.anim.exit_to_right);
+                overridePendingTransition(0, R.anim.exit_to_right);
                 return true;
 
 
@@ -72,7 +72,7 @@ public class LiveMatchScoreCard extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         LiveMatchScoreCard.super.onBackPressed();
-        overridePendingTransition(0,R.anim.exit_to_right);
+        overridePendingTransition(0, R.anim.exit_to_right);
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -81,7 +81,7 @@ public class LiveMatchScoreCard extends AppCompatActivity {
         adapter.addFrag(new SummaryFragment(), "SUMMARY");
         adapter.addFrag(new ScoreCardFragment(), "SCORE CARD");
         adapter.addFrag(new CommentaryFragment(), "COMMENTARY");
-        adapter.addFrag(new TwitterFragment(),"TWEETS");
+        adapter.addFrag(new TwitterFragment(), "TWEETS");
         adapter.addFrag(new HeadToHeadFragment(), "HEAD-TO-HEAD");
         adapter.addFrag(new SpiderFragment(), "SPIDER");
         adapter.addFrag(new ChanceToWinFragment(), "WIN %");

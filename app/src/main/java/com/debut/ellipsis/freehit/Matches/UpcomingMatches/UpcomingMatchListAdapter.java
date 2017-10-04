@@ -3,7 +3,6 @@ package com.debut.ellipsis.freehit.Matches.UpcomingMatches;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +16,7 @@ import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
 
-public class UpcomingMatchesListAdapter extends RecyclerView.Adapter<UpcomingMatchesListAdapter.ViewHolder> {
+public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatchListAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         // Your holder should contain a member variable
@@ -62,7 +61,7 @@ public class UpcomingMatchesListAdapter extends RecyclerView.Adapter<UpcomingMat
     private Context mContext;
 
     // Pass in the contact array into the constructor
-    public UpcomingMatchesListAdapter(Context context, List<UpcomingMatchCardItem> UpcomingMatchCards) {
+    public UpcomingMatchListAdapter(Context context, List<UpcomingMatchCardItem> UpcomingMatchCards) {
         mUpcomingMatchCards = UpcomingMatchCards;
         mContext = context;
     }
@@ -74,7 +73,7 @@ public class UpcomingMatchesListAdapter extends RecyclerView.Adapter<UpcomingMat
 
     // Usually involves inflating a layout from XML and returning the holder
     @Override
-    public UpcomingMatchesListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public UpcomingMatchListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -89,40 +88,38 @@ public class UpcomingMatchesListAdapter extends RecyclerView.Adapter<UpcomingMat
 
     // Involves populating data into the item through holder
     @Override
-    public void onBindViewHolder(UpcomingMatchesListAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(UpcomingMatchListAdapter.ViewHolder viewHolder, int position) {
         // Get the data model based on position
         final UpcomingMatchCardItem upcomingMatchCards = mUpcomingMatchCards.get(position);
 
         // Set item views based on your views and data model
 
         TextView textViewMatchName = viewHolder.textViewMatchName;
-        textViewMatchName.setText(upcomingMatchCards.getmMatchName());
+        textViewMatchName.setText(upcomingMatchCards.getMatch());
 
         TextView textViewSeriesName = viewHolder.textViewSeriesName;
-        textViewSeriesName.setText(upcomingMatchCards.getmSeriesName());
+        textViewSeriesName.setText(upcomingMatchCards.getTour());
 
         TextView textViewStadiumName = viewHolder.textViewStadiumName;
-        textViewStadiumName.setText(upcomingMatchCards.getmStadiumName());
+        textViewStadiumName.setText(upcomingMatchCards.getStadium());
 
-        String logo_string1 = upcomingMatchCards.getmTeam1LogoURL();
+        String logo_string1 = upcomingMatchCards.getTeam1().getImage();
 
-        String logo_string2 = upcomingMatchCards.getmTeam2LogoURL();
+        String logo_string2 = upcomingMatchCards.getTeam2().getImage();
 
         ImageView imageViewTeam1Logo = viewHolder.imageViewTeam1Logo;
 
         ImageView imageViewTeam2Logo = viewHolder.imageViewTeam2Logo;
 
         TextView shortName1 = viewHolder.shortName1;
-        shortName1.setText(upcomingMatchCards.getmTeam1SN());
+        shortName1.setText(upcomingMatchCards.getTeam1().getSn());
 
         TextView shortName2 = viewHolder.shortName2;
-        shortName2.setText(upcomingMatchCards.getmTeam2SN());
+        shortName2.setText(upcomingMatchCards.getTeam2().getSn());
 
         TextView MatchDate = viewHolder.MatchDate;
-        MatchDate.setText(upcomingMatchCards.getmMatchDate());
+        MatchDate.setText(upcomingMatchCards.getDate().getFinaldate());
 
-        /*setImage(logo_string1, imageViewTeam1Logo);
-        setImage(logo_string2, imageViewTeam2Logo);*/
 
         Glide.with(getContext()).load(logo_string1).placeholder(R.drawable.matches).into(imageViewTeam1Logo);
         Glide.with(getContext()).load(logo_string2).placeholder(R.drawable.matches).into(imageViewTeam2Logo);
@@ -137,9 +134,10 @@ public class UpcomingMatchesListAdapter extends RecyclerView.Adapter<UpcomingMat
             public void onClick(View view) {
 
                 Intent UpcomingMatchScoreCardIntent = new Intent(getContext(), UpcomingMatchScoreCard.class);
-                UpcomingMatchScoreCardIntent.putExtra("match_id", upcomingMatchCards.getmMatchID());
-                UpcomingMatchScoreCardIntent.putExtra("match_name", upcomingMatchCards.getmMatchName());
-                    /*ActivityOptions.makeCustomAnimation(context,R.anim.animation_entry,R.anim.animation_exit);*/
+                UpcomingMatchScoreCardIntent.putExtra("match_id", upcomingMatchCards.getId());
+                UpcomingMatchScoreCardIntent.putExtra("match_name", upcomingMatchCards.getMatch());
+                /*ActivityOptions.makeCustomAnimation(getContext(),R.anim.animation_entry,R.anim.animation_exit);*/
+
                 UpcomingMatchScoreCardIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 getContext().startActivity(UpcomingMatchScoreCardIntent);
 
@@ -150,33 +148,6 @@ public class UpcomingMatchesListAdapter extends RecyclerView.Adapter<UpcomingMat
 
     }
 
-    /*private void setImage(String url, ImageView imageview) {
-        ImageLoader imageLoader = ImageLoader.getInstance();
-        DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true).build();
-        imageLoader.displayImage(url, imageview, new ImageLoadingListener() {
-
-            @Override
-            public void onLoadingStarted(String imageUri, View view) {
-
-            }
-
-            @Override
-            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-
-            }
-
-            @Override
-            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-
-            }
-
-            @Override
-            public void onLoadingCancelled(String imageUri, View view) {
-
-            }
-        });
-
-    }*/
 
     // Returns the total count of items in the list
     @Override

@@ -1,117 +1,157 @@
 package com.debut.ellipsis.freehit.Matches.PastMatches;
 
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class PastMatchCardItem {
-    private String mMatchName;
+    @SerializedName("title")
+    private String title;
+    @SerializedName("stadium")
+    private String stadium;
+    @SerializedName("tour")
+    private String tour;
+    @SerializedName("time")
+    private String time;
+    @SerializedName("desc")
+    private String desc;
+    @SerializedName("date")
+    private Date date;
+    @SerializedName("team1info")
+    private TeamInfo team1;
+    @SerializedName("team2info")
+    private TeamInfo team2;
+    @SerializedName("tag")
+    private String tag;
+    @SerializedName("id")
+    private int id;
+    @SerializedName("ndid")
+    private String ndid;
+    @SerializedName("mresult")
+    private String mresult;
+    @SerializedName("result")
+    public List<PastMatchCardItem> results = new ArrayList<>();
 
-    private String mMatchID;
 
-    private String mSeriesName;
-
-    private String mStadiumName;
-
-    private String mTeam1LogoURL;
-
-    private String mTeam1SN;
-
-    private String mTeam1Innings1;
-
-    private String mTeam1Innings2;
-
-    private String mTeam2LogoURL;
-
-    private String mTeam2SN;
-
-    private String mTeam2Innings1;
-
-    private String mTeam2Innings2;
-
-    private String mMatchDate;
-
-    private String mViewMore;
-
-    private String mMatchResult;
-
-    public PastMatchCardItem(String MatchName, String MatchID, String SeriesName, String StadiumName, String Team1LogoURL, String Team1SN, String Team1Innings1, String Team1Innings2, String Team2LogoURL, String Team2SN, String Team2Innings1, String Team2Innings2, String MatchDate, String MatchResult) {
-        mMatchName = MatchName;
-        mMatchID = MatchID;
-        mSeriesName = SeriesName;
-        mStadiumName = StadiumName;
-        mTeam1LogoURL = Team1LogoURL;
-        mTeam1SN = Team1SN;
-        mTeam1Innings1 = Team1Innings1;
-        mTeam1Innings2 = Team1Innings2;
-        mTeam2LogoURL = Team2LogoURL;
-        mTeam2SN = Team2SN;
-        mTeam2Innings1 = Team2Innings1;
-        mTeam2Innings2 = Team2Innings2;
-        mMatchDate = MatchDate;
-        mMatchResult = MatchResult;
+    public PastMatchCardItem(String title, int id, String tour, String stadium, String date, String mresult) {
+        this.title = title;
+        this.id = id;
+        this.tour = tour;
+        this.stadium = stadium;
+        this.mresult = mresult;
     }
 
 
-    public PastMatchCardItem(String ViewMore) {
-        mViewMore = ViewMore;
+    public String getStadium() {
+        return stadium;
     }
 
-    public String getmMatchName() {
-        return mMatchName;
+    public String getTitle() {
+        return title;
     }
 
-    public String getmMatchID() {
-        return mMatchID;
+    public String getTour() {
+        return desc;
     }
 
-    public String getmSeriesName() {
-        return mSeriesName;
+    public String getResult() {
+        return mresult;
     }
 
-    public String getmStadiumName() {
-        return mStadiumName;
+    public String getDate() {
+        return date.toString();
     }
 
-    public String getmTeam1LogoURL() {
-        return mTeam1LogoURL;
+    public TeamInfo getTeam1Info() {
+        return team1;
     }
 
-    public String getmTeam1SN() {
-        return mTeam1SN;
+    public TeamInfo getTeam2Info() {
+        return team2;
     }
 
-    public String getmTeam1Innings1() {
-        return mTeam1Innings1;
+    public int getId() {
+        return id;
     }
 
-    public String getmTeam1Innings2() {
-        return mTeam1Innings2;
+    public String getNdid() {
+        return ndid;
     }
 
-    public String getmTeam2LogoURL() {
-        return mTeam2LogoURL;
+    public String getTime() {
+        return time;
     }
 
-    public String getmTeam2SN() {
-        return mTeam2SN;
-    }
-
-    public String getmTeam2Innings1() {
-        return mTeam2Innings1;
-    }
-
-    public String getmTeam2Innings2() {
-        return mTeam2Innings2;
-    }
-
-    public String getmMatchDate() {
-        return mMatchDate;
-    }
-
-    public String getmViewMore() {
-        return mViewMore;
+    public List<PastMatchCardItem> getResults() {
+        return results;
     }
 
 
-    public String getmMatchResult() {
-        return mMatchResult;
+    public class Date {
+        @SerializedName("day")
+        private String day;
+        @SerializedName("month")
+        private String month;
+        @SerializedName("year")
+        private String year;
+
+        Date(String day, String month, String year) {
+            this.day = day;
+            this.month = month;
+            this.year = year;
+        }
+
+        public String getDay() {
+            return day;
+        }
+
+        public String getMonth() {
+            return month;
+        }
+
+        public String getYear() {
+            return year;
+        }
+
+
     }
+
+    public class TeamInfo {
+        @SerializedName("sn")
+        private String sn;
+        @SerializedName("image")
+        private String image;
+        @SerializedName("inn1")
+        private String inn1;
+        @SerializedName("inn2")
+        private String inn2;
+
+        TeamInfo(String sn, String image, String inn1, String inn2) {
+            this.sn = sn;
+            this.image = image;
+            this.inn1 = inn1;
+            this.inn2 = inn2;
+        }
+
+        public String getSn() {
+            return sn;
+        }
+
+        public String getImage() {
+            return image;
+        }
+
+        public String getInn1() {
+            return inn1;
+        }
+
+        public String getInn2() {
+            return inn2;
+        }
+
+
+    }
+
 }

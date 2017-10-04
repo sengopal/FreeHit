@@ -7,8 +7,7 @@
     <LinearLayout
         android:id="@+id/LinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
         <!--.....Team A...... -->
 
         <LinearLayout
@@ -25,16 +24,14 @@
                 android:padding="@dimen/_5sdp"
                 tools:text="TEAM A"
                 android:textSize="@dimen/_20sdp"
-                android:fontFamily="sans-serif-medium"
-                />
+                android:fontFamily="sans-serif-medium" />
 
         </LinearLayout>
 
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="@android:color/darker_gray"
-            />
+            android:background="@android:color/darker_gray" />
         <!--......Team B...... -->
 
         <LinearLayout
@@ -51,9 +48,7 @@
                 android:padding="@dimen/_5sdp"
                 tools:text="TEAM B"
                 android:textSize="@dimen/_20sdp"
-                android:fontFamily="sans-serif-medium"
-                />
-
+                android:fontFamily="sans-serif-medium" />
 
 
         </LinearLayout>
@@ -64,8 +59,7 @@
         android:id="@+id/LinearLayoutMatches"
         android:layout_below="@+id/LinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
         <!--.....MATCHES...... -->
 
         <LinearLayout
@@ -81,15 +75,13 @@
                 android:padding="@dimen/_5sdp"
                 tools:text="MATCHES: 153"
                 android:textSize="@dimen/_15sdp"
-                android:fontFamily="sans-serif-medium"
-                />
+                android:fontFamily="sans-serif-medium" />
         </LinearLayout>
 
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="@android:color/darker_gray"
-            />
+            android:background="@android:color/darker_gray" />
         <!--......TIED...... -->
 
         <LinearLayout
@@ -105,14 +97,13 @@
                 android:padding="@dimen/_5sdp"
                 tools:text="TIED: 0"
                 android:textSize="@dimen/_15sdp"
-                android:fontFamily="sans-serif-medium"
-                />
+                android:fontFamily="sans-serif-medium" />
         </LinearLayout>
+
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="@android:color/darker_gray"
-            />
+            android:background="@android:color/darker_gray" />
         <!--......DRAWN OR N/R...... -->
 
         <LinearLayout
@@ -128,8 +119,7 @@
                 android:padding="@dimen/_5sdp"
                 tools:text="DRAWN: 51 "
                 android:textSize="@dimen/_15sdp"
-                android:fontFamily="sans-serif-medium"
-                />
+                android:fontFamily="sans-serif-medium" />
         </LinearLayout>
 
     </LinearLayout>
@@ -141,22 +131,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:divider="@null"
-        android:dividerHeight="0dp"/>
+        android:dividerHeight="0dp" />
 
     <TextView
         android:id="@+id/empty_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:textAppearance="?android:textAppearanceMedium"/>
+        android:textAppearance="?android:textAppearanceMedium" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        style="@style/Base.Widget.AppCompat.ProgressBar"/>
-
+        style="@style/Base.Widget.AppCompat.ProgressBar" />
 
 
 </RelativeLayout>
