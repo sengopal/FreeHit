@@ -47,7 +47,7 @@ public class NewsFragment extends Fragment {
         mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
 
         /**
-         GET List Resources
+         GET NewsList Resources
          **/
         Call<NewsItem> call = apiInterface.doGetNewsListResources();
         call.enqueue(new Callback<NewsItem>() {
@@ -57,7 +57,9 @@ public class NewsFragment extends Fragment {
 
                 mProgressBar.setVisibility(View.INVISIBLE);
                 List<NewsItem> news = response.body().getResults();
-                recyclerView.setAdapter(new NewsItemAdapter(news, R.layout.fragment_news_list_item, getContext()));
+                if(getActivity()!=null) {
+                    recyclerView.setAdapter(new NewsItemAdapter(news, R.layout.fragment_news_list_item, getContext()));
+                }
             }
 
             @Override

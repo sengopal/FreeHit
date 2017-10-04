@@ -78,7 +78,6 @@ public class UpcomingMatchesActivity extends AppCompatActivity {
 
 
     }
-
     @Override
 
     public boolean onOptionsItemSelected(MenuItem item) {

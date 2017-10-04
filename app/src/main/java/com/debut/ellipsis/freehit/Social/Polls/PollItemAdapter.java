@@ -194,7 +194,7 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
                             PollCardItem poll = response.body().getResults().get(0);
 
                             int total = poll.getTotalVotes();
-
+                            holder.title.setVisibility(View.VISIBLE);
 
                             if (PollCardItems.get(position).getCount() == 2) {
                                 progress1.setMax(100);
@@ -265,7 +265,7 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
         if (name) {
             System.out.println("WOKRING");
             holder.submit.setVisibility(View.INVISIBLE);
-            holder.title.setVisibility(View.VISIBLE);
+
             pGroupLay.setVisibility(View.INVISIBLE);
 
             APIInterface apiInterface = ApiClient.getClient().create(APIInterface.class);
@@ -274,6 +274,7 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
                 @Override
                 public void onResponse(Call<PollCardItem> call, Response<PollCardItem> response) {
                     PollCardItem poll = response.body().getResults().get(0);
+                    holder.title.setVisibility(View.VISIBLE);
                     rlayout.setVisibility(View.VISIBLE);
                     int total = poll.getTotalVotes();
 

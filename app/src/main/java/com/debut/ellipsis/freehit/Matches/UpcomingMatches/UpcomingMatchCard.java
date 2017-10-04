@@ -58,13 +58,13 @@ public class UpcomingMatchCard extends Fragment {
                 List<UpcomingMatchCardItem> upcomingMatches = response.body().getResults();
                 viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
                 mProgressBar.setVisibility(View.GONE);
-
-                mAdapter = new UpcomingMatchesItemAdapter(getActivity(), upcomingMatches);
-                indicator.setViewPager(viewPager);
-                indicator.setCount(mAdapter.getCount());
-                indicator.setVisibility(View.INVISIBLE);
-                IndicatorConfig();
-                viewPager.setAdapter(mAdapter);
+                if(getActivity()!=null) {
+                    mAdapter = new UpcomingMatchesItemAdapter(getActivity(), upcomingMatches);
+                    indicator.setViewPager(viewPager);
+                    indicator.setCount(mAdapter.getCount());
+                    IndicatorConfig();
+                    viewPager.setAdapter(mAdapter);
+                }
             }
 
             @Override

@@ -54,11 +54,13 @@ public class PastMatchCard extends Fragment {
                 indicator = (PageIndicatorView) rootView.findViewById(R.id.indicator);
                 indicator.setVisibility(View.INVISIBLE);
                 indicator.setViewPager(vp);
-                List<PastMatchCardItem> poll = response.body().getResults();
-                mAdapter = new PastMatchCardItemAdapter(getActivity(), poll);
-                indicator.setCount(mAdapter.getCount());
-                IndicatorConfig();
-                vp.setAdapter(new PastMatchCardItemAdapter(getContext(), poll));
+                List<PastMatchCardItem> pastMatchCardItems = response.body().getResults();
+                if(getActivity()!=null) {
+                    mAdapter = new PastMatchCardItemAdapter(getActivity(), pastMatchCardItems);
+                    indicator.setCount(mAdapter.getCount());
+                    IndicatorConfig();
+                    vp.setAdapter(new PastMatchCardItemAdapter(getContext(), pastMatchCardItems));
+                }
             }
 
             @Override

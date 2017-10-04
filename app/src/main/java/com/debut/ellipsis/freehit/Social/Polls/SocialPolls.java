@@ -57,10 +57,12 @@ public class SocialPolls extends Fragment {
 
                 mProgressBar.setVisibility(View.INVISIBLE);
 
-
-                List<PollCardItem> polls = response.body().getResults();
+                if (getActivity() != null)
+                {
+                    List<PollCardItem> polls = response.body().getResults();
 
                 recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item, getContext()));
+            }
             }
 
             @Override
