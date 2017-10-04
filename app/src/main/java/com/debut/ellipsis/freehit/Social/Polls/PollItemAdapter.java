@@ -156,8 +156,7 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
             holder.button4.setVisibility(View.INVISIBLE);
         }
 */
-        if(PollCardItems.get(position).getCount()==2)
-        {
+        if (PollCardItems.get(position).getCount() == 2) {
             holder.button1.setText(PollCardItems.get(position).getCtitle(0));
             option1.setText(PollCardItems.get(position).getCtitle(0));
 
@@ -170,8 +169,7 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
             holder.button4.setVisibility(View.INVISIBLE);
         }
 
-        if(PollCardItems.get(position).getCount()==3)
-        {
+        if (PollCardItems.get(position).getCount() == 3) {
             holder.button1.setText(PollCardItems.get(position).getCtitle(0));
             option1.setText(PollCardItems.get(position).getCtitle(0));
 
@@ -185,8 +183,7 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
             holder.button4.setVisibility(View.INVISIBLE);
         }
 
-        if(PollCardItems.get(position).getCount()==4)
-        {
+        if (PollCardItems.get(position).getCount() == 4) {
             holder.button1.setText(PollCardItems.get(position).getCtitle(0));
             option1.setText(PollCardItems.get(position).getCtitle(0));
 
@@ -202,60 +199,95 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
         }
 
 
+        holder.submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (holder.button1.isChecked() || holder.button2.isChecked() || holder.button3.isChecked() || holder.button4.isChecked()) {
+                    holder.submit.setVisibility(View.INVISIBLE);
+                    holder.title.setVisibility(View.INVISIBLE);
+                    pGroupLay.setVisibility(View.INVISIBLE);
 
-            holder.submit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (holder.button1.isChecked() || holder.button2.isChecked() || holder.button3.isChecked() || holder.button4.isChecked()) {
-                        holder.submit.setVisibility(View.INVISIBLE);
-                        holder.title.setVisibility(View.INVISIBLE);
-                        pGroupLay.setVisibility(View.INVISIBLE);
+                    editor.putBoolean("has_voted_" + PollCardItems.get(position).getId(), true);
+                    editor.apply();
 
-                        editor.putBoolean("has_voted_" + PollCardItems.get(position).getId(), true);
-                        editor.apply();
+                    int selectedId = holder.rGroup.getCheckedRadioButtonId();
+                    RadioButton clicked = (RadioButton) holder.rlcontainer.findViewById(selectedId);
+                    String name = clicked.getText().toString();
+                    int choice = PollCardItems.get(position).searchTitle(name);
+                    rlayout.setVisibility(View.VISIBLE);
+                    Toast.makeText(context, String.valueOf(choice), Toast.LENGTH_SHORT).show();
+                    APIInterface apiInterface = ApiClient.getClient().create(APIInterface.class);
+                    Call<PollCardItem> call = apiInterface.doVotePollListResources(PollCardItems.get(position).getId().toString(), String.valueOf(choice));
+                    call.enqueue(new Callback<PollCardItem>() {
+                        @Override
+                        public void onResponse(Call<PollCardItem> call, Response<PollCardItem> response) {
+                            PollCardItem poll = response.body().getResults().get(0);
 
-                        int selectedId = holder.rGroup.getCheckedRadioButtonId();
-                        RadioButton clicked = (RadioButton) holder.rlcontainer.findViewById(selectedId);
-                        String name = clicked.getText().toString();
-                        int choice = PollCardItems.get(position).searchTitle(name);
-                        rlayout.setVisibility(View.VISIBLE);
-                        Toast.makeText(context, String.valueOf(choice), Toast.LENGTH_SHORT).show();
-                        APIInterface apiInterface = ApiClient.getClient().create(APIInterface.class);
-                        Call<PollCardItem> call = apiInterface.doVotePollListResources(PollCardItems.get(position).getId().toString(), String.valueOf(choice));
-                        call.enqueue(new Callback<PollCardItem>() {
-                            @Override
-                            public void onResponse(Call<PollCardItem> call, Response<PollCardItem> response) {
-                                PollCardItem poll = response.body().getResults().get(0);
+                            int total = poll.getTotalVotes();
 
-                                int total = poll.getTotalVotes();
 
+                            if (PollCardItems.get(position).getCount() == 2) {
                                 progress1.setMax(100);
-                                progress1.setProgress(PollResult(poll.getCvotes(0),total));
-                                System.out.println(PollResult(poll.getCvotes(0),total));
+                                progress1.setProgress(PollResult(poll.getCvotes(0), total));
+                                System.out.println(PollResult(poll.getCvotes(0), total));
                                 progress2.setMax(100);
-                                progress2.setProgress(PollResult(poll.getCvotes(1),total));
+                                progress2.setProgress(PollResult(poll.getCvotes(1), total));
+                                progress3.setVisibility(View.INVISIBLE);
+                                progress4.setVisibility(View.INVISIBLE);
+
+                                peroption1.setText(String.format("%.2f", (PollResult(poll.getCvotes(0), total))) + '%');
+                                peroption2.setText(String.format("%.2f", (PollResult(poll.getCvotes(1), total))) + '%');
+                                peroption3.setText(" ");
+                                peroption4.setText(" ");
+                            }
+
+                            if (PollCardItems.get(position).getCount() == 3) {
+                                progress1.setMax(100);
+                                progress1.setProgress(PollResult(poll.getCvotes(0), total));
+                                System.out.println(PollResult(poll.getCvotes(0), total));
+                                progress2.setMax(100);
+                                progress2.setProgress(PollResult(poll.getCvotes(1), total));
                                 progress3.setMax(100);
-                                progress3.setProgress(PollResult(poll.getCvotes(2),total));
+                                progress3.setProgress(PollResult(poll.getCvotes(2), total));
+                                progress4.setVisibility(View.INVISIBLE);
+
+                                peroption1.setText(String.format("%.2f", (PollResult(poll.getCvotes(0), total))) + '%');
+                                peroption2.setText(String.format("%.2f", (PollResult(poll.getCvotes(1), total))) + '%');
+                                peroption3.setText(String.format("%.2f", (PollResult(poll.getCvotes(1), total))) + '%');
+                                peroption4.setText(" ");
+                            }
+
+                            if (PollCardItems.get(position).getCount() == 4) {
+                                progress1.setMax(100);
+                                progress1.setProgress(PollResult(poll.getCvotes(0), total));
+                                System.out.println(PollResult(poll.getCvotes(0), total));
+                                progress2.setMax(100);
+                                progress2.setProgress(PollResult(poll.getCvotes(1), total));
+                                progress3.setMax(100);
+                                progress3.setProgress(PollResult(poll.getCvotes(2), total));
                                 progress4.setMax(100);
-                                progress4.setProgress(PollResult(poll.getCvotes(3),total));
-                                peroption1.setText(String.format("%.2f",(PollResult(poll.getCvotes(0),total))) + '%');
-                                peroption2.setText(String.format("%.2f",(PollResult(poll.getCvotes(1),total)))+ '%');
-                                peroption3.setText(String.format("%.2f",(PollResult(poll.getCvotes(2),total))) + '%');
-                                peroption4.setText(String.format("%.2f",(PollResult(poll.getCvotes(3),total))) + '%');
+                                progress4.setProgress(PollResult(poll.getCvotes(3), total));
+                                peroption1.setText(String.format("%.2f", (PollResult(poll.getCvotes(0), total))) + '%');
+                                peroption2.setText(String.format("%.2f", (PollResult(poll.getCvotes(1), total))) + '%');
+                                peroption3.setText(String.format("%.2f", (PollResult(poll.getCvotes(2), total))) + '%');
+                                peroption4.setText(String.format("%.2f", (PollResult(poll.getCvotes(3), total))) + '%');
+
                             }
 
-                            @Override
-                            public void onFailure(Call<PollCardItem> call, Throwable t) {
-                                Toast.makeText(context, "FAILURE " + t, Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    } else {
 
-                        Toast.makeText(context, "Please select an option for Poll " + (position+1), Toast.LENGTH_SHORT).show();
-                    }
+                        }
+
+                        @Override
+                        public void onFailure(Call<PollCardItem> call, Throwable t) {
+                            Toast.makeText(context, "FAILURE " + t, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+
+                    Toast.makeText(context, "Please select an option for Poll " + (position + 1), Toast.LENGTH_SHORT).show();
                 }
-            });
-
+            }
+        });
 
 
         SharedPreferences prefs = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
@@ -265,7 +297,6 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
             holder.submit.setVisibility(View.INVISIBLE);
             holder.title.setVisibility(View.INVISIBLE);
             pGroupLay.setVisibility(View.INVISIBLE);
-            rlayout.setVisibility(View.VISIBLE);
 
             APIInterface apiInterface = ApiClient.getClient().create(APIInterface.class);
             Call<PollCardItem> call = apiInterface.doGetSinglePollResources(PollCardItems.get(position).getId().toString());
@@ -273,22 +304,56 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
                 @Override
                 public void onResponse(Call<PollCardItem> call, Response<PollCardItem> response) {
                     PollCardItem poll = response.body().getResults().get(0);
-
+                    rlayout.setVisibility(View.VISIBLE);
                     int total = poll.getTotalVotes();
 
-                    progress1.setMax(100);
-                    progress1.setProgress(PollResult(poll.getCvotes(0),total));
-                    System.out.println(PollResult(poll.getCvotes(0),total));
-                    progress2.setMax(100);
-                    progress2.setProgress(PollResult(poll.getCvotes(1),total));
-                    progress3.setMax(100);
-                    progress3.setProgress(PollResult(poll.getCvotes(2),total));
-                    progress4.setMax(100);
-                    progress4.setProgress(PollResult(poll.getCvotes(3),total));
-                    peroption1.setText(String.format("%.2f",(PollResult(poll.getCvotes(0),total))) + '%');
-                    peroption2.setText(String.format("%.2f",(PollResult(poll.getCvotes(1),total)))+ '%');
-                    peroption3.setText(String.format("%.2f",(PollResult(poll.getCvotes(2),total))) + '%');
-                    peroption4.setText(String.format("%.2f",(PollResult(poll.getCvotes(3),total))) + '%');
+                    if (PollCardItems.get(position).getCount() == 2) {
+                        progress1.setMax(100);
+                        progress1.setProgress(PollResult(poll.getCvotes(0), total));
+                        System.out.println(PollResult(poll.getCvotes(0), total));
+                        progress2.setMax(100);
+                        progress2.setProgress(PollResult(poll.getCvotes(1), total));
+                        progress3.setVisibility(View.INVISIBLE);
+                        progress4.setVisibility(View.INVISIBLE);
+
+                        peroption1.setText(String.format("%.2f", (PollResult(poll.getCvotes(0), total))) + '%');
+                        peroption2.setText(String.format("%.2f", (PollResult(poll.getCvotes(1), total))) + '%');
+                        peroption3.setText(" ");
+                        peroption4.setText(" ");
+                    }
+
+                    if (PollCardItems.get(position).getCount() == 3) {
+                        progress1.setMax(100);
+                        progress1.setProgress(PollResult(poll.getCvotes(0), total));
+                        System.out.println(PollResult(poll.getCvotes(0), total));
+                        progress2.setMax(100);
+                        progress2.setProgress(PollResult(poll.getCvotes(1), total));
+                        progress3.setMax(100);
+                        progress3.setProgress(PollResult(poll.getCvotes(2), total));
+                        progress4.setVisibility(View.INVISIBLE);
+
+                        peroption1.setText(String.format("%.2f", (PollResult(poll.getCvotes(0), total))) + '%');
+                        peroption2.setText(String.format("%.2f", (PollResult(poll.getCvotes(1), total))) + '%');
+                        peroption3.setText(String.format("%.2f", (PollResult(poll.getCvotes(1), total))) + '%');
+                        peroption4.setText(" ");
+                    }
+
+                    if (PollCardItems.get(position).getCount() == 4) {
+                        progress1.setMax(100);
+                        progress1.setProgress(PollResult(poll.getCvotes(0), total));
+                        System.out.println(PollResult(poll.getCvotes(0), total));
+                        progress2.setMax(100);
+                        progress2.setProgress(PollResult(poll.getCvotes(1), total));
+                        progress3.setMax(100);
+                        progress3.setProgress(PollResult(poll.getCvotes(2), total));
+                        progress4.setMax(100);
+                        progress4.setProgress(PollResult(poll.getCvotes(3), total));
+                        peroption1.setText(String.format("%.2f", (PollResult(poll.getCvotes(0), total))) + '%');
+                        peroption2.setText(String.format("%.2f", (PollResult(poll.getCvotes(1), total))) + '%');
+                        peroption3.setText(String.format("%.2f", (PollResult(poll.getCvotes(2), total))) + '%');
+                        peroption4.setText(String.format("%.2f", (PollResult(poll.getCvotes(3), total))) + '%');
+
+                    }
                 }
 
                 @Override
@@ -300,9 +365,8 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
         }
     }
 
-    public float PollResult(int PollValue,int total)
-    {
-        return (((float)PollValue/(float)total )*100);
+    public float PollResult(int PollValue, int total) {
+        return (((float) PollValue / (float) total) * 100);
     }
 
     @Override
