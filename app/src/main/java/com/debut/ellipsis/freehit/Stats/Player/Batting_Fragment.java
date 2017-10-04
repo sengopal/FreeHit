@@ -7,33 +7,93 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ListAdapter;
+import android.widget.Toast;
 
+import com.debut.ellipsis.freehit.APIInterface;
+import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.R;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class Batting_Fragment extends Fragment {
-    String[] gridViewString = {
-            "Batting", "Test", "Odi", "T20", "IPL",
-            "Matches", "99,999", "10", "10", "10",
-            "Innings", "10", "10", "10", "10",
-            "N/0", "10", "10", "10", "10",
-            "Runs", "10", "10", "10", "10",
-            "Highest", "10", "10", "10", "10",
-            "100s", "10", "10", "10", "10",
-            "50s", "10", "10", "10", "10",
-            "4s", "10", "10", "10", "10",
-            "6s", "10", "10", "10", "10",
-            "Avg", "10", "10", "10", "10",
-            "Strike\nRate", "10", "10", "10", "10",
+    String j="odi";
+    String[] gridViewString=new String[60];/*=
 
+    {
+                "Batting", "Test", j, "T20", "IPL",
+                "Matches", "tmat", "omat", "t20mat", "imat",
+                "Innings", "imat", "oinn", "t20inn", "iinn",
+                "N/0", "10", "10", "10", "10",
+                "Runs", "10", "10", "10", "10",
+                "Highest", "10", "10", "10", "10",
+                "100s", "10", "10", "10", "10",
+                "50s", "10", "10", "10", "10",
+                "4s", "10", "10", "10", "10",
+                "6s", "10", "10", "10", "10",
+                "Avg", "10", "10", "10", "10",
+                "Strike Rate", "10", "10", "10", "10",
+    };*/
 
-    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        gridViewString[0]= "batting";gridViewString[1]="Test";gridViewString[2]=j;gridViewString[3]="T20";gridViewString[4]="IPL";
+        gridViewString[5]="Matches";
+
+        APIInterface apiInterface = ApiClient.getClient().create(APIInterface.class);
+        Call<Batting_Items> call = apiInterface.doGetBattinInfo();
+        call.enqueue(new Callback<Batting_Items>() {
+                         @Override
+                         public void onResponse(Call<Batting_Items> call, Response<Batting_Items> response) {
+                             Batting_Items info = response.body();
+                            /* String tmat*/gridViewString[6]=info.getBatstats().getTest().getMatches();
+                            /* String omat*/gridViewString[7]=info.getBatstats().getOdi().getMatches();
+                             Toast.makeText(getContext(), info.getBatstats().getTest().getMatches(), Toast.LENGTH_LONG).show();
+                             /*String t20mat*/gridViewString[8]=info.getBatstats().getT20().getMatches();
+                            /* String imat*/gridViewString[9]=info.getBatstats().getIpl().getMatches();
+                             gridViewString[10]="Innings";
+                           /*  String tinn*/gridViewString[11]=info.getBatstats().getTest().getInnbat();
+                            /* String oinn*/gridViewString[12]=info.getBatstats().getOdi().getInnbat();
+                            /* String t20inn*/gridViewString[13]=info.getBatstats().getT20().getInnbat();
+                             /*String iinn*/gridViewString[14]=info.getBatstats().getIpl().getInnbat();
+
+
+
+
+                              /*gridViewString = new String[]{
+                                      "Batting", "Test", "Odi", "T20", "IPL",
+                                      "Matches", tmat, omat, t20mat, imat,
+                                      "Innings", imat, oinn, t20inn, iinn,
+                                      "N/0", "10", "10", "10", "10",
+                                      "Runs", "10", "10", "10", "10",
+                                      "Highest", "10", "10", "10", "10",
+                                      "100s", "10", "10", "10", "10",
+                                      "50s", "10", "10", "10", "10",
+                                      "4s", "10", "10", "10", "10",
+                                      "6s", "10", "10", "10", "10",
+                                      "Avg", "10", "10", "10", "10",
+                                      "Strike Rate", "10", "10", "10", "10",
+
+
+                              };*/
+                              //gridViewString=gridViewString2;
+
+                         }
+
+                         @Override
+                         public void onFailure(Call<Batting_Items> call, Throwable t) {
+
+                         }
+                     });
+
+
 
         View rootView = inflater.inflate(R.layout.fragment_stats_player_batting_bowling_gridview, container, false);
+
         GridView androidGridView;
         Batting_Item_adapter adapterViewAndroid = new Batting_Item_adapter(getContext(), gridViewString);
         androidGridView = (GridView) rootView.findViewById(R.id.grid_view_batting_bowling);
