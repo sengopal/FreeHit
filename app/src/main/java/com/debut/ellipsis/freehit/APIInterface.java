@@ -7,6 +7,7 @@ import com.debut.ellipsis.freehit.News.NewsArticleItem;
 import com.debut.ellipsis.freehit.News.NewsItem;
 import com.debut.ellipsis.freehit.Social.Polls.PollCardItem;
 import com.debut.ellipsis.freehit.Stats.Player.Batting_Items;
+import com.debut.ellipsis.freehit.Stats.Player.Bowling_Items;
 import com.debut.ellipsis.freehit.Stats.Player.InfoItems;
 
 import retrofit2.Call;
@@ -25,6 +26,8 @@ public interface APIInterface {
     Call<InfoItems> doGetInfoResources();
     @GET("playerbio")
     Call<Batting_Items> doGetBattinInfo();
+    @GET("playerbio")
+    Call<Bowling_Items> doGetBowlingInfo();
 
     @GET("upcoming?max=6")
     Call<UpcomingMatchCardItem> doGetUpcomingMatchListResources();
