@@ -72,12 +72,12 @@ StatsFragment extends Fragment {
                     getActivity().overridePendingTransition(0,0);
 
                 }
-                else if (position==3){
+                /*else if (position==3){
                     Intent RankingIntent = new Intent(getActivity(), RankingActivity.class);
                     startActivity(RankingIntent);
                     getActivity().overridePendingTransition(0,0);
 
-                }
+                }*/
                 else if (position==4){
                     Intent RecordsIntent = new Intent(getActivity(), RecordsActivity.class);
                     startActivity(RecordsIntent);

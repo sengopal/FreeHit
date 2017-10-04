@@ -47,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="test"
-                android:onClick="FormatTypeOnClick"
+
                 android:textAllCaps="true" />
             <Button
                 android:textColor="@android:color/black"
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:text="odi"
                 android:layout_toRightOf="@+id/test"
-                android:onClick="FormatTypeOnClick" />
+                />
             <Button
                 android:textColor="@android:color/black"
                 android:id="@+id/t20"
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:text="t20"
                 android:layout_toRightOf="@id/odi"
-                android:onClick="FormatTypeOnClick" />
+         />
         </RelativeLayout>
 
         <android.support.v4.view.ViewPager

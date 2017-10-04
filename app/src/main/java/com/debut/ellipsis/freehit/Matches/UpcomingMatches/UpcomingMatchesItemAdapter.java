@@ -1,5 +1,6 @@
 package com.debut.ellipsis.freehit.Matches.UpcomingMatches;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
@@ -37,6 +38,8 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
         return dataObjectList.size();
     }
 
+
+
     @Override
     public boolean isViewFromObject(View view, Object object) {
         return view == object;
@@ -47,34 +50,48 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
         View view = this.layoutInflater.inflate(R.layout.fragment_matches_upcoming_match_card, container, false);
 
         TextView textViewMatchName = (TextView) view.findViewById(R.id.match_name_upcoming);
-        textViewMatchName.setText(this.dataObjectList.get(position).getmMatchName());
+        textViewMatchName.setText(this.dataObjectList.get(position).getMatch());
 
         TextView textViewSeriesName = (TextView) view.findViewById(R.id.series_name_upcoming);
-        textViewSeriesName.setText(this.dataObjectList.get(position).getmSeriesName());
+        textViewSeriesName.setText(this.dataObjectList.get(position).getTour());
 
         TextView textViewStadiumName = (TextView) view.findViewById(R.id.stadium_upcoming);
-        textViewStadiumName.setText(this.dataObjectList.get(position).getmStadiumName());
+        textViewStadiumName.setText(this.dataObjectList.get(position).getStadium());
 
         imageViewTeam1Logo = (ImageView) view.findViewById(R.id.team_logo_1_upcoming);
-
 
         imageViewTeam2Logo = (ImageView) view.findViewById(R.id.team_logo_2_upcoming);
 
 
         TextView shortName1 = (TextView) view.findViewById(R.id.sn_team_1_upcoming);
-        shortName1.setText(this.dataObjectList.get(position).getmTeam1SN());
+        shortName1.setText(this.dataObjectList.get(position).getTeam1().getSn());
 
 
         TextView shortName2 = (TextView) view.findViewById(R.id.sn_team_2_upcoming);
-        shortName2.setText(this.dataObjectList.get(position).getmTeam2SN());
+        shortName2.setText(this.dataObjectList.get(position).getTeam2().getSn());
 
-        TextView ViewMore = (TextView) view.findViewById(R.id.upcoming_view_more);
-        ViewMore.setText(this.dataObjectList.get(position).getmViewMore());
 
         TextView MatchDate = (TextView) view.findViewById(R.id.match_date_upcoming);
-        MatchDate.setText(this.dataObjectList.get(position).getmMatchDate());
+        MatchDate.setText(this.dataObjectList.get(position).getDate().getFinaldate());
+
+        TextView ViewMore = (TextView) view.findViewById(R.id.upcoming_view_more);
+        ViewMore.setText(R.string.matches_view_more);
+        ViewMore.setVisibility(View.INVISIBLE);
 
         final CardView cardView = (CardView) view.findViewById(R.id.card_view);
+
+        if(position == 5) {
+            ViewMore.setVisibility(View.VISIBLE);
+            textViewMatchName.setVisibility(View.INVISIBLE);
+            textViewSeriesName.setVisibility(View.INVISIBLE);
+            textViewStadiumName.setVisibility(View.INVISIBLE);
+            imageViewTeam1Logo.setVisibility(View.INVISIBLE);
+            imageViewTeam2Logo.setVisibility(View.INVISIBLE);
+            shortName1.setVisibility(View.INVISIBLE);
+            shortName2.setVisibility(View.INVISIBLE);
+            MatchDate.setVisibility(View.INVISIBLE);
+
+        }
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,24 +104,21 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
                     context.startActivity(UpcomingIntent);
                 } else {
                     Intent UpcomingMatchScoreCardIntent = new Intent(context, UpcomingMatchScoreCard.class);
-                    UpcomingMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getmMatchID());
-                    UpcomingMatchScoreCardIntent.putExtra("match_name", dataObjectList.get(position).getmMatchName() + "(" + dataObjectList.get(position).getmTeam1SN() + " vs " + dataObjectList.get(position).getmTeam2SN() + ")");
-                    /*ActivityOptions.makeCustomAnimation(context,R.anim.animation_entry,R.anim.animation_exit);*/
+                    UpcomingMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getId());
+                    UpcomingMatchScoreCardIntent.putExtra("match_name", dataObjectList.get(position).getMatch() + "(" + dataObjectList.get(position).getTeam1().getSn() + " vs " + dataObjectList.get(position).getTeam2().getSn() + ")");
                     context.startActivity(UpcomingMatchScoreCardIntent);
                 }
             }
         });
 
         // Initializing Logo URLS
-        logo_string1 = this.dataObjectList.get(position).getmTeam1LogoURL();
-        logo_string2 = this.dataObjectList.get(position).getmTeam2LogoURL();
+        logo_string1 = this.dataObjectList.get(position).getTeam1().getImage();
+        logo_string2 = this.dataObjectList.get(position).getTeam2().getImage();
 
         if (position < 5) {
             Glide.with(context).load(logo_string1).placeholder(R.drawable.matches).into(imageViewTeam1Logo);
             Glide.with(context).load(logo_string2).placeholder(R.drawable.matches).into(imageViewTeam2Logo);
         }
-        /*setImage(logo_string1, imageViewTeam1Logo);
-        setImage(logo_string2, imageViewTeam2Logo);*/
         container.addView(view);
         return view;
 
@@ -115,31 +129,7 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
         container.removeView((View) object);
     }
 
-    /*public void setImage(String url, ImageView imageview) {
-        ImageLoader imageLoader = ImageLoader.getInstance();
-        DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true).build();
-        imageLoader.displayImage(url, imageview, new ImageLoadingListener() {
+    public void setViewMore(){
 
-            @Override
-            public void onLoadingStarted(String imageUri, View view) {
-
-            }
-
-            @Override
-            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-
-            }
-
-            @Override
-            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-
-            }
-
-            @Override
-            public void onLoadingCancelled(String imageUri, View view) {
-
-            }
-        });
-
-    }*/
+    }
 }

@@ -142,5 +142,3 @@ public class SocialTweets extends Fragment {
         rv.setAdapter(adapter);
     }
 }
-
-

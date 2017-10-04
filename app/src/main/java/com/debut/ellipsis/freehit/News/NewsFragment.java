@@ -45,6 +45,8 @@ public class NewsFragment extends Fragment {
         final RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.news_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        /*mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar); */
+
         /**
          GET List Resources
          **/
@@ -54,7 +56,6 @@ public class NewsFragment extends Fragment {
             public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
 
 
-                Log.d("TAG",response.code()+"");
 
                 List<NewsItem> news = response.body().getResults();
                 recyclerView.setAdapter(new NewsItemAdapter(news, R.layout.fragment_news_list_item, getContext()));

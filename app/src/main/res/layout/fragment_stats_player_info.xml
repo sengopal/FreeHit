@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -18,8 +19,8 @@
 
             <ImageView
                 android:id="@+id/Player_image"
-                android:layout_width="@dimen/_80sdp"
-                android:layout_height="@dimen/_80sdp"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/_15sdp"
                 app:srcCompat="@drawable/flag_ind" />
@@ -29,17 +30,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:text="PlayerName"
-                android:textSize="@dimen/_14sdp" />
+                android:layout_marginTop="@dimen/_20sdp"
+                tools:text="PlayerName"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_16sdp" />
 
             <TextView
                 android:id="@+id/player_country"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="country"
-                android:textSize="@dimen/_13sdp" />
+                tools:text="country"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="@dimen/_14sdp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -65,50 +70,151 @@
                 android:textSize="@dimen/_1sdp" />
 
             <LinearLayout
+                android:padding="@dimen/_5sdp"
                 android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/DOB"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="DOB : "
-                    android:textSize="@dimen/_12sdp" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/Age"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Age : "
-                    android:textSize="@dimen/_12sdp" />
+                    <TextView
+                        android:id="@+id/DOBLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="DOB : "
+                        android:textStyle="bold"
+                        android:paddingLeft="@dimen/_4sdp"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_13sdp" />
 
-                <TextView
-                    android:id="@+id/battingStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Batting Style : "
-                    android:textSize="@dimen/_12sdp" />
+                    <TextView
+                        android:id="@+id/DOB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_toEndOf="@+id/DOBLabel"
+                        android:textSize="@dimen/_13sdp"
+                        android:paddingLeft="@dimen/_6sdp"
+                        android:textColor="@android:color/black"
+                        tools:text="9999/9999/999" />
 
-                <TextView
-                    android:id="@+id/BowlingStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Bowling Style : "
-                    android:textSize="@dimen/_12sdp" />
+                </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/Teams_Played"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Teams Played For : "
-                    android:textSize="@dimen/_12sdp" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/AgeLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="Age : "
+                        android:textStyle="bold"
+                        android:paddingLeft="@dimen/_4sdp"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_13sdp" />
+
+                    <TextView
+                        android:id="@+id/Age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_toEndOf="@+id/AgeLabel"
+                        android:textSize="@dimen/_13sdp"
+                        android:paddingLeft="@dimen/_6sdp"
+                        android:textColor="@android:color/black"
+                        tools:text="9999/9999/999" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/battingStyleLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="Batting Style : "
+                        android:textStyle="bold"
+                        android:paddingLeft="@dimen/_4sdp"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_13sdp" />
+
+                    <TextView
+                        android:id="@+id/battingStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_toEndOf="@+id/battingStyleLabel"
+                        android:textSize="@dimen/_13sdp"
+                        android:paddingLeft="@dimen/_6sdp"
+                        android:textColor="@android:color/black"
+                        tools:text="9999/9999/999" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/BowlingStyleLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="Bowling Style : "
+                        android:textStyle="bold"
+                        android:paddingLeft="@dimen/_4sdp"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_13sdp" />
+
+                    <TextView
+                        android:id="@+id/BowlingStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_toEndOf="@+id/BowlingStyleLabel"
+                        android:textSize="@dimen/_13sdp"
+                        android:paddingLeft="@dimen/_6sdp"
+                        android:textColor="@android:color/black"
+                        tools:text="9999/9999/999" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/Teams_PlayedLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="Teams Played For : "
+                        android:textStyle="bold"
+                        android:paddingLeft="@dimen/_4sdp"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_13sdp" />
+
+                    <TextView
+                        android:id="@+id/Teams_Played"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:paddingLeft="@dimen/_6sdp"
+                        android:layout_toEndOf="@+id/Teams_PlayedLabel"
+                        android:textSize="@dimen/_13sdp"
+                        android:textColor="@android:color/black"
+                        tools:text="9999/9999/999" />
+
+                </RelativeLayout>
 
 
             </LinearLayout>
@@ -123,8 +229,8 @@
                 android:id="@+id/ICC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:gravity="center_horizontal"
                 android:text="ICC RANKING"
                 android:textColor="@android:color/black"
@@ -136,12 +242,20 @@
                 android:layout_below="@+id/ICC"
                 android:background="@color/divider"
                 android:textSize="@dimen/_1sdp" />
-            <ProgressBar
-                android:id="@+id/progress_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                style="@style/Base.Widget.AppCompat.ProgressBar"/>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    style="@style/Base.Widget.AppCompat.ProgressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" />
+
+            </RelativeLayout>
 
 
             <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -172,24 +286,24 @@
                         android:textSize="@dimen/_10sdp" />
 
                     <TextView
-                        android:id="@+id/Label_TEST"
+                        android:id="@+id/Label_ODI"
                         android:layout_height="wrap_content"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
                         android:padding="@dimen/_18sdp"
-                        android:text="TEST"
+                        android:text="ODI"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="@dimen/_10sdp" />
 
                     <TextView
-                        android:id="@+id/Label_ODI"
+                        android:id="@+id/Label_WORLD"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
                         android:padding="@dimen/_18sdp"
-                        android:text="ODI"
+                        android:text="WORLD CUP"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="@dimen/_10sdp" />
@@ -227,7 +341,7 @@
                         android:textSize="@dimen/_10sdp" />
 
                     <TextView
-                        android:id="@+id/TestbattingRanking"
+                        android:id="@+id/odibattingRanking"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -239,7 +353,7 @@
                         android:textSize="@dimen/_10sdp" />
 
                     <TextView
-                        android:id="@+id/OdiBattingRanking"
+                        android:id="@+id/worldBattingRanking"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -283,7 +397,7 @@
                         android:textSize="@dimen/_10sdp" />
 
                     <TextView
-                        android:id="@+id/TestBowlingRanking"
+                        android:id="@+id/odiBowlingRanking"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -295,7 +409,7 @@
                         android:textSize="@dimen/_10sdp" />
 
                     <TextView
-                        android:id="@+id/OdiBowlingRanking"
+                        android:id="@+id/worldBowlingRanking"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -332,13 +446,12 @@
                 android:id="@+id/MOTM"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_8sdp"
                 android:gravity="center_horizontal"
                 android:text="MAN OF THE MATCH"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/_20sdp" />
-
 
 
             <TextView
@@ -380,74 +493,74 @@
 
                             <TextView
                                 android:id="@+id/MOTM_Label_TEST"
-                                android:layout_height="wrap_content"
+                                android:layout_height="@dimen/_58sdp"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
                                 android:text="TEST"
-                                android:textSize="@dimen/_10sdp"
                                 android:textAlignment="center"
-                                android:textColor="#000000" />
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_10sdp" />
 
                             <TextView
                                 android:id="@+id/MOTM_Label_ODI"
-                                android:layout_height="wrap_content"
+                                android:layout_height="@dimen/_58sdp"
                                 android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
                                 android:text="ODI"
-                                android:textSize="@dimen/_10sdp"
                                 android:textAlignment="center"
-                                android:textColor="#000000" />
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_10sdp" />
 
                             <TextView
                                 android:id="@+id/MOTM_Label_T20"
-                                android:layout_height="wrap_content"
+                                android:layout_height="@dimen/_58sdp"
                                 android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
                                 android:text="T20I"
-                                android:textSize="@dimen/_10sdp"
                                 android:textAlignment="center"
-                                android:textColor="#000000" />
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_10sdp" />
 
                             <TextView
                                 android:id="@+id/MOTM_Label_WorldCup"
-                                android:layout_height="wrap_content"
+                                android:layout_height="@dimen/_58sdp"
                                 android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
                                 android:text="WORLD CUP"
-                                android:textSize="@dimen/_10sdp"
                                 android:textAlignment="center"
-                                android:textColor="#000000" />
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_10sdp" />
 
                             <TextView
                                 android:id="@+id/MOTM_Label_IPL"
-                                android:layout_height="wrap_content"
+                                android:layout_height="@dimen/_58sdp"
                                 android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
                                 android:text="IPL"
-                                android:textSize="@dimen/_10sdp"
                                 android:textAlignment="center"
-                                android:textColor="#000000" />
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_10sdp" />
 
                             <TextView
                                 android:id="@+id/MOTM_Label_CL"
-                                android:layout_height="wrap_content"
+                                android:layout_height="@dimen/_58sdp"
                                 android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
                                 android:text="CL"
-                                android:textSize="@dimen/_10sdp"
                                 android:textAlignment="center"
-                                android:textColor="#000000" />
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_10sdp" />
 
 
                         </TableRow>
@@ -459,75 +572,71 @@
 
                             <TextView
                                 android:id="@+id/MOTM_Test"
-                                android:layout_height="wrap_content"
+                                android:layout_height="@dimen/_58sdp"
                                 android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
                                 android:text="3"
-                                android:textSize="@dimen/_10sdp"
                                 android:textAlignment="center"
-                                android:textColor="#000000" />
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_10sdp" />
 
                             <TextView
                                 android:id="@+id/MOTM_Odi"
-                                android:layout_height="wrap_content"
+                                android:layout_height="@dimen/_58sdp"
                                 android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
                                 android:text="6"
-                                android:textSize="@dimen/_10sdp"
                                 android:textAlignment="center"
-                                android:textColor="#000000" />
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_10sdp" />
 
                             <TextView
                                 android:id="@+id/MOTM_T20"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
+                                android:layout_height="@dimen/_58sdp"                                android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
                                 android:text="2"
-                                android:textSize="@dimen/_10sdp"
                                 android:textAlignment="center"
-                                android:textColor="#000000" />
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_10sdp" />
 
                             <TextView
                                 android:id="@+id/MOTM_WorldCup"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
+                                android:layout_height="@dimen/_58sdp"                                android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
                                 android:text="2"
-                                android:textSize="@dimen/_10sdp"
                                 android:textAlignment="center"
-                                android:textColor="#000000" />
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_10sdp" />
 
                             <TextView
                                 android:id="@+id/MOTM_IPL"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
+                                android:layout_height="@dimen/_58sdp"                                android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
                                 android:text="2"
-                                android:textSize="@dimen/_10sdp"
                                 android:textAlignment="center"
-                                android:textColor="#000000" />
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_10sdp" />
 
                             <TextView
                                 android:id="@+id/MOTM_CL"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
+                                android:layout_height="@dimen/_58sdp"                                android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
-                                android:padding="@dimen/_18sdp"
+                                android:padding="@dimen/_18ssp"
                                 android:text="0"
-                                android:textSize="@dimen/_10sdp"
                                 android:textAlignment="center"
-                                android:textColor="#000000" />
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_10sdp" />
 
 
                         </TableRow>

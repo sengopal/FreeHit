@@ -1,436 +1,207 @@
 package com.debut.ellipsis.freehit.Social.Polls;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
+import com.debut.ellipsis.freehit.APIInterface;
+import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.R;
-import com.debut.ellipsis.freehit.Social.SocialMainFragment;
 
 import java.util.List;
 
-import static android.content.Context.MODE_PRIVATE;
-import static com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity.MY_PREFS_NAME;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
-public class PollItemAdapter extends ArrayAdapter {
+public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.freehit.Social.Polls.PollItemAdapter.PollsViewHolder> {
 
-    Fragment frg = SocialMainFragment.myFragment;
+    private List<PollCardItem> PollCardItems;
+    private int rowLayout;
+    private Context context;
 
-    public PollItemAdapter(Context context, List<PollCardItem> polls) {
-        super(context, 0, polls);
 
+    public static class PollsViewHolder extends RecyclerView.ViewHolder {
+        RelativeLayout pollsLayout;
+        RadioGroup rGroup;
+        TextView title;
+        RadioButton button1;
+        RadioButton button2;
+        RadioButton button3;
+        RadioButton button4;
+        Button submit;
+        RelativeLayout rlcontainer;
+
+
+        public PollsViewHolder(View v) {
+            super(v);
+            pollsLayout = (RelativeLayout) v.findViewById(R.id.parent_layout);
+            rGroup = (RadioGroup) v.findViewById(R.id.poll_group);
+            title = (TextView) v.findViewById(R.id.poll_title);
+            button1 = (RadioButton) v.findViewById(R.id.option_1);
+            button2 = (RadioButton) v.findViewById(R.id.option_2);
+            button3 = (RadioButton) v.findViewById(R.id.option_3);
+            button4 = (RadioButton) v.findViewById(R.id.option_4);
+            submit = (Button) v.findViewById(R.id.poll_submit);
+
+            rlcontainer = (RelativeLayout) v.findViewById(R.id.parent_layout);
+        }
     }
 
+    public PollItemAdapter(List<PollCardItem> news, int rowLayout, Context context) {
+        this.PollCardItems = news;
+        this.rowLayout = rowLayout;
+        this.context = context;
+    }
+
+    @Override
+    public com.debut.ellipsis.freehit.Social.Polls.PollItemAdapter.PollsViewHolder onCreateViewHolder(ViewGroup parent,
+                                                                                                      int viewType) {
+        View view = null;
+        if (viewType == 0) {
+            view = LayoutInflater.from(parent.getContext()).inflate(rowLayout, parent, false);
+        }
+        return new com.debut.ellipsis.freehit.Social.Polls.PollItemAdapter.PollsViewHolder(view);
+
+    }
 
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        View listItemView = convertView;
-        if (listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.fragment_social_polls_list_item, parent, false);
+    public void onBindViewHolder(final com.debut.ellipsis.freehit.Social.Polls.PollItemAdapter.PollsViewHolder holder, final int position) {
+        holder.title.setText(PollCardItems.get(position).getQuestion());
+        final View pollRes = holder.rlcontainer.findViewById(R.id.pollItem_result);
+        final RelativeLayout rlayout = (RelativeLayout) pollRes.findViewById(R.id.pollItem_result);
+        final RelativeLayout pGroupLay = (RelativeLayout) holder.rlcontainer.findViewById(R.id.poll_group_layout);
+
+        TextView option1 = (TextView) pollRes.findViewById(R.id.option_1);
+
+        TextView option2 = (TextView) pollRes.findViewById(R.id.option_2);
+
+        TextView option3 = (TextView) pollRes.findViewById(R.id.option_3);
+
+        TextView option4 = (TextView) pollRes.findViewById(R.id.option_4);
+
+
+        final TextView peroption1 = (TextView) pollRes.findViewById(R.id.percentage_option_1);
+
+        final TextView peroption2 = (TextView) pollRes.findViewById(R.id.percentage_option_2);
+
+        final TextView peroption3 = (TextView) pollRes.findViewById(R.id.percentage_option_3);
+
+        final TextView peroption4 = (TextView) pollRes.findViewById(R.id.percentage_option_4);
+
+        final RoundCornerProgressBar progress1 = (RoundCornerProgressBar) pollRes.findViewById(R.id.progress_bar_option1);
+        progress1.setProgressColor(Color.parseColor("#00796b"));
+        progress1.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
+
+        final RoundCornerProgressBar progress2 = (RoundCornerProgressBar) pollRes.findViewById(R.id.progress_bar_option2);
+        progress2.setProgressColor(Color.parseColor("#00796b"));
+        progress2.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
+
+        final RoundCornerProgressBar progress3 = (RoundCornerProgressBar) pollRes.findViewById(R.id.progress_bar_option3);
+        progress3.setProgressColor(Color.parseColor("#00796b"));
+        progress3.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
+
+        final RoundCornerProgressBar progress4 = (RoundCornerProgressBar) pollRes.findViewById(R.id.progress_bar_option4);
+        progress4.setProgressColor(Color.parseColor("#00796b"));
+        progress4.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
+
+        holder.title.setText(PollCardItems.get(position).getQuestion());
+
+        if (PollCardItems.get(position).getCtitle(0) != null) {
+            holder.button1.setText(PollCardItems.get(position).getCtitle(0));
+            option1.setText(PollCardItems.get(position).getCtitle(0));
+        } else {
+            holder.button1.setVisibility(View.INVISIBLE);
+        }
+        if (PollCardItems.get(position).getCtitle(1) != null) {
+            holder.button2.setText(PollCardItems.get(position).getCtitle(1));
+            option2.setText(PollCardItems.get(position).getCtitle(1));
+        } else {
+            holder.button2.setVisibility(View.INVISIBLE);
+        }
+        if (PollCardItems.get(position).getCtitle(2) != null) {
+            holder.button3.setText(PollCardItems.get(position).getCtitle(2));
+            option3.setText(PollCardItems.get(position).getCtitle(2));
+        } else {
+            holder.button3.setVisibility(View.INVISIBLE);
+        }
+        if (PollCardItems.get(position).getCtitle(3) != null) {
+            holder.button4.setText(PollCardItems.get(position).getCtitle(3));
+
+            option4.setText(PollCardItems.get(position).getCtitle(3));
+        } else {
+            holder.button4.setVisibility(View.INVISIBLE);
         }
 
-
-
-        final SharedPreferences.Editor editor = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-
-        final PollCardItem currentPoll = (PollCardItem) getItem(position);
-        final Button submit = (Button) listItemView.findViewById(R.id.poll_submit);
-
-        final Button view_results = (Button) listItemView.findViewById(R.id.poll_results_view);
-
-        TextView pollTitle = (TextView) listItemView.findViewById(R.id.poll_title);
-        pollTitle.setText(currentPoll.getpTitle());
-
-        final RadioButton option1 = (RadioButton) listItemView.findViewById(R.id.option_1);
-        option1.setText(currentPoll.getpOption(0));
-        if (currentPoll.getpOption(0).isEmpty()) {
-            option1.setVisibility(View.INVISIBLE);
-        }
-        final RadioButton option2 = (RadioButton) listItemView.findViewById(R.id.option_2);
-        option2.setText(currentPoll.getpOption(1));
-        if (currentPoll.getpOption(1).isEmpty()) {
-            option2.setVisibility(View.INVISIBLE);
-        }
-        final RadioButton option3 = (RadioButton) listItemView.findViewById(R.id.option_3);
-        option3.setText(currentPoll.getpOption(2));
-        if (currentPoll.getpOption(2).isEmpty()) {
-            option3.setVisibility(View.INVISIBLE);
-        }
-        final RadioButton option4 = (RadioButton) listItemView.findViewById(R.id.option_4);
-        option4.setText(currentPoll.getpOption(3));
-        if (currentPoll.getpOption(3).isEmpty()) {
-            option4.setVisibility(View.INVISIBLE);
-        }
-        final RadioGroup rGroup = (RadioGroup) listItemView.findViewById(R.id.poll_group);
-        final View finalListItemView = listItemView;
-
-
-        // POLL RESULT
-        final View pollresult = listItemView.findViewById(R.id.pollItem_result);
-
-        final Button back_from_results = (Button) pollresult.findViewById(R.id.poll_results_back);
-
-        final TextView option_1 = (TextView) pollresult.findViewById(R.id.option_1);
-        option_1.setText(currentPoll.getpOption(0));
-        if (currentPoll.getpOption(0).isEmpty()) {
-            option_1.setVisibility(View.INVISIBLE);
-        }
-
-        final TextView option_2 = (TextView) pollresult.findViewById(R.id.option_2);
-        option_2.setText(currentPoll.getpOption(1));
-        if (currentPoll.getpOption(1).isEmpty()) {
-            option_2.setVisibility(View.INVISIBLE);
-        }
-
-        final TextView option_3 = (TextView) pollresult.findViewById(R.id.option_3);
-        option_3.setText(currentPoll.getpOption(2));
-        if (currentPoll.getpOption(2).isEmpty()) {
-            option_3.setVisibility(View.INVISIBLE);
-        }
-
-        final TextView option_4 = (TextView) pollresult.findViewById(R.id.option_4);
-        option_4.setText(currentPoll.getpOption(3));
-        if (currentPoll.getpOption(3).isEmpty()) {
-            option_4.setVisibility(View.INVISIBLE);
-        }
-
-        int totalVotes = 0;
-        for (int i = 0; i < 4; i++) {
-            totalVotes += currentPoll.getpValue(i);
-        }
-
-        final TextView option_1_percentage = (TextView) pollresult.findViewById(R.id.percentage_option_1);
-        if (totalVotes != 0) {
-            String percentage1 = String.format("%.2f", (currentPoll.getpValue(0) / (float) totalVotes) * 100);
-            option_1_percentage.setText(percentage1 + "%");
-            if (currentPoll.getpOption(0).isEmpty()) {
-                option_1_percentage.setVisibility(View.INVISIBLE);
-            }
-        }
-
-        final TextView option_2_percentage = (TextView) pollresult.findViewById(R.id.percentage_option_2);
-        if (totalVotes != 0) {
-            String percentage2 = String.format("%.2f", (currentPoll.getpValue(1) / (float) totalVotes) * 100);
-            option_2_percentage.setText(percentage2 + "%");
-            if (currentPoll.getpOption(1).isEmpty()) {
-                option_2_percentage.setVisibility(View.INVISIBLE);
-            }
-        }
-
-        final TextView option_3_percentage = (TextView) pollresult.findViewById(R.id.percentage_option_3);
-        if (totalVotes != 0) {
-            String percentage3 = String.format("%.2f", (currentPoll.getpValue(2) / (float) totalVotes) * 100);
-            option_3_percentage.setText(percentage3 + "%");
-            if (currentPoll.getpOption(2).isEmpty()) {
-                option_3_percentage.setVisibility(View.INVISIBLE);
-            }
-        }
-
-        final TextView option_4_percentage = (TextView) pollresult.findViewById(R.id.percentage_option_4);
-        if (totalVotes != 0) {
-            String percentage4 = String.format("%.2f", (currentPoll.getpValue(3) / (float) totalVotes) * 100);
-            option_4_percentage.setText(percentage4 + "%");
-            if (currentPoll.getpOption(3).isEmpty()) {
-                option_4_percentage.setVisibility(View.INVISIBLE);
-            }
-        }
-
-        final RoundCornerProgressBar option_1_progressBar = (RoundCornerProgressBar) pollresult.findViewById(R.id.progress_bar_option1);
-        option_1_progressBar.setProgressColor(Color.parseColor("#00796b"));
-        option_1_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
-        if (currentPoll.getpOption(0).isEmpty()) {
-            option_1_progressBar.setVisibility(View.INVISIBLE);
-        }
-
-        final RoundCornerProgressBar option_2_progressBar = (RoundCornerProgressBar) pollresult.findViewById(R.id.progress_bar_option2);
-        option_2_progressBar.setProgressColor(Color.parseColor("#00796b"));
-        option_2_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
-        if (currentPoll.getpOption(1).isEmpty()) {
-            option_2_progressBar.setVisibility(View.INVISIBLE);
-        }
-
-
-        final RoundCornerProgressBar option_3_progressBar = (RoundCornerProgressBar) pollresult.findViewById(R.id.progress_bar_option3);
-        option_3_progressBar.setProgressColor(Color.parseColor("#00796b"));
-        option_3_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
-        if (currentPoll.getpOption(2).isEmpty()) {
-            option_3_progressBar.setVisibility(View.INVISIBLE);
-        }
-
-
-        final RoundCornerProgressBar option_4_progressBar = (RoundCornerProgressBar) pollresult.findViewById(R.id.progress_bar_option4);
-        option_4_progressBar.setProgressColor(Color.parseColor("#00796b"));
-        option_4_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
-        if (currentPoll.getpOption(3).isEmpty()) {
-            option_4_progressBar.setVisibility(View.INVISIBLE);
-        }
-
-
-        final int finalTotalVotes = totalVotes;
-
-        submit.setOnClickListener(new View.OnClickListener() {
+// View.OnClickListener mClickListener;
+        holder.submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                holder.rlcontainer.setVisibility(View.INVISIBLE);
+                holder.submit.setVisibility(View.INVISIBLE);
+                holder.title.setVisibility(View.INVISIBLE);
+                pGroupLay.setVisibility(View.INVISIBLE);
 
-                int cid = 0;
-                if (option1.isChecked() || option2.isChecked() || option3.isChecked() || option4.isChecked()) {
-                    int selectedId = rGroup.getCheckedRadioButtonId();
-                    RadioButton clicked = (RadioButton) finalListItemView.findViewById(selectedId);
-                    cid = (currentPoll.getcId(clicked.getText().toString()));
-                    editor.putBoolean("has_voted_" + position, true);
-                    editor.apply();
+                int selectedId = holder.rGroup.getCheckedRadioButtonId();
+                RadioButton clicked = (RadioButton) holder.rlcontainer.findViewById(selectedId);
+                String name = clicked.getText().toString();
+                int choice = PollCardItems.get(position).searchTitle(name);
+                rlayout.setVisibility(View.VISIBLE);
+                Toast.makeText(context, String.valueOf(choice), Toast.LENGTH_SHORT).show();
+                APIInterface apiInterface = ApiClient.getClient().create(APIInterface.class);
+                Call<PollCardItem> call = apiInterface.doVotePollListResources(PollCardItems.get(position).getId().toString(), String.valueOf(choice));
+                call.enqueue(new Callback<PollCardItem>() {
+                    @Override
+                    public void onResponse(Call<PollCardItem> call, Response<PollCardItem> response) {
+                        PollCardItem poll = response.body().getResults().get(0);
 
-                    final String url = "https://freehit-api.herokuapp.com/polls?id=" + currentPoll.getpId() + "&cid=" + cid;
-                    new Thread() {
-                        public void run() {
-                            QueryUtilPolls.fetchPollData(url);
+                        int sum = 0;
+                        for (int i = 0; i < poll.getCount(); i++) {
+                            sum += poll.getCvotes(i);
                         }
-                    }.start();
+                        float total = sum;
 
-                    option1.setVisibility(View.GONE);
-                    option2.setVisibility(View.GONE);
-                    option3.setVisibility(View.GONE);
-                    option4.setVisibility(View.GONE);
-                    submit.setVisibility(View.GONE);
-                    view_results.setVisibility(View.GONE);
-                    pollresult.setVisibility(View.VISIBLE);
-                    option_1.setVisibility(View.VISIBLE);
-                    option_2.setVisibility(View.VISIBLE);
-                    option_3.setVisibility(View.VISIBLE);
-                    option_4.setVisibility(View.VISIBLE);
-                    back_from_results.setVisibility(View.GONE);
-                    if (!currentPoll.getpOption(0).isEmpty()) {
-                        option_1_percentage.setVisibility(View.VISIBLE);
-                        option_1_progressBar.setVisibility(View.VISIBLE);
-                        option_1_progressBar.setProgressColor(Color.parseColor("#00796b"));
-                        option_1_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
-                        if (finalTotalVotes != 0) {
-                            option_1_progressBar.setMax(100);
-                            option_1_progressBar.setProgress((currentPoll.getpValue(0) / (float) finalTotalVotes) * 100);
-                        }
-                    }
-                    if (!currentPoll.getpOption(1).isEmpty()) {
-                        option_2_percentage.setVisibility(View.VISIBLE);
-                        option_2_progressBar.setVisibility(View.VISIBLE);
-                        option_2_progressBar.setProgressColor(Color.parseColor("#00796b"));
-                        option_2_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
-                        if (finalTotalVotes != 0) {
+                        System.out.println(total);
 
-                            option_2_progressBar.setMax(100);
-                            option_2_progressBar.setProgress((currentPoll.getpValue(1) / (float) finalTotalVotes) * 100);
-                        }
-                    }
-                    if (!currentPoll.getpOption(2).isEmpty()) {
-                        option_3_percentage.setVisibility(View.VISIBLE);
-                        option_3_progressBar.setVisibility(View.VISIBLE);
-                        option_3_progressBar.setProgressColor(Color.parseColor("#00796b"));
-                        option_3_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
-                        if (finalTotalVotes != 0) {
-                            option_3_progressBar.setMax(100);
-                            option_3_progressBar.setProgress((currentPoll.getpValue(2) / (float) finalTotalVotes) * 100);
-                        }
-                    }
-                    if (!currentPoll.getpOption(3).isEmpty()) {
-                        option_4_percentage.setVisibility(View.VISIBLE);
-                        option_4_progressBar.setVisibility(View.VISIBLE);
-                        option_4_progressBar.setProgressColor(Color.parseColor("#00796b"));
-                        option_4_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
-                        if (finalTotalVotes != 0) {
-                            option_4_progressBar.setMax(100);
-                            option_4_progressBar.setProgress((currentPoll.getpValue(3) / (float) finalTotalVotes) * 100);
-                        }
+                        progress1.setMax(100);
+                        progress1.setProgress((poll.getCvotes(0) / total) * 100);
+                        progress2.setMax(100);
+                        progress2.setProgress((poll.getCvotes(1) / total) * 100);
+                        progress3.setMax(100);
+                        progress3.setProgress((poll.getCvotes(2) / total) * 100);
+                        progress4.setMax(100);
+                        progress4.setProgress((poll.getCvotes(3) / total) * 100);
+                        peroption1.setText(String.valueOf((poll.getCvotes(0) / total) * 100) + '%');
+                        peroption2.setText(String.valueOf((poll.getCvotes(1) / total) * 100) + '%');
+                        peroption3.setText(String.valueOf((poll.getCvotes(2) / total) * 100) + '%');
+                        peroption4.setText(String.valueOf((poll.getCvotes(3) / total) * 100) + '%');
                     }
 
-
-
-                } else {
-                    LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(getContext().LAYOUT_INFLATER_SERVICE);
-                    View layouttoast = inflater.inflate(R.layout.custom_toast, (ViewGroup) finalListItemView.findViewById(R.id.toastcustom));
-                    ((TextView) layouttoast.findViewById(R.id.texttoast)).setText("PLEASE SELECT AN OPTION FOR POLL " + (position + 1));
-
-                    Toast mytoast = new Toast(getContext());
-                    mytoast.setView(layouttoast);
-                    mytoast.setDuration(Toast.LENGTH_SHORT);
-                    mytoast.show();
-                }
-
-
+                    @Override
+                    public void onFailure(Call<PollCardItem> call, Throwable t) {
+                        Toast.makeText(context, "FAILURE " + t, Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
-
-
-
-        view_results.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                final String url = "https://freehit-api.herokuapp.com/polls?id=" + currentPoll.getpId();
-                new Thread() {
-                    public void run() {
-                        QueryUtilPolls.fetchPollData(url);
-                    }
-                }.start();
-
-                option1.setVisibility(View.GONE);
-                option2.setVisibility(View.GONE);
-                option3.setVisibility(View.GONE);
-                option4.setVisibility(View.GONE);
-                submit.setVisibility(View.GONE);
-                view_results.setVisibility(View.GONE);
-                pollresult.setVisibility(View.VISIBLE);
-                option_1.setVisibility(View.VISIBLE);
-                option_2.setVisibility(View.VISIBLE);
-                option_3.setVisibility(View.VISIBLE);
-                option_4.setVisibility(View.VISIBLE);
-                back_from_results.setVisibility(View.VISIBLE);
-                if (!currentPoll.getpOption(0).isEmpty()) {
-                    option_1_percentage.setVisibility(View.VISIBLE);
-                    option_1_progressBar.setVisibility(View.VISIBLE);
-                    option_1_progressBar.setProgressColor(Color.parseColor("#00796b"));
-                    option_1_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
-                    if (finalTotalVotes != 0) {
-                        option_1_progressBar.setMax(100);
-                        option_1_progressBar.setProgress((currentPoll.getpValue(0) / (float) finalTotalVotes) * 100);
-                    }
-                }
-                if (!currentPoll.getpOption(1).isEmpty()) {
-                    option_2_percentage.setVisibility(View.VISIBLE);
-                    option_2_progressBar.setVisibility(View.VISIBLE);
-                    option_2_progressBar.setProgressColor(Color.parseColor("#00796b"));
-                    option_2_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
-                    if (finalTotalVotes != 0) {
-
-                        option_2_progressBar.setMax(100);
-                        option_2_progressBar.setProgress((currentPoll.getpValue(1) / (float) finalTotalVotes) * 100);
-                    }
-                }
-                if (!currentPoll.getpOption(2).isEmpty()) {
-                    option_3_percentage.setVisibility(View.VISIBLE);
-                    option_3_progressBar.setVisibility(View.VISIBLE);
-                    option_3_progressBar.setProgressColor(Color.parseColor("#00796b"));
-                    option_3_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
-                    if (finalTotalVotes != 0) {
-                        option_3_progressBar.setMax(100);
-                        option_3_progressBar.setProgress((currentPoll.getpValue(2) / (float) finalTotalVotes) * 100);
-                    }
-                }
-                if (!currentPoll.getpOption(3).isEmpty()) {
-                    option_4_percentage.setVisibility(View.VISIBLE);
-                    option_4_progressBar.setVisibility(View.VISIBLE);
-                    option_4_progressBar.setProgressColor(Color.parseColor("#00796b"));
-                    option_4_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
-                    if (finalTotalVotes != 0) {
-                        option_4_progressBar.setMax(100);
-                        option_4_progressBar.setProgress((currentPoll.getpValue(3) / (float) finalTotalVotes) * 100);
-                    }
-                }
-
-            }
-
-        });
-
-
-        back_from_results.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                option1.setVisibility(View.VISIBLE);
-                option2.setVisibility(View.VISIBLE);
-                option3.setVisibility(View.VISIBLE);
-                option4.setVisibility(View.VISIBLE);
-                submit.setVisibility(View.VISIBLE);
-                view_results.setVisibility(View.VISIBLE);
-                pollresult.setVisibility(View.INVISIBLE);
-
-            }
-
-        });
-
-
-
-
-        SharedPreferences prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        boolean name = prefs.getBoolean("has_voted_" + position, false);
-        if (name) {
-            final String url = "https://freehit-api.herokuapp.com/polls?id=" + currentPoll.getpId();
-            new Thread() {
-                public void run() {
-                    QueryUtilPolls.fetchPollData(url);
-                }
-            }.start();
-            option1.setVisibility(View.GONE);
-            option2.setVisibility(View.GONE);
-            option3.setVisibility(View.GONE);
-            option4.setVisibility(View.GONE);
-            submit.setVisibility(View.GONE);
-            view_results.setVisibility(View.GONE);
-            pollresult.setVisibility(View.VISIBLE);
-            option_1.setVisibility(View.VISIBLE);
-            option_2.setVisibility(View.VISIBLE);
-            option_3.setVisibility(View.VISIBLE);
-            option_4.setVisibility(View.VISIBLE);
-            back_from_results.setVisibility(View.GONE);
-            if (!currentPoll.getpOption(0).isEmpty()) {
-                option_1_percentage.setVisibility(View.VISIBLE);
-                option_1_progressBar.setVisibility(View.VISIBLE);
-                option_1_progressBar.setProgressColor(Color.parseColor("#00796b"));
-                option_1_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
-                if (totalVotes != 0) {
-                    option_1_progressBar.setMax(100);
-                    option_1_progressBar.setProgress((currentPoll.getpValue(0) / (float) totalVotes) * 100);
-                }
-            }
-            if (!currentPoll.getpOption(1).isEmpty()) {
-                option_2_percentage.setVisibility(View.VISIBLE);
-                option_2_progressBar.setVisibility(View.VISIBLE);
-                option_2_progressBar.setProgressColor(Color.parseColor("#00796b"));
-                option_2_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
-                if (totalVotes != 0) {
-
-                    option_2_progressBar.setMax(100);
-                    option_2_progressBar.setProgress((currentPoll.getpValue(1) / (float) totalVotes) * 100);
-                }
-            }
-            if (!currentPoll.getpOption(2).isEmpty()) {
-                option_3_percentage.setVisibility(View.VISIBLE);
-                option_3_progressBar.setVisibility(View.VISIBLE);
-                option_3_progressBar.setProgressColor(Color.parseColor("#00796b"));
-                option_3_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
-                if (totalVotes != 0) {
-                    option_3_progressBar.setMax(100);
-                    option_3_progressBar.setProgress((currentPoll.getpValue(2) / (float) totalVotes) * 100);
-                }
-            }
-            if (!currentPoll.getpOption(3).isEmpty()) {
-                option_4_percentage.setVisibility(View.VISIBLE);
-                option_4_progressBar.setVisibility(View.VISIBLE);
-                option_4_progressBar.setProgressColor(Color.parseColor("#00796b"));
-                option_4_progressBar.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
-                if (totalVotes != 0) {
-                    option_4_progressBar.setMax(100);
-                    option_4_progressBar.setProgress((currentPoll.getpValue(3) / (float) totalVotes) * 100);
-                }
-            }
-
-        }
-
-        return listItemView;
 
     }
 
+    @Override
+    public int getItemCount() {
+        return PollCardItems.size();
+    }
 }
 
