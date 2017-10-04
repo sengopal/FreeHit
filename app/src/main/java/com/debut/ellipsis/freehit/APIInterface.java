@@ -50,7 +50,7 @@ public interface APIInterface {
     @GET("past?max=6")
     Call<PastMatchCardItem> doGetPastCardResources();
 
-    @GET("past?max=50")
+    @GET("past?max=25")
     Call<PastMatchCardItem> doGetCompletePastCardResources();
 
     @GET("news?")
