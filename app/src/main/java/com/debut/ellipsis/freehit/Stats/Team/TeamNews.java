@@ -76,7 +76,7 @@ public class TeamNews extends Fragment {
 
             @Override
             public void onFailure(Call<NewsItem> call, Throwable t) {
-
+                emptyView.setText("CHECK YOUR INTERNET CONNECTION");
                 call.cancel();
             }
         });
