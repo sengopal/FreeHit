@@ -1,7 +1,12 @@
 package com.debut.ellipsis.freehit;
 
+import com.debut.ellipsis.freehit.Matches.LiveMatches.LiveMatchCardItem;
+import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchCardItem;
+import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchCardItem;
 import com.debut.ellipsis.freehit.News.NewsArticleItem;
 import com.debut.ellipsis.freehit.News.NewsItem;
+import com.debut.ellipsis.freehit.Social.Polls.PollCardItem;
+import com.debut.ellipsis.freehit.Stats.Player.InfoItems;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -84,16 +89,14 @@ public interface APIInterface {
     Call<PollCardItem> doVotePollListResources(@Query("id") String id, @Query("cid") String cid);
 
     @GET("polls?")
-    Call<PollCardItem> doGetSinglePollResources(@Query("id") String id);
+    Call<PollCardItem> doGetSinglePollResources(@Query("id") String id)
 
 
 
     @GET("past?max=6")
     Call<PastMatchCardItem> doGetPastCardResources();
-
     @GET("past?max=50")
     Call<PastMatchCardItem> doGetCompletePastCardResources();
-
     @GET("news?")
     Call<NewsItem> doGetNewsArticleTeam(@Query("fav") String team);
 
