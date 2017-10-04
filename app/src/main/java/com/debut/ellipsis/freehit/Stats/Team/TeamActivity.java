@@ -1,6 +1,5 @@
 package com.debut.ellipsis.freehit.Stats.Team;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -28,23 +27,14 @@ public class TeamActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
         setContentView(R.layout.stats_team);
         Intent i=getIntent();
-        int pos= i.getIntExtra("statname",0);
+        int Team = i.getIntExtra("CountryName",0);
+        String tempTeamName = this.getApplicationContext().getString(Team);
         toolbar = (Toolbar) findViewById(R.id.toolbar_team);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Bundle bundle = new Bundle();
-        bundle.putString("p1", String.valueOf(pos));
-        // set Fragmentclass Arguments
-        Home fragobj = new Home();
-        fragobj.setArguments(bundle);
-
-        Bundle bundle2 = new Bundle();
-        bundle.putString("p2", String.valueOf(pos));
-        // set Fragmentclass Arguments
-        Schedule fragobj2 = new Schedule();
-        fragobj2.setArguments(bundle2);
 
 
+        setTitle(tempTeamName.toUpperCase());
 
         viewPager = (ViewPager) findViewById(R.id.viewpager_teams);
         setupViewPager(viewPager);
@@ -77,8 +67,8 @@ public class TeamActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         TeamActivity.ViewPagerAdapter adapter = new TeamActivity.ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new Home(), "Home");
-        adapter.addFrag(new Schedule(), "BATTING");
+        adapter.addFrag(new Home(), "NEWS");
+        adapter.addFrag(new Schedule(), "SCHEDULE");
         viewPager.setAdapter(adapter);
     }
 

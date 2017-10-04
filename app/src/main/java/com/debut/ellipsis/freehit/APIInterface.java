@@ -22,5 +22,12 @@ public interface APIInterface {
     @GET("past?max=50")
     Call<PastMatchCardItem> doGetCompletePastCardResources();
 
+    @GET("news?")
+    Call<NewsItem> doGetNewsArticleTeam(@Query("fav") String team);
+
+
+
+
+
 
 }

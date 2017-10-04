@@ -2,14 +2,13 @@ package com.debut.ellipsis.freehit.Stats.Team;
 
 
 public class TeamActivityListItem {
-    public class StatsItem {
 
         private int mStatsIcon;
 
-        private int mStatsName;
+        private String mStatsName;
 
 
-        public StatsItem(int StatsIcon, int StatsName) {
+        public TeamActivityListItem(int StatsIcon, String StatsName) {
             mStatsIcon = StatsIcon;
             mStatsName = StatsName;
 
@@ -19,10 +18,9 @@ public class TeamActivityListItem {
             return mStatsIcon;
         }
 
-        public int getmStatsName() {
+        public String getmStatsName() {
             return mStatsName;
         }
 
     }
 
-}
