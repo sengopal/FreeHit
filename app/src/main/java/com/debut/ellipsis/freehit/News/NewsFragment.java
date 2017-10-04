@@ -121,7 +121,7 @@ public class NewsFragment extends Fragment {
                                                                recyclerView.setAdapter(new NewsItemAdapter(NewsListItem, R.layout.fragment_news_list_item, getContext()));
                                                            }
                                                        }
-                                                       
+
                                                        @Override
                                                        public void onFailure(Call<NewsItem> call, Throwable t) {
                                                            mProgressBar.setVisibility(View.INVISIBLE);

@@ -32,7 +32,7 @@ public class Bowling_Fragment extends Fragment {
 
 
         androidGridView.setAdapter(adapterViewAndroid);
-        setGridViewHeightBasedOnChildren(androidGridView, 5);
+        setHeightDynamically(androidGridView);
         gridViewString[0]= "Bowlinf";gridViewString[1]="Test";gridViewString[2]="Odi";gridViewString[3]="T20";gridViewString[4]="IPL";
         gridViewString[5]="Innings";
         APIInterface apiInterface = ApiClient.getClient().create(APIInterface.class);
@@ -127,32 +127,22 @@ public class Bowling_Fragment extends Fragment {
         return rootView;
     }
 
-    public void setGridViewHeightBasedOnChildren(GridView gridView, int columns) {
-        ListAdapter listAdapter = gridView.getAdapter();
-        if (listAdapter == null) {
-            // pre-condition
+    public static void setHeightDynamically(GridView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null)
             return;
-        }
 
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
         int totalHeight = 0;
-        int items = listAdapter.getCount();
-        int rows = 0;
-
-        View listItem = listAdapter.getView(0, null, gridView);
-        listItem.measure(0, 0);
-        totalHeight = listItem.getMeasuredHeight();
-
-        float x = 1;
-        if (items > columns) {
-            x = items / columns;
-            rows = (int) (x + 1);
-            totalHeight *= rows;
+        View view = null;
+        for (int i = 0; i < listAdapter.getCount(); i = i+5) {
+            view = listAdapter.getView(i, view, listView);
+            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += view.getMeasuredHeight();
         }
-
-        ViewGroup.LayoutParams params = gridView.getLayoutParams();
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
         params.height = totalHeight;
-        gridView.setLayoutParams(params);
-
-
+        listView.setLayoutParams(params);
+        listView.requestLayout();
     }
 }
