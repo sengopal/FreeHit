@@ -60,7 +60,7 @@ public class Batting_Items {
             @SerializedName("hundreds")
             private String hundreds;
 
-            @SerializedName("fiftiest")
+            @SerializedName("fifties")
             private String fifties;
             @SerializedName("fours")
             private String fours;
