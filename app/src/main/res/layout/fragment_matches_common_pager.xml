@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@style/Base.Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/common_match_cards"
+        layout="@layout/fragment_matches_match_card"
+        android:visibility="invisible"/>
+
+    <include
+        android:id="@+id/Unavailable_connection"
+        layout="@layout/no_internet_connection"
+        android:visibility="invisible"/>
+
+    <include
+        android:id="@+id/No_Live_Matches"
+        layout="@layout/empty_view"
+        android:visibility="invisible"/>
+
+</FrameLayout>

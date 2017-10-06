@@ -34,12 +34,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/title_country_select"
-            android:layout_marginTop="@dimen/_15sdp">
+            android:layout_marginTop="@dimen/_12sdp">
 
             <ImageView
                 android:id="@+id/country_flag"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
                 tools:src="@drawable/matches" />
 
             <TextView
@@ -49,7 +49,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="10dp"
                 android:layout_toEndOf="@+id/country_flag"
-                android:textSize="@dimen/_20sdp"
+                android:textSize="@dimen/_18sdp"
                 tools:text="INDIA" />
         </RelativeLayout>
 
@@ -59,13 +59,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/relative_layout"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginStart="@dimen/_15sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:padding="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:paddingStart="@dimen/_5sdp"
+            android:paddingEnd="@dimen/_5sdp"
             android:onClick="select_country"
             android:background="@drawable/cell_shape"
             android:text="@string/select_team_button"
+            android:textSize="@dimen/_10sdp"
             android:textColor="@android:color/black" />
 
         <TextView

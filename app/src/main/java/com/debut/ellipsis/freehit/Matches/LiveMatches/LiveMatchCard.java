@@ -1,21 +1,24 @@
 package com.debut.ellipsis.freehit.Matches.LiveMatches;
 
 
+import android.content.Intent;
 import android.graphics.Color;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baoyz.widget.PullRefreshLayout;
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 import com.rd.PageIndicatorView;
 import com.rd.animation.type.AnimationType;
@@ -29,11 +32,14 @@ import retrofit2.Response;
 public class LiveMatchCard extends Fragment {
 
     APIInterface apiInterface;
-    private LiveMatchCardAdapter mAdapter;
     private ProgressBar mProgressBar;
-    public ViewPager viewPager;
     public PageIndicatorView indicator;
-    public TextView emptyview;
+    private LiveMatchCardAdapter mAdapter;
+    public ViewPager vp;
+    public ImageView NoConnectionImage;
+    public Button NoConnectionButton;
+    public TextView NoLiveMatchesText;
+    public Button NoLiveMatchesButton;
 
     public LiveMatchCard() {
         // Required empty public constructor
@@ -43,23 +49,30 @@ public class LiveMatchCard extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_matches_match_cards_item, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_matches_common_pager, container, false);
+
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
-        indicator = (PageIndicatorView) rootView.findViewById(R.id.indicator);
-        indicator.setVisibility(View.INVISIBLE);
-        indicator.setViewPager(viewPager);
-
         mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
 
-        emptyview = (TextView) rootView.findViewById(R.id.empty_view);
+        final View common_match_cards = rootView.findViewById(R.id.common_match_cards);
 
-        final PullRefreshLayout layout = (PullRefreshLayout)rootView.findViewById(R.id.swipeRefreshLayout);
+        vp = (ViewPager) common_match_cards.findViewById(R.id.viewpager);
+        indicator = (PageIndicatorView) common_match_cards.findViewById(R.id.indicator);
+        final PullRefreshLayout refreshLayout = (PullRefreshLayout) common_match_cards.findViewById(R.id.swipeRefreshLayout);
 
-        final ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(getContext().CONNECTIVITY_SERVICE);
 
-        // Get details on the currently active default data network
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
+
+        NoConnectionImage = (ImageView) no_internet_connection.findViewById(R.id.no_internet_connection);
+        NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
+
+
+        final View No_live_matches = rootView.findViewById(R.id.No_Live_Matches);
+
+        NoLiveMatchesText = (TextView) No_live_matches.findViewById(R.id.empty_view);
+        NoLiveMatchesButton = (Button) No_live_matches.findViewById(R.id.No_Live_Matches_button);
+
 
         /**
          GET List Resources
@@ -69,77 +82,117 @@ public class LiveMatchCard extends Fragment {
             @Override
             public void onResponse(Call<LiveMatchCardItem> call, Response<LiveMatchCardItem> response) {
 
-                List<LiveMatchCardItem> LiveMatches = response.body().getResults();
-                viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
                 mProgressBar.setVisibility(View.GONE);
-                if(getActivity()!=null) {
+
+                common_match_cards.setVisibility(View.VISIBLE);
+                no_internet_connection.setVisibility(View.INVISIBLE);
+
+                indicator.setVisibility(View.VISIBLE);
+
+                indicator.setViewPager(vp);
+
+                List<LiveMatchCardItem> LiveMatches = response.body().getResults();
+
+                if (getActivity() != null) {
                     if (LiveMatches.size() == 0) {
-                        emptyview.setText(R.string.EmptyLiveMatches);
-                        emptyview.setVisibility(View.VISIBLE);
+                        No_live_matches.setVisibility(View.VISIBLE);
+                        NoLiveMatchesButton.setOnClickListener(new View.OnClickListener() {
+
+                            public void onClick(View v) {
+                                Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                                i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+                                i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                startActivity(i);
+                            }
+                        });
+
                     }
                     mAdapter = new LiveMatchCardAdapter(getActivity(), LiveMatches);
-                    indicator.setViewPager(viewPager);
+                    indicator.setViewPager(vp);
                     indicator.setCount(mAdapter.getCount());
-                    indicator.setVisibility(View.INVISIBLE);
                     IndicatorConfig();
-                    viewPager.setAdapter(mAdapter);
+                    vp.setAdapter(mAdapter);
                 }
             }
 
             @Override
             public void onFailure(Call<LiveMatchCardItem> call, Throwable t) {
-                layout.setRefreshing(true);
-                emptyview.setText("CHECK YOUR INTERNET CONNECTION");
-                mProgressBar.setVisibility(View.INVISIBLE);
+                mProgressBar.setVisibility(View.GONE);
+                no_internet_connection.setVisibility(View.VISIBLE);
+                common_match_cards.setVisibility(View.INVISIBLE);
+                NoConnectionButton.setOnClickListener(new View.OnClickListener() {
+
+                    public void onClick(View v) {
+                        Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                        i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+                        i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(i);
+
+                    }
+                });
                 call.cancel();
             }
         });
 
 
-        final TextView emptyView = (TextView) rootView.findViewById(R.id.empty_view);
 
 
-        layout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+        refreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 // start refresh
-                layout.setRefreshing(true);
+                refreshLayout.setRefreshing(true);
                 Call<LiveMatchCardItem> call = apiInterface.doGetLiveMatchResources();
                 call.enqueue(new Callback<LiveMatchCardItem>() {
                     @Override
                     public void onResponse(Call<LiveMatchCardItem> call, Response<LiveMatchCardItem> response) {
 
-                        List<LiveMatchCardItem> LiveMatches = response.body().getResults();
-                        viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
                         mProgressBar.setVisibility(View.GONE);
-                        if(getActivity()!=null) {
+
+                        common_match_cards.setVisibility(View.VISIBLE);
+                        no_internet_connection.setVisibility(View.INVISIBLE);
+
+                        indicator.setVisibility(View.VISIBLE);
+
+                        indicator.setViewPager(vp);
+
+                        List<LiveMatchCardItem> LiveMatches = response.body().getResults();
+
+                        if (getActivity() != null) {
                             if (LiveMatches.size() == 0) {
-                                emptyView.setText(R.string.EmptyNews);
-                                emptyView.setVisibility(View.VISIBLE);
+                                No_live_matches.setVisibility(View.VISIBLE);
+                                NoLiveMatchesButton.setOnClickListener(new View.OnClickListener() {
+
+                                    public void onClick(View v) {
+                                        Intent i = new Intent(getContext(), MainActivity.class);
+                                        i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+                                        i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                        startActivity(i);
+                                    }
+                                });
                             }
                             mAdapter = new LiveMatchCardAdapter(getActivity(), LiveMatches);
-                            indicator.setViewPager(viewPager);
+                            indicator.setViewPager(vp);
                             indicator.setCount(mAdapter.getCount());
                             indicator.setVisibility(View.INVISIBLE);
                             IndicatorConfig();
-                            viewPager.setAdapter(mAdapter);
+                            vp.setAdapter(mAdapter);
                         }
                     }
 
                     @Override
                     public void onFailure(Call<LiveMatchCardItem> call, Throwable t) {
-                        viewPager.setAdapter(null);
-                        emptyView.setText("PLEASE CHECK YOUR INTERNET CONNECTION");
+                        mProgressBar.setVisibility(View.INVISIBLE);
+                        common_match_cards.setVisibility(View.VISIBLE);
+                        Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                        toast.show();
                         call.cancel();
                     }
                 });
-                layout.setRefreshing(false);
+                refreshLayout.setRefreshing(false);
             }
 
         });
-
-
-
 
 
         return rootView;

@@ -45,12 +45,17 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, final int position) {
         View view = this.layoutInflater.inflate(R.layout.fragment_matches_past_match_card, container, false);
+
         TextView textViewMatchName = (TextView) view.findViewById(R.id.match_name_past);
         textViewMatchName.setText(this.dataObjectList.get(position).getTitle());
+
         TextView textViewSeriesName = (TextView) view.findViewById(R.id.series_name_past);
         textViewSeriesName.setText(this.dataObjectList.get(position).getTour());
+
         TextView textViewStadiumName = (TextView) view.findViewById(R.id.stadium_past);
-        textViewStadiumName.setText(this.dataObjectList.get(position).getStadium());
+        textViewStadiumName.setText("( "+this.dataObjectList.get(position).getStadium()+" )");
+
+
         imageViewTeam1Logo = (ImageView) view.findViewById(R.id.team_logo_1_past);
 
         imageViewTeam2Logo = (ImageView) view.findViewById(R.id.team_logo_2_past);
@@ -126,10 +131,10 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
                     // Start the new activity
                     context.startActivity(UpcomingIntent);
                 } else {
-                    Intent UpcomingMatchScoreCardIntent = new Intent(context, PastMatchScoreCard.class);
-                    UpcomingMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getNdid());
-                    UpcomingMatchScoreCardIntent.putExtra("match_name", dataObjectList.get(position).getTitle() + "(" + dataObjectList.get(position).getTeam1Info().getSn() + " vs " + dataObjectList.get(position).getTeam2Info().getSn() + ")");
-                    context.startActivity(UpcomingMatchScoreCardIntent);
+                    Intent PastMatchScoreCardIntent = new Intent(context, PastMatchScoreCard.class);
+                    PastMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getNdid());
+                    PastMatchScoreCardIntent.putExtra("match_name", dataObjectList.get(position).getTitle());
+                    context.startActivity(PastMatchScoreCardIntent);
                 }
             }
         });

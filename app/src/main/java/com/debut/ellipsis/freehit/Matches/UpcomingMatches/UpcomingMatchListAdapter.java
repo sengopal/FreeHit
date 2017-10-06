@@ -101,7 +101,7 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
         textViewSeriesName.setText(upcomingMatchCards.getTour());
 
         TextView textViewStadiumName = viewHolder.textViewStadiumName;
-        textViewStadiumName.setText(upcomingMatchCards.getStadium());
+        textViewStadiumName.setText("( "+upcomingMatchCards.getStadium()+" )");
 
         String logo_string1 = upcomingMatchCards.getTeam1().getImage();
 

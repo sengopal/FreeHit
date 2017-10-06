@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
@@ -95,7 +94,6 @@ public class SocialPolls extends Fragment {
                 recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item, getContext()));
                 emptyView.setText("CHECK YOUR INTERNET CONNECTION");
                 mProgressBar.setVisibility(View.INVISIBLE);
-                Toast.makeText(getContext(), "Error: " + t.toString(), Toast.LENGTH_SHORT).show();
                 call.cancel();
             }
         });

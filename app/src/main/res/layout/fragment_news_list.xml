@@ -22,15 +22,7 @@
                 android:layout_centerHorizontal="true" />
         </android.support.v4.widget.SwipeRefreshLayout>
 
-        <TextView
-            android:id="@+id/empty_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerInParent="true"
-            android:layout_centerVertical="true"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textSize="@dimen/_25sdp" />
+
     </RelativeLayout>
 
     <ProgressBar
@@ -38,6 +30,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
+
+    <include
+        android:id="@+id/Unavailable_connection"
+        layout="@layout/no_internet_connection"
+        android:visibility="invisible"/>
+
+    <include
+        android:id="@+id/No_news"
+        layout="@layout/empty_view"
+        android:visibility="invisible"/>
 
 
 </RelativeLayout>

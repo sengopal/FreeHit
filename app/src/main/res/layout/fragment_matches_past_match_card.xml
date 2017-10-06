@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="@dimen/_15sdp">
+            android:paddingTop="@dimen/_16sdp">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp">
+                    android:layout_marginTop="@dimen/_23sdp">
 
 
                     <ImageView
@@ -99,7 +99,7 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_toEndOf="@+id/team_logo_1_past"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_20sdp"
+                        android:textSize="@dimen/_16sdp"
                         tools:text="SN" />
 
                     <TextView
@@ -147,7 +147,7 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_toStartOf="@+id/team_logo_2_past"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_20sdp"
+                        android:textSize="@dimen/_16sdp"
                         tools:text="IND" />
 
                     <TextView
@@ -181,6 +181,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:textColor="@android:color/black"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:textSize="@dimen/_11sdp"
                 tools:text="India beat Sri Lanka by 168 runs" />
 

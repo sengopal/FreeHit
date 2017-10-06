@@ -55,11 +55,10 @@ public class TwitterFragment extends Fragment {
         String Team1Name = i.getStringExtra("Team1Name");
         String Team2Name = i.getStringExtra("Team2Name");
         CountryHash countryHash = new CountryHash();
-        Team1SN = countryHash.getCountrySN(Team1Name);
-        Team2SN = countryHash.getCountrySN(Team2Name);
 
-        final String QueryToSearch1 = "#" + Team1SN + "vs" + Team2SN;
-        final String QueryToSearch2 = "#" + Team2SN + "vs" + Team1SN;
+
+        final String QueryToSearch1 = "#" + Team1Name + "vs" + Team2Name;
+        final String QueryToSearch2 = "#" + Team2Name + "vs" + Team1Name;
 
         //  Initializing the RecyclerView for Twitter feed
         rv = (RecyclerView) socTweets.findViewById(R.id.twit_feed);

@@ -5,51 +5,51 @@ public class CountryHash {
 
     public String getCountrySN(String CountryName) {
         switch (CountryName) {
-            case "India":
+            case "INDIA":
                 return "IND";
-            case "Australia":
+            case "AUSTRALIA":
                 return "AUS";
-            case "Pakistan":
+            case "PAKISTAN":
                 return "PAK";
-            case "Sri Lanka":
+            case "SRI LANKA":
                 return "SL";
-            case "South Africa":
+            case "SOUTH AFRICA":
                 return "SA";
-            case "Bangladesh":
+            case "BANGLADESH":
                 return "BAN";
-            case "New Zealand":
+            case "NEW ZEALAND":
                 return "NZ";
-            case "England":
+            case "ENGLAND":
                 return "ENG";
-            case "West Indies":
+            case "WEST INDIES":
                 return "WI";
-            case "Zimbabwe":
+            case "ZIMBABWE":
                 return "ZIM";
-            case "Canada":
+            case "CANADA":
                 return "CAN";
-            case "Ireland":
+            case "IRELAND":
                 return "IRE";
-            case "Kenya":
+            case "KENYA":
                 return "KEN";
-            case "Netherlands":
+            case "NETHERLANDS":
                 return "NED";
-            case "Scotland":
+            case "SCOTLAND":
                 return "SCO";
-            case "Hong Kong":
+            case "HONG KONG":
                 return "HK";
-            case "United Arab Emirates":
+            case "UNITED ARAB EMIRATES":
                 return "UAE";
             case "USA":
                 return "USA";
-            case "Afghanistan":
+            case "AFGHANISTAN":
                 return "AFG";
-            case "Papua New Guinea":
+            case "PAPUA NEW GUINEA":
                 return "PNG";
-            case "Nepal":
+            case "NEPAL":
                 return "NEP";
-            case "Oman":
+            case "OMAN":
                 return "OMN";
-            case "World XI":
+            case "WORLD XI":
                 return "WXI";
 
         }

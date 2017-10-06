@@ -53,7 +53,7 @@ public class PastMatchCardItem {
     }
 
     public String getTour() {
-        return desc;
+        return tour;
     }
 
     public String getResult() {

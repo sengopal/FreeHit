@@ -16,7 +16,7 @@ import com.debut.ellipsis.freehit.R;
 import java.util.List;
 
 
-public class NewsItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.freehit.News.NewsItemAdapter.NewsViewHolder> {
+public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsViewHolder> {
 
     private List<NewsItem> newsItems;
     private int rowLayout;
@@ -52,19 +52,19 @@ public class NewsItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
     }
 
     @Override
-    public com.debut.ellipsis.freehit.News.NewsItemAdapter.NewsViewHolder onCreateViewHolder(ViewGroup parent,
+    public NewsItemAdapter.NewsViewHolder onCreateViewHolder(ViewGroup parent,
                                                                                              int viewType) {
         View view = null;
         if (viewType == 0) {
             view = LayoutInflater.from(parent.getContext()).inflate(rowLayout, parent, false);
         }
-        return new com.debut.ellipsis.freehit.News.NewsItemAdapter.NewsViewHolder(view);
+        return new NewsItemAdapter.NewsViewHolder(view);
 
     }
 
 
     @Override
-    public void onBindViewHolder(com.debut.ellipsis.freehit.News.NewsItemAdapter.NewsViewHolder holder, final int position) {
+    public void onBindViewHolder(NewsItemAdapter.NewsViewHolder holder, final int position) {
         holder.title.setText(newsItems.get(position).getTitle());
         holder.desc.setText(newsItems.get(position).getDesc());
         holder.date.setText(newsItems.get(position).getDate());
@@ -80,13 +80,13 @@ public class NewsItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
             @Override
             public void onClick(View view) {
 
-                Intent UpcomingMatchScoreCardIntent = new Intent(context, NewsArticle.class);
+                Intent NewsArticleIntent = new Intent(context, NewsArticle.class);
 
                 String pos = String.valueOf(position);
-                UpcomingMatchScoreCardIntent.putExtra("match_id", newsItems.get(position).getId().toString());
+                NewsArticleIntent.putExtra("match_id", newsItems.get(position).getId().toString());
                     /*ActivityOptions.makeCustomAnimation(context,R.anim.animation_entry,R.anim.animation_exit);*/
-                UpcomingMatchScoreCardIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(UpcomingMatchScoreCardIntent);
+                NewsArticleIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(NewsArticleIntent);
 
             }
         };

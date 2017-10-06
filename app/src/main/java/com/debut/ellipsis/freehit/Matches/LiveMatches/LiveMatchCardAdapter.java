@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.debut.ellipsis.freehit.CountryHash;
 import com.debut.ellipsis.freehit.R;
 
 import java.text.ParseException;
@@ -81,7 +82,7 @@ public class LiveMatchCardAdapter extends PagerAdapter {
         textViewSeriesName.setText(series_name);
 
         TextView textViewStadiumName = (TextView) view.findViewById(R.id.stadium_live);
-        textViewStadiumName.setText(this.dataObjectList.get(position).getStadium());
+        textViewStadiumName.setText("( "+this.dataObjectList.get(position).getStadium()+" )");
 
         imageViewTeam1Logo = (ImageView) view.findViewById(R.id.team_logo_1_live);
 
@@ -90,7 +91,11 @@ public class LiveMatchCardAdapter extends PagerAdapter {
 
 
         TextView shortName1 = (TextView) view.findViewById(R.id.sn_team_1_live);
-        shortName1.setText(this.dataObjectList.get(position).getTeam1().getSn());
+        CountryHash countryHash = new CountryHash();
+
+        final String ShortNameTeam1 = countryHash.getCountrySN((this.dataObjectList.get(position).getTeam1().getName()).toUpperCase());
+
+        shortName1.setText(ShortNameTeam1);
 
         TextView team1Innings1 = (TextView) view.findViewById(R.id.innings1_team1_live);
         team1Innings1.setText(this.dataObjectList.get(position).getTeam1().getInn1());
@@ -98,9 +103,11 @@ public class LiveMatchCardAdapter extends PagerAdapter {
         TextView team1Innings2 = (TextView) view.findViewById(R.id.innings2_team1_live);
         team1Innings2.setText(this.dataObjectList.get(position).getTeam1().getInn2());
 
+        final String ShortNameTeam2 = countryHash.getCountrySN((this.dataObjectList.get(position).getTeam2().getName()).toUpperCase());
+
 
         TextView shortName2 = (TextView) view.findViewById(R.id.sn_team_2_live);
-        shortName2.setText(this.dataObjectList.get(position).getTeam2().getSn());
+        shortName2.setText(ShortNameTeam2);
 
         TextView team2Innings1 = (TextView) view.findViewById(R.id.innings1_team2_live);
         team2Innings1.setText(this.dataObjectList.get(position).getTeam2().getInn1());
@@ -134,9 +141,9 @@ public class LiveMatchCardAdapter extends PagerAdapter {
             public void onClick(View v) {
                 Intent LiveMatchScoreCardIntent = new Intent(context, LiveMatchScoreCard.class);
                 LiveMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getNdid());
-                LiveMatchScoreCardIntent.putExtra("match_name", finalMatch_name + "(" + dataObjectList.get(position).getTeam1().getSn() + " vs " + dataObjectList.get(position).getTeam2().getSn() + ")");
-                LiveMatchScoreCardIntent.putExtra("Team1Name", dataObjectList.get(position).getTeam1().getSn());
-                LiveMatchScoreCardIntent.putExtra("Team2Name", dataObjectList.get(position).getTeam2().getSn());
+                LiveMatchScoreCardIntent.putExtra("match_name", finalMatch_name + "( " +ShortNameTeam1+ " vs " +ShortNameTeam2+ " )");
+                LiveMatchScoreCardIntent.putExtra("Team1Name", ShortNameTeam1);
+                LiveMatchScoreCardIntent.putExtra("Team2Name", ShortNameTeam2);
                 /*ActivityOptions.makeCustomAnimation(context,R.anim.enter_from_right,R.anim.exit_to_right);*/
                 context.startActivity(LiveMatchScoreCardIntent);
 
@@ -166,8 +173,6 @@ public class LiveMatchCardAdapter extends PagerAdapter {
         Glide.with(context).load(logo_string1).placeholder(R.drawable.matches).into(imageViewTeam1Logo);
         Glide.with(context).load(logo_string2).placeholder(R.drawable.matches).into(imageViewTeam2Logo);
 
-        /*setImage(logo_string1, imageViewTeam1Logo);
-        setImage(logo_string2, imageViewTeam2Logo);*/
         container.addView(view);
         return view;
 
