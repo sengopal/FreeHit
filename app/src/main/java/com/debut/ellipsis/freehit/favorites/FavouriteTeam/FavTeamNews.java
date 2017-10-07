@@ -99,7 +99,6 @@ public class FavTeamNews extends AppCompatActivity {
                 Toast toast=Toast.makeText(getApplicationContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
                 toast.show();
                 call.cancel();
-                call.cancel();
             }
         });
 

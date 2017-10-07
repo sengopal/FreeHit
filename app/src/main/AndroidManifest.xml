@@ -65,6 +65,7 @@
         <activity android:name=".favorites.FavouriteTeam.FavTeamNews" />
         <activity android:name=".favorites.FavouriteTeam.FavTeamUpcomingMatches" />
         <activity android:name=".favorites.FavouriteTeam.FavTeamPastMatches"></activity>
+        <activity android:name=".favorites.FavouriteTeam.FavTeamPlayers"/>
         <activity android:name=".Stats.Series.SeriesListView"/>
     </application>
 
