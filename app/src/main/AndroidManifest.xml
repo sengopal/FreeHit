@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CLEAR_APP_CACHE" />
     <!-- PERMISSION FOR WRITING TO EXTERNAL SD CARD IN CASE OF CACHE PICTURES -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -39,7 +38,6 @@
         <activity android:name=".Matches.LiveMatches.LiveMatchScoreCard" />
         <activity android:name=".Matches.UpcomingMatches.UpcomingMatchScoreCard" />
         <activity android:name=".IntoSlider.WelcomeActivity" />
-
         <activity
             android:name=".News.NewsArticle"
             android:label="News ">
@@ -47,7 +45,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.debut.ellipsis.freehit.MainActivity" />
         </activity>
-
         <activity
             android:name=".Settings.CustomSettings"
             android:label="Settings">
@@ -55,7 +52,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.debut.ellipsis.freehit.MainActivity" />
         </activity>
-
         <activity
             android:name=".Stats.Player.PlayerActivity"
             android:label="Player Info" />
@@ -66,8 +62,9 @@
         <activity
             android:name=".Stats.Team.TeamListView"
             android:windowSoftInputMode="stateHidden" />
-
-
+        <activity android:name=".favorites.FavouriteTeam.FavTeamNews" />
+        <activity android:name=".favorites.FavouriteTeam.FavTeamUpcomingMatches" />
+        <activity android:name=".favorites.FavouriteTeam.FavTeamPastMatches"></activity>
     </application>
 
 </manifest>
