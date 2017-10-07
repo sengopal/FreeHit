@@ -78,6 +78,7 @@ public class SocialTweets extends Fragment {
                     @Override
                     public void failure(TwitterException exception) {
                         Toast.makeText(getContext(), "Fetching Twitter Feed failed.", Toast.LENGTH_SHORT).show();
+                        refLayout.setRefreshing(false);
                     }
                 });
             }
@@ -120,6 +121,7 @@ public class SocialTweets extends Fragment {
                             @Override
                             public void failure(TwitterException exception) {
                                 Toast.makeText(getContext(), "Fetching Twitter Feed failed.", Toast.LENGTH_SHORT).show();
+                                refLayout.setRefreshing(false);
                             }
                         });
                     }

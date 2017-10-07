@@ -65,5 +65,13 @@ public interface APIInterface {
     @GET("past?")
     Call<PastMatchCardItem> doGetPastFavTeam(@Query("fav") String team);
 
+    @GET("country")
+    Call<CountryItem> doGetCountryResources();
+
+    @GET("player?id=1")
+    Call<PlayerCountryItem> doGetFavTeamPlayers();
+
+
+
 
 }

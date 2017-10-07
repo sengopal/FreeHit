@@ -43,11 +43,10 @@ public class SeriesUpcoming extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_stats_team_complete_match_list, container, false);
 
         Intent i = getActivity().getIntent();
-        int Team = i.getIntExtra("CountryName", 0);
-        String tempTeamName = this.getContext().getString(Team);
+        String Team = i.getStringExtra("CountryName");
 
         CountryHash countryHash = new CountryHash();
-        String TeamName = countryHash.getCountrySN(tempTeamName);
+        String TeamName = countryHash.getCountrySN(Team.toUpperCase());
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
         mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);

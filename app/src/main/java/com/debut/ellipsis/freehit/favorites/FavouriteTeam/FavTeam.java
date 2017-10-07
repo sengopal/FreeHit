@@ -41,6 +41,8 @@ public class FavTeam extends Fragment {
         favTeamItem.add(new StatsItem(R.drawable.arrow, R.string.category_news));
         favTeamItem.add(new StatsItem(R.drawable.arrow, R.string.upcoming_list));
         favTeamItem.add(new StatsItem(R.drawable.arrow, R.string.past_list));
+        favTeamItem.add(new StatsItem(R.drawable.arrow, R.string.players));
+
 
         SharedPreferences prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         final String Countryname = prefs.getString("country_name", "null");
@@ -76,6 +78,11 @@ public class FavTeam extends Fragment {
 
                     } else if (position == 2) {
                         Intent FavTeamPastIntent = new Intent(getActivity(), FavTeamPastMatches.class);
+                        FavTeamPastIntent.putExtra("CountryName",Countryname);
+                        startActivity(FavTeamPastIntent);
+
+                    } else if (position == 3) {
+                        Intent FavTeamPastIntent = new Intent(getActivity(), FavTeamPlayers.class);
                         FavTeamPastIntent.putExtra("CountryName",Countryname);
                         startActivity(FavTeamPastIntent);
 

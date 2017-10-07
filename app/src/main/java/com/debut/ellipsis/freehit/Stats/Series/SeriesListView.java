@@ -30,7 +30,7 @@ public class SeriesListView extends AppCompatActivity {
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         final ArrayList<SeriesListItem> SeriesItem = new ArrayList<SeriesListItem>();
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar_team);
+        toolbar = (Toolbar) findViewById(R.id.toolbar_series);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

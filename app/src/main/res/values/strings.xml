@@ -20,9 +20,11 @@
 
 
     <!--COMPLETE LIST OF MATCHES-->
-    <string name="upcoming_list">UPCOMING MATCHES</string>
-    <string name="past_list">PAST MATCHES</string>
-    <string name="live_list">LIVE MATCHES</string>
+    <string name="upcoming_list">Upcoming Matches</string>
+    <string name="past_list">Past Matches</string>
+    <string name="live_list">Live Matches</string>
+
+    <string name="players">Players</string>
 
 
     <!--FOR EMPTY VIEW OF NEWS FRAGMENT-->
