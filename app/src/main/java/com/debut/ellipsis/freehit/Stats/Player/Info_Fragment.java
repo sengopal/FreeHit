@@ -176,7 +176,7 @@ public class Info_Fragment extends Fragment {
 
             @Override
             public void onFailure(Call<InfoItem> call, Throwable t) {
-                Toast.makeText(getContext(), t.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
                 call.cancel();
             }
         });
