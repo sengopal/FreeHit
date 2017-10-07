@@ -2,6 +2,7 @@ package com.debut.ellipsis.freehit.favorites.FavouriteTeam;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
@@ -31,6 +33,8 @@ public class FavTeamPastMatches extends AppCompatActivity {
     private ProgressBar mProgressBar;
     private RecyclerView rv;
     private Toolbar toolbar;
+    public SwipeRefreshLayout refresh_layout;
+    public TextView mEmptyView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +52,16 @@ public class FavTeamPastMatches extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(R.string.past_list);
 
+        refresh_layout = (SwipeRefreshLayout) findViewById(R.id.refresh_layout);
+
         CountryHash countryHash = new CountryHash();
 
-        String TeamName = countryHash.getCountrySN(Team.toUpperCase());
+        final String TeamName = countryHash.getCountrySN(Team.toUpperCase());
 
         rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-        final TextView emptyView = (TextView)findViewById(R.id.empty_view);
+        mEmptyView = (TextView) findViewById(R.id.empty_view);
+        mEmptyView.setVisibility(View.INVISIBLE);
 
 
         /**
@@ -65,23 +72,66 @@ public class FavTeamPastMatches extends AppCompatActivity {
             @Override
             public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
 
-                List<PastMatchCardItem> pastMatchesList = response.body().getResults();
                 mProgressBar.setVisibility(View.GONE);
-                if (pastMatchesList.size() == 0) {
-                    emptyView.setText(R.string.EmptyLiveMatches);
-                    emptyView.setVisibility(View.VISIBLE);
-                }
 
-                MatchListAdapter = new PastMatchesListAdapter( pastMatchesList,getApplicationContext());
+                List<PastMatchCardItem> pastMatchcardItems = response.body().getResults();
+
+                if(pastMatchcardItems.size()==0)
+                {
+                    mEmptyView.setVisibility(View.VISIBLE);
+                    mEmptyView.setText("NO MATCHES FOUND");
+                }
+                MatchListAdapter = new PastMatchesListAdapter(pastMatchcardItems, getApplicationContext());
                 rv.setAdapter(MatchListAdapter);
             }
 
             @Override
             public void onFailure(Call<PastMatchCardItem> call, Throwable t) {
+                mProgressBar.setVisibility(View.INVISIBLE);
+                mEmptyView.setVisibility(View.INVISIBLE);
+                Toast toast=Toast.makeText(getApplicationContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
+                toast.show();
+                call.cancel();
                 call.cancel();
             }
         });
 
+        refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Checking if connected or not on refresh
+                refresh_layout.setRefreshing(true);
+                Call<PastMatchCardItem> call = apiInterface.doGetPastFavTeam(TeamName);
+                call.enqueue(new Callback<PastMatchCardItem>() {
+                    @Override
+                    public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
+                        mProgressBar.setVisibility(View.GONE);
+
+                        List<PastMatchCardItem> pastMatchcardItems = response.body().getResults();
+                        if(pastMatchcardItems.size()==0)
+                        {
+                            mEmptyView.setVisibility(View.VISIBLE);
+                            mEmptyView.setText("NO MATCHES FOUND");
+                        }
+
+                        MatchListAdapter = new PastMatchesListAdapter(pastMatchcardItems, getApplicationContext());
+                        rv.setAdapter(MatchListAdapter);
+                    }
+
+                    @Override
+                    public void onFailure(Call<PastMatchCardItem> call, Throwable t) {
+                        mProgressBar.setVisibility(View.INVISIBLE);
+                        mEmptyView.setVisibility(View.INVISIBLE);
+                        Toast toast=Toast.makeText(getApplicationContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
+                        toast.show();
+                        call.cancel();
+
+                    }
+                });
+                refresh_layout.setRefreshing(false);
+            }
+        }
+        );
 
     }
 
