@@ -29,13 +29,12 @@ public class SeriesActivity extends AppCompatActivity {
         setContentView(R.layout.stats_series_activity);
 
         Intent i = getIntent();
-        int Series = i.getIntExtra("CountryName", 0);
-        String tempSeriesName = this.getApplicationContext().getString(Series);
+        String Series = i.getStringExtra("CountryName");
 
         toolbar = (Toolbar) findViewById(R.id.toolbar_team);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle(tempSeriesName.toUpperCase());
+        setTitle(Series.toUpperCase());
 
         viewPager = (ViewPager) findViewById(R.id.viewpager_teams);
         setupViewPager(viewPager);

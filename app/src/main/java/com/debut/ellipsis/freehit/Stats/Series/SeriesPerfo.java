@@ -38,8 +38,8 @@ public class SeriesPerfo extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_matches, container, false);
         Intent i = getActivity().getIntent();
-        int Team = i.getIntExtra("CountryName", 0);
-        String tempTeamName = this.getContext().getString(Team);
+        String Team = i.getStringExtra("CountryName");
+
 
 
         viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
