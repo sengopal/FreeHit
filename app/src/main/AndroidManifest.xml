@@ -59,6 +59,7 @@
         <activity android:name=".Stats.Series.SeriesActivity" />
         <activity android:name=".Stats.Rankings.RankingActivity" />
         <activity android:name=".Stats.Records.RecordsActivity" />
+        <activity android:name=".Stats.Series.SeriesListView"></activity>
         <activity
             android:name=".Stats.Team.TeamListView"
             android:windowSoftInputMode="stateHidden" />
