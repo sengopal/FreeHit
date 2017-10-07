@@ -33,9 +33,7 @@ import retrofit2.Response;
 public class NewsFragment extends Fragment {
 
     APIInterface apiInterface;
-    private NewsItemAdapter mAdapter;
     private ProgressBar mProgressBar;
-    private TextView mEmptyView;
     public ImageView NoConnectionImage;
     public Button NoConnectionButton;
     public TextView NoNewsText;
@@ -56,7 +54,7 @@ public class NewsFragment extends Fragment {
         final RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.news_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        mEmptyView = (TextView) rootView.findViewById(R.id.empty_view);
+
 
         mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
 
@@ -92,6 +90,7 @@ public class NewsFragment extends Fragment {
 
                             public void onClick(View v) {
                                 Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                                i.putExtra("Main_tab",1);
                                 i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                                 i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                                 startActivity(i);
@@ -144,6 +143,7 @@ public class NewsFragment extends Fragment {
 
                                     public void onClick(View v) {
                                         Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                                        i.putExtra("Main_tab",4);
                                         i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                                         i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                                         startActivity(i);
