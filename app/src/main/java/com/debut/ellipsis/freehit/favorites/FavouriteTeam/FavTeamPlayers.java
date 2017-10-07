@@ -55,11 +55,26 @@ public class FavTeamPlayers extends AppCompatActivity {
                 {
                     if(countries.get(i).getTitle().equals(Team))
                     {
-                        System.out.println("GOING HERE");
-                        System.out.println(countries.get(i).getId());
+//GITPUSH
                         int Teamid=countries.get(i).getId();
                         TeamID = String.valueOf(Teamid);
-                        System.out.println("TEAM ID " +TeamID);
+                        Call<PlayerCountryItem> call1 = apiInterface.doGetFavTeamPlayers(TeamID);
+                        call1.enqueue(new Callback<PlayerCountryItem>() {
+                            @Override
+                            public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
+
+                                List<PlayerCountryItem> playerCountryItems = response.body().getResults();
+                                recyclerView.setAdapter(new FavTeamPlayersAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<PlayerCountryItem> call, Throwable t) {
+                                Toast toast=Toast.makeText(getApplicationContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
+                                toast.show();
+                                call.cancel();
+                            }
+                        });
                         break;
                     }
                 }
@@ -75,24 +90,7 @@ public class FavTeamPlayers extends AppCompatActivity {
 
 
 
-        Call<PlayerCountryItem> call1 = apiInterface.doGetFavTeamPlayers();
-        call1.enqueue(new Callback<PlayerCountryItem>() {
-            @Override
-            public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
-
-                List<PlayerCountryItem> playerCountryItems = response.body().getResults();
-                recyclerView.setAdapter(new FavTeamPlayersAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
-
-            }
-
-            @Override
-            public void onFailure(Call<PlayerCountryItem> call, Throwable t) {
-                Toast toast=Toast.makeText(getApplicationContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
-                toast.show();
-                call.cancel();
-            }
-        });
-
 
     }
+
 }

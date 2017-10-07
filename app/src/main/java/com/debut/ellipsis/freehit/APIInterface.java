@@ -68,8 +68,8 @@ public interface APIInterface {
     @GET("country")
     Call<CountryItem> doGetCountryResources();
 
-    @GET("player?id=1")
-    Call<PlayerCountryItem> doGetFavTeamPlayers();
+    @GET("player?")
+    Call<PlayerCountryItem> doGetFavTeamPlayers(@Query ("id") String TeamID);
 
 
 
