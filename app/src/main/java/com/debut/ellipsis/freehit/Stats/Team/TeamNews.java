@@ -68,7 +68,6 @@ public class TeamNews extends Fragment {
 
                 List<NewsItem> news = response.body().getResults();
                 if (news.size() == 0) {
-                    System.out.println("Empty View");
                     emptyView.setText(R.string.EmptyNews);
                     emptyView.setVisibility(View.VISIBLE);
                 }
@@ -77,7 +76,7 @@ public class TeamNews extends Fragment {
 
             @Override
             public void onFailure(Call<NewsItem> call, Throwable t) {
-
+                emptyView.setText("CHECK YOUR INTERNET CONNECTION");
                 call.cancel();
             }
         });

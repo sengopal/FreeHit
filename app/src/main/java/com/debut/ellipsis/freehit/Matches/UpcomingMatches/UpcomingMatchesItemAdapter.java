@@ -102,7 +102,7 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
                     context.startActivity(UpcomingIntent);
                 } else {
                     Intent UpcomingMatchScoreCardIntent = new Intent(context, UpcomingMatchScoreCard.class);
-                    UpcomingMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getId());
+                    UpcomingMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getNdid());
                     UpcomingMatchScoreCardIntent.putExtra("match_name", dataObjectList.get(position).getMatch() + "(" + dataObjectList.get(position).getTeam1().getSn() + " vs " + dataObjectList.get(position).getTeam2().getSn() + ")");
                     context.startActivity(UpcomingMatchScoreCardIntent);
                 }
@@ -127,7 +127,4 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
         container.removeView((View) object);
     }
 
-    public void setViewMore() {
-
-    }
 }

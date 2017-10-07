@@ -7,7 +7,7 @@
     <TextView
         android:id="@+id/android_gridView_text"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_35sdp"
+        android:layout_height="@dimen/_50sdp"
         android:layout_marginTop="@dimen/_1sdp"
         android:background="@drawable/cell_shape"
         android:gravity="center"

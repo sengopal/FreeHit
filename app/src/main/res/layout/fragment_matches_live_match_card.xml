@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/live_match_card_layout"
     android:layout_height="match_parent"
     android:tag="cards main container">
 
@@ -63,7 +64,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp">
+                android:layout_marginTop="@dimen/_25sdp">
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -84,12 +85,12 @@
                         android:id="@+id/sn_team_1_live"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_2sdp"
+                        android:layout_marginStart="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_toEndOf="@+id/team_logo_1_live"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_12sdp"
-                        tools:text="Sri Lanka" />
+                        android:textSize="@dimen/_15sdp"
+                        tools:text="SL" />
 
                     <TextView
                         android:id="@+id/innings1_team1_live"
@@ -98,7 +99,7 @@
                         android:layout_marginStart="@dimen/_2sdp"
                         android:layout_marginTop="@dimen/_30sdp"
                         android:layout_toEndOf="@+id/team_logo_1_live"
-                        android:textSize="@dimen/_10sdp"
+                        android:textSize="@dimen/_12sdp"
                         tools:text="207 (42.4)" />
 
                     <TextView
@@ -108,7 +109,7 @@
                         android:layout_below="@+id/innings1_team1_live"
                         android:layout_marginStart="@dimen/_2sdp"
                         android:layout_toEndOf="@+id/team_logo_1_live"
-                        android:textSize="@dimen/_10sdp"
+                        android:textSize="@dimen/_12sdp"
                         tools:text="207 (42.4)" />
 
 
@@ -132,12 +133,12 @@
                         android:id="@+id/sn_team_2_live"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_toStartOf="@+id/team_logo_2_live"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_12sdp"
-                        tools:text="India" />
+                        android:textSize="@dimen/_15sdp"
+                        tools:text="IND" />
 
                     <TextView
                         android:id="@+id/innings1_team2_live"
@@ -146,7 +147,7 @@
                         android:layout_marginEnd="@dimen/_2sdp"
                         android:layout_marginTop="@dimen/_30sdp"
                         android:layout_toStartOf="@+id/team_logo_2_live"
-                        android:textSize="@dimen/_10sdp"
+                        android:textSize="@dimen/_12sdp"
                         tools:text="375/5 (50.0)" />
 
                     <TextView
@@ -156,7 +157,7 @@
                         android:layout_below="@+id/innings1_team2_live"
                         android:layout_marginEnd="@dimen/_2sdp"
                         android:layout_toStartOf="@+id/team_logo_2_live"
-                        android:textSize="@dimen/_10sdp"
+                        android:textSize="@dimen/_12sdp"
                         tools:text="375/5 (50.0)" />
 
 
@@ -196,11 +197,11 @@
         android:layout_below="@+id/card_view"
         android:ellipsize="end"
         android:maxLines="10"
-        android:paddingEnd="10dp"
-        android:paddingStart="10dp"
-        android:paddingTop="50dp"
+        android:paddingEnd="@dimen/_8sdp"
+        android:paddingStart="@dimen/_8sdp"
+        android:paddingTop="@dimen/_25sdp"
         android:textColor="@android:color/black"
-        android:textSize="13sp"
+        android:textSize="@dimen/_10ssp"
         tools:text="Description of the match thats about to start cause people love to read . its a cricket match what the hell do you want to read , check the score watch the match ,sulk if your team lost or celebrate if your team and sleep . and yet you are still reading this . humans sure are weird creatures . stop reading now . Theres nothing of any use to you here just go sleep.STOP READING STOP READINGSTOP READINGSTOP READINGSTOP READINGSTOP READINGSTOP READINGSTOP READINGSTOP READINGSTOP READINGSTOP READINGSTOP READINGSTOP READINGSTOP READINGSTOP READINGSTOP READINGSTOP READINGSTOP READINGSTOP READINGSTOP READINGSTOP READINGSTOP READINGSTOP READING" />
 
 </RelativeLayout>

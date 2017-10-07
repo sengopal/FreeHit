@@ -101,7 +101,7 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
         textViewSeriesName.setText(upcomingMatchCards.getTour());
 
         TextView textViewStadiumName = viewHolder.textViewStadiumName;
-        textViewStadiumName.setText(upcomingMatchCards.getStadium());
+        textViewStadiumName.setText("( "+upcomingMatchCards.getStadium()+" )");
 
         String logo_string1 = upcomingMatchCards.getTeam1().getImage();
 
@@ -134,9 +134,8 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
             public void onClick(View view) {
 
                 Intent UpcomingMatchScoreCardIntent = new Intent(getContext(), UpcomingMatchScoreCard.class);
-                UpcomingMatchScoreCardIntent.putExtra("match_id", upcomingMatchCards.getId());
+                UpcomingMatchScoreCardIntent.putExtra("match_id", upcomingMatchCards.getNdid());
                 UpcomingMatchScoreCardIntent.putExtra("match_name", upcomingMatchCards.getMatch());
-                /*ActivityOptions.makeCustomAnimation(getContext(),R.anim.animation_entry,R.anim.animation_exit);*/
 
                 UpcomingMatchScoreCardIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 getContext().startActivity(UpcomingMatchScoreCardIntent);

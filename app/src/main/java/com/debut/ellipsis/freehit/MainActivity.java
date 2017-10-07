@@ -1,7 +1,6 @@
 package com.debut.ellipsis.freehit;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
@@ -24,7 +23,6 @@ import com.debut.ellipsis.freehit.Social.SocialMainFragment;
 import com.debut.ellipsis.freehit.Stats.StatsMain.StatsFragment;
 import com.twitter.sdk.android.core.Twitter;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,18 +44,15 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        //  If we have to define custom configuration, uncomment next line and don't forget to add onsumer Key and Secret Key.
+        //  If we have to define custom configuration, uncomment next line and don't forget to add consumer Key and Secret Key.
         //TwitterConfig config = new TwitterConfig.Builder(this).logger(new DefaultLogger(Log.DEBUG)).twitterAuthConfig(new TwitterAuthConfig("FREEHIT_CONSUMER_KEY","FREEHIT_CONSUMER_SECRET")).debug(true).build();
 
         // Initializing Twitter Kit
         Twitter.initialize(this);
 
+        int main_tab = getIntent().getIntExtra("Main_tab", 0);
+        String sub_tab = getIntent().getStringExtra("Sub_tab");
 
-        /*// Initializing the ImageLoader, any changes to configuration here is global
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
-                .memoryCache(new LRULimitedMemoryCache(2 * 1024 * 1024)).
-                        build();
-        ImageLoader.getInstance().init(config);*/
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -68,6 +63,12 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+
+        System.out.println(main_tab);
+
+        viewPager.setCurrentItem(main_tab);
+
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -169,38 +170,4 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(0, R.anim.exit_to_right);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        try {
-            deleteCache(getApplicationContext()); //if trimCache is static
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void deleteCache(Context context) {
-        try {
-            File dir = context.getCacheDir();
-            deleteDir(dir);
-        } catch (Exception e) {
-        }
-    }
-
-    public static boolean deleteDir(File dir) {
-        if (dir != null && dir.isDirectory()) {
-            String[] children = dir.list();
-            for (int i = 0; i < children.length; i++) {
-                boolean success = deleteDir(new File(dir, children[i]));
-                if (!success) {
-                    return false;
-                }
-            }
-            return dir.delete();
-        } else if (dir != null && dir.isFile()) {
-            return dir.delete();
-        } else {
-            return false;
-        }
-    }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:id="@+id/fragment_container"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:orientation="vertical">
 
     <com.baoyz.widget.PullRefreshLayout
         android:id="@+id/swipeRefreshLayout"
@@ -15,18 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ProgressBar
-                android:id="@+id/progress_bar"
-                style="@style/Base.Widget.AppCompat.ProgressBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true" />
-
-            <TextView
-                android:id="@+id/blank_for_pageindicators"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true" />
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/viewpager"
@@ -36,16 +24,22 @@
 
             </android.support.v4.view.ViewPager>
 
+            <TextView
+                android:id="@+id/blank_forPageIndicator"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
             <com.rd.PageIndicatorView
                 android:id="@+id/indicator"
-                android:layout_below="@+id/blank_for_pageindicators"
-                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"
-                android:visibility="invisible"
-                android:layout_centerInParent="true" />
+                android:layout_below="@+id/blank_forPageIndicator"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:visibility="invisible" />
 
 
         </RelativeLayout>
     </com.baoyz.widget.PullRefreshLayout>
-</FrameLayout>
+</LinearLayout>

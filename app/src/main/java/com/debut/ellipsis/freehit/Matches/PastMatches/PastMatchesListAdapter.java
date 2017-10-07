@@ -77,7 +77,7 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
 
     @Override
     public void onBindViewHolder(PastMatchesListAdapter.PastViewHolder holder, final int position) {
-        holder.date.setText(pastMatchCardItems.get(position).getDate());
+        holder.date.setText(pastMatchCardItems.get(position).getTime());
         holder.result.setText(pastMatchCardItems.get(position).getResult());
         holder.series.setText(pastMatchCardItems.get(position).getTour());
         holder.sn1.setText(pastMatchCardItems.get(position).getTeam1Info().getSn());
@@ -86,7 +86,7 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
         holder.sn2.setText(pastMatchCardItems.get(position).getTeam2Info().getSn());
         holder.t2inn1.setText(pastMatchCardItems.get(position).getTeam2Info().getInn1());
         holder.t2inn2.setText(pastMatchCardItems.get(position).getTeam2Info().getInn2());
-        holder.stadium.setText(pastMatchCardItems.get(position).getStadium());
+        holder.stadium.setText("( "+pastMatchCardItems.get(position).getStadium()+" )");
         holder.title.setText(pastMatchCardItems.get(position).getTitle());
         RelativeLayout relativeLayout = holder.pastLayout;
         Glide.with(context).load(pastMatchCardItems.get(position).getTeam1Info().getImage()).placeholder(R.drawable.matches).into(holder.team1image);

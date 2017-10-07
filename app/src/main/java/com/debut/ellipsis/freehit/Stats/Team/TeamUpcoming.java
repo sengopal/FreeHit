@@ -66,8 +66,7 @@ public class TeamUpcoming extends Fragment {
                 List<UpcomingMatchCardItem> upcomingMatchesList = response.body().getResults();
                 mProgressBar.setVisibility(View.GONE);
                 if (upcomingMatchesList.size() == 0) {
-                    System.out.println("Empty View");
-                    emptyView.setText(R.string.EmptyMatches);
+                    emptyView.setText(R.string.EmptyLiveMatches);
                     emptyView.setVisibility(View.VISIBLE);
                 }
 

@@ -28,11 +28,16 @@
     <!--FOR EMPTY VIEW OF NEWS FRAGMENT-->
     <string name="EmptyNews">NO NEWS FOUND</string>
 
-    <!--FOR EMPTY VIEW OF MATCHES FRAGMENT-->
-    <string name="EmptyMatches">NO MATCHES FOUND</string>
+    <!--FOR EMPTY VIEW OF POLLS FRAGMENT-->
+    <string name="EmptyPolls">NO POLLS FOUND</string>
+
+    <!--FOR EMPTY VIEW LIVE MATCHES -->
+    <string name="EmptyLiveMatches">NO LIVE MATCHES</string>
 
     <!--FOR TOOLS IN LIVE,UPCOMING,PAST MATCHES-->
     <string name="matches_view_more">Click To View More</string>
+
+    <string name="no_internet_connection">Check Your Internet Connection</string>
 
     <!-- for intro slide -->
     <string name="next">NEXT</string>
