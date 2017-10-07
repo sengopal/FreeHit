@@ -43,6 +43,7 @@ public class Batting_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         gridViewString[0]= "batting";gridViewString[1]="Test";gridViewString[2]=j;gridViewString[3]="T20";gridViewString[4]="IPL";
         gridViewString[5]="Matches";
+        Batting_Item_adapter adapterViewAndroid = new Batting_Item_adapter(getContext(), gridViewString);
 
         APIInterface apiInterface = ApiClient.getClient().create(APIInterface.class);
         Call<Batting_Items> call = apiInterface.doGetBattinInfo();
@@ -81,7 +82,7 @@ public class Batting_Fragment extends Fragment {
 
                               };*/
                               //gridViewString=gridViewString2;
-
+                     
                          }
 
                          @Override
@@ -95,7 +96,6 @@ public class Batting_Fragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_stats_player_batting_bowling_gridview, container, false);
 
         GridView androidGridView;
-        Batting_Item_adapter adapterViewAndroid = new Batting_Item_adapter(getContext(), gridViewString);
         androidGridView = (GridView) rootView.findViewById(R.id.grid_view_batting_bowling);
         androidGridView.setAdapter(adapterViewAndroid);
         setGridViewHeightBasedOnChildren(androidGridView, 5);
