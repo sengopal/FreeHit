@@ -13,7 +13,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.R;
-import com.debut.ellipsis.freehit.Stats.StatsMain.StatsAdapter;
 import com.debut.ellipsis.freehit.Stats.StatsMain.StatsItem;
 
 import java.util.ArrayList;
@@ -48,7 +47,7 @@ public class FavTeam extends Fragment {
         final String Countryname = prefs.getString("country_name", "null");
 
 
-        StatsAdapter adapter = new StatsAdapter(getActivity(), favTeamItem);
+        FavTeamAdapter adapter = new FavTeamAdapter(getActivity(), favTeamItem);
         final ListView listView = (ListView) rootView.findViewById(R.id.fav_team_list);
         listView.setAdapter(adapter);
         listView.setClickable(true);

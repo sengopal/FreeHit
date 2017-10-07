@@ -10,12 +10,12 @@ import android.widget.TextView;
 
 import com.debut.ellipsis.freehit.R;
 
-public class Batting_Item_adapter extends BaseAdapter {
+public class Batting_Bowling_item_adapter extends BaseAdapter {
     private Context mContext;
     private final String[] gridViewString;
     //private final int[] gridViewImageId;
 
-    public Batting_Item_adapter(Context context, String[] gridViewString) {
+    public Batting_Bowling_item_adapter(Context context, String[] gridViewString) {
         mContext = context;
         // this.gridViewImageId = gridViewImageId;
         this.gridViewString = gridViewString;

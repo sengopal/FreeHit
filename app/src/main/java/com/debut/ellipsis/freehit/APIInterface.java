@@ -6,10 +6,10 @@ import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchCardItem;
 import com.debut.ellipsis.freehit.News.NewsArticleItem;
 import com.debut.ellipsis.freehit.News.NewsItem;
 import com.debut.ellipsis.freehit.Social.Polls.PollCardItem;
-import com.debut.ellipsis.freehit.Stats.Player.Batting_Items;
-import com.debut.ellipsis.freehit.Stats.Player.Bowling_Items;
-import com.debut.ellipsis.freehit.Stats.Player.Career_Item;
-import com.debut.ellipsis.freehit.Stats.Player.InfoItems;
+import com.debut.ellipsis.freehit.Stats.Player.BattingItem;
+import com.debut.ellipsis.freehit.Stats.Player.BowlingItem;
+import com.debut.ellipsis.freehit.Stats.Player.CareerItem;
+import com.debut.ellipsis.freehit.Stats.Player.InfoItem;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -23,14 +23,17 @@ public interface APIInterface {
     @GET("news?")
     Call<NewsArticleItem> doGetNewsArticle(@Query("id") String id);
 
-    @GET("playerbio")
-    Call<InfoItems> doGetInfoResources();
-    @GET("playerbio")
-    Call<Batting_Items> doGetBattinInfo();
-    @GET("playerbio")
-    Call<Bowling_Items> doGetBowlingInfo();
-    @GET("playerbio")
-    Call<Career_Item> doGetCareerInfo();
+    @GET("playerbio?")
+    Call<InfoItem> doGetInfoResources(@Query("url") String url);
+
+    @GET("playerbio?")
+    Call<BattingItem> doGetBattingInfo(@Query("url") String url);
+
+    @GET("playerbio?")
+    Call<BowlingItem> doGetBowlingInfo(@Query("url") String url);
+
+    @GET("playerbio?")
+    Call<CareerItem> doGetCareerInfo(@Query("url") String url);
 
     @GET("upcoming?max=6")
     Call<UpcomingMatchCardItem> doGetUpcomingMatchListResources();
@@ -68,10 +71,7 @@ public interface APIInterface {
     @GET("country")
     Call<CountryItem> doGetCountryResources();
 
-    @GET("player?id=1")
-    Call<PlayerCountryItem> doGetFavTeamPlayers();
-
-
-
+    @GET("player?")
+    Call<PlayerCountryItem> doGetFavTeamPlayers(@Query("id") String TeamID);
 
 }

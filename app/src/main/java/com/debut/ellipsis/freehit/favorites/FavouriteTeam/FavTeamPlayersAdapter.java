@@ -26,7 +26,6 @@ public class FavTeamPlayersAdapter extends RecyclerView.Adapter<FavTeamPlayersAd
 
 
     public static class FavTeamPlayerViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout playerLayout;
         ImageView PlayerImage;
         TextView PlayerName;
         LinearLayout rlcontainer;
@@ -34,10 +33,8 @@ public class FavTeamPlayersAdapter extends RecyclerView.Adapter<FavTeamPlayersAd
 
         public FavTeamPlayerViewHolder(View v) {
             super(v);
-            playerLayout = (LinearLayout) v.findViewById(R.id.row_layout);
             PlayerImage = (ImageView) v.findViewById(R.id.row_icon);
             PlayerName = (TextView) v.findViewById(R.id.row_title);
-
             rlcontainer = (LinearLayout) v.findViewById(R.id.row_layout);
         }
     }
@@ -65,7 +62,7 @@ public class FavTeamPlayersAdapter extends RecyclerView.Adapter<FavTeamPlayersAd
         holder.PlayerName.setText(playerCountryItems.get(position).getName());
         Glide.with(context).load(playerCountryItems.get(position).getImage()).centerCrop().placeholder(R.drawable.matches).into(holder.PlayerImage);
 
-        LinearLayout RLcontainer = holder.rlcontainer;
+        LinearLayout RLContainer = holder.rlcontainer;
 
         View.OnClickListener mClickListener;
 
@@ -74,17 +71,15 @@ public class FavTeamPlayersAdapter extends RecyclerView.Adapter<FavTeamPlayersAd
             @Override
             public void onClick(View view) {
 
-                Intent NewsArticleIntent = new Intent(context, PlayerActivity.class);
-
-                String pos = String.valueOf(position);
-                NewsArticleIntent.putExtra("match_id", playerCountryItems.get(position).getLink());
-                    /*ActivityOptions.makeCustomAnimation(context,R.anim.animation_entry,R.anim.animation_exit);*/
-                NewsArticleIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(NewsArticleIntent);
+                Intent PlayerBioIntent = new Intent(context, PlayerActivity.class);
+                PlayerBioIntent.putExtra("player_url", playerCountryItems.get(position).getLink());
+                PlayerBioIntent.putExtra("player_name",playerCountryItems.get(position).getName());
+                PlayerBioIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(PlayerBioIntent);
 
             }
         };
-        RLcontainer.setOnClickListener(mClickListener);
+        RLContainer.setOnClickListener(mClickListener);
 
 
     }

@@ -92,7 +92,6 @@ public class FavTeamPastMatches extends AppCompatActivity {
                 Toast toast=Toast.makeText(getApplicationContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
                 toast.show();
                 call.cancel();
-                call.cancel();
             }
         });
 
@@ -136,7 +135,6 @@ public class FavTeamPastMatches extends AppCompatActivity {
     }
 
     @Override
-
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:

@@ -3,12 +3,12 @@ package com.debut.ellipsis.freehit.Stats.Player;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Batting_Items {
+public class BattingItem {
 
     @SerializedName("batstats")
     private Bat batstats;
 
-  /*  public Batting_Items(Bat batstats){
+  /*  public BattingItem(Bat batstats){
         this.batstats=batstats;
     }*/
 
