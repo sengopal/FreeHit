@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="com.debut.ellipsis.freehit.Social.Tweets.SocialTweets">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
@@ -20,30 +21,33 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/refresh_layout"
+    <RelativeLayout
+        android:id="@+id/player_list_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/app_bar_layout">
+        android:layout_below="@id/app_bar_layout">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/match_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:paddingBottom="@dimen/_5sdp"
-            android:paddingEnd="@dimen/_10sdp"
-            android:paddingStart="@dimen/_10sdp"
-            android:paddingTop="@dimen/_10sdp" />
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/refresh_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/player_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true" />
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+
+    </RelativeLayout>
 
     <ProgressBar
         android:id="@+id/progress_bar"
-        style="@style/Base.Widget.AppCompat.ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
+
 
     <TextView
         android:id="@+id/empty_view"
@@ -51,8 +55,6 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:visibility="invisible"/>
-
-
 
 
 </RelativeLayout>

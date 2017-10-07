@@ -3,14 +3,16 @@ package com.debut.ellipsis.freehit.Stats.Team;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
@@ -29,6 +31,8 @@ public class TeamNews extends Fragment {
     APIInterface apiInterface;
     private NewsItemAdapter mAdapter;
     private ProgressBar mProgressBar;
+    public TextView NoNewsText;
+    public Button NoNewsButton;
 
     public TeamNews() {
 
@@ -42,9 +46,9 @@ public class TeamNews extends Fragment {
 
         Intent i = getActivity().getIntent();
         int Team = i.getIntExtra("CountryName", 0);
-        String twmpTeamName = this.getContext().getString(Team);
+        String tempTeamName = this.getContext().getString(Team);
 
-        String teamName = twmpTeamName.toLowerCase();
+        final String teamName = tempTeamName.toLowerCase();
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
@@ -55,6 +59,13 @@ public class TeamNews extends Fragment {
 
         mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
 
+        final View No_news = rootView.findViewById(R.id.No_news);
+
+        NoNewsText = (TextView) No_news.findViewById(R.id.empty_view);
+        NoNewsButton = (Button) No_news.findViewById(R.id.No_Live_Matches_button);
+
+        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.refresh_layout);
+
         /**
          GET List Resources
          **/
@@ -63,23 +74,67 @@ public class TeamNews extends Fragment {
             @Override
             public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
 
-                Log.d("TAG", response.code() + "");
                 mProgressBar.setVisibility(View.INVISIBLE);
 
                 List<NewsItem> news = response.body().getResults();
                 if (news.size() == 0) {
-                    emptyView.setText(R.string.EmptyNews);
-                    emptyView.setVisibility(View.VISIBLE);
+                    No_news.setVisibility(View.VISIBLE);
+                    NoNewsButton.setVisibility(View.INVISIBLE);
+                    NoNewsText.setText(R.string.EmptyNews);
+
                 }
                 recyclerView.setAdapter(new NewsItemAdapter(news, R.layout.fragment_news_list_item, getContext()));
             }
 
             @Override
             public void onFailure(Call<NewsItem> call, Throwable t) {
-                emptyView.setText("CHECK YOUR INTERNET CONNECTION");
+                mProgressBar.setVisibility(View.INVISIBLE);
+                No_news.setVisibility(View.INVISIBLE);
+                Toast toast=Toast.makeText(getContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
+                toast.show();
                 call.cancel();
             }
         });
+
+
+        refLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
+        refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Checking if connected or not on refresh
+                refLayout.setRefreshing(true);
+
+                Call<NewsItem> call = apiInterface.doGetNewsArticleTeam(teamName);
+                call.enqueue(new Callback<NewsItem>() {
+                    @Override
+                    public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
+                        mProgressBar.setVisibility(View.INVISIBLE);
+
+                        List<NewsItem> news = response.body().getResults();
+                        if (news.size() == 0) {
+                            No_news.setVisibility(View.VISIBLE);
+                            NoNewsButton.setVisibility(View.INVISIBLE);
+                            NoNewsText.setText(R.string.EmptyNews);
+
+                        }
+                        recyclerView.setAdapter(new NewsItemAdapter(news, R.layout.fragment_news_list_item, getContext()));
+                    }
+
+                    @Override
+                    public void onFailure(Call<NewsItem> call, Throwable t) {
+                        mProgressBar.setVisibility(View.INVISIBLE);
+                        No_news.setVisibility(View.INVISIBLE);
+                        Toast toast=Toast.makeText(getContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
+                        toast.show();
+                        call.cancel();
+
+                    }
+                });
+
+                refLayout.setRefreshing(false);
+            }
+        }
+        );
 
 
         return rootView;

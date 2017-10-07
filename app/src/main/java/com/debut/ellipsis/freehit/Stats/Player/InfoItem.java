@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 
-public class InfoItems {
+public class InfoItem {
     @SerializedName("name")
     private String name;
     @SerializedName("nationality")
@@ -31,7 +31,7 @@ public class InfoItems {
     private List<String> bowlrank;
 
 
-    public InfoItems(String name, String nationality, String dob, String age, String batstyle, String bowlstyle, String teamsplayed, String img, List<String> batrank, List<String> bowlrank, List<String> manofthematch) {
+    public InfoItem(String name, String nationality, String dob, String age, String batstyle, String bowlstyle, String teamsplayed, String img, List<String> batrank, List<String> bowlrank, List<String> manofthematch) {
 
         this.name = name;
         this.nationality = nationality;

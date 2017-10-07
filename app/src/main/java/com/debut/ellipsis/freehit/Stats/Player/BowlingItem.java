@@ -3,7 +3,7 @@ package com.debut.ellipsis.freehit.Stats.Player;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Bowling_Items {
+public class BowlingItem {
     @SerializedName("bowlstats")
     private Bowl bowlstats;
     public Bowl getBowlstats() {

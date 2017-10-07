@@ -13,7 +13,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.R;
-import com.debut.ellipsis.freehit.Stats.StatsMain.StatsAdapter;
 import com.debut.ellipsis.freehit.Stats.StatsMain.StatsItem;
 
 import java.util.ArrayList;
@@ -41,12 +40,14 @@ public class FavTeam extends Fragment {
         favTeamItem.add(new StatsItem(R.drawable.arrow, R.string.category_news));
         favTeamItem.add(new StatsItem(R.drawable.arrow, R.string.upcoming_list));
         favTeamItem.add(new StatsItem(R.drawable.arrow, R.string.past_list));
+        favTeamItem.add(new StatsItem(R.drawable.arrow, R.string.players));
+
 
         SharedPreferences prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         final String Countryname = prefs.getString("country_name", "null");
 
 
-        StatsAdapter adapter = new StatsAdapter(getActivity(), favTeamItem);
+        FavTeamAdapter adapter = new FavTeamAdapter(getActivity(), favTeamItem);
         final ListView listView = (ListView) rootView.findViewById(R.id.fav_team_list);
         listView.setAdapter(adapter);
         listView.setClickable(true);
@@ -76,6 +77,11 @@ public class FavTeam extends Fragment {
 
                     } else if (position == 2) {
                         Intent FavTeamPastIntent = new Intent(getActivity(), FavTeamPastMatches.class);
+                        FavTeamPastIntent.putExtra("CountryName",Countryname);
+                        startActivity(FavTeamPastIntent);
+
+                    } else if (position == 3) {
+                        Intent FavTeamPastIntent = new Intent(getActivity(), FavTeamPlayers.class);
                         FavTeamPastIntent.putExtra("CountryName",Countryname);
                         startActivity(FavTeamPastIntent);
 

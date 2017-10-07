@@ -1,6 +1,7 @@
 package com.debut.ellipsis.freehit.Stats.Player;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -29,7 +30,7 @@ public class Info_Fragment extends Fragment {
 
     private NewsItemAdapter mAdapter;
     private ProgressBar mProgressBar;
-    private String match_id;
+    private String player_url;
     APIInterface apiInterface;
 
     public Info_Fragment() {
@@ -40,15 +41,17 @@ public class Info_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        Intent i = getActivity().getIntent();
+        player_url = i.getStringExtra("player_url");
 
         final View rootView = inflater.inflate(R.layout.fragment_stats_player_info, container, false);
-        // ImageView PlayerPic= (ImageView) rootView.findViewById(R.id.Player_image);
+
         final TextView name = (TextView) rootView.findViewById(R.id.Player_name_stats_info);
         final TextView country = (TextView) rootView.findViewById(R.id.player_country);
         final TextView DOB = (TextView) rootView.findViewById(R.id.DOB);
         final TextView age = (TextView) rootView.findViewById(R.id.Age);
-        final TextView battingstyle = (TextView) rootView.findViewById(R.id.battingStyle);
-        final TextView bowlingstlye = (TextView) rootView.findViewById((R.id.BowlingStyle));
+        final TextView BattingStyle = (TextView) rootView.findViewById(R.id.battingStyle);
+        final TextView BowlingStyle = (TextView) rootView.findViewById((R.id.BowlingStyle));
         final TextView TeamsPlayed = (TextView) rootView.findViewById((R.id.Teams_Played));
         mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
 
@@ -56,12 +59,12 @@ public class Info_Fragment extends Fragment {
 
 
         //to make changes
-        Call<InfoItems> call = apiInterface.doGetInfoResources();
-        call.enqueue(new Callback<InfoItems>() {
+        Call<InfoItem> call = apiInterface.doGetInfoResources(player_url);
+        call.enqueue(new Callback<InfoItem>() {
             @Override
-            public void onResponse(Call<InfoItems> call, Response<InfoItems> response) {
+            public void onResponse(Call<InfoItem> call, Response<InfoItem> response) {
 
-                InfoItems info = response.body();
+                InfoItem info = response.body();
 
                 name.setText(info.getName());
 
@@ -71,9 +74,9 @@ public class Info_Fragment extends Fragment {
 
                 age.setText(info.getAge());
 
-                battingstyle.setText(info.getBatstyle());
+                BattingStyle.setText(info.getBatstyle());
 
-                bowlingstlye.setText(info.getBowlstyle());
+                BowlingStyle.setText(info.getBowlstyle());
 
                 mProgressBar.setVisibility(View.GONE);
 
@@ -84,8 +87,8 @@ public class Info_Fragment extends Fragment {
                 final String ImageURL = info.getImg();
 
                 Glide.with(getContext()).load(ImageURL).centerCrop().placeholder(R.drawable.matches).into(articleImage);
-                TextView odibat = (TextView) rootView.findViewById(R.id.odibattingRanking);
-                TextView worldbat = (TextView) rootView.findViewById(R.id.worldBattingRanking);
+                TextView odiBat = (TextView) rootView.findViewById(R.id.odibattingRanking);
+                TextView worldBat = (TextView) rootView.findViewById(R.id.worldBattingRanking);
                 TextView t20 = (TextView) rootView.findViewById(R.id.T20BattingRanking);
 
                 List<String> batrank = info.getBatrank();
@@ -94,10 +97,10 @@ public class Info_Fragment extends Fragment {
                     String[] words = str.split("-");
                     if (i == 0) {
                         str = words[1].trim();
-                        odibat.setText(str);
+                        odiBat.setText(str);
                     } else if (i == 1) {
                         str = words[1].trim();
-                        worldbat.setText(str);
+                        worldBat.setText(str);
 
                     } else if (i == 2) {
                         str = words[1].trim();
@@ -172,8 +175,8 @@ public class Info_Fragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<InfoItems> call, Throwable t) {
-                Toast.makeText(getContext(), t.toString(), Toast.LENGTH_LONG).show();
+            public void onFailure(Call<InfoItem> call, Throwable t) {
+                Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
                 call.cancel();
             }
         });

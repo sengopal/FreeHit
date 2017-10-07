@@ -1,6 +1,7 @@
 package com.debut.ellipsis.freehit.Stats.Player;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -27,9 +28,15 @@ public class PlayerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         setContentView(R.layout.fragment_stats_player_activity);
+
+        Intent i = getIntent();
+        String player_name = i.getStringExtra("player_name");
+
+
         toolbar = (Toolbar) findViewById(R.id.toolbar_player);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle(player_name);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager_player);
         setupViewPager(viewPager);

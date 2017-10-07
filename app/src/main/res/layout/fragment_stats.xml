@@ -19,6 +19,7 @@
             android:layout_height="@dimen/_45sdp"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_weight="1"
+            android:layout_gravity="center_vertical"
             tools:background="@drawable/player" />
 
         <TextView
