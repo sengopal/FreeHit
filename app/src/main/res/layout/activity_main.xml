@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="@color/colorPrimary"
-        android:minHeight="?attr/actionBarSize"/>
+        android:minHeight="?attr/actionBarSize" />
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs"

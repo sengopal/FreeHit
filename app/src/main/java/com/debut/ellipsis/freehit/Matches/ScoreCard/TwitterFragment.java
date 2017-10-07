@@ -44,7 +44,7 @@ public class TwitterFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View socTweets = inflater.inflate(R.layout.fragment_social_tweets, container, false);
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) socTweets.findViewById(R.id.soc_refresh_layout);
@@ -52,14 +52,14 @@ public class TwitterFragment extends Fragment {
         setupTabs();
 
         Intent i = getActivity().getIntent();
-        String Team1Name=i.getStringExtra("Team1Name");
-        String Team2Name=i.getStringExtra("Team2Name");
+        String Team1Name = i.getStringExtra("Team1Name");
+        String Team2Name = i.getStringExtra("Team2Name");
         CountryHash countryHash = new CountryHash();
         Team1SN = countryHash.getCountrySN(Team1Name);
         Team2SN = countryHash.getCountrySN(Team2Name);
 
-        final String QueryToSearch1 = "#"+Team1SN+"vs"+Team2SN;
-        final String QueryToSearch2 = "#"+Team2SN+"vs"+Team1SN;
+        final String QueryToSearch1 = "#" + Team1SN + "vs" + Team2SN;
+        final String QueryToSearch2 = "#" + Team2SN + "vs" + Team1SN;
 
         //  Initializing the RecyclerView for Twitter feed
         rv = (RecyclerView) socTweets.findViewById(R.id.twit_feed);
@@ -68,7 +68,7 @@ public class TwitterFragment extends Fragment {
         final RelativeLayout twitrel = (RelativeLayout) socTweets.findViewById(R.id.twit_layout);
         //  Using a SearchTimeline to search for a given query, can be changed with (UserTimeline, CollectionTimeline, TwitterListTimeline, or FixedTweetTimeline)
         //  Defining a recyclerView adapter for the given Timeline, Twitter builds all the icons and intents and all that shit. I love twitter.
-        tabCall(QueryToSearch1+","+QueryToSearch2, SearchTimeline.ResultType.RECENT);
+        tabCall(QueryToSearch1 + "," + QueryToSearch2, SearchTimeline.ResultType.RECENT);
 
         container.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +104,7 @@ public class TwitterFragment extends Fragment {
             public void onTabSelected(TabLayout.Tab tab) {
                 switch (tab.getPosition()) {
                     case 0:
-                        tabCall(QueryToSearch1+","+QueryToSearch2, SearchTimeline.ResultType.RECENT);
+                        tabCall(QueryToSearch1 + "," + QueryToSearch2, SearchTimeline.ResultType.RECENT);
                         break;
                     default:
 

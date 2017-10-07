@@ -6,6 +6,7 @@ import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchCardItem;
 import com.debut.ellipsis.freehit.News.NewsArticleItem;
 import com.debut.ellipsis.freehit.News.NewsItem;
 import com.debut.ellipsis.freehit.Social.Polls.PollCardItem;
+import com.debut.ellipsis.freehit.Stats.Player.Batting_Items;
 import com.debut.ellipsis.freehit.Stats.Player.InfoItems;
 
 import retrofit2.Call;
@@ -19,59 +20,11 @@ public interface APIInterface {
 
     @GET("news?")
     Call<NewsArticleItem> doGetNewsArticle(@Query("id") String id);
+
     @GET("playerbio")
-    Call<InfoItems>doGetInfoResources();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    Call<InfoItems> doGetInfoResources();
+    @GET("playerbio")
+    Call<Batting_Items> doGetBattinInfo();
 
     @GET("upcoming?max=6")
     Call<UpcomingMatchCardItem> doGetUpcomingMatchListResources();
@@ -91,18 +44,20 @@ public interface APIInterface {
     @GET("polls?")
     Call<PollCardItem> doGetSinglePollResources(@Query("id") String id);
 
-
-
     @GET("past?max=6")
     Call<PastMatchCardItem> doGetPastCardResources();
+
     @GET("past?max=50")
     Call<PastMatchCardItem> doGetCompletePastCardResources();
+
     @GET("news?")
     Call<NewsItem> doGetNewsArticleTeam(@Query("fav") String team);
 
+    @GET("upcoming?")
+    Call<UpcomingMatchCardItem> doGetUpcomingFavTeam(@Query("fav") String team);
 
-
-
+    @GET("past?")
+    Call<PastMatchCardItem> doGetPastFavTeam(@Query("fav") String team);
 
 
 }

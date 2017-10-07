@@ -90,8 +90,7 @@ public class LiveMatchCardItem {
         return results;
     }
 
-    public class Date
-    {
+    public class Date {
 
         @SerializedName("day")
         private String day;
@@ -127,8 +126,7 @@ public class LiveMatchCardItem {
         }
     }
 
-    public class Team
-    {
+    public class Team {
         @SerializedName("name")
         private String name;
         @SerializedName("image")

@@ -54,7 +54,7 @@ public class NewsArticle extends AppCompatActivity {
 
 
         /**
-         GET List Users
+         GET NEws ARticel
          **/
         Call<NewsArticleItem> call = apiInterface.doGetNewsArticle(match_id);
         call.enqueue(new Callback<NewsArticleItem>() {
@@ -109,6 +109,7 @@ public class NewsArticle extends AppCompatActivity {
 
 
     }
+
     @Override
 
     public boolean onOptionsItemSelected(MenuItem item) {

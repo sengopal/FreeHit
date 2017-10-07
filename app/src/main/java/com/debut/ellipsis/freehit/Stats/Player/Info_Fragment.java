@@ -87,23 +87,19 @@ public class Info_Fragment extends Fragment {
                 TextView worldbat = (TextView) rootView.findViewById(R.id.worldBattingRanking);
                 TextView t20 = (TextView) rootView.findViewById(R.id.T20BattingRanking);
 
-                List<String> batrank=info.getBatrank();
-                for (int i=0;i<batrank.size();i++){
-                    String str=batrank.get(i);
-                    String[] words=str.split("-");
-                    if(i==0){
-                      str=  words[1].trim();
+                List<String> batrank = info.getBatrank();
+                for (int i = 0; i < batrank.size(); i++) {
+                    String str = batrank.get(i);
+                    String[] words = str.split("-");
+                    if (i == 0) {
+                        str = words[1].trim();
                         odibat.setText(str);
-                    }
-
-                    else if(i==1){
-                        str=  words[1].trim();
+                    } else if (i == 1) {
+                        str = words[1].trim();
                         worldbat.setText(str);
 
-                    }
-
-                    else if(i==2){
-                        str=  words[1].trim();
+                    } else if (i == 2) {
+                        str = words[1].trim();
                         t20.setText(str);
 
                     }
@@ -111,60 +107,62 @@ public class Info_Fragment extends Fragment {
                 }
 
 
-                List<String> bowl=info.getBowlrank();
+                List<String> bowl = info.getBowlrank();
                 TextView odibowl = (TextView) rootView.findViewById(R.id.odiBowlingRanking);
                 TextView worldbowl = (TextView) rootView.findViewById(R.id.worldBowlingRanking);
                 TextView t20bowl = (TextView) rootView.findViewById(R.id.T20BowlingRanking);
-                for (int i=0;i<bowl.size();i++){
-                    String str2=bowl.get(i);
-                    String[] words2=str2.split("-");
-                    if(i==0){
-                        str2=  words2[1].trim();
+                for (int i = 0; i < bowl.size(); i++) {
+                    String str2 = bowl.get(i);
+                    String[] words2 = str2.split("-");
+                    if (i == 0) {
+                        str2 = words2[1].trim();
                         odibowl.setText(str2);
-                    }
-
-                    else if(i==1){
-                        str2=  words2[1].trim();
+                    } else if (i == 1) {
+                        str2 = words2[1].trim();
                         worldbowl.setText(str2);
 
-                    }
-
-                    else if(i==2){
-                        str2=  words2[1].trim();
+                    } else if (i == 2) {
+                        str2 = words2[1].trim();
                         t20bowl.setText(str2);
 
                     }
 
                 }
 
-                TextView motest= (TextView) rootView.findViewById(R.id.MOTM_Test);
-                TextView motodi= (TextView) rootView.findViewById(R.id.MOTM_Odi);
-                TextView mot20= (TextView) rootView.findViewById(R.id.MOTM_T20);
-                TextView motwc= (TextView) rootView.findViewById(R.id.MOTM_WorldCup);
-                TextView motipl= (TextView) rootView.findViewById(R.id.MOTM_IPL);
-                TextView motcl= (TextView) rootView.findViewById(R.id.MOTM_CL);
+                TextView motest = (TextView) rootView.findViewById(R.id.MOTM_Test);
+                TextView motodi = (TextView) rootView.findViewById(R.id.MOTM_Odi);
+                TextView mot20 = (TextView) rootView.findViewById(R.id.MOTM_T20);
+                TextView motwc = (TextView) rootView.findViewById(R.id.MOTM_WorldCup);
+                TextView motipl = (TextView) rootView.findViewById(R.id.MOTM_IPL);
+                TextView motcl = (TextView) rootView.findViewById(R.id.MOTM_CL);
 
-                List<String> mom=info.getManofthematch();
-                for (int i=0;i<mom.size();i++){
-                    String str3=mom.get(i);
-                    String[] words3=str3.split("-");
-                    switch (i){
-                        case 0: str3=  words3[1].trim();
-                               motest.setText(str3);
-                               break;
-                        case 1:str3=  words3[1].trim();
-                             motodi.setText(str3);
-                             break;
-                        case 2: str3=  words3[1].trim();
+                List<String> mom = info.getManofthematch();
+                for (int i = 0; i < mom.size(); i++) {
+                    String str3 = mom.get(i);
+                    String[] words3 = str3.split("-");
+                    switch (i) {
+                        case 0:
+                            str3 = words3[1].trim();
+                            motest.setText(str3);
+                            break;
+                        case 1:
+                            str3 = words3[1].trim();
+                            motodi.setText(str3);
+                            break;
+                        case 2:
+                            str3 = words3[1].trim();
                             mot20.setText(str3);
                             break;
-                        case 3:str3=  words3[1].trim();
+                        case 3:
+                            str3 = words3[1].trim();
                             motwc.setText(str3);
                             break;
-                        case 4: str3=  words3[1].trim();
+                        case 4:
+                            str3 = words3[1].trim();
                             motipl.setText(str3);
                             break;
-                        case 5:str3=  words3[1].trim();
+                        case 5:
+                            str3 = words3[1].trim();
                             motcl.setText(str3);
                             break;
                     }
@@ -174,7 +172,7 @@ public class Info_Fragment extends Fragment {
 
             @Override
             public void onFailure(Call<InfoItems> call, Throwable t) {
-                Toast.makeText(getContext(),t.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), t.toString(), Toast.LENGTH_LONG).show();
                 call.cancel();
             }
         });

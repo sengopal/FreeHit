@@ -45,7 +45,7 @@ public class SocialPolls extends Fragment {
         final RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.news_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        /*mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar); */
+        mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
 
         /**
          GET List Resources
@@ -55,19 +55,23 @@ public class SocialPolls extends Fragment {
             @Override
             public void onResponse(Call<PollCardItem> call, Response<PollCardItem> response) {
 
-                List<PollCardItem> polls = response.body().getResults();
+                mProgressBar.setVisibility(View.INVISIBLE);
+
+                if (getActivity() != null)
+                {
+                    List<PollCardItem> polls = response.body().getResults();
 
                 recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item, getContext()));
+            }
             }
 
             @Override
             public void onFailure(Call<PollCardItem> call, Throwable t) {
 
-                Toast.makeText(getContext(), "Error: "+t.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Error: " + t.toString(), Toast.LENGTH_SHORT).show();
                 call.cancel();
             }
         });
-
 
 
         return rootView;

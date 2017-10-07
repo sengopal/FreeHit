@@ -58,13 +58,14 @@ public class LiveMatchCard extends Fragment {
                 List<LiveMatchCardItem> LiveMatches = response.body().getResults();
                 viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
                 mProgressBar.setVisibility(View.GONE);
-
-                mAdapter = new LiveMatchCardAdapter(getActivity(), LiveMatches);
-                indicator.setViewPager(viewPager);
-                indicator.setCount(mAdapter.getCount());
-                indicator.setVisibility(View.INVISIBLE);
-                IndicatorConfig();
-                viewPager.setAdapter(mAdapter);
+                if(getActivity()!=null) {
+                    mAdapter = new LiveMatchCardAdapter(getActivity(), LiveMatches);
+                    indicator.setViewPager(viewPager);
+                    indicator.setCount(mAdapter.getCount());
+                    indicator.setVisibility(View.INVISIBLE);
+                    IndicatorConfig();
+                    viewPager.setAdapter(mAdapter);
+                }
             }
 
             @Override

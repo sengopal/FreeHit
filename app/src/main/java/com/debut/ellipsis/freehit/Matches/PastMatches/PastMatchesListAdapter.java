@@ -16,10 +16,9 @@ import com.debut.ellipsis.freehit.R;
 import java.util.List;
 
 
-public class PastMatchesListAdapter extends RecyclerView.Adapter <PastMatchesListAdapter.PastViewHolder>{
+public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesListAdapter.PastViewHolder> {
     private List<PastMatchCardItem> pastMatchCardItems;
     private Context context;
-
 
 
     public static class PastViewHolder extends RecyclerView.ViewHolder {
@@ -42,49 +41,50 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter <PastMatchesLis
 
         public PastViewHolder(View v) {
             super(v);
-             pastLayout = (RelativeLayout) v.findViewById(R.id.rlcontainer);
-             team1image = (ImageView) v.findViewById(R.id.team_logo_1_past);
-             team2image = (ImageView) v.findViewById(R.id.team_logo_2_past);
-             title = (TextView) v.findViewById(R.id.match_name_past);
-             series = (TextView) v.findViewById(R.id.series_name_past);
-             stadium = (TextView) v.findViewById(R.id.stadium_past);
-             sn1 = (TextView) v.findViewById(R.id.sn_team_1_past);
-             t1inn1 = (TextView) v.findViewById(R.id.innings1_team1_past);
-             t1inn2 = (TextView) v.findViewById(R.id.innings2_team1_past);
-             sn2 = (TextView) v.findViewById(R.id.sn_team_2_past);
-             t2inn1 = (TextView) v.findViewById(R.id.innings1_team2_past);
-             t2inn2 = (TextView) v.findViewById(R.id.innings2_team2_past);
-             result = (TextView) v.findViewById(R.id.match_result_past);
-             date = (TextView) v.findViewById(R.id.match_date_past);
+            pastLayout = (RelativeLayout) v.findViewById(R.id.rlcontainer);
+            team1image = (ImageView) v.findViewById(R.id.team_logo_1_past);
+            team2image = (ImageView) v.findViewById(R.id.team_logo_2_past);
+            title = (TextView) v.findViewById(R.id.match_name_past);
+            series = (TextView) v.findViewById(R.id.series_name_past);
+            stadium = (TextView) v.findViewById(R.id.stadium_past);
+            sn1 = (TextView) v.findViewById(R.id.sn_team_1_past);
+            t1inn1 = (TextView) v.findViewById(R.id.innings1_team1_past);
+            t1inn2 = (TextView) v.findViewById(R.id.innings2_team1_past);
+            sn2 = (TextView) v.findViewById(R.id.sn_team_2_past);
+            t2inn1 = (TextView) v.findViewById(R.id.innings1_team2_past);
+            t2inn2 = (TextView) v.findViewById(R.id.innings2_team2_past);
+            result = (TextView) v.findViewById(R.id.match_result_past);
+            date = (TextView) v.findViewById(R.id.match_date_past);
             rlcontainer = (RelativeLayout) itemView.findViewById(R.id.rlcontainer);
         }
     }
-    PastMatchesListAdapter(List<PastMatchCardItem> past, Context context){
+
+    public PastMatchesListAdapter(List<PastMatchCardItem> past, Context context) {
         this.pastMatchCardItems = past;
         this.context = context;
     }
 
-        @Override
+    @Override
     public PastMatchesListAdapter.PastViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            final Context context = parent.getContext();
-            LayoutInflater inflater = LayoutInflater.from(context);
+        final Context context = parent.getContext();
+        LayoutInflater inflater = LayoutInflater.from(context);
 
-            View contactView = inflater.inflate(R.layout.fragment_matches_past_match_list_item, parent, false);
+        View contactView = inflater.inflate(R.layout.fragment_matches_past_match_list_item, parent, false);
 
-            PastViewHolder viewHolder = new PastViewHolder(contactView);
-            return viewHolder;
-        }
+        PastViewHolder viewHolder = new PastViewHolder(contactView);
+        return viewHolder;
+    }
 
     @Override
     public void onBindViewHolder(PastMatchesListAdapter.PastViewHolder holder, final int position) {
-            holder.date.setText(pastMatchCardItems.get(position).getDate());
-            holder.result.setText(pastMatchCardItems.get(position).getResult());
-            holder.series.setText(pastMatchCardItems.get(position).getTour());
-            holder.sn1.setText(pastMatchCardItems.get(position).getTeam1Info().getSn());
-            holder.t1inn1.setText(pastMatchCardItems.get(position).getTeam1Info().getInn1());
-         holder.t1inn2.setText(pastMatchCardItems.get(position).getTeam1Info().getInn2());
-            holder.sn2.setText(pastMatchCardItems.get(position).getTeam2Info().getSn());
-         holder.t2inn1.setText(pastMatchCardItems.get(position).getTeam2Info().getInn1());
+        holder.date.setText(pastMatchCardItems.get(position).getDate());
+        holder.result.setText(pastMatchCardItems.get(position).getResult());
+        holder.series.setText(pastMatchCardItems.get(position).getTour());
+        holder.sn1.setText(pastMatchCardItems.get(position).getTeam1Info().getSn());
+        holder.t1inn1.setText(pastMatchCardItems.get(position).getTeam1Info().getInn1());
+        holder.t1inn2.setText(pastMatchCardItems.get(position).getTeam1Info().getInn2());
+        holder.sn2.setText(pastMatchCardItems.get(position).getTeam2Info().getSn());
+        holder.t2inn1.setText(pastMatchCardItems.get(position).getTeam2Info().getInn1());
         holder.t2inn2.setText(pastMatchCardItems.get(position).getTeam2Info().getInn2());
         holder.stadium.setText(pastMatchCardItems.get(position).getStadium());
         holder.title.setText(pastMatchCardItems.get(position).getTitle());

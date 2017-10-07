@@ -94,13 +94,10 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
 //        }
 
 
-
-
         TextView MatchDate = (TextView) view.findViewById(R.id.match_date_past);
         MatchDate.setText(this.dataObjectList.get(position).getTime());
 
         final CardView cardView = (CardView) view.findViewById(R.id.card_view);
-
 
 
         // Initializing Logo URLS
@@ -131,8 +128,7 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
         }
 
 
-
-            cardView.setOnClickListener(new View.OnClickListener() {
+        cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (position == 5) {

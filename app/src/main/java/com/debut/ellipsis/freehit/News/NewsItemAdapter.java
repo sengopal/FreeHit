@@ -53,7 +53,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
 
     @Override
     public com.debut.ellipsis.freehit.News.NewsItemAdapter.NewsViewHolder onCreateViewHolder(ViewGroup parent,
-                                                                                                              int viewType) {
+                                                                                             int viewType) {
         View view = null;
         if (viewType == 0) {
             view = LayoutInflater.from(parent.getContext()).inflate(rowLayout, parent, false);

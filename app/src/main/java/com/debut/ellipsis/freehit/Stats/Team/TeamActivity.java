@@ -24,16 +24,15 @@ public class TeamActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
-        setContentView(R.layout.stats_team);
-        Intent i=getIntent();
-        int Team = i.getIntExtra("CountryName",0);
+        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+        setContentView(R.layout.fragment_stats_team_activity);
+        Intent i = getIntent();
+        int Team = i.getIntExtra("CountryName", 0);
         String tempTeamName = this.getApplicationContext().getString(Team);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar_team);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
         setTitle(tempTeamName.toUpperCase());
 
         viewPager = (ViewPager) findViewById(R.id.viewpager_teams);
@@ -48,10 +47,10 @@ public class TeamActivity extends AppCompatActivity {
     @Override
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
-                overridePendingTransition(0,R.anim.exit_to_right);
+                overridePendingTransition(0, R.anim.exit_to_right);
                 return true;
 
         }
@@ -61,14 +60,14 @@ public class TeamActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         TeamActivity.super.onBackPressed();
-        overridePendingTransition(0,R.anim.exit_to_right);
+        overridePendingTransition(0, R.anim.exit_to_right);
 
     }
 
     private void setupViewPager(ViewPager viewPager) {
         TeamActivity.ViewPagerAdapter adapter = new TeamActivity.ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new Home(), "NEWS");
-        adapter.addFrag(new Schedule(), "SCHEDULE");
+        adapter.addFrag(new TeamNews(), "NEWS");
+        adapter.addFrag(new TeamMatchesFragment(), "SCHEDULE");
         viewPager.setAdapter(adapter);
     }
 
@@ -100,7 +99,6 @@ public class TeamActivity extends AppCompatActivity {
             return mFragmentTitleList.get(position);
         }
     }
-
 
 
 }

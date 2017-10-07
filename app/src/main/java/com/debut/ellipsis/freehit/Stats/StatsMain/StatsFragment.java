@@ -14,7 +14,7 @@ import com.debut.ellipsis.freehit.R;
 import com.debut.ellipsis.freehit.Stats.Player.PlayerActivity;
 import com.debut.ellipsis.freehit.Stats.Records.RecordsActivity;
 import com.debut.ellipsis.freehit.Stats.Series.SeriesActivity;
-import com.debut.ellipsis.freehit.Stats.Team.TeamActivityListView;
+import com.debut.ellipsis.freehit.Stats.Team.TeamListView;
 
 import java.util.ArrayList;
 
@@ -53,22 +53,20 @@ StatsFragment extends Fragment {
         listView.setOnItemClickListener(new ListView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(position==0) {
+                if (position == 0) {
                     Intent PlayerIntent = new Intent(getActivity(), PlayerActivity.class);
                     startActivity(PlayerIntent);
-                    getActivity().overridePendingTransition(0,0);
+                    getActivity().overridePendingTransition(0, 0);
 
-                }
-                else if (position==1){
-                    Intent TeamIntent = new Intent(getActivity(), TeamActivityListView.class);
+                } else if (position == 1) {
+                    Intent TeamIntent = new Intent(getActivity(), TeamListView.class);
                     startActivity(TeamIntent);
-                    getActivity().overridePendingTransition(0,0);
+                    getActivity().overridePendingTransition(0, 0);
 
-                }
-                else if (position==2){
+                } else if (position == 2) {
                     Intent SeriesIntent = new Intent(getActivity(), SeriesActivity.class);
                     startActivity(SeriesIntent);
-                    getActivity().overridePendingTransition(0,0);
+                    getActivity().overridePendingTransition(0, 0);
 
                 }
                 /*else if (position==3){
@@ -77,10 +75,10 @@ StatsFragment extends Fragment {
                     getActivity().overridePendingTransition(0,0);
 
                 }*/
-                else if (position==4){
+                else if (position == 4) {
                     Intent RecordsIntent = new Intent(getActivity(), RecordsActivity.class);
                     startActivity(RecordsIntent);
-                    getActivity().overridePendingTransition(0,0);
+                    getActivity().overridePendingTransition(0, 0);
 
                 }
             }

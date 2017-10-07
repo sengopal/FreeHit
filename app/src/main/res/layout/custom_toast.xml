@@ -5,11 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/toast_shape">
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center">
+
         <TextView
             android:id="@+id/texttoast"
             android:padding="@dimen/_12sdp"
@@ -17,7 +19,7 @@
             android:layout_height="match_parent"
             android:textColor="#ffffff"
             android:textSize="@dimen/_15sdp"
-            android:gravity="center"/>
+            android:gravity="center" />
     </LinearLayout>
 </LinearLayout>
 

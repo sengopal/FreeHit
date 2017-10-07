@@ -60,20 +60,33 @@ public class PastMatchCardItem {
         return mresult;
     }
 
-    public String getDate() {return date.toString();}
+    public String getDate() {
+        return date.toString();
+    }
 
-    public TeamInfo getTeam1Info() {return team1;}
-    public TeamInfo getTeam2Info() {return team2;}
+    public TeamInfo getTeam1Info() {
+        return team1;
+    }
+
+    public TeamInfo getTeam2Info() {
+        return team2;
+    }
+
     public int getId() {
         return id;
     }
+
     public String getNdid() {
         return ndid;
     }
-    public String getTime(){
+
+    public String getTime() {
         return time;
     }
-    public List<PastMatchCardItem> getResults() {return results;}
+
+    public List<PastMatchCardItem> getResults() {
+        return results;
+    }
 
 
     public class Date {
@@ -84,20 +97,28 @@ public class PastMatchCardItem {
         @SerializedName("year")
         private String year;
 
-        Date(String day, String month, String year){
+        Date(String day, String month, String year) {
             this.day = day;
             this.month = month;
             this.year = year;
         }
 
-        public String getDay(){return day;}
-        public String getMonth(){return month;}
-        public String getYear(){return year;}
+        public String getDay() {
+            return day;
+        }
+
+        public String getMonth() {
+            return month;
+        }
+
+        public String getYear() {
+            return year;
+        }
 
 
     }
 
-    public class TeamInfo{
+    public class TeamInfo {
         @SerializedName("sn")
         private String sn;
         @SerializedName("image")
@@ -107,16 +128,28 @@ public class PastMatchCardItem {
         @SerializedName("inn2")
         private String inn2;
 
-        TeamInfo(String sn, String image, String inn1, String inn2){
+        TeamInfo(String sn, String image, String inn1, String inn2) {
             this.sn = sn;
             this.image = image;
             this.inn1 = inn1;
             this.inn2 = inn2;
         }
-        public String getSn(){return sn;}
-        public String getImage(){return image;}
-        public String getInn1(){return inn1;}
-        public String getInn2(){return inn2;}
+
+        public String getSn() {
+            return sn;
+        }
+
+        public String getImage() {
+            return image;
+        }
+
+        public String getInn1() {
+            return inn1;
+        }
+
+        public String getInn2() {
+            return inn2;
+        }
 
 
     }

@@ -23,7 +23,7 @@
                 android:layout_height="@dimen/_100sdp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/_15sdp"
-                app:srcCompat="@drawable/flag_ind" />
+                app:srcCompat="@drawable/matches" />
 
             <TextView
                 android:id="@+id/Player_name_stats_info"
@@ -210,7 +210,7 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:paddingLeft="@dimen/_6sdp"
                         android:layout_toEndOf="@+id/Teams_PlayedLabel"
-                        android:textSize="@dimen/_13sdp"
+                        android:textSize="@dimen/_12sdp"
                         android:textColor="@android:color/black"
                         tools:text="9999/9999/999" />
 
@@ -294,6 +294,7 @@
                         android:text="ODI"
                         android:textAlignment="center"
                         android:textColor="#000000"
+                        android:textStyle="bold"
                         android:textSize="@dimen/_10sdp" />
 
                     <TextView
@@ -304,6 +305,7 @@
                         android:gravity="center"
                         android:padding="@dimen/_18sdp"
                         android:text="WORLD CUP"
+                        android:textStyle="bold"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="@dimen/_10sdp" />
@@ -316,6 +318,7 @@
                         android:gravity="center"
                         android:padding="@dimen/_18sdp"
                         android:text="T20I"
+                        android:textStyle="bold"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="@dimen/_10sdp" />
@@ -336,6 +339,7 @@
                         android:gravity="center"
                         android:padding="@dimen/_18sdp"
                         android:text="Batting"
+                        android:textStyle="bold"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="@dimen/_10sdp" />
@@ -392,6 +396,7 @@
                         android:gravity="center"
                         android:padding="@dimen/_18sdp"
                         android:text="Bowling"
+                        android:textStyle="bold"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="@dimen/_10sdp" />
@@ -498,6 +503,7 @@
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
                                 android:text="TEST"
+                                android:textStyle="bold"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="@dimen/_10sdp" />
@@ -510,6 +516,7 @@
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
                                 android:text="ODI"
+                                android:textStyle="bold"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="@dimen/_10sdp" />
@@ -522,6 +529,7 @@
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
                                 android:text="T20I"
+                                android:textStyle="bold"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="@dimen/_10sdp" />
@@ -534,6 +542,7 @@
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
                                 android:text="WORLD CUP"
+                                android:textStyle="bold"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="@dimen/_10sdp" />
@@ -546,6 +555,7 @@
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
                                 android:text="IPL"
+                                android:textStyle="bold"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="@dimen/_10sdp" />
@@ -558,6 +568,7 @@
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
                                 android:text="CL"
+                                android:textStyle="bold"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="@dimen/_10sdp" />
@@ -596,7 +607,8 @@
 
                             <TextView
                                 android:id="@+id/MOTM_T20"
-                                android:layout_height="@dimen/_58sdp"                                android:layout_weight="1"
+                                android:layout_height="@dimen/_58sdp"
+                                android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
@@ -607,7 +619,8 @@
 
                             <TextView
                                 android:id="@+id/MOTM_WorldCup"
-                                android:layout_height="@dimen/_58sdp"                                android:layout_weight="1"
+                                android:layout_height="@dimen/_58sdp"
+                                android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
@@ -618,7 +631,8 @@
 
                             <TextView
                                 android:id="@+id/MOTM_IPL"
-                                android:layout_height="@dimen/_58sdp"                                android:layout_weight="1"
+                                android:layout_height="@dimen/_58sdp"
+                                android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
@@ -629,7 +643,8 @@
 
                             <TextView
                                 android:id="@+id/MOTM_CL"
-                                android:layout_height="@dimen/_58sdp"                                android:layout_weight="1"
+                                android:layout_height="@dimen/_58sdp"
+                                android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
                                 android:padding="@dimen/_18ssp"

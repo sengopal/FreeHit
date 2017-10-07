@@ -112,7 +112,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     } else {
 
                         LayoutInflater inflater = getLayoutInflater();
-                        View layouttoast = inflater.inflate(R.layout.custom_toast, (ViewGroup)findViewById(R.id.toastcustom));
+                        View layouttoast = inflater.inflate(R.layout.custom_toast, (ViewGroup) findViewById(R.id.toastcustom));
                         ((TextView) layouttoast.findViewById(R.id.texttoast)).setText("PLEASE SELECT A TEAM");
 
                         Toast mytoast = new Toast(getBaseContext());
@@ -135,16 +135,17 @@ public class WelcomeActivity extends AppCompatActivity {
         int[] colorsActive = getResources().getIntArray(R.array.array_dot_active);
         int[] colorsInactive = getResources().getIntArray(R.array.array_dot_inactive);
 
-        int width = getResources().getDimensionPixelSize(R.dimen._15sdp);;
+        int width = getResources().getDimensionPixelSize(R.dimen._15sdp);
+        ;
         int height = getResources().getDimensionPixelSize(R.dimen._15sdp);
         dotsLayout.removeAllViews();
         for (int i = 0; i < dots.length; i++) {
             dots[i] = new ImageView(this);
             /*dots[i].setText(Html.fromHtml("&#8226;"));
             dots[i].setTextSize(35);*/
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width,height);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
             dots[i].setLayoutParams(params);
-            params.setMargins(15,15,0,0);
+            params.setMargins(15, 15, 0, 0);
             //parms.setMargins(left, top, right, bottom);
             dots[i].setImageResource(R.drawable.circle);
             dots[i].setColorFilter(colorsInactive[currentPage]);
@@ -152,9 +153,9 @@ public class WelcomeActivity extends AppCompatActivity {
         }
 
         if (dots.length > 0) {
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width,height);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
             dots[currentPage].setLayoutParams(params);
-            params.setMargins(15,15,0,0);
+            params.setMargins(15, 15, 0, 0);
             //parms.setMargins(left, top, right, bottom);
             dots[currentPage].setImageResource(R.drawable.ball);
             dots[currentPage].setColorFilter(colorsActive[currentPage]);
@@ -228,30 +229,29 @@ public class WelcomeActivity extends AppCompatActivity {
 
             View view = layoutInflater.inflate(layouts[position], container, false);
             container.addView(view);
-            if(position==4){
+            if (position == 4) {
 //                ImageView flag =(ImageView) view.findViewById(R.id.country_flag);
-                ImageView country_flag=(ImageView)findViewById(R.id.country_flag);
+                ImageView country_flag = (ImageView) findViewById(R.id.country_flag);
 
                 SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
                 String name = prefs.getString("country_name", "SELECT COUNTRY");
 
 
-
-                TextView country_name=(TextView)findViewById(R.id.country_name);
+                TextView country_name = (TextView) findViewById(R.id.country_name);
                 country_name.setText(name);
 
-                String flagID=prefs.getString("country_flag","");
-                Log.e("test",flagID);
+                String flagID = prefs.getString("country_flag", "");
+                Log.e("test", flagID);
 
 
                 Bitmap imageB = BitmapFactory.decodeResource(getBaseContext().getResources(), R.drawable.matches);
-                if(!flagID.equals("")) {
+                if (!flagID.equals("")) {
                     imageB = decodeToBase64(flagID);
-                    TextView empty=(TextView)findViewById(R.id.slide5description);
+                    TextView empty = (TextView) findViewById(R.id.slide5description);
                     empty.setVisibility(View.GONE);
                 }
                 country_flag.setImageBitmap(imageB);
-             }
+            }
             return view;
         }
 

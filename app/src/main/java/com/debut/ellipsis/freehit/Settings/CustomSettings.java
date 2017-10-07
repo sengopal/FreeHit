@@ -34,20 +34,20 @@ public class CustomSettings extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ImageView country_flag=(ImageView)findViewById(R.id.country_flag);
+        ImageView country_flag = (ImageView) findViewById(R.id.country_flag);
 
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         String name = prefs.getString("country_name", "Select Your Favourite Country");
 
-        TextView country_name=(TextView)findViewById(R.id.country_name);
+        TextView country_name = (TextView) findViewById(R.id.country_name);
         country_name.setText(name);
 
-        String flagID=prefs.getString("country_flag","");
-        Log.e(LOG_TAG,flagID);
+        String flagID = prefs.getString("country_flag", "");
+        Log.e(LOG_TAG, flagID);
 
 
         Bitmap imageB = null;
-        if(!flagID.equals("")) {
+        if (!flagID.equals("")) {
             imageB = decodeToBase64(flagID);
         }
         country_flag.setImageBitmap(imageB);
@@ -62,10 +62,10 @@ public class CustomSettings extends AppCompatActivity {
             @Override
             public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID) {
                 // Implement your code here
-                TextView country_name=(TextView)findViewById(R.id.country_name);
+                TextView country_name = (TextView) findViewById(R.id.country_name);
                 country_name.setText(name);
 
-                ImageView before=(ImageView)findViewById(R.id.country_flag);
+                ImageView before = (ImageView) findViewById(R.id.country_flag);
                 before.setImageResource(flagDrawableResID);
 
                 before.buildDrawingCache();
@@ -86,7 +86,6 @@ public class CustomSettings extends AppCompatActivity {
         byte[] decodedByte = Base64.decode(input, 0);
         return BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.length);
     }
-
 
 
 }

@@ -15,8 +15,9 @@ import com.debut.ellipsis.freehit.R;
  */
 
 public class PlayerSearch_Fragment extends Activity implements AdapterView.OnItemSelectedListener {
-    String[] country = { "England","India","Australia","Bangladesh","New Zeland","Pakistan","South Africa","Sri Lanka","West Indies","Zimbabwe",
-            "Canada","Ireland","Kenya","Netherland","scotland","Hong Kong","UAE","USA","Afganistan","PAPUA NEW GUINE","Nepal","Oman","World xi" };
+    String[] country = {"England", "India", "Australia", "Bangladesh", "New Zeland", "Pakistan", "South Africa", "Sri Lanka", "West Indies", "Zimbabwe",
+            "Canada", "Ireland", "Kenya", "Netherland", "scotland", "Hong Kong", "UAE", "USA", "Afganistan", "PAPUA NEW GUINE", "Nepal", "Oman", "World xi"};
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stats_player_search_fragment);
@@ -25,7 +26,7 @@ public class PlayerSearch_Fragment extends Activity implements AdapterView.OnIte
         spin.setOnItemSelectedListener(this);
 
         //Creating the ArrayAdapter instance having the country list
-        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,country);
+        ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, country);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         spin.setAdapter(aa);
@@ -40,6 +41,7 @@ public class PlayerSearch_Fragment extends Activity implements AdapterView.OnIte
         // Showing selected spinner item
         Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
     }
+
     public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
     }

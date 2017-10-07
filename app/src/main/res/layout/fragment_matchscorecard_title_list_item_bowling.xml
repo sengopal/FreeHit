@@ -9,16 +9,17 @@
         android:layout_marginTop="@dimen/_8sdp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/bowler_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/_20sdp"
-        android:paddingTop="@dimen/_3sdp"
-        android:textAllCaps="true"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/_12sdp"
-        tools:text="JEROME TAYLOR" />
+
+        <TextView
+            android:id="@+id/bowler_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/_20sdp"
+            android:paddingTop="@dimen/_3sdp"
+            android:textAllCaps="true"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_12sdp"
+            tools:text="JEROME TAYLOR" />
 
         <LinearLayout
             android:layout_alignParentRight="true"
@@ -33,81 +34,80 @@
             android:layout_marginBottom="@dimen/_5sdp">
 
 
-        <TextView
-            android:id="@+id/WicketsLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/_2sdp"
-            android:text="W : "
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/_8sdp" />
+            <TextView
+                android:id="@+id/WicketsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:text="W : "
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_8sdp" />
 
-        <TextView
-            android:id="@+id/WicketsValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/_8sdp"
-            tools:text="1" />
+            <TextView
+                android:id="@+id/WicketsValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_8sdp"
+                tools:text="1" />
 
-        <View
-            android:layout_width="@dimen/_1sdp"
-            android:layout_height="match_parent"
-            android:background="@android:color/darker_gray" />
+            <View
+                android:layout_width="@dimen/_1sdp"
+                android:layout_height="match_parent"
+                android:background="@android:color/darker_gray" />
 
-        <TextView
-            android:id="@+id/BowlerRunsLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:text="R : "
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/_8sdp" />
+            <TextView
+                android:id="@+id/BowlerRunsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:text="R : "
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_8sdp" />
 
-        <TextView
-            android:id="@+id/BowlerRunsValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/_8sdp"
-            tools:text="99" />
+            <TextView
+                android:id="@+id/BowlerRunsValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_8sdp"
+                tools:text="99" />
 
-        <View
-            android:layout_width="@dimen/_1sdp"
-            android:layout_height="match_parent"
-            android:background="@android:color/darker_gray" />
+            <View
+                android:layout_width="@dimen/_1sdp"
+                android:layout_height="match_parent"
+                android:background="@android:color/darker_gray" />
 
-        <TextView
-            android:id="@+id/EconomyRateLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:text="E/R : "
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/_8sdp" />
+            <TextView
+                android:id="@+id/EconomyRateLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:text="E/R : "
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_8sdp" />
 
-        <TextView
-            android:id="@+id/EconomyRateValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/_8sdp"
-            tools:text="9.4" />
+            <TextView
+                android:id="@+id/EconomyRateValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_8sdp"
+                tools:text="9.4" />
         </LinearLayout>
     </RelativeLayout>
-
 
 
     <LinearLayout

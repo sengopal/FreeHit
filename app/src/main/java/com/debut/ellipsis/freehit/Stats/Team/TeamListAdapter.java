@@ -13,30 +13,29 @@ import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
 
-public class TeamListAdapter extends ArrayAdapter<TeamActivityListItem> {
+public class TeamListAdapter extends ArrayAdapter<TeamListItem> {
 
 
-    public TeamListAdapter(Context context, ArrayList<TeamActivityListItem> items) {
+    public TeamListAdapter(Context context, ArrayList<TeamListItem> items) {
 
         super(context, 0, items);
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        View  listItemView = convertView;
+        View listItemView = convertView;
 
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.country_picker_row, parent, false);
         }
 
-        TeamActivityListItem currentItem = getItem(position);
+        TeamListItem currentItem = getItem(position);
 
 
         TextView statsNameTextView = (TextView) listItemView.findViewById(R.id.row_title);
-        statsNameTextView.setText(currentItem.getmStatsName());
+        statsNameTextView.setText(currentItem.getmTeamName());
 
         ImageView statsIcon = (ImageView) listItemView.findViewById(R.id.row_icon);
-        statsIcon.setImageResource(currentItem.getmStatsIcon());
-
+        statsIcon.setImageResource(currentItem.getmTeamIcon());
 
 
         return listItemView;

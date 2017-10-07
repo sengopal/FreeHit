@@ -20,6 +20,7 @@ public class PollCardItem {
     public List<Integer> cvotes = new ArrayList<>();
     @SerializedName("result")
     public List<PollCardItem> result = new ArrayList<>();
+
     public PollCardItem(int id, String ndid, String tour) {
         this.id = id;
         this.ndid = ndid;
@@ -41,24 +42,28 @@ public class PollCardItem {
     public String getCtitle(int index) {
         return ctitle.get(index);
     }
-    public int searchTitle(String str){
-        return ctitle.indexOf(str)+1;
+
+    public int searchTitle(String str) {
+        return ctitle.indexOf(str) + 1;
     }
+
     public int getCvotes(int index) {
         return cvotes.get(index);
     }
-    public int getTotalVotes(){
+
+    public int getTotalVotes() {
         int sum = 0;
-        for (int i = 0; i < cvotes.size()-1; i++) {
+        for (int i = 0; i < cvotes.size(); i++) {
             sum += cvotes.get(i);
         }
-        return sum;}
-    public List<PollCardItem> getResults(){
+        return sum;
+    }
+
+    public List<PollCardItem> getResults() {
         return result;
     }
 
-    public int getCount()
-    {
+    public int getCount() {
         return cvotes.size();
     }
 }
