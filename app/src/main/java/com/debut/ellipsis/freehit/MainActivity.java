@@ -68,8 +68,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 
-        System.out.println(main_tab);
-
         viewPager.setCurrentItem(main_tab);
 
 

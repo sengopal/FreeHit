@@ -7,20 +7,22 @@
 
     <ImageView
         android:id="@+id/arrow"
-        android:layout_width="@dimen/_50sdp"
-        android:layout_height="@dimen/_50sdp"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
         android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
         android:layout_marginStart="@dimen/_10sdp"
         android:src="@drawable/matches"/>
 
     <TextView
         android:id="@+id/FavTeamCategoryName"
         android:layout_toEndOf="@+id/arrow"
-        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/_20sdp"
+        android:textSize="@dimen/_15sdp"
         android:textColor="@android:color/black"
         tools:text="@string/category_news"/>
 

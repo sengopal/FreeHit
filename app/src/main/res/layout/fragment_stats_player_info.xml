@@ -19,8 +19,8 @@
 
             <ImageView
                 android:id="@+id/Player_image"
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_100sdp"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/_15sdp"
                 app:srcCompat="@drawable/matches" />
@@ -30,11 +30,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_15sdp"
                 tools:text="PlayerName"
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/_16sdp" />
+                android:textSize="@dimen/_14sdp" />
 
             <TextView
                 android:id="@+id/player_country"
@@ -44,7 +44,7 @@
                 tools:text="country"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
-                android:textSize="@dimen/_14sdp" />
+                android:textSize="@dimen/_12sdp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -57,11 +57,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:text="PERSONAL INFORMATION"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/_20sdp" />
+                android:textSize="@dimen/_15sdp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -89,7 +89,7 @@
                         android:textStyle="bold"
                         android:paddingLeft="@dimen/_4sdp"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_13sdp" />
+                        android:textSize="@dimen/_11sdp" />
 
                     <TextView
                         android:id="@+id/DOB"
@@ -97,8 +97,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_toEndOf="@+id/DOBLabel"
-                        android:textSize="@dimen/_13sdp"
-                        android:paddingLeft="@dimen/_6sdp"
+                        android:textSize="@dimen/_11sdp"
+                        android:paddingStart="@dimen/_6sdp"
                         android:textColor="@android:color/black"
                         tools:text="9999/9999/999" />
 
@@ -115,9 +115,9 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:text="Age : "
                         android:textStyle="bold"
-                        android:paddingLeft="@dimen/_4sdp"
+                        android:paddingStart="@dimen/_4sdp"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_13sdp" />
+                        android:textSize="@dimen/_11sdp" />
 
                     <TextView
                         android:id="@+id/Age"
@@ -125,8 +125,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_toEndOf="@+id/AgeLabel"
-                        android:textSize="@dimen/_13sdp"
-                        android:paddingLeft="@dimen/_6sdp"
+                        android:textSize="@dimen/_11sdp"
+                        android:paddingStart="@dimen/_6sdp"
                         android:textColor="@android:color/black"
                         tools:text="9999/9999/999" />
 
@@ -143,9 +143,9 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:text="Batting Style : "
                         android:textStyle="bold"
-                        android:paddingLeft="@dimen/_4sdp"
+                        android:paddingStart="@dimen/_4sdp"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_13sdp" />
+                        android:textSize="@dimen/_11sdp" />
 
                     <TextView
                         android:id="@+id/battingStyle"
@@ -153,8 +153,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_toEndOf="@+id/battingStyleLabel"
-                        android:textSize="@dimen/_13sdp"
-                        android:paddingLeft="@dimen/_6sdp"
+                        android:textSize="@dimen/_11sdp"
+                        android:paddingStart="@dimen/_6sdp"
                         android:textColor="@android:color/black"
                         tools:text="9999/9999/999" />
 
@@ -173,7 +173,7 @@
                         android:textStyle="bold"
                         android:paddingLeft="@dimen/_4sdp"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_13sdp" />
+                        android:textSize="@dimen/_11sdp" />
 
                     <TextView
                         android:id="@+id/BowlingStyle"
@@ -181,7 +181,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_toEndOf="@+id/BowlingStyleLabel"
-                        android:textSize="@dimen/_13sdp"
+                        android:textSize="@dimen/_11sdp"
                         android:paddingLeft="@dimen/_6sdp"
                         android:textColor="@android:color/black"
                         tools:text="9999/9999/999" />
@@ -201,7 +201,7 @@
                         android:textStyle="bold"
                         android:paddingLeft="@dimen/_4sdp"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_13sdp" />
+                        android:textSize="@dimen/_11sdp" />
 
                     <TextView
                         android:id="@+id/Teams_Played"
@@ -210,7 +210,7 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:paddingLeft="@dimen/_6sdp"
                         android:layout_toEndOf="@+id/Teams_PlayedLabel"
-                        android:textSize="@dimen/_12sdp"
+                        android:textSize="@dimen/_11sdp"
                         android:textColor="@android:color/black"
                         tools:text="9999/9999/999" />
 
@@ -218,6 +218,19 @@
 
 
             </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="@style/Base.Widget.AppCompat.ProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+
+        </RelativeLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -229,12 +242,12 @@
                 android:id="@+id/ICC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:gravity="center_horizontal"
                 android:text="ICC RANKING"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/_20sdp" />
+                android:textSize="@dimen/_15sdp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -244,18 +257,7 @@
                 android:textSize="@dimen/_1sdp" />
 
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-                <ProgressBar
-                    android:id="@+id/progress_bar"
-                    style="@style/Base.Widget.AppCompat.ProgressBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true" />
-
-            </RelativeLayout>
 
 
             <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -283,7 +285,7 @@
                         android:text=" "
                         android:textAlignment="center"
                         android:textColor="#000000"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="@dimen/_8sdp" />
 
                     <TextView
                         android:id="@+id/Label_ODI"
@@ -295,20 +297,20 @@
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textStyle="bold"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="@dimen/_8sdp" />
 
                     <TextView
-                        android:id="@+id/Label_WORLD"
+                        android:id="@+id/Label_TEST"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
                         android:padding="@dimen/_18sdp"
-                        android:text="WORLD CUP"
+                        android:text="TEST"
                         android:textStyle="bold"
                         android:textAlignment="center"
                         android:textColor="#000000"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="@dimen/_8sdp" />
 
                     <TextView
                         android:id="@+id/Label_T20"
@@ -321,7 +323,7 @@
                         android:textStyle="bold"
                         android:textAlignment="center"
                         android:textColor="#000000"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="@dimen/_8sdp" />
 
 
                 </TableRow>
@@ -342,7 +344,7 @@
                         android:textStyle="bold"
                         android:textAlignment="center"
                         android:textColor="#000000"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="@dimen/_8sdp" />
 
                     <TextView
                         android:id="@+id/odibattingRanking"
@@ -354,10 +356,10 @@
                         tools:text="01"
                         android:textAlignment="center"
                         android:textColor="#000000"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="@dimen/_8sdp" />
 
                     <TextView
-                        android:id="@+id/worldBattingRanking"
+                        android:id="@+id/testBattingRanking"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -366,7 +368,7 @@
                         tools:text="02"
                         android:textAlignment="center"
                         android:textColor="#000000"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="@dimen/_8sdp" />
 
                     <TextView
                         android:id="@+id/T20BattingRanking"
@@ -378,7 +380,7 @@
                         tools:text="T20I"
                         android:textAlignment="center"
                         android:textColor="#000000"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="@dimen/_8sdp" />
 
 
                 </TableRow>
@@ -399,7 +401,7 @@
                         android:textStyle="bold"
                         android:textAlignment="center"
                         android:textColor="#000000"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="@dimen/_8sdp" />
 
                     <TextView
                         android:id="@+id/odiBowlingRanking"
@@ -411,10 +413,10 @@
                         tools:text="--"
                         android:textAlignment="center"
                         android:textColor="#000000"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="@dimen/_8sdp" />
 
                     <TextView
-                        android:id="@+id/worldBowlingRanking"
+                        android:id="@+id/testBowlingRanking"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -423,7 +425,7 @@
                         tools:text="--"
                         android:textAlignment="center"
                         android:textColor="#000000"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="@dimen/_8sdp" />
 
                     <TextView
                         android:id="@+id/T20BowlingRanking"
@@ -435,7 +437,7 @@
                         tools:text="--"
                         android:textAlignment="center"
                         android:textColor="#000000"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="@dimen/_8sdp" />
 
 
                 </TableRow>
@@ -451,12 +453,12 @@
                 android:id="@+id/MOTM"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:gravity="center_horizontal"
                 android:text="MAN OF THE MATCH"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/_20sdp" />
+                android:textSize="@dimen/_15sdp" />
 
 
             <TextView
@@ -506,7 +508,7 @@
                                 android:textStyle="bold"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
-                                android:textSize="@dimen/_10sdp" />
+                                android:textSize="@dimen/_8sdp" />
 
                             <TextView
                                 android:id="@+id/MOTM_Label_ODI"
@@ -515,11 +517,11 @@
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
-                                android:text="ODI"
+                                android:text="  ODI  "
                                 android:textStyle="bold"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
-                                android:textSize="@dimen/_10sdp" />
+                                android:textSize="@dimen/_8sdp" />
 
                             <TextView
                                 android:id="@+id/MOTM_Label_T20"
@@ -532,7 +534,7 @@
                                 android:textStyle="bold"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
-                                android:textSize="@dimen/_10sdp" />
+                                android:textSize="@dimen/_8sdp" />
 
                             <TextView
                                 android:id="@+id/MOTM_Label_WorldCup"
@@ -545,7 +547,7 @@
                                 android:textStyle="bold"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
-                                android:textSize="@dimen/_10sdp" />
+                                android:textSize="@dimen/_8sdp" />
 
                             <TextView
                                 android:id="@+id/MOTM_Label_IPL"
@@ -554,11 +556,11 @@
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
-                                android:text="IPL"
+                                android:text="  IPL  "
                                 android:textStyle="bold"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
-                                android:textSize="@dimen/_10sdp" />
+                                android:textSize="@dimen/_8sdp" />
 
                             <TextView
                                 android:id="@+id/MOTM_Label_CL"
@@ -567,11 +569,11 @@
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
-                                android:text="CL"
+                                android:text="  CL  "
                                 android:textStyle="bold"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
-                                android:textSize="@dimen/_10sdp" />
+                                android:textSize="@dimen/_8sdp" />
 
 
                         </TableRow>
@@ -591,7 +593,7 @@
                                 tools:text="3"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
-                                android:textSize="@dimen/_10sdp" />
+                                android:textSize="@dimen/_8sdp" />
 
                             <TextView
                                 android:id="@+id/MOTM_Odi"
@@ -603,7 +605,7 @@
                                 tools:text="6"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
-                                android:textSize="@dimen/_10sdp" />
+                                android:textSize="@dimen/_8sdp" />
 
                             <TextView
                                 android:id="@+id/MOTM_T20"
@@ -615,7 +617,7 @@
                                 tools:text="2"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
-                                android:textSize="@dimen/_10sdp" />
+                                android:textSize="@dimen/_8sdp" />
 
                             <TextView
                                 android:id="@+id/MOTM_WorldCup"
@@ -627,7 +629,7 @@
                                 tools:text="2"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
-                                android:textSize="@dimen/_10sdp" />
+                                android:textSize="@dimen/_8sdp" />
 
                             <TextView
                                 android:id="@+id/MOTM_IPL"
@@ -639,7 +641,7 @@
                                 tools:text="2"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
-                                android:textSize="@dimen/_10sdp" />
+                                android:textSize="@dimen/_8sdp" />
 
                             <TextView
                                 android:id="@+id/MOTM_CL"
@@ -651,7 +653,7 @@
                                 tools:text="0"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
-                                android:textSize="@dimen/_10sdp" />
+                                android:textSize="@dimen/_8sdp" />
 
 
                         </TableRow>

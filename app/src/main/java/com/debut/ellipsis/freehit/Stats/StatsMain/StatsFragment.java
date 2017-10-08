@@ -12,8 +12,8 @@ import android.widget.ListView;
 
 import com.debut.ellipsis.freehit.R;
 import com.debut.ellipsis.freehit.Stats.Player.PlayerActivity;
+import com.debut.ellipsis.freehit.Stats.Rankings.RankingActivity;
 import com.debut.ellipsis.freehit.Stats.Records.RecordsActivity;
-import com.debut.ellipsis.freehit.Stats.Series.SeriesActivity;
 import com.debut.ellipsis.freehit.Stats.Series.SeriesListView;
 import com.debut.ellipsis.freehit.Stats.Team.TeamListView;
 
@@ -67,12 +67,12 @@ StatsFragment extends Fragment {
                     startActivity(SeriesIntent);
 
                 }
-                /*else if (position==3){
+                else if (position==3){
                     Intent RankingIntent = new Intent(getActivity(), RankingActivity.class);
                     startActivity(RankingIntent);
                     getActivity().overridePendingTransition(0,0);
 
-                }*/
+                }
                 else if (position == 4) {
                     Intent RecordsIntent = new Intent(getActivity(), RecordsActivity.class);
                     startActivity(RecordsIntent);

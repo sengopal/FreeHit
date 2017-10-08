@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL = "http://freehit-api.herokuapp.com/";
+    public static final String BASE_URL = "http://freehitapi-env.6s5kii7dbh.ap-south-1.elasticbeanstalk.com/";
     private static Retrofit retrofit = null;
 
 

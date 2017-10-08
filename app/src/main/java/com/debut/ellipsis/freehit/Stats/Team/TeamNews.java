@@ -16,9 +16,10 @@ import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
-import com.debut.ellipsis.freehit.News.NewsItem;
 import com.debut.ellipsis.freehit.News.NewsItemAdapter;
 import com.debut.ellipsis.freehit.R;
+import com.debut.ellipsis.freehit.favorites.FavouriteTeam.FavTeamNewsItem;
+import com.debut.ellipsis.freehit.favorites.FavouriteTeam.FavTeamNewsItemAdapter;
 
 import java.util.List;
 
@@ -69,25 +70,25 @@ public class TeamNews extends Fragment {
         /**
          GET List Resources
          **/
-        Call<NewsItem> call = apiInterface.doGetNewsArticleTeam(teamName);
-        call.enqueue(new Callback<NewsItem>() {
+        Call<FavTeamNewsItem> call = apiInterface.doGetNewsArticleTeam(teamName);
+        call.enqueue(new Callback<FavTeamNewsItem>() {
             @Override
-            public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
+            public void onResponse(Call<FavTeamNewsItem> call, Response<FavTeamNewsItem> response) {
 
                 mProgressBar.setVisibility(View.INVISIBLE);
 
-                List<NewsItem> news = response.body().getResults();
+                List<FavTeamNewsItem> news = response.body().getResults();
                 if (news.size() == 0) {
                     No_news.setVisibility(View.VISIBLE);
                     NoNewsButton.setVisibility(View.INVISIBLE);
                     NoNewsText.setText(R.string.EmptyNews);
 
                 }
-                recyclerView.setAdapter(new NewsItemAdapter(news, R.layout.fragment_news_list_item, getContext()));
+                recyclerView.setAdapter(new FavTeamNewsItemAdapter(news, R.layout.fragment_news_list_item, getContext()));
             }
 
             @Override
-            public void onFailure(Call<NewsItem> call, Throwable t) {
+            public void onFailure(Call<FavTeamNewsItem> call, Throwable t) {
                 mProgressBar.setVisibility(View.INVISIBLE);
                 No_news.setVisibility(View.INVISIBLE);
                 Toast toast=Toast.makeText(getContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
@@ -104,24 +105,24 @@ public class TeamNews extends Fragment {
                 // Checking if connected or not on refresh
                 refLayout.setRefreshing(true);
 
-                Call<NewsItem> call = apiInterface.doGetNewsArticleTeam(teamName);
-                call.enqueue(new Callback<NewsItem>() {
+                Call<FavTeamNewsItem> call = apiInterface.doGetNewsArticleTeam(teamName);
+                call.enqueue(new Callback<FavTeamNewsItem>() {
                     @Override
-                    public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
+                    public void onResponse(Call<FavTeamNewsItem> call, Response<FavTeamNewsItem> response) {
                         mProgressBar.setVisibility(View.INVISIBLE);
 
-                        List<NewsItem> news = response.body().getResults();
+                        List<FavTeamNewsItem> news = response.body().getResults();
                         if (news.size() == 0) {
                             No_news.setVisibility(View.VISIBLE);
                             NoNewsButton.setVisibility(View.INVISIBLE);
                             NoNewsText.setText(R.string.EmptyNews);
 
                         }
-                        recyclerView.setAdapter(new NewsItemAdapter(news, R.layout.fragment_news_list_item, getContext()));
+                        recyclerView.setAdapter(new FavTeamNewsItemAdapter(news, R.layout.fragment_news_list_item, getContext()));
                     }
 
                     @Override
-                    public void onFailure(Call<NewsItem> call, Throwable t) {
+                    public void onFailure(Call<FavTeamNewsItem> call, Throwable t) {
                         mProgressBar.setVisibility(View.INVISIBLE);
                         No_news.setVisibility(View.INVISIBLE);
                         Toast toast=Toast.makeText(getContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);

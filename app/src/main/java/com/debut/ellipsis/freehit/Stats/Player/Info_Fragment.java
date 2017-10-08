@@ -26,12 +26,13 @@ import retrofit2.Response;
 
 
 public class Info_Fragment extends Fragment {
-    //ProgressBar that is displayed before the earthquake list is generated
 
     private NewsItemAdapter mAdapter;
     private ProgressBar mProgressBar;
     private String player_url;
     APIInterface apiInterface;
+
+    private static final String RANK_SEPARATOR = ",";
 
     public Info_Fragment() {
 
@@ -88,50 +89,96 @@ public class Info_Fragment extends Fragment {
 
                 Glide.with(getContext()).load(ImageURL).centerCrop().placeholder(R.drawable.matches).into(articleImage);
                 TextView odiBat = (TextView) rootView.findViewById(R.id.odibattingRanking);
-                TextView worldBat = (TextView) rootView.findViewById(R.id.worldBattingRanking);
-                TextView t20 = (TextView) rootView.findViewById(R.id.T20BattingRanking);
+                TextView testBat = (TextView) rootView.findViewById(R.id.testBattingRanking);
+                TextView t20Bat = (TextView) rootView.findViewById(R.id.T20BattingRanking);
 
-                List<String> batrank = info.getBatrank();
-                for (int i = 0; i < batrank.size(); i++) {
-                    String str = batrank.get(i);
-                    String[] words = str.split("-");
-                    if (i == 0) {
-                        str = words[1].trim();
-                        odiBat.setText(str);
-                    } else if (i == 1) {
-                        str = words[1].trim();
-                        worldBat.setText(str);
+                String ODI_Batting_rank = "-";
+                String TEST_Batting_rank = "-";
+                String T20_Batting_rank = "-";
 
-                    } else if (i == 2) {
-                        str = words[1].trim();
-                        t20.setText(str);
 
+                List<String> batting_rank = info.getBatrank();
+                for(int i=0; i < batting_rank.size(); i++)
+                {
+                    String batting_format_rank = batting_rank.get(i);
+
+                    if(TEST_Batting_rank.equals("-")) {
+                        if (batting_format_rank.contains("Test -")) {
+                            String[] parts = batting_format_rank.split("Test - ");
+                            TEST_Batting_rank = "1";
+                            testBat.setText(parts[1]);
+                        } else {
+                            testBat.setText("N/A");
+                        }
                     }
 
+                    if(ODI_Batting_rank.equals("-")) {
+                        if (batting_format_rank.contains("ODI - ")) {
+                            String[] parts = batting_format_rank.split("ODI - ");
+                            ODI_Batting_rank = "1";
+                            odiBat.setText(parts[1]);
+                        } else {
+                            odiBat.setText("N/A");
+                        }
+                    }
+
+                    if(T20_Batting_rank.equals("-")) {
+                        if (batting_format_rank.contains("T20I - ")) {
+                            String[] parts = batting_format_rank.split("T20I - ");
+                            T20_Batting_rank = "1";
+                            t20Bat.setText(parts[1]);
+                        } else {
+                            t20Bat.setText("N/A");
+                        }
+                    }
                 }
 
 
-                List<String> bowl = info.getBowlrank();
                 TextView odibowl = (TextView) rootView.findViewById(R.id.odiBowlingRanking);
-                TextView worldbowl = (TextView) rootView.findViewById(R.id.worldBowlingRanking);
+                TextView testbowl = (TextView) rootView.findViewById(R.id.testBowlingRanking);
                 TextView t20bowl = (TextView) rootView.findViewById(R.id.T20BowlingRanking);
-                for (int i = 0; i < bowl.size(); i++) {
-                    String str2 = bowl.get(i);
-                    String[] words2 = str2.split("-");
-                    if (i == 0) {
-                        str2 = words2[1].trim();
-                        odibowl.setText(str2);
-                    } else if (i == 1) {
-                        str2 = words2[1].trim();
-                        worldbowl.setText(str2);
 
-                    } else if (i == 2) {
-                        str2 = words2[1].trim();
-                        t20bowl.setText(str2);
 
+                String ODI_Bowling_rank = "-";
+                String TEST_Bowling_rank = "-";
+                String T20_Bowling_rank = "-";
+
+                List<String> bowling_rank = info.getBowlrank();
+                for(int i=0; i < bowling_rank.size(); i++)
+                {
+                    String bowling_format_rank = bowling_rank.get(i);
+
+                    if(TEST_Bowling_rank.equals("-")) {
+                        if (bowling_format_rank.contains("Test -")) {
+                            String[] parts = bowling_format_rank.split("Test - ");
+                            TEST_Bowling_rank = "1";
+                            testbowl.setText(parts[1]);
+                        } else {
+                            testbowl.setText("N/A");
+                        }
                     }
 
+                    if(ODI_Bowling_rank.equals("-")) {
+                        if (bowling_format_rank.contains("ODI - ")) {
+                            String[] parts = bowling_format_rank.split("ODI - ");
+                            ODI_Bowling_rank = "1";
+                            odibowl.setText(parts[1]);
+                        } else {
+                            odibowl.setText("N/A");
+                        }
+                    }
+
+                    if(T20_Bowling_rank.equals("-")) {
+                        if (bowling_format_rank.contains("T20I - ")) {
+                            String[] parts = bowling_format_rank.split("T20I - ");
+                            T20_Bowling_rank = "1";
+                            t20bowl.setText(parts[1]);
+                        } else {
+                            t20bowl.setText("N/A");
+                        }
+                    }
                 }
+
 
                 TextView motest = (TextView) rootView.findViewById(R.id.MOTM_Test);
                 TextView motodi = (TextView) rootView.findViewById(R.id.MOTM_Odi);
@@ -140,37 +187,79 @@ public class Info_Fragment extends Fragment {
                 TextView motipl = (TextView) rootView.findViewById(R.id.MOTM_IPL);
                 TextView motcl = (TextView) rootView.findViewById(R.id.MOTM_CL);
 
-                List<String> mom = info.getManofthematch();
-                for (int i = 0; i < mom.size(); i++) {
-                    String str3 = mom.get(i);
-                    String[] words3 = str3.split("-");
-                    switch (i) {
-                        case 0:
-                            str3 = words3[1].trim();
-                            motest.setText(str3);
-                            break;
-                        case 1:
-                            str3 = words3[1].trim();
-                            motodi.setText(str3);
-                            break;
-                        case 2:
-                            str3 = words3[1].trim();
-                            mot20.setText(str3);
-                            break;
-                        case 3:
-                            str3 = words3[1].trim();
-                            motwc.setText(str3);
-                            break;
-                        case 4:
-                            str3 = words3[1].trim();
-                            motipl.setText(str3);
-                            break;
-                        case 5:
-                            str3 = words3[1].trim();
-                            motcl.setText(str3);
-                            break;
+                String ODI_MOM = "-";
+                String TEST_MOM = "-";
+                String T20_MOM = "-";
+                String WorldCup_MOM = "-";
+                String IPL_MOM = "-";
+                String CL_MOM = "-";
+
+                List<String> MOTM = info.getManofthematch();
+                for(int i=0; i < MOTM.size(); i++)
+                {
+                    String Motm_format = MOTM.get(i);
+                    if(TEST_MOM.equals("-")) {
+                        if (Motm_format.contains("Test -")) {
+                            String[] parts = Motm_format.split("Test - ");
+                            TEST_MOM = "1";
+                            motest.setText(parts[1]);
+                        } else {
+                            motest.setText("N/A");
+                        }
+                    }
+
+                    if(ODI_MOM.equals("-")) {
+                        if (Motm_format.contains("ODI - ")) {
+                            String[] parts = Motm_format.split("ODI - ");
+                            ODI_MOM = "1";
+                            motodi.setText(parts[1]);
+                        } else {
+                            motodi.setText("N/A");
+                        }
+                    }
+
+                    if(T20_MOM.equals("-")) {
+                        if (Motm_format.contains("T20I - ")) {
+                            String[] parts = Motm_format.split("T20I - ");
+                            T20_MOM = "1";
+                            mot20.setText(parts[1]);
+                        } else {
+                            mot20.setText("N/A");
+                        }
+                    }
+
+                    if(WorldCup_MOM.equals("-")) {
+                        if (Motm_format.contains(" World Cup - ")) {
+                            String[] parts = Motm_format.split(" World Cup - ");
+                            WorldCup_MOM = "1";
+                            motwc.setText(parts[1]);
+                        } else {
+                            motwc.setText("N/A");
+                        }
+                    }
+
+                    if(IPL_MOM.equals("-")) {
+                        if (Motm_format.contains(" IPL - ")) {
+                            String[] parts = Motm_format.split(" IPL - ");
+                            IPL_MOM = "1";
+                            motipl.setText(parts[1]);
+                        } else {
+                            motipl.setText("N/A");
+                        }
+                    }
+
+                    if(CL_MOM.equals("-")) {
+                        if (Motm_format.contains(" CL - ")) {
+                            String[] parts = Motm_format.split(" CL - ");
+                            CL_MOM = "1";
+                            motcl.setText(parts[1]);
+                        } else {
+                            motcl.setText("N/A");
+                        }
                     }
                 }
+
+
 
             }
 
