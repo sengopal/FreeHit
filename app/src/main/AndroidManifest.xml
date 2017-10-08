@@ -37,6 +37,20 @@
         <activity android:name=".Matches.PastMatches.PastMatchScoreCard" />
         <activity android:name=".Matches.LiveMatches.LiveMatchScoreCard" />
         <activity android:name=".Matches.UpcomingMatches.UpcomingMatchScoreCard" />
+        <activity android:name=".Stats.Player.PlayerSearch_Fragment"
+            android:launchMode="singleTop">
+            <meta-data  android:name="android.app.default_searchable"
+                android:value=".PlayerSearch_Fragment"
+                  android:resource="@xml/searchable">
+
+            </meta-data>
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+
+        </activity>
         <activity android:name=".IntoSlider.WelcomeActivity" />
         <activity
             android:name=".News.NewsArticle"

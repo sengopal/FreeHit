@@ -1,6 +1,9 @@
 package com.debut.ellipsis.freehit.Stats.Player;
 
 import android.app.Activity;
+import android.app.ListActivity;
+import android.app.SearchManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,40 +13,77 @@ import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.R;
 
+import java.util.ArrayList;
+
 /**
  * Created by Jayanth on 29-09-2017.
  */
 
-public class PlayerSearch_Fragment extends Activity implements AdapterView.OnItemSelectedListener {
-    String[] country = {"England", "India", "Australia", "Bangladesh", "New Zeland", "Pakistan", "South Africa", "Sri Lanka", "West Indies", "Zimbabwe",
-            "Canada", "Ireland", "Kenya", "Netherland", "scotland", "Hong Kong", "UAE", "USA", "Afganistan", "PAPUA NEW GUINE", "Nepal", "Oman", "World xi"};
+public class PlayerSearch_Fragment extends ListActivity  {
 
+    ArrayList<String> datasource;
+    ArrayList<String> results;
+    ArrayAdapter<String> adapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stats_player_search_fragment);
-        //Getting the instance of Spinner and applying OnItemSelectedListener on it
-        Spinner spin = (Spinner) findViewById(R.id.spinner);
-        spin.setOnItemSelectedListener(this);
-
-        //Creating the ArrayAdapter instance having the country list
-        ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, country);
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Setting the ArrayAdapter data on the Spinner
-        spin.setAdapter(aa);
+        // Get the intent, verify the action and get the query
+        results=new ArrayList<String>();
+        setupResultList();
+        setupDatasource();
+        getQuery(getIntent());
+        onSearchRequested();
 
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // On selecting a spinner item
-        String item = parent.getItemAtPosition(position).toString();
 
-        // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+    protected void onNewIntent(Intent intent) {
+        setIntent(intent);
+        getQuery(intent);
     }
 
-    public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
+    private void getQuery(Intent intent) {
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            doSearch(query);
+        }
     }
 
+    public void doSearch(String query){
+        //clear the previous results to prevent duplication
+        results.clear();
+        for(String item:datasource){
+            if(item.contains(query))
+                results.add(item);
+        }
+
+    }
+
+    private void setupDatasource(){
+        //create ArrayList object
+        datasource=new ArrayList<String>();
+        //add some example data
+        datasource.add("Yuvraj Singh");
+        datasource.add("Dinesh Karthik");
+        datasource.add("Rohit Sharma");
+        datasource.add("Virat Kohli");
+        datasource.add("Umesh Yadav");
+        datasource.add("Axar Patel");
+        datasource.add("Lokesh Rahul");
+        datasource.add("Kedar Jadhav");
+
+    }
+
+    private void setupResultList(){
+        results=new ArrayList<String>();
+        adapter=new ArrayAdapter<String>(this,R.layout.fragment_stats_player_activity,R.id.txt,results);
+        //set adapter to the ListView
+        setListAdapter(adapter);
+
+    }
+
+    public void onResume(){
+        super.onResume();
+        onSearchRequested();
+    }
 }
