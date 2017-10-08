@@ -108,7 +108,7 @@ public class Info_Fragment extends Fragment {
                             TEST_Batting_rank = "1";
                             testBat.setText(parts[1]);
                         } else {
-                            testBat.setText("N/A");
+                            testBat.setText("--");
                         }
                     }
 
@@ -118,7 +118,7 @@ public class Info_Fragment extends Fragment {
                             ODI_Batting_rank = "1";
                             odiBat.setText(parts[1]);
                         } else {
-                            odiBat.setText("N/A");
+                            odiBat.setText("--");
                         }
                     }
 
@@ -128,7 +128,7 @@ public class Info_Fragment extends Fragment {
                             T20_Batting_rank = "1";
                             t20Bat.setText(parts[1]);
                         } else {
-                            t20Bat.setText("N/A");
+                            t20Bat.setText("--");
                         }
                     }
                 }
@@ -154,7 +154,7 @@ public class Info_Fragment extends Fragment {
                             TEST_Bowling_rank = "1";
                             testbowl.setText(parts[1]);
                         } else {
-                            testbowl.setText("N/A");
+                            testbowl.setText("--");
                         }
                     }
 
@@ -164,7 +164,7 @@ public class Info_Fragment extends Fragment {
                             ODI_Bowling_rank = "1";
                             odibowl.setText(parts[1]);
                         } else {
-                            odibowl.setText("N/A");
+                            odibowl.setText("--");
                         }
                     }
 
@@ -174,18 +174,18 @@ public class Info_Fragment extends Fragment {
                             T20_Bowling_rank = "1";
                             t20bowl.setText(parts[1]);
                         } else {
-                            t20bowl.setText("N/A");
+                            t20bowl.setText("--");
                         }
                     }
                 }
 
 
-                TextView motest = (TextView) rootView.findViewById(R.id.MOTM_Test);
-                TextView motodi = (TextView) rootView.findViewById(R.id.MOTM_Odi);
-                TextView mot20 = (TextView) rootView.findViewById(R.id.MOTM_T20);
-                TextView motwc = (TextView) rootView.findViewById(R.id.MOTM_WorldCup);
-                TextView motipl = (TextView) rootView.findViewById(R.id.MOTM_IPL);
-                TextView motcl = (TextView) rootView.findViewById(R.id.MOTM_CL);
+                TextView mom_test = (TextView) rootView.findViewById(R.id.MOTM_Test);
+                TextView mom_odi = (TextView) rootView.findViewById(R.id.MOTM_Odi);
+                TextView mom_t20 = (TextView) rootView.findViewById(R.id.MOTM_T20);
+                TextView mom_wc = (TextView) rootView.findViewById(R.id.MOTM_WorldCup);
+                TextView mom_ipl = (TextView) rootView.findViewById(R.id.MOTM_IPL);
+                TextView mom_cl = (TextView) rootView.findViewById(R.id.MOTM_CL);
 
                 String ODI_MOM = "-";
                 String TEST_MOM = "-";
@@ -202,9 +202,9 @@ public class Info_Fragment extends Fragment {
                         if (Motm_format.contains("Test -")) {
                             String[] parts = Motm_format.split("Test - ");
                             TEST_MOM = "1";
-                            motest.setText(parts[1]);
+                            mom_test.setText(parts[1]);
                         } else {
-                            motest.setText("N/A");
+                            mom_test.setText("--");
                         }
                     }
 
@@ -212,9 +212,9 @@ public class Info_Fragment extends Fragment {
                         if (Motm_format.contains("ODI - ")) {
                             String[] parts = Motm_format.split("ODI - ");
                             ODI_MOM = "1";
-                            motodi.setText(parts[1]);
+                            mom_odi.setText(parts[1]);
                         } else {
-                            motodi.setText("N/A");
+                            mom_odi.setText("--");
                         }
                     }
 
@@ -222,9 +222,9 @@ public class Info_Fragment extends Fragment {
                         if (Motm_format.contains("T20I - ")) {
                             String[] parts = Motm_format.split("T20I - ");
                             T20_MOM = "1";
-                            mot20.setText(parts[1]);
+                            mom_t20.setText(parts[1]);
                         } else {
-                            mot20.setText("N/A");
+                            mom_t20.setText("--");
                         }
                     }
 
@@ -232,9 +232,9 @@ public class Info_Fragment extends Fragment {
                         if (Motm_format.contains(" World Cup - ")) {
                             String[] parts = Motm_format.split(" World Cup - ");
                             WorldCup_MOM = "1";
-                            motwc.setText(parts[1]);
+                            mom_wc.setText(parts[1]);
                         } else {
-                            motwc.setText("N/A");
+                            mom_wc.setText("--");
                         }
                     }
 
@@ -242,9 +242,9 @@ public class Info_Fragment extends Fragment {
                         if (Motm_format.contains(" IPL - ")) {
                             String[] parts = Motm_format.split(" IPL - ");
                             IPL_MOM = "1";
-                            motipl.setText(parts[1]);
+                            mom_ipl.setText(parts[1]);
                         } else {
-                            motipl.setText("N/A");
+                            mom_ipl.setText("--");
                         }
                     }
 
@@ -252,9 +252,9 @@ public class Info_Fragment extends Fragment {
                         if (Motm_format.contains(" CL - ")) {
                             String[] parts = Motm_format.split(" CL - ");
                             CL_MOM = "1";
-                            motcl.setText(parts[1]);
+                            mom_cl.setText(parts[1]);
                         } else {
-                            motcl.setText("N/A");
+                            mom_cl.setText("--");
                         }
                     }
                 }

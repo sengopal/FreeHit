@@ -10,7 +10,7 @@ import com.debut.ellipsis.freehit.Stats.Player.BattingItem;
 import com.debut.ellipsis.freehit.Stats.Player.BowlingItem;
 import com.debut.ellipsis.freehit.Stats.Player.CareerItem;
 import com.debut.ellipsis.freehit.Stats.Player.InfoItem;
-import com.debut.ellipsis.freehit.favorites.FavouriteTeam.FavTeamNewsItem;
+import com.debut.ellipsis.freehit.Stats.favorites.FavouriteTeam.FavTeamNewsItem;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
