@@ -10,6 +10,7 @@ import com.debut.ellipsis.freehit.Stats.Player.BattingItem;
 import com.debut.ellipsis.freehit.Stats.Player.BowlingItem;
 import com.debut.ellipsis.freehit.Stats.Player.CareerItem;
 import com.debut.ellipsis.freehit.Stats.Player.InfoItem;
+import com.debut.ellipsis.freehit.Stats.favorites.FavouriteTeam.FavTeamNewsItem;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -60,7 +61,7 @@ public interface APIInterface {
     Call<PastMatchCardItem> doGetCompletePastCardResources();
 
     @GET("news?")
-    Call<NewsItem> doGetNewsArticleTeam(@Query("fav") String team);
+    Call<FavTeamNewsItem> doGetNewsArticleTeam(@Query("fav") String team);
 
     @GET("upcoming?")
     Call<UpcomingMatchCardItem> doGetUpcomingFavTeam(@Query("fav") String team);

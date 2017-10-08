@@ -20,8 +20,7 @@ import com.debut.ellipsis.freehit.Matches.MatchesFragment;
 import com.debut.ellipsis.freehit.News.NewsFragment;
 import com.debut.ellipsis.freehit.Settings.CustomSettings;
 import com.debut.ellipsis.freehit.Social.SocialMainFragment;
-import com.debut.ellipsis.freehit.Stats.StatsMain.StatsFragment;
-import com.debut.ellipsis.freehit.favorites.FavoritesFragment;
+import com.debut.ellipsis.freehit.Stats.MoreMain.MoreFragment;
 import com.twitter.sdk.android.core.Twitter;
 
 import java.util.ArrayList;
@@ -36,8 +35,7 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.matches,
             R.drawable.news,
             R.drawable.social,
-            R.drawable.stats,
-            R.drawable.fav
+            R.drawable.more,
     };
 
     @Override
@@ -67,8 +65,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-
-        System.out.println(main_tab);
 
         viewPager.setCurrentItem(main_tab);
 
@@ -103,22 +99,19 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
         tabLayout.getTabAt(2).setIcon(tabIcons[2]);
         tabLayout.getTabAt(3).setIcon(tabIcons[3]);
-        tabLayout.getTabAt(4).setIcon(tabIcons[4]);
 
         tabLayout.getTabAt(0).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
         tabLayout.getTabAt(1).getIcon().setColorFilter(Color.parseColor("#a8a8a8"), PorterDuff.Mode.SRC_IN);
         tabLayout.getTabAt(2).getIcon().setColorFilter(Color.parseColor("#a8a8a8"), PorterDuff.Mode.SRC_IN);
         tabLayout.getTabAt(3).getIcon().setColorFilter(Color.parseColor("#a8a8a8"), PorterDuff.Mode.SRC_IN);
-        tabLayout.getTabAt(4).getIcon().setColorFilter(Color.parseColor("#a8a8a8"), PorterDuff.Mode.SRC_IN);
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new MatchesFragment(), "MATCH");
+        adapter.addFrag(new MatchesFragment(), "MATCHES");
         adapter.addFrag(new NewsFragment(), "NEWS");
         adapter.addFrag(new SocialMainFragment(), "SOCIAL");
-        adapter.addFrag(new StatsFragment(), "STATS");
-        adapter.addFrag(new FavoritesFragment(),"FAV");
+        adapter.addFrag(new MoreFragment(), "MORE");
         viewPager.setAdapter(adapter);
     }
 

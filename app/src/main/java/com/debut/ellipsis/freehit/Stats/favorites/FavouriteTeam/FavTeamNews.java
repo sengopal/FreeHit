@@ -1,25 +1,23 @@
-package com.debut.ellipsis.freehit.Stats.Team;
+package com.debut.ellipsis.freehit.Stats.favorites.FavouriteTeam;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
-import com.debut.ellipsis.freehit.News.NewsItemAdapter;
 import com.debut.ellipsis.freehit.R;
-import com.debut.ellipsis.freehit.Stats.favorites.FavouriteTeam.FavTeamNewsItem;
-import com.debut.ellipsis.freehit.Stats.favorites.FavouriteTeam.FavTeamNewsItemAdapter;
 
 import java.util.List;
 
@@ -27,50 +25,55 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+public class FavTeamNews extends AppCompatActivity {
 
-public class TeamNews extends Fragment {
-    APIInterface apiInterface;
-    private NewsItemAdapter mAdapter;
     private ProgressBar mProgressBar;
+    APIInterface apiInterface;
+    private Toolbar toolbar;
+    public ImageView NoConnectionImage;
+    public Button NoConnectionButton;
     public TextView NoNewsText;
     public Button NoNewsButton;
 
-    public TeamNews() {
-
-    }
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_news_list, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_fav_team_news_list);
+        Intent i = getIntent();
+        String Team = i.getStringExtra("CountryName");
 
-        Intent i = getActivity().getIntent();
-        int Team = i.getIntExtra("CountryName", 0);
-        String tempTeamName = this.getContext().getString(Team);
-
-        final String teamName = tempTeamName.toLowerCase();
+        final String TeamName = Team.toLowerCase();
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        final RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.news_list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        final RecyclerView recyclerView = (RecyclerView)findViewById(R.id.news_list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-        final TextView emptyView = (TextView) rootView.findViewById(R.id.empty_view);
 
-        mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
+        mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
-        final View No_news = rootView.findViewById(R.id.No_news);
+        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) findViewById(R.id.refresh_layout);
+
+        final View no_internet_connection = findViewById(R.id.Unavailable_connection);
+
+        NoConnectionImage = (ImageView) no_internet_connection.findViewById(R.id.no_internet_connection);
+        NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
+
+
+        final View No_news = findViewById(R.id.No_news);
 
         NoNewsText = (TextView) No_news.findViewById(R.id.empty_view);
         NoNewsButton = (Button) No_news.findViewById(R.id.No_Live_Matches_button);
 
-        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.refresh_layout);
+        toolbar = (Toolbar) findViewById(R.id.toolbar_for_news_list);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle(R.string.category_news);
 
         /**
          GET List Resources
          **/
-        Call<FavTeamNewsItem> call = apiInterface.doGetNewsArticleTeam(teamName);
+        Call<FavTeamNewsItem> call = apiInterface.doGetNewsArticleTeam(TeamName);
         call.enqueue(new Callback<FavTeamNewsItem>() {
             @Override
             public void onResponse(Call<FavTeamNewsItem> call, Response<FavTeamNewsItem> response) {
@@ -84,14 +87,14 @@ public class TeamNews extends Fragment {
                     NoNewsText.setText(R.string.EmptyNews);
 
                 }
-                recyclerView.setAdapter(new FavTeamNewsItemAdapter(news, R.layout.fragment_news_list_item, getContext()));
+                recyclerView.setAdapter(new FavTeamNewsItemAdapter(news, R.layout.fragment_news_list_item, getApplicationContext()));
             }
 
             @Override
             public void onFailure(Call<FavTeamNewsItem> call, Throwable t) {
                 mProgressBar.setVisibility(View.INVISIBLE);
                 No_news.setVisibility(View.INVISIBLE);
-                Toast toast=Toast.makeText(getContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
+                Toast toast=Toast.makeText(getApplicationContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
                 toast.show();
                 call.cancel();
             }
@@ -105,7 +108,7 @@ public class TeamNews extends Fragment {
                 // Checking if connected or not on refresh
                 refLayout.setRefreshing(true);
 
-                Call<FavTeamNewsItem> call = apiInterface.doGetNewsArticleTeam(teamName);
+                Call<FavTeamNewsItem> call = apiInterface.doGetNewsArticleTeam(TeamName);
                 call.enqueue(new Callback<FavTeamNewsItem>() {
                     @Override
                     public void onResponse(Call<FavTeamNewsItem> call, Response<FavTeamNewsItem> response) {
@@ -118,14 +121,14 @@ public class TeamNews extends Fragment {
                             NoNewsText.setText(R.string.EmptyNews);
 
                         }
-                        recyclerView.setAdapter(new FavTeamNewsItemAdapter(news, R.layout.fragment_news_list_item, getContext()));
+                        recyclerView.setAdapter(new FavTeamNewsItemAdapter(news, R.layout.fragment_news_list_item, getApplicationContext()));
                     }
 
                     @Override
                     public void onFailure(Call<FavTeamNewsItem> call, Throwable t) {
                         mProgressBar.setVisibility(View.INVISIBLE);
                         No_news.setVisibility(View.INVISIBLE);
-                        Toast toast=Toast.makeText(getContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
+                        Toast toast=Toast.makeText(getApplicationContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
                         toast.show();
                         call.cancel();
 
@@ -136,9 +139,26 @@ public class TeamNews extends Fragment {
             }
         }
         );
+    }
+    @Override
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                overridePendingTransition(0, R.anim.exit_to_right);
+                return true;
 
 
-        return rootView;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        FavTeamNews.super.onBackPressed();
+        overridePendingTransition(0, R.anim.exit_to_right);
+
+    }
 }
+

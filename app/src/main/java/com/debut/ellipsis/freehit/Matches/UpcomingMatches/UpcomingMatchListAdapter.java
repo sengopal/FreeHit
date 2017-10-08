@@ -135,7 +135,7 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
 
                 Intent UpcomingMatchScoreCardIntent = new Intent(getContext(), UpcomingMatchScoreCard.class);
                 UpcomingMatchScoreCardIntent.putExtra("match_id", upcomingMatchCards.getNdid());
-                UpcomingMatchScoreCardIntent.putExtra("match_name", upcomingMatchCards.getMatch());
+                UpcomingMatchScoreCardIntent.putExtra("match_name",  upcomingMatchCards.getMatch() + "(" + upcomingMatchCards.getTeam1().getSn() + " vs " + upcomingMatchCards.getTeam2().getSn() + ")");
 
                 UpcomingMatchScoreCardIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 getContext().startActivity(UpcomingMatchScoreCardIntent);
