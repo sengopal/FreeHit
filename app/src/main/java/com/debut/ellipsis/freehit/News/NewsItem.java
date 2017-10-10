@@ -41,7 +41,7 @@ public class NewsItem {
     public String getDesc() {
         return desc;
     }
-
+    //
     public String getDate() {
         return date;
     }
