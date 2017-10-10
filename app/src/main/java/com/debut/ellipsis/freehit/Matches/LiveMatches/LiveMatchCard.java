@@ -94,6 +94,7 @@ public class LiveMatchCard extends Fragment {
                 List<LiveMatchCardItem> LiveMatches = response.body().getResults();
 
                 if (getActivity() != null) {
+
                     if (LiveMatches.size() == 0) {
                         No_live_matches.setVisibility(View.VISIBLE);
                         NoLiveMatchesButton.setOnClickListener(new View.OnClickListener() {
@@ -200,9 +201,9 @@ public class LiveMatchCard extends Fragment {
 
     private void IndicatorConfig() {
         indicator.setVisibility(View.VISIBLE);
-        indicator.setAnimationType(AnimationType.DROP);
-        indicator.setUnselectedColor(Color.parseColor("#F06292"));
-        indicator.setSelectedColor(Color.parseColor("#E91E63"));
+        indicator.setAnimationType(AnimationType.WORM);
+        indicator.setUnselectedColor(Color.parseColor("#ab47bc"));
+        indicator.setSelectedColor(Color.parseColor("#6a1b9a"));
         indicator.setInteractiveAnimation(true);
         indicator.setAnimationDuration(500);
 

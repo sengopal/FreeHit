@@ -56,6 +56,61 @@ public class CountryHash {
         return null;
     }
 
+    public int getCountryFlag(String CountryName)
+    {
+        switch (CountryName) {
+            case "INDIA":
+                return R.drawable.flag_ind;
+            case "AUSTRALIA":
+                return R.drawable.flag_aus;
+            case "PAKISTAN":
+                return R.drawable.flag_pak;
+            case "SRI LANKA":
+                return R.drawable.flag_sl;
+            case "SOUTH AFRICA":
+                return R.drawable.flag_sa;
+            case "BANGLADESH":
+                return R.drawable.flag_ban;
+            case "NEW ZEALAND":
+                return R.drawable.flag_nz;
+            case "ENGLAND":
+                return R.drawable.flag_eng;
+            case "WEST INDIES":
+                return R.drawable.flag_wi;
+            case "ZIMBABWE":
+                return R.drawable.flag_wi;
+            case "CANADA":
+                return R.drawable.matches;
+            case "IRELAND":
+                return R.drawable.flag_ire;
+            case "KENYA":
+                return R.drawable.matches;
+            case "NETHERLANDS":
+                return R.drawable.matches;
+            case "SCOTLAND":
+                return R.drawable.matches;
+            case "HONG KONG":
+                return R.drawable.matches;
+            case "UNITED ARAB EMIRATES":
+                return R.drawable.matches;
+            case "USA":
+                return R.drawable.matches;
+            case "AFGHANISTAN":
+                return R.drawable.flag_afg;
+            case "PAPUA NEW GUINEA":
+                return R.drawable.matches;
+            case "NEPAL":
+                return R.drawable.matches;
+            case "OMAN":
+                return R.drawable.matches;
+            case "WORLD XI":
+                return R.drawable.matches;
+
+        }
+        return R.drawable.matches;
+
+    }
+
     public String getCountryName(String CountrySN) {
         switch (CountrySN) {
             case "IND":

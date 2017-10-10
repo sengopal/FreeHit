@@ -16,7 +16,7 @@ public class SeriesTest extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.stats_perfo_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_more_perfo_fragment, container, false);
        /* Intent i = getActivity().getIntent();
         int Team = i.getIntExtra("CountryName", 0);
         String tempTeamName = this.getContext().getString(Team);*/

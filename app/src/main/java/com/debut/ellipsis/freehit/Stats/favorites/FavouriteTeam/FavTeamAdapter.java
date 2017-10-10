@@ -26,7 +26,7 @@ public class FavTeamAdapter extends ArrayAdapter<MoreItem> {
         View listItemView = convertView;
 
         if (listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_fav_team_team_item, parent, false);
+            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_more_fav_team_team_item, parent, false);
         }
 
         MoreItem currentItem = getItem(position);

@@ -26,7 +26,7 @@ public class SeriesListView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.stats_series_listview);
+        setContentView(R.layout.fragment_more_series_listview);
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         final ArrayList<SeriesListItem> SeriesItem = new ArrayList<SeriesListItem>();
 

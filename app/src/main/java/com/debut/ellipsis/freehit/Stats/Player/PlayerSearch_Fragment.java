@@ -20,7 +20,7 @@ public class PlayerSearch_Fragment extends Activity implements AdapterView.OnIte
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.stats_player_search_fragment);
+        setContentView(R.layout.fragment_more_player_search_fragment);
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
         Spinner spin = (Spinner) findViewById(R.id.spinner);
         spin.setOnItemSelectedListener(this);

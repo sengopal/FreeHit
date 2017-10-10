@@ -26,7 +26,7 @@ public class SeriesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.stats_series_activity);
+        setContentView(R.layout.fragment_more_series_activity);
 
         Intent i = getIntent();
         String Series = i.getStringExtra("CountryName");

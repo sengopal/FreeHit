@@ -157,9 +157,9 @@ public class PastMatchCard extends Fragment {
 
 
     private void IndicatorConfig() {
-        indicator.setAnimationType(AnimationType.DROP);
-        indicator.setUnselectedColor(Color.parseColor("#F06292"));
-        indicator.setSelectedColor(Color.parseColor("#E91E63"));
+        indicator.setAnimationType(AnimationType.WORM);
+        indicator.setUnselectedColor(Color.parseColor("#ab47bc"));
+        indicator.setSelectedColor(Color.parseColor("#6a1b9a"));
         indicator.setInteractiveAnimation(true);
         indicator.setAnimationDuration(500);
 

@@ -2,27 +2,24 @@ package com.debut.ellipsis.freehit.Settings;
 
 
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.debut.ellipsis.freehit.CountryHash;
 import com.debut.ellipsis.freehit.IntoSlider.CountryPicker;
 import com.debut.ellipsis.freehit.IntoSlider.CountryPickerListener;
 import com.debut.ellipsis.freehit.R;
 
 import static com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity.MY_PREFS_NAME;
-import static com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity.encodeToBase64;
 
 public class CustomSettings extends AppCompatActivity {
     public static final String LOG_TAG = CustomSettings.class.getSimpleName();
     private Toolbar toolbar;
+    CountryHash countryHash = new CountryHash();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +31,9 @@ public class CustomSettings extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
         ImageView country_flag = (ImageView) findViewById(R.id.country_flag);
+
 
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         String name = prefs.getString("country_name", "Select Your Favourite Country");
@@ -42,15 +41,8 @@ public class CustomSettings extends AppCompatActivity {
         TextView country_name = (TextView) findViewById(R.id.country_name);
         country_name.setText(name);
 
-        String flagID = prefs.getString("country_flag", "");
-        Log.e(LOG_TAG, flagID);
+        country_flag.setImageResource(countryHash.getCountryFlag(name.toUpperCase()));
 
-
-        Bitmap imageB = null;
-        if (!flagID.equals("")) {
-            imageB = decodeToBase64(flagID);
-        }
-        country_flag.setImageBitmap(imageB);
 
 
     }
@@ -68,11 +60,8 @@ public class CustomSettings extends AppCompatActivity {
                 ImageView before = (ImageView) findViewById(R.id.country_flag);
                 before.setImageResource(flagDrawableResID);
 
-                before.buildDrawingCache();
-                Bitmap bmap = before.getDrawingCache();
                 SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
                 editor.putString("country_name", name);
-                editor.putString("country_flag", encodeToBase64(bmap));
                 editor.apply();
                 picker.dismiss();
 
@@ -82,10 +71,5 @@ public class CustomSettings extends AppCompatActivity {
 
     }
 
-    public static Bitmap decodeToBase64(String input) {
-        byte[] decodedByte = Base64.decode(input, 0);
-        return BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.length);
-    }
-
-
+    
 }
