@@ -27,7 +27,7 @@ public class PlayerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
-        setContentView(R.layout.fragment_stats_player_activity);
+        setContentView(R.layout.fragment_more_player_activity);
 
         Intent i = getIntent();
         String player_name = i.getStringExtra("player_name");

@@ -45,7 +45,7 @@ public class Info_Fragment extends Fragment {
         Intent i = getActivity().getIntent();
         player_url = i.getStringExtra("player_url");
 
-        final View rootView = inflater.inflate(R.layout.fragment_stats_player_info, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_more_player_info, container, false);
 
         final TextView name = (TextView) rootView.findViewById(R.id.Player_name_stats_info);
         final TextView country = (TextView) rootView.findViewById(R.id.player_country);

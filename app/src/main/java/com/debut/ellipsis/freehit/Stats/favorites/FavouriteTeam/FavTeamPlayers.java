@@ -37,7 +37,7 @@ public class FavTeamPlayers extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_fav_team_player_list);
+        setContentView(R.layout.fragment_more_fav_team_player_list);
 
         Intent i = getIntent();
         final String Team = i.getStringExtra("CountryName");

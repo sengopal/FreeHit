@@ -26,7 +26,7 @@ public class RankingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
-        setContentView(R.layout.fragment_stats_rankings_activity);
+        setContentView(R.layout.fragment_more_rankings_activity);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar_rankings);
         setSupportActionBar(toolbar);

@@ -28,7 +28,7 @@ public class Bowling_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        final View rootView = inflater.inflate(R.layout.fragment_stats_player_batting_bowling_gridview, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_more_player_batting_bowling_gridview, container, false);
         Intent i = getActivity().getIntent();
         player_url = i.getStringExtra("player_url");
 

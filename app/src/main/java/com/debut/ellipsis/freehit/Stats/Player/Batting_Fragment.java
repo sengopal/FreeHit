@@ -32,7 +32,7 @@ public class Batting_Fragment extends Fragment {
         Intent i = getActivity().getIntent();
         player_url = i.getStringExtra("player_url");
 
-        View rootView = inflater.inflate(R.layout.fragment_stats_player_batting_bowling_gridview, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_more_player_batting_bowling_gridview, container, false);
         final String[] gridViewString = new String[60];
 
         final GridView androidGridView;

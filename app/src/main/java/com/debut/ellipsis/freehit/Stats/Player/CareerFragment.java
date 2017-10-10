@@ -32,7 +32,7 @@ public class CareerFragment extends Fragment {
         player_url = i.getStringExtra("player_url");
         System.out.println(player_url);
 
-        final View rootView = inflater.inflate(R.layout.fragment_stats_player_career, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_more_player_career, container, false);
 
         mProgressBar = (ProgressBar)rootView.findViewById(R.id.progress_bar);
 
