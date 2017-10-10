@@ -37,7 +37,7 @@
         <activity android:name=".Matches.PastMatches.PastMatchScoreCard" />
         <activity android:name=".Matches.LiveMatches.LiveMatchScoreCard" />
         <activity android:name=".Matches.UpcomingMatches.UpcomingMatchScoreCard" />
-        <activity android:name=".Stats.Player.PlayerSearch_Fragment"
+        <activity android:name=".More.Player.PlayerSearch_Fragment"
             android:launchMode="singleTop">
             <meta-data  android:name="android.app.default_searchable"
                 android:value=".PlayerSearch_Fragment"
@@ -67,22 +67,22 @@
                 android:value="com.debut.ellipsis.freehit.MainActivity" />
         </activity>
         <activity
-            android:name=".Stats.Player.PlayerActivity"
+            android:name=".More.Player.PlayerActivity"
             android:label="Player Info" />
-        <activity android:name=".Stats.Team.TeamActivity" />
-        <activity android:name=".Stats.Series.SeriesActivity" />
-        <activity android:name=".Stats.Rankings.RankingActivity" />
-        <activity android:name=".Stats.Records.RecordsActivity" />
-        <activity android:name=".Stats.Series.SeriesListView"></activity>
+        <activity android:name=".More.Team.TeamActivity" />
+        <activity android:name=".More.Series.SeriesActivity" />
+        <activity android:name=".More.Rankings.RankingActivity" />
+        <activity android:name=".More.Records.RecordsActivity" />
+        <activity android:name=".More.Series.SeriesListView"></activity>
         <activity
-            android:name=".Stats.Team.TeamListView"
+            android:name=".More.Team.TeamListView"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".Stats.favorites.FavouriteTeam.FavTeamNews" />
-        <activity android:name=".Stats.favorites.FavouriteTeam.FavTeamUpcomingMatches" />
-        <activity android:name=".Stats.favorites.FavouriteTeam.FavTeamPastMatches"></activity>
-        <activity android:name=".Stats.favorites.FavouriteTeam.FavTeamPlayers"/>
-        <activity android:name=".Stats.favorites.FavoritesActivity"/>
-        <activity android:name=".Stats.Series.SeriesListView"/>
+        <activity android:name=".More.favorites.FavouriteTeam.FavTeamNews" />
+        <activity android:name=".More.favorites.FavouriteTeam.FavTeamUpcomingMatches" />
+        <activity android:name=".More.favorites.FavouriteTeam.FavTeamPastMatches"></activity>
+        <activity android:name=".More.favorites.FavouriteTeam.FavTeamPlayers"/>
+        <activity android:name=".More.favorites.FavoritesActivity"/>
+        <activity android:name=".More.Series.SeriesListView"/>
     </application>
 
 </manifest>

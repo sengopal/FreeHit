@@ -71,5 +71,5 @@ public class CustomSettings extends AppCompatActivity {
 
     }
 
-    
+
 }

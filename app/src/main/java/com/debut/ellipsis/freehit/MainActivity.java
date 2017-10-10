@@ -20,10 +20,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.debut.ellipsis.freehit.Matches.MatchesFragment;
+import com.debut.ellipsis.freehit.More.MoreMain.MoreFragment;
 import com.debut.ellipsis.freehit.News.NewsFragment;
 import com.debut.ellipsis.freehit.Settings.CustomSettings;
 import com.debut.ellipsis.freehit.Social.SocialMainFragment;
-import com.debut.ellipsis.freehit.Stats.MoreMain.MoreFragment;
 import com.twitter.sdk.android.core.Twitter;
 
 import java.util.ArrayList;
