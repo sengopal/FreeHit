@@ -2,4 +2,4 @@
 // Its QueryUtil Bitches
 // back to fuck up your CODE
 
-//JOKE OF THE DAY : JAYANTH
+//JOKE OF THE DAY : Aseef

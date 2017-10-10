@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -28,11 +29,33 @@ public class PlayerSearch_Fragment extends ListActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stats_player_search_fragment);
         // Get the intent, verify the action and get the query
-        results=new ArrayList<String>();
-        setupResultList();
-        setupDatasource();
+        final ArrayList<Player_search_item> PlayerItem = new ArrayList<Player_search_item>();
+        PlayerItem.add(new Player_search_item("Yuvraj Singh"));
+        PlayerItem.add(new Player_search_item("Dinesh karthik"));
+        PlayerItem.add(new Player_search_item("Rohit Sharma"));
+        PlayerItem.add(new Player_search_item("Virat Kohli"));
+        PlayerItem.add(new Player_search_item("Umesh Yadav"));
+        PlayerItem.add(new Player_search_item("Axar Patel"));
+        PlayerItem.add(new Player_search_item("Lokesh Rahul"));
+        PlayerItem.add(new Player_search_item("Kedar Jadhav"));
+        ListView listView = (ListView) findViewById(R.id.list);
+
+        Player_search_adapter adapter2 = new Player_search_adapter(this, PlayerItem);
+        listView.setAdapter(adapter2);
+       // setupResultList();
+        //setupDatasource();
         getQuery(getIntent());
         onSearchRequested();
+        listView.setClickable(true);
+        listView.setOnItemClickListener(new ListView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(getApplicationContext(), PlayerActivity.class);
+                i.putExtra("PlayerName", PlayerItem.get(position).getmPlayerName());
+                startActivity(i);
+                setIntent(i);
+            }
+        });
 
     }
 
@@ -45,6 +68,8 @@ public class PlayerSearch_Fragment extends ListActivity  {
     private void getQuery(Intent intent) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
+            Intent PlayerIntent = new Intent(this, PlayerActivity.class);
+            startActivity(PlayerIntent);
             doSearch(query);
         }
     }
