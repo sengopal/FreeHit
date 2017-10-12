@@ -20,21 +20,27 @@
 
     <EditText
         android:id="@+id/editText_player"
+        android:padding="@dimen/_3sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/app_bar_layout"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginStart="@dimen/_3sdp"
-        android:layout_marginEnd="@dimen/_3sdp"
         android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:drawablePadding="@dimen/_10sdp"
+        android:drawableStart="@drawable/ic_search"
+        android:background="@drawable/background_edittext"
         android:hint="Enter Player Name"
-        android:inputType="text" />
+        android:textColorHint="@color/grey_500"
+        android:inputType="textVisiblePassword"  />
 
     <RelativeLayout
         android:id="@+id/player_list_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText_player">
+        android:layout_below="@+id/editText_player"
+        android:padding="@dimen/_10sdp">
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/refresh_layout"
