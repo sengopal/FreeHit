@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -10,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="@color/colorPrimary"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:minHeight="?attr/actionBarSize" />
 
     <RelativeLayout
@@ -68,7 +70,7 @@
             android:text="@string/select_team_button"
             android:background="@drawable/custom_button"
             android:textSize="@dimen/_10sdp"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/white" />
 
         <TextView
             android:layout_width="match_parent"

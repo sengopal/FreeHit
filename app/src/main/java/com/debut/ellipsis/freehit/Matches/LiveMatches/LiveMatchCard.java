@@ -202,8 +202,8 @@ public class LiveMatchCard extends Fragment {
     private void IndicatorConfig() {
         indicator.setVisibility(View.VISIBLE);
         indicator.setAnimationType(AnimationType.WORM);
-        indicator.setUnselectedColor(Color.parseColor("#ab47bc"));
-        indicator.setSelectedColor(Color.parseColor("#6a1b9a"));
+        indicator.setUnselectedColor(Color.parseColor("#f94d44"));
+        indicator.setSelectedColor(Color.parseColor("#bf031b"));
         indicator.setInteractiveAnimation(true);
         indicator.setAnimationDuration(500);
 
