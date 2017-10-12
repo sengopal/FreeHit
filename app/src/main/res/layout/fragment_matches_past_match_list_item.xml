@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/list_border"
-    android:layout_marginTop="@dimen/_8sdp"
-    android:layout_marginBottom="@dimen/_8sdp"
+    android:layout_marginTop="@dimen/_2sdp"
+    android:layout_marginBottom="@dimen/_3sdp"
     android:tag="cards main container">
 
 
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/series_name_past"
             android:layout_centerHorizontal="true"
-            android:textSize="@dimen/_10sdp"
+            android:textSize="@dimen/_9sdp"
             tools:text="M Chinnaswamy ,Bangalore , India" />
 
 
@@ -53,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="@dimen/_20sdp">
+        android:paddingTop="@dimen/_15sdp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -166,7 +166,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/_12sdp"
+            android:paddingStart="@dimen/_5sdp"
+            android:paddingEnd="@dimen/_5sdp"
+            android:textSize="@dimen/_11sdp"
+            android:gravity="center_horizontal"
             tools:text="India beat Sri Lanka by 168 runs" />
 
         <TextView
@@ -174,9 +177,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:textSize="@dimen/_12sdp"
-            android:layout_marginBottom="@dimen/_5sdp"
+            android:padding="@dimen/_3sdp"
+            android:textSize="@dimen/_11sdp"
             tools:text="Sep 03 2017, Sun" />
 
 

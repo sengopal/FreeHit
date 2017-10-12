@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/list_border"
-    android:layout_marginTop="@dimen/_8sdp"
-    android:layout_marginBottom="@dimen/_8sdp"
+    android:layout_marginTop="@dimen/_2sdp"
+    android:layout_marginBottom="@dimen/_3sdp"
     android:tag="cards main container">
 
     <RelativeLayout
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/series_name_upcoming"
             android:layout_centerHorizontal="true"
-            android:textSize="@dimen/_10sdp"
+            android:textSize="@dimen/_9sdp"
             tools:text="M Chinnaswamy ,Bangalore , India" />
 
 
@@ -53,12 +53,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="@dimen/_22sdp">
+        android:paddingTop="@dimen/_28sdp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp">
+            android:layout_marginTop="@dimen/_12sdp">
 
             <RelativeLayout
                 android:layout_width="wrap_content"

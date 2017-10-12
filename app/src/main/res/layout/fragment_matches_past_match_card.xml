@@ -181,7 +181,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:textColor="@android:color/black"
-                android:layout_marginTop="@dimen/_8sdp"
+                android:gravity="center_horizontal"
+                android:paddingStart="@dimen/_5sdp"
+                android:paddingEnd="@dimen/_5sdp"
                 android:textSize="@dimen/_11sdp"
                 tools:text="India beat Sri Lanka by 168 runs" />
 
@@ -190,7 +192,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_1sdp"
                 android:textSize="@dimen/_11sdp"
                 tools:text="Sep 03 2017, Sun" />
 

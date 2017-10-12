@@ -47,6 +47,9 @@ public class TeamUpcoming extends Fragment {
         int Team = i.getIntExtra("CountryName", 0);
         String tempTeamName = this.getContext().getString(Team);
 
+        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.match_card_tabs);
+        tabLayout.setVisibility(View.GONE);
+
         CountryHash countryHash = new CountryHash();
         final String TeamName = countryHash.getCountrySN(tempTeamName.toUpperCase());
 

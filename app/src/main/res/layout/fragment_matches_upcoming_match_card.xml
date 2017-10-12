@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/series_name_upcoming"
                 android:layout_centerHorizontal="true"
-                android:textSize="@dimen/_10sdp"
+                android:textSize="@dimen/_8sdp"
                 tools:text="M Chinnaswamy ,Bangalore , India" />
 
             <TextView
@@ -70,7 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="@dimen/_18sdp">
+            android:paddingTop="@dimen/_22sdp">
 
             <RelativeLayout
                 android:layout_width="wrap_content"

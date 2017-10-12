@@ -3,6 +3,7 @@ package com.debut.ellipsis.freehit.More.Team;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,6 +44,9 @@ public class TeamPast extends Fragment {
         Intent i = getActivity().getIntent();
         int Team = i.getIntExtra("CountryName", 0);
         String tempTeamName = this.getContext().getString(Team);
+
+        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.match_card_tabs);
+        tabLayout.setVisibility(View.GONE);
 
         CountryHash countryHash = new CountryHash();
         final String TeamName = countryHash.getCountrySN(tempTeamName.toUpperCase());
