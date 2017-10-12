@@ -11,9 +11,7 @@ import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by Jayanth on 09-10-2017.
- */
+
 
 public class Player_search_adapter extends ArrayAdapter<Player_search_item> {
 public Player_search_adapter(Context context, ArrayList<Player_search_item> items) {

@@ -7,6 +7,7 @@ import com.debut.ellipsis.freehit.More.Player.BattingItem;
 import com.debut.ellipsis.freehit.More.Player.BowlingItem;
 import com.debut.ellipsis.freehit.More.Player.CareerItem;
 import com.debut.ellipsis.freehit.More.Player.InfoItem;
+import com.debut.ellipsis.freehit.More.Player.player_parsing;
 import com.debut.ellipsis.freehit.More.favorites.FavouriteTeam.FavTeamNewsItem;
 import com.debut.ellipsis.freehit.News.NewsArticleItem;
 import com.debut.ellipsis.freehit.News.NewsItem;
@@ -41,7 +42,8 @@ public interface APIInterface {
 
     @GET("upcoming?max=25")
     Call<UpcomingMatchCardItem> doGetUpcomingCompleteMatchListResources();
-
+    @GET("playerlist?")
+    Call<player_parsing> doGetPlayerList(@Query("fav") String search);
     @GET("live")
     Call<LiveMatchCardItem> doGetLiveMatchResources();
 
@@ -74,7 +76,6 @@ public interface APIInterface {
 
     @GET("player?")
     Call<PlayerCountryItem> doGetFavTeamPlayers(@Query ("id") String TeamID);
-
 
 
 
