@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.debut.ellipsis.freehit.More.Player.PlayerSearch_Fragment;
+import com.debut.ellipsis.freehit.More.Player.PlayerSearchActivity;
 import com.debut.ellipsis.freehit.More.Rankings.RankingActivity;
 import com.debut.ellipsis.freehit.More.Records.RecordsActivity;
 import com.debut.ellipsis.freehit.More.Series.SeriesListView;
@@ -48,8 +48,6 @@ MoreFragment extends Fragment {
         moreItem.add(new MoreItem(R.drawable.rankings, R.string.rankings));
         moreItem.add(new MoreItem(R.drawable.records, R.string.records));
 
-
-
         MoreAdapter adapter = new MoreAdapter(getActivity(), moreItem);
         final ListView listView = (ListView) rootView.findViewById(R.id.stats_list);
         listView.setAdapter(adapter);
@@ -58,7 +56,7 @@ MoreFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
-                    Intent PlayerIntent = new Intent(getActivity(), PlayerSearch_Fragment.class);
+                    Intent PlayerIntent = new Intent(getActivity(), PlayerSearchActivity.class);
                     startActivity(PlayerIntent);
 
                 } else if (position == 1) {

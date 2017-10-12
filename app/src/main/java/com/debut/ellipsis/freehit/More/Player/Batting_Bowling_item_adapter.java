@@ -19,10 +19,6 @@ public class Batting_Bowling_item_adapter extends BaseAdapter {
         mContext = context;
         // this.gridViewImageId = gridViewImageId;
         this.gridViewString = gridViewString;
-
-
-
-
     }
 
     public void refreshEvents(String[] grid ){
