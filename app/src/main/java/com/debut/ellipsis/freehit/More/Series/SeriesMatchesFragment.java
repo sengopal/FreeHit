@@ -24,8 +24,6 @@ public class SeriesMatchesFragment extends Fragment {
     public ViewPager viewPager;
     private TabLayout tabLayout;
 
-    public static final String LOG_TAG = com.debut.ellipsis.freehit.Matches.MatchesFragment.class.getSimpleName();
-
     public SeriesMatchesFragment() {
         // Required empty public constructor
     }

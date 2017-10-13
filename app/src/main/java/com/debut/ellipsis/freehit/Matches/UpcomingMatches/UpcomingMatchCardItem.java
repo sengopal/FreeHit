@@ -29,15 +29,6 @@ public class UpcomingMatchCardItem {
     @SerializedName("result")
     public List<UpcomingMatchCardItem> results = new ArrayList<>();
 
-    public UpcomingMatchCardItem(int id, String ndid, String tour, String title, String match, String stadium, String time) {
-        this.id = id;
-        this.ndid = ndid;
-        this.tour = tour;
-        this.title = title;
-        this.match = match;
-        this.stadium = stadium;
-        this.time = time;
-    }
 
     public int getId() {
         return id;

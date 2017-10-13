@@ -25,7 +25,7 @@ import com.debut.ellipsis.freehit.R;
 import static com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity.MY_PREFS_NAME;
 
 public class CustomSettings extends AppCompatActivity {
-    public static final String LOG_TAG = CustomSettings.class.getSimpleName();
+
     private Toolbar toolbar;
     CountryHash countryHash = new CountryHash();
 

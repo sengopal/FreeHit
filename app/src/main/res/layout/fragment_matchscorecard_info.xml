@@ -53,7 +53,7 @@
                         android:id="@+id/match_info_team1_logo"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
-                        tools:src="@drawable/star" />
+                        tools:src="@drawable/fav" />
 
                     <TextView
                         android:id="@+id/match_info_team1"
@@ -83,7 +83,7 @@
                         android:id="@+id/match_info_team2_logo"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
-                        tools:src="@drawable/star" />
+                        tools:src="@drawable/fav" />
 
                     <TextView
                         android:id="@+id/match_info_team2"

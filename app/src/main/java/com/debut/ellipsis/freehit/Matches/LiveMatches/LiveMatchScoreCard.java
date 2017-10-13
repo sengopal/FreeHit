@@ -27,29 +27,23 @@ import java.util.List;
 
 public class LiveMatchScoreCard extends AppCompatActivity {
 
-    private String match_id;
-    private String match_name;
-    private Toolbar toolbar;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         setContentView(R.layout.fragment_matches_live_match_scorecard);
-        match_id = getIntent().getStringExtra("match_id");
-        match_name = getIntent().getStringExtra("match_name");
+        String match_id = getIntent().getStringExtra("match_id");
+        String match_name = getIntent().getStringExtra("match_name");
         setTitle(match_name);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar_live);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_live);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager_live);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager_live);
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs_live);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs_live);
         tabLayout.setupWithViewPager(viewPager);
 
 

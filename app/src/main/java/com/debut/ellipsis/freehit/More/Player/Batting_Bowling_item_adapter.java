@@ -21,12 +21,6 @@ public class Batting_Bowling_item_adapter extends BaseAdapter {
         this.gridViewString = gridViewString;
     }
 
-    public void refreshEvents(String[] grid ){
-
-        //invalidateViews();
-        notifyDataSetChanged();
-    }
-
     @Override
     public int getCount() {
         return gridViewString.length;

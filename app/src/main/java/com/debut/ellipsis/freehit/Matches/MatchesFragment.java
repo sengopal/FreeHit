@@ -28,8 +28,6 @@ public class MatchesFragment extends Fragment {
     public ViewPager viewPager;
     private TabLayout tabLayout;
 
-    public static final String LOG_TAG = MatchesFragment.class.getSimpleName();
-
     public MatchesFragment() {
         // Required empty public constructor
     }

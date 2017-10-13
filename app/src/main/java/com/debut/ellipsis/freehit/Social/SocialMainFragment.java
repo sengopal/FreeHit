@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.debut.ellipsis.freehit.Matches.MatchesFragment;
 import com.debut.ellipsis.freehit.R;
 import com.debut.ellipsis.freehit.Social.Polls.SocialPolls;
 import com.debut.ellipsis.freehit.Social.Tweets.SocialTweets;
@@ -34,8 +33,6 @@ public class SocialMainFragment extends Fragment {
             R.drawable.poll,
             R.drawable.twitter
     };
-
-    public static final String LOG_TAG = MatchesFragment.class.getSimpleName();
 
     public SocialMainFragment() {
         // Required empty public constructor

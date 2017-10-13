@@ -27,7 +27,6 @@ public class FavTeamNewsItemAdapter extends RecyclerView.Adapter<FavTeamNewsItem
 
 
     public static class NewsViewHolder extends RecyclerView.ViewHolder {
-        RelativeLayout newsLayout;
         ImageView image;
         TextView title;
         TextView desc;
@@ -38,7 +37,6 @@ public class FavTeamNewsItemAdapter extends RecyclerView.Adapter<FavTeamNewsItem
 
         public NewsViewHolder(View v) {
             super(v);
-            newsLayout = (RelativeLayout) v.findViewById(R.id.news_layout);
             image = (ImageView) v.findViewById(R.id.image_view);
             title = (TextView) v.findViewById(R.id.header_text_view);
             desc = (TextView) v.findViewById(R.id.summary_text_view);

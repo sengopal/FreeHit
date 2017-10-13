@@ -1,8 +1,5 @@
 package com.debut.ellipsis.freehit.More.Series;
 
-/**
- * Created by Jayanth on 06-10-2017.
- */
 
 public class SeriesListItem {
     private int mSeriesIcon;

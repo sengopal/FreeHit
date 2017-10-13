@@ -10,7 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,8 +29,6 @@ public class FavTeamNews extends AppCompatActivity {
     private ProgressBar mProgressBar;
     APIInterface apiInterface;
     private Toolbar toolbar;
-    public ImageView NoConnectionImage;
-    public Button NoConnectionButton;
     public TextView NoNewsText;
     public Button NoNewsButton;
 
@@ -53,12 +50,6 @@ public class FavTeamNews extends AppCompatActivity {
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) findViewById(R.id.refresh_layout);
-
-        final View no_internet_connection = findViewById(R.id.Unavailable_connection);
-
-        NoConnectionImage = (ImageView) no_internet_connection.findViewById(R.id.no_internet_connection);
-        NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
-
 
         final View No_news = findViewById(R.id.No_news);
 

@@ -63,13 +63,13 @@
         <activity android:name=".More.Series.SeriesActivity" />
         <activity android:name=".More.Rankings.RankingActivity" />
         <activity android:name=".More.Records.RecordsActivity" />
-        <activity android:name=".More.Series.SeriesListView"></activity>
+        <activity android:name=".More.Series.SeriesListView"/>
         <activity
             android:name=".More.Team.TeamListView"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".More.favorites.FavouriteTeam.FavTeamNews" />
         <activity android:name=".More.favorites.FavouriteTeam.FavTeamUpcomingMatches" />
-        <activity android:name=".More.favorites.FavouriteTeam.FavTeamPastMatches"></activity>
+        <activity android:name=".More.favorites.FavouriteTeam.FavTeamPastMatches"/>
         <activity android:name=".More.favorites.FavouriteTeam.FavTeamPlayers"/>
         <activity android:name=".More.favorites.FavoritesActivity"/>
         <activity android:name=".More.Series.SeriesListView"/>

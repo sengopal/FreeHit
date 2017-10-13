@@ -29,9 +29,6 @@ public class LiveMatchCardAdapter extends PagerAdapter {
 
     private static final String MATCH_SERIES_SEPARATOR = ",";
 
-    public static final String LOG_TAG = com.debut.ellipsis.freehit.Matches.LiveMatches.LiveMatchCardAdapter.class.getSimpleName();
-
-
     private Context context;
     private List<LiveMatchCardItem> dataObjectList;
     private LayoutInflater layoutInflater;

@@ -25,8 +25,6 @@ public class TeamMatchesFragment extends Fragment {
     public ViewPager viewPager;
     private TabLayout tabLayout;
 
-    public static final String LOG_TAG = com.debut.ellipsis.freehit.Matches.MatchesFragment.class.getSimpleName();
-
     public TeamMatchesFragment() {
         // Required empty public constructor
     }

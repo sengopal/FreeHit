@@ -54,9 +54,6 @@ public interface APIInterface {
     @GET("polls?")
     Call<PollCardItem> doVotePollListResources(@Query("id") String id, @Query("cid") String cid);
 
-    @GET("polls?")
-    Call<PollCardItem> doGetSinglePollResources(@Query("id") String id);
-
     @GET("past?max=6")
     Call<PastMatchCardItem> doGetPastCardResources();
 

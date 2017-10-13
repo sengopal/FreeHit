@@ -52,6 +52,7 @@ public class SocialTweets extends Fragment {
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
         mProgressBar = (ProgressBar) socTweets.findViewById(R.id.progress_bar);
+        mProgressBar.setVisibility(View.VISIBLE);
 
         final RelativeLayout twitrel = (RelativeLayout) socTweets.findViewById(R.id.twit_layout);
         //  Using a SearchTimeline to search for a given query, can be changed with (UserTimeline, CollectionTimeline, TwitterListTimeline, or FixedTweetTimeline)
@@ -147,7 +148,8 @@ public class SocialTweets extends Fragment {
     public void tabCall(String query, SearchTimeline.ResultType type) {
         searchTimeline = new SearchTimeline.Builder().query(query).resultType(type).build();
         adapter = new TweetTimelineRecyclerViewAdapter.Builder(getContext()).setTimeline(searchTimeline).build();
-        rv.setAdapter(adapter);
         mProgressBar.setVisibility(View.INVISIBLE);
+        rv.setAdapter(adapter);
+
     }
 }

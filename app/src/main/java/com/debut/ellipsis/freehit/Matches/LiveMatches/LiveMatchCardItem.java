@@ -31,16 +31,6 @@ public class LiveMatchCardItem {
     @SerializedName("result")
     public List<LiveMatchCardItem> results = new ArrayList<>();
 
-    public LiveMatchCardItem(int id, String ndid, String tour, String title, String match, String stadium, String time, String mresult) {
-        this.id = id;
-        this.ndid = ndid;
-        this.tour = tour;
-        this.title = title;
-        this.match = match;
-        this.stadium = stadium;
-        this.time = time;
-        this.mresult = mresult;
-    }
 
     public int getId() {
         return id;
@@ -101,13 +91,6 @@ public class LiveMatchCardItem {
         @SerializedName("final")
         private String finaldate;
 
-        public Date(String day, String month, String year, String finaldate) {
-            this.day = day;
-            this.month = month;
-            this.year = year;
-            this.finaldate = finaldate;
-
-        }
 
         public String getDay() {
             return day;
@@ -138,14 +121,6 @@ public class LiveMatchCardItem {
         @SerializedName("inn2")
         private String inn2;
 
-        public Team(String name, String image, String sn, String inn1, String inn2) {
-            this.name = name;
-            this.image = image;
-            this.sn = sn;
-            this.inn1 = inn1;
-            this.inn2 = inn2;
-
-        }
 
         public String getImage() {
             return image;

@@ -22,14 +22,6 @@ public class FavTeamNewsItem {
     @SerializedName("result")
     public List<FavTeamNewsItem> results = new ArrayList<>();
 
-    public FavTeamNewsItem(String imageURL, String title, String desc, String date, String tag, Integer id) {
-        this.image = imageURL;
-        this.title = title;
-        this.desc = desc;
-        this.date = date;
-        this.tag = tag;
-        this.id = id;
-    }
 
     public String getImage() {
         return image;

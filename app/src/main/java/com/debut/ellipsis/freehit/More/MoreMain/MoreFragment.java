@@ -12,7 +12,6 @@ import android.widget.ListView;
 
 import com.debut.ellipsis.freehit.More.Player.PlayerSearchActivity;
 import com.debut.ellipsis.freehit.More.Rankings.RankingActivity;
-import com.debut.ellipsis.freehit.More.Records.RecordsActivity;
 import com.debut.ellipsis.freehit.More.Series.SeriesListView;
 import com.debut.ellipsis.freehit.More.Team.TeamListView;
 import com.debut.ellipsis.freehit.More.favorites.FavoritesActivity;
@@ -76,11 +75,6 @@ MoreFragment extends Fragment {
                     Intent RankingIntent = new Intent(getActivity(), RankingActivity.class);
                     startActivity(RankingIntent);
                     getActivity().overridePendingTransition(0,0);
-
-                }
-                else if (position == 5) {
-                    Intent RecordsIntent = new Intent(getActivity(), RecordsActivity.class);
-                    startActivity(RecordsIntent);
 
                 }
 

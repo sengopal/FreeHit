@@ -27,8 +27,6 @@ public class FavoritesActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private Toolbar toolbar;
 
-    public static final String LOG_TAG = FavoritesActivity.class.getSimpleName();
-
     public FavoritesActivity() {
         // Required empty public constructor
     }

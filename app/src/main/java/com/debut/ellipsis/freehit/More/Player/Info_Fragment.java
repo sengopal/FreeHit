@@ -18,7 +18,6 @@ import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
 import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
-import com.debut.ellipsis.freehit.News.NewsItemAdapter;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
@@ -30,12 +29,10 @@ import retrofit2.Response;
 
 public class Info_Fragment extends Fragment {
 
-    private NewsItemAdapter mAdapter;
     private ProgressBar mProgressBar;
     private String player_url;
     APIInterface apiInterface;
 
-    private static final String RANK_SEPARATOR = ",";
 
     public Info_Fragment() {
 
