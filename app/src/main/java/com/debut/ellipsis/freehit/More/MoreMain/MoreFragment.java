@@ -46,7 +46,6 @@ MoreFragment extends Fragment {
         moreItem.add(new MoreItem(R.drawable.shield, R.string.search_series));
         moreItem.add(new MoreItem(R.drawable.fav, R.string.fav));
         moreItem.add(new MoreItem(R.drawable.rankings, R.string.rankings));
-        moreItem.add(new MoreItem(R.drawable.records, R.string.records));
 
         MoreAdapter adapter = new MoreAdapter(getActivity(), moreItem);
         final ListView listView = (ListView) rootView.findViewById(R.id.stats_list);

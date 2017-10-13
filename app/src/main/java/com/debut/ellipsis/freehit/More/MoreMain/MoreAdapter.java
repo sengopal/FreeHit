@@ -31,11 +31,11 @@ public class MoreAdapter extends ArrayAdapter<MoreItem> {
         MoreItem currentItem = getItem(position);
 
 
-        TextView statsNameTextView = (TextView) listItemView.findViewById(R.id.stats_name);
-        statsNameTextView.setText(currentItem.getmStatsName());
+        TextView moreNameTextView = (TextView) listItemView.findViewById(R.id.more_name);
+        moreNameTextView.setText(currentItem.getmMoreName());
 
-        ImageView statsIcon = (ImageView) listItemView.findViewById(R.id.stats_icon);
-        statsIcon.setImageResource(currentItem.getmStatsIcon());
+        ImageView moreIcon = (ImageView) listItemView.findViewById(R.id.more_icon);
+        moreIcon.setImageResource(currentItem.getmMoreIcon());
 
 
         return listItemView;

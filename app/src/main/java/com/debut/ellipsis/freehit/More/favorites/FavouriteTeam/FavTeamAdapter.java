@@ -32,10 +32,10 @@ public class FavTeamAdapter extends ArrayAdapter<MoreItem> {
         MoreItem currentItem = getItem(position);
 
         TextView statsNameTextView = (TextView) listItemView.findViewById(R.id.FavTeamCategoryName);
-        statsNameTextView.setText(currentItem.getmStatsName());
+        statsNameTextView.setText(currentItem.getmMoreName());
 
         ImageView statsIcon = (ImageView) listItemView.findViewById(R.id.arrow);
-        statsIcon.setImageResource(currentItem.getmStatsIcon());
+        statsIcon.setImageResource(currentItem.getmMoreIcon());
 
 
         return listItemView;

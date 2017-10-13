@@ -10,8 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_8sdp"
         android:padding="@dimen/_5sdp"
-        android:divider="@color/divider"
-        android:dividerHeight="1dp"
+        android:divider="@color/grey_500"
+        android:dividerHeight="@dimen/_1sdp"
         android:orientation="vertical" />
 
 </FrameLayout>

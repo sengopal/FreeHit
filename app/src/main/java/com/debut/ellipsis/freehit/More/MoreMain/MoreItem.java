@@ -3,23 +3,23 @@ package com.debut.ellipsis.freehit.More.MoreMain;
 
 public class MoreItem {
 
-    private int mStatsIcon;
+    private int mMoreIcon;
 
-    private int mStatsName;
+    private int mMoreName;
 
 
-    public MoreItem(int StatsIcon, int StatsName) {
-        mStatsIcon = StatsIcon;
-        mStatsName = StatsName;
+    public MoreItem(int MoreIcon, int MoreName) {
+        mMoreIcon = MoreIcon;
+        mMoreName = MoreName;
 
     }
 
-    public int getmStatsIcon() {
-        return mStatsIcon;
+    public int getmMoreIcon() {
+        return mMoreIcon;
     }
 
-    public int getmStatsName() {
-        return mStatsName;
+    public int getmMoreName() {
+        return mMoreName;
     }
 
 }
