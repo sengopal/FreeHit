@@ -19,26 +19,19 @@
 
         </android.support.design.widget.TabLayout>
 
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/soc_refresh_layout"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/soc_tabs">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/twit_feed"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true" />
+            <include
+                android:id="@+id/tweets_recycler_layout"
+                layout="@layout/common_recycler_view_list" />
+        </RelativeLayout>
 
-        </android.support.v4.widget.SwipeRefreshLayout>
-
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            style="@style/Base.Widget.AppCompat.ProgressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true" />
+        <include
+            android:id="@+id/progress"
+            layout="@layout/common_progressbar" />
 
     </RelativeLayout>
 

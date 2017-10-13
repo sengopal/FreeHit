@@ -6,45 +6,29 @@
 
     <android.support.design.widget.TabLayout
         android:id="@+id/match_card_tabs"
-        app:tabTextAppearance="@style/MineCustomTabText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabGravity="fill">
+        app:tabGravity="fill"
+        app:tabTextAppearance="@style/MineCustomTabText">
 
     </android.support.design.widget.TabLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/refresh_layout"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/match_card_tabs">
+        android:layout_below="@id/match_card_tabs">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/match_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:paddingBottom="@dimen/_5sdp"
-            android:paddingEnd="@dimen/_10sdp"
-            android:paddingStart="@dimen/_10sdp"
-            android:paddingTop="@dimen/_10sdp" />
+        <include
+            android:id="@+id/complete_match_list"
+            layout="@layout/common_recycler_view_list" />
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </RelativeLayout>
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        style="@style/Base.Widget.AppCompat.ProgressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
+    <include
+        android:id="@id/progress"
+        layout="@layout/common_progressbar" />
 
-    <TextView
-        android:id="@+id/empty_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
-        android:layout_centerVertical="true"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:textSize="@dimen/_25sdp" />
+    <include
+        android:id="@+id/empty"
+        layout="@layout/common_emptyview" />
 </RelativeLayout>

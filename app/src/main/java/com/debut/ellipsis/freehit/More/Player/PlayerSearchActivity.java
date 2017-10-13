@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -33,12 +34,17 @@ public class PlayerSearchActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         setContentView(R.layout.fragment_more_player_search_fragment);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar_player_search);
+        View viewToolbar = (View) findViewById(R.id.toolbar_player_search);
+
+        toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("PLAYERS");
 
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.player_list);
+
+        View viewRecycler = (View) findViewById(R.id.player_search_list);
+
+        final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         EditText e = (EditText) findViewById(R.id.editText_player);

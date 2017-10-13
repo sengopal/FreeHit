@@ -1,39 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_player_search"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-    </android.support.design.widget.AppBarLayout>
+    <include
+        android:id="@+id/toolbar_player_search"
+        layout="@layout/common_toolbar" />
 
     <EditText
         android:id="@+id/editText_player"
-        android:padding="@dimen/_3sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/app_bar_layout"
+        android:layout_below="@+id/toolbar_player_search"
         android:layout_marginBottom="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/background_edittext"
         android:drawablePadding="@dimen/_10sdp"
         android:drawableStart="@drawable/ic_search"
-        android:background="@drawable/background_edittext"
         android:hint="Enter Player Name"
-        android:textColorHint="@color/grey_500"
-        android:inputType="textVisiblePassword"  />
+        android:inputType="textVisiblePassword"
+        android:padding="@dimen/_3sdp"
+        android:textColorHint="@color/grey_500" />
 
     <RelativeLayout
         android:id="@+id/player_list_layout"
@@ -42,16 +32,8 @@
         android:layout_below="@+id/editText_player"
         android:padding="@dimen/_10sdp">
 
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/refresh_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/player_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true" />
-        </android.support.v4.widget.SwipeRefreshLayout>
+        <include
+            android:id="@+id/player_search_list"
+            layout="@layout/common_recycler_view_list" />
     </RelativeLayout>
 </RelativeLayout>

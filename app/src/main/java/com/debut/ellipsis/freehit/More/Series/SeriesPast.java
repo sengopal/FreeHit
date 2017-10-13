@@ -2,6 +2,7 @@ package com.debut.ellipsis.freehit.More.Series;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -42,18 +43,24 @@ public class SeriesPast extends Fragment {
         CountryHash countryHash = new CountryHash();
         String TeamName = countryHash.getCountrySN(Team.toUpperCase());
 
+        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.match_card_tabs);
+        tabLayout.setVisibility(View.GONE);
+
         apiInterface = ApiClient.getClient().create(APIInterface.class);
-        mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
-        rv = (RecyclerView) rootView.findViewById(R.id.match_list);
+
+        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
+
+        View viewRecycler = (View) rootView.findViewById(R.id.complete_match_list);
+        rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
 
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        final TextView emptyView = (TextView) rootView.findViewById(R.id.empty_view);
+        View viewEmpty = (View) rootView.findViewById(R.id.empty);
+        final TextView emptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);
 
 
-        /**
-         GET List Past Matches for selected Team
-         **/
+        /*  GET List Past Matches for selected Team */
         Call<PastMatchCardItem> call = apiInterface.doGetPastFavTeam(TeamName);
         call.enqueue(new Callback<PastMatchCardItem>() {
             @Override

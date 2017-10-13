@@ -15,9 +15,6 @@ import com.debut.ellipsis.freehit.R;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Jayanth on 07-10-2017.
- */
 
 public class SeriesMatchesFragment extends Fragment {
 

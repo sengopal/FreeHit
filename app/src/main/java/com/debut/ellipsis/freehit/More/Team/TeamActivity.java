@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.debut.ellipsis.freehit.R;
 
@@ -30,7 +31,9 @@ public class TeamActivity extends AppCompatActivity {
         int Team = i.getIntExtra("CountryName", 0);
         String tempTeamName = this.getApplicationContext().getString(Team);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar_team);
+        View viewToolbarTabs = (View) findViewById(R.id.team_toolbar_tabs);
+
+        toolbar = (Toolbar) viewToolbarTabs.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(tempTeamName.toUpperCase());
@@ -38,7 +41,8 @@ public class TeamActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.viewpager_teams);
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs_teams);
+        tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.setupWithViewPager(viewPager);
 
 

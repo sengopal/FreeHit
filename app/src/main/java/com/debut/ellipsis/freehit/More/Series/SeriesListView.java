@@ -30,7 +30,9 @@ public class SeriesListView extends AppCompatActivity {
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         final ArrayList<SeriesListItem> SeriesItem = new ArrayList<SeriesListItem>();
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar_series);
+        View viewToolbar = (View) findViewById(R.id.series_toolbar);
+
+        toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -43,8 +45,9 @@ public class SeriesListView extends AppCompatActivity {
         SeriesItem.add(new SeriesListItem(R.drawable.shield, "England"));
         SeriesItem.add(new SeriesListItem(R.drawable.shield, "West Indies"));
         SeriesItem.add(new SeriesListItem(R.drawable.shield, "South Africa"));
-        
-        listView = (ListView) findViewById(R.id.Series_list);
+
+        View viewListView = (View) findViewById(R.id.series_list);
+        listView = (ListView) viewListView.findViewById(R.id.list);
 
         adapter = new SeriesListAdapter(this, SeriesItem);
         listView.setAdapter(adapter);

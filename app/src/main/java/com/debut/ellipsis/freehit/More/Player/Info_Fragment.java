@@ -54,7 +54,9 @@ public class Info_Fragment extends Fragment {
         final TextView BattingStyle = (TextView) rootView.findViewById(R.id.battingStyle);
         final TextView BowlingStyle = (TextView) rootView.findViewById((R.id.BowlingStyle));
         final TextView TeamsPlayed = (TextView) rootView.findViewById((R.id.Teams_Played));
-        mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
+
+        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 

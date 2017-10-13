@@ -44,14 +44,20 @@ public class SocialTweets extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View socTweets = inflater.inflate(R.layout.fragment_social_tweets, container, false);
-        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) socTweets.findViewById(R.id.soc_refresh_layout);
+
+        View viewRecycler = (View) socTweets.findViewById(R.id.tweets_recycler_layout);
+
+
+        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
         socTabs = (TabLayout) socTweets.findViewById(R.id.soc_tabs);
         setupTabs();
         //  Initializing the RecyclerView for Twitter feed
-        rv = (RecyclerView) socTweets.findViewById(R.id.twit_feed);
+        rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        mProgressBar = (ProgressBar) socTweets.findViewById(R.id.progress_bar);
+        View viewProgress = (View) socTweets.findViewById(R.id.progress);
+
+        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
         mProgressBar.setVisibility(View.VISIBLE);
 
         final RelativeLayout twitrel = (RelativeLayout) socTweets.findViewById(R.id.twit_layout);

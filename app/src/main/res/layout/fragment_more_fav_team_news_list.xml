@@ -5,35 +5,26 @@
     android:layout_height="match_parent"
     tools:context="com.debut.ellipsis.freehit.Social.Tweets.SocialTweets">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <include
-            android:id="@+id/fav_team_news_toolbar"
-            layout="@layout/common_toolbar"
-            />
-    </android.support.design.widget.AppBarLayout>
+    <include
+        android:id="@+id/fav_team_news_toolbar"
+        layout="@layout/common_toolbar" />
 
     <RelativeLayout
         android:id="@+id/news_list_layout"
-        android:layout_below="@id/app_bar_layout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fav_team_news_toolbar">
 
-            <include
-                android:id="@+id/fav_team_news_list"
-                layout="@layout/common_recycler_view_list"
-                />
+        <include
+            android:id="@+id/fav_team_news_list"
+            layout="@layout/common_recycler_view_list" />
 
     </RelativeLayout>
 
     <include
         android:id="@+id/progress"
-        layout="@layout/common_progressbar"
-        />
+        layout="@layout/common_progressbar" />
 
     <include
         android:id="@+id/Unavailable_connection"

@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.debut.ellipsis.freehit.R;
 
@@ -32,8 +33,9 @@ public class PlayerActivity extends AppCompatActivity {
         Intent i = getIntent();
         String player_name = i.getStringExtra("player_name");
 
+        View viewToolbartabs = (View) findViewById(R.id.toolbar_player);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar_player);
+        toolbar = (Toolbar) viewToolbartabs.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(player_name);
@@ -41,7 +43,7 @@ public class PlayerActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.viewpager_player);
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs_player);
+        tabLayout = (TabLayout) viewToolbartabs.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
 

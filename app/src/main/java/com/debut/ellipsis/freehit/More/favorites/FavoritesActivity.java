@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.debut.ellipsis.freehit.More.favorites.FavouritePlayer.FavPlayer;
 import com.debut.ellipsis.freehit.More.favorites.FavouriteTeam.FavTeam;
@@ -38,7 +39,8 @@ public class FavoritesActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         setContentView(R.layout.fragment_favorites);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar_fav);
+        View viewToolbar = (View) findViewById(R.id.toolbar_fav);
+        toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(R.string.fav);

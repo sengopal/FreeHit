@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.debut.ellipsis.freehit.Matches.ScoreCard.ChanceToWinFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.CommentaryFragment;
@@ -36,14 +37,15 @@ public class LiveMatchScoreCard extends AppCompatActivity {
         String match_name = getIntent().getStringExtra("match_name");
         setTitle(match_name);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_live);
+        View viewToolbarTabs = (View) findViewById(R.id.toolbar_tabs_live);
+        Toolbar toolbar = (Toolbar) viewToolbarTabs.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager_live);
         setupViewPager(viewPager);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs_live);
+        TabLayout tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
 

@@ -31,7 +31,8 @@ public class TeamListView extends AppCompatActivity {
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         final ArrayList<TeamListItem> TeamItem = new ArrayList<TeamListItem>();
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar_team);
+        View viewToolbar = (View) findViewById(R.id.team_list_toolbar);
+        toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -50,7 +51,9 @@ public class TeamListView extends AppCompatActivity {
         TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/sri-lanka-2118.png", R.string.settings_team_SriLanka_label));
         TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/west-indies-2119.png", R.string.settings_team_WestIndies_label));
         TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/zimbabwe-2120.png", R.string.settings_team_Zimbabwe_label));
-        listView = (ListView) findViewById(R.id.Team_list);
+
+        View view = (View) findViewById(R.id.team_list);
+        listView = (ListView) view.findViewById(R.id.list);
 
         adapter = new TeamListAdapter(this, TeamItem);
         listView.setAdapter(adapter);
@@ -75,7 +78,6 @@ public class TeamListView extends AppCompatActivity {
                 onBackPressed();
                 overridePendingTransition(0, R.anim.exit_to_right);
                 return true;
-
         }
         return super.onOptionsItemSelected(item);
     }

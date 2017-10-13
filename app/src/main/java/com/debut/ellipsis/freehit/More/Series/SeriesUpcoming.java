@@ -25,10 +25,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by Jayanth on 07-10-2017.
- */
-
 public class SeriesUpcoming extends Fragment {
     private TabLayout tabLayout;
     APIInterface apiInterface;
@@ -48,18 +44,24 @@ public class SeriesUpcoming extends Fragment {
         CountryHash countryHash = new CountryHash();
         String TeamName = countryHash.getCountrySN(Team.toUpperCase());
 
+        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.match_card_tabs);
+        tabLayout.setVisibility(View.GONE);
+
         apiInterface = ApiClient.getClient().create(APIInterface.class);
-        mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
-        rv = (RecyclerView) rootView.findViewById(R.id.match_list);
+
+        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
+
+        View viewRecycler = (View) rootView.findViewById(R.id.complete_match_list);
+        rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
 
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        final TextView emptyView = (TextView) rootView.findViewById(R.id.empty_view);
+        View viewEmpty = (View) rootView.findViewById(R.id.empty);
+        final TextView emptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);
 
 
-        /**
-         GET List Upcoming Matches for selected team
-         **/
+        /* GET List Upcoming Matches for selected team */
         Call<UpcomingMatchCardItem> call = apiInterface.doGetUpcomingFavTeam(TeamName);
         call.enqueue(new Callback<UpcomingMatchCardItem>() {
             @Override

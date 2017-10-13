@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHeadFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.HeatMapFragment;
@@ -38,14 +39,16 @@ public class PastMatchScoreCard extends AppCompatActivity {
 
         setTitle(match_name);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar_past);
+        View viewToolbarTabs = (View) findViewById(R.id.toolbar_tabs_past);
+
+        toolbar = (Toolbar) viewToolbarTabs.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager_past);
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs_past);
+        tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
 

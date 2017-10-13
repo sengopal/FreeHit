@@ -38,7 +38,8 @@ public class Bowling_Fragment extends Fragment {
         final Batting_Bowling_item_adapter adapterViewAndroid = new Batting_Bowling_item_adapter(getContext(), gridViewString);
         androidGridView = (GridView) rootView.findViewById(R.id.grid_view_batting_bowling);
 
-        mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
+        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
 
         androidGridView.setAdapter(adapterViewAndroid);

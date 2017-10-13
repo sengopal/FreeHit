@@ -29,7 +29,6 @@ import retrofit2.Response;
 
 
 public class TeamUpcoming extends Fragment {
-    private TabLayout tabLayout;
     APIInterface apiInterface;
     private UpcomingMatchListAdapter MatchListAdapter;
     private ProgressBar mProgressBar;
@@ -54,20 +53,22 @@ public class TeamUpcoming extends Fragment {
         final String TeamName = countryHash.getCountrySN(tempTeamName.toUpperCase());
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
-        mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
-        rv = (RecyclerView) rootView.findViewById(R.id.match_list);
+
+        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
+
+        View viewRecycler = (View) rootView.findViewById(R.id.complete_match_list);
+        rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
 
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
         refresh_layout = (SwipeRefreshLayout) rootView.findViewById(R.id.refresh_layout);
 
-        mEmptyView = (TextView) rootView.findViewById(R.id.empty_view);
-        mEmptyView.setVisibility(View.INVISIBLE);
+        View viewEmpty = (View) rootView.findViewById(R.id.empty);
+        mEmptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);
 
 
-        /**
-         GET List Upcoming Matches for selected team
-         **/
+        /* GET List Upcoming Matches for selected team */
         Call<UpcomingMatchCardItem> call = apiInterface.doGetUpcomingFavTeam(TeamName);
         call.enqueue(new Callback<UpcomingMatchCardItem>() {
             @Override

@@ -33,7 +33,8 @@ public class CareerFragment extends Fragment {
 
         final View rootView = inflater.inflate(R.layout.fragment_more_player_career, container, false);
 
-        mProgressBar = (ProgressBar)rootView.findViewById(R.id.progress_bar);
+        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
         APIInterface apiInterface = ApiClient.getClient().create(APIInterface.class);
 

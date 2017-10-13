@@ -45,11 +45,16 @@ public class TwitterFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View socTweets = inflater.inflate(R.layout.fragment_social_tweets, container, false);
-        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) socTweets.findViewById(R.id.soc_refresh_layout);
+
+        View viewRecycler = (View) socTweets.findViewById(R.id.tweets_recycler_layout);
+
+        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.soc_refresh_layout);
         socTabs = (TabLayout) socTweets.findViewById(R.id.soc_tabs);
         socTabs.setVisibility(View.GONE);
 
-        mProgressBar = (ProgressBar) socTweets.findViewById(R.id.progress_bar);
+        View viewProgress = (View) socTweets.findViewById(R.id.progress);
+
+        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
         Intent i = getActivity().getIntent();
         String Team1Name = i.getStringExtra("Team1Name");
@@ -61,7 +66,7 @@ public class TwitterFragment extends Fragment {
         final String QueryToSearch2 = "#" + Team2Name + "vs" + Team1Name;
 
         //  Initializing the RecyclerView for Twitter feed
-        rv = (RecyclerView) socTweets.findViewById(R.id.twit_feed);
+        rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
         final RelativeLayout twitrel = (RelativeLayout) socTweets.findViewById(R.id.twit_layout);

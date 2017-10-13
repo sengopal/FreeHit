@@ -52,19 +52,22 @@ public class TeamPast extends Fragment {
         final String TeamName = countryHash.getCountrySN(tempTeamName.toUpperCase());
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
-        mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
-        rv = (RecyclerView) rootView.findViewById(R.id.match_list);
+
+        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
+
+        View viewRecycler = (View) rootView.findViewById(R.id.complete_match_list);
+        rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
 
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        final TextView emptyView = (TextView) rootView.findViewById(R.id.empty_view);
+        View viewEmpty = (View) rootView.findViewById(R.id.empty);
+        final TextView emptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);
 
         refresh_layout = (SwipeRefreshLayout) rootView.findViewById(R.id.refresh_layout);
 
 
-        /**
-         GET List Past Matches for selected Team
-         **/
+        /* GET List Past Matches for selected Team */
         Call<PastMatchCardItem> call = apiInterface.doGetPastFavTeam(TeamName);
         call.enqueue(new Callback<PastMatchCardItem>() {
             @Override
