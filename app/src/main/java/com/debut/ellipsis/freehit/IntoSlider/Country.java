@@ -27,7 +27,6 @@ public class Country {
 
     private String code;
     private String name;
-    private String dialCode;
     private String flag ;
 
     public Country(String code, String name, String flag) {
@@ -61,10 +60,7 @@ public class Country {
 
 
 
-    /*
-     *      GENERIC STATIC FUNCTIONS
-     */
-
+    /* GENERIC STATIC FUNCTIONS*/
     private static List<Country> allCountriesList;
 
     public static List<Country> getAllCountries() {

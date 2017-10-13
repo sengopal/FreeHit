@@ -2,8 +2,6 @@ package com.debut.ellipsis.freehit.Matches.ScoreCard;
 
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -13,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -31,11 +30,10 @@ import com.twitter.sdk.android.tweetui.TweetTimelineRecyclerViewAdapter;
  */
 public class TwitterFragment extends Fragment {
     public TabLayout socTabs;
-    private String Team1SN;
-    private String Team2SN;
     public SearchTimeline searchTimeline;
     public TweetTimelineRecyclerViewAdapter adapter;
     public RecyclerView rv;
+    private ProgressBar mProgressBar;
 
     public TwitterFragment() {
         // Required empty public constructor
@@ -49,7 +47,9 @@ public class TwitterFragment extends Fragment {
         View socTweets = inflater.inflate(R.layout.fragment_social_tweets, container, false);
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) socTweets.findViewById(R.id.soc_refresh_layout);
         socTabs = (TabLayout) socTweets.findViewById(R.id.soc_tabs);
-        setupTabs();
+        socTabs.setVisibility(View.GONE);
+
+        mProgressBar = (ProgressBar) socTweets.findViewById(R.id.progress_bar);
 
         Intent i = getActivity().getIntent();
         String Team1Name = i.getStringExtra("Team1Name");
@@ -87,6 +87,7 @@ public class TwitterFragment extends Fragment {
                 adapter.refresh(new Callback<TimelineResult<Tweet>>() {
                     @Override
                     public void success(Result<TimelineResult<Tweet>> result) {
+                        mProgressBar.setVisibility(View.INVISIBLE);
                         refLayout.setRefreshing(false);
                     }
 
@@ -126,6 +127,7 @@ public class TwitterFragment extends Fragment {
                         adapter.refresh(new Callback<TimelineResult<Tweet>>() {
                             @Override
                             public void success(Result<TimelineResult<Tweet>> result) {
+                                mProgressBar.setVisibility(View.INVISIBLE);
                                 refLayout.setRefreshing(false);
                             }
 
@@ -138,24 +140,15 @@ public class TwitterFragment extends Fragment {
                 });
             }
         });
-        setupTabIcons();
         return socTweets;
     }
-    // Function to add tabs, maintaining consistancy in program.
 
-    private void setupTabs() {
-        socTabs.addTab(socTabs.newTab());
-    }
-
-    private void setupTabIcons() {
-        socTabs.getTabAt(0).setIcon(R.drawable.twitter);
-        socTabs.getTabAt(0).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-    }
 
     // Simple function to set the adapter to the required search query and ResultType (RECENT,POPULAR,MIXED)
     private void tabCall(String query, SearchTimeline.ResultType type) {
         searchTimeline = new SearchTimeline.Builder().query(query).resultType(type).build();
         adapter = new TweetTimelineRecyclerViewAdapter.Builder(getContext()).setTimeline(searchTimeline).build();
         rv.setAdapter(adapter);
+        mProgressBar.setVisibility(View.INVISIBLE);
     }
 }

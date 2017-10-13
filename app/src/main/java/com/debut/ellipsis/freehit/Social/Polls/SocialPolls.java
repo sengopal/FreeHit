@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -38,7 +37,6 @@ public class SocialPolls extends Fragment {
     RelativeLayout rlcontainer;
     public TextView NoPollsText;
     public Button NoPollsButton;
-    public ImageView NoConnectionImage;
     public Button NoConnectionButton;
 
     public SocialPolls() {
@@ -66,8 +64,7 @@ public class SocialPolls extends Fragment {
         NoPollsButton = (Button) No_polls.findViewById(R.id.No_Live_Matches_button);
 
         final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
-
-        NoConnectionImage = (ImageView) no_internet_connection.findViewById(R.id.no_internet_connection);
+        
         NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
 

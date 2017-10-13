@@ -147,7 +147,6 @@ public class LiveMatchCardAdapter extends PagerAdapter {
                 LiveMatchScoreCardIntent.putExtra("match_name", finalMatch_name + "( " +ShortNameTeam1+ " vs " +ShortNameTeam2+ " )");
                 LiveMatchScoreCardIntent.putExtra("Team1Name", ShortNameTeam1);
                 LiveMatchScoreCardIntent.putExtra("Team2Name", ShortNameTeam2);
-                /*ActivityOptions.makeCustomAnimation(context,R.anim.enter_from_right,R.anim.exit_to_right);*/
                 context.startActivity(LiveMatchScoreCardIntent);
 
             }

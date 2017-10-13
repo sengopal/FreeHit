@@ -1,7 +1,6 @@
 package com.debut.ellipsis.freehit.IntoSlider;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.text.Editable;
@@ -28,7 +27,6 @@ public class CountryPicker extends DialogFragment {
     private List<Country> countriesList = new ArrayList<>();
     private List<Country> selectedCountriesList = new ArrayList<>();
     private CountryPickerListener listener;
-    private Context context;
 
     /**
      * To support show as dialog

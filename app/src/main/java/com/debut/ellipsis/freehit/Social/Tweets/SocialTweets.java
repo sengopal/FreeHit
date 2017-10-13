@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ public class SocialTweets extends Fragment {
     public TweetTimelineRecyclerViewAdapter adapter;
     private String QueryToSearch = "#cricket";
     public RecyclerView rv;
+    private ProgressBar mProgressBar;
 
     public SocialTweets() {
         // Required empty public constructor
@@ -48,6 +50,8 @@ public class SocialTweets extends Fragment {
         //  Initializing the RecyclerView for Twitter feed
         rv = (RecyclerView) socTweets.findViewById(R.id.twit_feed);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        mProgressBar = (ProgressBar) socTweets.findViewById(R.id.progress_bar);
 
         final RelativeLayout twitrel = (RelativeLayout) socTweets.findViewById(R.id.twit_layout);
         //  Using a SearchTimeline to search for a given query, can be changed with (UserTimeline, CollectionTimeline, TwitterListTimeline, or FixedTweetTimeline)
@@ -72,6 +76,7 @@ public class SocialTweets extends Fragment {
                 adapter.refresh(new Callback<TimelineResult<Tweet>>() {
                     @Override
                     public void success(Result<TimelineResult<Tweet>> result) {
+                        mProgressBar.setVisibility(View.INVISIBLE);
                         refLayout.setRefreshing(false);
                     }
 
@@ -115,6 +120,7 @@ public class SocialTweets extends Fragment {
                         adapter.refresh(new Callback<TimelineResult<Tweet>>() {
                             @Override
                             public void success(Result<TimelineResult<Tweet>> result) {
+                                mProgressBar.setVisibility(View.INVISIBLE);
                                 refLayout.setRefreshing(false);
                             }
 
@@ -142,5 +148,6 @@ public class SocialTweets extends Fragment {
         searchTimeline = new SearchTimeline.Builder().query(query).resultType(type).build();
         adapter = new TweetTimelineRecyclerViewAdapter.Builder(getContext()).setTimeline(searchTimeline).build();
         rv.setAdapter(adapter);
+        mProgressBar.setVisibility(View.INVISIBLE);
     }
 }

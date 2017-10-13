@@ -37,10 +37,9 @@ public class WelcomeActivity extends AppCompatActivity {
     private LinearLayout dotsLayout;
     private ImageView[] dots;
     private int[] layouts;
-    private Button btnSkip, btnNext, btnCountrySelect;
+    private Button btnSkip, btnNext;
     private PrefManager prefManager;
     private boolean clicked = false;
-    public String Selected_country;
     CountryHash countryHash = new CountryHash();
 
 
@@ -141,8 +140,7 @@ public class WelcomeActivity extends AppCompatActivity {
         dotsLayout.removeAllViews();
         for (int i = 0; i < dots.length; i++) {
             dots[i] = new ImageView(this);
-            /*dots[i].setText(Html.fromHtml("&#8226;"));
-            dots[i].setTextSize(35);*/
+
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
             dots[i].setLayoutParams(params);
             params.setMargins(15, 15, 0, 0);
@@ -156,7 +154,7 @@ public class WelcomeActivity extends AppCompatActivity {
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
             dots[currentPage].setLayoutParams(params);
             params.setMargins(15, 15, 0, 0);
-            //parms.setMargins(left, top, right, bottom);
+
             dots[currentPage].setImageResource(R.drawable.ball);
             dots[currentPage].setColorFilter(colorsActive[currentPage]);
         }
