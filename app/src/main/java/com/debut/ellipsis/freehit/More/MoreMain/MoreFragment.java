@@ -36,7 +36,7 @@ MoreFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_more_list, container, false);
+        View rootView = inflater.inflate(R.layout.common_list, container, false);
 
         final ArrayList<MoreItem> moreItem = new ArrayList<MoreItem>();
 
@@ -47,7 +47,7 @@ MoreFragment extends Fragment {
         moreItem.add(new MoreItem(R.drawable.rankings, R.string.rankings));
 
         MoreAdapter adapter = new MoreAdapter(getActivity(), moreItem);
-        final ListView listView = (ListView) rootView.findViewById(R.id.stats_list);
+        final ListView listView = (ListView) rootView.findViewById(R.id.list);
         listView.setAdapter(adapter);
         listView.setClickable(true);
         listView.setOnItemClickListener(new ListView.OnItemClickListener() {
@@ -74,7 +74,6 @@ MoreFragment extends Fragment {
                 else if (position==4){
                     Intent RankingIntent = new Intent(getActivity(), RankingActivity.class);
                     startActivity(RankingIntent);
-                    getActivity().overridePendingTransition(0,0);
 
                 }
 

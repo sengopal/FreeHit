@@ -35,7 +35,9 @@ public class CustomSettings extends AppCompatActivity {
 
         setContentView(R.layout.custom_settings);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        View viewToolbar = (View) findViewById(R.id.custom_settings_toolbar);
+
+        toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

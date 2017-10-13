@@ -51,13 +51,15 @@ public class NewsFragment extends Fragment {
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        final RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.news_list);
+        View viewRecycler = (View) rootView.findViewById(R.id.news_list);
+
+        final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
-        mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
-
-        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.refresh_layout);
+        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
         final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
 
@@ -121,7 +123,7 @@ public class NewsFragment extends Fragment {
             }
         });
 
-        refLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
+        refLayout.setColorSchemeResources(R.color.orange);
         refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                                            @Override
                                            public void onRefresh() {

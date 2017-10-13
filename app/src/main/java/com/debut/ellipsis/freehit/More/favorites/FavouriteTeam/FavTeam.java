@@ -35,7 +35,7 @@ public class FavTeam extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView =  inflater.inflate(R.layout.fragment_more_fav_team, container, false);
+        View rootView =  inflater.inflate(R.layout.common_list, container, false);
         final ArrayList<MoreItem> favTeamItem = new ArrayList<MoreItem>();
         favTeamItem.add(new MoreItem(R.drawable.arrow, R.string.category_news));
         favTeamItem.add(new MoreItem(R.drawable.arrow, R.string.upcoming_list));
@@ -48,7 +48,7 @@ public class FavTeam extends Fragment {
 
 
         FavTeamAdapter adapter = new FavTeamAdapter(getActivity(), favTeamItem);
-        final ListView listView = (ListView) rootView.findViewById(R.id.fav_team_list);
+        final ListView listView = (ListView) rootView.findViewById(R.id.list);
         listView.setAdapter(adapter);
         listView.setClickable(true);
 

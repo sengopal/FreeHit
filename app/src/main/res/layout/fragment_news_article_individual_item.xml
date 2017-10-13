@@ -28,8 +28,8 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:layout_collapseMode="pin">
+                app:layout_collapseMode="pin"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
 
             </android.support.v7.widget.Toolbar>
@@ -85,46 +85,46 @@
 
                 <TextView
                     android:id="@+id/news_tag"
-                    android:layout_toEndOf="@+id/news_tag_image"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_15sdp"
                     android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@+id/news_tag_image"
                     android:textSize="@dimen/_12sdp"
                     tools:text="David Andrew Warner" />
 
                 <ImageView
                     android:id="@+id/news_tag_image_1"
-                    android:layout_below="@+id/news_tag_image"
                     android:layout_width="@dimen/_8sdp"
                     android:layout_height="@dimen/_15sdp"
+                    android:layout_below="@+id/news_tag_image"
                     android:src="@drawable/tag"
                     android:visibility="invisible" />
 
                 <TextView
                     android:id="@+id/news_tag_1"
-                    android:layout_below="@+id/news_tag"
-                    android:layout_toEndOf="@+id/news_tag_image"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_15sdp"
+                    android:layout_below="@+id/news_tag"
                     android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@+id/news_tag_image"
                     android:textSize="@dimen/_12sdp"
                     tools:text="David Andrew Warner" />
 
                 <ImageView
                     android:id="@+id/news_tag_image_2"
-                    android:layout_below="@+id/news_tag_image_1"
                     android:layout_width="@dimen/_8sdp"
                     android:layout_height="@dimen/_15sdp"
+                    android:layout_below="@+id/news_tag_image_1"
                     android:src="@drawable/tag"
                     android:visibility="invisible" />
 
                 <TextView
                     android:id="@+id/news_tag_2"
-                    android:layout_below="@+id/news_tag_1"
-                    android:layout_toEndOf="@+id/news_tag_image"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_15sdp"
+                    android:layout_below="@+id/news_tag_1"
                     android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@+id/news_tag_image"
                     android:textSize="@dimen/_12sdp"
                     tools:text="David Andrew Warner" />
 
@@ -136,8 +136,8 @@
                 android:id="@+id/news_article_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/_10sdp"
                 android:paddingBottom="10dip"
+                android:paddingTop="@dimen/_10sdp"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/_13sdp"
                 tools:text="aasfdfdfdafd" />
@@ -145,11 +145,8 @@
 
     </android.support.v4.widget.NestedScrollView>
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        style="@style/Base.Widget.AppCompat.ProgressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+    <include
+        android:id="@+id/progress"
+        layout="@layout/common_progressbar" />
 
 </android.support.design.widget.CoordinatorLayout>

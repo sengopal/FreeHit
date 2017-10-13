@@ -2,33 +2,36 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@color/colorPrimary"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:minHeight="?attr/actionBarSize" />
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <include
+            android:id="@+id/custom_settings_toolbar"
+            layout="@layout/common_toolbar" />
+
+    </android.support.design.widget.AppBarLayout>
+
 
     <RelativeLayout
-        android:padding="@dimen/_15sdp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar">
+        android:layout_below="@+id/app_bar_layout"
+        android:padding="@dimen/_15sdp">
 
         <TextView
             android:id="@+id/title_country_select"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
             android:text="@string/team_select_title"
-            android:textSize="@dimen/_15sdp" />
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold" />
 
         <RelativeLayout
 
@@ -50,8 +53,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="10dp"
-                android:textColor="@color/black"
                 android:layout_toEndOf="@+id/country_flag"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_18sdp"
                 tools:text="INDIA" />
         </RelativeLayout>
@@ -61,16 +64,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/relative_layout"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginBottom="@dimen/_5sdp"
-            android:paddingStart="@dimen/_5sdp"
-            android:paddingEnd="@dimen/_5sdp"
-            android:onClick="select_country"
-            android:text="@string/select_team_button"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:background="@drawable/custom_button"
-            android:textSize="@dimen/_10sdp"
-            android:textColor="@android:color/white" />
+            android:onClick="select_country"
+            android:paddingEnd="@dimen/_5sdp"
+            android:paddingStart="@dimen/_5sdp"
+            android:text="@string/select_team_button"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_10sdp" />
 
         <TextView
             android:layout_width="match_parent"

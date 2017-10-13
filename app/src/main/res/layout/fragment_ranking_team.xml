@@ -87,9 +87,6 @@
         android:layout_below="@+id/parent_layout"
         android:layout_marginTop="@dimen/_10sdp">
 
-        <include
-            android:id="@+id/ListViewForTeamRankings"
-            layout="@layout/list_common" />
     </RelativeLayout>
 
 </RelativeLayout>

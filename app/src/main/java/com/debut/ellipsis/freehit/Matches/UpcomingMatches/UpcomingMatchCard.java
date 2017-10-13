@@ -53,7 +53,9 @@ public class UpcomingMatchCard extends Fragment {
 
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
-        mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
+
+        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
         final View common_match_cards = rootView.findViewById(R.id.common_match_cards);
 

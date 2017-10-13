@@ -34,7 +34,6 @@ public class NewsArticle extends AppCompatActivity {
 
     private Toolbar toolbar;
     APIInterface apiInterface;
-    private NewsItemAdapter mAdapter;
     private ProgressBar mProgressBar;
     private String match_id;
 
@@ -49,7 +48,9 @@ public class NewsArticle extends AppCompatActivity {
         setContentView(R.layout.fragment_news_article_individual_item);
         match_id = getIntent().getStringExtra("news_id");
         apiInterface = ApiClient.getClient().create(APIInterface.class);
-        mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
+
+        View viewProgress = (View) findViewById(R.id.progress);
+        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -69,16 +70,12 @@ public class NewsArticle extends AppCompatActivity {
         } else {
             // Otherwise, display error
             // First, hide loading indicator so error message will be visible
-            View progressBar = findViewById(R.id.progress_bar);
-            progressBar.setVisibility(View.GONE);
-
+            mProgressBar.setVisibility(View.GONE);
             Toast.makeText(getApplicationContext(),R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
         }
 
 
-        /**
-         GET News Article
-         **/
+        /* GET News Article */
         Call<NewsArticleItem> call = apiInterface.doGetNewsArticle(match_id);
         call.enqueue(new Callback<NewsArticleItem>() {
             @Override
@@ -135,15 +132,12 @@ public class NewsArticle extends AppCompatActivity {
     }
 
     @Override
-
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 overridePendingTransition(0, R.anim.exit_to_right);
                 return true;
-
-
         }
         return super.onOptionsItemSelected(item);
     }

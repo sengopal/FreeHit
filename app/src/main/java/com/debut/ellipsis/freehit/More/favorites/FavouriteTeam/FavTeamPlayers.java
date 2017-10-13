@@ -42,24 +42,28 @@ public class FavTeamPlayers extends AppCompatActivity {
         Intent i = getIntent();
         final String Team = i.getStringExtra("CountryName");
 
+        View viewToolbar = (View) findViewById(R.id.toolbar_fav_players);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar_for_match_list);
+        toolbar = (Toolbar)viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(Team + " Players");
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        mEmptyView = (TextView) findViewById(R.id.empty_view);
-        mEmptyView.setVisibility(View.INVISIBLE);
 
+        View viewEmpty = (View) findViewById(R.id.empty);
+        mEmptyView = (TextView)viewEmpty.findViewById(R.id.empty_view);
 
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.player_list);
+        View viewRecycler = (View) findViewById(R.id.player_list);
+        final RecyclerView recyclerView = (RecyclerView)viewRecycler.findViewById(R.id.recycler_list);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-        mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        View viewProgress = (View) findViewById(R.id.progress);
+        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
-        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) findViewById(R.id.refresh_layout);
+        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
         Call<CountryItem> call = apiInterface.doGetCountryResources();
         call.enqueue(new Callback<CountryItem>() {
