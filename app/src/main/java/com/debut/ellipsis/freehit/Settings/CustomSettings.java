@@ -13,7 +13,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.debut.ellipsis.freehit.CountryHash;
+import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
+import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
 import com.debut.ellipsis.freehit.IntoSlider.CountryPicker;
 import com.debut.ellipsis.freehit.IntoSlider.CountryPickerListener;
 import com.debut.ellipsis.freehit.R;
@@ -52,9 +56,9 @@ public class CustomSettings extends AppCompatActivity {
         TextView country_name = (TextView) findViewById(R.id.country_name);
         country_name.setText(name);
 
-        country_flag.setImageResource(countryHash.getCountryFlag(name.toUpperCase()));
+        String TeamLogo = countryHash.getCountryFlag(name.toUpperCase());
 
-
+        Glide.with(getApplicationContext()).load(TeamLogo).apply(new RequestOptions().placeholder(R.drawable.matches)).into(country_flag);
 
     }
 
@@ -63,13 +67,15 @@ public class CustomSettings extends AppCompatActivity {
         final CountryPicker picker = CountryPicker.newInstance("Select Country");  // dialog title
         picker.setListener(new CountryPickerListener() {
             @Override
-            public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID) {
+            public void onSelectCountry(String name, String flagURLID) {
                 // Implement your code here
                 TextView country_name = (TextView) findViewById(R.id.country_name);
                 country_name.setText(name);
 
                 ImageView before = (ImageView) findViewById(R.id.country_flag);
-                before.setImageResource(flagDrawableResID);
+                CustomImageSizeModel Flag = new CustomImageSizeModelFutureStudio(flagURLID);
+
+                Glide.with(getApplicationContext()).load(Flag).apply(new RequestOptions().placeholder(R.drawable.matches)).into(before);
 
                 SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
                 editor.putString("country_name", name);

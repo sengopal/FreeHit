@@ -11,6 +11,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
+import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
@@ -69,7 +72,11 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
         holder.desc.setText(newsItems.get(position).getDesc());
         holder.date.setText(newsItems.get(position).getDate());
         holder.tag.setText(newsItems.get(position).getTag());
-        Glide.with(context).load(newsItems.get(position).getImage()).centerCrop().placeholder(R.drawable.matches).into(holder.image);
+
+        String URLNewsImage = newsItems.get(position).getImage();
+        CustomImageSizeModel NewsImage = new CustomImageSizeModelFutureStudio(URLNewsImage);
+
+        Glide.with(context).load(NewsImage).apply(new RequestOptions().placeholder(R.drawable.matches).centerCrop()).into(holder.image);
 
         RelativeLayout RLcontainer = holder.rlcontainer;
 
@@ -83,7 +90,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
                 Intent NewsArticleIntent = new Intent(context, NewsArticle.class);
 
                 String pos = String.valueOf(position);
-                NewsArticleIntent.putExtra("match_id", newsItems.get(position).getId().toString());
+                NewsArticleIntent.putExtra("news_id", newsItems.get(position).getId().toString());
                     /*ActivityOptions.makeCustomAnimation(context,R.anim.animation_entry,R.anim.animation_exit);*/
                 NewsArticleIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(NewsArticleIntent);

@@ -15,8 +15,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
+import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
+import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
 import com.debut.ellipsis.freehit.R;
 
 import retrofit2.Call;
@@ -44,10 +47,9 @@ public class NewsArticle extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_news_article_individual_item);
-        match_id = getIntent().getStringExtra("match_id");
+        match_id = getIntent().getStringExtra("news_id");
         apiInterface = ApiClient.getClient().create(APIInterface.class);
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
-        System.out.println(match_id);
 
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -117,8 +119,9 @@ public class NewsArticle extends AppCompatActivity {
 
                 final String ImageURL = newsArticle.getImage();
 
-                Glide.with(getApplicationContext()).load(ImageURL).centerCrop().placeholder(R.drawable.matches).into(articleImage);
+                CustomImageSizeModel Image = new CustomImageSizeModelFutureStudio(ImageURL);
 
+                Glide.with(getApplicationContext()).load(Image).apply(new RequestOptions().placeholder(R.drawable.matches).fitCenter()).into(articleImage);
 
             }
 

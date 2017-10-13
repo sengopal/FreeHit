@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.debut.ellipsis.freehit.More.Player.PlayerActivity;
 import com.debut.ellipsis.freehit.PlayerCountryItem;
 import com.debut.ellipsis.freehit.R;
@@ -60,7 +61,7 @@ public class FavTeamPlayersAdapter extends RecyclerView.Adapter<FavTeamPlayersAd
     @Override
     public void onBindViewHolder(FavTeamPlayersAdapter.FavTeamPlayerViewHolder holder, final int position) {
         holder.PlayerName.setText(playerCountryItems.get(position).getName());
-        Glide.with(context).load(playerCountryItems.get(position).getImage()).centerCrop().placeholder(R.drawable.matches).into(holder.PlayerImage);
+        Glide.with(context).load(playerCountryItems.get(position).getImage()).apply(new RequestOptions().placeholder(R.drawable.matches).centerCrop()).into(holder.PlayerImage);
 
         LinearLayout RLContainer = holder.rlcontainer;
 

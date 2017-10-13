@@ -80,10 +80,10 @@ public class SocialPolls extends Fragment {
             public void onResponse(Call<PollCardItem> call, Response<PollCardItem> response) {
                 mProgressBar.setVisibility(View.INVISIBLE);
                 if (getActivity() != null) {
-                    System.out.println("Going into not null Activity");
+
                     List<PollCardItem> polls = response.body().getResults();
                     if (polls.size() == 0) {
-                        System.out.println("Going into no polls");
+
                         No_polls.setVisibility(View.VISIBLE);
                         NoPollsText.setText(R.string.EmptyPolls);
                         NoPollsButton.setOnClickListener(new View.OnClickListener() {

@@ -69,9 +69,8 @@ public class FavTeamPlayers extends AppCompatActivity {
                 List<CountryItem> countries = response.body().getResults();
                 for (int i = 0; i < countries.size(); i++) {
                     if (countries.get(i).getTitle().equals(Team)) {
-                        System.out.println(countries.get(i).getId());
-                        int teamid = countries.get(i).getId();
-                        TeamID = String.valueOf(teamid);
+                        int teamID = countries.get(i).getId();
+                        TeamID = String.valueOf(teamID);
 
                         Call<PlayerCountryItem> call1 = apiInterface.doGetFavTeamPlayers(TeamID);
                         call1.enqueue(new Callback<PlayerCountryItem>() {
@@ -123,9 +122,8 @@ public class FavTeamPlayers extends AppCompatActivity {
                         List<CountryItem> countries = response.body().getResults();
                         for (int i = 0; i < countries.size(); i++) {
                             if (countries.get(i).getTitle().equals(Team)) {
-                                System.out.println(countries.get(i).getId());
-                                int teamid = countries.get(i).getId();
-                                TeamID = String.valueOf(teamid);
+                                int teamID = countries.get(i).getId();
+                                TeamID = String.valueOf(teamID);
 
                                 Call<PlayerCountryItem> call1 = apiInterface.doGetFavTeamPlayers(TeamID);
                                 call1.enqueue(new Callback<PlayerCountryItem>() {

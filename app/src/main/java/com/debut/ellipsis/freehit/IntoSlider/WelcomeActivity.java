@@ -21,7 +21,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.debut.ellipsis.freehit.CountryHash;
+import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
+import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
@@ -238,7 +242,10 @@ public class WelcomeActivity extends AppCompatActivity {
                 String flagID = prefs.getString("country_flag", "");
                 Log.e("test", flagID);
 
-                country_flag.setImageResource(countryHash.getCountryFlag(name.toUpperCase()));
+                String TeamLogo = countryHash.getCountryFlag(name.toUpperCase());
+
+                Glide.with(getApplicationContext()).load(TeamLogo).apply(new RequestOptions().placeholder(R.drawable.matches)).into(country_flag);
+
             }
             return view;
         }
@@ -266,13 +273,16 @@ public class WelcomeActivity extends AppCompatActivity {
         final CountryPicker picker = CountryPicker.newInstance("Select Country");  // dialog title
         picker.setListener(new CountryPickerListener() {
             @Override
-            public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID) {
+            public void onSelectCountry(String name, String flagURLID) {
                 // Implement your code here
                 TextView country_name = (TextView) findViewById(R.id.country_name);
                 country_name.setText(name);
 
                 ImageView before = (ImageView) findViewById(R.id.country_flag);
-                before.setImageResource(flagDrawableResID);
+
+                CustomImageSizeModel Flag = new CustomImageSizeModelFutureStudio(flagURLID);
+
+                Glide.with(getApplicationContext()).load(Flag).apply(new RequestOptions().placeholder(R.drawable.matches)).into(before);
 
                 TextView description = (TextView) findViewById(R.id.slide5description);
                 description.setVisibility(View.GONE);

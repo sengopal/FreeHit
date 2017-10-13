@@ -1,14 +1,9 @@
 package com.debut.ellipsis.freehit.IntoSlider;
 
 
-import android.content.Context;
-import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
-import com.debut.ellipsis.freehit.R;
-
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -16,26 +11,26 @@ import java.util.Locale;
 public class Country {
 
     public static final Country[] COUNTRIES = {
-            new Country("AFG", "Afghanistan", R.drawable.flag_afg),
-            new Country("AUS", "Australia", R.drawable.flag_aus),
-            new Country("BAN", "Bangladesh", R.drawable.flag_ban),
-            new Country("ENG", "England", R.drawable.flag_eng),
-            new Country("IRE", "Ireland", R.drawable.flag_ire),
-            new Country("IND", "India", R.drawable.flag_ind),
-            new Country("NZ", "New Zealand", R.drawable.flag_nz),
-            new Country("PAK", "Pakistan", R.drawable.flag_pak),
-            new Country("SA", "South Africa", R.drawable.flag_sa),
-            new Country("SL", "Sri Lanka", R.drawable.flag_sl),
-            new Country("WI", "West Indies", R.drawable.flag_wi),
-            new Country("ZW", "Zimbabwe", R.drawable.flag_zw),
+            new Country("AFG", "Afghanistan", "https://s.ndtvimg.com/images/entities/120/afghanistan-2156.png"),
+            new Country("AUS", "Australia", "https://s.ndtvimg.com/images/entities/120/australia-7.png"),
+            new Country("BAN", "Bangladesh", "https://s.ndtvimg.com/images/entities/120/bangladesh-2114.png"),
+            new Country("ENG", "England", "https://s.ndtvimg.com/images/entities/120/england-5.png"),
+            new Country("IRE", "Ireland", "https://s.ndtvimg.com/images/entities/120/ireland-2123.png"),
+            new Country("IND", "India", "https://s.ndtvimg.com/images/entities/120/india-6.png"),
+            new Country("NZ", "New Zealand", "https://s.ndtvimg.com/images/entities/120/new-zealand-2115.png"),
+            new Country("PAK", "Pakistan", "https://s.ndtvimg.com/images/entities/120/pakistan-2116.png"),
+            new Country("SA", "South Africa", "https://s.ndtvimg.com/images/entities/120/south-africa-2117.png"),
+            new Country("SL", "Sri Lanka", "https://s.ndtvimg.com/images/entities/120/sri-lanka-2118.png"),
+            new Country("WI", "West Indies", "https://s.ndtvimg.com/images/entities/120/west-indies-2119.png"),
+            new Country("ZW", "Zimbabwe", "https://s.ndtvimg.com/images/entities/120/zimbabwe-2120.png"),
     };
 
     private String code;
     private String name;
     private String dialCode;
-    private int flag = -1;
+    private String flag ;
 
-    public Country(String code, String name, int flag) {
+    public Country(String code, String name, String flag) {
         this.code = code;
         this.name = name;
         this.flag = flag;
@@ -44,16 +39,6 @@ public class Country {
     public Country() {
     }
 
-    ;
-
-
-    public String getDialCode() {
-        return dialCode;
-    }
-
-    public void setDialCode(String dialCode) {
-        this.dialCode = dialCode;
-    }
 
     public String getCode() {
         return code;
@@ -70,27 +55,10 @@ public class Country {
         return name;
     }
 
-    public int getFlag() {
+    public String getFlag() {
         return flag;
     }
 
-    public void setFlag(int flag) {
-        this.flag = flag;
-    }
-
-    public void loadFlagByCode(Context context) {
-        if (this.flag != -1)
-            return;
-
-        try {
-            this.flag = context.getResources()
-                    .getIdentifier("flag_" + this.code.toLowerCase(Locale.ENGLISH), "drawable",
-                            context.getPackageName());
-        } catch (Exception e) {
-            e.printStackTrace();
-            this.flag = -1;
-        }
-    }
 
 
     /*
@@ -106,62 +74,4 @@ public class Country {
         return allCountriesList;
     }
 
-    public static Country getCountryByISO(String countryIsoCode) {
-        countryIsoCode = countryIsoCode.toUpperCase();
-
-        Country c = new Country();
-        c.setCode(countryIsoCode);
-
-        int i = Arrays.binarySearch(COUNTRIES, c, new ISOCodeComparator());
-
-        if (i < 0) {
-            return null;
-        } else {
-            return COUNTRIES[i];
-        }
-    }
-
-    public static Country getCountryByName(String countryName) {
-        // Because the data we have is sorted by ISO codes and not by names, we must check all
-        // countries one by one
-
-        for (Country c : COUNTRIES) {
-            if (countryName.equals(c.getName())) {
-                return c;
-            }
-        }
-        return null;
-    }
-
-    public static Country getCountryByLocale(Locale locale) {
-        String countryIsoCode = locale.getISO3Country().substring(0, 2).toLowerCase();
-        return Country.getCountryByISO(countryIsoCode);
-    }
-
-    public static Country getCountryFromSIM(Context context) {
-        TelephonyManager telephonyManager =
-                (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        if (telephonyManager.getSimState() != TelephonyManager.SIM_STATE_ABSENT) {
-            return Country.getCountryByISO(telephonyManager.getSimCountryIso());
-        }
-        return null;
-    }
-
-    /*
-     * COMPARATORS
-     */
-    public static class ISOCodeComparator implements Comparator<Country> {
-        @Override
-        public int compare(Country country, Country t1) {
-            return country.code.compareTo(t1.code);
-        }
-    }
-
-
-    public static class NameComparator implements Comparator<Country> {
-        @Override
-        public int compare(Country country, Country t1) {
-            return country.name.compareTo(t1.name);
-        }
-    }
 }

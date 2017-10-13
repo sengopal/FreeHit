@@ -28,7 +28,7 @@
                 android:layout_centerHorizontal="true"
                 android:paddingTop="@dimen/_5sdp"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_11sdp"
                 tools:text="Sri Lanka Vs India, 4th ODI" />
 
 
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/series_name_past"
                 android:layout_centerHorizontal="true"
-                android:textSize="@dimen/_10sdp"
+                android:textSize="@dimen/_9sdp"
                 tools:text="M Chinnaswamy ,Bangalore , India" />
 
             <TextView

@@ -12,7 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.debut.ellipsis.freehit.CountryHash;
+import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
+import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
 import com.debut.ellipsis.freehit.R;
 
 import java.text.ParseException;
@@ -170,8 +173,11 @@ public class LiveMatchCardAdapter extends PagerAdapter {
         logo_string1 = this.dataObjectList.get(position).getTeam1().getImage();
         logo_string2 = this.dataObjectList.get(position).getTeam2().getImage();
 
-        Glide.with(context).load(logo_string1).placeholder(R.drawable.matches).into(imageViewTeam1Logo);
-        Glide.with(context).load(logo_string2).placeholder(R.drawable.matches).into(imageViewTeam2Logo);
+        CustomImageSizeModel Logo1 = new CustomImageSizeModelFutureStudio(logo_string1);
+        CustomImageSizeModel Logo2 = new CustomImageSizeModelFutureStudio(logo_string2);
+
+        Glide.with(context).load(Logo1).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam1Logo);
+        Glide.with(context).load(Logo2).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam2Logo);
 
         container.addView(view);
         return view;

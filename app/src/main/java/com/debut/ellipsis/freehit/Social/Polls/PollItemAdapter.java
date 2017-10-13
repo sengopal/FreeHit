@@ -293,7 +293,7 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
                 @Override
                 public void onResponse(Call<PollCardItem> call, Response<PollCardItem> response) {
                     List<PollCardItem> poll = response.body().getResults();
-                    System.out.println(poll.size());
+
                     holder.title.setVisibility(View.VISIBLE);
                     rlayout.setVisibility(View.VISIBLE);
                     int total = poll.get(holder.getAdapterPosition()).getTotalVotes();

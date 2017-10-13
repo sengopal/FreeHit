@@ -3,19 +3,19 @@ package com.debut.ellipsis.freehit.More.Team;
 
 public class TeamListItem {
 
-    private int mTeamIcon;
+    private String mTeamIconURL;
 
     private int mTeamName;
 
 
-    public TeamListItem(int TeamIcon, int TeamName) {
-        mTeamIcon = TeamIcon;
+    public TeamListItem(String TeamIconURL, int TeamName) {
+        mTeamIconURL = TeamIconURL;
         mTeamName = TeamName;
 
     }
 
-    public int getmTeamIcon() {
-        return mTeamIcon;
+    public String getmTeamIconURL() {
+        return mTeamIconURL;
     }
 
     public int getmTeamName() {

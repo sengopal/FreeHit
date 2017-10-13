@@ -79,7 +79,6 @@ public class NewsFragment extends Fragment {
             public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
 
 
-                    System.out.println("Results of News "+response.body().getResults());
                     List<NewsItem> news = response.body().getResults();
                     if (news.size() == 0) {
                         No_news.setVisibility(View.VISIBLE);
