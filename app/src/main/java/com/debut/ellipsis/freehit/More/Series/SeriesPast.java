@@ -2,8 +2,8 @@ package com.debut.ellipsis.freehit.More.Series;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
@@ -30,7 +31,9 @@ public class SeriesPast extends Fragment {
     APIInterface apiInterface;
     private PastMatchesListAdapter MatchListAdapter;
     private ProgressBar mProgressBar;
+    public SwipeRefreshLayout refresh_layout;
     private RecyclerView rv;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,10 +44,7 @@ public class SeriesPast extends Fragment {
         String Team = i.getStringExtra("CountryName");
 
         CountryHash countryHash = new CountryHash();
-        String TeamName = countryHash.getCountrySN(Team.toUpperCase());
-
-        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.match_card_tabs);
-        tabLayout.setVisibility(View.GONE);
+        final String TeamName = countryHash.getCountrySN(Team.toUpperCase());
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
@@ -53,6 +53,8 @@ public class SeriesPast extends Fragment {
 
         View viewRecycler = (View) rootView.findViewById(R.id.complete_match_list);
         rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
+
+        refresh_layout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -79,9 +81,51 @@ public class SeriesPast extends Fragment {
 
             @Override
             public void onFailure(Call<PastMatchCardItem> call, Throwable t) {
+                mProgressBar.setVisibility(View.INVISIBLE);
+                emptyView.setVisibility(View.INVISIBLE);
+                Toast toast=Toast.makeText(getContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
+                toast.show();
                 call.cancel();
             }
         });
+
+        refresh_layout.setColorSchemeResources(R.color.orange);
+        refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                                                @Override
+                                                public void onRefresh() {
+                                                    // Checking if connected or not on refresh
+                                                    refresh_layout.setRefreshing(true);
+
+                                                    Call<PastMatchCardItem> call = apiInterface.doGetPastFavTeam(TeamName);
+                                                    call.enqueue(new Callback<PastMatchCardItem>() {
+                                                        @Override
+                                                        public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
+                                                            mProgressBar.setVisibility(View.GONE);
+
+                                                            List<PastMatchCardItem> pastMatchesList = response.body().getResults();
+                                                            if(pastMatchesList.size()==0)
+                                                            {
+                                                                emptyView.setVisibility(View.VISIBLE);
+                                                                emptyView.setText("NO MATCHES FOUND");
+                                                            }
+                                                            MatchListAdapter = new PastMatchesListAdapter(pastMatchesList, getContext());
+                                                            rv.setAdapter(MatchListAdapter);
+                                                        }
+
+                                                        @Override
+                                                        public void onFailure(Call<PastMatchCardItem> call, Throwable t) {
+                                                            mProgressBar.setVisibility(View.INVISIBLE);
+                                                            emptyView.setVisibility(View.INVISIBLE);
+                                                            Toast toast=Toast.makeText(getContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
+                                                            toast.show();
+                                                            call.cancel();
+
+                                                        }
+                                                    });
+                                                    refresh_layout.setRefreshing(false);
+                                                }
+                                            }
+        );
 
 
         return rootView;

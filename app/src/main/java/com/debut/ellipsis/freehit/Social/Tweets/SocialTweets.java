@@ -49,8 +49,12 @@ public class SocialTweets extends Fragment {
 
 
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
-        socTabs = (TabLayout) socTweets.findViewById(R.id.soc_tabs);
+
+        View viewSocialTweetsTabs = (View) socTweets.findViewById(R.id.soc_tabs);
+        socTabs = (TabLayout) viewSocialTweetsTabs.findViewById(R.id.tabs);
         setupTabs();
+
+
         //  Initializing the RecyclerView for Twitter feed
         rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -75,7 +79,7 @@ public class SocialTweets extends Fragment {
             }
         });
 
-
+        refLayout.setColorSchemeResources(R.color.orange);
         refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

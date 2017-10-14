@@ -13,9 +13,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -63,14 +60,14 @@ public class MainActivity extends AppCompatActivity {
 
         String title = "FreeHit";
 
-        //To Set The Color Of The Action Bar
+        /*//To Set The Color Of The Action Bar
         SpannableString s = new SpannableString(title);
         s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        getSupportActionBar().setTitle(s);
+        getSupportActionBar().setTitle(s);*/
 
-        /*getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
+        View viewMainPager = (View) findViewById(R.id.main_viewpager);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = (ViewPager) viewMainPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
         tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);

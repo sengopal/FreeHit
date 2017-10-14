@@ -1,6 +1,7 @@
 package com.debut.ellipsis.freehit.More.Player;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -39,7 +40,7 @@ public class PlayerSearchActivity extends AppCompatActivity {
         toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("PLAYERS");
+        setTitle("Player Search");
 
 
         View viewRecycler = (View) findViewById(R.id.player_search_list);
@@ -47,11 +48,14 @@ public class PlayerSearchActivity extends AppCompatActivity {
         final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
+        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
+        refLayout.setRefreshing(false);
+
         EditText e = (EditText) findViewById(R.id.editText_player);
         e.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                refLayout.setRefreshing(false);
             }
 
             @Override
@@ -62,17 +66,16 @@ public class PlayerSearchActivity extends AppCompatActivity {
                 playerInfo.enqueue(new Callback<PlayerCountryItem>() {
                     @Override
                     public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
-
                         List<PlayerCountryItem> playerCountryItems = response.body().getResults();
                         for (int i = 0; i < playerCountryItems.size(); i++) {
-
+                            refLayout.setRefreshing(false);
                             recyclerView.setAdapter(new FavTeamPlayersAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
                         }
                     }
 
                     @Override
                     public void onFailure(Call<PlayerCountryItem> call, Throwable t) {
-
+                        refLayout.setRefreshing(false);
                         Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
 
                     }
@@ -81,7 +84,7 @@ public class PlayerSearchActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                refLayout.setRefreshing(false);
             }
         });
 

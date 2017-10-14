@@ -39,7 +39,8 @@ public class SeriesMatchesFragment extends Fragment {
         setupViewPager(viewPager);
 
 
-        tabLayout = (TabLayout) rootView.findViewById(R.id.match_card_tabs);
+        View viewMatchCardTabs = (View) rootView.findViewById(R.id.match_card_tabs);
+        tabLayout = (TabLayout) viewMatchCardTabs.findViewById(R.id.tabs);
 
         tabLayout.setupWithViewPager(viewPager);
 

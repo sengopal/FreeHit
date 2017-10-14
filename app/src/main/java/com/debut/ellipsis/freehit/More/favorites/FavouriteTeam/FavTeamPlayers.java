@@ -113,6 +113,7 @@ public class FavTeamPlayers extends AppCompatActivity {
         });
 
 
+        refLayout.setColorSchemeResources(R.color.orange);
         refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

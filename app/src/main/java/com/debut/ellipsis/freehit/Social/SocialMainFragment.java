@@ -53,8 +53,8 @@ public class SocialMainFragment extends Fragment {
         viewPager = (ViewPager) viewSocialPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-
-        tabLayout = (TabLayout) rootView.findViewById(R.id.social_tabs);
+        View viewTabSocial = (View) rootView.findViewById(R.id.social_tabs);
+        tabLayout = (TabLayout) viewTabSocial.findViewById(R.id.tabs);
 
         tabLayout.setupWithViewPager(viewPager);
 
