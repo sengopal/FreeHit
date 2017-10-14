@@ -1,15 +1,16 @@
-package com.debut.ellipsis.freehit.More.favorites.FavouriteTeam;
+package com.debut.ellipsis.freehit.More.Team;
 
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.CountryItem;
+import com.debut.ellipsis.freehit.More.favorites.FavouriteTeam.FavTeamPlayersAdapter;
 import com.debut.ellipsis.freehit.PlayerCountryItem;
 import com.debut.ellipsis.freehit.R;
 
@@ -26,8 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FavTeamPlayers extends AppCompatActivity {
-
+public class TeamPlayers extends Fragment {
     APIInterface apiInterface;
     private String TeamID;
     private Toolbar toolbar;
@@ -35,32 +36,31 @@ public class FavTeamPlayers extends AppCompatActivity {
     public TextView mEmptyView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_more_fav_team_player_list);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_more_fav_team_player_list, container, false);
 
-        Intent i = getIntent();
-        final String Team = i.getStringExtra("CountryName");
+        Intent i = getActivity().getIntent();
+        final int TeamName = i.getIntExtra("CountryName",0);
+        final String Team = this.getContext().getString(TeamName);
 
-        View viewToolbar = (View) findViewById(R.id.toolbar_fav_players);
+        View viewToolbar = (View) rootView.findViewById(R.id.toolbar_fav_players);
 
-        toolbar = (Toolbar)viewToolbar.findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle(Team + " Players");
+        toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
+        toolbar.setVisibility(View.GONE);
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
 
-        View viewEmpty = (View) findViewById(R.id.empty);
-        mEmptyView = (TextView)viewEmpty.findViewById(R.id.empty_view);
+        View viewEmpty = (View) rootView.findViewById(R.id.empty);
+        mEmptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);
 
-        View viewRecycler = (View) findViewById(R.id.player_list);
-        final RecyclerView recyclerView = (RecyclerView)viewRecycler.findViewById(R.id.recycler_list);
+        View viewRecycler = (View) rootView.findViewById(R.id.player_list);
+        final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        View viewProgress = (View) findViewById(R.id.progress);
+        View viewProgress = (View) rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
@@ -87,7 +87,7 @@ public class FavTeamPlayers extends AppCompatActivity {
                                     mEmptyView.setVisibility(View.VISIBLE);
                                     mEmptyView.setText("No Players Found");
                                 }
-                                recyclerView.setAdapter(new FavTeamPlayersAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
+                                recyclerView.setAdapter(new FavTeamPlayersAdapter(playerCountryItems, R.layout.country_picker_row, getContext()));
 
                             }
 
@@ -95,7 +95,7 @@ public class FavTeamPlayers extends AppCompatActivity {
                             public void onFailure(Call<PlayerCountryItem> call, Throwable t) {
                                 mProgressBar.setVisibility(View.INVISIBLE);
                                 mEmptyView.setVisibility(View.INVISIBLE);
-                                Toast toast = Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                                Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
                                 toast.show();
                                 call.cancel();
                             }
@@ -106,7 +106,7 @@ public class FavTeamPlayers extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<CountryItem> call, Throwable t) {
-                Toast toast = Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
                 toast.show();
                 call.cancel();
             }
@@ -141,7 +141,7 @@ public class FavTeamPlayers extends AppCompatActivity {
                                             mEmptyView.setVisibility(View.VISIBLE);
                                             mEmptyView.setText("No Players Found");
                                         }
-                                        recyclerView.setAdapter(new FavTeamPlayersAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
+                                        recyclerView.setAdapter(new FavTeamPlayersAdapter(playerCountryItems, R.layout.country_picker_row, getContext()));
 
                                     }
 
@@ -149,7 +149,7 @@ public class FavTeamPlayers extends AppCompatActivity {
                                     public void onFailure(Call<PlayerCountryItem> call, Throwable t) {
                                         mProgressBar.setVisibility(View.INVISIBLE);
                                         mEmptyView.setVisibility(View.INVISIBLE);
-                                        Toast toast = Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                                        Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
                                         toast.show();
                                         call.cancel();
                                     }
@@ -160,7 +160,7 @@ public class FavTeamPlayers extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<CountryItem> call, Throwable t) {
-                        Toast toast = Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                        Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
                         toast.show();
                         call.cancel();
                     }
@@ -169,26 +169,6 @@ public class FavTeamPlayers extends AppCompatActivity {
             }
         });
 
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                overridePendingTransition(0, R.anim.exit_to_right);
-                return true;
-
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onBackPressed() {
-        FavTeamPlayers.super.onBackPressed();
-        overridePendingTransition(0, R.anim.exit_to_right);
-
+        return rootView;
     }
 }

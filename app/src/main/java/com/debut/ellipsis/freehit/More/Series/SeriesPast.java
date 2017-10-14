@@ -67,7 +67,7 @@ public class SeriesPast extends Fragment {
                 List<PastMatchCardItem> pastMatchesList = response.body().getResults();
                 mProgressBar.setVisibility(View.GONE);
                 if (pastMatchesList.size() == 0) {
-                    emptyView.setText(R.string.EmptyLiveMatches);
+                    emptyView.setText("NO MATCHES FOUND");
                     emptyView.setVisibility(View.VISIBLE);
                 }
 

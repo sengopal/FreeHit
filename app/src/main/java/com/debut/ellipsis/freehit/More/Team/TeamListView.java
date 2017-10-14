@@ -42,13 +42,16 @@ public class TeamListView extends AppCompatActivity {
         TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/afghanistan-2156.png", R.string.settings_team_Afghanistan_label));
         TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/australia-7.png", R.string.settings_team_Australia_label));
         TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/bangladesh-2114.png", R.string.settings_team_Bangladesh_label));
+        TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/canada-2122.png", R.string.settings_team_Canada_label));
         TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/england-5.png", R.string.settings_team_England_label));
         TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/india-6.png", R.string.settings_team_India_label));
         TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/ireland-2123.png", R.string.settings_team_Ireland_label));
+        TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/300/netherlands-2125.png", R.string.settings_team_Netherlands_label));
         TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/new-zealand-2115.png", R.string.settings_team_NewZealand_label));
         TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/pakistan-2116.png", R.string.settings_team_Pakistan_label));
         TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/south-africa-2117.png", R.string.settings_team_SouthAfrica_label));
         TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/sri-lanka-2118.png", R.string.settings_team_SriLanka_label));
+        TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/united-arab-emirates-2131.png", R.string.settings_team_UnitedArabEmirates_label));
         TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/west-indies-2119.png", R.string.settings_team_WestIndies_label));
         TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/zimbabwe-2120.png", R.string.settings_team_Zimbabwe_label));
 
