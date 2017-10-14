@@ -12,7 +12,7 @@ import android.widget.ListView;
 
 import com.debut.ellipsis.freehit.More.Player.PlayerSearchActivity;
 import com.debut.ellipsis.freehit.More.Rankings.RankingActivity;
-import com.debut.ellipsis.freehit.More.Series.SeriesListView;
+import com.debut.ellipsis.freehit.More.Series.SeriesMainActivity;
 import com.debut.ellipsis.freehit.More.Team.TeamListView;
 import com.debut.ellipsis.freehit.More.favorites.FavoritesActivity;
 import com.debut.ellipsis.freehit.R;
@@ -62,13 +62,13 @@ MoreFragment extends Fragment {
                     startActivity(TeamIntent);
 
                 } else if (position == 2) {
-                    Intent SeriesIntent = new Intent(getActivity(), SeriesListView.class);
+                    Intent SeriesIntent = new Intent(getActivity(), SeriesMainActivity.class);
                     startActivity(SeriesIntent);
 
                 }
                 else if (position == 3) {
-                    Intent RecordsIntent = new Intent(getActivity(), FavoritesActivity.class);
-                    startActivity(RecordsIntent);
+                    Intent FavouritesIntent = new Intent(getActivity(), FavoritesActivity.class);
+                    startActivity(FavouritesIntent);
 
                 }
                 else if (position==4){

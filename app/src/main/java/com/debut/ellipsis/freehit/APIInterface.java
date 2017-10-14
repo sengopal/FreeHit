@@ -1,14 +1,13 @@
 package com.debut.ellipsis.freehit;
 
 import com.debut.ellipsis.freehit.Matches.LiveMatches.LiveMatchCardItem;
-import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchCard;
 import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchCardItem;
 import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchCardItem;
 import com.debut.ellipsis.freehit.More.Player.BattingItem;
 import com.debut.ellipsis.freehit.More.Player.BowlingItem;
 import com.debut.ellipsis.freehit.More.Player.CareerItem;
 import com.debut.ellipsis.freehit.More.Player.InfoItem;
-import com.debut.ellipsis.freehit.More.Series.SeriesApiItem;
+import com.debut.ellipsis.freehit.More.Series.SeriesItem;
 import com.debut.ellipsis.freehit.More.favorites.FavouriteTeam.FavTeamNewsItem;
 import com.debut.ellipsis.freehit.News.NewsArticleItem;
 import com.debut.ellipsis.freehit.News.NewsItem;
@@ -76,13 +75,15 @@ public interface APIInterface {
 
     @GET("player?")
     Call<PlayerCountryItem> doGetFavTeamPlayers(@Query ("id") String TeamID);
+
     @GET("series")
-    Call<SeriesApiItem> doGetSeries();
+    Call<SeriesItem> doGetSeries();
+
     @GET("past?")
     Call<PastMatchCardItem> doGetPastSeriesMatches(@Query("sfav") String team1, @Query("date") String date);
+
     @GET("upcoming?")
     Call<UpcomingMatchCardItem> doGetUpComingSeriesMatches(@Query("sfav") String team1,@Query("date") String date);
-
 
 
 }

@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.R;
 
@@ -20,10 +19,6 @@ import java.util.List;
 
 
 public class SeriesActivity extends AppCompatActivity {
-    private Toolbar toolbar;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,26 +26,22 @@ public class SeriesActivity extends AppCompatActivity {
         setContentView(R.layout.fragment_more_series_activity);
 
         Intent i = getIntent();
-        String Series = i.getStringExtra("CountryName");
-        String date=i.getStringExtra("date");
-        String teams[]=Series.split(" vs" );
-        String team1=teams[0];
-        String team2=teams[1];
-        Toast.makeText(this, team1, Toast.LENGTH_SHORT).show();
+        String Series_Name = i.getStringExtra("Series_Name");
 
         View viewToolbar = (View) findViewById(R.id.toolbar_tabs_series);
-        toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
+
+        Toolbar toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle(Series.toUpperCase());
+
+        setTitle(Series_Name);
 
         View viewSeriesPager = (View) findViewById(R.id.series_viewpager);
 
-        viewPager = (ViewPager) viewSeriesPager.findViewById(R.id.viewpager);
+        ViewPager viewPager = (ViewPager) viewSeriesPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-
-        tabLayout = (TabLayout) viewToolbar.findViewById(R.id.tabs);
+        TabLayout tabLayout = (TabLayout) viewToolbar.findViewById(R.id.tabs);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.setupWithViewPager(viewPager);
 

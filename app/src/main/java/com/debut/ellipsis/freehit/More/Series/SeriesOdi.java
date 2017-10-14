@@ -8,10 +8,6 @@ import android.view.ViewGroup;
 
 import com.debut.ellipsis.freehit.R;
 
-/**
- * Created by Jayanth on 07-10-2017.
- */
-
 public class SeriesOdi extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

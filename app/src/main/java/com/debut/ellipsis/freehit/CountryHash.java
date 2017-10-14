@@ -56,58 +56,6 @@ public class CountryHash {
         return null;
     }
 
-    public String getCountrySN1(String CountryName) {
-        switch (CountryName) {
-            case "India":
-                return "ind";
-            case "Australia":
-                return "aus";
-            case "Pakistan":
-                return "pak";
-            case "Sri Lanka":
-                return "sl";
-            case "South Africa":
-                return "sa";
-            case "Bangladesh":
-                return "Bn";
-            case "New Zealand":
-                return "nz";
-            case "England":
-                return "eng";
-            case "West Indies":
-                return "wi";
-            case "Zimbabwe":
-                return "zim";
-            case "Canada":
-                return "can";
-            case "Ireland":
-                return "ire";
-            case "Kenya":
-                return "ken";
-            case "Netharlands":
-                return "ned";
-            case "Scotland":
-                return "sco";
-            case "Hong Kong":
-                return "hk";
-            case "United Arab Emirates":
-                return "uae";
-            case "usa":
-                return "usa";
-            case "Afghanistan":
-                return "afg";
-            case "Papua New Guinea":
-                return "ng";
-            case "Nepal":
-                return "nep";
-            case "Oman":
-                return "omn";
-            case "World XI":
-                return "wXI";
-
-        }
-        return null;
-    }
 
     public String getCountryFlag(String CountryName)
     {

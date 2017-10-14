@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
-import com.debut.ellipsis.freehit.CountryHash;
 import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchCardItem;
 import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchListAdapter;
 import com.debut.ellipsis.freehit.R;
@@ -30,7 +29,6 @@ import retrofit2.Response;
 public class SeriesUpcoming extends Fragment {
     private TabLayout tabLayout;
     APIInterface apiInterface;
-    private UpcomingMatchListAdapter MatchListAdapter;
     private ProgressBar mProgressBar;
     public SwipeRefreshLayout refresh_layout;
     private RecyclerView rv;
@@ -42,15 +40,8 @@ public class SeriesUpcoming extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_more_team_complete_match_list, container, false);
 
         Intent i = getActivity().getIntent();
-        String Team = i.getStringExtra("CountryName");
-        String date=i.getStringExtra("date");
-        String teams[]=Team.split(" vs " );
-        String team1=teams[0];
-        String team2=teams[1];
-
-        CountryHash countryHash = new CountryHash();
-        final String TeamName = countryHash.getCountrySN(Team.toUpperCase());
-
+        final String date = i.getStringExtra("date");
+        final String Teams = i.getStringExtra("Teams");
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
@@ -66,18 +57,11 @@ public class SeriesUpcoming extends Fragment {
 
         View viewEmpty = (View) rootView.findViewById(R.id.empty);
         final TextView emptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);
-        CountryHash obj=new CountryHash();
-        Toast.makeText(getContext(), team1+team2, Toast.LENGTH_SHORT).show();
-        team1=obj.getCountrySN1(team1);
 
-        team2=obj.getCountrySN1(team2);
-
-        //Toast.makeText(getContext(), team1+team2, Toast.LENGTH_SHORT).show();
 
 
         /* GET List Upcoming Matches for selected team */
-        String apiTeam=team1+","+team2;
-        Call<UpcomingMatchCardItem> call = apiInterface.doGetUpComingSeriesMatches(apiTeam,date);
+        Call<UpcomingMatchCardItem> call = apiInterface.doGetUpComingSeriesMatches(Teams,date);
         call.enqueue(new Callback<UpcomingMatchCardItem>() {
             @Override
             public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {
@@ -85,12 +69,11 @@ public class SeriesUpcoming extends Fragment {
                 List<UpcomingMatchCardItem> upcomingMatchesList = response.body().getResults();
                 mProgressBar.setVisibility(View.GONE);
                 if (upcomingMatchesList.size() == 0) {
-                    emptyView.setText(R.string.EmptyLiveMatches);
+                    emptyView.setText("NO MATCHES FOUND");
                     emptyView.setVisibility(View.VISIBLE);
                 }
 
-                MatchListAdapter = new UpcomingMatchListAdapter(getContext(), upcomingMatchesList);
-                rv.setAdapter(MatchListAdapter);
+                rv.setAdapter(new UpcomingMatchListAdapter(getContext(), upcomingMatchesList));
             }
 
             @Override
@@ -110,7 +93,7 @@ public class SeriesUpcoming extends Fragment {
                                                     // Checking if connected or not on refresh
                                                     refresh_layout.setRefreshing(true);
 
-                                                    Call<UpcomingMatchCardItem> call = apiInterface.doGetUpcomingFavTeam(TeamName);
+                                                    Call<UpcomingMatchCardItem> call = apiInterface.doGetUpComingSeriesMatches(Teams,date);
                                                     call.enqueue(new Callback<UpcomingMatchCardItem>() {
                                                         @Override
                                                         public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {
@@ -122,8 +105,7 @@ public class SeriesUpcoming extends Fragment {
                                                                 emptyView.setVisibility(View.VISIBLE);
                                                                 emptyView.setText("NO MATCHES FOUND");
                                                             }
-                                                            MatchListAdapter = new UpcomingMatchListAdapter(getContext(),upcomingMatchesList);
-                                                            rv.setAdapter(MatchListAdapter);
+                                                            rv.setAdapter(new UpcomingMatchListAdapter(getContext(),upcomingMatchesList));
                                                         }
 
                                                         @Override

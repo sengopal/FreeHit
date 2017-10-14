@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class SeriesApiItem {
+public class SeriesItem {
     @SerializedName("id")
     private String id;
     @SerializedName("title") 
@@ -19,15 +19,7 @@ public class SeriesApiItem {
     @SerializedName("matches")
     private String matches;
     @SerializedName("result")
-    private List<SeriesApiItem> result;
-    public SeriesApiItem(String id,String title,String date,String team1,String team2,String matches) {
-        this.id=id;
-        this.title=title;
-        this.date=date;
-        this.team1=team1;
-        this.team2=team2;
-        this.matches=matches;
-    }
+    private List<SeriesItem> result;
 
     public String getId() {
         return id;
@@ -52,8 +44,8 @@ public class SeriesApiItem {
     public String getMatches() {
         return matches;
     }
-    public List<SeriesApiItem> getResults(){
 
+    public List<SeriesItem> getResults(){
         return result;
     }
 }
