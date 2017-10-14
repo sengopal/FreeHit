@@ -38,7 +38,9 @@ public class SeriesActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(Series.toUpperCase());
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager_teams);
+        View viewSeriesPager = (View) findViewById(R.id.series_viewpager);
+
+        viewPager = (ViewPager) viewSeriesPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
 

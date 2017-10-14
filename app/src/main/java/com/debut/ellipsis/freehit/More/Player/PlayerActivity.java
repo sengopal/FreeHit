@@ -40,7 +40,9 @@ public class PlayerActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(player_name);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager_player);
+        View viewPlayerViewPager = (View)findViewById(R.id.player_viewpager);
+
+        viewPager = (ViewPager) viewPlayerViewPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
         tabLayout = (TabLayout) viewToolbartabs.findViewById(R.id.tabs);

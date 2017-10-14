@@ -19,13 +19,8 @@
 
     </android.support.design.widget.TabLayout>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#F5F5F5"
-        android:scrollbars="none">
-
-    </android.support.v4.view.ViewPager>
+    <include
+        android:id="@+id/fav_viewpager"
+        layout="@layout/common_viewpager" />
 
 </LinearLayout>

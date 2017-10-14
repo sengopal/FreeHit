@@ -48,7 +48,7 @@ public class TwitterFragment extends Fragment {
 
         View viewRecycler = (View) socTweets.findViewById(R.id.tweets_recycler_layout);
 
-        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.soc_refresh_layout);
+        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
         socTabs = (TabLayout) socTweets.findViewById(R.id.soc_tabs);
         socTabs.setVisibility(View.GONE);
 

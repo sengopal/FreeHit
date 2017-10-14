@@ -15,16 +15,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar_fav_players">
 
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/refresh_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <include
-                android:id="@+id/player_list"
-                layout="@layout/common_recycler_view_list" />
-        </android.support.v4.widget.SwipeRefreshLayout>
-
+        <include
+            android:id="@+id/player_list"
+            layout="@layout/common_recycler_view_list" />
 
     </RelativeLayout>
 

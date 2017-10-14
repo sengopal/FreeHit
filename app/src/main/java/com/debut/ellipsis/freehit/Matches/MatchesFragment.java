@@ -40,7 +40,9 @@ public class MatchesFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_matches, container, false);
 
 
-        viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
+        View viewMatchesViewPager = (View) rootView.findViewById(R.id.matches_viewpagegr);
+
+        viewPager = (ViewPager) viewMatchesViewPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
 

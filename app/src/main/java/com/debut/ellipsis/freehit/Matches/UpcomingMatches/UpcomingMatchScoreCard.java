@@ -47,7 +47,9 @@ public class UpcomingMatchScoreCard extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager_upcoming);
+        View viewUpcomingScorecardPager = (View) findViewById(R.id.upcoming_scorecard_viewpager);
+
+        viewPager = (ViewPager) viewUpcomingScorecardPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
 

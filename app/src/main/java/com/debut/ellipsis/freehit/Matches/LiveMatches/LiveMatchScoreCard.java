@@ -42,7 +42,9 @@ public class LiveMatchScoreCard extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager_live);
+        View viewLiveScoreCardPager = (View) findViewById(R.id.live_scorecard_viewpgaer);
+
+        ViewPager viewPager = (ViewPager) viewLiveScoreCardPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
         TabLayout tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);

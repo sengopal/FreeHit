@@ -4,10 +4,9 @@
     android:layout_height="match_parent">
 
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/view_pager_intro"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <include
+        android:id="@+id/welcome_viewpager"
+        layout="@layout/common_viewpager"/>
 
     <LinearLayout
         android:id="@+id/layoutDots"

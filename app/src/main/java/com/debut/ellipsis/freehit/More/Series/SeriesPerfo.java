@@ -16,10 +16,6 @@ import com.debut.ellipsis.freehit.R;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Jayanth on 07-10-2017.
- */
-
 public class SeriesPerfo extends Fragment {
 
     public ViewPager viewPager;
@@ -40,7 +36,9 @@ public class SeriesPerfo extends Fragment {
 
 
 
-        viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
+        View viewMatchesViewPager = (View) rootView.findViewById(R.id.matches_viewpagegr);
+
+        viewPager = (ViewPager) viewMatchesViewPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
 

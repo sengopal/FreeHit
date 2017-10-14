@@ -57,7 +57,9 @@ public class PastMatchCard extends Fragment {
 
         final View common_match_cards = rootView.findViewById(R.id.common_match_cards);
 
-        vp = (ViewPager) common_match_cards.findViewById(R.id.viewpager);
+        View viewViewPager = (View) common_match_cards.findViewById(R.id.match_card_viewpagegr);
+
+        vp = (ViewPager) viewViewPager.findViewById(R.id.viewpager);
         indicator = (PageIndicatorView) common_match_cards.findViewById(R.id.indicator);
         final PullRefreshLayout refreshLayout = (PullRefreshLayout) common_match_cards.findViewById(R.id.swipeRefreshLayout);
 
