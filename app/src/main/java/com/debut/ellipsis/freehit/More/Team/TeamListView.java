@@ -36,7 +36,7 @@ public class TeamListView extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        setTitle("TEAMS");
+        setTitle("Teams");
 
 
         TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/afghanistan-2156.png", R.string.settings_team_Afghanistan_label));

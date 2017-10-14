@@ -45,8 +45,9 @@ public class FavoritesActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(R.string.fav);
 
+        View viewFavViewPager = (View) findViewById(R.id.fav_viewpager);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = (ViewPager) viewFavViewPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
         tabLayout = (TabLayout) findViewById(R.id.Fav_tabs);

@@ -38,7 +38,9 @@ public class TeamActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(tempTeamName.toUpperCase());
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager_teams);
+        View viewTeamPager = (View) findViewById(R.id.teams_viewpager);
+
+        viewPager = (ViewPager) viewTeamPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
         tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);

@@ -17,20 +17,20 @@
             android:layout_width="@dimen/_132sdp"
             android:layout_height="@dimen/_120sdp"
             android:layout_alignParentStart="true"
-            android:paddingStart="@dimen/_10sdp"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/_8sdp"
+            android:paddingStart="@dimen/_10sdp"
             android:scaleType="fitCenter"
             tools:src="@drawable/matches" />
 
         <TextView
             android:id="@+id/header_text_view"
-            android:layout_toEndOf="@+id/image_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/_5sdp"
+            android:layout_toEndOf="@+id/image_view"
             android:paddingBottom="@dimen/_5sdp"
             android:paddingStart="@dimen/_5sdp"
+            android:paddingTop="@dimen/_5sdp"
             android:textAppearance="?android:textAppearanceLarge"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_13sdp"
@@ -49,11 +49,11 @@
 
         <ImageView
             android:id="@+id/news_tag_image"
-            android:layout_toEndOf="@+id/image_view"
             android:layout_width="@dimen/_8sdp"
             android:layout_height="@dimen/_15sdp"
             android:layout_below="@+id/news_date"
             android:layout_marginStart="@dimen/_10sdp"
+            android:layout_toEndOf="@+id/image_view"
             android:src="@drawable/tag" />
 
         <TextView
@@ -83,10 +83,10 @@
             tools:text="Description text of the news article you should read and waste some time . This  is getting to be too long, but I have to write enough text to test the code." />
 
         <TextView
-            android:layout_below="@+id/summary_text_view"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
-            android:background="@color/divider" />
+            android:layout_below="@+id/summary_text_view"
+            android:background="@color/grey_300" />
 
 
     </RelativeLayout>

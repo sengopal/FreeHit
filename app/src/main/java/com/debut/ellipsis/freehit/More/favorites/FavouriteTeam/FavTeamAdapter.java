@@ -26,15 +26,15 @@ public class FavTeamAdapter extends ArrayAdapter<MoreItem> {
         View listItemView = convertView;
 
         if (listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_more_fav_team_team_item, parent, false);
+            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.country_picker_row, parent, false);
         }
 
         MoreItem currentItem = getItem(position);
 
-        TextView statsNameTextView = (TextView) listItemView.findViewById(R.id.FavTeamCategoryName);
+        TextView statsNameTextView = (TextView) listItemView.findViewById(R.id.row_title);
         statsNameTextView.setText(currentItem.getmMoreName());
 
-        ImageView statsIcon = (ImageView) listItemView.findViewById(R.id.arrow);
+        ImageView statsIcon = (ImageView) listItemView.findViewById(R.id.row_icon);
         statsIcon.setImageResource(currentItem.getmMoreIcon());
 
 

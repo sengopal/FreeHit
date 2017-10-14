@@ -48,8 +48,10 @@ public class TwitterFragment extends Fragment {
 
         View viewRecycler = (View) socTweets.findViewById(R.id.tweets_recycler_layout);
 
-        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.soc_refresh_layout);
-        socTabs = (TabLayout) socTweets.findViewById(R.id.soc_tabs);
+        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
+
+        View viewMatchesTweetsTab = (View) socTweets.findViewById(R.id.soc_tabs);
+        socTabs = (TabLayout) viewMatchesTweetsTab.findViewById(R.id.tabs);
         socTabs.setVisibility(View.GONE);
 
         View viewProgress = (View) socTweets.findViewById(R.id.progress);
@@ -104,47 +106,6 @@ public class TwitterFragment extends Fragment {
             }
         });
 
-        socTabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                switch (tab.getPosition()) {
-                    case 0:
-                        tabCall(QueryToSearch1 + "," + QueryToSearch2, SearchTimeline.ResultType.RECENT);
-                        break;
-                    default:
-
-                        break;
-                }
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            // Refreshes the feed if a tab is reselected (quality of life)
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-                refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                    @Override
-                    public void onRefresh() {
-                        refLayout.setRefreshing(true);
-                        adapter.refresh(new Callback<TimelineResult<Tweet>>() {
-                            @Override
-                            public void success(Result<TimelineResult<Tweet>> result) {
-                                mProgressBar.setVisibility(View.INVISIBLE);
-                                refLayout.setRefreshing(false);
-                            }
-
-                            @Override
-                            public void failure(TwitterException exception) {
-                                Toast.makeText(getContext(), "Fetching Twitter Feed failed.", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-                });
-            }
-        });
         return socTweets;
     }
 

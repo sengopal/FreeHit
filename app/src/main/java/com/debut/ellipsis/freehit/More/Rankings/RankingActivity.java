@@ -34,10 +34,13 @@ public class RankingActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager_rankings);
+        View viewRankingPager = (View) findViewById(R.id.ranking_viewpager);
+
+        viewPager = (ViewPager) viewRankingPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
         tabLayout = (TabLayout) viewToolbar.findViewById(R.id.tabs);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.setupWithViewPager(viewPager);
 
     }

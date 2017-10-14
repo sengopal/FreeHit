@@ -48,12 +48,13 @@ public class SocialMainFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_social_main, container, false);
 
+        View viewSocialPager = (View) rootView.findViewById(R.id.social_viewpager);
 
-        viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
+        viewPager = (ViewPager) viewSocialPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-
-        tabLayout = (TabLayout) rootView.findViewById(R.id.social_tabs);
+        View viewTabSocial = (View) rootView.findViewById(R.id.social_tabs);
+        tabLayout = (TabLayout) viewTabSocial.findViewById(R.id.tabs);
 
         tabLayout.setupWithViewPager(viewPager);
 

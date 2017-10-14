@@ -5,32 +5,25 @@
     android:layout_height="match_parent"
     tools:context="com.debut.ellipsis.freehit.Social.Tweets.SocialTweets">
 
-    <RelativeLayout
-        android:id="@+id/news_list_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
-        <include
-            android:id="@+id/news_list"
-            layout="@layout/common_recycler_view_list"
-            />
+    <include
+        android:id="@+id/news_list"
+        layout="@layout/common_recycler_view_list" />
 
-    </RelativeLayout>
 
     <include
         android:id="@+id/progress"
-        layout="@layout/common_progressbar"
-        />
+        layout="@layout/common_progressbar" />
 
     <include
         android:id="@+id/Unavailable_connection"
         layout="@layout/no_internet_connection"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 
     <include
         android:id="@+id/No_news"
         layout="@layout/empty_view_refresh"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 
 
 </RelativeLayout>

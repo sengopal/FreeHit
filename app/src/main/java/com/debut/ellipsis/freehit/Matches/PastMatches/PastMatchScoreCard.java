@@ -45,7 +45,9 @@ public class PastMatchScoreCard extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager_past);
+        View viewViewPager = (View) findViewById(R.id.past_scorecard_viewpager);
+
+        viewPager = (ViewPager) viewViewPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
         tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);

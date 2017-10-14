@@ -48,7 +48,7 @@ public class SeriesListView extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        setTitle("SERIES");
+        setTitle("Series");
 
 
        /* SeriesItem.add(new SeriesListItem(R.drawable.shield, "India"));

@@ -2,7 +2,6 @@ package com.debut.ellipsis.freehit.More.Team;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -46,8 +45,6 @@ public class TeamUpcoming extends Fragment {
         int Team = i.getIntExtra("CountryName", 0);
         String tempTeamName = this.getContext().getString(Team);
 
-        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.match_card_tabs);
-        tabLayout.setVisibility(View.GONE);
 
         CountryHash countryHash = new CountryHash();
         final String TeamName = countryHash.getCountrySN(tempTeamName.toUpperCase());
@@ -62,7 +59,7 @@ public class TeamUpcoming extends Fragment {
 
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        refresh_layout = (SwipeRefreshLayout) rootView.findViewById(R.id.refresh_layout);
+        refresh_layout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
         View viewEmpty = (View) rootView.findViewById(R.id.empty);
         mEmptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);
@@ -95,6 +92,7 @@ public class TeamUpcoming extends Fragment {
             }
         });
 
+        refresh_layout.setColorSchemeResources(R.color.orange);
         refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
