@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
@@ -40,6 +41,10 @@ public class SeriesUpcoming extends Fragment {
 
         Intent i = getActivity().getIntent();
         String Team = i.getStringExtra("CountryName");
+        String date=i.getStringExtra("date");
+        String teams[]=Team.split(" vs " );
+        String team1=teams[0];
+        String team2=teams[1];
 
         CountryHash countryHash = new CountryHash();
         String TeamName = countryHash.getCountrySN(Team.toUpperCase());
@@ -59,10 +64,18 @@ public class SeriesUpcoming extends Fragment {
 
         View viewEmpty = (View) rootView.findViewById(R.id.empty);
         final TextView emptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);
+        CountryHash obj=new CountryHash();
+        Toast.makeText(getContext(), team1+team2, Toast.LENGTH_SHORT).show();
+        team1=obj.getCountrySN1(team1);
+
+        team2=obj.getCountrySN1(team2);
+
+        //Toast.makeText(getContext(), team1+team2, Toast.LENGTH_SHORT).show();
 
 
         /* GET List Upcoming Matches for selected team */
-        Call<UpcomingMatchCardItem> call = apiInterface.doGetUpcomingFavTeam(TeamName);
+        String apiTeam=team1+","+team2;
+        Call<UpcomingMatchCardItem> call = apiInterface.doGetUpComingSeriesMatches(apiTeam,date);
         call.enqueue(new Callback<UpcomingMatchCardItem>() {
             @Override
             public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {

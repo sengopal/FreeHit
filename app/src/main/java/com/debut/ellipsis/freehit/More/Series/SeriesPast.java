@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
@@ -39,9 +40,12 @@ public class SeriesPast extends Fragment {
 
         Intent i = getActivity().getIntent();
         String Team = i.getStringExtra("CountryName");
+        String date=i.getStringExtra("date");
+        String teams[]=Team.split(" vs " );
+        String team1=teams[0];
+        String team2=teams[1];
 
-        CountryHash countryHash = new CountryHash();
-        String TeamName = countryHash.getCountrySN(Team.toUpperCase());
+
 
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.match_card_tabs);
         tabLayout.setVisibility(View.GONE);
@@ -58,10 +62,18 @@ public class SeriesPast extends Fragment {
 
         View viewEmpty = (View) rootView.findViewById(R.id.empty);
         final TextView emptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);
+        CountryHash obj=new CountryHash();
+        Toast.makeText(getContext(), team1+team2, Toast.LENGTH_SHORT).show();
+        team1=obj.getCountrySN1(team1);
+
+        team2=obj.getCountrySN1(team2);
+
+        Toast.makeText(getContext(), team1+team2, Toast.LENGTH_SHORT).show();
 
 
         /*  GET List Past Matches for selected Team */
-        Call<PastMatchCardItem> call = apiInterface.doGetPastFavTeam(TeamName);
+        String apiTeam=team1+","+team2;
+        Call<PastMatchCardItem> call = apiInterface.doGetPastSeriesMatches(apiTeam,date);
         call.enqueue(new Callback<PastMatchCardItem>() {
             @Override
             public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {

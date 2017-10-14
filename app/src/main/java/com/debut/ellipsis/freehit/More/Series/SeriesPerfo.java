@@ -37,6 +37,7 @@ public class SeriesPerfo extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_matches, container, false);
         Intent i = getActivity().getIntent();
         String Team = i.getStringExtra("CountryName");
+        String date=i.getStringExtra("date");
 
 
 

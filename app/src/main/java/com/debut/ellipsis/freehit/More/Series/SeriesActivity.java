@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.R;
 
@@ -31,6 +32,11 @@ public class SeriesActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         String Series = i.getStringExtra("CountryName");
+        String date=i.getStringExtra("date");
+        String teams[]=Series.split(" vs" );
+        String team1=teams[0];
+        String team2=teams[1];
+        Toast.makeText(this, team1, Toast.LENGTH_SHORT).show();
 
         View viewToolbar = (View) findViewById(R.id.toolbar_tabs_series);
         toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
