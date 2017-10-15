@@ -64,13 +64,16 @@
     <string name="settings_team_Afghanistan_label">Afghanistan</string>
     <string name="settings_team_Australia_label">Australia</string>
     <string name="settings_team_Bangladesh_label">Bangladesh</string>
+    <string name="settings_team_Canada_label">Canada</string>
     <string name="settings_team_England_label">England</string>
     <string name="settings_team_Ireland_label">Ireland</string>
     <string name="settings_team_India_label">India</string>
+    <string name="settings_team_Netherlands_label">Netherlands</string>
     <string name="settings_team_NewZealand_label">New Zealand</string>
     <string name="settings_team_Pakistan_label">Pakistan</string>
     <string name="settings_team_SouthAfrica_label">South Africa</string>
     <string name="settings_team_SriLanka_label">Sri Lanka</string>
+    <string name="settings_team_UnitedArabEmirates_label">United Arab Emirates</string>
     <string name="settings_team_WestIndies_label">West Indies</string>
     <string name="settings_team_Zimbabwe_label">Zimbabwe</string>
 

@@ -36,7 +36,7 @@ public class TeamActivity extends AppCompatActivity {
         toolbar = (Toolbar) viewToolbarTabs.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle(tempTeamName.toUpperCase());
+        setTitle(tempTeamName);
 
         View viewTeamPager = (View) findViewById(R.id.teams_viewpager);
 
@@ -74,6 +74,7 @@ public class TeamActivity extends AppCompatActivity {
         TeamActivity.ViewPagerAdapter adapter = new TeamActivity.ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new TeamNews(), "NEWS");
         adapter.addFrag(new TeamMatchesFragment(), "SCHEDULE");
+        adapter.addFrag(new TeamPlayers(), "PLAYERS");
         viewPager.setAdapter(adapter);
     }
 
