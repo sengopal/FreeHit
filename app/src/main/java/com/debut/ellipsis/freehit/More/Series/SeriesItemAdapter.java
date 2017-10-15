@@ -73,6 +73,7 @@ public class SeriesItemAdapter extends RecyclerView.Adapter<SeriesItemAdapter.Se
         holder.SeriesTitle.setText(t[0]);
          String team1 = seriesItems.get(position).getTeam1();
         String team2 = seriesItems.get(position).getTeam2();
+        //
         final String date = seriesItems.get(position).getDate();
         origTeam=t[0].split(" ");
         origTeam[0]=origTeam[0].trim();
