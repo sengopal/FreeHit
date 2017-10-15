@@ -13,8 +13,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.RequestBuilder;
 import com.debut.ellipsis.freehit.CountryHash;
-import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
-import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.R;
 
@@ -77,14 +75,14 @@ public class SeriesItemAdapter extends RecyclerView.Adapter<SeriesItemAdapter.Se
         String Team1LogoUrl = countryHash.getCountryFlag(team1.toUpperCase());
         String Team2LogoUrl = countryHash.getCountryFlag(team2.toUpperCase());
 
-        CustomImageSizeModel Team1Logo = new CustomImageSizeModelFutureStudio(Team1LogoUrl);
-        CustomImageSizeModel Team2Logo = new CustomImageSizeModelFutureStudio(Team2LogoUrl);
+        /*CustomImageSizeModel Team1Logo = new CustomImageSizeModelFutureStudio(Team1LogoUrl);
+        CustomImageSizeModel Team2Logo = new CustomImageSizeModelFutureStudio(Team2LogoUrl);*/
 
-        RequestBuilder requestBuilder = GlideApp.with(context).load(Team1Logo).placeholder(R.drawable.matches);
+        RequestBuilder requestBuilder = GlideApp.with(context).load(Team1LogoUrl).placeholder(R.drawable.matches);
 
         requestBuilder.into(holder.Team1Logo);
 
-        RequestBuilder requestBuilder1 = GlideApp.with(context).load(Team2Logo).placeholder(R.drawable.matches);
+        RequestBuilder requestBuilder1 = GlideApp.with(context).load(Team2LogoUrl).placeholder(R.drawable.matches);
 
         requestBuilder1.into(holder.Team2Logo);
 

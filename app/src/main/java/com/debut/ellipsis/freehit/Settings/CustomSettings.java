@@ -60,9 +60,9 @@ public class CustomSettings extends AppCompatActivity {
 
         String TeamLogoURL = countryHash.getCountryFlag(name.toUpperCase());
 
-        CustomImageSizeModel TeamLogo = new CustomImageSizeModelFutureStudio(TeamLogoURL);
+        /*CustomImageSizeModel TeamLogo = new CustomImageSizeModelFutureStudio(TeamLogoURL);*/
 
-        RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogo).placeholder(R.drawable.matches);
+        RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogoURL).placeholder(R.drawable.matches);
 
         requestBuilder.into(country_flag);
 

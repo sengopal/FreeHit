@@ -11,8 +11,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.RequestBuilder;
-import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
-import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.News.NewsArticle;
 import com.debut.ellipsis.freehit.R;
@@ -75,9 +73,9 @@ public class FavTeamNewsItemAdapter extends RecyclerView.Adapter<FavTeamNewsItem
 
         String NewsImageUrl = newsItems.get(position).getImage();
 
-        CustomImageSizeModel NewsImage = new CustomImageSizeModelFutureStudio(NewsImageUrl);
+        /*CustomImageSizeModel NewsImage = new CustomImageSizeModelFutureStudio(NewsImageUrl);*/
 
-        RequestBuilder requestBuilder = GlideApp.with(context).load(NewsImage).placeholder(R.drawable.matches);
+        RequestBuilder requestBuilder = GlideApp.with(context).load(NewsImageUrl).placeholder(R.drawable.matches);
 
         requestBuilder.into(holder.image);
 

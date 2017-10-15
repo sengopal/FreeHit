@@ -15,8 +15,6 @@ import android.widget.Toast;
 import com.bumptech.glide.RequestBuilder;
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
-import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
-import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.R;
 
@@ -89,9 +87,9 @@ public class Info_Fragment extends Fragment {
 
                 final String ImageURL = info.getImg();
 
-                CustomImageSizeModel PlayerImage = new CustomImageSizeModelFutureStudio(ImageURL);
+                /*CustomImageSizeModel PlayerImage = new CustomImageSizeModelFutureStudio(ImageURL);*/
 
-                RequestBuilder requestBuilder = GlideApp.with(getContext()).load(PlayerImage).placeholder(R.drawable.matches);
+                RequestBuilder requestBuilder = GlideApp.with(getContext()).load(ImageURL).placeholder(R.drawable.matches);
 
                 requestBuilder.into(articleImage);
 
