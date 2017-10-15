@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.request.RequestOptions;
+import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
+import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.R;
 
@@ -114,12 +116,15 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
         logo_string1 = this.dataObjectList.get(position).getTeam1().getImage();
         logo_string2 = this.dataObjectList.get(position).getTeam2().getImage();
 
-        /*CustomImageSizeModel Logo1 = new CustomImageSizeModelFutureStudio(logo_string1);
-        CustomImageSizeModel Logo2 = new CustomImageSizeModelFutureStudio(logo_string2);*/
+
 
         if (position < 5) {
-            GlideApp.with(context).load(logo_string1).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam1Logo);
-            GlideApp.with(context).load(logo_string2).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam2Logo);
+
+            CustomImageSizeModel Logo1 = new CustomImageSizeModelFutureStudio(logo_string1);
+            CustomImageSizeModel Logo2 = new CustomImageSizeModelFutureStudio(logo_string2);
+
+            GlideApp.with(context).load(Logo1).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam1Logo);
+            GlideApp.with(context).load(Logo2).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam2Logo);
         }
         container.addView(view);
         return view;

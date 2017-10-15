@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.bumptech.glide.request.RequestOptions;
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
+import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
+import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.R;
 
@@ -87,9 +89,9 @@ public class Info_Fragment extends Fragment {
 
                 final String ImageURL = info.getImg();
 
-                /*CustomImageSizeModel PlayerImage = new CustomImageSizeModelFutureStudio(ImageURL);*/
+                CustomImageSizeModel PlayerImage = new CustomImageSizeModelFutureStudio(ImageURL);
 
-                GlideApp.with(getContext()).load(ImageURL).apply(new RequestOptions().placeholder(R.drawable.matches).centerCrop()).into(articleImage);
+                GlideApp.with(getContext()).load(PlayerImage).apply(new RequestOptions().placeholder(R.drawable.matches).centerCrop()).into(articleImage);
                 TextView odiBat = (TextView) rootView.findViewById(R.id.odibattingRanking);
                 TextView testBat = (TextView) rootView.findViewById(R.id.testBattingRanking);
                 TextView t20Bat = (TextView) rootView.findViewById(R.id.T20BattingRanking);
