@@ -13,8 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.RequestBuilder;
 import com.debut.ellipsis.freehit.CountryHash;
 import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
 import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
@@ -63,7 +62,11 @@ public class CustomSettings extends AppCompatActivity {
 
         CustomImageSizeModel TeamLogo = new CustomImageSizeModelFutureStudio(TeamLogoURL);
 
-        Glide.with(getApplicationContext()).load(TeamLogo).apply(new RequestOptions().placeholder(R.drawable.matches)).into(country_flag);
+        RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogo).placeholder(R.drawable.matches);
+
+        requestBuilder.into(country_flag);
+
+        /*Glide.with(getApplicationContext()).load(TeamLogo).apply(new RequestOptions().placeholder(R.drawable.matches)).into(country_flag);*/
 
     }
 
@@ -81,7 +84,11 @@ public class CustomSettings extends AppCompatActivity {
 
                 CustomImageSizeModel TeamLogo = new CustomImageSizeModelFutureStudio(flagURLID);
 
-                GlideApp.with(getBaseContext()).load(TeamLogo).apply(new RequestOptions().placeholder(R.drawable.matches)).into(before);
+                RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogo).placeholder(R.drawable.matches);
+
+                requestBuilder.into(before);
+
+                /*GlideApp.with(getBaseContext()).load(TeamLogo).apply(new RequestOptions().placeholder(R.drawable.matches)).into(before);*/
 
                 SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
                 editor.putString("country_name", name);

@@ -12,7 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.RequestBuilder;
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
@@ -91,7 +91,11 @@ public class Info_Fragment extends Fragment {
 
                 CustomImageSizeModel PlayerImage = new CustomImageSizeModelFutureStudio(ImageURL);
 
-                GlideApp.with(getContext()).load(PlayerImage).apply(new RequestOptions().placeholder(R.drawable.matches).centerCrop()).into(articleImage);
+                RequestBuilder requestBuilder = GlideApp.with(getContext()).load(PlayerImage).placeholder(R.drawable.matches);
+
+                requestBuilder.into(articleImage);
+
+                /*GlideApp.with(getContext()).load(PlayerImage).apply(new RequestOptions().placeholder(R.drawable.matches).centerCrop()).into(articleImage);*/
                 TextView odiBat = (TextView) rootView.findViewById(R.id.odibattingRanking);
                 TextView testBat = (TextView) rootView.findViewById(R.id.testBattingRanking);
                 TextView t20Bat = (TextView) rootView.findViewById(R.id.T20BattingRanking);

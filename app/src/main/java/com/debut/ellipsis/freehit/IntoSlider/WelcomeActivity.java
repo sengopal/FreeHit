@@ -22,10 +22,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.request.RequestOptions;
 import com.debut.ellipsis.freehit.CountryHash;
 import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
 import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
+import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
@@ -245,7 +247,11 @@ public class WelcomeActivity extends AppCompatActivity {
 
                 CustomImageSizeModel Flag = new CustomImageSizeModelFutureStudio(TeamLogo);
 
-                Glide.with(getBaseContext()).load(Flag).apply(new RequestOptions().placeholder(R.drawable.matches)).into(country_flag);
+                RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(Flag).placeholder(R.drawable.matches);
+
+                requestBuilder.into(country_flag);
+
+                /*Glide.with(getBaseContext()).load(Flag).apply(new RequestOptions().placeholder(R.drawable.matches)).into(country_flag);*/
 
             }
             return view;

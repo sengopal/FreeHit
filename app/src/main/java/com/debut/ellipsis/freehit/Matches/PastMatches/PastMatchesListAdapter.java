@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.RequestBuilder;
 import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
 import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
@@ -99,8 +99,16 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
         CustomImageSizeModel Logo1 = new CustomImageSizeModelFutureStudio(logo_string1);
         CustomImageSizeModel Logo2 = new CustomImageSizeModelFutureStudio(logo_string2);
 
-        GlideApp.with(context).load(Logo1).apply(new RequestOptions().placeholder(R.drawable.matches)).into(holder.team1image);
-        GlideApp.with(context).load(Logo2).apply(new RequestOptions().placeholder(R.drawable.matches)).into(holder.team2image);
+        RequestBuilder requestBuilder = GlideApp.with(context).load(Logo1).placeholder(R.drawable.matches);
+
+        requestBuilder.into(holder.team1image);
+
+        RequestBuilder requestBuilder1 = GlideApp.with(context).load(Logo2).placeholder(R.drawable.matches);
+
+        requestBuilder1.into(holder.team2image);
+
+        /*GlideApp.with(context).load(Logo1).apply(new RequestOptions().placeholder(R.drawable.matches)).into(holder.team1image);
+        GlideApp.with(context).load(Logo2).apply(new RequestOptions().placeholder(R.drawable.matches)).into(holder.team2image);*/
 
         RelativeLayout RLcontainer = holder.rlcontainer;
 

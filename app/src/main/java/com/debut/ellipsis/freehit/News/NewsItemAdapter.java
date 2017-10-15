@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.RequestBuilder;
 import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
 import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
@@ -77,7 +77,11 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
 
         CustomImageSizeModel NewsImage = new CustomImageSizeModelFutureStudio(URLNewsImage);
 
-        GlideApp.with(context).load(NewsImage).apply(new RequestOptions().placeholder(R.drawable.matches).centerCrop()).into(holder.image);
+        RequestBuilder requestBuilder = GlideApp.with(context).load(NewsImage).placeholder(R.drawable.matches);
+
+        requestBuilder.into(holder.image);
+
+        /*GlideApp.with(context).load(NewsImage).apply(new RequestOptions().placeholder(R.drawable.matches).centerCrop()).into(holder.image);*/
 
         RelativeLayout RLcontainer = holder.rlcontainer;
 

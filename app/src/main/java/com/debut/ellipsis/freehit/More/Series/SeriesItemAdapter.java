@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.RequestBuilder;
 import com.debut.ellipsis.freehit.CountryHash;
 import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
 import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
@@ -80,8 +80,16 @@ public class SeriesItemAdapter extends RecyclerView.Adapter<SeriesItemAdapter.Se
         CustomImageSizeModel Team1Logo = new CustomImageSizeModelFutureStudio(Team1LogoUrl);
         CustomImageSizeModel Team2Logo = new CustomImageSizeModelFutureStudio(Team2LogoUrl);
 
-        GlideApp.with(context).load(Team1Logo).apply(new RequestOptions().placeholder(R.drawable.matches)).into(holder.Team1Logo);
-        GlideApp.with(context).load(Team2Logo).apply(new RequestOptions().placeholder(R.drawable.matches)).into(holder.Team2Logo);
+        RequestBuilder requestBuilder = GlideApp.with(context).load(Team1Logo).placeholder(R.drawable.matches);
+
+        requestBuilder.into(holder.Team1Logo);
+
+        RequestBuilder requestBuilder1 = GlideApp.with(context).load(Team2Logo).placeholder(R.drawable.matches);
+
+        requestBuilder1.into(holder.Team2Logo);
+
+        /*GlideApp.with(context).load(Team1Logo).apply(new RequestOptions().placeholder(R.drawable.matches)).into(holder.Team1Logo);
+        GlideApp.with(context).load(Team2Logo).apply(new RequestOptions().placeholder(R.drawable.matches)).into(holder.Team2Logo);*/
 
         RelativeLayout RLContainer = holder.RlContainer;
 
