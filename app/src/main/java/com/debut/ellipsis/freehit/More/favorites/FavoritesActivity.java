@@ -1,6 +1,7 @@
 package com.debut.ellipsis.freehit.More.favorites;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,8 @@ import com.debut.ellipsis.freehit.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity.MY_PREFS_NAME;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -27,6 +30,7 @@ public class FavoritesActivity extends AppCompatActivity {
     public ViewPager viewPager;
     private TabLayout tabLayout;
     private Toolbar toolbar;
+    String CountryName;
 
     public FavoritesActivity() {
         // Required empty public constructor
@@ -38,6 +42,9 @@ public class FavoritesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         setContentView(R.layout.fragment_favorites);
+
+        SharedPreferences prefs = getApplicationContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        CountryName = prefs.getString("country_name", "TEAM");
 
         View viewToolbar = (View) findViewById(R.id.toolbar_fav);
         toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
@@ -58,7 +65,7 @@ public class FavoritesActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new FavTeam(), "TEAM");
+        adapter.addFrag(new FavTeam(), CountryName);
         adapter.addFrag(new FavPlayer(), "PLAYER");
         viewPager.setAdapter(adapter);
 

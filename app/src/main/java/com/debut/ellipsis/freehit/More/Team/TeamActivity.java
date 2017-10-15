@@ -72,9 +72,9 @@ public class TeamActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         TeamActivity.ViewPagerAdapter adapter = new TeamActivity.ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new TeamNews(), "NEWS");
-        adapter.addFrag(new TeamMatchesFragment(), "SCHEDULE");
         adapter.addFrag(new TeamPlayers(), "PLAYERS");
+        adapter.addFrag(new TeamMatchesFragment(), "SCHEDULE");
+        adapter.addFrag(new TeamNews(), "NEWS");
         viewPager.setAdapter(adapter);
     }
 

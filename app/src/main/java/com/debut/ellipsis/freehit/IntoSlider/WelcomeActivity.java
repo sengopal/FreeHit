@@ -78,7 +78,6 @@ public class WelcomeActivity extends AppCompatActivity {
                 R.layout.welcome_slide3,
                 R.layout.welcome_slide4,
                 R.layout.welcome_slide5_country_picker};
-//        btnCountrySelect = (Button) findViewById(R.id.country_select);
 
         // adding bottom dots
         addBottomDots(0);
@@ -114,7 +113,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
                         LayoutInflater inflater = getLayoutInflater();
                         View layouttoast = inflater.inflate(R.layout.custom_toast, (ViewGroup) findViewById(R.id.toastcustom));
-                        ((TextView) layouttoast.findViewById(R.id.texttoast)).setText("PLEASE SELECT A TEAM");
+                        ((TextView) layouttoast.findViewById(R.id.texttoast)).setText(R.string.select_team_alert);
 
                         Toast mytoast = new Toast(getBaseContext());
                         mytoast.setView(layouttoast);

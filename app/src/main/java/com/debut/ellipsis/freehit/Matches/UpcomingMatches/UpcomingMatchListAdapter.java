@@ -21,25 +21,23 @@ import java.util.List;
 
 public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatchListAdapter.ViewHolder> {
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
-        public TextView textViewMatchName;
-        public TextView textViewSeriesName;
-        public TextView textViewStadiumName;
-        public String logo_string1;
-        public String logo_string2;
-        public ImageView imageViewTeam1Logo;
-        public ImageView imageViewTeam2Logo;
-        public TextView shortName1;
-        public TextView shortName2;
-        public TextView MatchDate;
+        TextView textViewMatchName;
+        TextView textViewSeriesName;
+        TextView textViewStadiumName;
+        ImageView imageViewTeam1Logo;
+        ImageView imageViewTeam2Logo;
+        TextView shortName1;
+        TextView shortName2;
+        TextView MatchDate;
         public RelativeLayout rlcontainer;
 
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             // Stores the itemView in a public final member variable that can be used
             // to access the context from any ViewHolder instance.
             super(itemView);
@@ -84,9 +82,8 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
         View contactView = inflater.inflate(R.layout.fragment_matches_upcoming_match_list_item, parent, false);
 
         // Return a new holder instance
-        ViewHolder viewHolder = new ViewHolder(contactView);
 
-        return viewHolder;
+        return new ViewHolder(contactView);
     }
 
     // Involves populating data into the item through holder
