@@ -18,8 +18,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
-import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
-import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
 import com.debut.ellipsis.freehit.R;
 
 import retrofit2.Call;
@@ -116,9 +114,9 @@ public class NewsArticle extends AppCompatActivity {
 
                 final String ImageURL = newsArticle.getImage();
 
-                CustomImageSizeModel Image = new CustomImageSizeModelFutureStudio(ImageURL);
+                /*CustomImageSizeModel Image = new CustomImageSizeModelFutureStudio(ImageURL);*/
 
-                Glide.with(getApplicationContext()).load(Image).apply(new RequestOptions().placeholder(R.drawable.matches).fitCenter()).into(articleImage);
+                Glide.with(getApplicationContext()).load(ImageURL).apply(new RequestOptions().placeholder(R.drawable.matches).fitCenter()).into(articleImage);
 
             }
 

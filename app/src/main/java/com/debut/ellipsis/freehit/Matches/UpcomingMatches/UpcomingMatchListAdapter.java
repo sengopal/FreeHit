@@ -13,8 +13,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
-import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
@@ -120,12 +118,12 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
         TextView MatchDate = viewHolder.MatchDate;
         MatchDate.setText(upcomingMatchCards.getDate().getFinaldate());
 
-        CustomImageSizeModel Logo1 = new CustomImageSizeModelFutureStudio(logo_string1);
-        CustomImageSizeModel Logo2 = new CustomImageSizeModelFutureStudio(logo_string2);
+        /*CustomImageSizeModel Logo1 = new CustomImageSizeModelFutureStudio(logo_string1);
+        CustomImageSizeModel Logo2 = new CustomImageSizeModelFutureStudio(logo_string2);*/
 
 
-        Glide.with(getContext()).load(Logo1).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam1Logo);
-        Glide.with(getContext()).load(Logo2).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam2Logo);
+        Glide.with(getContext()).load(logo_string1).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam1Logo);
+        Glide.with(getContext()).load(logo_string2).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam2Logo);
 
         RelativeLayout RLcontainer = viewHolder.rlcontainer;
 

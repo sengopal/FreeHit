@@ -24,8 +24,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.debut.ellipsis.freehit.CountryHash;
-import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
-import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
@@ -279,9 +277,9 @@ public class WelcomeActivity extends AppCompatActivity {
 
                 ImageView before = (ImageView) findViewById(R.id.country_flag);
 
-                CustomImageSizeModel Flag = new CustomImageSizeModelFutureStudio(flagURLID);
+                /*CustomImageSizeModel Flag = new CustomImageSizeModelFutureStudio(flagURLID);*/
 
-                Glide.with(getApplicationContext()).load(Flag).apply(new RequestOptions().placeholder(R.drawable.matches)).into(before);
+                Glide.with(getApplicationContext()).load(flagURLID).apply(new RequestOptions().placeholder(R.drawable.matches)).into(before);
 
                 TextView description = (TextView) findViewById(R.id.slide5description);
                 description.setVisibility(View.GONE);
