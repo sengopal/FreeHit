@@ -12,8 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.RequestBuilder;
-import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
-import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.R;
 
@@ -107,14 +105,14 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
 
         if (position < 5) {
 
-            CustomImageSizeModel Logo1 = new CustomImageSizeModelFutureStudio(logo_string1);
-            CustomImageSizeModel Logo2 = new CustomImageSizeModelFutureStudio(logo_string2);
+            /*CustomImageSizeModel Logo1 = new CustomImageSizeModelFutureStudio(logo_string1);
+            CustomImageSizeModel Logo2 = new CustomImageSizeModelFutureStudio(logo_string2);*/
 
-            RequestBuilder requestBuilder = GlideApp.with(context).load(Logo1).placeholder(R.drawable.matches);
+            RequestBuilder requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches);
 
             requestBuilder.into(imageViewTeam1Logo);
 
-            RequestBuilder requestBuilder1 = GlideApp.with(context).load(Logo2).placeholder(R.drawable.matches);
+            RequestBuilder requestBuilder1 = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.matches);
 
             requestBuilder1.into(imageViewTeam2Logo);
 

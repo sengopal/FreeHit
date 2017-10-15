@@ -17,8 +17,6 @@ import android.widget.Toast;
 import com.bumptech.glide.RequestBuilder;
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
-import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
-import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.R;
 
@@ -116,9 +114,9 @@ public class NewsArticle extends AppCompatActivity {
 
                 final String ImageURL = newsArticle.getImage();
 
-                CustomImageSizeModel Image = new CustomImageSizeModelFutureStudio(ImageURL);
+                /*CustomImageSizeModel Image = new CustomImageSizeModelFutureStudio(ImageURL);*/
 
-                RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(Image).placeholder(R.drawable.matches);
+                RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(ImageURL).placeholder(R.drawable.matches);
 
                 requestBuilder.into(articleImage);
 

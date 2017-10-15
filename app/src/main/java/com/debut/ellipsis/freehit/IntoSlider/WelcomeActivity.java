@@ -25,8 +25,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.request.RequestOptions;
 import com.debut.ellipsis.freehit.CountryHash;
-import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
-import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
@@ -245,9 +243,9 @@ public class WelcomeActivity extends AppCompatActivity {
 
                 String TeamLogo = countryHash.getCountryFlag(name.toUpperCase());
 
-                CustomImageSizeModel Flag = new CustomImageSizeModelFutureStudio(TeamLogo);
+                /*CustomImageSizeModel Flag = new CustomImageSizeModelFutureStudio(TeamLogo);*/
 
-                RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(Flag).placeholder(R.drawable.matches);
+                RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogo).placeholder(R.drawable.matches);
 
                 requestBuilder.into(country_flag);
 
@@ -287,9 +285,9 @@ public class WelcomeActivity extends AppCompatActivity {
 
                 ImageView before = (ImageView) findViewById(R.id.country_flag);
 
-                CustomImageSizeModel Flag = new CustomImageSizeModelFutureStudio(flagURLID);
+                /*CustomImageSizeModel Flag = new CustomImageSizeModelFutureStudio(flagURLID);*/
 
-                Glide.with(getApplicationContext()).load(Flag).apply(new RequestOptions().placeholder(R.drawable.matches)).into(before);
+                Glide.with(getApplicationContext()).load(flagURLID).apply(new RequestOptions().placeholder(R.drawable.matches)).into(before);
 
                 TextView description = (TextView) findViewById(R.id.slide5description);
                 description.setVisibility(View.GONE);
