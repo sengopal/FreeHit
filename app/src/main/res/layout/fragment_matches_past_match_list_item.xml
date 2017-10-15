@@ -70,7 +70,7 @@
                 <ImageView
                     android:id="@+id/team_logo_1_past"
                     android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_80sdp"
+                    android:layout_height="@dimen/_75sdp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_4sdp"
@@ -117,8 +117,8 @@
 
                 <ImageView
                     android:id="@+id/team_logo_2_past"
-                    android:layout_width="65dp"
-                    android:layout_height="100dp"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_75sdp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="@dimen/_4sdp"
