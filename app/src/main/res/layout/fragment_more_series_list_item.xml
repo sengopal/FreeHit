@@ -19,24 +19,12 @@
             android:layout_height="@dimen/_35sdp"
             android:src="@drawable/matches" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:text="VS"
-            android:textColor="@color/black" />
 
-        <ImageView
-            android:id="@+id/Team2Logo"
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
-            android:src="@drawable/matches" />
+
 
         <TextView
             android:id="@+id/series_title"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_175sdp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
             android:layout_marginStart="@dimen/_5sdp"
@@ -44,6 +32,12 @@
             android:padding="@dimen/_5sdp"
             android:textColor="@color/black"
             tools:text="INDIA TOUR OF AUSTRALIA 2017" />
+        <ImageView
+            android:id="@+id/Team2Logo"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:src="@drawable/matches" />
+
 
     </LinearLayout>
 
