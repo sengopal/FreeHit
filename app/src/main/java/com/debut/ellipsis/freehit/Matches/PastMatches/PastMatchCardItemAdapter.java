@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
@@ -107,8 +107,8 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
         if (position < 5) {
 
 
-            Glide.with(context).load(logo_string1).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam1Logo);
-            Glide.with(context).load(logo_string2).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam2Logo);
+            GlideApp.with(context).load(logo_string1).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam1Logo);
+            GlideApp.with(context).load(logo_string2).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam2Logo);
         }
         if (position == 5) {
             viewMore.setVisibility(View.VISIBLE);

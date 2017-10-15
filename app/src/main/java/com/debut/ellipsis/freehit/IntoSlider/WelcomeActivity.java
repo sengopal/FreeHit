@@ -241,7 +241,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
                 String TeamLogo = countryHash.getCountryFlag(name.toUpperCase());
 
-                Glide.with(getApplicationContext()).load(TeamLogo).apply(new RequestOptions().placeholder(R.drawable.matches)).into(country_flag);
+                Glide.with(getBaseContext()).load(TeamLogo).apply(new RequestOptions().placeholder(R.drawable.matches)).into(country_flag);
 
             }
             return view;

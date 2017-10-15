@@ -11,15 +11,15 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
 
 public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatchListAdapter.ViewHolder> {
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
         TextView textViewMatchName;
@@ -122,8 +122,8 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
         CustomImageSizeModel Logo2 = new CustomImageSizeModelFutureStudio(logo_string2);*/
 
 
-        Glide.with(getContext()).load(logo_string1).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam1Logo);
-        Glide.with(getContext()).load(logo_string2).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam2Logo);
+        GlideApp.with(mContext).load(logo_string1).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam1Logo);
+        GlideApp.with(mContext).load(logo_string2).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam2Logo);
 
         RelativeLayout RLcontainer = viewHolder.rlcontainer;
 
@@ -134,12 +134,12 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
             @Override
             public void onClick(View view) {
 
-                Intent UpcomingMatchScoreCardIntent = new Intent(getContext(), UpcomingMatchScoreCard.class);
+                Intent UpcomingMatchScoreCardIntent = new Intent(mContext, UpcomingMatchScoreCard.class);
                 UpcomingMatchScoreCardIntent.putExtra("match_id", upcomingMatchCards.getNdid());
                 UpcomingMatchScoreCardIntent.putExtra("match_name",  upcomingMatchCards.getMatch() + "(" + upcomingMatchCards.getTeam1().getSn() + " vs " + upcomingMatchCards.getTeam2().getSn() + ")");
 
                 UpcomingMatchScoreCardIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                getContext().startActivity(UpcomingMatchScoreCardIntent);
+                mContext.startActivity(UpcomingMatchScoreCardIntent);
 
             }
         };

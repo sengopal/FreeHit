@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.News.NewsArticle;
 import com.debut.ellipsis.freehit.R;
 
@@ -70,7 +70,7 @@ public class FavTeamNewsItemAdapter extends RecyclerView.Adapter<FavTeamNewsItem
         holder.desc.setText(newsItems.get(position).getDesc());
         holder.date.setText(newsItems.get(position).getDate());
         holder.tag.setText(newsItems.get(position).getTag());
-        Glide.with(context).load(newsItems.get(position).getImage()).apply(new RequestOptions().placeholder(R.drawable.matches).centerCrop()).into(holder.image);
+        GlideApp.with(context).load(newsItems.get(position).getImage()).apply(new RequestOptions().placeholder(R.drawable.matches).centerCrop()).into(holder.image);
 
         RelativeLayout RLcontainer = holder.rlcontainer;
 

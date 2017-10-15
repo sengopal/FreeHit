@@ -11,8 +11,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.More.Player.PlayerActivity;
 import com.debut.ellipsis.freehit.PlayerCountryItem;
 import com.debut.ellipsis.freehit.R;
@@ -66,7 +66,7 @@ public class FavTeamPlayersAdapter extends RecyclerView.Adapter<FavTeamPlayersAd
 
         /*CustomImageSizeModel Logo1 = new CustomImageSizeModelFutureStudio(PlayerURL);*/
 
-        Glide.with(context).load(PlayerURL).apply(new RequestOptions().placeholder(R.drawable.matches).centerCrop()).into(holder.PlayerImage);
+        GlideApp.with(context).load(PlayerURL).apply(new RequestOptions().placeholder(R.drawable.matches).centerCrop()).into(holder.PlayerImage);
 
         LinearLayout RLContainer = holder.rlcontainer;
 
