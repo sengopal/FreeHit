@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.RequestBuilder;
 import com.debut.ellipsis.freehit.CountryHash;
@@ -62,13 +63,41 @@ public class SeriesItemAdapter extends RecyclerView.Adapter<SeriesItemAdapter.Se
     @Override
     public void onBindViewHolder(SeriesItemAdapter.SeriesViewHolder holder, final int position) {
         String Title=seriesItems.get(position).getTitle();
-        String[] t=Title.split(",");
-        holder.SeriesTitle.setText(t[0]);
-        final String team1 = seriesItems.get(position).getTeam1();
-        final String team2 = seriesItems.get(position).getTeam2();
-        final String date = seriesItems.get(position).getDate();
-
+       Title= Title +",";
         CountryHash countryHash = new CountryHash();
+        String[] t=Title.split(",");
+        String []origTeam=new String[10];
+        origTeam[0]=" ";
+        origTeam[1]=" ";
+
+        holder.SeriesTitle.setText(t[0]);
+         String team1 = seriesItems.get(position).getTeam1();
+        String team2 = seriesItems.get(position).getTeam2();
+        //
+        final String date = seriesItems.get(position).getDate();
+        origTeam=t[0].split(" ");
+        origTeam[0]=origTeam[0].trim();
+        origTeam[1]=origTeam[1].trim();
+        origTeam[1]=origTeam[0]+" "+origTeam[1];
+
+
+          if(team1.equalsIgnoreCase(origTeam[0])){
+              team1=team1;
+          }
+
+       else if(countryHash.getCountrySN(origTeam[0].toUpperCase())!=null){
+            team2=team1;
+            team1=origTeam[0];
+
+        }
+
+       else if(countryHash.getCountrySN(origTeam[1].toUpperCase())!=null){
+            team2=team1;
+            team1=origTeam[1];
+
+        }
+
+
         final String Team1Name = countryHash.getCountrySN(team1.toUpperCase());
         final String Team2Name = countryHash.getCountrySN(team2.toUpperCase());
 
