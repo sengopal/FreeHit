@@ -8,7 +8,6 @@ import com.debut.ellipsis.freehit.More.Player.BowlingItem;
 import com.debut.ellipsis.freehit.More.Player.CareerItem;
 import com.debut.ellipsis.freehit.More.Player.InfoItem;
 import com.debut.ellipsis.freehit.More.Series.SeriesItem;
-import com.debut.ellipsis.freehit.More.favorites.FavouriteTeam.FavTeamNewsItem;
 import com.debut.ellipsis.freehit.News.NewsArticleItem;
 import com.debut.ellipsis.freehit.News.NewsItem;
 import com.debut.ellipsis.freehit.Social.Polls.PollCardItem;
@@ -62,7 +61,7 @@ public interface APIInterface {
     Call<PastMatchCardItem> doGetCompletePastCardResources();
 
     @GET("news?")
-    Call<FavTeamNewsItem> doGetNewsArticleTeam(@Query("fav") String team);
+    Call<NewsItem> doGetNewsArticleTeam(@Query("fav") String team);
 
     @GET("upcoming?")
     Call<UpcomingMatchCardItem> doGetUpcomingFavTeam(@Query("fav") String team);

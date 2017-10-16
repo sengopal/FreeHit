@@ -647,7 +647,7 @@
                                 android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
-                                android:padding="@dimen/_18ssp"
+                                android:padding="@dimen/_18sdp"
                                 tools:text="0"
                                 android:textAlignment="center"
                                 android:textColor="#000000"

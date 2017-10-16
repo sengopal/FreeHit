@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.debut.ellipsis.freehit.CountryHash;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
@@ -38,22 +39,23 @@ public class TeamListView extends AppCompatActivity {
 
         setTitle("Teams");
 
+        CountryHash countryHash = new CountryHash();
 
-        TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/afghanistan-2156.png", R.string.settings_team_Afghanistan_label));
-        TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/australia-7.png", R.string.settings_team_Australia_label));
-        TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/bangladesh-2114.png", R.string.settings_team_Bangladesh_label));
-        TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/canada-2122.png", R.string.settings_team_Canada_label));
-        TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/england-5.png", R.string.settings_team_England_label));
-        TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/india-6.png", R.string.settings_team_India_label));
-        TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/ireland-2123.png", R.string.settings_team_Ireland_label));
-        TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/300/netherlands-2125.png", R.string.settings_team_Netherlands_label));
-        TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/new-zealand-2115.png", R.string.settings_team_NewZealand_label));
-        TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/pakistan-2116.png", R.string.settings_team_Pakistan_label));
-        TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/south-africa-2117.png", R.string.settings_team_SouthAfrica_label));
-        TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/sri-lanka-2118.png", R.string.settings_team_SriLanka_label));
-        TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/united-arab-emirates-2131.png", R.string.settings_team_UnitedArabEmirates_label));
-        TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/west-indies-2119.png", R.string.settings_team_WestIndies_label));
-        TeamItem.add(new TeamListItem("https://s.ndtvimg.com/images/entities/120/zimbabwe-2120.png", R.string.settings_team_Zimbabwe_label));
+        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("AFGHANISTAN"), R.string.settings_team_Afghanistan_label));
+        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("AUSTRALIA"), R.string.settings_team_Australia_label));
+        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("BANGLADESH"), R.string.settings_team_Bangladesh_label));
+        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("CANADA"), R.string.settings_team_Canada_label));
+        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("ENGLAND"), R.string.settings_team_England_label));
+        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("INDIA"), R.string.settings_team_India_label));
+        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("IRELAND"), R.string.settings_team_Ireland_label));
+        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("NETHERLANDS"), R.string.settings_team_Netherlands_label));
+        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("NEW ZEALAND"), R.string.settings_team_NewZealand_label));
+        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("PAKISTAN"), R.string.settings_team_Pakistan_label));
+        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("SOUTH AFRICA"), R.string.settings_team_SouthAfrica_label));
+        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("SRI LANKA"), R.string.settings_team_SriLanka_label));
+        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("UNITED ARAB EMIRATES"), R.string.settings_team_UnitedArabEmirates_label));
+        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("WEST INDIES"), R.string.settings_team_WestIndies_label));
+        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("ZIMBABWE"), R.string.settings_team_Zimbabwe_label));
 
         View view = (View) findViewById(R.id.team_list);
         listView = (ListView) view.findViewById(R.id.list);

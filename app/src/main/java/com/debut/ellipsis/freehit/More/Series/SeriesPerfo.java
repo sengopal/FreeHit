@@ -1,20 +1,16 @@
 package com.debut.ellipsis.freehit.More.Series;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.debut.ellipsis.freehit.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class SeriesPerfo extends Fragment {
 
@@ -30,79 +26,12 @@ public class SeriesPerfo extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_matches, container, false);
-        Intent i = getActivity().getIntent();
-        String Team = i.getStringExtra("CountryName");
-        String date=i.getStringExtra("date");
+        TextView textView = new TextView(getActivity());
+        textView.setText("COMING SOON");
+        textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        textView.setTextSize(35);
+        textView.setTextColor(getResources().getColor(R.color.black));
+        return textView;
 
-
-
-        View viewMatchesViewPager = (View) rootView.findViewById(R.id.matches_viewpagegr);
-
-        viewPager = (ViewPager) viewMatchesViewPager.findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
-
-
-        View viewMatchCardTabs = (View) rootView.findViewById(R.id.match_card_tabs);
-        tabLayout = (TabLayout) viewMatchCardTabs.findViewById(R.id.tabs);
-
-        tabLayout.setupWithViewPager(viewPager);
-
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-        return rootView;
-    }
-
-
-    private void setupViewPager(ViewPager viewPager) {
-        SeriesPerfo.ViewPagerAdapter adapter = new SeriesPerfo.ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFrag(new SeriesTest(), "Test");
-        adapter.addFrag(new SeriesOdi(), "Odi");
-        adapter.addFrag(new SeriesT20(), "T20");
-        viewPager.setAdapter(adapter);
-
-    }
-
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFrag(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
     }
 }

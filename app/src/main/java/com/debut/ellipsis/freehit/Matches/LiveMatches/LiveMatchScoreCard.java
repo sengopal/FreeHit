@@ -32,17 +32,17 @@ public class LiveMatchScoreCard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
-        setContentView(R.layout.fragment_matches_live_match_scorecard);
+        setContentView(R.layout.fragment_matches_match_scorecard);
         String match_id = getIntent().getStringExtra("match_id");
         String match_name = getIntent().getStringExtra("match_name");
         setTitle(match_name);
 
-        View viewToolbarTabs = (View) findViewById(R.id.toolbar_tabs_live);
+        View viewToolbarTabs = (View) findViewById(R.id.toolbar_tabs_matches_scorecard);
         Toolbar toolbar = (Toolbar) viewToolbarTabs.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        View viewLiveScoreCardPager = (View) findViewById(R.id.live_scorecard_viewpgaer);
+        View viewLiveScoreCardPager = (View) findViewById(R.id.scorecard_viewpager);
 
         ViewPager viewPager = (ViewPager) viewLiveScoreCardPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
