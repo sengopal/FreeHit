@@ -10,6 +10,10 @@
         android:id="@+id/news_list"
         layout="@layout/common_recycler_view_list" />
 
+    <include
+        android:id="@+id/fab"
+        layout="@layout/common_fab" />
+
 
     <include
         android:id="@+id/progress"

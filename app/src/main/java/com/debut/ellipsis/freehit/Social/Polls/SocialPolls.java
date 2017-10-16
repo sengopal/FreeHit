@@ -3,6 +3,7 @@ package com.debut.ellipsis.freehit.Social.Polls;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,10 +34,11 @@ public class SocialPolls extends Fragment {
 
     APIInterface apiInterface;
     private ProgressBar mProgressBar;
-    RelativeLayout rlcontainer;
     public TextView NoPollsText;
     public Button NoPollsButton;
     public Button NoConnectionButton;
+    private FloatingActionButton fab;
+    private LinearLayoutManager mLinearLayoutManager;
 
     public SocialPolls() {
         // Required empty public constructor
@@ -52,8 +53,15 @@ public class SocialPolls extends Fragment {
 
         View viewRecycler = (View) rootView.findViewById(R.id.news_list);
 
+        View viewFAB = (View) rootView.findViewById(R.id.fab);
+        fab = (FloatingActionButton) viewFAB.findViewById(R.id.common_fab);
+
+        fab.setImageResource(android.R.drawable.arrow_down_float);
+
+        mLinearLayoutManager = new LinearLayoutManager(getActivity());
+
         final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(mLinearLayoutManager);
 
         View viewProgress = (View) rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
@@ -174,6 +182,36 @@ public class SocialPolls extends Fragment {
 
                                        }
         );
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+
+                if (dy < 0) {
+                    fab.show();
+
+                } else if (dy > 0) {
+                    fab.hide();
+                }
+            }
+        });
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int totalItemCount = recyclerView.getAdapter().getItemCount();
+                if (totalItemCount <= 0) return;
+                int lastVisibleItemIndex = mLinearLayoutManager.findLastVisibleItemPosition();
+
+                if (lastVisibleItemIndex >= totalItemCount) return;
+                mLinearLayoutManager.smoothScrollToPosition(recyclerView,null,lastVisibleItemIndex+1);
+            }
+        });
 
         return rootView;
     }

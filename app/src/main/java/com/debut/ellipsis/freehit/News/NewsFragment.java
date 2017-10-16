@@ -3,6 +3,7 @@ package com.debut.ellipsis.freehit.News;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,6 +39,8 @@ public class NewsFragment extends Fragment {
     public Button NoConnectionButton;
     public TextView NoNewsText;
     public Button NoNewsButton;
+    private FloatingActionButton fab;
+    private LinearLayoutManager mLinearLayoutManager;
 
     public NewsFragment() {
         // Required empty public constructor
@@ -53,8 +56,15 @@ public class NewsFragment extends Fragment {
 
         View viewRecycler = (View) rootView.findViewById(R.id.news_list);
 
+        View viewFAB = (View) rootView.findViewById(R.id.fab);
+        fab = (FloatingActionButton) viewFAB.findViewById(R.id.common_fab);
+
+        fab.setImageResource(android.R.drawable.arrow_up_float);
+
+        mLinearLayoutManager = new LinearLayoutManager(getActivity());
+
         final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(mLinearLayoutManager);
 
         View viewProgress = (View) rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
@@ -174,6 +184,34 @@ public class NewsFragment extends Fragment {
                                            }
                                        }
         );
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+
+                if(mLinearLayoutManager.findFirstCompletelyVisibleItemPosition()==0){
+                    fab.hide();
+
+                } else {
+                    fab.show();
+                }
+            }
+        });
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int firstVisibleItemIndex = mLinearLayoutManager.findFirstCompletelyVisibleItemPosition();
+                if (firstVisibleItemIndex > 0) {
+                    mLinearLayoutManager.smoothScrollToPosition(recyclerView,null,0);
+                }
+            }
+        });
 
 
         return rootView;
