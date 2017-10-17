@@ -121,8 +121,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
                     }
 
-                    //then on another method or where you want
-
                 }
             }
         });
@@ -154,7 +152,6 @@ public class WelcomeActivity extends AppCompatActivity {
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
             dots[currentPage].setLayoutParams(params);
             params.setMargins(15, 15, 0, 0);
-
             dots[currentPage].setImageResource(R.drawable.ball);
             dots[currentPage].setColorFilter(colorsActive[currentPage]);
         }
@@ -233,7 +230,6 @@ public class WelcomeActivity extends AppCompatActivity {
                 SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
                 String name = prefs.getString("country_name", "SELECT COUNTRY");
 
-
                 TextView country_name = (TextView) findViewById(R.id.country_name);
                 country_name.setText(name);
 
@@ -242,13 +238,9 @@ public class WelcomeActivity extends AppCompatActivity {
 
                 String TeamLogo = countryHash.getCountryFlag(name.toUpperCase());
 
-                /*CustomImageSizeModel Flag = new CustomImageSizeModelFutureStudio(TeamLogo);*/
-
                 RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogo).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
                 requestBuilder.into(country_flag);
-
-                /*Glide.with(getBaseContext()).load(Flag).apply(new RequestOptions().placeholder(R.drawable.matches)).into(country_flag);*/
 
             }
             return view;
@@ -283,10 +275,6 @@ public class WelcomeActivity extends AppCompatActivity {
                 country_name.setText(name);
 
                 ImageView before = (ImageView) findViewById(R.id.country_flag);
-
-                /*CustomImageSizeModel Flag = new CustomImageSizeModelFutureStudio(flagURLID);*/
-
-                /*Glide.with(getApplicationContext()).load(flagURLID).apply(new RequestOptions().placeholder(R.drawable.matches)).into(before);*/
 
                 RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(flagURLID).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 

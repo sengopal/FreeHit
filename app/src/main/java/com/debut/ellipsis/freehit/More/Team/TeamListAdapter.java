@@ -33,20 +33,14 @@ public class TeamListAdapter extends ArrayAdapter<TeamListItem> {
 
         TeamListItem currentItem = getItem(position);
 
-
         TextView TeamName = (TextView) listItemView.findViewById(R.id.row_title);
         TeamName.setText(currentItem.getmTeamName());
 
         ImageView TeamIcon = (ImageView) listItemView.findViewById(R.id.row_icon);
 
-        /*CustomImageSizeModel TeamLogo = new CustomImageSizeModelFutureStudio(currentItem.getmTeamIconURL());*/
-
         RequestBuilder requestBuilder = GlideApp.with(getContext()).load(currentItem.getmTeamIconURL()).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
         requestBuilder.into(TeamIcon);
-
-        /*GlideApp.with(getContext()).load(TeamLogo).apply(new RequestOptions().placeholder(R.drawable.matches)).into(TeamIcon);*/
-
 
         return listItemView;
     }

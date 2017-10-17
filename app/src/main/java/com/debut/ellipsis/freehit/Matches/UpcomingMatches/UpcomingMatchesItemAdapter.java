@@ -111,16 +111,12 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
             }
         });
 
-        // Initializing Logo URLS
         logo_string1 = this.dataObjectList.get(position).getTeam1().getImage();
         logo_string2 = this.dataObjectList.get(position).getTeam2().getImage();
 
 
 
         if (position < 5) {
-
-            /*CustomImageSizeModel Logo1 = new CustomImageSizeModelFutureStudio(logo_string1);
-            CustomImageSizeModel Logo2 = new CustomImageSizeModelFutureStudio(logo_string2);*/
 
             RequestBuilder requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
@@ -130,8 +126,6 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
 
             requestBuilder1.into(imageViewTeam2Logo);
 
-            /*GlideApp.with(context).load(Logo1).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam1Logo);
-            GlideApp.with(context).load(Logo2).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam2Logo);*/
         }
         container.addView(view);
         return view;

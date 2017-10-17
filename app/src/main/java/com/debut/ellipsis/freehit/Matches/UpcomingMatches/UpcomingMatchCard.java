@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baoyz.widget.PullRefreshLayout;
@@ -38,8 +37,6 @@ public class UpcomingMatchCard extends Fragment {
     public ViewPager vp;
     public ImageView NoConnectionImage;
     public Button NoConnectionButton;
-    public TextView NoLiveMatchesText;
-    public Button NoLiveMatchesButton;
 
     public UpcomingMatchCard() {
         // Required empty public constructor
@@ -109,7 +106,6 @@ public class UpcomingMatchCard extends Fragment {
                     public void onClick(View v) {
                         Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
                         i.putExtra("Main_tab",0);
-                        i.putExtra("Sub_tab",1);
                         i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                         i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(i);

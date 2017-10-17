@@ -88,13 +88,10 @@ public class Info_Fragment extends Fragment {
 
                 final String ImageURL = info.getImg();
 
-                /*CustomImageSizeModel PlayerImage = new CustomImageSizeModelFutureStudio(ImageURL);*/
-
                 RequestBuilder requestBuilder = GlideApp.with(getContext()).load(ImageURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
                 requestBuilder.into(articleImage);
 
-                /*GlideApp.with(getContext()).load(PlayerImage).apply(new RequestOptions().placeholder(R.drawable.matches).centerCrop()).into(articleImage);*/
                 TextView odiBat = (TextView) rootView.findViewById(R.id.odibattingRanking);
                 TextView testBat = (TextView) rootView.findViewById(R.id.testBattingRanking);
                 TextView t20Bat = (TextView) rootView.findViewById(R.id.T20BattingRanking);

@@ -66,13 +66,9 @@ public class TeamPlayerAdapter extends RecyclerView.Adapter<TeamPlayerAdapter.Te
 
         String PlayerURL = playerCountryItems.get(position).getImage();
 
-        /*CustomImageSizeModel Logo1 = new CustomImageSizeModelFutureStudio(PlayerURL);*/
-
         RequestBuilder requestBuilder = GlideApp.with(context).load(PlayerURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
         requestBuilder.into(holder.PlayerImage);
-
-        /*GlideApp.with(context).load(Logo1).apply(new RequestOptions().placeholder(R.drawable.matches).centerCrop()).into(holder.PlayerImage);*/
 
         LinearLayout RLContainer = holder.rlcontainer;
 

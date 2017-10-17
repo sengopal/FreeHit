@@ -119,8 +119,6 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
         TextView MatchDate = viewHolder.MatchDate;
         MatchDate.setText(upcomingMatchCards.getDate().getFinaldate());
 
-        /*CustomImageSizeModel Logo1 = new CustomImageSizeModelFutureStudio(logo_string1);
-        CustomImageSizeModel Logo2 = new CustomImageSizeModelFutureStudio(logo_string2);*/
 
         RequestBuilder requestBuilder = GlideApp.with(mContext).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
@@ -130,8 +128,6 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
 
         requestBuilder1.into(imageViewTeam2Logo);
 
-       /* GlideApp.with(mContext).load(Logo1).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam1Logo);
-        GlideApp.with(mContext).load(Logo2).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam2Logo);*/
 
         RelativeLayout RLcontainer = viewHolder.rlcontainer;
 
@@ -156,8 +152,6 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
 
     }
 
-
-    // Returns the total count of items in the list
     @Override
     public int getItemCount() {
         return mUpcomingMatchCards.size();

@@ -163,13 +163,8 @@ public class LiveMatchCardAdapter extends PagerAdapter {
         TextView MatchDate = (TextView) view.findViewById(R.id.match_date_live);
         MatchDate.setText(outputDateStr);
 
-
-        // Initializing Logo URLS
         logo_string1 = this.dataObjectList.get(position).getTeam1().getImage();
         logo_string2 = this.dataObjectList.get(position).getTeam2().getImage();
-
-        /*CustomImageSizeModel Logo1 = new CustomImageSizeModelFutureStudio(logo_string1);
-        CustomImageSizeModel Logo2 = new CustomImageSizeModelFutureStudio(logo_string2);*/
 
         RequestBuilder requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
@@ -178,9 +173,6 @@ public class LiveMatchCardAdapter extends PagerAdapter {
         RequestBuilder requestBuilder1 = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
         requestBuilder1.into(imageViewTeam2Logo);
-
-        /*GlideApp.with(context).load(Logo1).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam1Logo);
-        GlideApp.with(context).load(Logo2).apply(new RequestOptions().placeholder(R.drawable.matches)).into(imageViewTeam2Logo);*/
 
         container.addView(view);
         return view;

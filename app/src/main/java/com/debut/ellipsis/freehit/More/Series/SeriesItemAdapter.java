@@ -104,9 +104,6 @@ public class SeriesItemAdapter extends RecyclerView.Adapter<SeriesItemAdapter.Se
         String Team1LogoUrl = countryHash.getCountryFlag(team1.toUpperCase());
         String Team2LogoUrl = countryHash.getCountryFlag(team2.toUpperCase());
 
-        /*CustomImageSizeModel Team1Logo = new CustomImageSizeModelFutureStudio(Team1LogoUrl);
-        CustomImageSizeModel Team2Logo = new CustomImageSizeModelFutureStudio(Team2LogoUrl);*/
-
         RequestBuilder requestBuilder = GlideApp.with(context).load(Team1LogoUrl).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
         requestBuilder.into(holder.Team1Logo);
@@ -114,9 +111,6 @@ public class SeriesItemAdapter extends RecyclerView.Adapter<SeriesItemAdapter.Se
         RequestBuilder requestBuilder1 = GlideApp.with(context).load(Team2LogoUrl).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
         requestBuilder1.into(holder.Team2Logo);
-
-        /*GlideApp.with(context).load(Team1Logo).apply(new RequestOptions().placeholder(R.drawable.matches)).into(holder.Team1Logo);
-        GlideApp.with(context).load(Team2Logo).apply(new RequestOptions().placeholder(R.drawable.matches)).into(holder.Team2Logo);*/
 
         RelativeLayout RLContainer = holder.RlContainer;
 

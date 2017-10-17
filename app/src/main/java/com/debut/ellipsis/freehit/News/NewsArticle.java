@@ -115,13 +115,9 @@ public class NewsArticle extends AppCompatActivity {
 
                 final String ImageURL = newsArticle.getImage();
 
-                /*CustomImageSizeModel Image = new CustomImageSizeModelFutureStudio(ImageURL);*/
-
                 RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(ImageURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
                 requestBuilder.into(articleImage);
-
-                /*GlideApp.with(getBaseContext()).load(Image).apply(new RequestOptions().placeholder(R.drawable.matches).fitCenter()).into(articleImage);*/
 
             }
 

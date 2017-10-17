@@ -41,7 +41,6 @@ public class Country {
     public Country() {
     }
 
-
     public String getName() {
         return name;
     }
@@ -50,9 +49,6 @@ public class Country {
         return flag;
     }
 
-
-
-    /* GENERIC STATIC FUNCTIONS*/
     private static List<Country> allCountriesList;
 
     static List<Country> getAllCountries() {

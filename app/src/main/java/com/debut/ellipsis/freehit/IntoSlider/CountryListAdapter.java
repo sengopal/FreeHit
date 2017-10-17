@@ -56,13 +56,9 @@ public class CountryListAdapter extends BaseAdapter {
 
         String FlagURL = country.getFlag();
 
-        /*CustomImageSizeModel Flag = new CustomImageSizeModelFutureStudio(FlagURL);*/
-
         RequestBuilder requestBuilder = GlideApp.with(mContext).load(FlagURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
         requestBuilder.into(cell.imageView);
-
-        /*GlideApp.with(mContext).load(Flag).apply(new RequestOptions().placeholder(R.drawable.matches)).into(cell.imageView);*/
 
         return view;
     }

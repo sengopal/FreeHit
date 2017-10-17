@@ -12,10 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHeadFragment;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.HeatMapFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.InfoFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements.ScoreCardFragment;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.SpiderFragment;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
@@ -82,8 +80,6 @@ public class PastMatchScoreCard extends AppCompatActivity {
         adapter.addFrag(new InfoFragment(), "INFO");
         adapter.addFrag(new ScoreCardFragment(), "SCORE CARD");
         adapter.addFrag(new HeadToHeadFragment(), "HEAD-TO-HEAD");
-        adapter.addFrag(new SpiderFragment(), "SPIDER");
-        adapter.addFrag(new HeatMapFragment(), "HEAT MAP");
         viewPager.setAdapter(adapter);
     }
 

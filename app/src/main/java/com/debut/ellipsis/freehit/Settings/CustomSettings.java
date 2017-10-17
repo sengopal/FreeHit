@@ -89,8 +89,6 @@ public class CustomSettings extends AppCompatActivity {
 
                 requestBuilder.into(before);
 
-                /*GlideApp.with(getBaseContext()).load(TeamLogo).apply(new RequestOptions().placeholder(R.drawable.matches)).into(before);*/
-
                 SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
                 editor.putString("country_name", name);
                 editor.apply();

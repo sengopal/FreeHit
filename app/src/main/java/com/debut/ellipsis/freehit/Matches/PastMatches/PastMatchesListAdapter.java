@@ -24,7 +24,6 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
 
 
     public static class PastViewHolder extends RecyclerView.ViewHolder {
-        RelativeLayout pastLayout;
         ImageView team1image;
         ImageView team2image;
         TextView title;
@@ -39,11 +38,9 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
         TextView result;
         TextView date;
         RelativeLayout rlcontainer;
-//        RelativeLayout rlcontainer;
 
         public PastViewHolder(View v) {
             super(v);
-            pastLayout = (RelativeLayout) v.findViewById(R.id.rlcontainer);
             team1image = (ImageView) v.findViewById(R.id.team_logo_1_past);
             team2image = (ImageView) v.findViewById(R.id.team_logo_2_past);
             title = (TextView) v.findViewById(R.id.match_name_past);
@@ -90,13 +87,9 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
         holder.t2inn2.setText(pastMatchCardItems.get(position).getTeam2Info().getInn2());
         holder.stadium.setText("( "+pastMatchCardItems.get(position).getStadium()+" )");
         holder.title.setText(pastMatchCardItems.get(position).getTitle());
-        RelativeLayout relativeLayout = holder.pastLayout;
 
         String logo_string1 = pastMatchCardItems.get(position).getTeam1Info().getImage();
         String logo_string2 = pastMatchCardItems.get(position).getTeam2Info().getImage();
-
-        /*CustomImageSizeModel Logo1 = new CustomImageSizeModelFutureStudio(logo_string1);
-        CustomImageSizeModel Logo2 = new CustomImageSizeModelFutureStudio(logo_string2);*/
 
         RequestBuilder requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
@@ -105,9 +98,6 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
         RequestBuilder requestBuilder1 = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
         requestBuilder1.into(holder.team2image);
-
-        /*GlideApp.with(context).load(Logo1).apply(new RequestOptions().placeholder(R.drawable.matches)).into(holder.team1image);
-        GlideApp.with(context).load(Logo2).apply(new RequestOptions().placeholder(R.drawable.matches)).into(holder.team2image);*/
 
         RelativeLayout RLcontainer = holder.rlcontainer;
 

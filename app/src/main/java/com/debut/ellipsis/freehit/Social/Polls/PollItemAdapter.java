@@ -37,7 +37,6 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
 
 
     public static class PollsViewHolder extends RecyclerView.ViewHolder {
-        RelativeLayout pollsLayout;
         RadioGroup rGroup;
         TextView title;
         RadioButton button1;
@@ -50,7 +49,6 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
 
         public PollsViewHolder(View v) {
             super(v);
-            pollsLayout = (RelativeLayout) v.findViewById(R.id.parent_layout);
             rGroup = (RadioGroup) v.findViewById(R.id.poll_group);
             title = (TextView) v.findViewById(R.id.poll_title);
             button1 = (RadioButton) v.findViewById(R.id.option_1);

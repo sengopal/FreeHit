@@ -26,7 +26,6 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
 
 
     public static class NewsViewHolder extends RecyclerView.ViewHolder {
-        RelativeLayout newsLayout;
         ImageView image;
         TextView title;
         TextView desc;
@@ -37,7 +36,6 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
 
         public NewsViewHolder(View v) {
             super(v);
-            newsLayout = (RelativeLayout) v.findViewById(R.id.news_layout);
             image = (ImageView) v.findViewById(R.id.image_view);
             title = (TextView) v.findViewById(R.id.header_text_view);
             desc = (TextView) v.findViewById(R.id.summary_text_view);
@@ -74,13 +72,9 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
 
         String URLNewsImage = newsItems.get(position).getImage();
 
-        /*CustomImageSizeModel NewsImage = new CustomImageSizeModelFutureStudio(URLNewsImage);*/
-
         RequestBuilder requestBuilder = GlideApp.with(context).load(URLNewsImage).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
         requestBuilder.into(holder.image);
-
-        /*GlideApp.with(context).load(NewsImage).apply(new RequestOptions().placeholder(R.drawable.matches).centerCrop()).into(holder.image);*/
 
         RelativeLayout RLcontainer = holder.rlcontainer;
 
@@ -95,7 +89,6 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
 
                 String pos = String.valueOf(position);
                 NewsArticleIntent.putExtra("news_id", newsItems.get(position).getId().toString());
-                    /*ActivityOptions.makeCustomAnimation(context,R.anim.animation_entry,R.anim.animation_exit);*/
                 NewsArticleIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(NewsArticleIntent);
 
