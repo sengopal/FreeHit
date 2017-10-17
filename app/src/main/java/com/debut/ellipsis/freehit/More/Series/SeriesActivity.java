@@ -68,8 +68,8 @@ public class SeriesActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         SeriesActivity.ViewPagerAdapter adapter = new SeriesActivity.ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new SeriesPerfo(), "TOP PERFORMANCE");
         adapter.addFrag(new SeriesMatchesFragment(), "SCHEDULE");
+        adapter.addFrag(new SeriesPerfo(), "TOP PERFORMANCE");
         viewPager.setAdapter(adapter);
     }
 

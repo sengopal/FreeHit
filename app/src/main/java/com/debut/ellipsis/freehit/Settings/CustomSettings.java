@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.CountryHash;
 import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
 import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
@@ -62,7 +63,7 @@ public class CustomSettings extends AppCompatActivity {
 
         /*CustomImageSizeModel TeamLogo = new CustomImageSizeModelFutureStudio(TeamLogoURL);*/
 
-        RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogoURL).placeholder(R.drawable.matches);
+        RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogoURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
         requestBuilder.into(country_flag);
 
@@ -84,7 +85,7 @@ public class CustomSettings extends AppCompatActivity {
 
                 CustomImageSizeModel TeamLogo = new CustomImageSizeModelFutureStudio(flagURLID);
 
-                RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogo).placeholder(R.drawable.matches);
+                RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogo).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
                 requestBuilder.into(before);
 

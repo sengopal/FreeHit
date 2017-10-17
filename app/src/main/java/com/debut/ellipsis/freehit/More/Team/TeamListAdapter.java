@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.R;
 
@@ -40,7 +41,7 @@ public class TeamListAdapter extends ArrayAdapter<TeamListItem> {
 
         /*CustomImageSizeModel TeamLogo = new CustomImageSizeModelFutureStudio(currentItem.getmTeamIconURL());*/
 
-        RequestBuilder requestBuilder = GlideApp.with(getContext()).load(currentItem.getmTeamIconURL()).placeholder(R.drawable.matches);
+        RequestBuilder requestBuilder = GlideApp.with(getContext()).load(currentItem.getmTeamIconURL()).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
         requestBuilder.into(TeamIcon);
 

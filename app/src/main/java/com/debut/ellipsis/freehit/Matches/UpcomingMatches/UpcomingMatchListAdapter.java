@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.R;
 
@@ -121,11 +122,11 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
         /*CustomImageSizeModel Logo1 = new CustomImageSizeModelFutureStudio(logo_string1);
         CustomImageSizeModel Logo2 = new CustomImageSizeModelFutureStudio(logo_string2);*/
 
-        RequestBuilder requestBuilder = GlideApp.with(mContext).load(logo_string1).placeholder(R.drawable.matches);
+        RequestBuilder requestBuilder = GlideApp.with(mContext).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
         requestBuilder.into(imageViewTeam1Logo);
 
-        RequestBuilder requestBuilder1 = GlideApp.with(mContext).load(logo_string2).placeholder(R.drawable.matches);
+        RequestBuilder requestBuilder1 = GlideApp.with(mContext).load(logo_string2).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
         requestBuilder1.into(imageViewTeam2Logo);
 

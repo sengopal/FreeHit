@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.More.Player.PlayerActivity;
 import com.debut.ellipsis.freehit.PlayerCountryItem;
@@ -67,7 +68,7 @@ public class TeamPlayerAdapter extends RecyclerView.Adapter<TeamPlayerAdapter.Te
 
         /*CustomImageSizeModel Logo1 = new CustomImageSizeModelFutureStudio(PlayerURL);*/
 
-        RequestBuilder requestBuilder = GlideApp.with(context).load(PlayerURL).placeholder(R.drawable.matches);
+        RequestBuilder requestBuilder = GlideApp.with(context).load(PlayerURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
         requestBuilder.into(holder.PlayerImage);
 

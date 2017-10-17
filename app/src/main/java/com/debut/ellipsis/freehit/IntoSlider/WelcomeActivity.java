@@ -21,9 +21,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
-import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.CountryHash;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.MainActivity;
@@ -245,7 +244,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
                 /*CustomImageSizeModel Flag = new CustomImageSizeModelFutureStudio(TeamLogo);*/
 
-                RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogo).placeholder(R.drawable.matches);
+                RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogo).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
                 requestBuilder.into(country_flag);
 
@@ -287,7 +286,11 @@ public class WelcomeActivity extends AppCompatActivity {
 
                 /*CustomImageSizeModel Flag = new CustomImageSizeModelFutureStudio(flagURLID);*/
 
-                Glide.with(getApplicationContext()).load(flagURLID).apply(new RequestOptions().placeholder(R.drawable.matches)).into(before);
+                /*Glide.with(getApplicationContext()).load(flagURLID).apply(new RequestOptions().placeholder(R.drawable.matches)).into(before);*/
+
+                RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(flagURLID).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+
+                requestBuilder.into(before);
 
                 TextView description = (TextView) findViewById(R.id.slide5description);
                 description.setVisibility(View.GONE);
