@@ -49,7 +49,6 @@ public class PlayerSearchActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
-        refLayout.setVisibility(View.GONE);
 
         EditText e = (EditText) findViewById(R.id.editText_player);
         e.addTextChangedListener(new TextWatcher() {

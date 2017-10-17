@@ -58,7 +58,7 @@ public class NewsFragment extends Fragment {
 
         View viewFAB = (View) rootView.findViewById(R.id.fab);
         fab = (FloatingActionButton) viewFAB.findViewById(R.id.common_fab);
-
+        fab.hide();
         fab.setImageResource(android.R.drawable.arrow_up_float);
 
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
