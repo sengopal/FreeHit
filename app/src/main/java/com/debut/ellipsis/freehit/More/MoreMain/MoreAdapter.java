@@ -25,11 +25,13 @@ public class MoreAdapter extends ArrayAdapter<MoreItem> {
         View listItemView = convertView;
 
         if (listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.country_picker_row, parent, false);
+            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_more_main_item, parent, false);
         }
 
         MoreItem currentItem = getItem(position);
 
+        ImageView moreArrowIcon = (ImageView) listItemView.findViewById(R.id.arrow_icon);
+        moreArrowIcon.setImageResource(R.drawable.arrow);
 
         TextView moreNameTextView = (TextView) listItemView.findViewById(R.id.row_title);
         moreNameTextView.setText(currentItem.getmMoreName());

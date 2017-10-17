@@ -1,7 +1,6 @@
 package com.debut.ellipsis.freehit;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
@@ -25,7 +24,6 @@ import com.debut.ellipsis.freehit.Settings.CustomSettings;
 import com.debut.ellipsis.freehit.Social.SocialMainFragment;
 import com.twitter.sdk.android.core.Twitter;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -203,47 +201,6 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(0, R.anim.exit_to_right);
-    }
-
-    @Override
-    protected void onStop(){
-        super.onStop();
-    }
-
-    //Fires after the OnStop() state
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        try {
-            trimCache(this);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void trimCache(Context context) {
-        try {
-            File dir = context.getCacheDir();
-            if (dir != null && dir.isDirectory()) {
-                deleteDir(dir);
-            }
-        } catch (Exception e) {
-        }
-    }
-
-    public static boolean deleteDir(File dir) {
-        if (dir != null && dir.isDirectory()) {
-            String[] children = dir.list();
-            for (String aChildren : children) {
-                boolean success = deleteDir(new File(dir, aChildren));
-                if (!success) {
-                    return false;
-                }
-            }
-        }
-
-        // The directory is now empty so delete it
-        return dir.delete();
     }
 
 }

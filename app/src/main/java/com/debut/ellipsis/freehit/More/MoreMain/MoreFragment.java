@@ -2,6 +2,7 @@ package com.debut.ellipsis.freehit.More.MoreMain;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,15 +10,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.More.Player.PlayerSearchActivity;
 import com.debut.ellipsis.freehit.More.Rankings.RankingActivity;
 import com.debut.ellipsis.freehit.More.Series.SeriesMainActivity;
+import com.debut.ellipsis.freehit.More.Team.TeamActivity;
 import com.debut.ellipsis.freehit.More.Team.TeamListView;
-import com.debut.ellipsis.freehit.More.favorites.FavoritesActivity;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
+
+import static android.content.Context.MODE_PRIVATE;
+import static com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity.MY_PREFS_NAME;
 
 
 /**
@@ -38,12 +43,15 @@ MoreFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.common_list, container, false);
 
+        SharedPreferences prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        final String Countryname = prefs.getString("country_name", "null");
+
         final ArrayList<MoreItem> moreItem = new ArrayList<MoreItem>();
 
         moreItem.add(new MoreItem(R.drawable.player, R.string.search_player));
         moreItem.add(new MoreItem(R.drawable.team, R.string.search_team));
         moreItem.add(new MoreItem(R.drawable.shield, R.string.search_series));
-        moreItem.add(new MoreItem(R.drawable.fav, R.string.fav));
+        moreItem.add(new MoreItem(R.drawable.fav, R.string.fav_team));
         moreItem.add(new MoreItem(R.drawable.rankings, R.string.rankings));
 
         MoreAdapter adapter = new MoreAdapter(getActivity(), moreItem);
@@ -67,8 +75,14 @@ MoreFragment extends Fragment {
 
                 }
                 else if (position == 3) {
-                    Intent FavouritesIntent = new Intent(getActivity(), FavoritesActivity.class);
-                    startActivity(FavouritesIntent);
+                    if(Countryname.equals("null")) {
+                        Toast.makeText(getContext(),"Select A Favourite Team First",Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Intent FavouritesIntent = new Intent(getActivity(), TeamActivity.class);
+                        FavouritesIntent.putExtra("fav_country", Countryname);
+                        startActivity(FavouritesIntent);
+                    }
 
                 }
                 else if (position==4){

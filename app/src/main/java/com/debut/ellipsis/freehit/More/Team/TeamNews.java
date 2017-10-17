@@ -45,13 +45,26 @@ public class TeamNews extends Fragment {
 
         Intent i = getActivity().getIntent();
         int Team = i.getIntExtra("CountryName", 0);
-        String tempTeamName = this.getContext().getString(Team);
+        String tempTeamName ;
+        String favTeam = i.getStringExtra("fav_country");
+
+        if(Team == 0)
+        {
+            tempTeamName = favTeam;
+        }
+        else
+        {
+            tempTeamName = this.getContext().getString(Team);
+        }
 
         final String teamName = tempTeamName.toLowerCase();
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
         View viewRecycler = (View) rootView.findViewById(R.id.news_list);
+
+        View viewFAB = (View) rootView.findViewById(R.id.fab);
+        viewFAB.setVisibility(View.GONE);
 
         final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

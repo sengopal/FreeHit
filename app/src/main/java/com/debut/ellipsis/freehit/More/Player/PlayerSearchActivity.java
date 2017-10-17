@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
-import com.debut.ellipsis.freehit.More.favorites.FavouriteTeam.FavTeamPlayersAdapter;
+import com.debut.ellipsis.freehit.More.Team.TeamPlayerAdapter;
 import com.debut.ellipsis.freehit.PlayerCountryItem;
 import com.debut.ellipsis.freehit.R;
 
@@ -49,7 +49,7 @@ public class PlayerSearchActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
-        refLayout.setRefreshing(false);
+        refLayout.setVisibility(View.GONE);
 
         EditText e = (EditText) findViewById(R.id.editText_player);
         e.addTextChangedListener(new TextWatcher() {
@@ -69,7 +69,7 @@ public class PlayerSearchActivity extends AppCompatActivity {
                         List<PlayerCountryItem> playerCountryItems = response.body().getResults();
                         for (int i = 0; i < playerCountryItems.size(); i++) {
                             refLayout.setRefreshing(false);
-                            recyclerView.setAdapter(new FavTeamPlayersAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
+                            recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
                         }
                     }
 

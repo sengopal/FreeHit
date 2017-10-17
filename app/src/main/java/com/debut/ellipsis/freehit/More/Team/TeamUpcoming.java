@@ -43,7 +43,17 @@ public class TeamUpcoming extends Fragment {
 
         Intent i = getActivity().getIntent();
         int Team = i.getIntExtra("CountryName", 0);
-        String tempTeamName = this.getContext().getString(Team);
+        String favTeam = i.getStringExtra("fav_country");
+        String tempTeamName ;
+
+        if(Team == 0)
+        {
+            tempTeamName = favTeam;
+        }
+        else
+        {
+            tempTeamName = this.getContext().getString(Team);
+        }
 
 
         CountryHash countryHash = new CountryHash();

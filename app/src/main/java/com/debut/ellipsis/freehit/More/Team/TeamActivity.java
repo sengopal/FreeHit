@@ -29,7 +29,17 @@ public class TeamActivity extends AppCompatActivity {
         setContentView(R.layout.fragment_more_team_activity);
         Intent i = getIntent();
         int Team = i.getIntExtra("CountryName", 0);
-        String tempTeamName = this.getApplicationContext().getString(Team);
+        String favTeam = i.getStringExtra("fav_country");
+        String tempTeamName ;
+
+        if(Team == 0)
+        {
+            tempTeamName = favTeam;
+        }
+        else
+        {
+            tempTeamName = this.getApplicationContext().getString(Team);
+        }
 
         View viewToolbarTabs = (View) findViewById(R.id.team_toolbar_tabs);
 

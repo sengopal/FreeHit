@@ -1,4 +1,5 @@
-package com.debut.ellipsis.freehit.More.favorites.FavouriteTeam;
+package com.debut.ellipsis.freehit.More.Team;
+
 
 
 import android.content.Context;
@@ -19,20 +20,20 @@ import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
 
-public class FavTeamPlayersAdapter extends RecyclerView.Adapter<FavTeamPlayersAdapter.FavTeamPlayerViewHolder> {
+public class TeamPlayerAdapter extends RecyclerView.Adapter<TeamPlayerAdapter.TeamPlayerViewHolder> {
 
     private List<PlayerCountryItem> playerCountryItems;
     private int rowLayout;
     private Context context;
 
 
-    public static class FavTeamPlayerViewHolder extends RecyclerView.ViewHolder {
+    public static class TeamPlayerViewHolder extends RecyclerView.ViewHolder {
         ImageView PlayerImage;
         TextView PlayerName;
         LinearLayout rlcontainer;
 
 
-        public FavTeamPlayerViewHolder(View v) {
+        public TeamPlayerViewHolder(View v) {
             super(v);
             PlayerImage = (ImageView) v.findViewById(R.id.row_icon);
             PlayerName = (TextView) v.findViewById(R.id.row_title);
@@ -40,26 +41,26 @@ public class FavTeamPlayersAdapter extends RecyclerView.Adapter<FavTeamPlayersAd
         }
     }
 
-    public FavTeamPlayersAdapter(List<PlayerCountryItem> playerCountryItems, int rowLayout, Context context) {
+    public TeamPlayerAdapter(List<PlayerCountryItem> playerCountryItems, int rowLayout, Context context) {
         this.playerCountryItems = playerCountryItems;
         this.rowLayout = rowLayout;
         this.context = context;
     }
 
     @Override
-    public FavTeamPlayersAdapter.FavTeamPlayerViewHolder onCreateViewHolder(ViewGroup parent,
-                                                             int viewType) {
+    public TeamPlayerAdapter.TeamPlayerViewHolder onCreateViewHolder(ViewGroup parent,
+                                                                            int viewType) {
         View view = null;
         if (viewType == 0) {
             view = LayoutInflater.from(parent.getContext()).inflate(rowLayout, parent, false);
         }
-        return new FavTeamPlayersAdapter.FavTeamPlayerViewHolder(view);
+        return new TeamPlayerAdapter.TeamPlayerViewHolder(view);
 
     }
 
 
     @Override
-    public void onBindViewHolder(FavTeamPlayersAdapter.FavTeamPlayerViewHolder holder, final int position) {
+    public void onBindViewHolder(TeamPlayerAdapter.TeamPlayerViewHolder holder, final int position) {
         holder.PlayerName.setText(playerCountryItems.get(position).getName());
 
         String PlayerURL = playerCountryItems.get(position).getImage();

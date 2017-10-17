@@ -18,7 +18,6 @@ import android.widget.Toast;
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.CountryItem;
-import com.debut.ellipsis.freehit.More.favorites.FavouriteTeam.FavTeamPlayersAdapter;
 import com.debut.ellipsis.freehit.PlayerCountryItem;
 import com.debut.ellipsis.freehit.R;
 
@@ -42,7 +41,18 @@ public class TeamPlayers extends Fragment {
 
         Intent i = getActivity().getIntent();
         final int TeamName = i.getIntExtra("CountryName",0);
-        final String Team = this.getContext().getString(TeamName);
+        String favTeam = i.getStringExtra("fav_country");
+        final String Team ;
+
+        if(TeamName == 0)
+        {
+            Team = favTeam;
+        }
+        else
+        {
+            Team = this.getContext().getString(TeamName);
+        }
+
 
         View viewToolbar = (View) rootView.findViewById(R.id.toolbar_fav_players);
 
@@ -87,7 +97,7 @@ public class TeamPlayers extends Fragment {
                                     mEmptyView.setVisibility(View.VISIBLE);
                                     mEmptyView.setText("No Players Found");
                                 }
-                                recyclerView.setAdapter(new FavTeamPlayersAdapter(playerCountryItems, R.layout.country_picker_row, getContext()));
+                                recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getContext()));
 
                             }
 
@@ -141,7 +151,7 @@ public class TeamPlayers extends Fragment {
                                             mEmptyView.setVisibility(View.VISIBLE);
                                             mEmptyView.setText("No Players Found");
                                         }
-                                        recyclerView.setAdapter(new FavTeamPlayersAdapter(playerCountryItems, R.layout.country_picker_row, getContext()));
+                                        recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getContext()));
 
                                     }
 
