@@ -1,16 +1,18 @@
 package com.debut.ellipsis.freehit.Settings;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.RequestBuilder;
@@ -29,6 +31,8 @@ public class CustomSettings extends AppCompatActivity {
 
     private Toolbar toolbar;
     CountryHash countryHash = new CountryHash();
+    public ImageView NoConnectionImage;
+    public Button NoConnectionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,32 +46,61 @@ public class CustomSettings extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        String title = "Settings";
+       /* String title = "Settings";
 
         //To Set The Color Of The Action Bar
         SpannableString s = new SpannableString(title);
         s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        getSupportActionBar().setTitle(s);
+        getSupportActionBar().setTitle(s);*/
 
+        final View no_internet_connection = findViewById(R.id.Unavailable_connection);
+
+        NoConnectionImage = (ImageView) no_internet_connection.findViewById(R.id.no_internet_connection);
+        NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
+
+        RelativeLayout country_select = (RelativeLayout) findViewById(R.id.country_select_layout);
 
         ImageView country_flag = (ImageView) findViewById(R.id.country_flag);
-
 
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         String name = prefs.getString("country_name", "Select Your Favourite Country");
 
         TextView country_name = (TextView) findViewById(R.id.country_name);
-        country_name.setText(name);
 
         String TeamLogoURL = countryHash.getCountryFlag(name.toUpperCase());
 
-        /*CustomImageSizeModel TeamLogo = new CustomImageSizeModelFutureStudio(TeamLogoURL);*/
 
-        RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogoURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-        requestBuilder.into(country_flag);
+        // Get a reference to the ConnectivityManager to check state of network connectivity
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        /*Glide.with(getApplicationContext()).load(TeamLogo).apply(new RequestOptions().placeholder(R.drawable.matches)).into(country_flag);*/
+        // Get details on the currently active default data network
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        // If there is a network connection, fetch data
+        if (networkInfo != null && networkInfo.isConnected())
+        {
+            country_name.setText(name);
+
+            RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogoURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+
+            requestBuilder.into(country_flag);
+        }
+        else
+        {
+            country_select.setVisibility(View.INVISIBLE);
+            no_internet_connection.setVisibility(View.VISIBLE);
+            NoConnectionButton.setOnClickListener(new View.OnClickListener() {
+
+                public void onClick(View v) {
+                    Intent i = new Intent(getBaseContext(), CustomSettings.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(i);
+                }
+            });
+
+        }
 
     }
 

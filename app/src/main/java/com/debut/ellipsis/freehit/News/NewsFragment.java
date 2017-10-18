@@ -206,7 +206,7 @@ public class NewsFragment extends Fragment {
 
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                int firstVisibleItemIndex = mLinearLayoutManager.findFirstCompletelyVisibleItemPosition();
+                int firstVisibleItemIndex = mLinearLayoutManager.findFirstVisibleItemPosition();
                 if (firstVisibleItemIndex > 0) {
                     mLinearLayoutManager.smoothScrollToPosition(recyclerView,null,0);
                 }

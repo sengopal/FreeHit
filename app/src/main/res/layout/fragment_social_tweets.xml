@@ -22,11 +22,21 @@
             <include
                 android:id="@+id/tweets_recycler_layout"
                 layout="@layout/common_recycler_view_list" />
+
+            <include
+                android:id="@+id/progress"
+                layout="@layout/common_progressbar" />
+
+            <include
+                android:id="@+id/No_tweets"
+                layout="@layout/empty_view_refresh"
+                android:visibility="invisible" />
+
         </RelativeLayout>
 
-        <include
-            android:id="@+id/progress"
-            layout="@layout/common_progressbar" />
+
+
+
 
     </RelativeLayout>
 

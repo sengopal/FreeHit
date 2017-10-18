@@ -8,9 +8,10 @@
     <include
         android:id="@+id/custom_settings_toolbar"
         layout="@layout/common_toolbar" />
-    
+
 
     <RelativeLayout
+        android:id="@+id/country_select_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/custom_settings_toolbar"
@@ -74,6 +75,18 @@
             android:layout_below="@+id/country_select"
             android:background="@color/divider"
             android:textSize="@dimen/_1sdp" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/custom_settings_toolbar">
+
+        <include
+            android:id="@+id/Unavailable_connection"
+            layout="@layout/no_internet_connection"
+            android:visibility="invisible" />
     </RelativeLayout>
 
 

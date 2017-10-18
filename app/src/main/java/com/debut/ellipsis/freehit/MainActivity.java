@@ -52,18 +52,10 @@ public class MainActivity extends AppCompatActivity {
         Twitter.initialize(this);
 
         int main_tab = getIntent().getIntExtra("Main_tab", 0);
-        String sub_tab = getIntent().getStringExtra("Sub_tab");
 
         View viewToolbarTabs = (View) findViewById(R.id.toolbar_tabs_main);
         toolbar = (Toolbar) viewToolbarTabs.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        String title = "FreeHit";
-
-        /*//To Set The Color Of The Action Bar
-        SpannableString s = new SpannableString(title);
-        s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        getSupportActionBar().setTitle(s);*/
 
         View viewMainPager = (View) findViewById(R.id.main_viewpager);
 
@@ -110,34 +102,27 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(2).setIcon(tabIcons[2]);
         tabLayout.getTabAt(3).setIcon(tabIcons[3]);
 
-        if(position==0) {
-            tabLayout.getTabAt(0).getIcon().setColorFilter(Color.parseColor("#f5f5f5"), PorterDuff.Mode.SRC_IN);
-        }
-        else
+        tabLayout.getTabAt(0).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(1).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(2).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(3).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+
+        switch (position)
         {
-            tabLayout.getTabAt(0).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+            case 0:
+                tabLayout.getTabAt(0).getIcon().setColorFilter(Color.parseColor("#f5f5f5"), PorterDuff.Mode.SRC_IN);
+                break;
+            case 1:
+                tabLayout.getTabAt(1).getIcon().setColorFilter(Color.parseColor("#f5f5f5"), PorterDuff.Mode.SRC_IN);
+                break;
+            case 2:
+                tabLayout.getTabAt(2).getIcon().setColorFilter(Color.parseColor("#f5f5f5"), PorterDuff.Mode.SRC_IN);
+                break;
+            case 3:
+                tabLayout.getTabAt(3).getIcon().setColorFilter(Color.parseColor("#f5f5f5"), PorterDuff.Mode.SRC_IN);
+                break;
         }
-        if(position==1) {
-            tabLayout.getTabAt(1).getIcon().setColorFilter(Color.parseColor("#f5f5f5"), PorterDuff.Mode.SRC_IN);
-        }
-        else
-        {
-            tabLayout.getTabAt(1).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-        }
-        if(position==2) {
-            tabLayout.getTabAt(2).getIcon().setColorFilter(Color.parseColor("#f5f5f5"), PorterDuff.Mode.SRC_IN);
-        }
-        else
-        {
-            tabLayout.getTabAt(2).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-        }
-        if(position==3) {
-            tabLayout.getTabAt(3).getIcon().setColorFilter(Color.parseColor("#f5f5f5"), PorterDuff.Mode.SRC_IN);
-        }
-        else
-        {
-            tabLayout.getTabAt(3).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-        }
+
     }
 
     private void setupViewPager(ViewPager viewPager) {

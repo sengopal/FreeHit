@@ -52,8 +52,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
     }
 
     @Override
-    public NewsItemAdapter.NewsViewHolder onCreateViewHolder(ViewGroup parent,
-                                                                                             int viewType) {
+    public NewsItemAdapter.NewsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = null;
         if (viewType == 0) {
             view = LayoutInflater.from(parent.getContext()).inflate(rowLayout, parent, false);
@@ -87,7 +86,6 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
 
                 Intent NewsArticleIntent = new Intent(context, NewsArticle.class);
 
-                String pos = String.valueOf(position);
                 NewsArticleIntent.putExtra("news_id", newsItems.get(position).getId().toString());
                 NewsArticleIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(NewsArticleIntent);

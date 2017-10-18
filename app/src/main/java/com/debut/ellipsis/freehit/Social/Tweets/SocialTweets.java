@@ -1,6 +1,9 @@
 package com.debut.ellipsis.freehit.Social.Tweets;
 
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -10,8 +13,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.R;
@@ -33,6 +38,8 @@ public class SocialTweets extends Fragment {
     private String QueryToSearch = "#cricket";
     public RecyclerView rv;
     private ProgressBar mProgressBar;
+    public TextView NotweetsText;
+    public Button NotweetsButton;
 
     public SocialTweets() {
         // Required empty public constructor
@@ -64,10 +71,16 @@ public class SocialTweets extends Fragment {
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
         mProgressBar.setVisibility(View.VISIBLE);
 
+        final View No_tweets = socTweets.findViewById(R.id.No_tweets);
+
+        NotweetsText = (TextView) No_tweets.findViewById(R.id.empty_view);
+        NotweetsButton = (Button) No_tweets.findViewById(R.id.No_Live_Matches_button);
+
+
         final RelativeLayout twitrel = (RelativeLayout) socTweets.findViewById(R.id.twit_layout);
         //  Using a SearchTimeline to search for a given query, can be changed with (UserTimeline, CollectionTimeline, TwitterListTimeline, or FixedTweetTimeline)
         //  Defining a recyclerView adapter for the given Timeline, Twitter builds all the icons and intents and all that shit. I love twitter.
-        tabCall("#cricket", SearchTimeline.ResultType.POPULAR);
+
 
         container.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,67 +100,110 @@ public class SocialTweets extends Fragment {
                 adapter.refresh(new Callback<TimelineResult<Tweet>>() {
                     @Override
                     public void success(Result<TimelineResult<Tweet>> result) {
+                        No_tweets.setVisibility(View.INVISIBLE);
                         mProgressBar.setVisibility(View.INVISIBLE);
                         refLayout.setRefreshing(false);
                     }
 
                     @Override
                     public void failure(TwitterException exception) {
-                        Toast.makeText(getContext(), "Fetching Twitter Feed failed.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
                         refLayout.setRefreshing(false);
                     }
                 });
             }
         });
 
-        socTabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                switch (tab.getPosition()) {
-                    case 0:
-                        tabCall(QueryToSearch, SearchTimeline.ResultType.POPULAR);
-                        break;
-                    case 1:
-                        tabCall(QueryToSearch, SearchTimeline.ResultType.RECENT);
-                        break;
-                    default:
 
-                        break;
-                }
-            }
+        // Get a reference to the ConnectivityManager to check state of network connectivity
+        ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
+        // Get details on the currently active default data network
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
-            }
+        // If there is a network connection, fetch data
+        if (networkInfo != null && networkInfo.isConnected()) {
+            No_tweets.setVisibility(View.INVISIBLE);
+            socTabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                @Override
+                public void onTabSelected(TabLayout.Tab tab) {
+                    switch (tab.getPosition()) {
+                        case 0:
+                            tabCall(QueryToSearch, SearchTimeline.ResultType.POPULAR);
+                            break;
+                        case 1:
+                            tabCall(QueryToSearch, SearchTimeline.ResultType.RECENT);
+                            break;
+                        default:
 
-            // Refreshes the feed if a tab is reselected (quality of life)
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-                refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                    @Override
-                    public void onRefresh() {
-                        refLayout.setRefreshing(true);
-                        adapter.refresh(new Callback<TimelineResult<Tweet>>() {
-                            @Override
-                            public void success(Result<TimelineResult<Tweet>> result) {
-                                mProgressBar.setVisibility(View.INVISIBLE);
-                                refLayout.setRefreshing(false);
-                            }
-
-                            @Override
-                            public void failure(TwitterException exception) {
-                                Toast.makeText(getContext(), "Fetching Twitter Feed failed.", Toast.LENGTH_SHORT).show();
-                                refLayout.setRefreshing(false);
-                            }
-                        });
+                            break;
                     }
-                });
-            }
-        });
+                }
+
+                @Override
+                public void onTabUnselected(TabLayout.Tab tab) {
+                }
+
+                // Refreshes the feed if a tab is reselected (quality of life)
+                @Override
+                public void onTabReselected(TabLayout.Tab tab) {
+                    refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                        @Override
+                        public void onRefresh() {
+                            refLayout.setRefreshing(true);
+                            adapter.refresh(new Callback<TimelineResult<Tweet>>() {
+                                @Override
+                                public void success(Result<TimelineResult<Tweet>> result) {
+                                    mProgressBar.setVisibility(View.INVISIBLE);
+                                    refLayout.setRefreshing(false);
+                                }
+
+                                @Override
+                                public void failure(TwitterException exception) {
+                                    Toast.makeText(getContext(), "Fetching Twitter Feed failed.", Toast.LENGTH_SHORT).show();
+                                    refLayout.setRefreshing(false);
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        } else {
+            No_tweets.setVisibility(View.VISIBLE);
+            mProgressBar.setVisibility(View.INVISIBLE);
+            NotweetsButton.setVisibility(View.INVISIBLE);
+            NotweetsText.setText(R.string.EmptyNews);
+            NotweetsText.setText(R.string.no_internet_connection);
+            socTabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                @Override
+                public void onTabSelected(TabLayout.Tab tab) {
+                    switch (tab.getPosition()) {
+                        case 0:
+                            tabCall(QueryToSearch, SearchTimeline.ResultType.POPULAR);
+                            break;
+                        case 1:
+                            tabCall(QueryToSearch, SearchTimeline.ResultType.RECENT);
+                            break;
+                        default:
+
+                            break;
+                    }
+                }
+
+                @Override
+                public void onTabUnselected(TabLayout.Tab tab) {
+                }
+
+                @Override
+                public void onTabReselected(TabLayout.Tab tab) {
+                }
+            });
+        }
+
+
         return socTweets;
     }
-    // Function to add tabs, maintaining consistancy in program.
+    // Function to add tabs, maintaining consistency in program.
 
     private void setupTabs() {
         socTabs.addTab(socTabs.newTab().setText("TOP"));

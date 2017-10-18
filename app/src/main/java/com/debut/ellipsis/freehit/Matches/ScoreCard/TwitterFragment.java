@@ -1,7 +1,10 @@
 package com.debut.ellipsis.freehit.Matches.ScoreCard;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -11,8 +14,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.CountryHash;
@@ -34,6 +39,8 @@ public class TwitterFragment extends Fragment {
     public TweetTimelineRecyclerViewAdapter adapter;
     public RecyclerView rv;
     private ProgressBar mProgressBar;
+    public TextView NotweetsText;
+    public Button NotweetsButton;
 
     public TwitterFragment() {
         // Required empty public constructor
@@ -71,10 +78,15 @@ public class TwitterFragment extends Fragment {
         rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        final View No_tweets = socTweets.findViewById(R.id.No_tweets);
+
+        NotweetsText = (TextView) No_tweets.findViewById(R.id.empty_view);
+        NotweetsButton = (Button) No_tweets.findViewById(R.id.No_Live_Matches_button);
+
         final RelativeLayout twitrel = (RelativeLayout) socTweets.findViewById(R.id.twit_layout);
         //  Using a SearchTimeline to search for a given query, can be changed with (UserTimeline, CollectionTimeline, TwitterListTimeline, or FixedTweetTimeline)
         //  Defining a recyclerView adapter for the given Timeline, Twitter builds all the icons and intents and all that shit. I love twitter.
-        tabCall(QueryToSearch1 + "," + QueryToSearch2, SearchTimeline.ResultType.RECENT);
+
 
         container.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +98,7 @@ public class TwitterFragment extends Fragment {
             }
         });
 
-
+        refLayout.setColorSchemeResources(R.color.orange);
         refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -94,17 +106,37 @@ public class TwitterFragment extends Fragment {
                 adapter.refresh(new Callback<TimelineResult<Tweet>>() {
                     @Override
                     public void success(Result<TimelineResult<Tweet>> result) {
+                        No_tweets.setVisibility(View.INVISIBLE);
                         mProgressBar.setVisibility(View.INVISIBLE);
                         refLayout.setRefreshing(false);
                     }
 
                     @Override
                     public void failure(TwitterException exception) {
-                        Toast.makeText(getContext(), "Fetching Twitter Feed failed.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(),R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+                        refLayout.setRefreshing(false);
                     }
                 });
             }
         });
+
+        ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        // If there is a network connection, fetch data
+        if (networkInfo != null && networkInfo.isConnected()) {
+            No_tweets.setVisibility(View.INVISIBLE);
+            tabCall(QueryToSearch1 + "," + QueryToSearch2, SearchTimeline.ResultType.RECENT);
+
+        } else {
+            No_tweets.setVisibility(View.VISIBLE);
+            mProgressBar.setVisibility(View.INVISIBLE);
+            NotweetsButton.setVisibility(View.INVISIBLE);
+            NotweetsText.setText(R.string.EmptyNews);
+            NotweetsText.setText(R.string.no_internet_connection);
+            tabCall(QueryToSearch1 + "," + QueryToSearch2, SearchTimeline.ResultType.RECENT);
+
+        }
 
         return socTweets;
     }
