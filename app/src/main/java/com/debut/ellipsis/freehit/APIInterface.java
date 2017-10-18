@@ -23,13 +23,13 @@ public interface APIInterface {
     @GET("news?")
     Call<NewsArticleItem> doGetNewsArticle(@Query("id") String id);
 
-    @GET("playerbio")
+    @GET("playerbio?url=1394-yuzvendra-chahal-playerprofile")
     Call<InfoItems> doGetInfoResources();
-    @GET("playerbio")
+    @GET("playerbio?url=1394-yuzvendra-chahal-playerprofile")
     Call<Batting_Items> doGetBattinInfo();
-    @GET("playerbio")
+    @GET("playerbio?url=1394-yuzvendra-chahal-playerprofile")
     Call<Bowling_Items> doGetBowlingInfo();
-    @GET("playerbio")
+    @GET("playerbio?url=1394-yuzvendra-chahal-playerprofile")
     Call<Career_Item> doGetCareerInfo();
 
     @GET("upcoming?max=6")

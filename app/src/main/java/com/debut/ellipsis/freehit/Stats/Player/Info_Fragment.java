@@ -143,28 +143,28 @@ public class Info_Fragment extends Fragment {
                     String[] words3 = str3.split("-");
                     switch (i) {
                         case 0:
-                            str3 = words3[1].trim();
-                            motest.setText(str3);
+//                            str3 = words3[1].trim();
+                            motest.setText("a");
                             break;
                         case 1:
-                            str3 = words3[1].trim();
-                            motodi.setText(str3);
+//                            str3 = words3[1].trim();
+                            motodi.setText("a");
                             break;
                         case 2:
-                            str3 = words3[1].trim();
-                            mot20.setText(str3);
+//                            str3 = words3[1].trim();
+                            mot20.setText("a");
                             break;
                         case 3:
-                            str3 = words3[1].trim();
-                            motwc.setText(str3);
+//                            str3 = words3[1].trim();
+                            motwc.setText("a");
                             break;
                         case 4:
-                            str3 = words3[1].trim();
-                            motipl.setText(str3);
+//                            str3 = words3[1].trim();
+                            motipl.setText("a");
                             break;
                         case 5:
-                            str3 = words3[1].trim();
-                            motcl.setText(str3);
+//                            str3 = words3[1].trim();
+                            motcl.setText("a");
                             break;
                     }
                 }
