@@ -9,15 +9,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <include
-            android:id="@+id/soc_tabs"
-            layout="@layout/common_tabs"/>
-
-
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/soc_tabs">
+            android:layout_height="wrap_content">
 
             <include
                 android:id="@+id/tweets_recycler_layout"
@@ -28,14 +22,16 @@
                 layout="@layout/common_progressbar" />
 
             <include
-                android:id="@+id/No_tweets"
-                layout="@layout/empty_view_refresh"
+                android:id="@+id/Unavailable_connection"
+                layout="@layout/no_internet_connection"
                 android:visibility="invisible" />
 
+            <include
+                android:id="@+id/No_tweets"
+                layout="@layout/empty_view_refresh"
+                android:visibility="invisible"/>
+
         </RelativeLayout>
-
-
-
 
 
     </RelativeLayout>

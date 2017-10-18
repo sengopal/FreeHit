@@ -2,7 +2,6 @@ package com.debut.ellipsis.freehit.Matches.LiveMatches;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
@@ -10,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DecodeFormat;
@@ -138,12 +138,13 @@ public class LiveMatchCardAdapter extends PagerAdapter {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent LiveMatchScoreCardIntent = new Intent(context, LiveMatchScoreCard.class);
+               /* Intent LiveMatchScoreCardIntent = new Intent(context, LiveMatchScoreCard.class);
                 LiveMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getNdid());
                 LiveMatchScoreCardIntent.putExtra("match_name", finalMatch_name + "( " +ShortNameTeam1+ " vs " +ShortNameTeam2+ " )");
                 LiveMatchScoreCardIntent.putExtra("Team1Name", ShortNameTeam1);
                 LiveMatchScoreCardIntent.putExtra("Team2Name", ShortNameTeam2);
-                context.startActivity(LiveMatchScoreCardIntent);
+                context.startActivity(LiveMatchScoreCardIntent);*/
+                Toast.makeText(context,"Coming Soon !",Toast.LENGTH_SHORT).show();
 
             }
         });

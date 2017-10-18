@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DecodeFormat;
@@ -103,10 +104,11 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
                     // Start the new activity
                     context.startActivity(UpcomingIntent);
                 } else {
-                    Intent UpcomingMatchScoreCardIntent = new Intent(context, UpcomingMatchScoreCard.class);
+                    /*Intent UpcomingMatchScoreCardIntent = new Intent(context, UpcomingMatchScoreCard.class);
                     UpcomingMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getNdid());
                     UpcomingMatchScoreCardIntent.putExtra("match_name", dataObjectList.get(position).getMatch() + "(" + dataObjectList.get(position).getTeam1().getSn() + " vs " + dataObjectList.get(position).getTeam2().getSn() + ")");
-                    context.startActivity(UpcomingMatchScoreCardIntent);
+                    context.startActivity(UpcomingMatchScoreCardIntent);*/
+                    Toast.makeText(context,"Coming Soon !",Toast.LENGTH_SHORT).show();
                 }
             }
         });

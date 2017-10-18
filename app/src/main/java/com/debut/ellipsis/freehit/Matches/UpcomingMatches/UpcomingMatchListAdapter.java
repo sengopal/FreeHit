@@ -2,7 +2,6 @@ package com.debut.ellipsis.freehit.Matches.UpcomingMatches;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DecodeFormat;
@@ -138,12 +138,13 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
             @Override
             public void onClick(View view) {
 
-                Intent UpcomingMatchScoreCardIntent = new Intent(mContext, UpcomingMatchScoreCard.class);
+                /*Intent UpcomingMatchScoreCardIntent = new Intent(mContext, UpcomingMatchScoreCard.class);
                 UpcomingMatchScoreCardIntent.putExtra("match_id", upcomingMatchCards.getNdid());
                 UpcomingMatchScoreCardIntent.putExtra("match_name",  upcomingMatchCards.getMatch() + "(" + upcomingMatchCards.getTeam1().getSn() + " vs " + upcomingMatchCards.getTeam2().getSn() + ")");
 
                 UpcomingMatchScoreCardIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                mContext.startActivity(UpcomingMatchScoreCardIntent);
+                mContext.startActivity(UpcomingMatchScoreCardIntent);*/
+                Toast.makeText(mContext,"Coming Soon !",Toast.LENGTH_SHORT).show();
 
             }
         };

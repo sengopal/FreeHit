@@ -1,7 +1,6 @@
 package com.debut.ellipsis.freehit.Matches.PastMatches;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DecodeFormat;
@@ -108,12 +108,13 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
             @Override
             public void onClick(View view) {
 
-                Intent UpcomingMatchScoreCardIntent = new Intent(context, PastMatchScoreCard.class);
+                /*Intent UpcomingMatchScoreCardIntent = new Intent(context, PastMatchScoreCard.class);
                 UpcomingMatchScoreCardIntent.putExtra("match_id", pastMatchCardItems.get(position).getNdid());
                 UpcomingMatchScoreCardIntent.putExtra("match_name", pastMatchCardItems.get(position).getTitle());
-                    /*ActivityOptions.makeCustomAnimation(context,R.anim.animation_entry,R.anim.animation_exit);*/
+                    *//*ActivityOptions.makeCustomAnimation(context,R.anim.animation_entry,R.anim.animation_exit);*//*
                 UpcomingMatchScoreCardIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(UpcomingMatchScoreCardIntent);
+                context.startActivity(UpcomingMatchScoreCardIntent);*/
+                Toast.makeText(context,"Coming Soon !",Toast.LENGTH_SHORT).show();
 
             }
         };

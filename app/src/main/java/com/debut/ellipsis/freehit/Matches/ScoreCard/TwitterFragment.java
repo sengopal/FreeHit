@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -34,7 +33,6 @@ import com.twitter.sdk.android.tweetui.TweetTimelineRecyclerViewAdapter;
  * A simple {@link Fragment} subclass.
  */
 public class TwitterFragment extends Fragment {
-    public TabLayout socTabs;
     public SearchTimeline searchTimeline;
     public TweetTimelineRecyclerViewAdapter adapter;
     public RecyclerView rv;
@@ -57,9 +55,6 @@ public class TwitterFragment extends Fragment {
 
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
-        View viewMatchesTweetsTab = (View) socTweets.findViewById(R.id.soc_tabs);
-        socTabs = (TabLayout) viewMatchesTweetsTab.findViewById(R.id.tabs);
-        socTabs.setVisibility(View.GONE);
 
         View viewProgress = (View) socTweets.findViewById(R.id.progress);
 
@@ -125,6 +120,7 @@ public class TwitterFragment extends Fragment {
 
         // If there is a network connection, fetch data
         if (networkInfo != null && networkInfo.isConnected()) {
+            mProgressBar.setVisibility(View.INVISIBLE);
             No_tweets.setVisibility(View.INVISIBLE);
             tabCall(QueryToSearch1 + "," + QueryToSearch2, SearchTimeline.ResultType.RECENT);
 
@@ -146,7 +142,8 @@ public class TwitterFragment extends Fragment {
     private void tabCall(String query, SearchTimeline.ResultType type) {
         searchTimeline = new SearchTimeline.Builder().query(query).resultType(type).build();
         adapter = new TweetTimelineRecyclerViewAdapter.Builder(getContext()).setTimeline(searchTimeline).build();
-        rv.setAdapter(adapter);
         mProgressBar.setVisibility(View.INVISIBLE);
+        rv.setAdapter(adapter);
+
     }
 }
