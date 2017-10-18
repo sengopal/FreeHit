@@ -39,7 +39,7 @@ public interface APIInterface {
     @GET("upcoming?max=6")
     Call<UpcomingMatchCardItem> doGetUpcomingMatchListResources();
 
-    @GET("upcoming?max=25")
+    @GET("upcoming?max=50")
     Call<UpcomingMatchCardItem> doGetUpcomingCompleteMatchListResources();
 
     @GET("playerlist?")
@@ -57,7 +57,7 @@ public interface APIInterface {
     @GET("past?max=6")
     Call<PastMatchCardItem> doGetPastCardResources();
 
-    @GET("past?max=25")
+    @GET("past?max=50")
     Call<PastMatchCardItem> doGetCompletePastCardResources();
 
     @GET("news?")

@@ -50,7 +50,7 @@ MoreFragment extends Fragment {
 
         moreItem.add(new MoreItem(R.drawable.player, R.string.search_player));
         moreItem.add(new MoreItem(R.drawable.team, R.string.search_team));
-        moreItem.add(new MoreItem(R.drawable.shield, R.string.search_series));
+        moreItem.add(new MoreItem(R.drawable.series, R.string.search_series));
         moreItem.add(new MoreItem(R.drawable.fav, R.string.fav_team));
         moreItem.add(new MoreItem(R.drawable.rankings, R.string.rankings));
 

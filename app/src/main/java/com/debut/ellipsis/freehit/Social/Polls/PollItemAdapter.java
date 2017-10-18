@@ -272,7 +272,7 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
                     });
                 }  else {
 
-                    Toast.makeText(context, "Please select an option for Poll " + (holder.getAdapterPosition() + 1), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Please select an option for Poll : " + (holder.getAdapterPosition() + 1), Toast.LENGTH_SHORT).show();
                 }
             }
         });
