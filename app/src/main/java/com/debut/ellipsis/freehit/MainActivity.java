@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.debut.ellipsis.freehit.Matches.MatchesFragment;
 import com.debut.ellipsis.freehit.More.MoreMain.MoreFragment;
@@ -53,20 +55,23 @@ public class MainActivity extends AppCompatActivity {
 
         int main_tab = getIntent().getIntExtra("Main_tab", 0);
 
-        View viewToolbarTabs = (View) findViewById(R.id.toolbar_tabs_main);
-        toolbar = (Toolbar) viewToolbarTabs.findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        TextView AppTitle = (TextView) findViewById(R.id.title) ;
+        Typeface tfTitle = Typeface.createFromAsset(getAssets(), "font.ttf");
+
+        AppTitle.setTypeface(tfTitle);
+
 
         View viewMainPager = (View) findViewById(R.id.main_viewpager);
 
         viewPager = (ViewPager) viewMainPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        tabLayout.setTabMode(TabLayout.MODE_FIXED);
-
 
         viewPager.setCurrentItem(main_tab);
 
