@@ -20,13 +20,19 @@ import java.util.List;
 
 public class SeriesActivity extends AppCompatActivity {
 
+    public static String Series_Name ;
+    public static String date;
+    public static String Teams ;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.fragment_more_series_activity);
 
         Intent i = getIntent();
-        String Series_Name = i.getStringExtra("Series_Name");
+        Series_Name = i.getStringExtra("Series_Name");
+        date = i.getStringExtra("date");
+        Teams = i.getStringExtra("Teams");
 
         View viewToolbar = findViewById(R.id.toolbar_tabs_series);
 

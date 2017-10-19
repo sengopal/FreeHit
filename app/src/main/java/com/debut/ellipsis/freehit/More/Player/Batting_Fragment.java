@@ -22,7 +22,6 @@ import retrofit2.Response;
 
 public class Batting_Fragment extends Fragment {
 
-    private String player_url;
     private ProgressBar mProgressBar;
 
     @Override
@@ -30,7 +29,7 @@ public class Batting_Fragment extends Fragment {
                              Bundle savedInstanceState) {
 
         Intent i = getActivity().getIntent();
-        player_url = i.getStringExtra("player_url");
+        PlayerActivity.player_url = i.getStringExtra("player_url");
 
         View rootView = inflater.inflate(R.layout.fragment_more_player_batting_bowling_gridview, container, false);
         final String[] gridViewString = new String[60];
@@ -65,7 +64,7 @@ public class Batting_Fragment extends Fragment {
         gridViewString[55] = "STRIKE\nRATE";
 
         APIInterface apiInterface = ApiClient.getClient().create(APIInterface.class);
-        Call<BattingItem> call = apiInterface.doGetBattingInfo(player_url);
+        Call<BattingItem> call = apiInterface.doGetBattingInfo(PlayerActivity.player_url);
         call.enqueue(new Callback<BattingItem>() {
             @Override
             public void onResponse(Call<BattingItem> call, Response<BattingItem> response) {

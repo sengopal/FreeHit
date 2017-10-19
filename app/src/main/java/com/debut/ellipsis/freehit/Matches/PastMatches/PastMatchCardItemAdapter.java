@@ -12,9 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
@@ -23,10 +23,6 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
     private Context context;
     private List<PastMatchCardItem> dataObjectList;
     private LayoutInflater layoutInflater;
-    private String logo_string1;
-    private String logo_string2;
-    private ImageView imageViewTeam1Logo;
-    private ImageView imageViewTeam2Logo;
 
     public PastMatchCardItemAdapter(Context context, List<PastMatchCardItem> dataObjectList) {
         this.context = context;
@@ -58,9 +54,9 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
         textViewStadiumName.setText("( "+this.dataObjectList.get(position).getStadium()+" )");
 
 
-        imageViewTeam1Logo = (ImageView) view.findViewById(R.id.team_logo_1_past);
+        ImageView imageViewTeam1Logo = (ImageView) view.findViewById(R.id.team_logo_1_past);
 
-        imageViewTeam2Logo = (ImageView) view.findViewById(R.id.team_logo_2_past);
+        ImageView imageViewTeam2Logo = (ImageView) view.findViewById(R.id.team_logo_2_past);
 
 
         TextView shortName1 = (TextView) view.findViewById(R.id.sn_team_1_past);
@@ -99,20 +95,20 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
 
 
         // Initializing Logo URLS
-        logo_string1 = this.dataObjectList.get(position).getTeam1Info().getImage();
-        logo_string2 = this.dataObjectList.get(position).getTeam2Info().getImage();
+        String logo_string1 = this.dataObjectList.get(position).getTeam1Info().getImage();
+        String logo_string2 = this.dataObjectList.get(position).getTeam2Info().getImage();
 
 
 
         if (position < 5) {
 
-            RequestBuilder requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+            MainActivity.requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-            requestBuilder.into(imageViewTeam1Logo);
+            MainActivity.requestBuilder.into(imageViewTeam1Logo);
 
-            RequestBuilder requestBuilder1 = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+            MainActivity.requestBuilder = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-            requestBuilder1.into(imageViewTeam2Logo);
+            MainActivity.requestBuilder.into(imageViewTeam2Logo);
 
         }
         if (position == 5) {

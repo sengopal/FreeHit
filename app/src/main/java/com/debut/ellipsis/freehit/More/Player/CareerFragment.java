@@ -21,7 +21,6 @@ import retrofit2.Response;
 
 public class CareerFragment extends Fragment {
 
-    private String player_url;
     private ProgressBar mProgressBar;
 
     @Override
@@ -29,7 +28,7 @@ public class CareerFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         Intent i = getActivity().getIntent();
-        player_url = i.getStringExtra("player_url");
+        PlayerActivity.player_url = i.getStringExtra("player_url");
 
         final View rootView = inflater.inflate(R.layout.fragment_more_player_career, container, false);
 
@@ -38,7 +37,7 @@ public class CareerFragment extends Fragment {
 
         APIInterface apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        Call<CareerItem> call = apiInterface.doGetCareerInfo(player_url);
+        Call<CareerItem> call = apiInterface.doGetCareerInfo(PlayerActivity.player_url);
         call.enqueue(new Callback<CareerItem>() {
             @Override
             public void onResponse(Call<CareerItem> call, Response<CareerItem> response) {

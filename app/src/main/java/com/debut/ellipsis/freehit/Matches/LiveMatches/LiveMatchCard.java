@@ -62,6 +62,7 @@ public class LiveMatchCard extends Fragment {
         View viewViewPager = common_match_cards.findViewById(R.id.match_card_viewpagegr);
 
         vp = (ViewPager) viewViewPager.findViewById(R.id.viewpager);
+
         indicator = (PageIndicatorView) common_match_cards.findViewById(R.id.indicator);
         final PullRefreshLayout refreshLayout = (PullRefreshLayout) common_match_cards.findViewById(R.id.swipeRefreshLayout);
 

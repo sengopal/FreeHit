@@ -39,8 +39,8 @@ public class SeriesPast extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_more_team_complete_match_list, container, false);
 
         Intent i = getActivity().getIntent();
-        final String date = i.getStringExtra("date");
-        final String Teams = i.getStringExtra("Teams");
+        SeriesActivity.date = i.getStringExtra("date");
+        SeriesActivity.Teams = i.getStringExtra("Teams");
 
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
@@ -59,7 +59,7 @@ public class SeriesPast extends Fragment {
         refresh_layout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
         /*  GET List Past Matches for selected Team */
-        Call<PastMatchCardItem> call = apiInterface.doGetPastSeriesMatches(Teams, date);
+        Call<PastMatchCardItem> call = apiInterface.doGetPastSeriesMatches(SeriesActivity.Teams, SeriesActivity.date);
         call.enqueue(new Callback<PastMatchCardItem>() {
             @Override
             public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
@@ -87,7 +87,7 @@ public class SeriesPast extends Fragment {
                                                     // Checking if connected or not on refresh
                                                     refresh_layout.setRefreshing(true);
 
-                                                    Call<PastMatchCardItem> call = apiInterface.doGetPastSeriesMatches(Teams, date);
+                                                    Call<PastMatchCardItem> call = apiInterface.doGetPastSeriesMatches(SeriesActivity.Teams, SeriesActivity.date);
                                                     call.enqueue(new Callback<PastMatchCardItem>() {
                                                         @Override
                                                         public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {

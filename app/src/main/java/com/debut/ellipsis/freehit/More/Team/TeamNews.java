@@ -44,20 +44,19 @@ public class TeamNews extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_news_list, container, false);
 
         Intent i = getActivity().getIntent();
-        int Team = i.getIntExtra("CountryName", 0);
-        String tempTeamName ;
-        String favTeam = i.getStringExtra("fav_country");
+        TeamActivity.Team = i.getIntExtra("CountryName", 0);
+        TeamActivity.favTeam = i.getStringExtra("fav_country");
 
-        if(Team == 0)
+        if(TeamActivity.Team == 0)
         {
-            tempTeamName = favTeam;
+            TeamActivity.tempTeamName = TeamActivity.favTeam;
         }
         else
         {
-            tempTeamName = this.getContext().getString(Team);
+            TeamActivity.tempTeamName = this.getContext().getString(TeamActivity.Team);
         }
 
-        final String teamName = tempTeamName.toLowerCase();
+        final String teamName = TeamActivity.tempTeamName.toLowerCase();
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 

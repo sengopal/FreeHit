@@ -11,10 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.CountryHash;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
 import java.text.ParseException;
@@ -167,13 +167,13 @@ public class LiveMatchCardAdapter extends PagerAdapter {
         logo_string1 = this.dataObjectList.get(position).getTeam1().getImage();
         logo_string2 = this.dataObjectList.get(position).getTeam2().getImage();
 
-        RequestBuilder requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        MainActivity.requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-        requestBuilder.into(imageViewTeam1Logo);
+        MainActivity.requestBuilder.into(imageViewTeam1Logo);
 
-        RequestBuilder requestBuilder1 = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        MainActivity.requestBuilder = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-        requestBuilder1.into(imageViewTeam2Logo);
+        MainActivity.requestBuilder.into(imageViewTeam2Logo);
 
         container.addView(view);
         return view;

@@ -12,11 +12,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
@@ -29,7 +29,6 @@ import retrofit2.Response;
 public class Info_Fragment extends Fragment {
 
     private ProgressBar mProgressBar;
-    private String player_url;
     APIInterface apiInterface;
 
 
@@ -42,7 +41,7 @@ public class Info_Fragment extends Fragment {
                              Bundle savedInstanceState) {
 
         Intent i = getActivity().getIntent();
-        player_url = i.getStringExtra("player_url");
+        PlayerActivity.player_url = i.getStringExtra("player_url");
 
         final View rootView = inflater.inflate(R.layout.fragment_more_player_info, container, false);
 
@@ -61,7 +60,7 @@ public class Info_Fragment extends Fragment {
 
 
         //to make changes
-        Call<InfoItem> call = apiInterface.doGetInfoResources(player_url);
+        Call<InfoItem> call = apiInterface.doGetInfoResources(PlayerActivity.player_url);
         call.enqueue(new Callback<InfoItem>() {
             @Override
             public void onResponse(Call<InfoItem> call, Response<InfoItem> response) {
@@ -88,9 +87,9 @@ public class Info_Fragment extends Fragment {
 
                 final String ImageURL = info.getImg();
 
-                RequestBuilder requestBuilder = GlideApp.with(getContext()).load(ImageURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder = GlideApp.with(getContext()).load(ImageURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-                requestBuilder.into(articleImage);
+                MainActivity.requestBuilder.into(articleImage);
 
                 TextView odiBat = (TextView) rootView.findViewById(R.id.odibattingRanking);
                 TextView testBat = (TextView) rootView.findViewById(R.id.testBattingRanking);

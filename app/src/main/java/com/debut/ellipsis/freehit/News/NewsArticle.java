@@ -12,11 +12,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
 import retrofit2.Call;
@@ -96,9 +96,9 @@ public class NewsArticle extends AppCompatActivity {
 
                 final String ImageURL = newsArticle.getImage();
 
-                RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(ImageURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(ImageURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-                requestBuilder.into(articleImage);
+                MainActivity.requestBuilder.into(articleImage);
 
             }
 

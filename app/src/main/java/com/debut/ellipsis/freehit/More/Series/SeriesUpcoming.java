@@ -39,8 +39,8 @@ public class SeriesUpcoming extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_more_team_complete_match_list, container, false);
 
         Intent i = getActivity().getIntent();
-        final String date = i.getStringExtra("date");
-        final String Teams = i.getStringExtra("Teams");
+        SeriesActivity.date = i.getStringExtra("date");
+        SeriesActivity.Teams = i.getStringExtra("Teams");
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
@@ -60,7 +60,7 @@ public class SeriesUpcoming extends Fragment {
 
 
         /* GET List Upcoming Matches for selected team */
-        Call<UpcomingMatchCardItem> call = apiInterface.doGetUpComingSeriesMatches(Teams,date);
+        Call<UpcomingMatchCardItem> call = apiInterface.doGetUpComingSeriesMatches(SeriesActivity.Teams,SeriesActivity.date);
         call.enqueue(new Callback<UpcomingMatchCardItem>() {
             @Override
             public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {
@@ -92,7 +92,7 @@ public class SeriesUpcoming extends Fragment {
                                                     // Checking if connected or not on refresh
                                                     refresh_layout.setRefreshing(true);
 
-                                                    Call<UpcomingMatchCardItem> call = apiInterface.doGetUpComingSeriesMatches(Teams,date);
+                                                    Call<UpcomingMatchCardItem> call = apiInterface.doGetUpComingSeriesMatches(SeriesActivity.Teams,SeriesActivity.date);
                                                     call.enqueue(new Callback<UpcomingMatchCardItem>() {
                                                         @Override
                                                         public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {

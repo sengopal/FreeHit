@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
-import com.debut.ellipsis.freehit.CountryHash;
+import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
 import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchCardItem;
 import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchListAdapter;
 import com.debut.ellipsis.freehit.R;
@@ -42,22 +42,21 @@ public class TeamUpcoming extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_more_team_complete_match_list, container, false);
 
         Intent i = getActivity().getIntent();
-        int Team = i.getIntExtra("CountryName", 0);
-        String favTeam = i.getStringExtra("fav_country");
-        String tempTeamName ;
+        TeamActivity.Team = i.getIntExtra("CountryName", 0);
+        TeamActivity.favTeam = i.getStringExtra("fav_country");
 
-        if(Team == 0)
+
+        if(TeamActivity.Team == 0)
         {
-            tempTeamName = favTeam;
+            TeamActivity.tempTeamName =  TeamActivity.favTeam;
         }
         else
         {
-            tempTeamName = this.getContext().getString(Team);
+            TeamActivity.tempTeamName = this.getContext().getString(TeamActivity.Team);
         }
 
 
-        CountryHash countryHash = new CountryHash();
-        final String TeamName = countryHash.getCountrySN(tempTeamName.toUpperCase());
+        final String TeamName = WelcomeActivity.countryHash.getCountrySN(TeamActivity.tempTeamName.toUpperCase());
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 

@@ -10,9 +10,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
@@ -90,13 +90,13 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
         String logo_string1 = pastMatchCardItems.get(position).getTeam1Info().getImage();
         String logo_string2 = pastMatchCardItems.get(position).getTeam2Info().getImage();
 
-        RequestBuilder requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        MainActivity.requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-        requestBuilder.into(holder.team1image);
+        MainActivity.requestBuilder.into(holder.team1image);
 
-        RequestBuilder requestBuilder1 = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        MainActivity.requestBuilder = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-        requestBuilder1.into(holder.team2image);
+        MainActivity.requestBuilder.into(holder.team2image);
 
         RelativeLayout RLContainer = holder.rlcontainer;
 

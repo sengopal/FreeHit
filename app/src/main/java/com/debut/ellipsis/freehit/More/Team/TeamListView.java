@@ -9,14 +9,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.debut.ellipsis.freehit.CountryHash;
+import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
 
 
 public class TeamListView extends AppCompatActivity {
-    private Toolbar toolbar;
     TeamListAdapter adapter;
     ListView listView;
 
@@ -32,30 +31,28 @@ public class TeamListView extends AppCompatActivity {
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         final ArrayList<TeamListItem> TeamItem = new ArrayList<TeamListItem>();
 
-        View viewToolbar = (View) findViewById(R.id.team_list_toolbar);
-        toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
+        View viewToolbar = findViewById(R.id.team_list_toolbar);
+        Toolbar toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         setTitle("Teams");
 
-        CountryHash countryHash = new CountryHash();
-
-        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("AFGHANISTAN"), R.string.settings_team_Afghanistan_label));
-        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("AUSTRALIA"), R.string.settings_team_Australia_label));
-        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("BANGLADESH"), R.string.settings_team_Bangladesh_label));
-        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("CANADA"), R.string.settings_team_Canada_label));
-        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("ENGLAND"), R.string.settings_team_England_label));
-        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("INDIA"), R.string.settings_team_India_label));
-        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("IRELAND"), R.string.settings_team_Ireland_label));
-        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("NETHERLANDS"), R.string.settings_team_Netherlands_label));
-        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("NEW ZEALAND"), R.string.settings_team_NewZealand_label));
-        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("PAKISTAN"), R.string.settings_team_Pakistan_label));
-        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("SOUTH AFRICA"), R.string.settings_team_SouthAfrica_label));
-        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("SRI LANKA"), R.string.settings_team_SriLanka_label));
-        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("UNITED ARAB EMIRATES"), R.string.settings_team_UnitedArabEmirates_label));
-        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("WEST INDIES"), R.string.settings_team_WestIndies_label));
-        TeamItem.add(new TeamListItem(countryHash.getCountryFlag("ZIMBABWE"), R.string.settings_team_Zimbabwe_label));
+        TeamItem.add(new TeamListItem(WelcomeActivity.countryHash.getCountryFlag("AFGHANISTAN"), R.string.settings_team_Afghanistan_label));
+        TeamItem.add(new TeamListItem(WelcomeActivity.countryHash.getCountryFlag("AUSTRALIA"), R.string.settings_team_Australia_label));
+        TeamItem.add(new TeamListItem(WelcomeActivity.countryHash.getCountryFlag("BANGLADESH"), R.string.settings_team_Bangladesh_label));
+        TeamItem.add(new TeamListItem(WelcomeActivity.countryHash.getCountryFlag("CANADA"), R.string.settings_team_Canada_label));
+        TeamItem.add(new TeamListItem(WelcomeActivity.countryHash.getCountryFlag("ENGLAND"), R.string.settings_team_England_label));
+        TeamItem.add(new TeamListItem(WelcomeActivity.countryHash.getCountryFlag("INDIA"), R.string.settings_team_India_label));
+        TeamItem.add(new TeamListItem(WelcomeActivity.countryHash.getCountryFlag("IRELAND"), R.string.settings_team_Ireland_label));
+        TeamItem.add(new TeamListItem(WelcomeActivity.countryHash.getCountryFlag("NETHERLANDS"), R.string.settings_team_Netherlands_label));
+        TeamItem.add(new TeamListItem(WelcomeActivity.countryHash.getCountryFlag("NEW ZEALAND"), R.string.settings_team_NewZealand_label));
+        TeamItem.add(new TeamListItem(WelcomeActivity.countryHash.getCountryFlag("PAKISTAN"), R.string.settings_team_Pakistan_label));
+        TeamItem.add(new TeamListItem(WelcomeActivity.countryHash.getCountryFlag("SOUTH AFRICA"), R.string.settings_team_SouthAfrica_label));
+        TeamItem.add(new TeamListItem(WelcomeActivity.countryHash.getCountryFlag("SRI LANKA"), R.string.settings_team_SriLanka_label));
+        TeamItem.add(new TeamListItem(WelcomeActivity.countryHash.getCountryFlag("UNITED ARAB EMIRATES"), R.string.settings_team_UnitedArabEmirates_label));
+        TeamItem.add(new TeamListItem(WelcomeActivity.countryHash.getCountryFlag("WEST INDIES"), R.string.settings_team_WestIndies_label));
+        TeamItem.add(new TeamListItem(WelcomeActivity.countryHash.getCountryFlag("ZIMBABWE"), R.string.settings_team_Zimbabwe_label));
 
         View view = findViewById(R.id.team_list);
         listView = (ListView) view.findViewById(R.id.list);

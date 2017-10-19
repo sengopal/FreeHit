@@ -11,10 +11,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DecodeFormat;
-import com.debut.ellipsis.freehit.CountryHash;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
+import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
@@ -62,55 +62,50 @@ public class SeriesItemAdapter extends RecyclerView.Adapter<SeriesItemAdapter.Se
 
     @Override
     public void onBindViewHolder(SeriesItemAdapter.SeriesViewHolder holder, final int position) {
-        String Title=seriesItems.get(position).getTitle();
-       Title= Title +",";
-        CountryHash countryHash = new CountryHash();
-        String[] t=Title.split(",");
-        String []origTeam=new String[10];
-        origTeam[0]=" ";
-        origTeam[1]=" ";
+        String Title = seriesItems.get(position).getTitle();
+        Title = Title + ",";
+        String[] t = Title.split(",");
+        String[] origTeam = new String[10];
+        origTeam[0] = " ";
+        origTeam[1] = " ";
 
         holder.SeriesTitle.setText(t[0]);
-         String team1 = seriesItems.get(position).getTeam1();
+        String team1 = seriesItems.get(position).getTeam1();
         String team2 = seriesItems.get(position).getTeam2();
         //
         final String date = seriesItems.get(position).getDate();
-        origTeam=t[0].split(" ");
-        origTeam[0]=origTeam[0].trim();
-        origTeam[1]=origTeam[1].trim();
-        origTeam[1]=origTeam[0]+" "+origTeam[1];
+        origTeam = t[0].split(" ");
+        origTeam[0] = origTeam[0].trim();
+        origTeam[1] = origTeam[1].trim();
+        origTeam[1] = origTeam[0] + " " + origTeam[1];
 
 
-          if(team1.equalsIgnoreCase(origTeam[0])){
-              team1=team1;
-          }
+        if (team1.equalsIgnoreCase(origTeam[0])) {
+            team1 = team1;
+        } else if (WelcomeActivity.countryHash.getCountrySN(origTeam[0].toUpperCase()) != null) {
+            team2 = team1;
+            team1 = origTeam[0];
 
-       else if(countryHash.getCountrySN(origTeam[0].toUpperCase())!=null){
-            team2=team1;
-            team1=origTeam[0];
-
-        }
-
-       else if(countryHash.getCountrySN(origTeam[1].toUpperCase())!=null){
-            team2=team1;
-            team1=origTeam[1];
+        } else if (WelcomeActivity.countryHash.getCountrySN(origTeam[1].toUpperCase()) != null) {
+            team2 = team1;
+            team1 = origTeam[1];
 
         }
 
 
-        final String Team1Name = countryHash.getCountrySN(team1.toUpperCase());
-        final String Team2Name = countryHash.getCountrySN(team2.toUpperCase());
+        final String Team1Name = WelcomeActivity.countryHash.getCountrySN(team1.toUpperCase());
+        final String Team2Name = WelcomeActivity.countryHash.getCountrySN(team2.toUpperCase());
 
-        String Team1LogoUrl = countryHash.getCountryFlag(team1.toUpperCase());
-        String Team2LogoUrl = countryHash.getCountryFlag(team2.toUpperCase());
+        String Team1LogoUrl = WelcomeActivity.countryHash.getCountryFlag(team1.toUpperCase());
+        String Team2LogoUrl = WelcomeActivity.countryHash.getCountryFlag(team2.toUpperCase());
 
-        RequestBuilder requestBuilder = GlideApp.with(context).load(Team1LogoUrl).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        MainActivity.requestBuilder = GlideApp.with(context).load(Team1LogoUrl).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-        requestBuilder.into(holder.Team1Logo);
+        MainActivity.requestBuilder.into(holder.Team1Logo);
 
-        RequestBuilder requestBuilder1 = GlideApp.with(context).load(Team2LogoUrl).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        MainActivity.requestBuilder = GlideApp.with(context).load(Team2LogoUrl).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-        requestBuilder1.into(holder.Team2Logo);
+        MainActivity.requestBuilder.into(holder.Team2Logo);
 
         RelativeLayout RLContainer = holder.RlContainer;
 

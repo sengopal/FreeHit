@@ -20,6 +20,9 @@ import java.util.List;
 
 public class PlayerActivity extends AppCompatActivity {
 
+    public static String player_name;
+    public static String player_url;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +30,8 @@ public class PlayerActivity extends AppCompatActivity {
         setContentView(R.layout.fragment_more_player_activity);
 
         Intent i = getIntent();
-        String player_name = i.getStringExtra("player_name");
+        player_name = i.getStringExtra("player_name");
+        player_url = i.getStringExtra("player_url");
 
         View viewToolbarTabs = findViewById(R.id.toolbar_player);
 

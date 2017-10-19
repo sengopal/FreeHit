@@ -39,17 +39,16 @@ public class TeamPlayers extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_more_fav_team_player_list, container, false);
 
         Intent i = getActivity().getIntent();
-        final int TeamName = i.getIntExtra("CountryName",0);
-        String favTeam = i.getStringExtra("fav_country");
-        final String Team ;
+        TeamActivity.Team = i.getIntExtra("CountryName",0);
+        TeamActivity.favTeam = i.getStringExtra("fav_country");
 
-        if(TeamName == 0)
+        if(TeamActivity.Team == 0)
         {
-            Team = favTeam;
+            TeamActivity.tempTeamName = TeamActivity.favTeam;
         }
         else
         {
-            Team = this.getContext().getString(TeamName);
+            TeamActivity.tempTeamName = this.getContext().getString(TeamActivity.Team);
         }
 
 
@@ -64,7 +63,7 @@ public class TeamPlayers extends Fragment {
         View viewEmpty = rootView.findViewById(R.id.empty);
         mEmptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);
 
-        View viewRecycler = (View) rootView.findViewById(R.id.player_list);
+        View viewRecycler = rootView.findViewById(R.id.player_list);
         final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -81,7 +80,7 @@ public class TeamPlayers extends Fragment {
 
                 List<CountryItem> countries = response.body().getResults();
                 for (int i = 0; i < countries.size(); i++) {
-                    if (countries.get(i).getTitle().equals(Team)) {
+                    if (countries.get(i).getTitle().equals(TeamActivity.tempTeamName)) {
                         int teamID = countries.get(i).getId();
                         TeamID = String.valueOf(teamID);
 
@@ -135,7 +134,7 @@ public class TeamPlayers extends Fragment {
 
                         List<CountryItem> countries = response.body().getResults();
                         for (int i = 0; i < countries.size(); i++) {
-                            if (countries.get(i).getTitle().equals(Team)) {
+                            if (countries.get(i).getTitle().equals(TeamActivity.tempTeamName)) {
                                 int teamID = countries.get(i).getId();
                                 TeamID = String.valueOf(teamID);
 

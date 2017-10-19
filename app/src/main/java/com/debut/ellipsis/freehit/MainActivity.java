@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.bumptech.glide.RequestBuilder;
 import com.debut.ellipsis.freehit.Matches.MatchesFragment;
 import com.debut.ellipsis.freehit.More.MoreMain.MoreFragment;
 import com.debut.ellipsis.freehit.News.NewsFragment;
@@ -40,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.social,
             R.drawable.more,
     };
+
+    public static RequestBuilder requestBuilder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -31,6 +31,7 @@ import com.debut.ellipsis.freehit.R;
 
 public class WelcomeActivity extends AppCompatActivity {
     public static final String MY_PREFS_NAME = "MyPrefsFile";
+    public static CountryHash countryHash = new CountryHash();
     private ViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
     private LinearLayout dotsLayout;
@@ -39,7 +40,6 @@ public class WelcomeActivity extends AppCompatActivity {
     private Button btnSkip, btnNext;
     private PrefManager prefManager;
     private boolean clicked = false;
-    CountryHash countryHash = new CountryHash();
 
 
     @Override
@@ -61,7 +61,7 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
 
 
-        View viewViewPager = (View) findViewById(R.id.welcome_viewpager);
+        View viewViewPager = findViewById(R.id.welcome_viewpager);
 
         viewPager = (ViewPager) viewViewPager.findViewById(R.id.viewpager);
         dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
@@ -110,14 +110,7 @@ public class WelcomeActivity extends AppCompatActivity {
                         launchHomeScreen();
                     } else {
 
-                        LayoutInflater inflater = getLayoutInflater();
-                        View layouttoast = inflater.inflate(R.layout.custom_toast, (ViewGroup) findViewById(R.id.toastcustom));
-                        ((TextView) layouttoast.findViewById(R.id.texttoast)).setText(R.string.select_team_alert);
-
-                        Toast mytoast = new Toast(getBaseContext());
-                        mytoast.setView(layouttoast);
-                        mytoast.setDuration(Toast.LENGTH_SHORT);
-                        mytoast.show();
+                        Toast.makeText(getBaseContext(),R.string.select_team_alert,Toast.LENGTH_SHORT).show();
 
                     }
 
@@ -238,9 +231,9 @@ public class WelcomeActivity extends AppCompatActivity {
 
                 String TeamLogo = countryHash.getCountryFlag(name.toUpperCase());
 
-                RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogo).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogo).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-                requestBuilder.into(country_flag);
+                MainActivity.requestBuilder.into(country_flag);
 
             }
             return view;
