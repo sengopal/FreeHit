@@ -45,15 +45,15 @@ public class SeriesPast extends Fragment {
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
-        View viewRecycler = (View) rootView.findViewById(R.id.complete_match_list);
+        View viewRecycler = rootView.findViewById(R.id.complete_match_list);
         rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
 
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        View viewEmpty = (View) rootView.findViewById(R.id.empty);
+        View viewEmpty = rootView.findViewById(R.id.empty);
         final TextView emptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);
 
         refresh_layout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
@@ -67,7 +67,7 @@ public class SeriesPast extends Fragment {
                 List<PastMatchCardItem> pastMatchesList = response.body().getResults();
                 mProgressBar.setVisibility(View.GONE);
                 if (pastMatchesList.size() == 0) {
-                    emptyView.setText("NO MATCHES");
+                    emptyView.setText(R.string.EmptyMatches);
                     emptyView.setVisibility(View.VISIBLE);
                 }
 
@@ -96,7 +96,7 @@ public class SeriesPast extends Fragment {
                                                             List<PastMatchCardItem> pastMatchesList = response.body().getResults();
                                                             if (pastMatchesList.size() == 0) {
                                                                 emptyView.setVisibility(View.VISIBLE);
-                                                                emptyView.setText("NO MATCHES FOUND");
+                                                                emptyView.setText(R.string.EmptyMatches);
                                                             }
                                                             rv.setAdapter(new PastMatchesListAdapter(pastMatchesList, getContext()));
                                                         }

@@ -44,7 +44,7 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
         RadioButton button3;
         RadioButton button4;
         Button submit;
-        RelativeLayout rlcontainer;
+        RelativeLayout RlContainer;
 
 
         public PollsViewHolder(View v) {
@@ -57,7 +57,7 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
             button4 = (RadioButton) v.findViewById(R.id.option_4);
             submit = (Button) v.findViewById(R.id.poll_submit);
 
-            rlcontainer = (RelativeLayout) v.findViewById(R.id.parent_layout);
+            RlContainer = (RelativeLayout) v.findViewById(R.id.parent_layout);
         }
     }
 
@@ -85,9 +85,9 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
         final SharedPreferences.Editor editor = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
 
         holder.title.setText(PollCardItems.get(position).getQuestion());
-        final View pollRes = holder.rlcontainer.findViewById(R.id.pollItem_result);
+        final View pollRes = holder.RlContainer.findViewById(R.id.pollItem_result);
         final RelativeLayout rlayout = (RelativeLayout) pollRes.findViewById(R.id.pollItem_result);
-        final RelativeLayout pGroupLay = (RelativeLayout) holder.rlcontainer.findViewById(R.id.poll_group_layout);
+        final RelativeLayout pGroupLay = (RelativeLayout) holder.RlContainer.findViewById(R.id.poll_group_layout);
 
         TextView option1 = (TextView) pollRes.findViewById(R.id.option_1);
 
@@ -188,7 +188,7 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
                     editor.apply();
 
                     int selectedId = holder.rGroup.getCheckedRadioButtonId();
-                    RadioButton clicked = (RadioButton) holder.rlcontainer.findViewById(selectedId);
+                    RadioButton clicked = (RadioButton) holder.RlContainer.findViewById(selectedId);
                     String name = clicked.getText().toString();
                     int choice = PollCardItems.get(holder.getAdapterPosition()).searchTitle(name);
                     rlayout.setVisibility(View.VISIBLE);

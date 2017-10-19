@@ -54,9 +54,9 @@ public class NewsFragment extends Fragment {
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        View viewRecycler = (View) rootView.findViewById(R.id.news_list);
+        View viewRecycler = rootView.findViewById(R.id.news_list);
 
-        View viewFAB = (View) rootView.findViewById(R.id.fab);
+        View viewFAB = rootView.findViewById(R.id.fab);
         fab = (FloatingActionButton) viewFAB.findViewById(R.id.common_fab);
         fab.hide();
         fab.setImageResource(android.R.drawable.arrow_up_float);
@@ -66,7 +66,7 @@ public class NewsFragment extends Fragment {
         final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
         recyclerView.setLayoutManager(mLinearLayoutManager);
 
-        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
@@ -82,9 +82,7 @@ public class NewsFragment extends Fragment {
         NoNewsText = (TextView) No_news.findViewById(R.id.empty_view);
         NoNewsButton = (Button) No_news.findViewById(R.id.No_Live_Matches_button);
 
-        /**
-         GET NewsList Resources
-         **/
+
         Call<NewsItem> call = apiInterface.doGetNewsListResources();
         call.enqueue(new Callback<NewsItem>() {
             @Override

@@ -34,7 +34,6 @@ import com.twitter.sdk.android.tweetui.TweetTimelineRecyclerViewAdapter;
 public class SocialTweets extends Fragment {
     public SearchTimeline searchTimeline;
     public TweetTimelineRecyclerViewAdapter adapter;
-    private String QueryToSearch = "#cricket";
     public RecyclerView rv;
     private ProgressBar mProgressBar;
     public Button NoConnectionButton;
@@ -50,7 +49,7 @@ public class SocialTweets extends Fragment {
         // Inflate the layout for this fragment
         View socTweets = inflater.inflate(R.layout.fragment_social_tweets, container, false);
 
-        View viewRecycler = (View) socTweets.findViewById(R.id.tweets_recycler_layout);
+        View viewRecycler = socTweets.findViewById(R.id.tweets_recycler_layout);
 
 
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
@@ -60,7 +59,7 @@ public class SocialTweets extends Fragment {
         rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        View viewProgress = (View) socTweets.findViewById(R.id.progress);
+        View viewProgress = socTweets.findViewById(R.id.progress);
 
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
         mProgressBar.setVisibility(View.VISIBLE);
@@ -118,7 +117,8 @@ public class SocialTweets extends Fragment {
         if (networkInfo != null && networkInfo.isConnected()) {
             mProgressBar.setVisibility(View.INVISIBLE);
             no_internet_connection.setVisibility(View.INVISIBLE);
-            tabCall(QueryToSearch, SearchTimeline.ResultType.RECENT);
+            String queryToSearch = "#cricket";
+            tabCall(queryToSearch, SearchTimeline.ResultType.RECENT);
 
         } else {
             no_internet_connection.setVisibility(View.VISIBLE);

@@ -54,12 +54,12 @@ public class LiveMatchCard extends Fragment {
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
         final View common_match_cards = rootView.findViewById(R.id.common_match_cards);
 
-        View viewViewPager = (View) common_match_cards.findViewById(R.id.match_card_viewpagegr);
+        View viewViewPager = common_match_cards.findViewById(R.id.match_card_viewpagegr);
 
         vp = (ViewPager) viewViewPager.findViewById(R.id.viewpager);
         indicator = (PageIndicatorView) common_match_cards.findViewById(R.id.indicator);
@@ -77,8 +77,6 @@ public class LiveMatchCard extends Fragment {
         NoLiveMatchesText = (TextView) No_live_matches.findViewById(R.id.empty_view);
         NoLiveMatchesButton = (Button) No_live_matches.findViewById(R.id.No_Live_Matches_button);
 
-
-        /* GET Live matches */
         Call<LiveMatchCardItem> call = apiInterface.doGetLiveMatchResources();
         call.enqueue(new Callback<LiveMatchCardItem>() {
             @Override

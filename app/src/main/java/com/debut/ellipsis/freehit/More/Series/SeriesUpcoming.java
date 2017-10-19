@@ -2,7 +2,6 @@ package com.debut.ellipsis.freehit.More.Series;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,7 +26,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SeriesUpcoming extends Fragment {
-    private TabLayout tabLayout;
+
     APIInterface apiInterface;
     private ProgressBar mProgressBar;
     public SwipeRefreshLayout refresh_layout;
@@ -45,17 +44,17 @@ public class SeriesUpcoming extends Fragment {
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
-        View viewRecycler = (View) rootView.findViewById(R.id.complete_match_list);
+        View viewRecycler = rootView.findViewById(R.id.complete_match_list);
         rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
 
         refresh_layout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        View viewEmpty = (View) rootView.findViewById(R.id.empty);
+        View viewEmpty = rootView.findViewById(R.id.empty);
         final TextView emptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);
 
 
@@ -69,7 +68,7 @@ public class SeriesUpcoming extends Fragment {
                 List<UpcomingMatchCardItem> upcomingMatchesList = response.body().getResults();
                 mProgressBar.setVisibility(View.GONE);
                 if (upcomingMatchesList.size() == 0) {
-                    emptyView.setText("NO MATCHES FOUND");
+                    emptyView.setText(R.string.EmptyMatches);
                     emptyView.setVisibility(View.VISIBLE);
                 }
 
@@ -103,7 +102,7 @@ public class SeriesUpcoming extends Fragment {
                                                             if(upcomingMatchesList.size()==0)
                                                             {
                                                                 emptyView.setVisibility(View.VISIBLE);
-                                                                emptyView.setText("NO MATCHES FOUND");
+                                                                emptyView.setText(R.string.EmptyMatches);
                                                             }
                                                             rv.setAdapter(new UpcomingMatchListAdapter(getContext(),upcomingMatchesList));
                                                         }

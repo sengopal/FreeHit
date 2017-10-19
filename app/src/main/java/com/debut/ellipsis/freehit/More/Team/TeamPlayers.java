@@ -30,7 +30,6 @@ import retrofit2.Response;
 public class TeamPlayers extends Fragment {
     APIInterface apiInterface;
     private String TeamID;
-    private Toolbar toolbar;
     private ProgressBar mProgressBar;
     public TextView mEmptyView;
 
@@ -54,15 +53,15 @@ public class TeamPlayers extends Fragment {
         }
 
 
-        View viewToolbar = (View) rootView.findViewById(R.id.toolbar_fav_players);
+        View viewToolbar = rootView.findViewById(R.id.toolbar_fav_players);
 
-        toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
         toolbar.setVisibility(View.GONE);
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
 
-        View viewEmpty = (View) rootView.findViewById(R.id.empty);
+        View viewEmpty = rootView.findViewById(R.id.empty);
         mEmptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);
 
         View viewRecycler = (View) rootView.findViewById(R.id.player_list);
@@ -70,7 +69,7 @@ public class TeamPlayers extends Fragment {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
@@ -95,7 +94,7 @@ public class TeamPlayers extends Fragment {
                                 List<PlayerCountryItem> playerCountryItems = response.body().getResults();
                                 if (playerCountryItems.size() == 0) {
                                     mEmptyView.setVisibility(View.VISIBLE);
-                                    mEmptyView.setText("No Players Found");
+                                    mEmptyView.setText(R.string.NoPlayers);
                                 }
                                 recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getContext()));
 
@@ -149,7 +148,7 @@ public class TeamPlayers extends Fragment {
                                         List<PlayerCountryItem> playerCountryItems = response.body().getResults();
                                         if (playerCountryItems.size() == 0) {
                                             mEmptyView.setVisibility(View.VISIBLE);
-                                            mEmptyView.setText("No Players Found");
+                                            mEmptyView.setText(R.string.NoPlayers);
                                         }
                                         recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getContext()));
 

@@ -81,7 +81,6 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
         View contactView = inflater.inflate(R.layout.fragment_matches_upcoming_match_list_item, parent, false);
 
         // Return a new holder instance
-
         return new ViewHolder(contactView);
     }
 
@@ -129,7 +128,7 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
         requestBuilder1.into(imageViewTeam2Logo);
 
 
-        RelativeLayout RLcontainer = viewHolder.rlcontainer;
+        RelativeLayout RLContainer = viewHolder.rlcontainer;
 
         View.OnClickListener mClickListener;
 
@@ -148,7 +147,7 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
 
             }
         };
-        RLcontainer.setOnClickListener(mClickListener);
+        RLContainer.setOnClickListener(mClickListener);
 
 
     }

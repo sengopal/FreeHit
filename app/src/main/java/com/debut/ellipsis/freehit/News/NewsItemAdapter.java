@@ -75,7 +75,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
 
         requestBuilder.into(holder.image);
 
-        RelativeLayout RLcontainer = holder.rlcontainer;
+        RelativeLayout RLContainer = holder.rlcontainer;
 
         View.OnClickListener mClickListener;
 
@@ -92,7 +92,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
 
             }
         };
-        RLcontainer.setOnClickListener(mClickListener);
+        RLContainer.setOnClickListener(mClickListener);
 
 
     }

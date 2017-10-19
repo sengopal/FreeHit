@@ -20,14 +20,13 @@ import com.debut.ellipsis.freehit.R;
 import java.util.List;
 
 public class PastMatchCardItemAdapter extends PagerAdapter {
-    int cardLayout;
     private Context context;
     private List<PastMatchCardItem> dataObjectList;
     private LayoutInflater layoutInflater;
-    public String logo_string1;
-    public String logo_string2;
-    public ImageView imageViewTeam1Logo;
-    public ImageView imageViewTeam2Logo;
+    private String logo_string1;
+    private String logo_string2;
+    private ImageView imageViewTeam1Logo;
+    private ImageView imageViewTeam2Logo;
 
     public PastMatchCardItemAdapter(Context context, List<PastMatchCardItem> dataObjectList) {
         this.context = context;

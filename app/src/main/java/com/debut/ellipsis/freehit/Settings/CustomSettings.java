@@ -40,18 +40,11 @@ public class CustomSettings extends AppCompatActivity {
 
         setContentView(R.layout.custom_settings);
 
-        View viewToolbar = (View) findViewById(R.id.custom_settings_toolbar);
+        View viewToolbar = findViewById(R.id.custom_settings_toolbar);
 
         toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-       /* String title = "Settings";
-
-        //To Set The Color Of The Action Bar
-        SpannableString s = new SpannableString(title);
-        s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        getSupportActionBar().setTitle(s);*/
 
         final View no_internet_connection = findViewById(R.id.Unavailable_connection);
 

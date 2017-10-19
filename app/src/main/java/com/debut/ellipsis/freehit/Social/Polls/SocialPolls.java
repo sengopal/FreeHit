@@ -51,9 +51,9 @@ public class SocialPolls extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_news_list, container, false);
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        View viewRecycler = (View) rootView.findViewById(R.id.news_list);
+        View viewRecycler = rootView.findViewById(R.id.news_list);
 
-        View viewFAB = (View) rootView.findViewById(R.id.fab);
+        View viewFAB = rootView.findViewById(R.id.fab);
         fab = (FloatingActionButton) viewFAB.findViewById(R.id.common_fab);
 
         fab.setImageResource(android.R.drawable.arrow_down_float);
@@ -63,7 +63,7 @@ public class SocialPolls extends Fragment {
         final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
         recyclerView.setLayoutManager(mLinearLayoutManager);
 
-        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
@@ -78,9 +78,6 @@ public class SocialPolls extends Fragment {
         NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
 
-        /**
-         GET Polls List Resources
-         **/
         final Call<PollCardItem> call = apiInterface.doGetPollsListResources();
         call.enqueue(new Callback<PollCardItem>() {
             @Override

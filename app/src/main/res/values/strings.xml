@@ -36,6 +36,10 @@
     <!--FOR EMPTY VIEW LIVE MATCHES -->
     <string name="EmptyLiveMatches">NO LIVE MATCHES</string>
 
+    <string name="EmptyMatches">NO MATCHES FOUND</string>
+
+    <string name="NoPlayers">NO PLAYERS FOUND</string>
+
     <!--FOR TOOLS IN LIVE,UPCOMING,PAST MATCHES-->
     <string name="matches_view_more">Click To View More !</string>
 

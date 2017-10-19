@@ -57,7 +57,7 @@ public class TeamListView extends AppCompatActivity {
         TeamItem.add(new TeamListItem(countryHash.getCountryFlag("WEST INDIES"), R.string.settings_team_WestIndies_label));
         TeamItem.add(new TeamListItem(countryHash.getCountryFlag("ZIMBABWE"), R.string.settings_team_Zimbabwe_label));
 
-        View view = (View) findViewById(R.id.team_list);
+        View view = findViewById(R.id.team_list);
         listView = (ListView) view.findViewById(R.id.list);
 
         adapter = new TeamListAdapter(this, TeamItem);

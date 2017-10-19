@@ -24,18 +24,12 @@ import java.util.ArrayList;
 import static android.content.Context.MODE_PRIVATE;
 import static com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity.MY_PREFS_NAME;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
-public class
-MoreFragment extends Fragment {
+public class MoreFragment extends Fragment {
 
 
     public MoreFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,7 +38,7 @@ MoreFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.common_list, container, false);
 
         SharedPreferences prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        final String Countryname = prefs.getString("country_name", "null");
+        final String CountryName = prefs.getString("country_name", "null");
 
         final ArrayList<MoreItem> moreItem = new ArrayList<MoreItem>();
 
@@ -75,12 +69,12 @@ MoreFragment extends Fragment {
 
                 }
                 else if (position == 3) {
-                    if(Countryname.equals("null")) {
+                    if(CountryName.equals("null")) {
                         Toast.makeText(getContext(),"Select A Favourite Team First",Toast.LENGTH_SHORT).show();
                     }
                     else {
                         Intent FavouritesIntent = new Intent(getActivity(), TeamActivity.class);
-                        FavouritesIntent.putExtra("fav_country", Countryname);
+                        FavouritesIntent.putExtra("fav_country", CountryName);
                         startActivity(FavouritesIntent);
                     }
 

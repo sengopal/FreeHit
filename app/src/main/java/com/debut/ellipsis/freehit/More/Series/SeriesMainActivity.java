@@ -42,14 +42,14 @@ public class SeriesMainActivity extends AppCompatActivity {
 
         setTitle("Series");
 
-        View viewRecycler = (View) findViewById(R.id.series_list);
+        View viewRecycler = findViewById(R.id.series_list);
 
         final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
-        View vProgress = (View) findViewById(R.id.progress);
+        View vProgress = findViewById(R.id.progress);
         final ProgressBar mProgressbar = (ProgressBar) vProgress.findViewById(R.id.progress_bar);
 
         final APIInterface apiInterface = ApiClient.getClient().create(APIInterface.class);

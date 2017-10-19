@@ -28,7 +28,7 @@ public class SeriesActivity extends AppCompatActivity {
         Intent i = getIntent();
         String Series_Name = i.getStringExtra("Series_Name");
 
-        View viewToolbar = (View) findViewById(R.id.toolbar_tabs_series);
+        View viewToolbar = findViewById(R.id.toolbar_tabs_series);
 
         Toolbar toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -36,7 +36,7 @@ public class SeriesActivity extends AppCompatActivity {
 
         setTitle(Series_Name);
 
-        View viewSeriesPager = (View) findViewById(R.id.series_viewpager);
+        View viewSeriesPager = findViewById(R.id.series_viewpager);
 
         ViewPager viewPager = (ViewPager) viewSeriesPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
@@ -69,7 +69,7 @@ public class SeriesActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         SeriesActivity.ViewPagerAdapter adapter = new SeriesActivity.ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new SeriesMatchesFragment(), "SCHEDULE");
-        adapter.addFrag(new SeriesPerfo(), "TOP PERFORMANCE");
+        adapter.addFrag(new SeriesPerformance(), "TOP PERFORMANCE");
         viewPager.setAdapter(adapter);
     }
 

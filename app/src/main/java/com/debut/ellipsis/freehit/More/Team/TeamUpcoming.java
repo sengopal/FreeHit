@@ -61,21 +61,20 @@ public class TeamUpcoming extends Fragment {
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
-        View viewRecycler = (View) rootView.findViewById(R.id.complete_match_list);
+        View viewRecycler = rootView.findViewById(R.id.complete_match_list);
         rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
 
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
         refresh_layout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
-        View viewEmpty = (View) rootView.findViewById(R.id.empty);
+        View viewEmpty = rootView.findViewById(R.id.empty);
         mEmptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);
 
 
-        /* GET List Upcoming Matches for selected team */
         Call<UpcomingMatchCardItem> call = apiInterface.doGetUpcomingFavTeam(TeamName);
         call.enqueue(new Callback<UpcomingMatchCardItem>() {
             @Override
@@ -85,7 +84,7 @@ public class TeamUpcoming extends Fragment {
                 mProgressBar.setVisibility(View.GONE);
                 if (upcomingMatchesList.size() == 0) {
                     mEmptyView.setVisibility(View.VISIBLE);
-                    mEmptyView.setText("NO MATCHES FOUND");
+                    mEmptyView.setText(R.string.EmptyMatches);
                 }
 
                 MatchListAdapter = new UpcomingMatchListAdapter(getContext(), upcomingMatchesList);
@@ -119,7 +118,7 @@ public class TeamUpcoming extends Fragment {
                         if(upcomingMatchesList.size()==0)
                         {
                             mEmptyView.setVisibility(View.VISIBLE);
-                            mEmptyView.setText("NO MATCHES FOUND");
+                            mEmptyView.setText(R.string.EmptyMatches);
                         }
                         MatchListAdapter = new UpcomingMatchListAdapter(getContext(),upcomingMatchesList);
                         rv.setAdapter(MatchListAdapter);

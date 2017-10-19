@@ -18,9 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TeamActivity extends AppCompatActivity {
-    private Toolbar toolbar;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,19 +38,19 @@ public class TeamActivity extends AppCompatActivity {
             tempTeamName = this.getApplicationContext().getString(Team);
         }
 
-        View viewToolbarTabs = (View) findViewById(R.id.team_toolbar_tabs);
+        View viewToolbarTabs = findViewById(R.id.team_toolbar_tabs);
 
-        toolbar = (Toolbar) viewToolbarTabs.findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) viewToolbarTabs.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(tempTeamName);
 
         View viewTeamPager = (View) findViewById(R.id.teams_viewpager);
 
-        viewPager = (ViewPager) viewTeamPager.findViewById(R.id.viewpager);
+        ViewPager viewPager = (ViewPager) viewTeamPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);
+        TabLayout tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.setupWithViewPager(viewPager);
 

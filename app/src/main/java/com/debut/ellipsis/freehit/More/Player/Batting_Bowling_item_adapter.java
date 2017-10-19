@@ -49,7 +49,7 @@ public class Batting_Bowling_item_adapter extends BaseAdapter {
             textViewAndroid.setBackgroundColor(Color.parseColor("#d9d5dc"));
 
         } else {
-            gridViewAndroid = (View) convertView;
+            gridViewAndroid = convertView;
         }
 
         return gridViewAndroid;

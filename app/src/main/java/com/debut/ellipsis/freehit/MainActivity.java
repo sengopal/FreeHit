@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         AppTitle.setTypeface(tfTitle);
 
 
-        View viewMainPager = (View) findViewById(R.id.main_viewpager);
+        View viewMainPager = findViewById(R.id.main_viewpager);
 
         viewPager = (ViewPager) viewMainPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);

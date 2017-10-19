@@ -39,17 +39,17 @@ public class PastMatchesActivity extends AppCompatActivity {
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        View viewProgress = (View) findViewById(R.id.progress);
+        View viewProgress = findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
-        View viewRecycler = (View) findViewById(R.id.match_list_team) ;
+        View viewRecycler = findViewById(R.id.match_list_team);
         rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
 
         refresh_layout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
         rv.setLayoutManager(new LinearLayoutManager(this));
 
-        View viewToolbar = (View) findViewById(R.id.toolbar_matches_list);
+        View viewToolbar = findViewById(R.id.toolbar_matches_list);
 
         toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -57,7 +57,7 @@ public class PastMatchesActivity extends AppCompatActivity {
         setTitle(R.string.past_list);
 
 
-        View viewEmpty = (View) findViewById(R.id.empty);
+        View viewEmpty = findViewById(R.id.empty);
         mEmptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);
 
         Call<PastMatchCardItem> call = apiInterface.doGetCompletePastCardResources();
@@ -66,14 +66,14 @@ public class PastMatchesActivity extends AppCompatActivity {
             public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
                 mProgressBar.setVisibility(View.GONE);
 
-                List<PastMatchCardItem> pastMatchcardItems = response.body().getResults();
-                if(pastMatchcardItems.size()==0)
+                List<PastMatchCardItem> pastMatchCardItems = response.body().getResults();
+                if(pastMatchCardItems.size()==0)
                 {
                     mEmptyView.setVisibility(View.VISIBLE);
-                    mEmptyView.setText("NO MATCHES FOUND");
+                    mEmptyView.setText(R.string.EmptyMatches);
                 }
 
-                MatchListAdapter = new PastMatchesListAdapter(pastMatchcardItems, getApplicationContext());
+                MatchListAdapter = new PastMatchesListAdapter(pastMatchCardItems, getApplicationContext());
                 rv.setAdapter(MatchListAdapter);
             }
 
@@ -101,14 +101,14 @@ public class PastMatchesActivity extends AppCompatActivity {
                     public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
                         mProgressBar.setVisibility(View.GONE);
 
-                        List<PastMatchCardItem> pastMatchcardItems = response.body().getResults();
-                        if(pastMatchcardItems.size()==0)
+                        List<PastMatchCardItem> pastMatchCardItems = response.body().getResults();
+                        if(pastMatchCardItems.size()==0)
                         {
                             mEmptyView.setVisibility(View.VISIBLE);
-                            mEmptyView.setText("NO MATCHES FOUND");
+                            mEmptyView.setText(R.string.EmptyMatches);
                         }
 
-                        MatchListAdapter = new PastMatchesListAdapter(pastMatchcardItems, getApplicationContext());
+                        MatchListAdapter = new PastMatchesListAdapter(pastMatchCardItems, getApplicationContext());
                         rv.setAdapter(MatchListAdapter);
                     }
 

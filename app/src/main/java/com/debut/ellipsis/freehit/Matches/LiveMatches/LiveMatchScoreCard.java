@@ -35,12 +35,12 @@ public class LiveMatchScoreCard extends AppCompatActivity {
         String match_name = getIntent().getStringExtra("match_name");
         setTitle(match_name);
 
-        View viewToolbarTabs = (View) findViewById(R.id.toolbar_tabs_matches_scorecard);
+        View viewToolbarTabs = findViewById(R.id.toolbar_tabs_matches_scorecard);
         Toolbar toolbar = (Toolbar) viewToolbarTabs.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        View viewLiveScoreCardPager = (View) findViewById(R.id.scorecard_viewpager);
+        View viewLiveScoreCardPager = findViewById(R.id.scorecard_viewpager);
 
         ViewPager viewPager = (ViewPager) viewLiveScoreCardPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);

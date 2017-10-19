@@ -24,10 +24,10 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
     private Context context;
     private List<UpcomingMatchCardItem> dataObjectList;
     private LayoutInflater layoutInflater;
-    public String logo_string1;
-    public String logo_string2;
-    public ImageView imageViewTeam1Logo;
-    public ImageView imageViewTeam2Logo;
+    private String logo_string1;
+    private String logo_string2;
+    private ImageView imageViewTeam1Logo;
+    private ImageView imageViewTeam2Logo;
 
     public UpcomingMatchesItemAdapter(Context context, List<UpcomingMatchCardItem> dataObjectList) {
         this.context = context;

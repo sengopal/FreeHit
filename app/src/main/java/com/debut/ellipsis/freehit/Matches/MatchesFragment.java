@@ -1,6 +1,5 @@
 package com.debut.ellipsis.freehit.Matches;
 
-
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -19,10 +18,6 @@ import com.debut.ellipsis.freehit.R;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MatchesFragment extends Fragment {
 
     public ViewPager viewPager;
@@ -32,7 +27,6 @@ public class MatchesFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,12 +34,12 @@ public class MatchesFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_matches, container, false);
 
 
-        View viewMatchesViewPager = (View) rootView.findViewById(R.id.matches_viewpagegr);
+        View viewMatchesViewPager = rootView.findViewById(R.id.matches_viewpagegr);
 
         viewPager = (ViewPager) viewMatchesViewPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-        View viewMatchCardTabs = (View) rootView.findViewById(R.id.match_card_tabs);
+        View viewMatchCardTabs = rootView.findViewById(R.id.match_card_tabs);
         tabLayout = (TabLayout) viewMatchCardTabs.findViewById(R.id.tabs);
 
         tabLayout.setupWithViewPager(viewPager);

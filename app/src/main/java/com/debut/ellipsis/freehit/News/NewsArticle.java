@@ -1,8 +1,6 @@
 package com.debut.ellipsis.freehit.News;
 
 
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -48,33 +46,16 @@ public class NewsArticle extends AppCompatActivity {
         match_id = getIntent().getStringExtra("news_id");
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        View viewProgress = (View) findViewById(R.id.progress);
+        View viewProgress = findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle(" ");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
-        // Get a reference to the ConnectivityManager to check state of network connectivity
-        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(getApplicationContext().CONNECTIVITY_SERVICE);
-
-        // Get details on the currently active default data network
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-
-        // If there is a network connection, fetch data
-        if (networkInfo != null && networkInfo.isConnected()) {
-        } else {
-            // Otherwise, display error
-            // First, hide loading indicator so error message will be visible
-            mProgressBar.setVisibility(View.GONE);
-            Toast.makeText(getApplicationContext(),R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
-        }
-
-
-        /* GET News Article */
         Call<NewsArticleItem> call = apiInterface.doGetNewsArticle(match_id);
         call.enqueue(new Callback<NewsArticleItem>() {
             @Override
@@ -123,6 +104,8 @@ public class NewsArticle extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<NewsArticleItem> call, Throwable t) {
+                mProgressBar.setVisibility(View.GONE);
+                Toast.makeText(getApplicationContext(),R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
                 call.cancel();
             }
         });

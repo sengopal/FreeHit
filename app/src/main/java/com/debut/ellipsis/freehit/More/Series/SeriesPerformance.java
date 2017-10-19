@@ -1,9 +1,7 @@
 package com.debut.ellipsis.freehit.More.Series;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,12 +10,9 @@ import android.widget.TextView;
 
 import com.debut.ellipsis.freehit.R;
 
-public class SeriesPerfo extends Fragment {
+public class SeriesPerformance extends Fragment {
 
-    public ViewPager viewPager;
-    private TabLayout tabLayout;
-
-    public SeriesPerfo() {
+    public SeriesPerformance() {
         // Required empty public constructor
     }
 

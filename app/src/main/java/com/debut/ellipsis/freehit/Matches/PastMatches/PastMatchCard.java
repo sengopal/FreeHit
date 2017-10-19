@@ -52,12 +52,12 @@ public class PastMatchCard extends Fragment {
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        View viewProgress= (View) rootView.findViewById(R.id.progress);
+        View viewProgress= rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
         final View common_match_cards = rootView.findViewById(R.id.common_match_cards);
 
-        View viewViewPager = (View) common_match_cards.findViewById(R.id.match_card_viewpagegr);
+        View viewViewPager = common_match_cards.findViewById(R.id.match_card_viewpagegr);
 
         vp = (ViewPager) viewViewPager.findViewById(R.id.viewpager);
         indicator = (PageIndicatorView) common_match_cards.findViewById(R.id.indicator);

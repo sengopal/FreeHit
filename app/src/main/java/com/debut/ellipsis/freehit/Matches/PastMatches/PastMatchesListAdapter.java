@@ -70,8 +70,7 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
 
         View contactView = inflater.inflate(R.layout.fragment_matches_past_match_list_item, parent, false);
 
-        PastViewHolder viewHolder = new PastViewHolder(contactView);
-        return viewHolder;
+        return new PastViewHolder(contactView);
     }
 
     @Override
@@ -99,7 +98,7 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
 
         requestBuilder1.into(holder.team2image);
 
-        RelativeLayout RLcontainer = holder.rlcontainer;
+        RelativeLayout RLContainer = holder.rlcontainer;
 
         View.OnClickListener mClickListener;
 
@@ -118,7 +117,7 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
 
             }
         };
-        RLcontainer.setOnClickListener(mClickListener);
+        RLContainer.setOnClickListener(mClickListener);
 
 
     }

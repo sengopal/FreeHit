@@ -61,9 +61,9 @@ public class TeamNews extends Fragment {
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        View viewRecycler = (View) rootView.findViewById(R.id.news_list);
+        View viewRecycler = rootView.findViewById(R.id.news_list);
 
-        View viewFAB = (View) rootView.findViewById(R.id.fab);
+        View viewFAB = rootView.findViewById(R.id.fab);
         viewFAB.setVisibility(View.GONE);
 
         final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
@@ -78,9 +78,6 @@ public class TeamNews extends Fragment {
 
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
-        /**
-         GET List Resources
-         **/
         Call<NewsItem> call = apiInterface.doGetNewsArticleTeam(teamName);
         call.enqueue(new Callback<NewsItem>() {
             @Override
