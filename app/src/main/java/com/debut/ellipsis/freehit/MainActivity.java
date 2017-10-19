@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         TextView AppTitle = (TextView) findViewById(R.id.title) ;
-        Typeface tfTitle = Typeface.createFromAsset(getAssets(), "font.ttf");
+        Typeface tfTitle = Typeface.createFromAsset(getAssets(), "strasua.ttf");
 
         AppTitle.setTypeface(tfTitle);
 
