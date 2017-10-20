@@ -28,11 +28,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class PastMatchCard extends Fragment {
-    APIInterface apiInterface;
+
     private ProgressBar mProgressBar;
     public PageIndicatorView indicator;
     private PastMatchCardItemAdapter mAdapter;
@@ -50,7 +47,7 @@ public class PastMatchCard extends Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_matches_common_pager, container, false);
 
-        apiInterface = ApiClient.getClient().create(APIInterface.class);
+        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
         View viewProgress= rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
@@ -70,7 +67,7 @@ public class PastMatchCard extends Fragment {
         NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
 
-        Call<PastMatchCardItem> call = apiInterface.doGetPastCardResources();
+        Call<PastMatchCardItem> call = MainActivity.apiInterface.doGetPastCardResources();
         call.enqueue(new Callback<PastMatchCardItem>() {
             @Override
             public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
@@ -119,7 +116,7 @@ public class PastMatchCard extends Fragment {
                           // Checking if connected or not on refresh
                           refreshLayout.setRefreshing(true);
 
-                      Call<PastMatchCardItem> call = apiInterface.doGetPastCardResources();
+                      Call<PastMatchCardItem> call = MainActivity.apiInterface.doGetPastCardResources();
                       call.enqueue(new Callback<PastMatchCardItem>() {
                           @Override
                           public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {

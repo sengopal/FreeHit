@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchCardItem;
 import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchesListAdapter;
 import com.debut.ellipsis.freehit.R;
@@ -27,7 +28,7 @@ import retrofit2.Response;
 
 
 public class SeriesPast extends Fragment {
-    APIInterface apiInterface;
+
     public SwipeRefreshLayout refresh_layout;
     private ProgressBar mProgressBar;
     private RecyclerView rv;
@@ -43,7 +44,7 @@ public class SeriesPast extends Fragment {
         SeriesActivity.Teams = i.getStringExtra("Teams");
 
 
-        apiInterface = ApiClient.getClient().create(APIInterface.class);
+        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
         View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
@@ -58,8 +59,8 @@ public class SeriesPast extends Fragment {
 
         refresh_layout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
-        /*  GET List Past Matches for selected Team */
-        Call<PastMatchCardItem> call = apiInterface.doGetPastSeriesMatches(SeriesActivity.Teams, SeriesActivity.date);
+
+        Call<PastMatchCardItem> call = MainActivity.apiInterface.doGetPastSeriesMatches(SeriesActivity.Teams, SeriesActivity.date);
         call.enqueue(new Callback<PastMatchCardItem>() {
             @Override
             public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
@@ -87,7 +88,7 @@ public class SeriesPast extends Fragment {
                                                     // Checking if connected or not on refresh
                                                     refresh_layout.setRefreshing(true);
 
-                                                    Call<PastMatchCardItem> call = apiInterface.doGetPastSeriesMatches(SeriesActivity.Teams, SeriesActivity.date);
+                                                    Call<PastMatchCardItem> call = MainActivity.apiInterface.doGetPastSeriesMatches(SeriesActivity.Teams, SeriesActivity.date);
                                                     call.enqueue(new Callback<PastMatchCardItem>() {
                                                         @Override
                                                         public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {

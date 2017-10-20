@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
+import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
@@ -94,9 +95,9 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
         ViewMore.setVisibility(View.INVISIBLE);
 
 
-        // Initializing Logo URLS
-        String logo_string1 = this.dataObjectList.get(position).getTeam1Info().getImage();
-        String logo_string2 = this.dataObjectList.get(position).getTeam2Info().getImage();
+
+        String logo_string1 = WelcomeActivity.countryHash.getCountryFlag(WelcomeActivity.countryHash.getCountryName(this.dataObjectList.get(position).getTeam1Info().getSn()).toUpperCase());
+        String logo_string2 = WelcomeActivity.countryHash.getCountryFlag(WelcomeActivity.countryHash.getCountryName(this.dataObjectList.get(position).getTeam2Info().getSn()).toUpperCase());
 
 
 

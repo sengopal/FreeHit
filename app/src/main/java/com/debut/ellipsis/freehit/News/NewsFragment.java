@@ -28,12 +28,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class NewsFragment extends Fragment {
 
-    APIInterface apiInterface;
     private ProgressBar mProgressBar;
     public ImageView NoConnectionImage;
     public Button NoConnectionButton;
@@ -52,7 +49,7 @@ public class NewsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_news_list, container, false);
 
-        apiInterface = ApiClient.getClient().create(APIInterface.class);
+        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
         View viewRecycler = rootView.findViewById(R.id.news_list);
 
@@ -83,7 +80,7 @@ public class NewsFragment extends Fragment {
         NoNewsButton = (Button) No_news.findViewById(R.id.No_Live_Matches_button);
 
 
-        Call<NewsItem> call = apiInterface.doGetNewsListResources();
+        Call<NewsItem> call = MainActivity.apiInterface.doGetNewsListResources();
         call.enqueue(new Callback<NewsItem>() {
             @Override
             public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
@@ -138,7 +135,7 @@ public class NewsFragment extends Fragment {
                                                // Checking if connected or not on refresh
                                                refLayout.setRefreshing(true);
 
-                                               Call<NewsItem> call = apiInterface.doGetNewsListResources();
+                                               Call<NewsItem> call = MainActivity.apiInterface.doGetNewsListResources();
                                                call.enqueue(new Callback<NewsItem>() {
                                                    @Override
                                                    public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {

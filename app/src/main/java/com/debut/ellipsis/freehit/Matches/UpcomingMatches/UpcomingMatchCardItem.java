@@ -18,8 +18,6 @@ public class UpcomingMatchCardItem {
     private String match;
     @SerializedName("stadium")
     private String stadium;
-    @SerializedName("time")
-    private String time;
     @SerializedName("date")
     private Date date;
     @SerializedName("team1info")
@@ -54,10 +52,6 @@ public class UpcomingMatchCardItem {
         return title;
     }
 
-    public String getTime() {
-        return time;
-    }
-
     public String getTour() {
         return tour;
     }
@@ -76,34 +70,8 @@ public class UpcomingMatchCardItem {
 
     public class Date {
 
-        @SerializedName("day")
-        private String day;
-        @SerializedName("month")
-        private String month;
-        @SerializedName("year")
-        private String year;
         @SerializedName("final")
         private String finaldate;
-
-        public Date(String day, String month, String year, String finaldate) {
-            this.day = day;
-            this.month = month;
-            this.year = year;
-            this.finaldate = finaldate;
-
-        }
-
-        public String getDay() {
-            return day;
-        }
-
-        public String getMonth() {
-            return month;
-        }
-
-        public String getYear() {
-            return year;
-        }
 
         public String getFinaldate() {
             return finaldate;
@@ -113,21 +81,9 @@ public class UpcomingMatchCardItem {
     public class Team {
         @SerializedName("name")
         private String name;
-        @SerializedName("image")
-        private String image;
         @SerializedName("sn")
         private String sn;
 
-        public Team(String name, String image, String sn) {
-            this.name = name;
-            this.image = image;
-            this.sn = sn;
-
-        }
-
-        public String getImage() {
-            return image;
-        }
 
         public String getName() {
             return name;

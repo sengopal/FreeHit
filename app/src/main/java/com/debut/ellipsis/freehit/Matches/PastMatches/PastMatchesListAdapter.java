@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
+import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
@@ -87,8 +88,8 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
         holder.stadium.setText("( "+pastMatchCardItems.get(position).getStadium()+" )");
         holder.title.setText(pastMatchCardItems.get(position).getTitle());
 
-        String logo_string1 = pastMatchCardItems.get(position).getTeam1Info().getImage();
-        String logo_string2 = pastMatchCardItems.get(position).getTeam2Info().getImage();
+        String logo_string1 = WelcomeActivity.countryHash.getCountryFlag(WelcomeActivity.countryHash.getCountryName(pastMatchCardItems.get(position).getTeam1Info().getSn()).toUpperCase());
+        String logo_string2 = WelcomeActivity.countryHash.getCountryFlag(WelcomeActivity.countryHash.getCountryName(pastMatchCardItems.get(position).getTeam2Info().getSn()).toUpperCase());
 
         MainActivity.requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 

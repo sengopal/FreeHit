@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.CountryHash;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
+import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
@@ -164,8 +165,8 @@ public class LiveMatchCardAdapter extends PagerAdapter {
         TextView MatchDate = (TextView) view.findViewById(R.id.match_date_live);
         MatchDate.setText(outputDateStr);
 
-        logo_string1 = this.dataObjectList.get(position).getTeam1().getImage();
-        logo_string2 = this.dataObjectList.get(position).getTeam2().getImage();
+        logo_string1 =  WelcomeActivity.countryHash.getCountryFlag(this.dataObjectList.get(position).getTeam1().getName().toUpperCase());
+        logo_string2 =  WelcomeActivity.countryHash.getCountryFlag(this.dataObjectList.get(position).getTeam2().getName().toUpperCase());
 
         MainActivity.requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 

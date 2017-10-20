@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchCardItem;
 import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchListAdapter;
 import com.debut.ellipsis.freehit.R;
@@ -27,7 +28,6 @@ import retrofit2.Response;
 
 public class SeriesUpcoming extends Fragment {
 
-    APIInterface apiInterface;
     private ProgressBar mProgressBar;
     public SwipeRefreshLayout refresh_layout;
     private RecyclerView rv;
@@ -42,7 +42,7 @@ public class SeriesUpcoming extends Fragment {
         SeriesActivity.date = i.getStringExtra("date");
         SeriesActivity.Teams = i.getStringExtra("Teams");
 
-        apiInterface = ApiClient.getClient().create(APIInterface.class);
+        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
         View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
@@ -60,7 +60,7 @@ public class SeriesUpcoming extends Fragment {
 
 
         /* GET List Upcoming Matches for selected team */
-        Call<UpcomingMatchCardItem> call = apiInterface.doGetUpComingSeriesMatches(SeriesActivity.Teams,SeriesActivity.date);
+        Call<UpcomingMatchCardItem> call = MainActivity.apiInterface.doGetUpComingSeriesMatches(SeriesActivity.Teams,SeriesActivity.date);
         call.enqueue(new Callback<UpcomingMatchCardItem>() {
             @Override
             public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {
@@ -92,7 +92,7 @@ public class SeriesUpcoming extends Fragment {
                                                     // Checking if connected or not on refresh
                                                     refresh_layout.setRefreshing(true);
 
-                                                    Call<UpcomingMatchCardItem> call = apiInterface.doGetUpComingSeriesMatches(SeriesActivity.Teams,SeriesActivity.date);
+                                                    Call<UpcomingMatchCardItem> call = MainActivity.apiInterface.doGetUpComingSeriesMatches(SeriesActivity.Teams,SeriesActivity.date);
                                                     call.enqueue(new Callback<UpcomingMatchCardItem>() {
                                                         @Override
                                                         public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {

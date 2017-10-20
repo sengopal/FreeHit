@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.More.Team.TeamPlayerAdapter;
 import com.debut.ellipsis.freehit.PlayerCountryItem;
 import com.debut.ellipsis.freehit.R;
@@ -27,8 +28,6 @@ import retrofit2.Response;
 
 public class PlayerSearchActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
-
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -37,7 +36,7 @@ public class PlayerSearchActivity extends AppCompatActivity {
 
         View viewToolbar = findViewById(R.id.toolbar_player_search);
 
-        toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Player Search");
@@ -63,8 +62,9 @@ public class PlayerSearchActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                APIInterface apiInterface = ApiClient.getClient().create(APIInterface.class);
-                final Call<PlayerCountryItem> playerInfo = apiInterface.doGetPlayerList(s.toString());
+
+                MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
+                final Call<PlayerCountryItem> playerInfo = MainActivity.apiInterface.doGetPlayerList(s.toString());
                 playerInfo.enqueue(new Callback<PlayerCountryItem>() {
                     @Override
                     public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {

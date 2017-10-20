@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
+import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
@@ -101,9 +102,9 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
         TextView textViewStadiumName = viewHolder.textViewStadiumName;
         textViewStadiumName.setText("( "+upcomingMatchCards.getStadium()+" )");
 
-        String logo_string1 = upcomingMatchCards.getTeam1().getImage();
+        String logo_string1 = WelcomeActivity.countryHash.getCountryFlag(upcomingMatchCards.getTeam1().getName().toUpperCase());
 
-        String logo_string2 = upcomingMatchCards.getTeam2().getImage();
+        String logo_string2 = WelcomeActivity.countryHash.getCountryFlag(upcomingMatchCards.getTeam2().getName().toUpperCase());
 
         ImageView imageViewTeam1Logo = viewHolder.imageViewTeam1Logo;
 

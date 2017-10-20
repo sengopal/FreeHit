@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchCardItem;
 import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchListAdapter;
 import com.debut.ellipsis.freehit.R;
@@ -28,7 +29,7 @@ import retrofit2.Response;
 
 
 public class TeamUpcoming extends Fragment {
-    APIInterface apiInterface;
+
     private UpcomingMatchListAdapter MatchListAdapter;
     private ProgressBar mProgressBar;
     private RecyclerView rv;
@@ -38,7 +39,7 @@ public class TeamUpcoming extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View rootView = inflater.inflate(R.layout.fragment_more_team_complete_match_list, container, false);
 
         Intent i = getActivity().getIntent();
@@ -56,9 +57,9 @@ public class TeamUpcoming extends Fragment {
         }
 
 
-        final String TeamName = WelcomeActivity.countryHash.getCountrySN(TeamActivity.tempTeamName.toUpperCase());
+        TeamActivity.tempTeamName = WelcomeActivity.countryHash.getCountrySN(TeamActivity.tempTeamName.toUpperCase());
 
-        apiInterface = ApiClient.getClient().create(APIInterface.class);
+        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
         View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
@@ -74,7 +75,7 @@ public class TeamUpcoming extends Fragment {
         mEmptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);
 
 
-        Call<UpcomingMatchCardItem> call = apiInterface.doGetUpcomingFavTeam(TeamName);
+        Call<UpcomingMatchCardItem> call = MainActivity.apiInterface.doGetUpcomingFavTeam(TeamActivity.tempTeamName);
         call.enqueue(new Callback<UpcomingMatchCardItem>() {
             @Override
             public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {
@@ -107,7 +108,7 @@ public class TeamUpcoming extends Fragment {
                 // Checking if connected or not on refresh
                 refresh_layout.setRefreshing(true);
 
-                Call<UpcomingMatchCardItem> call = apiInterface.doGetUpcomingFavTeam(TeamName);
+                Call<UpcomingMatchCardItem> call = MainActivity.apiInterface.doGetUpcomingFavTeam(TeamActivity.tempTeamName);
                 call.enqueue(new Callback<UpcomingMatchCardItem>() {
                     @Override
                     public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {

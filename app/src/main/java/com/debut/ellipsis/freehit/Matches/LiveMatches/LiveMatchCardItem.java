@@ -14,12 +14,8 @@ public class LiveMatchCardItem {
     private String tour;
     @SerializedName("title")
     private String title;
-    @SerializedName("match")
-    private String match;
     @SerializedName("stadium")
     private String stadium;
-    @SerializedName("time")
-    private String time;
     @SerializedName("date")
     private Date date;
     @SerializedName("team1info")
@@ -36,10 +32,6 @@ public class LiveMatchCardItem {
         return id;
     }
 
-    public String getMatch() {
-        return match;
-    }
-
     public Date getDate() {
         return date;
     }
@@ -54,10 +46,6 @@ public class LiveMatchCardItem {
 
     public String getTitle() {
         return title;
-    }
-
-    public String getTime() {
-        return time;
     }
 
     public String getTour() {
@@ -82,27 +70,8 @@ public class LiveMatchCardItem {
 
     public class Date {
 
-        @SerializedName("day")
-        private String day;
-        @SerializedName("month")
-        private String month;
-        @SerializedName("year")
-        private String year;
         @SerializedName("final")
         private String finaldate;
-
-
-        public String getDay() {
-            return day;
-        }
-
-        public String getMonth() {
-            return month;
-        }
-
-        public String getYear() {
-            return year;
-        }
 
         public String getFinaldate() {
             return finaldate;
@@ -112,26 +81,14 @@ public class LiveMatchCardItem {
     public class Team {
         @SerializedName("name")
         private String name;
-        @SerializedName("image")
-        private String image;
-        @SerializedName("sn")
-        private String sn;
         @SerializedName("inn1")
         private String inn1;
         @SerializedName("inn2")
         private String inn2;
 
 
-        public String getImage() {
-            return image;
-        }
-
         public String getName() {
             return name;
-        }
-
-        public String getSn() {
-            return sn;
         }
 
         public String getInn1() {

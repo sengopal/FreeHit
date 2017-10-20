@@ -30,7 +30,6 @@ import retrofit2.Response;
 
 public class UpcomingMatchCard extends Fragment {
 
-    APIInterface apiInterface;
     private ProgressBar mProgressBar;
     public PageIndicatorView indicator;
     private UpcomingMatchesItemAdapter mAdapter;
@@ -49,7 +48,7 @@ public class UpcomingMatchCard extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_matches_common_pager, container, false);
 
 
-        apiInterface = ApiClient.getClient().create(APIInterface.class);
+        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
         View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
@@ -68,7 +67,7 @@ public class UpcomingMatchCard extends Fragment {
         NoConnectionImage = (ImageView) no_internet_connection.findViewById(R.id.no_internet_connection);
         NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
-        Call<UpcomingMatchCardItem> call = apiInterface.doGetUpcomingMatchListResources();
+        Call<UpcomingMatchCardItem> call = MainActivity.apiInterface.doGetUpcomingMatchListResources();
         call.enqueue(new Callback<UpcomingMatchCardItem>() {
             @Override
             public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {
@@ -118,7 +117,7 @@ public class UpcomingMatchCard extends Fragment {
             public void onRefresh() {
                 // start refresh
                 refreshLayout.setRefreshing(true);
-                Call<UpcomingMatchCardItem> call = apiInterface.doGetUpcomingMatchListResources();
+                Call<UpcomingMatchCardItem> call = MainActivity.apiInterface.doGetUpcomingMatchListResources();
                 call.enqueue(new Callback<UpcomingMatchCardItem>() {
                     @Override
                     public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {

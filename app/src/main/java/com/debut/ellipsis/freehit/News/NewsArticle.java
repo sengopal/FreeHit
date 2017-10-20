@@ -30,7 +30,6 @@ import retrofit2.Response;
 public class NewsArticle extends AppCompatActivity {
 
     private Toolbar toolbar;
-    APIInterface apiInterface;
     private ProgressBar mProgressBar;
     private String match_id;
 
@@ -44,7 +43,8 @@ public class NewsArticle extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_news_article_individual_item);
         match_id = getIntent().getStringExtra("news_id");
-        apiInterface = ApiClient.getClient().create(APIInterface.class);
+
+        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
         View viewProgress = findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
@@ -56,7 +56,7 @@ public class NewsArticle extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
-        Call<NewsArticleItem> call = apiInterface.doGetNewsArticle(match_id);
+        Call<NewsArticleItem> call = MainActivity.apiInterface.doGetNewsArticle(match_id);
         call.enqueue(new Callback<NewsArticleItem>() {
             @Override
             public void onResponse(Call<NewsArticleItem> call, Response<NewsArticleItem> response) {

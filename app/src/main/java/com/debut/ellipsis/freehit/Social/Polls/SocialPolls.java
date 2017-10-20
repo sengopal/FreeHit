@@ -32,7 +32,6 @@ import retrofit2.Response;
  */
 public class SocialPolls extends Fragment {
 
-    APIInterface apiInterface;
     private ProgressBar mProgressBar;
     public TextView NoPollsText;
     public Button NoPollsButton;
@@ -49,7 +48,8 @@ public class SocialPolls extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_news_list, container, false);
-        apiInterface = ApiClient.getClient().create(APIInterface.class);
+
+        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
         View viewRecycler = rootView.findViewById(R.id.news_list);
 
@@ -78,7 +78,7 @@ public class SocialPolls extends Fragment {
         NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
 
-        final Call<PollCardItem> call = apiInterface.doGetPollsListResources();
+        final Call<PollCardItem> call = MainActivity.apiInterface.doGetPollsListResources();
         call.enqueue(new Callback<PollCardItem>() {
             @Override
             public void onResponse(Call<PollCardItem> call, Response<PollCardItem> response) {
@@ -134,7 +134,7 @@ public class SocialPolls extends Fragment {
                                                // Checking if connected or not on refresh
                                                refLayout.setRefreshing(true);
 
-                                               Call<PollCardItem> call = apiInterface.doGetPollsListResources();
+                                               Call<PollCardItem> call = MainActivity.apiInterface.doGetPollsListResources();
                                                call.enqueue(new Callback<PollCardItem>() {
                                                    @Override
                                                    public void onResponse(Call<PollCardItem> call, Response<PollCardItem> response) {

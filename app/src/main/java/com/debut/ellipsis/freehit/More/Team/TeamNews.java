@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.News.NewsItem;
 import com.debut.ellipsis.freehit.News.NewsItemAdapter;
 import com.debut.ellipsis.freehit.R;
@@ -28,7 +29,7 @@ import retrofit2.Response;
 
 
 public class TeamNews extends Fragment {
-    APIInterface apiInterface;
+
     private ProgressBar mProgressBar;
     public TextView NoNewsText;
     public Button NoNewsButton;
@@ -56,9 +57,9 @@ public class TeamNews extends Fragment {
             TeamActivity.tempTeamName = this.getContext().getString(TeamActivity.Team);
         }
 
-        final String teamName = TeamActivity.tempTeamName.toLowerCase();
+        TeamActivity.tempTeamName = TeamActivity.tempTeamName.toLowerCase();
 
-        apiInterface = ApiClient.getClient().create(APIInterface.class);
+        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
         View viewRecycler = rootView.findViewById(R.id.news_list);
 
@@ -77,7 +78,7 @@ public class TeamNews extends Fragment {
 
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
-        Call<NewsItem> call = apiInterface.doGetNewsArticleTeam(teamName);
+        Call<NewsItem> call = MainActivity.apiInterface.doGetNewsArticleTeam(TeamActivity.tempTeamName);
         call.enqueue(new Callback<NewsItem>() {
             @Override
             public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
@@ -112,7 +113,7 @@ public class TeamNews extends Fragment {
                                                // Checking if connected or not on refresh
                                                refLayout.setRefreshing(true);
 
-                                               Call<NewsItem> call = apiInterface.doGetNewsArticleTeam(teamName);
+                                               Call<NewsItem> call = MainActivity.apiInterface.doGetNewsArticleTeam(TeamActivity.tempTeamName);
                                                call.enqueue(new Callback<NewsItem>() {
                                                    @Override
                                                    public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {

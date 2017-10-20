@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchCardItem;
 import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchesListAdapter;
 import com.debut.ellipsis.freehit.R;
@@ -28,7 +29,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TeamPast extends Fragment {
-    APIInterface apiInterface;
+
     private PastMatchesListAdapter MatchListAdapter;
     private ProgressBar mProgressBar;
     public SwipeRefreshLayout refresh_layout;
@@ -54,9 +55,9 @@ public class TeamPast extends Fragment {
         }
 
 
-        final String TeamName = WelcomeActivity.countryHash.getCountrySN(TeamActivity.tempTeamName.toUpperCase());
+        TeamActivity.tempTeamName = WelcomeActivity.countryHash.getCountrySN(TeamActivity.tempTeamName.toUpperCase());
 
-        apiInterface = ApiClient.getClient().create(APIInterface.class);
+        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
         View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
@@ -72,7 +73,7 @@ public class TeamPast extends Fragment {
         refresh_layout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
 
-        Call<PastMatchCardItem> call = apiInterface.doGetPastFavTeam(TeamName);
+        Call<PastMatchCardItem> call = MainActivity.apiInterface.doGetPastFavTeam(TeamActivity.tempTeamName);
         call.enqueue(new Callback<PastMatchCardItem>() {
             @Override
             public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
@@ -105,7 +106,7 @@ public class TeamPast extends Fragment {
                 // Checking if connected or not on refresh
                 refresh_layout.setRefreshing(true);
 
-                Call<PastMatchCardItem> call = apiInterface.doGetPastFavTeam(TeamName);
+                Call<PastMatchCardItem> call = MainActivity.apiInterface.doGetPastFavTeam(TeamActivity.tempTeamName);
                 call.enqueue(new Callback<PastMatchCardItem>() {
                     @Override
                     public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {

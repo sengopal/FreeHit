@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
+import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
@@ -113,8 +114,8 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
             }
         });
 
-        logo_string1 = this.dataObjectList.get(position).getTeam1().getImage();
-        logo_string2 = this.dataObjectList.get(position).getTeam2().getImage();
+        logo_string1 =  WelcomeActivity.countryHash.getCountryFlag(this.dataObjectList.get(position).getTeam1().getName().toUpperCase());
+        logo_string2 =  WelcomeActivity.countryHash.getCountryFlag(this.dataObjectList.get(position).getTeam2().getName().toUpperCase());
 
 
 

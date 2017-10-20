@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
@@ -52,9 +53,9 @@ public class SeriesMainActivity extends AppCompatActivity {
         View vProgress = findViewById(R.id.progress);
         final ProgressBar mProgressbar = (ProgressBar) vProgress.findViewById(R.id.progress_bar);
 
-        final APIInterface apiInterface = ApiClient.getClient().create(APIInterface.class);
+        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        Call<SeriesItem> seriesInfo = apiInterface.doGetSeries();
+        Call<SeriesItem> seriesInfo = MainActivity.apiInterface.doGetSeries();
         seriesInfo.enqueue(new Callback<com.debut.ellipsis.freehit.More.Series.SeriesItem>() {
             @Override
             public void onResponse(Call<SeriesItem> call, Response<SeriesItem> response) {
@@ -78,7 +79,7 @@ public class SeriesMainActivity extends AppCompatActivity {
                                                     // Checking if connected or not on refresh
                                                     refLayout.setRefreshing(true);
 
-                                                    Call<SeriesItem> seriesInfo = apiInterface.doGetSeries();
+                                                    Call<SeriesItem> seriesInfo = MainActivity.apiInterface.doGetSeries();
                                                     seriesInfo.enqueue(new Callback<com.debut.ellipsis.freehit.More.Series.SeriesItem>() {
                                                         @Override
                                                         public void onResponse(Call<SeriesItem> call, Response<SeriesItem> response) {

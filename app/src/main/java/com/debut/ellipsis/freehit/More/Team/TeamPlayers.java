@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.CountryItem;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.PlayerCountryItem;
 import com.debut.ellipsis.freehit.R;
 
@@ -28,7 +29,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TeamPlayers extends Fragment {
-    APIInterface apiInterface;
+
     private String TeamID;
     private ProgressBar mProgressBar;
     public TextView mEmptyView;
@@ -57,7 +58,7 @@ public class TeamPlayers extends Fragment {
         Toolbar toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
         toolbar.setVisibility(View.GONE);
 
-        apiInterface = ApiClient.getClient().create(APIInterface.class);
+        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
 
         View viewEmpty = rootView.findViewById(R.id.empty);
@@ -73,7 +74,7 @@ public class TeamPlayers extends Fragment {
 
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
-        Call<CountryItem> call = apiInterface.doGetCountryResources();
+        Call<CountryItem> call = MainActivity.apiInterface.doGetCountryResources();
         call.enqueue(new Callback<CountryItem>() {
             @Override
             public void onResponse(Call<CountryItem> call, Response<CountryItem> response) {
@@ -84,7 +85,7 @@ public class TeamPlayers extends Fragment {
                         int teamID = countries.get(i).getId();
                         TeamID = String.valueOf(teamID);
 
-                        Call<PlayerCountryItem> call1 = apiInterface.doGetFavTeamPlayers(TeamID);
+                        Call<PlayerCountryItem> call1 = MainActivity.apiInterface.doGetFavTeamPlayers(TeamID);
                         call1.enqueue(new Callback<PlayerCountryItem>() {
                             @Override
                             public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
@@ -127,7 +128,7 @@ public class TeamPlayers extends Fragment {
             public void onRefresh() {
                 refLayout.setRefreshing(true);
 
-                Call<CountryItem> call = apiInterface.doGetCountryResources();
+                Call<CountryItem> call = MainActivity.apiInterface.doGetCountryResources();
                 call.enqueue(new Callback<CountryItem>() {
                     @Override
                     public void onResponse(Call<CountryItem> call, Response<CountryItem> response) {
@@ -138,7 +139,7 @@ public class TeamPlayers extends Fragment {
                                 int teamID = countries.get(i).getId();
                                 TeamID = String.valueOf(teamID);
 
-                                Call<PlayerCountryItem> call1 = apiInterface.doGetFavTeamPlayers(TeamID);
+                                Call<PlayerCountryItem> call1 = MainActivity.apiInterface.doGetFavTeamPlayers(TeamID);
                                 call1.enqueue(new Callback<PlayerCountryItem>() {
                                     @Override
                                     public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
