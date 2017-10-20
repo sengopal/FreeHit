@@ -64,11 +64,11 @@ public class Batting_Fragment extends Fragment {
         gridViewString[55] = "STRIKE\nRATE";
 
         APIInterface apiInterface = ApiClient.getClient().create(APIInterface.class);
-        Call<BattingItem> call = apiInterface.doGetBattingInfo(PlayerActivity.player_url);
-        call.enqueue(new Callback<BattingItem>() {
+        Call<PlayerItem> call = apiInterface.doGetPlayerInfo(PlayerActivity.player_url);
+        call.enqueue(new Callback<PlayerItem>() {
             @Override
-            public void onResponse(Call<BattingItem> call, Response<BattingItem> response) {
-                BattingItem info = response.body();
+            public void onResponse(Call<PlayerItem> call, Response<PlayerItem> response) {
+                PlayerItem info = response.body();
 
                 //Number Of Matches in Test,Odi,T20,IPL
                 gridViewString[6] = info.getBatstats().getTest().getMatches();
@@ -146,7 +146,7 @@ public class Batting_Fragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<BattingItem> call, Throwable t) {
+            public void onFailure(Call<PlayerItem> call, Throwable t) {
                 Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
             }
         });

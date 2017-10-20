@@ -61,11 +61,11 @@ public class Bowling_Fragment extends Fragment {
         gridViewString[55] = "STRIKE\nRATE";
 
         APIInterface apiInterface = ApiClient.getClient().create(APIInterface.class);
-        Call<BowlingItem> call = apiInterface.doGetBowlingInfo(PlayerActivity.player_url);
-        call.enqueue(new Callback<BowlingItem>() {
+        Call<PlayerItem> call = apiInterface.doGetPlayerInfo(PlayerActivity.player_url);
+        call.enqueue(new Callback<PlayerItem>() {
             @Override
-            public void onResponse(Call<BowlingItem> call, Response<BowlingItem> response) {
-                BowlingItem info = response.body();
+            public void onResponse(Call<PlayerItem> call, Response<PlayerItem> response) {
+                PlayerItem info = response.body();
                 //Number Of Innings in Test,Odi,T20,IPL
                 gridViewString[6] = info.getBowlstats().getTest().getinnbowled();
                 gridViewString[7] = info.getBowlstats().getOdi().getinnbowled();
@@ -143,7 +143,7 @@ public class Bowling_Fragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<BowlingItem> call, Throwable t) {
+            public void onFailure(Call<PlayerItem> call, Throwable t) {
 
             }
         });

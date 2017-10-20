@@ -46,6 +46,8 @@ public class PlayerActivity extends AppCompatActivity {
         setupViewPager(viewPager);
 
         TabLayout tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.setupWithViewPager(viewPager);
 
 
@@ -76,7 +78,6 @@ public class PlayerActivity extends AppCompatActivity {
         adapter.addFrag(new Info_Fragment(), "PLAYER INFO");
         adapter.addFrag(new Batting_Fragment(), "BATTING");
         adapter.addFrag(new Bowling_Fragment(), "BOWLING");
-        adapter.addFrag(new CareerFragment(), "CAREER");
         viewPager.setAdapter(adapter);
     }
 

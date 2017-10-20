@@ -52,6 +52,7 @@ public class Info_Fragment extends Fragment {
         final TextView BattingStyle = (TextView) rootView.findViewById(R.id.battingStyle);
         final TextView BowlingStyle = (TextView) rootView.findViewById((R.id.BowlingStyle));
         final TextView TeamsPlayed = (TextView) rootView.findViewById((R.id.Teams_Played));
+        final  TextView description=(TextView)rootView.findViewById((R.id.PlayerInfo));
 
         View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
@@ -59,13 +60,11 @@ public class Info_Fragment extends Fragment {
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
 
-        //to make changes
-        Call<InfoItem> call = apiInterface.doGetInfoResources(PlayerActivity.player_url);
-        call.enqueue(new Callback<InfoItem>() {
+        Call<PlayerItem> call = apiInterface.doGetPlayerInfo(PlayerActivity.player_url);
+        call.enqueue(new Callback<PlayerItem>() {
             @Override
-            public void onResponse(Call<InfoItem> call, Response<InfoItem> response) {
-
-                InfoItem info = response.body();
+            public void onResponse(Call<PlayerItem> call, Response<PlayerItem> response) {
+                PlayerItem info = response.body();
 
                 name.setText(info.getName());
 
@@ -262,12 +261,12 @@ public class Info_Fragment extends Fragment {
                     }
                 }
 
-
+                description.setText(info.getDesc());
 
             }
 
             @Override
-            public void onFailure(Call<InfoItem> call, Throwable t) {
+            public void onFailure(Call<PlayerItem> call, Throwable t) {
                 Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
                 call.cancel();
             }

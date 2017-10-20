@@ -52,6 +52,7 @@ public class TeamPlayers extends Fragment {
             TeamActivity.tempTeamName = this.getContext().getString(TeamActivity.Team);
         }
 
+        final String Team = TeamActivity.tempTeamName ;
 
         View viewToolbar = rootView.findViewById(R.id.toolbar_fav_players);
 
@@ -81,7 +82,7 @@ public class TeamPlayers extends Fragment {
 
                 List<CountryItem> countries = response.body().getResults();
                 for (int i = 0; i < countries.size(); i++) {
-                    if (countries.get(i).getTitle().equals(TeamActivity.tempTeamName)) {
+                    if (countries.get(i).getTitle().equals(Team)) {
                         int teamID = countries.get(i).getId();
                         TeamID = String.valueOf(teamID);
 
@@ -135,7 +136,7 @@ public class TeamPlayers extends Fragment {
 
                         List<CountryItem> countries = response.body().getResults();
                         for (int i = 0; i < countries.size(); i++) {
-                            if (countries.get(i).getTitle().equals(TeamActivity.tempTeamName)) {
+                            if (countries.get(i).getTitle().equals(Team)) {
                                 int teamID = countries.get(i).getId();
                                 TeamID = String.valueOf(teamID);
 

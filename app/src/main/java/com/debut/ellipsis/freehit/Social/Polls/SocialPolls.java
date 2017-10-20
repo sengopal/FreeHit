@@ -206,7 +206,7 @@ public class SocialPolls extends Fragment {
                 int lastVisibleItemIndex = mLinearLayoutManager.findLastVisibleItemPosition();
 
                 if (lastVisibleItemIndex >= totalItemCount) return;
-                mLinearLayoutManager.smoothScrollToPosition(recyclerView,null,lastVisibleItemIndex+1);
+                mLinearLayoutManager.smoothScrollToPosition(recyclerView,null,totalItemCount+1);
             }
         });
 
