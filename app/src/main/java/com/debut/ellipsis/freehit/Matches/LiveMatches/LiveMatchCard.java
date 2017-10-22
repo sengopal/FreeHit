@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -100,10 +101,12 @@ public class LiveMatchCard extends Fragment {
                         NoLiveMatchesButton.setOnClickListener(new View.OnClickListener() {
 
                             public void onClick(View v) {
-                                Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                                /*Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
                                 i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                                 i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                startActivity(i);
+                                startActivity(i);*/
+                                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                ft.detach(LiveMatchCard.this).attach(LiveMatchCard.this).commit();
                             }
                         });
 
@@ -124,10 +127,12 @@ public class LiveMatchCard extends Fragment {
                 NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
                     public void onClick(View v) {
-                        Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                       /* Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
                         i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                         i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(i);
+                        startActivity(i);*/
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.detach(LiveMatchCard.this).attach(LiveMatchCard.this).commit();
 
                     }
                 });

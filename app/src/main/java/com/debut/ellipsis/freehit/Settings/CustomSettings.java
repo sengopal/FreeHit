@@ -2,7 +2,6 @@ package com.debut.ellipsis.freehit.Settings;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -82,10 +81,14 @@ public class CustomSettings extends AppCompatActivity {
             NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
                 public void onClick(View v) {
-                    Intent i = new Intent(getBaseContext(), CustomSettings.class);
+                    /*Intent i = getIntent();
                     i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                     i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    startActivity(i);
+                    startActivity(i);*/
+                    finish();
+                    startActivity(getIntent());
+                    overridePendingTransition( 0, 0);
+
                 }
             });
 

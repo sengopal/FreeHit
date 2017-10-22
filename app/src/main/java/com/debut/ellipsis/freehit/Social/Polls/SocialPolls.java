@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -116,11 +117,13 @@ public class SocialPolls extends Fragment {
                 NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
                     public void onClick(View v) {
-                        Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                        /*Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
                         i.putExtra("Main_tab",2);
                         i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                         i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(i);
+                        startActivity(i);*/
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
 
                     }
                 });
@@ -151,11 +154,13 @@ public class SocialPolls extends Fragment {
                                                                NoPollsButton.setOnClickListener(new View.OnClickListener() {
 
                                                                    public void onClick(View v) {
-                                                                       Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                                                                      /* Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
                                                                        i.putExtra("Main_tab",2);
                                                                        i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                                                                        i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                                                       startActivity(i);
+                                                                       startActivity(i);*/
+                                                                       FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                                                       ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
                                                                    }
                                                                });
                                                            }

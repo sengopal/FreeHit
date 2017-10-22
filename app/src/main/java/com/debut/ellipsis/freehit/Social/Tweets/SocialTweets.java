@@ -2,11 +2,11 @@ package com.debut.ellipsis.freehit.Social.Tweets;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +18,6 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
@@ -126,11 +125,13 @@ public class SocialTweets extends Fragment {
             NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
                 public void onClick(View v) {
-                    Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                   /* Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
                     i.putExtra("Main_tab",2);
                     i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                     i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    startActivity(i);
+                    startActivity(i);*/
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.detach(SocialTweets.this).attach(SocialTweets.this).commit();
 
                 }
             });
