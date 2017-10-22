@@ -45,57 +45,56 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, final int position) {
         View view = this.layoutInflater.inflate(R.layout.fragment_matches_past_match_card, container, false);
 
-        TextView textViewMatchName = (TextView) view.findViewById(R.id.match_name_past);
+        TextView textViewMatchName = view.findViewById(R.id.match_name_past);
         textViewMatchName.setText(this.dataObjectList.get(position).getTitle());
 
-        TextView textViewSeriesName = (TextView) view.findViewById(R.id.series_name_past);
+        TextView textViewSeriesName = view.findViewById(R.id.series_name_past);
         textViewSeriesName.setText(this.dataObjectList.get(position).getTour());
 
-        TextView textViewStadiumName = (TextView) view.findViewById(R.id.stadium_past);
+        TextView textViewStadiumName = view.findViewById(R.id.stadium_past);
         textViewStadiumName.setText("( "+this.dataObjectList.get(position).getStadium()+" )");
 
 
-        ImageView imageViewTeam1Logo = (ImageView) view.findViewById(R.id.team_logo_1_past);
+        ImageView imageViewTeam1Logo = view.findViewById(R.id.team_logo_1_past);
 
-        ImageView imageViewTeam2Logo = (ImageView) view.findViewById(R.id.team_logo_2_past);
+        ImageView imageViewTeam2Logo = view.findViewById(R.id.team_logo_2_past);
 
 
-        TextView shortName1 = (TextView) view.findViewById(R.id.sn_team_1_past);
+        TextView shortName1 = view.findViewById(R.id.sn_team_1_past);
         shortName1.setText(this.dataObjectList.get(position).getTeam1Info().getSn());
 
-        TextView team1Innings1 = (TextView) view.findViewById(R.id.innings1_team1_past);
+        TextView team1Innings1 = view.findViewById(R.id.innings1_team1_past);
         team1Innings1.setText(this.dataObjectList.get(position).getTeam1Info().getInn1());
 
-        TextView team1Innings2 = (TextView) view.findViewById(R.id.innings2_team1_past);
+        TextView team1Innings2 = view.findViewById(R.id.innings2_team1_past);
         team1Innings2.setText(this.dataObjectList.get(position).getTeam1Info().getInn2());
 
 
-        TextView shortName2 = (TextView) view.findViewById(R.id.sn_team_2_past);
+        TextView shortName2 = view.findViewById(R.id.sn_team_2_past);
         shortName2.setText(this.dataObjectList.get(position).getTeam2Info().getSn());
 
-        TextView team2Innings1 = (TextView) view.findViewById(R.id.innings1_team2_past);
+        TextView team2Innings1 = view.findViewById(R.id.innings1_team2_past);
         team2Innings1.setText(this.dataObjectList.get(position).getTeam2Info().getInn1());
 
-        TextView team2Innings2 = (TextView) view.findViewById(R.id.innings2_team2_past);
+        TextView team2Innings2 = view.findViewById(R.id.innings2_team2_past);
         team2Innings2.setText(this.dataObjectList.get(position).getTeam2Info().getInn2());
 
 
-        TextView MatchResult = (TextView) view.findViewById(R.id.match_result_past);
+        TextView MatchResult = view.findViewById(R.id.match_result_past);
         MatchResult.setText(this.dataObjectList.get(position).getResult());
 
-        TextView viewMore = (TextView) view.findViewById(R.id.past_view_more);
+        TextView viewMore = view.findViewById(R.id.past_view_more);
 
 
-        TextView MatchDate = (TextView) view.findViewById(R.id.match_date_past);
+        TextView MatchDate = view.findViewById(R.id.match_date_past);
         MatchDate.setText(this.dataObjectList.get(position).getTime());
 
-        final CardView cardView = (CardView) view.findViewById(R.id.card_view);
-        TextView ViewMore = (TextView) view.findViewById(R.id.past_view_more);
+        final CardView cardView = view.findViewById(R.id.card_view);
+        TextView ViewMore = view.findViewById(R.id.past_view_more);
         ViewMore.setText(R.string.matches_view_more);
         ViewMore.setVisibility(View.INVISIBLE);
 
-
-
+        
         String logo_string1 = WelcomeActivity.countryHash.getCountryFlag(WelcomeActivity.countryHash.getCountryName(this.dataObjectList.get(position).getTeam1Info().getSn()).toUpperCase());
         String logo_string2 = WelcomeActivity.countryHash.getCountryFlag(WelcomeActivity.countryHash.getCountryName(this.dataObjectList.get(position).getTeam2Info().getSn()).toUpperCase());
 

@@ -127,7 +127,7 @@ public class CountryHash {
                 return "South Africa";
             case "BAN":
                 return "Bangladesh";
-            case "NA":
+            case "NZ":
                 return "New Zealand";
             case "ENG":
                 return "England";
