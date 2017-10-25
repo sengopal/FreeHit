@@ -10,9 +10,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
@@ -71,11 +71,11 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
 
         String URLNewsImage = newsItems.get(position).getImage();
 
-        RequestBuilder requestBuilder = GlideApp.with(context).load(URLNewsImage).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        MainActivity.requestBuilder = GlideApp.with(context).load(URLNewsImage).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-        requestBuilder.into(holder.image);
+        MainActivity.requestBuilder.into(holder.image);
 
-        RelativeLayout RLcontainer = holder.rlcontainer;
+        RelativeLayout RLContainer = holder.rlcontainer;
 
         View.OnClickListener mClickListener;
 
@@ -92,7 +92,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
 
             }
         };
-        RLcontainer.setOnClickListener(mClickListener);
+        RLContainer.setOnClickListener(mClickListener);
 
 
     }

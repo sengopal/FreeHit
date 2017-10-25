@@ -13,12 +13,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
         android:layout_marginLeft="@dimen/_15sdp"
         android:layout_marginRight="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:textColor="#000000"
-        android:textSize="@dimen/_15sdp"
-        tools:text="The title of the poll, it's a very interesting poll if you ask me, you should check it out. " />
+        android:textSize="@dimen/_13sdp"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        tools:text="The title of the poll" />
 
     <RelativeLayout
         android:id="@+id/poll_group_layout"
@@ -33,15 +36,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:gravity="start"
+            android:orientation="vertical">
 
             <RadioButton
                 android:id="@+id/option_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_2sdp"
-                android:textSize="@dimen/_10sdp"
+                android:textSize="@dimen/_11sdp"
                 tools:text="abbbaaa" />
 
             <RadioButton
@@ -49,7 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_2sdp"
-                android:textSize="@dimen/_10sdp"
+                android:textSize="@dimen/_11sdp"
                 tools:text="jabbbb" />
 
             <RadioButton
@@ -57,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_2sdp"
-                android:textSize="@dimen/_10sdp"
+                android:textSize="@dimen/_11sdp"
                 tools:text="tabbbaa" />
 
             <RadioButton
@@ -65,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_2sdp"
-                android:textSize="@dimen/_10sdp"
+                android:textSize="@dimen/_11sdp"
                 tools:text="rambaaa" />
 
         </RadioGroup>
@@ -77,9 +80,8 @@
         android:layout_height="@dimen/_35sdp"
         android:layout_below="@id/poll_group_layout"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:background="@drawable/button_shape"
-        android:padding="@dimen/_5sdp"
         android:text="Submit" />
 
 

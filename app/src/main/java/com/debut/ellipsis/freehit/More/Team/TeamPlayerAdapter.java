@@ -1,7 +1,6 @@
 package com.debut.ellipsis.freehit.More.Team;
 
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -12,9 +11,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.More.Player.PlayerActivity;
 import com.debut.ellipsis.freehit.PlayerCountryItem;
 import com.debut.ellipsis.freehit.R;
@@ -66,9 +65,9 @@ public class TeamPlayerAdapter extends RecyclerView.Adapter<TeamPlayerAdapter.Te
 
         String PlayerURL = playerCountryItems.get(position).getImage();
 
-        RequestBuilder requestBuilder = GlideApp.with(context).load(PlayerURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        MainActivity.requestBuilder = GlideApp.with(context).load(PlayerURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-        requestBuilder.into(holder.PlayerImage);
+        MainActivity.requestBuilder.into(holder.PlayerImage);
 
         LinearLayout RLContainer = holder.rlcontainer;
 

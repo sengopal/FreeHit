@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,7 +33,6 @@ import retrofit2.Response;
  */
 public class SocialPolls extends Fragment {
 
-    APIInterface apiInterface;
     private ProgressBar mProgressBar;
     public TextView NoPollsText;
     public Button NoPollsButton;
@@ -49,21 +49,23 @@ public class SocialPolls extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_news_list, container, false);
-        apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        View viewRecycler = (View) rootView.findViewById(R.id.news_list);
+        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        View viewFAB = (View) rootView.findViewById(R.id.fab);
+        View viewRecycler = rootView.findViewById(R.id.news_list);
+
+        View viewFAB = rootView.findViewById(R.id.fab);
         fab = (FloatingActionButton) viewFAB.findViewById(R.id.common_fab);
 
         fab.setImageResource(android.R.drawable.arrow_down_float);
+        fab.setVisibility(View.INVISIBLE);
 
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
 
         final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
         recyclerView.setLayoutManager(mLinearLayoutManager);
 
-        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
@@ -78,10 +80,7 @@ public class SocialPolls extends Fragment {
         NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
 
-        /**
-         GET Polls List Resources
-         **/
-        final Call<PollCardItem> call = apiInterface.doGetPollsListResources();
+        final Call<PollCardItem> call = MainActivity.apiInterface.doGetPollsListResources();
         call.enqueue(new Callback<PollCardItem>() {
             @Override
             public void onResponse(Call<PollCardItem> call, Response<PollCardItem> response) {
@@ -119,11 +118,13 @@ public class SocialPolls extends Fragment {
                 NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
                     public void onClick(View v) {
-                        Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                        /*Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
                         i.putExtra("Main_tab",2);
                         i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                         i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(i);
+                        startActivity(i);*/
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
 
                     }
                 });
@@ -137,7 +138,7 @@ public class SocialPolls extends Fragment {
                                                // Checking if connected or not on refresh
                                                refLayout.setRefreshing(true);
 
-                                               Call<PollCardItem> call = apiInterface.doGetPollsListResources();
+                                               Call<PollCardItem> call = MainActivity.apiInterface.doGetPollsListResources();
                                                call.enqueue(new Callback<PollCardItem>() {
                                                    @Override
                                                    public void onResponse(Call<PollCardItem> call, Response<PollCardItem> response) {
@@ -154,11 +155,13 @@ public class SocialPolls extends Fragment {
                                                                NoPollsButton.setOnClickListener(new View.OnClickListener() {
 
                                                                    public void onClick(View v) {
-                                                                       Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                                                                      /* Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
                                                                        i.putExtra("Main_tab",2);
                                                                        i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                                                                        i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                                                       startActivity(i);
+                                                                       startActivity(i);*/
+                                                                       FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                                                       ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
                                                                    }
                                                                });
                                                            }
@@ -209,7 +212,7 @@ public class SocialPolls extends Fragment {
                 int lastVisibleItemIndex = mLinearLayoutManager.findLastVisibleItemPosition();
 
                 if (lastVisibleItemIndex >= totalItemCount) return;
-                mLinearLayoutManager.smoothScrollToPosition(recyclerView,null,lastVisibleItemIndex+1);
+                mLinearLayoutManager.smoothScrollToPosition(recyclerView,null,totalItemCount+1);
             }
         });
 

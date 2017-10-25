@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.More.Team.TeamPlayerAdapter;
 import com.debut.ellipsis.freehit.PlayerCountryItem;
 import com.debut.ellipsis.freehit.R;
@@ -27,48 +28,50 @@ import retrofit2.Response;
 
 public class PlayerSearchActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
-
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         setContentView(R.layout.fragment_more_player_search_fragment);
 
-        View viewToolbar = (View) findViewById(R.id.toolbar_player_search);
+        View viewToolbar = findViewById(R.id.toolbar_player_search);
 
-        toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Player Search");
 
 
-        View viewRecycler = (View) findViewById(R.id.player_search_list);
+        View viewRecycler = findViewById(R.id.player_search_list);
 
         final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
-        EditText e = (EditText) findViewById(R.id.editText_player);
-        e.addTextChangedListener(new TextWatcher() {
+        EditText playerSearchEdit = (EditText) findViewById(R.id.editText_player);
+        playerSearchEdit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                refLayout.setRefreshing(false);
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                APIInterface apiInterface = ApiClient.getClient().create(APIInterface.class);
-                final Call<PlayerCountryItem> playerInfo = apiInterface.doGetPlayerList(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
+                final Call<PlayerCountryItem> playerInfo = MainActivity.apiInterface.doGetPlayerList(s.toString());
                 playerInfo.enqueue(new Callback<PlayerCountryItem>() {
                     @Override
                     public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
                         List<PlayerCountryItem> playerCountryItems = response.body().getResults();
                         for (int i = 0; i < playerCountryItems.size(); i++) {
-                            refLayout.setRefreshing(false);
                             recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
+                            refLayout.setRefreshing(false);
                         }
                     }
 
@@ -79,11 +82,7 @@ public class PlayerSearchActivity extends AppCompatActivity {
 
                     }
                 });
-            }
 
-            @Override
-            public void afterTextChanged(Editable s) {
-                refLayout.setRefreshing(false);
             }
         });
 

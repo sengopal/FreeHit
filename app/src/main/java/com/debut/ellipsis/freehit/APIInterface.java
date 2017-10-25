@@ -3,10 +3,7 @@ package com.debut.ellipsis.freehit;
 import com.debut.ellipsis.freehit.Matches.LiveMatches.LiveMatchCardItem;
 import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchCardItem;
 import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchCardItem;
-import com.debut.ellipsis.freehit.More.Player.BattingItem;
-import com.debut.ellipsis.freehit.More.Player.BowlingItem;
-import com.debut.ellipsis.freehit.More.Player.CareerItem;
-import com.debut.ellipsis.freehit.More.Player.InfoItem;
+import com.debut.ellipsis.freehit.More.Player.PlayerItem;
 import com.debut.ellipsis.freehit.More.Series.SeriesItem;
 import com.debut.ellipsis.freehit.News.NewsArticleItem;
 import com.debut.ellipsis.freehit.News.NewsItem;
@@ -25,21 +22,12 @@ public interface APIInterface {
     Call<NewsArticleItem> doGetNewsArticle(@Query("id") String id);
 
     @GET("playerbio?")
-    Call<InfoItem> doGetInfoResources(@Query("url") String url);
-
-    @GET("playerbio?")
-    Call<BattingItem> doGetBattingInfo(@Query("url") String url);
-
-    @GET("playerbio?")
-    Call<BowlingItem> doGetBowlingInfo(@Query("url") String url);
-
-    @GET("playerbio?")
-    Call<CareerItem> doGetCareerInfo(@Query("url") String url);
+    Call<PlayerItem> doGetPlayerInfo(@Query("url") String url);
 
     @GET("upcoming?max=6")
     Call<UpcomingMatchCardItem> doGetUpcomingMatchListResources();
 
-    @GET("upcoming?max=25")
+    @GET("upcoming?max=50")
     Call<UpcomingMatchCardItem> doGetUpcomingCompleteMatchListResources();
 
     @GET("playerlist?")
@@ -57,7 +45,7 @@ public interface APIInterface {
     @GET("past?max=6")
     Call<PastMatchCardItem> doGetPastCardResources();
 
-    @GET("past?max=25")
+    @GET("past?max=50")
     Call<PastMatchCardItem> doGetCompletePastCardResources();
 
     @GET("news?")

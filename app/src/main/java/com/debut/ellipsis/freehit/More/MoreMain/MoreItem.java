@@ -7,7 +7,6 @@ public class MoreItem {
 
     private int mMoreName;
 
-
     public MoreItem(int MoreIcon, int MoreName) {
         mMoreIcon = MoreIcon;
         mMoreName = MoreName;

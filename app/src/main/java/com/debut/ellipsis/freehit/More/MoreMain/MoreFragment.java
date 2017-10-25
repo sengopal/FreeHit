@@ -13,7 +13,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.More.Player.PlayerSearchActivity;
-import com.debut.ellipsis.freehit.More.Rankings.RankingActivity;
 import com.debut.ellipsis.freehit.More.Series.SeriesMainActivity;
 import com.debut.ellipsis.freehit.More.Team.TeamActivity;
 import com.debut.ellipsis.freehit.More.Team.TeamListView;
@@ -24,18 +23,12 @@ import java.util.ArrayList;
 import static android.content.Context.MODE_PRIVATE;
 import static com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity.MY_PREFS_NAME;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
-public class
-MoreFragment extends Fragment {
+public class MoreFragment extends Fragment {
 
 
     public MoreFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,13 +37,13 @@ MoreFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.common_list, container, false);
 
         SharedPreferences prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        final String Countryname = prefs.getString("country_name", "null");
+        final String CountryName = prefs.getString("country_name", "null");
 
         final ArrayList<MoreItem> moreItem = new ArrayList<MoreItem>();
 
         moreItem.add(new MoreItem(R.drawable.player, R.string.search_player));
         moreItem.add(new MoreItem(R.drawable.team, R.string.search_team));
-        moreItem.add(new MoreItem(R.drawable.shield, R.string.search_series));
+        moreItem.add(new MoreItem(R.drawable.series, R.string.search_series));
         moreItem.add(new MoreItem(R.drawable.fav, R.string.fav_team));
         moreItem.add(new MoreItem(R.drawable.rankings, R.string.rankings));
 
@@ -75,19 +68,20 @@ MoreFragment extends Fragment {
 
                 }
                 else if (position == 3) {
-                    if(Countryname.equals("null")) {
+                    if(CountryName.equals("null")) {
                         Toast.makeText(getContext(),"Select A Favourite Team First",Toast.LENGTH_SHORT).show();
                     }
                     else {
                         Intent FavouritesIntent = new Intent(getActivity(), TeamActivity.class);
-                        FavouritesIntent.putExtra("fav_country", Countryname);
+                        FavouritesIntent.putExtra("fav_country", CountryName);
                         startActivity(FavouritesIntent);
                     }
 
                 }
                 else if (position==4){
-                    Intent RankingIntent = new Intent(getActivity(), RankingActivity.class);
-                    startActivity(RankingIntent);
+                    /*Intent RankingIntent = new Intent(getActivity(), RankingActivity.class);
+                    startActivity(RankingIntent);*/
+                    Toast.makeText(getContext(),"Coming Soon !",Toast.LENGTH_SHORT).show();
 
                 }
 

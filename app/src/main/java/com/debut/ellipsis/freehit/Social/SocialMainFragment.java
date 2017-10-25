@@ -20,12 +20,7 @@ import com.debut.ellipsis.freehit.Social.Tweets.SocialTweets;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class SocialMainFragment extends Fragment {
-
-    public static Fragment myFragment;
 
     public ViewPager viewPager;
     private TabLayout tabLayout;
@@ -43,17 +38,16 @@ public class SocialMainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        myFragment = this;
 
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_social_main, container, false);
 
-        View viewSocialPager = (View) rootView.findViewById(R.id.social_viewpager);
+        View viewSocialPager = rootView.findViewById(R.id.social_viewpager);
 
         viewPager = (ViewPager) viewSocialPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-        View viewTabSocial = (View) rootView.findViewById(R.id.social_tabs);
+        View viewTabSocial = rootView.findViewById(R.id.social_tabs);
         tabLayout = (TabLayout) viewTabSocial.findViewById(R.id.tabs);
 
         tabLayout.setupWithViewPager(viewPager);

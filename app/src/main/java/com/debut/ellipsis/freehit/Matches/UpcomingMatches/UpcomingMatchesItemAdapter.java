@@ -11,9 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
+import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
@@ -24,10 +25,10 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
     private Context context;
     private List<UpcomingMatchCardItem> dataObjectList;
     private LayoutInflater layoutInflater;
-    public String logo_string1;
-    public String logo_string2;
-    public ImageView imageViewTeam1Logo;
-    public ImageView imageViewTeam2Logo;
+    private String logo_string1;
+    private String logo_string2;
+    private ImageView imageViewTeam1Logo;
+    private ImageView imageViewTeam2Logo;
 
     public UpcomingMatchesItemAdapter(Context context, List<UpcomingMatchCardItem> dataObjectList) {
         this.context = context;
@@ -113,20 +114,20 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
             }
         });
 
-        logo_string1 = this.dataObjectList.get(position).getTeam1().getImage();
-        logo_string2 = this.dataObjectList.get(position).getTeam2().getImage();
+        logo_string1 =  WelcomeActivity.countryHash.getCountryFlag(this.dataObjectList.get(position).getTeam1().getName().toUpperCase());
+        logo_string2 =  WelcomeActivity.countryHash.getCountryFlag(this.dataObjectList.get(position).getTeam2().getName().toUpperCase());
 
 
 
         if (position < 5) {
 
-            RequestBuilder requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+            MainActivity.requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-            requestBuilder.into(imageViewTeam1Logo);
+            MainActivity.requestBuilder.into(imageViewTeam1Logo);
 
-            RequestBuilder requestBuilder1 = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+            MainActivity.requestBuilder = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-            requestBuilder1.into(imageViewTeam2Logo);
+            MainActivity.requestBuilder.into(imageViewTeam2Logo);
 
         }
         container.addView(view);

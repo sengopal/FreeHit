@@ -2,7 +2,6 @@ package com.debut.ellipsis.freehit.Settings;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -15,22 +14,18 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DecodeFormat;
-import com.debut.ellipsis.freehit.CountryHash;
-import com.debut.ellipsis.freehit.Glide.CustomImageSizeModel;
-import com.debut.ellipsis.freehit.Glide.CustomImageSizeModelFutureStudio;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.IntoSlider.CountryPicker;
 import com.debut.ellipsis.freehit.IntoSlider.CountryPickerListener;
+import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
 import static com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity.MY_PREFS_NAME;
 
 public class CustomSettings extends AppCompatActivity {
 
-    private Toolbar toolbar;
-    CountryHash countryHash = new CountryHash();
     public ImageView NoConnectionImage;
     public Button NoConnectionButton;
 
@@ -40,22 +35,15 @@ public class CustomSettings extends AppCompatActivity {
 
         setContentView(R.layout.custom_settings);
 
-        View viewToolbar = (View) findViewById(R.id.custom_settings_toolbar);
+        View viewToolbar = findViewById(R.id.custom_settings_toolbar);
 
-        toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-       /* String title = "Settings";
-
-        //To Set The Color Of The Action Bar
-        SpannableString s = new SpannableString(title);
-        s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        getSupportActionBar().setTitle(s);*/
-
         final View no_internet_connection = findViewById(R.id.Unavailable_connection);
 
-        NoConnectionImage = (ImageView) no_internet_connection.findViewById(R.id.no_internet_connection);
+        /*NoConnectionImage = (ImageView) no_internet_connection.findViewById(R.id.no_internet_connection);*/
         NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
         RelativeLayout country_select = (RelativeLayout) findViewById(R.id.country_select_layout);
@@ -67,7 +55,7 @@ public class CustomSettings extends AppCompatActivity {
 
         TextView country_name = (TextView) findViewById(R.id.country_name);
 
-        String TeamLogoURL = countryHash.getCountryFlag(name.toUpperCase());
+        String TeamLogoURL = WelcomeActivity.countryHash.getCountryFlag(name.toUpperCase());
 
 
 
@@ -82,9 +70,9 @@ public class CustomSettings extends AppCompatActivity {
         {
             country_name.setText(name);
 
-            RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogoURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+            MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogoURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-            requestBuilder.into(country_flag);
+            MainActivity.requestBuilder.into(country_flag);
         }
         else
         {
@@ -93,10 +81,14 @@ public class CustomSettings extends AppCompatActivity {
             NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
                 public void onClick(View v) {
-                    Intent i = new Intent(getBaseContext(), CustomSettings.class);
+                    /*Intent i = getIntent();
                     i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                     i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    startActivity(i);
+                    startActivity(i);*/
+                    finish();
+                    startActivity(getIntent());
+                    overridePendingTransition( 0, 0);
+
                 }
             });
 
@@ -116,11 +108,9 @@ public class CustomSettings extends AppCompatActivity {
 
                 ImageView before = (ImageView) findViewById(R.id.country_flag);
 
-                CustomImageSizeModel TeamLogo = new CustomImageSizeModelFutureStudio(flagURLID);
+                MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(flagURLID).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-                RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogo).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
-
-                requestBuilder.into(before);
+                MainActivity.requestBuilder.into(before);
 
                 SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
                 editor.putString("country_name", name);

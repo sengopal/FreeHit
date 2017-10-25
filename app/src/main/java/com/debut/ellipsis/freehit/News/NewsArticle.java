@@ -1,8 +1,6 @@
 package com.debut.ellipsis.freehit.News;
 
 
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -14,11 +12,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
 import retrofit2.Call;
@@ -32,7 +30,6 @@ import retrofit2.Response;
 public class NewsArticle extends AppCompatActivity {
 
     private Toolbar toolbar;
-    APIInterface apiInterface;
     private ProgressBar mProgressBar;
     private String match_id;
 
@@ -46,36 +43,20 @@ public class NewsArticle extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_news_article_individual_item);
         match_id = getIntent().getStringExtra("news_id");
-        apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        View viewProgress = (View) findViewById(R.id.progress);
+        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
+
+        View viewProgress = findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle(" ");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
-        // Get a reference to the ConnectivityManager to check state of network connectivity
-        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(getApplicationContext().CONNECTIVITY_SERVICE);
-
-        // Get details on the currently active default data network
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-
-        // If there is a network connection, fetch data
-        if (networkInfo != null && networkInfo.isConnected()) {
-        } else {
-            // Otherwise, display error
-            // First, hide loading indicator so error message will be visible
-            mProgressBar.setVisibility(View.GONE);
-            Toast.makeText(getApplicationContext(),R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
-        }
-
-
-        /* GET News Article */
-        Call<NewsArticleItem> call = apiInterface.doGetNewsArticle(match_id);
+        Call<NewsArticleItem> call = MainActivity.apiInterface.doGetNewsArticle(match_id);
         call.enqueue(new Callback<NewsArticleItem>() {
             @Override
             public void onResponse(Call<NewsArticleItem> call, Response<NewsArticleItem> response) {
@@ -115,14 +96,16 @@ public class NewsArticle extends AppCompatActivity {
 
                 final String ImageURL = newsArticle.getImage();
 
-                RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(ImageURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(ImageURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-                requestBuilder.into(articleImage);
+                MainActivity.requestBuilder.into(articleImage);
 
             }
 
             @Override
             public void onFailure(Call<NewsArticleItem> call, Throwable t) {
+                mProgressBar.setVisibility(View.GONE);
+                Toast.makeText(getApplicationContext(),R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
                 call.cancel();
             }
         });

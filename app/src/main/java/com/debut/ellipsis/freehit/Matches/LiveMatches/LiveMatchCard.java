@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +32,6 @@ import retrofit2.Response;
 
 public class LiveMatchCard extends Fragment {
 
-    APIInterface apiInterface;
     private ProgressBar mProgressBar;
     public PageIndicatorView indicator;
     private LiveMatchCardAdapter mAdapter;
@@ -52,23 +52,24 @@ public class LiveMatchCard extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_matches_common_pager, container, false);
 
 
-        apiInterface = ApiClient.getClient().create(APIInterface.class);
+        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
         final View common_match_cards = rootView.findViewById(R.id.common_match_cards);
 
-        View viewViewPager = (View) common_match_cards.findViewById(R.id.match_card_viewpagegr);
+        View viewViewPager = common_match_cards.findViewById(R.id.match_card_viewpagegr);
 
         vp = (ViewPager) viewViewPager.findViewById(R.id.viewpager);
+
         indicator = (PageIndicatorView) common_match_cards.findViewById(R.id.indicator);
         final PullRefreshLayout refreshLayout = (PullRefreshLayout) common_match_cards.findViewById(R.id.swipeRefreshLayout);
 
 
         final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
 
-        NoConnectionImage = (ImageView) no_internet_connection.findViewById(R.id.no_internet_connection);
+       /* NoConnectionImage = (ImageView) no_internet_connection.findViewById(R.id.no_internet_connection);*/
         NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
 
@@ -77,9 +78,7 @@ public class LiveMatchCard extends Fragment {
         NoLiveMatchesText = (TextView) No_live_matches.findViewById(R.id.empty_view);
         NoLiveMatchesButton = (Button) No_live_matches.findViewById(R.id.No_Live_Matches_button);
 
-
-        /* GET Live matches */
-        Call<LiveMatchCardItem> call = apiInterface.doGetLiveMatchResources();
+        Call<LiveMatchCardItem> call = MainActivity.apiInterface.doGetLiveMatchResources();
         call.enqueue(new Callback<LiveMatchCardItem>() {
             @Override
             public void onResponse(Call<LiveMatchCardItem> call, Response<LiveMatchCardItem> response) {
@@ -102,10 +101,12 @@ public class LiveMatchCard extends Fragment {
                         NoLiveMatchesButton.setOnClickListener(new View.OnClickListener() {
 
                             public void onClick(View v) {
-                                Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                                /*Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
                                 i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                                 i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                startActivity(i);
+                                startActivity(i);*/
+                                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                ft.detach(LiveMatchCard.this).attach(LiveMatchCard.this).commit();
                             }
                         });
 
@@ -126,10 +127,12 @@ public class LiveMatchCard extends Fragment {
                 NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
                     public void onClick(View v) {
-                        Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                       /* Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
                         i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                         i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(i);
+                        startActivity(i);*/
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.detach(LiveMatchCard.this).attach(LiveMatchCard.this).commit();
 
                     }
                 });
@@ -145,7 +148,7 @@ public class LiveMatchCard extends Fragment {
             public void onRefresh() {
                 // start refresh
                 refreshLayout.setRefreshing(true);
-                Call<LiveMatchCardItem> call = apiInterface.doGetLiveMatchResources();
+                Call<LiveMatchCardItem> call = MainActivity.apiInterface.doGetLiveMatchResources();
                 call.enqueue(new Callback<LiveMatchCardItem>() {
                     @Override
                     public void onResponse(Call<LiveMatchCardItem> call, Response<LiveMatchCardItem> response) {

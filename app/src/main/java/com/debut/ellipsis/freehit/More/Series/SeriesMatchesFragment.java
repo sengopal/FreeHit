@@ -19,7 +19,6 @@ import java.util.List;
 public class SeriesMatchesFragment extends Fragment {
 
     public ViewPager viewPager;
-    private TabLayout tabLayout;
 
     public SeriesMatchesFragment() {
         // Required empty public constructor
@@ -33,14 +32,14 @@ public class SeriesMatchesFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_matches, container, false);
 
 
-        View viewMatchesViewPager = (View) rootView.findViewById(R.id.matches_viewpagegr);
+        View viewMatchesViewPager = rootView.findViewById(R.id.matches_viewpagegr);
 
         viewPager = (ViewPager) viewMatchesViewPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
 
-        View viewMatchCardTabs = (View) rootView.findViewById(R.id.match_card_tabs);
-        tabLayout = (TabLayout) viewMatchCardTabs.findViewById(R.id.tabs);
+        View viewMatchCardTabs = rootView.findViewById(R.id.match_card_tabs);
+        TabLayout tabLayout = (TabLayout) viewMatchCardTabs.findViewById(R.id.tabs);
 
         tabLayout.setupWithViewPager(viewPager);
 

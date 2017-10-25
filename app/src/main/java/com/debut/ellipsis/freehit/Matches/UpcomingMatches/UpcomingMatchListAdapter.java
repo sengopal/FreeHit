@@ -11,9 +11,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
+import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
@@ -81,7 +82,6 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
         View contactView = inflater.inflate(R.layout.fragment_matches_upcoming_match_list_item, parent, false);
 
         // Return a new holder instance
-
         return new ViewHolder(contactView);
     }
 
@@ -102,9 +102,9 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
         TextView textViewStadiumName = viewHolder.textViewStadiumName;
         textViewStadiumName.setText("( "+upcomingMatchCards.getStadium()+" )");
 
-        String logo_string1 = upcomingMatchCards.getTeam1().getImage();
+        String logo_string1 = WelcomeActivity.countryHash.getCountryFlag(upcomingMatchCards.getTeam1().getName().toUpperCase());
 
-        String logo_string2 = upcomingMatchCards.getTeam2().getImage();
+        String logo_string2 = WelcomeActivity.countryHash.getCountryFlag(upcomingMatchCards.getTeam2().getName().toUpperCase());
 
         ImageView imageViewTeam1Logo = viewHolder.imageViewTeam1Logo;
 
@@ -120,16 +120,16 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
         MatchDate.setText(upcomingMatchCards.getDate().getFinaldate());
 
 
-        RequestBuilder requestBuilder = GlideApp.with(mContext).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        MainActivity.requestBuilder = GlideApp.with(mContext).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-        requestBuilder.into(imageViewTeam1Logo);
+        MainActivity.requestBuilder.into(imageViewTeam1Logo);
 
-        RequestBuilder requestBuilder1 = GlideApp.with(mContext).load(logo_string2).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        MainActivity.requestBuilder = GlideApp.with(mContext).load(logo_string2).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-        requestBuilder1.into(imageViewTeam2Logo);
+        MainActivity.requestBuilder.into(imageViewTeam2Logo);
 
 
-        RelativeLayout RLcontainer = viewHolder.rlcontainer;
+        RelativeLayout RLContainer = viewHolder.rlcontainer;
 
         View.OnClickListener mClickListener;
 
@@ -148,7 +148,7 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
 
             }
         };
-        RLcontainer.setOnClickListener(mClickListener);
+        RLContainer.setOnClickListener(mClickListener);
 
 
     }

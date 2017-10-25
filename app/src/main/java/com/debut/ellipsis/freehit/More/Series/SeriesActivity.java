@@ -20,15 +20,21 @@ import java.util.List;
 
 public class SeriesActivity extends AppCompatActivity {
 
+    public static String Series_Name ;
+    public static String date;
+    public static String Teams ;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.fragment_more_series_activity);
 
         Intent i = getIntent();
-        String Series_Name = i.getStringExtra("Series_Name");
+        Series_Name = i.getStringExtra("Series_Name");
+        date = i.getStringExtra("date");
+        Teams = i.getStringExtra("Teams");
 
-        View viewToolbar = (View) findViewById(R.id.toolbar_tabs_series);
+        View viewToolbar = findViewById(R.id.toolbar_tabs_series);
 
         Toolbar toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -36,7 +42,7 @@ public class SeriesActivity extends AppCompatActivity {
 
         setTitle(Series_Name);
 
-        View viewSeriesPager = (View) findViewById(R.id.series_viewpager);
+        View viewSeriesPager = findViewById(R.id.series_viewpager);
 
         ViewPager viewPager = (ViewPager) viewSeriesPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
@@ -69,7 +75,7 @@ public class SeriesActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         SeriesActivity.ViewPagerAdapter adapter = new SeriesActivity.ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new SeriesMatchesFragment(), "SCHEDULE");
-        adapter.addFrag(new SeriesPerfo(), "TOP PERFORMANCE");
+        adapter.addFrag(new SeriesPerformance(), "TOP PERFORMANCE");
         viewPager.setAdapter(adapter);
     }
 

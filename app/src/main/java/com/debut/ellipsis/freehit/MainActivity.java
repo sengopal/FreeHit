@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -16,7 +17,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
+import com.bumptech.glide.RequestBuilder;
 import com.debut.ellipsis.freehit.Matches.MatchesFragment;
 import com.debut.ellipsis.freehit.More.MoreMain.MoreFragment;
 import com.debut.ellipsis.freehit.News.NewsFragment;
@@ -29,7 +32,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private int[] tabIcons = {
@@ -38,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.social,
             R.drawable.more,
     };
+
+    public static RequestBuilder requestBuilder;
+    public static APIInterface apiInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,24 +56,26 @@ public class MainActivity extends AppCompatActivity {
         // Initializing Twitter Kit
         Twitter.initialize(this);
 
-        int main_tab = getIntent().getIntExtra("Main_tab", 0);
 
-        View viewToolbarTabs = (View) findViewById(R.id.toolbar_tabs_main);
-        toolbar = (Toolbar) viewToolbarTabs.findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        View viewMainPager = (View) findViewById(R.id.main_viewpager);
+        TextView AppTitle = (TextView) findViewById(R.id.title) ;
+        Typeface tfTitle = Typeface.createFromAsset(getAssets(), "strasua.ttf");
+
+        AppTitle.setTypeface(tfTitle);
+
+
+        View viewMainPager = findViewById(R.id.main_viewpager);
 
         viewPager = (ViewPager) viewMainPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        tabLayout.setTabMode(TabLayout.MODE_FIXED);
 
-
-        viewPager.setCurrentItem(main_tab);
+        viewPager.setCurrentItem(0);
 
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -92,36 +99,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        setupTabIcons(main_tab);
+        setupTabIcons();
     }
 
 
-    private void setupTabIcons(int position) {
+    private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
         tabLayout.getTabAt(2).setIcon(tabIcons[2]);
         tabLayout.getTabAt(3).setIcon(tabIcons[3]);
 
-        tabLayout.getTabAt(0).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(0).getIcon().setColorFilter(Color.parseColor("#f5f5f5"), PorterDuff.Mode.SRC_IN);
         tabLayout.getTabAt(1).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
         tabLayout.getTabAt(2).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
         tabLayout.getTabAt(3).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-
-        switch (position)
-        {
-            case 0:
-                tabLayout.getTabAt(0).getIcon().setColorFilter(Color.parseColor("#f5f5f5"), PorterDuff.Mode.SRC_IN);
-                break;
-            case 1:
-                tabLayout.getTabAt(1).getIcon().setColorFilter(Color.parseColor("#f5f5f5"), PorterDuff.Mode.SRC_IN);
-                break;
-            case 2:
-                tabLayout.getTabAt(2).getIcon().setColorFilter(Color.parseColor("#f5f5f5"), PorterDuff.Mode.SRC_IN);
-                break;
-            case 3:
-                tabLayout.getTabAt(3).getIcon().setColorFilter(Color.parseColor("#f5f5f5"), PorterDuff.Mode.SRC_IN);
-                break;
-        }
 
     }
 

@@ -21,7 +21,6 @@ import retrofit2.Response;
 
 public class Bowling_Fragment extends Fragment {
 
-    private String player_url;
     private ProgressBar mProgressBar;
 
     @Override
@@ -30,7 +29,7 @@ public class Bowling_Fragment extends Fragment {
 
         final View rootView = inflater.inflate(R.layout.fragment_more_player_batting_bowling_gridview, container, false);
         Intent i = getActivity().getIntent();
-        player_url = i.getStringExtra("player_url");
+        PlayerActivity.player_url = i.getStringExtra("player_url");
 
 
         final String[] gridViewString = new String[60];
@@ -38,7 +37,7 @@ public class Bowling_Fragment extends Fragment {
         final Batting_Bowling_item_adapter adapterViewAndroid = new Batting_Bowling_item_adapter(getContext(), gridViewString);
         androidGridView = (GridView) rootView.findViewById(R.id.grid_view_batting_bowling);
 
-        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
 
@@ -62,11 +61,11 @@ public class Bowling_Fragment extends Fragment {
         gridViewString[55] = "STRIKE\nRATE";
 
         APIInterface apiInterface = ApiClient.getClient().create(APIInterface.class);
-        Call<BowlingItem> call = apiInterface.doGetBowlingInfo(player_url);
-        call.enqueue(new Callback<BowlingItem>() {
+        Call<PlayerItem> call = apiInterface.doGetPlayerInfo(PlayerActivity.player_url);
+        call.enqueue(new Callback<PlayerItem>() {
             @Override
-            public void onResponse(Call<BowlingItem> call, Response<BowlingItem> response) {
-                BowlingItem info = response.body();
+            public void onResponse(Call<PlayerItem> call, Response<PlayerItem> response) {
+                PlayerItem info = response.body();
                 //Number Of Innings in Test,Odi,T20,IPL
                 gridViewString[6] = info.getBowlstats().getTest().getinnbowled();
                 gridViewString[7] = info.getBowlstats().getOdi().getinnbowled();
@@ -144,7 +143,7 @@ public class Bowling_Fragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<BowlingItem> call, Throwable t) {
+            public void onFailure(Call<PlayerItem> call, Throwable t) {
 
             }
         });

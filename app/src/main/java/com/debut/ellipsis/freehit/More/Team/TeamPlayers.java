@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.CountryItem;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.PlayerCountryItem;
 import com.debut.ellipsis.freehit.R;
 
@@ -28,9 +29,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TeamPlayers extends Fragment {
-    APIInterface apiInterface;
+
     private String TeamID;
-    private Toolbar toolbar;
     private ProgressBar mProgressBar;
     public TextView mEmptyView;
 
@@ -40,42 +40,42 @@ public class TeamPlayers extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_more_fav_team_player_list, container, false);
 
         Intent i = getActivity().getIntent();
-        final int TeamName = i.getIntExtra("CountryName",0);
-        String favTeam = i.getStringExtra("fav_country");
-        final String Team ;
+        TeamActivity.Team = i.getIntExtra("CountryName",0);
+        TeamActivity.favTeam = i.getStringExtra("fav_country");
 
-        if(TeamName == 0)
+        if(TeamActivity.Team == 0)
         {
-            Team = favTeam;
+            TeamActivity.tempTeamName = TeamActivity.favTeam;
         }
         else
         {
-            Team = this.getContext().getString(TeamName);
+            TeamActivity.tempTeamName = this.getContext().getString(TeamActivity.Team);
         }
 
+        final String Team = TeamActivity.tempTeamName ;
 
-        View viewToolbar = (View) rootView.findViewById(R.id.toolbar_fav_players);
+        View viewToolbar = rootView.findViewById(R.id.toolbar_fav_players);
 
-        toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
         toolbar.setVisibility(View.GONE);
 
-        apiInterface = ApiClient.getClient().create(APIInterface.class);
+        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
 
-        View viewEmpty = (View) rootView.findViewById(R.id.empty);
+        View viewEmpty = rootView.findViewById(R.id.empty);
         mEmptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);
 
-        View viewRecycler = (View) rootView.findViewById(R.id.player_list);
+        View viewRecycler = rootView.findViewById(R.id.player_list);
         final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
-        Call<CountryItem> call = apiInterface.doGetCountryResources();
+        Call<CountryItem> call = MainActivity.apiInterface.doGetCountryResources();
         call.enqueue(new Callback<CountryItem>() {
             @Override
             public void onResponse(Call<CountryItem> call, Response<CountryItem> response) {
@@ -86,7 +86,7 @@ public class TeamPlayers extends Fragment {
                         int teamID = countries.get(i).getId();
                         TeamID = String.valueOf(teamID);
 
-                        Call<PlayerCountryItem> call1 = apiInterface.doGetFavTeamPlayers(TeamID);
+                        Call<PlayerCountryItem> call1 = MainActivity.apiInterface.doGetFavTeamPlayers(TeamID);
                         call1.enqueue(new Callback<PlayerCountryItem>() {
                             @Override
                             public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
@@ -95,7 +95,7 @@ public class TeamPlayers extends Fragment {
                                 List<PlayerCountryItem> playerCountryItems = response.body().getResults();
                                 if (playerCountryItems.size() == 0) {
                                     mEmptyView.setVisibility(View.VISIBLE);
-                                    mEmptyView.setText("No Players Found");
+                                    mEmptyView.setText(R.string.NoPlayers);
                                 }
                                 recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getContext()));
 
@@ -129,7 +129,7 @@ public class TeamPlayers extends Fragment {
             public void onRefresh() {
                 refLayout.setRefreshing(true);
 
-                Call<CountryItem> call = apiInterface.doGetCountryResources();
+                Call<CountryItem> call = MainActivity.apiInterface.doGetCountryResources();
                 call.enqueue(new Callback<CountryItem>() {
                     @Override
                     public void onResponse(Call<CountryItem> call, Response<CountryItem> response) {
@@ -140,7 +140,7 @@ public class TeamPlayers extends Fragment {
                                 int teamID = countries.get(i).getId();
                                 TeamID = String.valueOf(teamID);
 
-                                Call<PlayerCountryItem> call1 = apiInterface.doGetFavTeamPlayers(TeamID);
+                                Call<PlayerCountryItem> call1 = MainActivity.apiInterface.doGetFavTeamPlayers(TeamID);
                                 call1.enqueue(new Callback<PlayerCountryItem>() {
                                     @Override
                                     public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
@@ -149,7 +149,7 @@ public class TeamPlayers extends Fragment {
                                         List<PlayerCountryItem> playerCountryItems = response.body().getResults();
                                         if (playerCountryItems.size() == 0) {
                                             mEmptyView.setVisibility(View.VISIBLE);
-                                            mEmptyView.setText("No Players Found");
+                                            mEmptyView.setText(R.string.NoPlayers);
                                         }
                                         recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getContext()));
 

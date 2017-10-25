@@ -15,7 +15,8 @@ import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
-import com.debut.ellipsis.freehit.CountryHash;
+import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchCardItem;
 import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchListAdapter;
 import com.debut.ellipsis.freehit.R;
@@ -28,7 +29,7 @@ import retrofit2.Response;
 
 
 public class TeamUpcoming extends Fragment {
-    APIInterface apiInterface;
+
     private UpcomingMatchListAdapter MatchListAdapter;
     private ProgressBar mProgressBar;
     private RecyclerView rv;
@@ -38,45 +39,43 @@ public class TeamUpcoming extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View rootView = inflater.inflate(R.layout.fragment_more_team_complete_match_list, container, false);
 
         Intent i = getActivity().getIntent();
-        int Team = i.getIntExtra("CountryName", 0);
-        String favTeam = i.getStringExtra("fav_country");
-        String tempTeamName ;
+        TeamActivity.Team = i.getIntExtra("CountryName", 0);
+        TeamActivity.favTeam = i.getStringExtra("fav_country");
 
-        if(Team == 0)
+
+        if(TeamActivity.Team == 0)
         {
-            tempTeamName = favTeam;
+            TeamActivity.tempTeamName =  TeamActivity.favTeam;
         }
         else
         {
-            tempTeamName = this.getContext().getString(Team);
+            TeamActivity.tempTeamName = this.getContext().getString(TeamActivity.Team);
         }
 
 
-        CountryHash countryHash = new CountryHash();
-        final String TeamName = countryHash.getCountrySN(tempTeamName.toUpperCase());
+        TeamActivity.tempTeamName = WelcomeActivity.countryHash.getCountrySN(TeamActivity.tempTeamName.toUpperCase());
 
-        apiInterface = ApiClient.getClient().create(APIInterface.class);
+        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
-        View viewRecycler = (View) rootView.findViewById(R.id.complete_match_list);
+        View viewRecycler = rootView.findViewById(R.id.complete_match_list);
         rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
 
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
         refresh_layout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
-        View viewEmpty = (View) rootView.findViewById(R.id.empty);
+        View viewEmpty = rootView.findViewById(R.id.empty);
         mEmptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);
 
 
-        /* GET List Upcoming Matches for selected team */
-        Call<UpcomingMatchCardItem> call = apiInterface.doGetUpcomingFavTeam(TeamName);
+        Call<UpcomingMatchCardItem> call = MainActivity.apiInterface.doGetUpcomingFavTeam(TeamActivity.tempTeamName);
         call.enqueue(new Callback<UpcomingMatchCardItem>() {
             @Override
             public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {
@@ -85,7 +84,7 @@ public class TeamUpcoming extends Fragment {
                 mProgressBar.setVisibility(View.GONE);
                 if (upcomingMatchesList.size() == 0) {
                     mEmptyView.setVisibility(View.VISIBLE);
-                    mEmptyView.setText("NO MATCHES FOUND");
+                    mEmptyView.setText(R.string.EmptyMatches);
                 }
 
                 MatchListAdapter = new UpcomingMatchListAdapter(getContext(), upcomingMatchesList);
@@ -109,7 +108,7 @@ public class TeamUpcoming extends Fragment {
                 // Checking if connected or not on refresh
                 refresh_layout.setRefreshing(true);
 
-                Call<UpcomingMatchCardItem> call = apiInterface.doGetUpcomingFavTeam(TeamName);
+                Call<UpcomingMatchCardItem> call = MainActivity.apiInterface.doGetUpcomingFavTeam(TeamActivity.tempTeamName);
                 call.enqueue(new Callback<UpcomingMatchCardItem>() {
                     @Override
                     public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {
@@ -119,7 +118,7 @@ public class TeamUpcoming extends Fragment {
                         if(upcomingMatchesList.size()==0)
                         {
                             mEmptyView.setVisibility(View.VISIBLE);
-                            mEmptyView.setText("NO MATCHES FOUND");
+                            mEmptyView.setText(R.string.EmptyMatches);
                         }
                         MatchListAdapter = new UpcomingMatchListAdapter(getContext(),upcomingMatchesList);
                         rv.setAdapter(MatchListAdapter);

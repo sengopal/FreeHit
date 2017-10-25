@@ -15,16 +15,10 @@ public class PastMatchCardItem {
     private String tour;
     @SerializedName("time")
     private String time;
-    @SerializedName("desc")
-    private String desc;
-    @SerializedName("date")
-    private Date date;
     @SerializedName("team1info")
     private TeamInfo team1;
     @SerializedName("team2info")
     private TeamInfo team2;
-    @SerializedName("tag")
-    private String tag;
     @SerializedName("id")
     private int id;
     @SerializedName("ndid")
@@ -49,10 +43,6 @@ public class PastMatchCardItem {
 
     public String getResult() {
         return mresult;
-    }
-
-    public String getDate() {
-        return date.toString();
     }
 
     public TeamInfo getTeam1Info() {
@@ -80,58 +70,18 @@ public class PastMatchCardItem {
     }
 
 
-    public class Date {
-        @SerializedName("day")
-        private String day;
-        @SerializedName("month")
-        private String month;
-        @SerializedName("year")
-        private String year;
-
-        Date(String day, String month, String year) {
-            this.day = day;
-            this.month = month;
-            this.year = year;
-        }
-
-        public String getDay() {
-            return day;
-        }
-
-        public String getMonth() {
-            return month;
-        }
-
-        public String getYear() {
-            return year;
-        }
-
-
-    }
 
     public class TeamInfo {
         @SerializedName("sn")
         private String sn;
-        @SerializedName("image")
-        private String image;
         @SerializedName("inn1")
         private String inn1;
         @SerializedName("inn2")
         private String inn2;
 
-        TeamInfo(String sn, String image, String inn1, String inn2) {
-            this.sn = sn;
-            this.image = image;
-            this.inn1 = inn1;
-            this.inn2 = inn2;
-        }
 
         public String getSn() {
             return sn;
-        }
-
-        public String getImage() {
-            return image;
         }
 
         public String getInn1() {

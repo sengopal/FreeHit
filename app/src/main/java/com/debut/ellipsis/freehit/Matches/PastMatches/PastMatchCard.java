@@ -1,10 +1,10 @@
 package com.debut.ellipsis.freehit.Matches.PastMatches;
 
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,11 +28,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class PastMatchCard extends Fragment {
-    APIInterface apiInterface;
+
     private ProgressBar mProgressBar;
     public PageIndicatorView indicator;
     private PastMatchCardItemAdapter mAdapter;
@@ -50,14 +47,14 @@ public class PastMatchCard extends Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_matches_common_pager, container, false);
 
-        apiInterface = ApiClient.getClient().create(APIInterface.class);
+        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        View viewProgress= (View) rootView.findViewById(R.id.progress);
+        View viewProgress= rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
         final View common_match_cards = rootView.findViewById(R.id.common_match_cards);
 
-        View viewViewPager = (View) common_match_cards.findViewById(R.id.match_card_viewpagegr);
+        View viewViewPager = common_match_cards.findViewById(R.id.match_card_viewpagegr);
 
         vp = (ViewPager) viewViewPager.findViewById(R.id.viewpager);
         indicator = (PageIndicatorView) common_match_cards.findViewById(R.id.indicator);
@@ -66,11 +63,11 @@ public class PastMatchCard extends Fragment {
 
         final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
 
-        NoConnectionImage = (ImageView) no_internet_connection.findViewById(R.id.no_internet_connection);
+        /*NoConnectionImage = (ImageView) no_internet_connection.findViewById(R.id.no_internet_connection);*/
         NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
 
-        Call<PastMatchCardItem> call = apiInterface.doGetPastCardResources();
+        Call<PastMatchCardItem> call = MainActivity.apiInterface.doGetPastCardResources();
         call.enqueue(new Callback<PastMatchCardItem>() {
             @Override
             public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
@@ -100,12 +97,13 @@ public class PastMatchCard extends Fragment {
                 NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
                     public void onClick(View v) {
-                        Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                        /*Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
                         i.putExtra("Main_tab",0);
-                        i.putExtra("Sub_tab",2);
                         i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                         i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(i);
+                        startActivity(i);*/
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.detach(PastMatchCard.this).attach(PastMatchCard.this).commit();
 
                     }
                 });
@@ -119,7 +117,7 @@ public class PastMatchCard extends Fragment {
                           // Checking if connected or not on refresh
                           refreshLayout.setRefreshing(true);
 
-                      Call<PastMatchCardItem> call = apiInterface.doGetPastCardResources();
+                      Call<PastMatchCardItem> call = MainActivity.apiInterface.doGetPastCardResources();
                       call.enqueue(new Callback<PastMatchCardItem>() {
                           @Override
                           public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {

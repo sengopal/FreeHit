@@ -20,9 +20,8 @@ import java.util.List;
 
 public class PlayerActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
+    public static String player_name;
+    public static String player_url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,21 +30,24 @@ public class PlayerActivity extends AppCompatActivity {
         setContentView(R.layout.fragment_more_player_activity);
 
         Intent i = getIntent();
-        String player_name = i.getStringExtra("player_name");
+        player_name = i.getStringExtra("player_name");
+        player_url = i.getStringExtra("player_url");
 
-        View viewToolbartabs = (View) findViewById(R.id.toolbar_player);
+        View viewToolbarTabs = findViewById(R.id.toolbar_player);
 
-        toolbar = (Toolbar) viewToolbartabs.findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) viewToolbarTabs.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(player_name);
 
-        View viewPlayerViewPager = (View)findViewById(R.id.player_viewpager);
+        View viewPlayerViewPager = findViewById(R.id.player_viewpager);
 
-        viewPager = (ViewPager) viewPlayerViewPager.findViewById(R.id.viewpager);
+        ViewPager viewPager = (ViewPager) viewPlayerViewPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) viewToolbartabs.findViewById(R.id.tabs);
+        TabLayout tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.setupWithViewPager(viewPager);
 
 
@@ -76,7 +78,6 @@ public class PlayerActivity extends AppCompatActivity {
         adapter.addFrag(new Info_Fragment(), "PLAYER INFO");
         adapter.addFrag(new Batting_Fragment(), "BATTING");
         adapter.addFrag(new Bowling_Fragment(), "BOWLING");
-        adapter.addFrag(new CareerFragment(), "CAREER");
         viewPager.setAdapter(adapter);
     }
 

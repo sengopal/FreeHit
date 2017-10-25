@@ -1,10 +1,10 @@
 package com.debut.ellipsis.freehit.News;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,12 +28,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class NewsFragment extends Fragment {
 
-    APIInterface apiInterface;
     private ProgressBar mProgressBar;
     public ImageView NoConnectionImage;
     public Button NoConnectionButton;
@@ -52,11 +49,11 @@ public class NewsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_news_list, container, false);
 
-        apiInterface = ApiClient.getClient().create(APIInterface.class);
+        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        View viewRecycler = (View) rootView.findViewById(R.id.news_list);
+        View viewRecycler = rootView.findViewById(R.id.news_list);
 
-        View viewFAB = (View) rootView.findViewById(R.id.fab);
+        View viewFAB = rootView.findViewById(R.id.fab);
         fab = (FloatingActionButton) viewFAB.findViewById(R.id.common_fab);
         fab.hide();
         fab.setImageResource(android.R.drawable.arrow_up_float);
@@ -66,14 +63,13 @@ public class NewsFragment extends Fragment {
         final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
         recyclerView.setLayoutManager(mLinearLayoutManager);
 
-        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
         final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
 
-        NoConnectionImage = (ImageView) no_internet_connection.findViewById(R.id.no_internet_connection);
         NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
 
@@ -82,10 +78,8 @@ public class NewsFragment extends Fragment {
         NoNewsText = (TextView) No_news.findViewById(R.id.empty_view);
         NoNewsButton = (Button) No_news.findViewById(R.id.No_Live_Matches_button);
 
-        /**
-         GET NewsList Resources
-         **/
-        Call<NewsItem> call = apiInterface.doGetNewsListResources();
+
+        Call<NewsItem> call = MainActivity.apiInterface.doGetNewsListResources();
         call.enqueue(new Callback<NewsItem>() {
             @Override
             public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
@@ -98,11 +92,13 @@ public class NewsFragment extends Fragment {
                         NoNewsButton.setOnClickListener(new View.OnClickListener() {
 
                             public void onClick(View v) {
-                                Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                                /*Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
                                 i.putExtra("Main_tab", 1);
                                 i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                                 i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                startActivity(i);
+                                startActivity(i);*/
+                                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                ft.detach(NewsFragment.this).attach(NewsFragment.this).commit();
                             }
                         });
                     }
@@ -120,11 +116,13 @@ public class NewsFragment extends Fragment {
                 NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
                     public void onClick(View v) {
-                        Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                        /*Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
                         i.putExtra("Main_tab", 1);
                         i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                         i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(i);
+                        startActivity(i);*/
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.detach(NewsFragment.this).attach(NewsFragment.this).commit();
 
                     }
                 });
@@ -140,7 +138,7 @@ public class NewsFragment extends Fragment {
                                                // Checking if connected or not on refresh
                                                refLayout.setRefreshing(true);
 
-                                               Call<NewsItem> call = apiInterface.doGetNewsListResources();
+                                               Call<NewsItem> call = MainActivity.apiInterface.doGetNewsListResources();
                                                call.enqueue(new Callback<NewsItem>() {
                                                    @Override
                                                    public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
@@ -156,11 +154,13 @@ public class NewsFragment extends Fragment {
                                                                NoNewsButton.setOnClickListener(new View.OnClickListener() {
 
                                                                    public void onClick(View v) {
-                                                                       Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                                                                       /*Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
                                                                        i.putExtra("Main_tab", 1);
                                                                        i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                                                                        i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                                                       startActivity(i);
+                                                                       startActivity(i);*/
+                                                                       FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                                                       ft.detach(NewsFragment.this).attach(NewsFragment.this).commit();
                                                                    }
                                                                });
                                                            }

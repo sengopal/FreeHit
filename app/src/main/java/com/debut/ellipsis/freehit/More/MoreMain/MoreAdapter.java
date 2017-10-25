@@ -12,7 +12,6 @@ import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
 
-
 public class MoreAdapter extends ArrayAdapter<MoreItem> {
 
     public MoreAdapter(Context context, ArrayList<MoreItem> items) {

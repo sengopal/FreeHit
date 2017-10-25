@@ -10,18 +10,19 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="@string/EmptyLiveMatches"
-        android:textSize="@dimen/_20sdp"/>
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="@dimen/_20sdp" />
+
     <Button
         android:id="@+id/No_Live_Matches_button"
-        android:layout_below="@+id/empty_view"
-        android:layout_centerHorizontal="true"
         android:layout_width="@dimen/_80sdp"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/empty_view"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_15sdp"
-        android:text="REFRESH"
         android:background="@drawable/button_shape"
         android:padding="@dimen/_8sdp"
-        android:textSize="@dimen/_12sdp"
-        />
+        android:text="REFRESH"
+        android:textSize="@dimen/_12sdp" />
 
 </RelativeLayout>

@@ -12,11 +12,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
@@ -29,7 +29,6 @@ import retrofit2.Response;
 public class Info_Fragment extends Fragment {
 
     private ProgressBar mProgressBar;
-    private String player_url;
     APIInterface apiInterface;
 
 
@@ -42,7 +41,7 @@ public class Info_Fragment extends Fragment {
                              Bundle savedInstanceState) {
 
         Intent i = getActivity().getIntent();
-        player_url = i.getStringExtra("player_url");
+        PlayerActivity.player_url = i.getStringExtra("player_url");
 
         final View rootView = inflater.inflate(R.layout.fragment_more_player_info, container, false);
 
@@ -53,20 +52,19 @@ public class Info_Fragment extends Fragment {
         final TextView BattingStyle = (TextView) rootView.findViewById(R.id.battingStyle);
         final TextView BowlingStyle = (TextView) rootView.findViewById((R.id.BowlingStyle));
         final TextView TeamsPlayed = (TextView) rootView.findViewById((R.id.Teams_Played));
+        final  TextView description=(TextView)rootView.findViewById((R.id.PlayerInfo));
 
-        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
 
-        //to make changes
-        Call<InfoItem> call = apiInterface.doGetInfoResources(player_url);
-        call.enqueue(new Callback<InfoItem>() {
+        Call<PlayerItem> call = apiInterface.doGetPlayerInfo(PlayerActivity.player_url);
+        call.enqueue(new Callback<PlayerItem>() {
             @Override
-            public void onResponse(Call<InfoItem> call, Response<InfoItem> response) {
-
-                InfoItem info = response.body();
+            public void onResponse(Call<PlayerItem> call, Response<PlayerItem> response) {
+                PlayerItem info = response.body();
 
                 name.setText(info.getName());
 
@@ -88,9 +86,9 @@ public class Info_Fragment extends Fragment {
 
                 final String ImageURL = info.getImg();
 
-                RequestBuilder requestBuilder = GlideApp.with(getContext()).load(ImageURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder = GlideApp.with(getContext()).load(ImageURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-                requestBuilder.into(articleImage);
+                MainActivity.requestBuilder.into(articleImage);
 
                 TextView odiBat = (TextView) rootView.findViewById(R.id.odibattingRanking);
                 TextView testBat = (TextView) rootView.findViewById(R.id.testBattingRanking);
@@ -263,12 +261,12 @@ public class Info_Fragment extends Fragment {
                     }
                 }
 
-
+                description.setText(info.getDesc());
 
             }
 
             @Override
-            public void onFailure(Call<InfoItem> call, Throwable t) {
+            public void onFailure(Call<PlayerItem> call, Throwable t) {
                 Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
                 call.cancel();
             }

@@ -1,10 +1,10 @@
 package com.debut.ellipsis.freehit.Matches.UpcomingMatches;
 
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +30,6 @@ import retrofit2.Response;
 
 public class UpcomingMatchCard extends Fragment {
 
-    APIInterface apiInterface;
     private ProgressBar mProgressBar;
     public PageIndicatorView indicator;
     private UpcomingMatchesItemAdapter mAdapter;
@@ -49,14 +48,14 @@ public class UpcomingMatchCard extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_matches_common_pager, container, false);
 
 
-        apiInterface = ApiClient.getClient().create(APIInterface.class);
+        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
         final View common_match_cards = rootView.findViewById(R.id.common_match_cards);
 
-        View viewViewPager = (View) common_match_cards.findViewById(R.id.match_card_viewpagegr);
+        View viewViewPager = common_match_cards.findViewById(R.id.match_card_viewpagegr);
 
         vp = (ViewPager) viewViewPager.findViewById(R.id.viewpager);
         indicator = (PageIndicatorView) common_match_cards.findViewById(R.id.indicator);
@@ -65,13 +64,10 @@ public class UpcomingMatchCard extends Fragment {
 
         final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
 
-        NoConnectionImage = (ImageView) no_internet_connection.findViewById(R.id.no_internet_connection);
+        /*NoConnectionImage = (ImageView) no_internet_connection.findViewById(R.id.no_internet_connection);*/
         NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
-        /**
-         GET List Resources
-         **/
-        Call<UpcomingMatchCardItem> call = apiInterface.doGetUpcomingMatchListResources();
+        Call<UpcomingMatchCardItem> call = MainActivity.apiInterface.doGetUpcomingMatchListResources();
         call.enqueue(new Callback<UpcomingMatchCardItem>() {
             @Override
             public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {
@@ -104,11 +100,13 @@ public class UpcomingMatchCard extends Fragment {
                 NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
                     public void onClick(View v) {
-                        Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                        /*Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
                         i.putExtra("Main_tab",0);
                         i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                         i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(i);
+                        startActivity(i);*/
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.detach(UpcomingMatchCard.this).attach(UpcomingMatchCard.this).commit();
 
                     }
                 });
@@ -121,7 +119,7 @@ public class UpcomingMatchCard extends Fragment {
             public void onRefresh() {
                 // start refresh
                 refreshLayout.setRefreshing(true);
-                Call<UpcomingMatchCardItem> call = apiInterface.doGetUpcomingMatchListResources();
+                Call<UpcomingMatchCardItem> call = MainActivity.apiInterface.doGetUpcomingMatchListResources();
                 call.enqueue(new Callback<UpcomingMatchCardItem>() {
                     @Override
                     public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {

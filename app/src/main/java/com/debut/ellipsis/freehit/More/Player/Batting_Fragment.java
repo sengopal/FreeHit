@@ -22,7 +22,6 @@ import retrofit2.Response;
 
 public class Batting_Fragment extends Fragment {
 
-    private String player_url;
     private ProgressBar mProgressBar;
 
     @Override
@@ -30,7 +29,7 @@ public class Batting_Fragment extends Fragment {
                              Bundle savedInstanceState) {
 
         Intent i = getActivity().getIntent();
-        player_url = i.getStringExtra("player_url");
+        PlayerActivity.player_url = i.getStringExtra("player_url");
 
         View rootView = inflater.inflate(R.layout.fragment_more_player_batting_bowling_gridview, container, false);
         final String[] gridViewString = new String[60];
@@ -38,7 +37,7 @@ public class Batting_Fragment extends Fragment {
         final GridView androidGridView;
         final Batting_Bowling_item_adapter adapterViewAndroid = new Batting_Bowling_item_adapter(getContext(), gridViewString);
 
-        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
         androidGridView = (GridView) rootView.findViewById(R.id.grid_view_batting_bowling);
@@ -65,11 +64,11 @@ public class Batting_Fragment extends Fragment {
         gridViewString[55] = "STRIKE\nRATE";
 
         APIInterface apiInterface = ApiClient.getClient().create(APIInterface.class);
-        Call<BattingItem> call = apiInterface.doGetBattingInfo(player_url);
-        call.enqueue(new Callback<BattingItem>() {
+        Call<PlayerItem> call = apiInterface.doGetPlayerInfo(PlayerActivity.player_url);
+        call.enqueue(new Callback<PlayerItem>() {
             @Override
-            public void onResponse(Call<BattingItem> call, Response<BattingItem> response) {
-                BattingItem info = response.body();
+            public void onResponse(Call<PlayerItem> call, Response<PlayerItem> response) {
+                PlayerItem info = response.body();
 
                 //Number Of Matches in Test,Odi,T20,IPL
                 gridViewString[6] = info.getBatstats().getTest().getMatches();
@@ -147,7 +146,7 @@ public class Batting_Fragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<BattingItem> call, Throwable t) {
+            public void onFailure(Call<PlayerItem> call, Throwable t) {
                 Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
             }
         });

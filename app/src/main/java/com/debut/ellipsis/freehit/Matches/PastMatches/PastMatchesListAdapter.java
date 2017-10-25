@@ -10,9 +10,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
+import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
@@ -70,8 +71,7 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
 
         View contactView = inflater.inflate(R.layout.fragment_matches_past_match_list_item, parent, false);
 
-        PastViewHolder viewHolder = new PastViewHolder(contactView);
-        return viewHolder;
+        return new PastViewHolder(contactView);
     }
 
     @Override
@@ -88,18 +88,18 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
         holder.stadium.setText("( "+pastMatchCardItems.get(position).getStadium()+" )");
         holder.title.setText(pastMatchCardItems.get(position).getTitle());
 
-        String logo_string1 = pastMatchCardItems.get(position).getTeam1Info().getImage();
-        String logo_string2 = pastMatchCardItems.get(position).getTeam2Info().getImage();
+        String logo_string1 = WelcomeActivity.countryHash.getCountryFlag(WelcomeActivity.countryHash.getCountryName(pastMatchCardItems.get(position).getTeam1Info().getSn()).toUpperCase());
+        String logo_string2 = WelcomeActivity.countryHash.getCountryFlag(WelcomeActivity.countryHash.getCountryName(pastMatchCardItems.get(position).getTeam2Info().getSn()).toUpperCase());
 
-        RequestBuilder requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        MainActivity.requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-        requestBuilder.into(holder.team1image);
+        MainActivity.requestBuilder.into(holder.team1image);
 
-        RequestBuilder requestBuilder1 = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        MainActivity.requestBuilder = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
-        requestBuilder1.into(holder.team2image);
+        MainActivity.requestBuilder.into(holder.team2image);
 
-        RelativeLayout RLcontainer = holder.rlcontainer;
+        RelativeLayout RLContainer = holder.rlcontainer;
 
         View.OnClickListener mClickListener;
 
@@ -118,7 +118,7 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
 
             }
         };
-        RLcontainer.setOnClickListener(mClickListener);
+        RLContainer.setOnClickListener(mClickListener);
 
 
     }

@@ -2,11 +2,11 @@ package com.debut.ellipsis.freehit.Social.Tweets;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +18,6 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
@@ -34,7 +33,6 @@ import com.twitter.sdk.android.tweetui.TweetTimelineRecyclerViewAdapter;
 public class SocialTweets extends Fragment {
     public SearchTimeline searchTimeline;
     public TweetTimelineRecyclerViewAdapter adapter;
-    private String QueryToSearch = "#cricket";
     public RecyclerView rv;
     private ProgressBar mProgressBar;
     public Button NoConnectionButton;
@@ -50,7 +48,7 @@ public class SocialTweets extends Fragment {
         // Inflate the layout for this fragment
         View socTweets = inflater.inflate(R.layout.fragment_social_tweets, container, false);
 
-        View viewRecycler = (View) socTweets.findViewById(R.id.tweets_recycler_layout);
+        View viewRecycler = socTweets.findViewById(R.id.tweets_recycler_layout);
 
 
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
@@ -60,7 +58,7 @@ public class SocialTweets extends Fragment {
         rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        View viewProgress = (View) socTweets.findViewById(R.id.progress);
+        View viewProgress = socTweets.findViewById(R.id.progress);
 
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
         mProgressBar.setVisibility(View.VISIBLE);
@@ -118,7 +116,8 @@ public class SocialTweets extends Fragment {
         if (networkInfo != null && networkInfo.isConnected()) {
             mProgressBar.setVisibility(View.INVISIBLE);
             no_internet_connection.setVisibility(View.INVISIBLE);
-            tabCall(QueryToSearch, SearchTimeline.ResultType.RECENT);
+            String queryToSearch = "#cricket";
+            tabCall(queryToSearch, SearchTimeline.ResultType.RECENT);
 
         } else {
             no_internet_connection.setVisibility(View.VISIBLE);
@@ -126,11 +125,13 @@ public class SocialTweets extends Fragment {
             NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
                 public void onClick(View v) {
-                    Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                   /* Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
                     i.putExtra("Main_tab",2);
                     i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                     i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    startActivity(i);
+                    startActivity(i);*/
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.detach(SocialTweets.this).attach(SocialTweets.this).commit();
 
                 }
             });

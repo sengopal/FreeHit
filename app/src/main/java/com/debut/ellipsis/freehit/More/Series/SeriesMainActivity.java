@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
@@ -42,19 +43,19 @@ public class SeriesMainActivity extends AppCompatActivity {
 
         setTitle("Series");
 
-        View viewRecycler = (View) findViewById(R.id.series_list);
+        View viewRecycler = findViewById(R.id.series_list);
 
         final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
-        View vProgress = (View) findViewById(R.id.progress);
+        View vProgress = findViewById(R.id.progress);
         final ProgressBar mProgressbar = (ProgressBar) vProgress.findViewById(R.id.progress_bar);
 
-        final APIInterface apiInterface = ApiClient.getClient().create(APIInterface.class);
+        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        Call<SeriesItem> seriesInfo = apiInterface.doGetSeries();
+        Call<SeriesItem> seriesInfo = MainActivity.apiInterface.doGetSeries();
         seriesInfo.enqueue(new Callback<com.debut.ellipsis.freehit.More.Series.SeriesItem>() {
             @Override
             public void onResponse(Call<SeriesItem> call, Response<SeriesItem> response) {
@@ -78,7 +79,7 @@ public class SeriesMainActivity extends AppCompatActivity {
                                                     // Checking if connected or not on refresh
                                                     refLayout.setRefreshing(true);
 
-                                                    Call<SeriesItem> seriesInfo = apiInterface.doGetSeries();
+                                                    Call<SeriesItem> seriesInfo = MainActivity.apiInterface.doGetSeries();
                                                     seriesInfo.enqueue(new Callback<com.debut.ellipsis.freehit.More.Series.SeriesItem>() {
                                                         @Override
                                                         public void onResponse(Call<SeriesItem> call, Response<SeriesItem> response) {

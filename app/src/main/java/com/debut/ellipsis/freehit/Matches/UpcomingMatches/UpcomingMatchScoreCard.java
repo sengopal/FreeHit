@@ -24,36 +24,29 @@ import java.util.List;
 
 public class UpcomingMatchScoreCard extends AppCompatActivity {
 
-    private String match_id;
-    private String match_name;
-    private Toolbar toolbar;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_matches_match_scorecard);
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
-        match_id = getIntent().getStringExtra("match_id");
-        match_name = getIntent().getStringExtra("match_name");
+        String match_name = getIntent().getStringExtra("match_name");
 
         setTitle(match_name);
 
 
-        View viewToolbarTabs = (View) findViewById(R.id.toolbar_tabs_matches_scorecard);
+        View viewToolbarTabs = findViewById(R.id.toolbar_tabs_matches_scorecard);
 
-        toolbar = (Toolbar) viewToolbarTabs.findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) viewToolbarTabs.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         View viewUpcomingScorecardPager = (View) findViewById(R.id.scorecard_viewpager);
 
-        viewPager = (ViewPager) viewUpcomingScorecardPager.findViewById(R.id.viewpager);
+        ViewPager viewPager = (ViewPager) viewUpcomingScorecardPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
 
-        tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);
+        TabLayout tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
 
