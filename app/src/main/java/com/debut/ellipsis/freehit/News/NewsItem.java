@@ -21,14 +21,6 @@ public class NewsItem {
     @SerializedName("result")
     public List<NewsItem> results = new ArrayList<>();
 
-    public NewsItem(String imageURL, String title, String desc, String date, String tag, Integer id) {
-        this.image = imageURL;
-        this.title = title;
-        this.desc = desc;
-        this.date = date;
-        this.tag = tag;
-        this.id = id;
-    }
 
     public String getImage() {
         return image;
@@ -41,7 +33,7 @@ public class NewsItem {
     public String getDesc() {
         return desc;
     }
-
+    //
     public String getDate() {
         return date;
     }
@@ -57,6 +49,5 @@ public class NewsItem {
     public List<NewsItem> getResults() {
         return results;
     }
-
 
 }

@@ -8,6 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.load.DecodeFormat;
+import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
@@ -51,9 +54,12 @@ public class CountryListAdapter extends BaseAdapter {
         Cell cell = Cell.from(view);
         cell.textView.setText(country.getName());
 
-        country.loadFlagByCode(mContext);
-        if (country.getFlag() != -1)
-            cell.imageView.setImageResource(country.getFlag());
+        String FlagURL = country.getFlag();
+
+        RequestBuilder requestBuilder = GlideApp.with(mContext).load(FlagURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+
+        requestBuilder.into(cell.imageView);
+
         return view;
     }
 

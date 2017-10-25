@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_marginStart="@dimen/_35sdp"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -18,9 +18,12 @@
 
             <TextView
                 android:id="@+id/option_1"
-                android:layout_width="@dimen/_80sdp"
+                android:layout_width="@dimen/_68sdp"
                 android:layout_height="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:textColor="@android:color/black"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold"
                 tools:text="Option 1" />
 
             <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
@@ -35,9 +38,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_toEndOf="@+id/progress_bar_option1"
                 android:textColor="@android:color/black"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold"
                 tools:text="21%" />
+
+            <TextView
+                android:id="@+id/votecount_option_1"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_toEndOf="@+id/percentage_option_1"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_10sdp"
+                tools:text="( 9999 )" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -47,9 +64,12 @@
 
             <TextView
                 android:id="@+id/option_2"
-                android:layout_width="@dimen/_80sdp"
+                android:layout_width="@dimen/_68sdp"
                 android:layout_height="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:textColor="@android:color/black"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold"
                 tools:text="Option 2" />
 
             <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
@@ -64,9 +84,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_toEndOf="@+id/progress_bar_option2"
                 android:textColor="@android:color/black"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold"
                 tools:text="21%" />
+
+            <TextView
+                android:id="@+id/votecount_option_2"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_toEndOf="@+id/percentage_option_2"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_10sdp"
+                tools:text="( 9999 )" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -76,9 +110,12 @@
 
             <TextView
                 android:id="@+id/option_3"
-                android:layout_width="@dimen/_80sdp"
+                android:layout_width="@dimen/_68sdp"
                 android:layout_height="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:textColor="@android:color/black"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold"
                 tools:text="Option 3" />
 
             <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
@@ -86,7 +123,6 @@
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_toEndOf="@+id/option_3"
-
                 app:rcBackgroundPadding="5dp" />
 
             <TextView
@@ -94,9 +130,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_toEndOf="@+id/progress_bar_option3"
                 android:textColor="@android:color/black"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold"
                 tools:text="21%" />
+
+            <TextView
+                android:id="@+id/votecount_option_3"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_toEndOf="@+id/percentage_option_3"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_10sdp"
+                tools:text="( 9999 )" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -107,9 +157,12 @@
 
             <TextView
                 android:id="@+id/option_4"
-                android:layout_width="@dimen/_80sdp"
+                android:layout_width="@dimen/_68sdp"
                 android:layout_height="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:textColor="@android:color/black"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold"
                 tools:text="Option 4" />
 
             <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
@@ -117,7 +170,6 @@
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_toEndOf="@+id/option_4"
-
                 app:rcBackgroundPadding="5dp" />
 
             <TextView
@@ -125,9 +177,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_toEndOf="@+id/progress_bar_option4"
                 android:textColor="@android:color/black"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold"
                 tools:text="21%" />
+
+            <TextView
+                android:id="@+id/votecount_option_4"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_toEndOf="@+id/percentage_option_4"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_10sdp"
+                tools:text="( 9999 )" />
         </RelativeLayout>
 
     </LinearLayout>

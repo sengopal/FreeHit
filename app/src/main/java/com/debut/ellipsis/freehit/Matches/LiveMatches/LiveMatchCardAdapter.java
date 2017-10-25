@@ -2,7 +2,6 @@ package com.debut.ellipsis.freehit.Matches.LiveMatches;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
@@ -10,9 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.CountryHash;
+import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.R;
 
 import java.text.ParseException;
@@ -25,9 +27,6 @@ public class LiveMatchCardAdapter extends PagerAdapter {
     private static final String DATE_SEPARATOR = "T";
 
     private static final String MATCH_SERIES_SEPARATOR = ",";
-
-    public static final String LOG_TAG = com.debut.ellipsis.freehit.Matches.LiveMatches.LiveMatchCardAdapter.class.getSimpleName();
-
 
     private Context context;
     private List<LiveMatchCardItem> dataObjectList;
@@ -139,13 +138,13 @@ public class LiveMatchCardAdapter extends PagerAdapter {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent LiveMatchScoreCardIntent = new Intent(context, LiveMatchScoreCard.class);
+               /* Intent LiveMatchScoreCardIntent = new Intent(context, LiveMatchScoreCard.class);
                 LiveMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getNdid());
                 LiveMatchScoreCardIntent.putExtra("match_name", finalMatch_name + "( " +ShortNameTeam1+ " vs " +ShortNameTeam2+ " )");
                 LiveMatchScoreCardIntent.putExtra("Team1Name", ShortNameTeam1);
                 LiveMatchScoreCardIntent.putExtra("Team2Name", ShortNameTeam2);
-                /*ActivityOptions.makeCustomAnimation(context,R.anim.enter_from_right,R.anim.exit_to_right);*/
-                context.startActivity(LiveMatchScoreCardIntent);
+                context.startActivity(LiveMatchScoreCardIntent);*/
+                Toast.makeText(context,"Coming Soon !",Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -165,13 +164,16 @@ public class LiveMatchCardAdapter extends PagerAdapter {
         TextView MatchDate = (TextView) view.findViewById(R.id.match_date_live);
         MatchDate.setText(outputDateStr);
 
-
-        // Initializing Logo URLS
         logo_string1 = this.dataObjectList.get(position).getTeam1().getImage();
         logo_string2 = this.dataObjectList.get(position).getTeam2().getImage();
 
-        Glide.with(context).load(logo_string1).placeholder(R.drawable.matches).into(imageViewTeam1Logo);
-        Glide.with(context).load(logo_string2).placeholder(R.drawable.matches).into(imageViewTeam2Logo);
+        RequestBuilder requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+
+        requestBuilder.into(imageViewTeam1Logo);
+
+        RequestBuilder requestBuilder1 = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+
+        requestBuilder1.into(imageViewTeam2Logo);
 
         container.addView(view);
         return view;

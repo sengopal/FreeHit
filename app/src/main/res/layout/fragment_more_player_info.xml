@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/Player_image"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_15sdp"
+                app:srcCompat="@drawable/matches" />
+
+            <TextView
+                android:id="@+id/Player_name_stats_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_15sdp"
+                tools:text="PlayerName"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_14sdp" />
+
+            <TextView
+                android:id="@+id/player_country"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                tools:text="country"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/divider"
+                android:textSize="@dimen/_1sdp" />
+
+            <TextView
+                android:id="@+id/Player_personal_information"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="PERSONAL INFORMATION"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_15sdp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/divider"
+                android:textSize="@dimen/_1sdp" />
+
+            <LinearLayout
+                android:padding="@dimen/_5sdp"
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/DOBLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="DOB : "
+                        android:textStyle="bold"
+                        android:paddingLeft="@dimen/_4sdp"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_11sdp" />
+
+                    <TextView
+                        android:id="@+id/DOB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_toEndOf="@+id/DOBLabel"
+                        android:textSize="@dimen/_11sdp"
+                        android:paddingStart="@dimen/_6sdp"
+                        android:textColor="@android:color/black"
+                        tools:text="9999/9999/999" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/AgeLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="Age : "
+                        android:textStyle="bold"
+                        android:paddingStart="@dimen/_4sdp"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_11sdp" />
+
+                    <TextView
+                        android:id="@+id/Age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_toEndOf="@+id/AgeLabel"
+                        android:textSize="@dimen/_11sdp"
+                        android:paddingStart="@dimen/_6sdp"
+                        android:textColor="@android:color/black"
+                        tools:text="9999/9999/999" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/battingStyleLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="Batting Style : "
+                        android:textStyle="bold"
+                        android:paddingStart="@dimen/_4sdp"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_11sdp" />
+
+                    <TextView
+                        android:id="@+id/battingStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_toEndOf="@+id/battingStyleLabel"
+                        android:textSize="@dimen/_11sdp"
+                        android:paddingStart="@dimen/_6sdp"
+                        android:textColor="@android:color/black"
+                        tools:text="9999/9999/999" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/BowlingStyleLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="Bowling Style : "
+                        android:textStyle="bold"
+                        android:paddingLeft="@dimen/_4sdp"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_11sdp" />
+
+                    <TextView
+                        android:id="@+id/BowlingStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_toEndOf="@+id/BowlingStyleLabel"
+                        android:textSize="@dimen/_11sdp"
+                        android:paddingLeft="@dimen/_6sdp"
+                        android:textColor="@android:color/black"
+                        tools:text="9999/9999/999" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/Teams_PlayedLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="Teams Played For : "
+                        android:textStyle="bold"
+                        android:paddingLeft="@dimen/_4sdp"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_11sdp" />
+
+                    <TextView
+                        android:id="@+id/Teams_Played"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:paddingLeft="@dimen/_6sdp"
+                        android:layout_toEndOf="@+id/Teams_PlayedLabel"
+                        android:textSize="@dimen/_11sdp"
+                        android:textColor="@android:color/black"
+                        tools:text="9999/9999/999" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <include
+                android:id="@+id/progress"
+                layout="@layout/common_progressbar"
+                />
+
+        </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/divider"
+                android:textSize="@dimen/_1sdp" />
+
+            <TextView
+                android:id="@+id/ICC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:gravity="center_horizontal"
+                android:text="ICC RANKING"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_15sdp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ICC"
+                android:background="@color/divider"
+                android:textSize="@dimen/_1sdp" />
+
+
+
+
+
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/Ranking_Table"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:padding="@dimen/_8sdp"
+                android:shrinkColumns="*"
+                android:stretchColumns="*">
+
+                <TableRow
+                    android:id="@+id/Ranking_lablels"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/initial_blank"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:padding="@dimen/_18sdp"
+                        android:text=" "
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_8sdp" />
+
+                    <TextView
+                        android:id="@+id/Label_ODI"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:padding="@dimen/_18sdp"
+                        android:text="ODI"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/_8sdp" />
+
+                    <TextView
+                        android:id="@+id/Label_TEST"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:padding="@dimen/_18sdp"
+                        android:text="TEST"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_8sdp" />
+
+                    <TextView
+                        android:id="@+id/Label_T20"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:padding="@dimen/_18sdp"
+                        android:text="T20I"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_8sdp" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/Batting_Ranking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/Batting_Label"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:padding="@dimen/_18sdp"
+                        android:text="Batting"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_8sdp" />
+
+                    <TextView
+                        android:id="@+id/odibattingRanking"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:padding="@dimen/_18sdp"
+                        tools:text="01"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_8sdp" />
+
+                    <TextView
+                        android:id="@+id/testBattingRanking"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:padding="@dimen/_18sdp"
+                        tools:text="02"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_8sdp" />
+
+                    <TextView
+                        android:id="@+id/T20BattingRanking"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:padding="@dimen/_18sdp"
+                        tools:text="T20I"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_8sdp" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/Bowling_Ranking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/Bowling_Label"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:padding="@dimen/_18sdp"
+                        android:text="Bowling"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_8sdp" />
+
+                    <TextView
+                        android:id="@+id/odiBowlingRanking"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:padding="@dimen/_18sdp"
+                        tools:text="--"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_8sdp" />
+
+                    <TextView
+                        android:id="@+id/testBowlingRanking"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:padding="@dimen/_18sdp"
+                        tools:text="--"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_8sdp" />
+
+                    <TextView
+                        android:id="@+id/T20BowlingRanking"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:padding="@dimen/_18sdp"
+                        tools:text="--"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_8sdp" />
+
+
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/divider"
+                android:textSize="@dimen/_1sdp" />
+
+            <TextView
+                android:id="@+id/MOTM"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:gravity="center_horizontal"
+                android:text="MAN OF THE MATCH"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_15sdp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ICC"
+                android:background="@color/divider"
+                android:textSize="@dimen/_1sdp" />
+
+            <ScrollView
+                android:id="@+id/layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dip"
+                android:fillViewport="true"
+                android:scrollbarStyle="outsideInset"
+                android:scrollbars="horizontal|vertical">
+
+                <HorizontalScrollView
+                    android:id="@+id/horizontalView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:scrollbars="horizontal|vertical">
+
+                    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/MOTM_Table"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#ffffff"
+                        android:padding="@dimen/_8sdp"
+                        android:stretchColumns="*">
+
+                        <TableRow
+                            android:id="@+id/MOTM_Lablels"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+                            <TextView
+                                android:id="@+id/MOTM_Label_TEST"
+                                android:layout_height="@dimen/_58sdp"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="@dimen/_18sdp"
+                                android:text="TEST"
+                                android:textStyle="bold"
+                                android:textAlignment="center"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_8sdp" />
+
+                            <TextView
+                                android:id="@+id/MOTM_Label_ODI"
+                                android:layout_height="@dimen/_58sdp"
+                                android:layout_weight="1"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="@dimen/_18sdp"
+                                android:text="  ODI  "
+                                android:textStyle="bold"
+                                android:textAlignment="center"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_8sdp" />
+
+                            <TextView
+                                android:id="@+id/MOTM_Label_T20"
+                                android:layout_height="@dimen/_58sdp"
+                                android:layout_weight="1"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="@dimen/_18sdp"
+                                android:text="T20I"
+                                android:textStyle="bold"
+                                android:textAlignment="center"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_8sdp" />
+
+                            <TextView
+                                android:id="@+id/MOTM_Label_WorldCup"
+                                android:layout_height="@dimen/_58sdp"
+                                android:layout_weight="1"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="@dimen/_18sdp"
+                                android:text="WORLD CUP"
+                                android:textStyle="bold"
+                                android:textAlignment="center"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_8sdp" />
+
+                            <TextView
+                                android:id="@+id/MOTM_Label_IPL"
+                                android:layout_height="@dimen/_58sdp"
+                                android:layout_weight="1"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="@dimen/_18sdp"
+                                android:text="  IPL  "
+                                android:textStyle="bold"
+                                android:textAlignment="center"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_8sdp" />
+
+                            <TextView
+                                android:id="@+id/MOTM_Label_CL"
+                                android:layout_height="@dimen/_58sdp"
+                                android:layout_weight="1"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="@dimen/_18sdp"
+                                android:text="  CL  "
+                                android:textStyle="bold"
+                                android:textAlignment="center"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_8sdp" />
+
+
+                        </TableRow>
+
+                        <TableRow
+                            android:id="@+id/MOTM_Values"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/MOTM_Test"
+                                android:layout_height="@dimen/_58sdp"
+                                android:layout_weight="1"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="@dimen/_18sdp"
+                                tools:text="3"
+                                android:textAlignment="center"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_8sdp" />
+
+                            <TextView
+                                android:id="@+id/MOTM_Odi"
+                                android:layout_height="@dimen/_58sdp"
+                                android:layout_weight="1"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="@dimen/_18sdp"
+                                tools:text="6"
+                                android:textAlignment="center"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_8sdp" />
+
+                            <TextView
+                                android:id="@+id/MOTM_T20"
+                                android:layout_height="@dimen/_58sdp"
+                                android:layout_weight="1"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="@dimen/_18sdp"
+                                tools:text="2"
+                                android:textAlignment="center"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_8sdp" />
+
+                            <TextView
+                                android:id="@+id/MOTM_WorldCup"
+                                android:layout_height="@dimen/_58sdp"
+                                android:layout_weight="1"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="@dimen/_18sdp"
+                                tools:text="2"
+                                android:textAlignment="center"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_8sdp" />
+
+                            <TextView
+                                android:id="@+id/MOTM_IPL"
+                                android:layout_height="@dimen/_58sdp"
+                                android:layout_weight="1"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="@dimen/_18sdp"
+                                tools:text="2"
+                                android:textAlignment="center"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_8sdp" />
+
+                            <TextView
+                                android:id="@+id/MOTM_CL"
+                                android:layout_height="@dimen/_58sdp"
+                                android:layout_weight="1"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="@dimen/_18sdp"
+                                tools:text="0"
+                                android:textAlignment="center"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_8sdp" />
+
+
+                        </TableRow>
+
+
+                    </TableLayout>
+
+                </HorizontalScrollView>
+            </ScrollView>
+
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

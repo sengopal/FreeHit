@@ -16,7 +16,7 @@
     <string name="search_team">Team</string>
     <string name="search_series">Series</string>
     <string name="rankings">Rankings</string>
-    <string name="records">Records</string>
+    <string name="fav_team">Favourite Team</string>
 
 
     <!--COMPLETE LIST OF MATCHES-->
@@ -37,7 +37,7 @@
     <string name="EmptyLiveMatches">NO LIVE MATCHES</string>
 
     <!--FOR TOOLS IN LIVE,UPCOMING,PAST MATCHES-->
-    <string name="matches_view_more">Click To View More</string>
+    <string name="matches_view_more">Click To View More !</string>
 
     <string name="no_internet_connection">Check Your Internet Connection</string>
 
@@ -55,6 +55,7 @@
     <string name="slide_4_desc">Get answers to all your cricket queries!</string>
     <string name="slide_5_title">PICK YOUR FAVOURITE COUNTRY</string>
     <string name="slide_5_desc">Select the country that you want to follow!</string>
+    <string name="select_team_alert">PLEASE SELECT A TEAM</string>
 
 
     <!-- For Country Picker Dialog -->
@@ -64,13 +65,16 @@
     <string name="settings_team_Afghanistan_label">Afghanistan</string>
     <string name="settings_team_Australia_label">Australia</string>
     <string name="settings_team_Bangladesh_label">Bangladesh</string>
+    <string name="settings_team_Canada_label">Canada</string>
     <string name="settings_team_England_label">England</string>
     <string name="settings_team_Ireland_label">Ireland</string>
     <string name="settings_team_India_label">India</string>
+    <string name="settings_team_Netherlands_label">Netherlands</string>
     <string name="settings_team_NewZealand_label">New Zealand</string>
     <string name="settings_team_Pakistan_label">Pakistan</string>
     <string name="settings_team_SouthAfrica_label">South Africa</string>
     <string name="settings_team_SriLanka_label">Sri Lanka</string>
+    <string name="settings_team_UnitedArabEmirates_label">United Arab Emirates</string>
     <string name="settings_team_WestIndies_label">West Indies</string>
     <string name="settings_team_Zimbabwe_label">Zimbabwe</string>
 
@@ -79,9 +83,6 @@
     <string name="settings_select_team_label">Select Team</string>
     <string name="team_select_title">PICK YOUR FAVOURITE TEAM</string>
     <string name="select_team_button">SELECT COUNTRY</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
     <!-- For Information fragment of match ScoreCard -->
@@ -101,6 +102,8 @@
     <!-- For Settings gear Icon -->
     <string name="settings_menu_item">Settings</string>
     <string name="settings_title">FreeHit Settings</string>
+    <string name="search_hint">player name</string>
+    <string name="app_label">Freehit</string>
 
 
 </resources>

@@ -35,15 +35,6 @@ public class PastMatchCardItem {
     public List<PastMatchCardItem> results = new ArrayList<>();
 
 
-    public PastMatchCardItem(String title, int id, String tour, String stadium, String date, String mresult) {
-        this.title = title;
-        this.id = id;
-        this.tour = tour;
-        this.stadium = stadium;
-        this.mresult = mresult;
-    }
-
-
     public String getStadium() {
         return stadium;
     }

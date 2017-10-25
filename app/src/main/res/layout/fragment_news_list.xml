@@ -5,41 +5,29 @@
     android:layout_height="match_parent"
     tools:context="com.debut.ellipsis.freehit.Social.Tweets.SocialTweets">
 
-    <RelativeLayout
-        android:id="@+id/news_list_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/refresh_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+    <include
+        android:id="@+id/news_list"
+        layout="@layout/common_recycler_view_list" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/news_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true" />
-        </android.support.v4.widget.SwipeRefreshLayout>
+    <include
+        android:id="@+id/fab"
+        layout="@layout/common_fab" />
 
 
-    </RelativeLayout>
-
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
+    <include
+        android:id="@+id/progress"
+        layout="@layout/common_progressbar" />
 
     <include
         android:id="@+id/Unavailable_connection"
         layout="@layout/no_internet_connection"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 
     <include
         android:id="@+id/No_news"
-        layout="@layout/empty_view"
-        android:visibility="invisible"/>
+        layout="@layout/empty_view_refresh"
+        android:visibility="invisible" />
 
 
 </RelativeLayout>

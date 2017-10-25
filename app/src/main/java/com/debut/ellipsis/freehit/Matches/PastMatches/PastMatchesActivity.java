@@ -38,19 +38,27 @@ public class PastMatchesActivity extends AppCompatActivity {
         setContentView(R.layout.fragment_matches_complete_match_list);
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
-        mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
-        rv = (RecyclerView) findViewById(R.id.match_list);
 
-        refresh_layout = (SwipeRefreshLayout) findViewById(R.id.refresh_layout);
+        View viewProgress = (View) findViewById(R.id.progress);
+        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
+
+        View viewRecycler = (View) findViewById(R.id.match_list_team) ;
+        rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
+
+        refresh_layout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
         rv.setLayoutManager(new LinearLayoutManager(this));
-        toolbar = (Toolbar) findViewById(R.id.toolbar_for_match_list);
+
+        View viewToolbar = (View) findViewById(R.id.toolbar_matches_list);
+
+        toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(R.string.past_list);
 
-        mEmptyView = (TextView) findViewById(R.id.empty_view);
-        mEmptyView.setVisibility(View.INVISIBLE);
+
+        View viewEmpty = (View) findViewById(R.id.empty);
+        mEmptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);
 
         Call<PastMatchCardItem> call = apiInterface.doGetCompletePastCardResources();
         call.enqueue(new Callback<PastMatchCardItem>() {
@@ -80,6 +88,7 @@ public class PastMatchesActivity extends AppCompatActivity {
             }
         });
 
+        refresh_layout.setColorSchemeResources(R.color.orange);
         refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

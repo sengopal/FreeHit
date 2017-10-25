@@ -2,7 +2,6 @@ package com.debut.ellipsis.freehit.Matches.UpcomingMatches;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,33 +9,34 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.load.DecodeFormat;
+import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
 
 public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatchListAdapter.ViewHolder> {
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
-        public TextView textViewMatchName;
-        public TextView textViewSeriesName;
-        public TextView textViewStadiumName;
-        public String logo_string1;
-        public String logo_string2;
-        public ImageView imageViewTeam1Logo;
-        public ImageView imageViewTeam2Logo;
-        public TextView shortName1;
-        public TextView shortName2;
-        public TextView MatchDate;
+        TextView textViewMatchName;
+        TextView textViewSeriesName;
+        TextView textViewStadiumName;
+        ImageView imageViewTeam1Logo;
+        ImageView imageViewTeam2Logo;
+        TextView shortName1;
+        TextView shortName2;
+        TextView MatchDate;
         public RelativeLayout rlcontainer;
 
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             // Stores the itemView in a public final member variable that can be used
             // to access the context from any ViewHolder instance.
             super(itemView);
@@ -81,9 +81,8 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
         View contactView = inflater.inflate(R.layout.fragment_matches_upcoming_match_list_item, parent, false);
 
         // Return a new holder instance
-        ViewHolder viewHolder = new ViewHolder(contactView);
 
-        return viewHolder;
+        return new ViewHolder(contactView);
     }
 
     // Involves populating data into the item through holder
@@ -121,8 +120,14 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
         MatchDate.setText(upcomingMatchCards.getDate().getFinaldate());
 
 
-        Glide.with(getContext()).load(logo_string1).placeholder(R.drawable.matches).into(imageViewTeam1Logo);
-        Glide.with(getContext()).load(logo_string2).placeholder(R.drawable.matches).into(imageViewTeam2Logo);
+        RequestBuilder requestBuilder = GlideApp.with(mContext).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+
+        requestBuilder.into(imageViewTeam1Logo);
+
+        RequestBuilder requestBuilder1 = GlideApp.with(mContext).load(logo_string2).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+
+        requestBuilder1.into(imageViewTeam2Logo);
+
 
         RelativeLayout RLcontainer = viewHolder.rlcontainer;
 
@@ -133,12 +138,13 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
             @Override
             public void onClick(View view) {
 
-                Intent UpcomingMatchScoreCardIntent = new Intent(getContext(), UpcomingMatchScoreCard.class);
+                /*Intent UpcomingMatchScoreCardIntent = new Intent(mContext, UpcomingMatchScoreCard.class);
                 UpcomingMatchScoreCardIntent.putExtra("match_id", upcomingMatchCards.getNdid());
-                UpcomingMatchScoreCardIntent.putExtra("match_name", upcomingMatchCards.getMatch());
+                UpcomingMatchScoreCardIntent.putExtra("match_name",  upcomingMatchCards.getMatch() + "(" + upcomingMatchCards.getTeam1().getSn() + " vs " + upcomingMatchCards.getTeam2().getSn() + ")");
 
                 UpcomingMatchScoreCardIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                getContext().startActivity(UpcomingMatchScoreCardIntent);
+                mContext.startActivity(UpcomingMatchScoreCardIntent);*/
+                Toast.makeText(mContext,"Coming Soon !",Toast.LENGTH_SHORT).show();
 
             }
         };
@@ -147,10 +153,8 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
 
     }
 
-
-    // Returns the total count of items in the list
     @Override
     public int getItemCount() {
-        return mUpcomingMatchCards.size() - 1;
+        return mUpcomingMatchCards.size();
     }
 }

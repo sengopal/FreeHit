@@ -9,12 +9,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHeadFragment;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.HeatMapFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.InfoFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements.ScoreCardFragment;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.SpiderFragment;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
@@ -31,21 +30,25 @@ public class PastMatchScoreCard extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_matches_past_match_scorecard);
+        setContentView(R.layout.fragment_matches_match_scorecard);
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         match_id = getIntent().getStringExtra("match_id");
         match_name = getIntent().getStringExtra("match_name");
 
         setTitle(match_name);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar_past);
+        View viewToolbarTabs = (View) findViewById(R.id.toolbar_tabs_matches_scorecard);
+
+        toolbar = (Toolbar) viewToolbarTabs.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager_past);
+        View viewViewPager = (View) findViewById(R.id.scorecard_viewpager);
+
+        viewPager = (ViewPager) viewViewPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs_past);
+        tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
 
@@ -77,8 +80,6 @@ public class PastMatchScoreCard extends AppCompatActivity {
         adapter.addFrag(new InfoFragment(), "INFO");
         adapter.addFrag(new ScoreCardFragment(), "SCORE CARD");
         adapter.addFrag(new HeadToHeadFragment(), "HEAD-TO-HEAD");
-        adapter.addFrag(new SpiderFragment(), "SPIDER");
-        adapter.addFrag(new HeatMapFragment(), "HEAT MAP");
         viewPager.setAdapter(adapter);
     }
 

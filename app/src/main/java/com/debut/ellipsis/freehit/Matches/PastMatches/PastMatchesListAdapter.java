@@ -1,7 +1,6 @@
 package com.debut.ellipsis.freehit.Matches.PastMatches;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.load.DecodeFormat;
+import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
@@ -22,7 +24,6 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
 
 
     public static class PastViewHolder extends RecyclerView.ViewHolder {
-        RelativeLayout pastLayout;
         ImageView team1image;
         ImageView team2image;
         TextView title;
@@ -37,11 +38,9 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
         TextView result;
         TextView date;
         RelativeLayout rlcontainer;
-//        RelativeLayout rlcontainer;
 
         public PastViewHolder(View v) {
             super(v);
-            pastLayout = (RelativeLayout) v.findViewById(R.id.rlcontainer);
             team1image = (ImageView) v.findViewById(R.id.team_logo_1_past);
             team2image = (ImageView) v.findViewById(R.id.team_logo_2_past);
             title = (TextView) v.findViewById(R.id.match_name_past);
@@ -88,9 +87,17 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
         holder.t2inn2.setText(pastMatchCardItems.get(position).getTeam2Info().getInn2());
         holder.stadium.setText("( "+pastMatchCardItems.get(position).getStadium()+" )");
         holder.title.setText(pastMatchCardItems.get(position).getTitle());
-        RelativeLayout relativeLayout = holder.pastLayout;
-        Glide.with(context).load(pastMatchCardItems.get(position).getTeam1Info().getImage()).placeholder(R.drawable.matches).into(holder.team1image);
-        Glide.with(context).load(pastMatchCardItems.get(position).getTeam2Info().getImage()).placeholder(R.drawable.matches).into(holder.team2image);
+
+        String logo_string1 = pastMatchCardItems.get(position).getTeam1Info().getImage();
+        String logo_string2 = pastMatchCardItems.get(position).getTeam2Info().getImage();
+
+        RequestBuilder requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+
+        requestBuilder.into(holder.team1image);
+
+        RequestBuilder requestBuilder1 = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+
+        requestBuilder1.into(holder.team2image);
 
         RelativeLayout RLcontainer = holder.rlcontainer;
 
@@ -101,12 +108,13 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
             @Override
             public void onClick(View view) {
 
-                Intent UpcomingMatchScoreCardIntent = new Intent(context, PastMatchScoreCard.class);
+                /*Intent UpcomingMatchScoreCardIntent = new Intent(context, PastMatchScoreCard.class);
                 UpcomingMatchScoreCardIntent.putExtra("match_id", pastMatchCardItems.get(position).getNdid());
                 UpcomingMatchScoreCardIntent.putExtra("match_name", pastMatchCardItems.get(position).getTitle());
-                    /*ActivityOptions.makeCustomAnimation(context,R.anim.animation_entry,R.anim.animation_exit);*/
+                    *//*ActivityOptions.makeCustomAnimation(context,R.anim.animation_entry,R.anim.animation_exit);*//*
                 UpcomingMatchScoreCardIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(UpcomingMatchScoreCardIntent);
+                context.startActivity(UpcomingMatchScoreCardIntent);*/
+                Toast.makeText(context,"Coming Soon !",Toast.LENGTH_SHORT).show();
 
             }
         };

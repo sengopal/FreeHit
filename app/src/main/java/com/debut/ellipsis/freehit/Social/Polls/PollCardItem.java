@@ -10,22 +10,24 @@ public class PollCardItem {
 
     @SerializedName("id")
     public Integer id;
+
     @SerializedName("ndid")
     public String ndid;
+
     @SerializedName("question")
     public String question;
+
     @SerializedName("ctitle")
     public List<String> ctitle = new ArrayList<>();
+
     @SerializedName("cvotes")
     public List<Integer> cvotes = new ArrayList<>();
-    @SerializedName("result")
-    public List<PollCardItem> result = new ArrayList<>();
 
-    public PollCardItem(int id, String ndid, String tour) {
-        this.id = id;
-        this.ndid = ndid;
-        this.question = tour;
-    }
+    @SerializedName("voteid")
+    public String voteid;
+
+    @SerializedName("result")
+    public List<PollCardItem> result = new ArrayList<>(5);
 
     public Integer getId() {
         return id;
@@ -65,5 +67,9 @@ public class PollCardItem {
 
     public int getCount() {
         return cvotes.size();
+    }
+
+    public String getVoteid() {
+        return voteid;
     }
 }

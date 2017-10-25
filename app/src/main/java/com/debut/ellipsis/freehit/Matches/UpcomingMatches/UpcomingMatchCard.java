@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baoyz.widget.PullRefreshLayout;
@@ -38,8 +37,6 @@ public class UpcomingMatchCard extends Fragment {
     public ViewPager vp;
     public ImageView NoConnectionImage;
     public Button NoConnectionButton;
-    public TextView NoLiveMatchesText;
-    public Button NoLiveMatchesButton;
 
     public UpcomingMatchCard() {
         // Required empty public constructor
@@ -53,11 +50,15 @@ public class UpcomingMatchCard extends Fragment {
 
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
-        mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
+
+        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
         final View common_match_cards = rootView.findViewById(R.id.common_match_cards);
 
-        vp = (ViewPager) common_match_cards.findViewById(R.id.viewpager);
+        View viewViewPager = (View) common_match_cards.findViewById(R.id.match_card_viewpagegr);
+
+        vp = (ViewPager) viewViewPager.findViewById(R.id.viewpager);
         indicator = (PageIndicatorView) common_match_cards.findViewById(R.id.indicator);
         final PullRefreshLayout refreshLayout = (PullRefreshLayout) common_match_cards.findViewById(R.id.swipeRefreshLayout);
 
@@ -105,7 +106,6 @@ public class UpcomingMatchCard extends Fragment {
                     public void onClick(View v) {
                         Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
                         i.putExtra("Main_tab",0);
-                        i.putExtra("Sub_tab",1);
                         i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                         i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(i);
@@ -169,9 +169,9 @@ public class UpcomingMatchCard extends Fragment {
 
     private void IndicatorConfig() {
         indicator.setVisibility(View.VISIBLE);
-        indicator.setAnimationType(AnimationType.DROP);
-        indicator.setUnselectedColor(Color.parseColor("#F06292"));
-        indicator.setSelectedColor(Color.parseColor("#E91E63"));
+        indicator.setAnimationType(AnimationType.WORM);
+        indicator.setUnselectedColor(Color.parseColor("#f94d44"));
+        indicator.setSelectedColor(Color.parseColor("#bf031b"));
         indicator.setInteractiveAnimation(true);
         indicator.setAnimationDuration(500);
 

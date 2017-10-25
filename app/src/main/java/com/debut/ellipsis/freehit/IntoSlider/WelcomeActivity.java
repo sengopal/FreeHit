@@ -3,15 +3,12 @@ package com.debut.ellipsis.freehit.IntoSlider;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,12 +21,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.load.DecodeFormat;
+import com.debut.ellipsis.freehit.CountryHash;
+import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
-import java.io.ByteArrayOutputStream;
-
-import static com.debut.ellipsis.freehit.Settings.CustomSettings.decodeToBase64;
 
 public class WelcomeActivity extends AppCompatActivity {
     public static final String MY_PREFS_NAME = "MyPrefsFile";
@@ -38,10 +36,10 @@ public class WelcomeActivity extends AppCompatActivity {
     private LinearLayout dotsLayout;
     private ImageView[] dots;
     private int[] layouts;
-    private Button btnSkip, btnNext, btnCountrySelect;
+    private Button btnSkip, btnNext;
     private PrefManager prefManager;
     private boolean clicked = false;
-    public String Selected_country;
+    CountryHash countryHash = new CountryHash();
 
 
     @Override
@@ -63,7 +61,9 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
 
 
-        viewPager = (ViewPager) findViewById(R.id.view_pager_intro);
+        View viewViewPager = (View) findViewById(R.id.welcome_viewpager);
+
+        viewPager = (ViewPager) viewViewPager.findViewById(R.id.viewpager);
         dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
         btnSkip = (Button) findViewById(R.id.btn_skip);
         btnNext = (Button) findViewById(R.id.btn_next);
@@ -77,7 +77,6 @@ public class WelcomeActivity extends AppCompatActivity {
                 R.layout.welcome_slide3,
                 R.layout.welcome_slide4,
                 R.layout.welcome_slide5_country_picker};
-//        btnCountrySelect = (Button) findViewById(R.id.country_select);
 
         // adding bottom dots
         addBottomDots(0);
@@ -113,7 +112,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
                         LayoutInflater inflater = getLayoutInflater();
                         View layouttoast = inflater.inflate(R.layout.custom_toast, (ViewGroup) findViewById(R.id.toastcustom));
-                        ((TextView) layouttoast.findViewById(R.id.texttoast)).setText("PLEASE SELECT A TEAM");
+                        ((TextView) layouttoast.findViewById(R.id.texttoast)).setText(R.string.select_team_alert);
 
                         Toast mytoast = new Toast(getBaseContext());
                         mytoast.setView(layouttoast);
@@ -121,8 +120,6 @@ public class WelcomeActivity extends AppCompatActivity {
                         mytoast.show();
 
                     }
-
-                    //then on another method or where you want
 
                 }
             }
@@ -141,8 +138,7 @@ public class WelcomeActivity extends AppCompatActivity {
         dotsLayout.removeAllViews();
         for (int i = 0; i < dots.length; i++) {
             dots[i] = new ImageView(this);
-            /*dots[i].setText(Html.fromHtml("&#8226;"));
-            dots[i].setTextSize(35);*/
+
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
             dots[i].setLayoutParams(params);
             params.setMargins(15, 15, 0, 0);
@@ -156,7 +152,6 @@ public class WelcomeActivity extends AppCompatActivity {
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
             dots[currentPage].setLayoutParams(params);
             params.setMargins(15, 15, 0, 0);
-            //parms.setMargins(left, top, right, bottom);
             dots[currentPage].setImageResource(R.drawable.ball);
             dots[currentPage].setColorFilter(colorsActive[currentPage]);
         }
@@ -230,12 +225,10 @@ public class WelcomeActivity extends AppCompatActivity {
             View view = layoutInflater.inflate(layouts[position], container, false);
             container.addView(view);
             if (position == 4) {
-//                ImageView flag =(ImageView) view.findViewById(R.id.country_flag);
                 ImageView country_flag = (ImageView) findViewById(R.id.country_flag);
 
                 SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
                 String name = prefs.getString("country_name", "SELECT COUNTRY");
-
 
                 TextView country_name = (TextView) findViewById(R.id.country_name);
                 country_name.setText(name);
@@ -243,14 +236,12 @@ public class WelcomeActivity extends AppCompatActivity {
                 String flagID = prefs.getString("country_flag", "");
                 Log.e("test", flagID);
 
+                String TeamLogo = countryHash.getCountryFlag(name.toUpperCase());
 
-                Bitmap imageB = BitmapFactory.decodeResource(getBaseContext().getResources(), R.drawable.matches);
-                if (!flagID.equals("")) {
-                    imageB = decodeToBase64(flagID);
-                    TextView empty = (TextView) findViewById(R.id.slide5description);
-                    empty.setVisibility(View.GONE);
-                }
-                country_flag.setImageBitmap(imageB);
+                RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogo).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+
+                requestBuilder.into(country_flag);
+
             }
             return view;
         }
@@ -278,23 +269,22 @@ public class WelcomeActivity extends AppCompatActivity {
         final CountryPicker picker = CountryPicker.newInstance("Select Country");  // dialog title
         picker.setListener(new CountryPickerListener() {
             @Override
-            public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID) {
+            public void onSelectCountry(String name, String flagURLID) {
                 // Implement your code here
                 TextView country_name = (TextView) findViewById(R.id.country_name);
                 country_name.setText(name);
 
                 ImageView before = (ImageView) findViewById(R.id.country_flag);
-                before.setImageResource(flagDrawableResID);
+
+                RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(flagURLID).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+
+                requestBuilder.into(before);
 
                 TextView description = (TextView) findViewById(R.id.slide5description);
                 description.setVisibility(View.GONE);
 
-
-                before.buildDrawingCache();
-                Bitmap bmap = before.getDrawingCache();
                 SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
                 editor.putString("country_name", name);
-                editor.putString("country_flag", encodeToBase64(bmap));
                 editor.apply();
 
                 clicked = true;
@@ -306,14 +296,4 @@ public class WelcomeActivity extends AppCompatActivity {
 
     }
 
-    public static String encodeToBase64(Bitmap image) {
-        Bitmap immage = image;
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        immage.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        byte[] b = baos.toByteArray();
-        String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
-
-        Log.d("Image Log:", imageEncoded);
-        return imageEncoded;
-    }
 }

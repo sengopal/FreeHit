@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.debut.ellipsis.freehit.Social.Tweets.SocialTweets">
+
+
+    <include
+        android:id="@+id/fav_team_news_toolbar"
+        layout="@layout/common_toolbar" />
+
+    <RelativeLayout
+        android:id="@+id/news_list_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fav_team_news_toolbar">
+
+        <include
+            android:id="@+id/fav_team_news_list"
+            layout="@layout/common_recycler_view_list" />
+
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/progress"
+        layout="@layout/common_progressbar" />
+
+    <include
+        android:id="@+id/Unavailable_connection"
+        layout="@layout/no_internet_connection"
+        android:visibility="invisible" />
+
+    <include
+        android:id="@+id/No_news"
+        layout="@layout/empty_view_refresh"
+        android:visibility="invisible" />
+
+
+</RelativeLayout>

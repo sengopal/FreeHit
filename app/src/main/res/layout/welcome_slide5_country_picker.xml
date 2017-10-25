@@ -13,8 +13,8 @@
 
         <ImageView
             android:id="@+id/country_flag"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="@dimen/_75sdp"
+            android:layout_height="@dimen/_75sdp"
             android:src="@drawable/matches" />
 
         <TextView
@@ -36,16 +36,18 @@
             android:text="@string/slide_5_desc"
             android:textAlignment="center"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/slide_desc" />
+            android:textSize="@dimen/_14sdp" />
 
         <Button
             android:id="@+id/country_select"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:padding="@dimen/_5sdp"
             android:textColor="@android:color/white"
             android:text="@string/select_team_button"
-            style="@style/Widget.AppCompat.Button.Borderless"
+            android:textSize="@dimen/_11sdp"
+            android:background="@drawable/custom_button_intro"
             android:onClick="select_country" />
     </LinearLayout>
 

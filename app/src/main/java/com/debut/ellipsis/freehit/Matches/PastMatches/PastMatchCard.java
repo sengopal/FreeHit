@@ -51,11 +51,15 @@ public class PastMatchCard extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_matches_common_pager, container, false);
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
-        mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
+
+        View viewProgress= (View) rootView.findViewById(R.id.progress);
+        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
         final View common_match_cards = rootView.findViewById(R.id.common_match_cards);
 
-        vp = (ViewPager) common_match_cards.findViewById(R.id.viewpager);
+        View viewViewPager = (View) common_match_cards.findViewById(R.id.match_card_viewpagegr);
+
+        vp = (ViewPager) viewViewPager.findViewById(R.id.viewpager);
         indicator = (PageIndicatorView) common_match_cards.findViewById(R.id.indicator);
         final PullRefreshLayout refreshLayout = (PullRefreshLayout) common_match_cards.findViewById(R.id.swipeRefreshLayout);
 
@@ -157,9 +161,9 @@ public class PastMatchCard extends Fragment {
 
 
     private void IndicatorConfig() {
-        indicator.setAnimationType(AnimationType.DROP);
-        indicator.setUnselectedColor(Color.parseColor("#F06292"));
-        indicator.setSelectedColor(Color.parseColor("#E91E63"));
+        indicator.setAnimationType(AnimationType.WORM);
+        indicator.setUnselectedColor(Color.parseColor("#f94d44"));
+        indicator.setSelectedColor(Color.parseColor("#bf031b"));
         indicator.setInteractiveAnimation(true);
         indicator.setAnimationDuration(500);
 

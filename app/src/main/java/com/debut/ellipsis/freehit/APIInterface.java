@@ -3,13 +3,14 @@ package com.debut.ellipsis.freehit;
 import com.debut.ellipsis.freehit.Matches.LiveMatches.LiveMatchCardItem;
 import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchCardItem;
 import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchCardItem;
+import com.debut.ellipsis.freehit.More.Player.BattingItem;
+import com.debut.ellipsis.freehit.More.Player.BowlingItem;
+import com.debut.ellipsis.freehit.More.Player.CareerItem;
+import com.debut.ellipsis.freehit.More.Player.InfoItem;
+import com.debut.ellipsis.freehit.More.Series.SeriesItem;
 import com.debut.ellipsis.freehit.News.NewsArticleItem;
 import com.debut.ellipsis.freehit.News.NewsItem;
 import com.debut.ellipsis.freehit.Social.Polls.PollCardItem;
-import com.debut.ellipsis.freehit.Stats.Player.Batting_Items;
-import com.debut.ellipsis.freehit.Stats.Player.Bowling_Items;
-import com.debut.ellipsis.freehit.Stats.Player.Career_Item;
-import com.debut.ellipsis.freehit.Stats.Player.InfoItems;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -23,20 +24,26 @@ public interface APIInterface {
     @GET("news?")
     Call<NewsArticleItem> doGetNewsArticle(@Query("id") String id);
 
-    @GET("playerbio?url=1394-yuzvendra-chahal-playerprofile")
-    Call<InfoItems> doGetInfoResources();
-    @GET("playerbio?url=1394-yuzvendra-chahal-playerprofile")
-    Call<Batting_Items> doGetBattinInfo();
-    @GET("playerbio?url=1394-yuzvendra-chahal-playerprofile")
-    Call<Bowling_Items> doGetBowlingInfo();
-    @GET("playerbio?url=1394-yuzvendra-chahal-playerprofile")
-    Call<Career_Item> doGetCareerInfo();
+    @GET("playerbio?")
+    Call<InfoItem> doGetInfoResources(@Query("url") String url);
+
+    @GET("playerbio?")
+    Call<BattingItem> doGetBattingInfo(@Query("url") String url);
+
+    @GET("playerbio?")
+    Call<BowlingItem> doGetBowlingInfo(@Query("url") String url);
+
+    @GET("playerbio?")
+    Call<CareerItem> doGetCareerInfo(@Query("url") String url);
 
     @GET("upcoming?max=6")
     Call<UpcomingMatchCardItem> doGetUpcomingMatchListResources();
 
     @GET("upcoming?max=25")
     Call<UpcomingMatchCardItem> doGetUpcomingCompleteMatchListResources();
+
+    @GET("playerlist?")
+    Call<PlayerCountryItem> doGetPlayerList(@Query("fav") String search);
 
     @GET("live")
     Call<LiveMatchCardItem> doGetLiveMatchResources();
@@ -46,9 +53,6 @@ public interface APIInterface {
 
     @GET("polls?")
     Call<PollCardItem> doVotePollListResources(@Query("id") String id, @Query("cid") String cid);
-
-    @GET("polls?")
-    Call<PollCardItem> doGetSinglePollResources(@Query("id") String id);
 
     @GET("past?max=6")
     Call<PastMatchCardItem> doGetPastCardResources();
@@ -71,7 +75,14 @@ public interface APIInterface {
     @GET("player?")
     Call<PlayerCountryItem> doGetFavTeamPlayers(@Query ("id") String TeamID);
 
+    @GET("series")
+    Call<SeriesItem> doGetSeries();
 
+    @GET("past?")
+    Call<PastMatchCardItem> doGetPastSeriesMatches(@Query("sfav") String team1, @Query("date") String date);
+
+    @GET("upcoming?")
+    Call<UpcomingMatchCardItem> doGetUpComingSeriesMatches(@Query("sfav") String team1,@Query("date") String date);
 
 
 }

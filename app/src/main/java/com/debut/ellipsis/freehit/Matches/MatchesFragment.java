@@ -28,8 +28,6 @@ public class MatchesFragment extends Fragment {
     public ViewPager viewPager;
     private TabLayout tabLayout;
 
-    public static final String LOG_TAG = MatchesFragment.class.getSimpleName();
-
     public MatchesFragment() {
         // Required empty public constructor
     }
@@ -42,11 +40,13 @@ public class MatchesFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_matches, container, false);
 
 
-        viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
+        View viewMatchesViewPager = (View) rootView.findViewById(R.id.matches_viewpagegr);
+
+        viewPager = (ViewPager) viewMatchesViewPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-
-        tabLayout = (TabLayout) rootView.findViewById(R.id.match_card_tabs);
+        View viewMatchCardTabs = (View) rootView.findViewById(R.id.match_card_tabs);
+        tabLayout = (TabLayout) viewMatchCardTabs.findViewById(R.id.tabs);
 
         tabLayout.setupWithViewPager(viewPager);
 

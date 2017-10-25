@@ -9,8 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.load.DecodeFormat;
+import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
@@ -54,7 +57,7 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
         textViewSeriesName.setText(this.dataObjectList.get(position).getTour());
 
         TextView textViewStadiumName = (TextView) view.findViewById(R.id.stadium_upcoming);
-        textViewStadiumName.setText(this.dataObjectList.get(position).getStadium());
+        textViewStadiumName.setText("( "+this.dataObjectList.get(position).getStadium()+" )");
 
         imageViewTeam1Logo = (ImageView) view.findViewById(R.id.team_logo_1_upcoming);
 
@@ -101,21 +104,30 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
                     // Start the new activity
                     context.startActivity(UpcomingIntent);
                 } else {
-                    Intent UpcomingMatchScoreCardIntent = new Intent(context, UpcomingMatchScoreCard.class);
+                    /*Intent UpcomingMatchScoreCardIntent = new Intent(context, UpcomingMatchScoreCard.class);
                     UpcomingMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getNdid());
                     UpcomingMatchScoreCardIntent.putExtra("match_name", dataObjectList.get(position).getMatch() + "(" + dataObjectList.get(position).getTeam1().getSn() + " vs " + dataObjectList.get(position).getTeam2().getSn() + ")");
-                    context.startActivity(UpcomingMatchScoreCardIntent);
+                    context.startActivity(UpcomingMatchScoreCardIntent);*/
+                    Toast.makeText(context,"Coming Soon !",Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-        // Initializing Logo URLS
         logo_string1 = this.dataObjectList.get(position).getTeam1().getImage();
         logo_string2 = this.dataObjectList.get(position).getTeam2().getImage();
 
+
+
         if (position < 5) {
-            Glide.with(context).load(logo_string1).placeholder(R.drawable.matches).into(imageViewTeam1Logo);
-            Glide.with(context).load(logo_string2).placeholder(R.drawable.matches).into(imageViewTeam2Logo);
+
+            RequestBuilder requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+
+            requestBuilder.into(imageViewTeam1Logo);
+
+            RequestBuilder requestBuilder1 = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+
+            requestBuilder1.into(imageViewTeam2Logo);
+
         }
         container.addView(view);
         return view;

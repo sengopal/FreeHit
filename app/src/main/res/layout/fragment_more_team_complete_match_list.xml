@@ -1,0 +1,24 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/match_card_tabs">
+
+        <include
+            android:id="@+id/complete_match_list"
+            layout="@layout/common_recycler_view_list" />
+
+    </RelativeLayout>
+
+    <include
+        android:id="@id/progress"
+        layout="@layout/common_progressbar" />
+
+    <include
+        android:id="@+id/empty"
+        layout="@layout/common_emptyview" />
+</RelativeLayout>

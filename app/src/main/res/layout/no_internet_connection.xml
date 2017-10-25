@@ -18,6 +18,7 @@
         android:layout_centerHorizontal="true"
         android:layout_width="@dimen/_80sdp"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_shape"
         android:text="REFRESH"
         android:padding="@dimen/_8sdp"
         android:textSize="@dimen/_12sdp"

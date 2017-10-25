@@ -1,7 +1,6 @@
 package com.debut.ellipsis.freehit.IntoSlider;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.text.Editable;
@@ -28,7 +27,6 @@ public class CountryPicker extends DialogFragment {
     private List<Country> countriesList = new ArrayList<>();
     private List<Country> selectedCountriesList = new ArrayList<>();
     private CountryPickerListener listener;
-    private Context context;
 
     /**
      * To support show as dialog
@@ -54,8 +52,8 @@ public class CountryPicker extends DialogFragment {
             String dialogTitle = args.getString("dialogTitle");
             getDialog().setTitle(dialogTitle);
 
-            int width = getResources().getDimensionPixelSize(R.dimen.cp_dialog_width);
-            int height = getResources().getDimensionPixelSize(R.dimen.cp_dialog_height);
+            int width = getResources().getDimensionPixelSize(R.dimen._200sdp);
+            int height = getResources().getDimensionPixelSize(R.dimen._250sdp);
             getDialog().getWindow().setLayout(width, height);
         }
         searchEditText = (EditText) view.findViewById(R.id.country_code_picker_search);
@@ -73,8 +71,7 @@ public class CountryPicker extends DialogFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (listener != null) {
                     Country country = selectedCountriesList.get(position);
-                    listener.onSelectCountry(country.getName(), country.getCode(), country.getDialCode(),
-                            country.getFlag());
+                    listener.onSelectCountry(country.getName(), country.getFlag());
                 }
             }
         });

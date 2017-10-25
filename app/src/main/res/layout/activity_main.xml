@@ -1,30 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.debut.ellipsis.freehit.MainActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@color/colorPrimary"
-        android:minHeight="?attr/actionBarSize" />
+    <include
+        android:id="@+id/toolbar_tabs_main"
+        layout="@layout/common_toolbar_tabs" />
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabs"
-        app:tabTextAppearance="@style/MineCustomTabText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tabGravity="fill" />
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <include
+        android:id="@+id/main_viewpager"
+        layout="@layout/common_viewpager" />
 
 </LinearLayout>

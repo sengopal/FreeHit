@@ -3,6 +3,7 @@ package com.debut.ellipsis.freehit.News;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,6 +39,8 @@ public class NewsFragment extends Fragment {
     public Button NoConnectionButton;
     public TextView NoNewsText;
     public Button NoNewsButton;
+    private FloatingActionButton fab;
+    private LinearLayoutManager mLinearLayoutManager;
 
     public NewsFragment() {
         // Required empty public constructor
@@ -51,14 +54,22 @@ public class NewsFragment extends Fragment {
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        final RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.news_list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        View viewRecycler = (View) rootView.findViewById(R.id.news_list);
 
+        View viewFAB = (View) rootView.findViewById(R.id.fab);
+        fab = (FloatingActionButton) viewFAB.findViewById(R.id.common_fab);
+        fab.hide();
+        fab.setImageResource(android.R.drawable.arrow_up_float);
 
+        mLinearLayoutManager = new LinearLayoutManager(getActivity());
 
-        mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
+        final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
+        recyclerView.setLayoutManager(mLinearLayoutManager);
 
-        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.refresh_layout);
+        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
+
+        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
         final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
 
@@ -79,10 +90,8 @@ public class NewsFragment extends Fragment {
             @Override
             public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
 
-                mProgressBar.setVisibility(View.INVISIBLE);
-                no_internet_connection.setVisibility(View.INVISIBLE);
-                List<NewsItem> news = response.body().getResults();
-                if (getActivity() != null) {
+
+                    List<NewsItem> news = response.body().getResults();
                     if (news.size() == 0) {
                         No_news.setVisibility(View.VISIBLE);
                         NoNewsText.setText(R.string.EmptyNews);
@@ -90,16 +99,19 @@ public class NewsFragment extends Fragment {
 
                             public void onClick(View v) {
                                 Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
-                                i.putExtra("Main_tab",1);
+                                i.putExtra("Main_tab", 1);
                                 i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                                 i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                                 startActivity(i);
                             }
                         });
                     }
-                        recyclerView.setAdapter(new NewsItemAdapter(news, R.layout.fragment_news_list_item, getContext()));
-                    }
+                if (getActivity() != null) {
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    no_internet_connection.setVisibility(View.INVISIBLE);
+                    recyclerView.setAdapter(new NewsItemAdapter(news, R.layout.fragment_news_list_item, getContext()));
                 }
+            }
 
             @Override
             public void onFailure(Call<NewsItem> call, Throwable t) {
@@ -109,7 +121,7 @@ public class NewsFragment extends Fragment {
 
                     public void onClick(View v) {
                         Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
-                        i.putExtra("Main_tab",1);
+                        i.putExtra("Main_tab", 1);
                         i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                         i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(i);
@@ -121,57 +133,85 @@ public class NewsFragment extends Fragment {
             }
         });
 
-        refLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
+        refLayout.setColorSchemeResources(R.color.orange);
         refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                // Checking if connected or not on refresh
-                refLayout.setRefreshing(true);
+                                           @Override
+                                           public void onRefresh() {
+                                               // Checking if connected or not on refresh
+                                               refLayout.setRefreshing(true);
 
-                Call<NewsItem> call = apiInterface.doGetNewsListResources();
-                call.enqueue(new Callback<NewsItem>() {
-                    @Override
-                    public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
-                        mProgressBar.setVisibility(View.INVISIBLE);
-                        no_internet_connection.setVisibility(View.INVISIBLE);
-                        if (getActivity() != null) {
-                            List<NewsItem> NewsListItem = response.body().getResults();
-                            if (NewsListItem.size() == 0) {
-                                No_news.setVisibility(View.VISIBLE);
-                                NoNewsText.setText(R.string.EmptyNews);
-                                NoNewsButton.setOnClickListener(new View.OnClickListener() {
+                                               Call<NewsItem> call = apiInterface.doGetNewsListResources();
+                                               call.enqueue(new Callback<NewsItem>() {
+                                                   @Override
+                                                   public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
+                                                       mProgressBar.setVisibility(View.INVISIBLE);
+                                                       no_internet_connection.setVisibility(View.INVISIBLE);
+                                                       No_news.setVisibility(View.INVISIBLE);
+                                                       if (getActivity() != null) {
+                                                           List<NewsItem> NewsListItem = response.body().getResults();
+                                                           if (NewsListItem.size() == 0) {
+                                                               No_news.setVisibility(View.VISIBLE);
 
-                                    public void onClick(View v) {
-                                        Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
-                                        i.putExtra("Main_tab",4);
-                                        i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-                                        i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                        startActivity(i);
-                                    }
-                                });
-                            }
-                            recyclerView.setVisibility(View.VISIBLE);
-                            recyclerView.setAdapter(new NewsItemAdapter(NewsListItem, R.layout.fragment_news_list_item, getContext()));
-                        }
-                    }
+                                                               NoNewsText.setText(R.string.EmptyNews);
+                                                               NoNewsButton.setOnClickListener(new View.OnClickListener() {
 
-                    @Override
-                    public void onFailure(Call<NewsItem> call, Throwable t) {
-                        mProgressBar.setVisibility(View.INVISIBLE);
-                        Toast toast=Toast.makeText(getContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
-                        toast.show();
-                        call.cancel();
+                                                                   public void onClick(View v) {
+                                                                       Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                                                                       i.putExtra("Main_tab", 1);
+                                                                       i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+                                                                       i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                                                       startActivity(i);
+                                                                   }
+                                                               });
+                                                           }
+                                                           recyclerView.setVisibility(View.VISIBLE);
+                                                           recyclerView.setAdapter(new NewsItemAdapter(NewsListItem, R.layout.fragment_news_list_item, getContext()));
+                                                       }
+                                                   }
 
-                    }
-                });
+                                                   @Override
+                                                   public void onFailure(Call<NewsItem> call, Throwable t) {
+                                                       mProgressBar.setVisibility(View.INVISIBLE);
+                                                       Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                                                       toast.show();
+                                                       call.cancel();
+
+                                                   }
+                                               });
 
 
-
-
-                refLayout.setRefreshing(false);
-            }
-        }
+                                               refLayout.setRefreshing(false);
+                                           }
+                                       }
         );
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+
+                if(mLinearLayoutManager.findFirstCompletelyVisibleItemPosition()==0){
+                    fab.hide();
+
+                } else {
+                    fab.show();
+                }
+            }
+        });
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int firstVisibleItemIndex = mLinearLayoutManager.findFirstVisibleItemPosition();
+                if (firstVisibleItemIndex > 0) {
+                    mLinearLayoutManager.smoothScrollToPosition(recyclerView,null,0);
+                }
+            }
+        });
 
 
         return rootView;

@@ -53,11 +53,15 @@ public class LiveMatchCard extends Fragment {
 
 
         apiInterface = ApiClient.getClient().create(APIInterface.class);
-        mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
+
+        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
         final View common_match_cards = rootView.findViewById(R.id.common_match_cards);
 
-        vp = (ViewPager) common_match_cards.findViewById(R.id.viewpager);
+        View viewViewPager = (View) common_match_cards.findViewById(R.id.match_card_viewpagegr);
+
+        vp = (ViewPager) viewViewPager.findViewById(R.id.viewpager);
         indicator = (PageIndicatorView) common_match_cards.findViewById(R.id.indicator);
         final PullRefreshLayout refreshLayout = (PullRefreshLayout) common_match_cards.findViewById(R.id.swipeRefreshLayout);
 
@@ -74,9 +78,7 @@ public class LiveMatchCard extends Fragment {
         NoLiveMatchesButton = (Button) No_live_matches.findViewById(R.id.No_Live_Matches_button);
 
 
-        /**
-         GET List Resources
-         **/
+        /* GET Live matches */
         Call<LiveMatchCardItem> call = apiInterface.doGetLiveMatchResources();
         call.enqueue(new Callback<LiveMatchCardItem>() {
             @Override
@@ -94,6 +96,7 @@ public class LiveMatchCard extends Fragment {
                 List<LiveMatchCardItem> LiveMatches = response.body().getResults();
 
                 if (getActivity() != null) {
+
                     if (LiveMatches.size() == 0) {
                         No_live_matches.setVisibility(View.VISIBLE);
                         NoLiveMatchesButton.setOnClickListener(new View.OnClickListener() {
@@ -200,9 +203,9 @@ public class LiveMatchCard extends Fragment {
 
     private void IndicatorConfig() {
         indicator.setVisibility(View.VISIBLE);
-        indicator.setAnimationType(AnimationType.DROP);
-        indicator.setUnselectedColor(Color.parseColor("#F06292"));
-        indicator.setSelectedColor(Color.parseColor("#E91E63"));
+        indicator.setAnimationType(AnimationType.WORM);
+        indicator.setUnselectedColor(Color.parseColor("#f94d44"));
+        indicator.setSelectedColor(Color.parseColor("#bf031b"));
         indicator.setInteractiveAnimation(true);
         indicator.setAnimationDuration(500);
 

@@ -18,13 +18,6 @@ public class CountryItem {
     @SerializedName("result")
     public List<CountryItem> result = new ArrayList<>();
 
-    public CountryItem(int id, String title, String link, String image) {
-        this.id = id;
-        this.title = title;
-        this.link = link;
-        this.image = image;
-    }
-
     public int getId() {
         return id;
     }

@@ -1,9 +1,9 @@
 package com.debut.ellipsis.freehit.Social.Polls;
 
 
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,15 +11,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -33,7 +34,11 @@ public class SocialPolls extends Fragment {
 
     APIInterface apiInterface;
     private ProgressBar mProgressBar;
-    RelativeLayout rlcontainer;
+    public TextView NoPollsText;
+    public Button NoPollsButton;
+    public Button NoConnectionButton;
+    private FloatingActionButton fab;
+    private LinearLayoutManager mLinearLayoutManager;
 
     public SocialPolls() {
         // Required empty public constructor
@@ -44,19 +49,34 @@ public class SocialPolls extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_news_list, container, false);
-        View fragView = inflater.inflate(R.layout.fragment_social_polls_list_item, container, false);
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        rlcontainer = (RelativeLayout) fragView.findViewById(R.id.parent_layout);
+        View viewRecycler = (View) rootView.findViewById(R.id.news_list);
 
-        final RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.news_list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        View viewFAB = (View) rootView.findViewById(R.id.fab);
+        fab = (FloatingActionButton) viewFAB.findViewById(R.id.common_fab);
 
-        mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
+        fab.setImageResource(android.R.drawable.arrow_down_float);
 
-        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.refresh_layout);
+        mLinearLayoutManager = new LinearLayoutManager(getActivity());
 
-        final TextView emptyView = (TextView) rootView.findViewById(R.id.empty_view);
+        final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
+        recyclerView.setLayoutManager(mLinearLayoutManager);
+
+        View viewProgress = (View) rootView.findViewById(R.id.progress);
+        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
+
+        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
+
+        final View No_polls = rootView.findViewById(R.id.No_news);
+
+        NoPollsText = (TextView) No_polls.findViewById(R.id.empty_view);
+        NoPollsButton = (Button) No_polls.findViewById(R.id.No_Live_Matches_button);
+
+        final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
+        
+        NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
+
 
         /**
          GET Polls List Resources
@@ -65,88 +85,133 @@ public class SocialPolls extends Fragment {
         call.enqueue(new Callback<PollCardItem>() {
             @Override
             public void onResponse(Call<PollCardItem> call, Response<PollCardItem> response) {
-                ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(getContext().CONNECTIVITY_SERVICE);
-                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-                if (networkInfo != null && networkInfo.isConnected()) {
-                    mProgressBar.setVisibility(View.INVISIBLE);
-                    emptyView.setVisibility(View.INVISIBLE);
-                    if (getActivity() != null) {
-                        List<PollCardItem> polls = response.body().getResults();
-                        emptyView.setVisibility(View.INVISIBLE);
-                        if (polls.size() == 0) {
-                            emptyView.setText(R.string.EmptyPolls);
-                            emptyView.setVisibility(View.VISIBLE);
-                        }
-                        recyclerView.setVisibility(View.VISIBLE);
-                        recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item, getContext()));
+                mProgressBar.setVisibility(View.INVISIBLE);
+                if (getActivity() != null) {
+
+                    List<PollCardItem> polls = response.body().getResults();
+                    if (polls.size() == 0) {
+
+                        No_polls.setVisibility(View.VISIBLE);
+                        NoPollsText.setText(R.string.EmptyPolls);
+                        NoPollsButton.setOnClickListener(new View.OnClickListener() {
+
+                            public void onClick(View v) {
+                                Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                                i.putExtra("Main_tab",2);
+                                i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+                                i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                startActivity(i);
+                            }
+                        });
+
                     }
-                } else {
-                    List<PollCardItem> polls = new ArrayList<PollCardItem>(1);
-                    mProgressBar.setVisibility(View.INVISIBLE);
+                    recyclerView.setVisibility(View.VISIBLE);
                     recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item, getContext()));
-                    emptyView.setText("CONNECT AND REOPEN THE APP");
                 }
+
             }
 
             @Override
-            public void onFailure(Call<PollCardItem> call, Throwable t) {;
-                List<PollCardItem> polls = new ArrayList<PollCardItem>(1);
-                recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item, getContext()));
-                emptyView.setText("CHECK YOUR INTERNET CONNECTION");
-                mProgressBar.setVisibility(View.INVISIBLE);
+            public void onFailure(Call<PollCardItem> call, Throwable t) {
+
+                mProgressBar.setVisibility(View.GONE);
+                no_internet_connection.setVisibility(View.VISIBLE);
+                NoConnectionButton.setOnClickListener(new View.OnClickListener() {
+
+                    public void onClick(View v) {
+                        Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                        i.putExtra("Main_tab",2);
+                        i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+                        i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(i);
+
+                    }
+                });
                 call.cancel();
             }
         });
-        refLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
+        refLayout.setColorSchemeResources(R.color.orange);
         refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                                            @Override
                                            public void onRefresh() {
                                                // Checking if connected or not on refresh
                                                refLayout.setRefreshing(true);
-                                               ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(getContext().CONNECTIVITY_SERVICE);
-                                               NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-                                               if (networkInfo != null && networkInfo.isConnected()) {
 
-                                                   Call<PollCardItem> call = apiInterface.doGetPollsListResources();
-                                                   call.enqueue(new Callback<PollCardItem>() {
-                                                       @Override
-                                                       public void onResponse(Call<PollCardItem> call, Response<PollCardItem> response) {
-                                                           mProgressBar.setVisibility(View.INVISIBLE);
-                                                           emptyView.setVisibility(View.INVISIBLE);
-                                                           if (getActivity() != null) {
-                                                               List<PollCardItem> polls = response.body().getResults();
-                                                               if (polls.size() == 0) {
-                                                                   emptyView.setText(R.string.EmptyPolls);
-                                                                   emptyView.setVisibility(View.VISIBLE);
-                                                               }
-                                                               recyclerView.setVisibility(View.VISIBLE);
-                                                               recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item, getContext()));
+                                               Call<PollCardItem> call = apiInterface.doGetPollsListResources();
+                                               call.enqueue(new Callback<PollCardItem>() {
+                                                   @Override
+                                                   public void onResponse(Call<PollCardItem> call, Response<PollCardItem> response) {
+                                                       mProgressBar.setVisibility(View.INVISIBLE);
+                                                       no_internet_connection.setVisibility(View.INVISIBLE);
+                                                       No_polls.setVisibility(View.INVISIBLE);
+                                                       if (getActivity() != null) {
+
+                                                           List<PollCardItem> polls = response.body().getResults();
+                                                           if (polls.size() == 0) {
+                                                               No_polls.setVisibility(View.VISIBLE);
+
+                                                               NoPollsText.setText(R.string.EmptyPolls);
+                                                               NoPollsButton.setOnClickListener(new View.OnClickListener() {
+
+                                                                   public void onClick(View v) {
+                                                                       Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                                                                       i.putExtra("Main_tab",2);
+                                                                       i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+                                                                       i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                                                       startActivity(i);
+                                                                   }
+                                                               });
                                                            }
+                                                           recyclerView.setVisibility(View.VISIBLE);
+                                                           recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item, getContext()));
                                                        }
+                                                   }
 
-
-                                                       @Override
-                                                       public void onFailure(Call<PollCardItem> call, Throwable t) {
-                                                           mProgressBar.setVisibility(View.INVISIBLE);
-                                                           recyclerView.setVisibility(View.INVISIBLE);
-                                                           emptyView.setText("CHECK YOUR INTERNET CONNECTION");
-                                                           call.cancel();
-
-                                                       }
-                                                   });
-                                               }
-                                               else
-                                               {
-                                                   recyclerView.setVisibility(View.INVISIBLE);
-                                                   mProgressBar.setVisibility(View.INVISIBLE);
-                                                   emptyView.setText("CHECK YOUR INTERNET CONNECTION");
-                                                   emptyView.setVisibility(View.VISIBLE);
-                                               }
-
+                                                   @Override
+                                                   public void onFailure(Call<PollCardItem> call, Throwable t) {
+                                                       mProgressBar.setVisibility(View.INVISIBLE);
+                                                       mProgressBar.setVisibility(View.INVISIBLE);
+                                                       Toast toast=Toast.makeText(getContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
+                                                       toast.show();
+                                                       call.cancel();
+                                                   }
+                                               });
                                                refLayout.setRefreshing(false);
                                            }
+
+
                                        }
         );
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+
+                if (dy < 0) {
+                    fab.show();
+
+                } else if (dy > 0) {
+                    fab.hide();
+                }
+            }
+        });
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int totalItemCount = recyclerView.getAdapter().getItemCount();
+                if (totalItemCount <= 0) return;
+                int lastVisibleItemIndex = mLinearLayoutManager.findLastVisibleItemPosition();
+
+                if (lastVisibleItemIndex >= totalItemCount) return;
+                mLinearLayoutManager.smoothScrollToPosition(recyclerView,null,lastVisibleItemIndex+1);
+            }
+        });
 
         return rootView;
     }

@@ -10,7 +10,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.load.DecodeFormat;
+import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
@@ -24,7 +26,6 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
 
 
     public static class NewsViewHolder extends RecyclerView.ViewHolder {
-        RelativeLayout newsLayout;
         ImageView image;
         TextView title;
         TextView desc;
@@ -35,7 +36,6 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
 
         public NewsViewHolder(View v) {
             super(v);
-            newsLayout = (RelativeLayout) v.findViewById(R.id.news_layout);
             image = (ImageView) v.findViewById(R.id.image_view);
             title = (TextView) v.findViewById(R.id.header_text_view);
             desc = (TextView) v.findViewById(R.id.summary_text_view);
@@ -52,8 +52,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
     }
 
     @Override
-    public NewsItemAdapter.NewsViewHolder onCreateViewHolder(ViewGroup parent,
-                                                                                             int viewType) {
+    public NewsItemAdapter.NewsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = null;
         if (viewType == 0) {
             view = LayoutInflater.from(parent.getContext()).inflate(rowLayout, parent, false);
@@ -69,7 +68,12 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
         holder.desc.setText(newsItems.get(position).getDesc());
         holder.date.setText(newsItems.get(position).getDate());
         holder.tag.setText(newsItems.get(position).getTag());
-        Glide.with(context).load(newsItems.get(position).getImage()).centerCrop().placeholder(R.drawable.matches).into(holder.image);
+
+        String URLNewsImage = newsItems.get(position).getImage();
+
+        RequestBuilder requestBuilder = GlideApp.with(context).load(URLNewsImage).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+
+        requestBuilder.into(holder.image);
 
         RelativeLayout RLcontainer = holder.rlcontainer;
 
@@ -82,9 +86,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
 
                 Intent NewsArticleIntent = new Intent(context, NewsArticle.class);
 
-                String pos = String.valueOf(position);
-                NewsArticleIntent.putExtra("match_id", newsItems.get(position).getId().toString());
-                    /*ActivityOptions.makeCustomAnimation(context,R.anim.animation_entry,R.anim.animation_exit);*/
+                NewsArticleIntent.putExtra("news_id", newsItems.get(position).getId().toString());
                 NewsArticleIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(NewsArticleIntent);
 

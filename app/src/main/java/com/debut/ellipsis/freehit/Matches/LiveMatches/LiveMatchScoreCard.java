@@ -10,14 +10,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.debut.ellipsis.freehit.Matches.ScoreCard.ChanceToWinFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.CommentaryFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHeadFragment;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.HeatMapFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.InfoFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements.ScoreCardFragment;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.SpiderFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.SummaryFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.TwitterFragment;
 import com.debut.ellipsis.freehit.R;
@@ -27,29 +26,26 @@ import java.util.List;
 
 public class LiveMatchScoreCard extends AppCompatActivity {
 
-    private String match_id;
-    private String match_name;
-    private Toolbar toolbar;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
-        setContentView(R.layout.fragment_matches_live_match_scorecard);
-        match_id = getIntent().getStringExtra("match_id");
-        match_name = getIntent().getStringExtra("match_name");
+        setContentView(R.layout.fragment_matches_match_scorecard);
+
+        String match_name = getIntent().getStringExtra("match_name");
         setTitle(match_name);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar_live);
+        View viewToolbarTabs = (View) findViewById(R.id.toolbar_tabs_matches_scorecard);
+        Toolbar toolbar = (Toolbar) viewToolbarTabs.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager_live);
+        View viewLiveScoreCardPager = (View) findViewById(R.id.scorecard_viewpager);
+
+        ViewPager viewPager = (ViewPager) viewLiveScoreCardPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs_live);
+        TabLayout tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
 
@@ -83,9 +79,7 @@ public class LiveMatchScoreCard extends AppCompatActivity {
         adapter.addFrag(new CommentaryFragment(), "COMMENTARY");
         adapter.addFrag(new TwitterFragment(), "TWEETS");
         adapter.addFrag(new HeadToHeadFragment(), "HEAD-TO-HEAD");
-        adapter.addFrag(new SpiderFragment(), "SPIDER");
         adapter.addFrag(new ChanceToWinFragment(), "WIN %");
-        adapter.addFrag(new HeatMapFragment(), "HEAT MAP");
         viewPager.setAdapter(adapter);
     }
 

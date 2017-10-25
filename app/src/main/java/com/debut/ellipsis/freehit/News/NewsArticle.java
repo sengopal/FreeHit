@@ -14,9 +14,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
+import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.R;
 
 import retrofit2.Call;
@@ -31,7 +33,6 @@ public class NewsArticle extends AppCompatActivity {
 
     private Toolbar toolbar;
     APIInterface apiInterface;
-    private NewsItemAdapter mAdapter;
     private ProgressBar mProgressBar;
     private String match_id;
 
@@ -44,10 +45,11 @@ public class NewsArticle extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_news_article_individual_item);
-        match_id = getIntent().getStringExtra("match_id");
+        match_id = getIntent().getStringExtra("news_id");
         apiInterface = ApiClient.getClient().create(APIInterface.class);
-        mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
-        System.out.println(match_id);
+
+        View viewProgress = (View) findViewById(R.id.progress);
+        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -67,16 +69,12 @@ public class NewsArticle extends AppCompatActivity {
         } else {
             // Otherwise, display error
             // First, hide loading indicator so error message will be visible
-            View progressBar = findViewById(R.id.progress_bar);
-            progressBar.setVisibility(View.GONE);
-
+            mProgressBar.setVisibility(View.GONE);
             Toast.makeText(getApplicationContext(),R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
         }
 
 
-        /**
-         GET News Article
-         **/
+        /* GET News Article */
         Call<NewsArticleItem> call = apiInterface.doGetNewsArticle(match_id);
         call.enqueue(new Callback<NewsArticleItem>() {
             @Override
@@ -117,8 +115,9 @@ public class NewsArticle extends AppCompatActivity {
 
                 final String ImageURL = newsArticle.getImage();
 
-                Glide.with(getApplicationContext()).load(ImageURL).centerCrop().placeholder(R.drawable.matches).into(articleImage);
+                RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(ImageURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
+                requestBuilder.into(articleImage);
 
             }
 
@@ -132,15 +131,12 @@ public class NewsArticle extends AppCompatActivity {
     }
 
     @Override
-
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 overridePendingTransition(0, R.anim.exit_to_right);
                 return true;
-
-
         }
         return super.onOptionsItemSelected(item);
     }

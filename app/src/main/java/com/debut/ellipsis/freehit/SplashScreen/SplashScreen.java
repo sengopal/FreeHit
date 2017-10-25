@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 
 import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
+import com.debut.ellipsis.freehit.OnClearFromRecentService;
 import com.debut.ellipsis.freehit.R;
 
 
@@ -23,6 +24,7 @@ public class SplashScreen extends Activity {
             public void run() {
                 Intent i = new Intent(SplashScreen.this, WelcomeActivity.class);
                 startActivity(i);
+                startService(new Intent(getBaseContext(), OnClearFromRecentService.class));
                 finish();
             }
         }, SPLASH_TIMER);

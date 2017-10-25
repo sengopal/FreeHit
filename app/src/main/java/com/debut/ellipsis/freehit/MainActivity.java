@@ -15,13 +15,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.debut.ellipsis.freehit.Matches.MatchesFragment;
+import com.debut.ellipsis.freehit.More.MoreMain.MoreFragment;
 import com.debut.ellipsis.freehit.News.NewsFragment;
 import com.debut.ellipsis.freehit.Settings.CustomSettings;
 import com.debut.ellipsis.freehit.Social.SocialMainFragment;
-import com.debut.ellipsis.freehit.Stats.StatsMain.StatsFragment;
-import com.debut.ellipsis.freehit.favorites.FavoritesFragment;
 import com.twitter.sdk.android.core.Twitter;
 
 import java.util.ArrayList;
@@ -36,8 +36,7 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.matches,
             R.drawable.news,
             R.drawable.social,
-            R.drawable.stats,
-            R.drawable.fav
+            R.drawable.more,
     };
 
     @Override
@@ -53,22 +52,21 @@ public class MainActivity extends AppCompatActivity {
         Twitter.initialize(this);
 
         int main_tab = getIntent().getIntExtra("Main_tab", 0);
-        String sub_tab = getIntent().getStringExtra("Sub_tab");
 
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        View viewToolbarTabs = (View) findViewById(R.id.toolbar_tabs_main);
+        toolbar = (Toolbar) viewToolbarTabs.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        /*getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        View viewMainPager = (View) findViewById(R.id.main_viewpager);
+
+        viewPager = (ViewPager) viewMainPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
 
-
-        System.out.println(main_tab);
 
         viewPager.setCurrentItem(main_tab);
 
@@ -77,14 +75,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-                tab.getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+                tab.getIcon().setColorFilter(Color.parseColor("#f5f5f5"), PorterDuff.Mode.SRC_IN);
 
 
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                tab.getIcon().setColorFilter(Color.parseColor("#a8a8a8"), PorterDuff.Mode.SRC_IN);
+                tab.getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
 
             }
 
@@ -94,31 +92,45 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        setupTabIcons();
+        setupTabIcons(main_tab);
     }
 
 
-    private void setupTabIcons() {
+    private void setupTabIcons(int position) {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
         tabLayout.getTabAt(2).setIcon(tabIcons[2]);
         tabLayout.getTabAt(3).setIcon(tabIcons[3]);
-        tabLayout.getTabAt(4).setIcon(tabIcons[4]);
 
         tabLayout.getTabAt(0).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-        tabLayout.getTabAt(1).getIcon().setColorFilter(Color.parseColor("#a8a8a8"), PorterDuff.Mode.SRC_IN);
-        tabLayout.getTabAt(2).getIcon().setColorFilter(Color.parseColor("#a8a8a8"), PorterDuff.Mode.SRC_IN);
-        tabLayout.getTabAt(3).getIcon().setColorFilter(Color.parseColor("#a8a8a8"), PorterDuff.Mode.SRC_IN);
-        tabLayout.getTabAt(4).getIcon().setColorFilter(Color.parseColor("#a8a8a8"), PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(1).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(2).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(3).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+
+        switch (position)
+        {
+            case 0:
+                tabLayout.getTabAt(0).getIcon().setColorFilter(Color.parseColor("#f5f5f5"), PorterDuff.Mode.SRC_IN);
+                break;
+            case 1:
+                tabLayout.getTabAt(1).getIcon().setColorFilter(Color.parseColor("#f5f5f5"), PorterDuff.Mode.SRC_IN);
+                break;
+            case 2:
+                tabLayout.getTabAt(2).getIcon().setColorFilter(Color.parseColor("#f5f5f5"), PorterDuff.Mode.SRC_IN);
+                break;
+            case 3:
+                tabLayout.getTabAt(3).getIcon().setColorFilter(Color.parseColor("#f5f5f5"), PorterDuff.Mode.SRC_IN);
+                break;
+        }
+
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new MatchesFragment(), "MATCH");
+        adapter.addFrag(new MatchesFragment(), "MATCHES");
         adapter.addFrag(new NewsFragment(), "NEWS");
         adapter.addFrag(new SocialMainFragment(), "SOCIAL");
-        adapter.addFrag(new StatsFragment(), "STATS");
-        adapter.addFrag(new FavoritesFragment(),"FAV");
+        adapter.addFrag(new MoreFragment(), "MORE");
         viewPager.setAdapter(adapter);
     }
 

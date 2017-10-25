@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.debut.ellipsis.freehit.Stats.Rankings.TeamRankingFragment">
+    tools:context="com.debut.ellipsis.freehit.More.Rankings.TeamRankingFragment">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/parent_layout"
@@ -87,9 +87,6 @@
         android:layout_below="@+id/parent_layout"
         android:layout_marginTop="@dimen/_10sdp">
 
-        <include
-            android:id="@+id/ListViewForTeamRankings"
-            layout="@layout/list_common" />
     </RelativeLayout>
 
 </RelativeLayout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:color="#870000"
+    tools:targetApi="lollipop">
+    <item>
+        <shape
+            android:padding="10dp"
+            android:shape="rectangle">
+            <!-- you can use any color you want I used here gray color-->
+            <solid android:color="#bf031b" />
+            <corners android:radius="@dimen/_15sdp" />
+        </shape>
+    </item>
+</ripple>
