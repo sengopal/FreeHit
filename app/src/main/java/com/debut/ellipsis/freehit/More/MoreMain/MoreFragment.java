@@ -13,7 +13,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.More.Player.PlayerSearchActivity;
-import com.debut.ellipsis.freehit.More.Rankings.RankingActivity;
 import com.debut.ellipsis.freehit.More.Series.SeriesMainActivity;
 import com.debut.ellipsis.freehit.More.Team.TeamActivity;
 import com.debut.ellipsis.freehit.More.Team.TeamListView;
@@ -80,8 +79,9 @@ public class MoreFragment extends Fragment {
 
                 }
                 else if (position==4){
-                    Intent RankingIntent = new Intent(getActivity(), RankingActivity.class);
-                    startActivity(RankingIntent);
+                    /*Intent RankingIntent = new Intent(getActivity(), RankingActivity.class);
+                    startActivity(RankingIntent);*/
+                    Toast.makeText(getContext(),"Coming Soon !",Toast.LENGTH_SHORT).show();
 
                 }
 

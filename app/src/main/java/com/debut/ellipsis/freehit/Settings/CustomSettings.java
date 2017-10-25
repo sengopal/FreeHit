@@ -43,7 +43,7 @@ public class CustomSettings extends AppCompatActivity {
 
         final View no_internet_connection = findViewById(R.id.Unavailable_connection);
 
-        NoConnectionImage = (ImageView) no_internet_connection.findViewById(R.id.no_internet_connection);
+        /*NoConnectionImage = (ImageView) no_internet_connection.findViewById(R.id.no_internet_connection);*/
         NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
         RelativeLayout country_select = (RelativeLayout) findViewById(R.id.country_select_layout);
