@@ -22,9 +22,9 @@
 
             <ImageView
                 android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_35sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_gravity="start"
-                android:src="@mipmap/logo" />
+                android:src="@mipmap/logo_app_bar" />
 
             <TextView
                 android:id="@+id/title"
@@ -34,7 +34,7 @@
                 android:paddingStart="@dimen/_5sdp"
                 android:text="@string/app_label"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_18sdp" />
+                android:textSize="@dimen/_21sdp" />
 
         </android.support.v7.widget.Toolbar>
 

@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,7 +31,6 @@ import retrofit2.Response;
 public class NewsFragment extends Fragment {
 
     private ProgressBar mProgressBar;
-    public ImageView NoConnectionImage;
     public Button NoConnectionButton;
     public TextView NoNewsText;
     public Button NoNewsButton;
