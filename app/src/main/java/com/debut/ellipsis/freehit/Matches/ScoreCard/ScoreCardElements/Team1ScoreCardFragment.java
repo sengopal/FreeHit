@@ -15,10 +15,7 @@ import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class ScoreCardFragment extends Fragment {
+public class Team1ScoreCardFragment extends Fragment {
     private int lastExpandedPosition = -1;
 
     private ScoreCardExpandableListAdapterBatting ExpAdapterBatting;
@@ -29,7 +26,7 @@ public class ScoreCardFragment extends Fragment {
     private ArrayList<ScoreCardItemListBowling> ExpListItemsBowling;
     private ExpandableListView ExpandListBowling;
 
-    public ScoreCardFragment() {
+    public Team1ScoreCardFragment() {
         // Required empty public constructor
     }
 
@@ -46,7 +43,7 @@ public class ScoreCardFragment extends Fragment {
         // BATTING
         View expandableListBatting = rootView.findViewById(R.id.expandable_match_scoreCard_batting);
         ExpandListBatting = (ExpandableListView) expandableListBatting.findViewById(R.id.expandable_match_scoreCard);
-        ExpListItemsBatting = ScoreCardExpandableListDataPump.getDataBatting();
+        ExpListItemsBatting = ScoreCardExpandableListDataPump.getDataBattingTeam1();
         ExpAdapterBatting = new ScoreCardExpandableListAdapterBatting(getActivity(), ExpListItemsBatting);
         ExpandListBatting.setAdapter(ExpAdapterBatting);
         setExpandableListViewHeight(ExpandListBatting, -1);
@@ -107,7 +104,7 @@ public class ScoreCardFragment extends Fragment {
         //BOWLING
         View expandableListBowling = rootView.findViewById(R.id.expandable_match_scoreCard_bowling);
         ExpandListBowling = (ExpandableListView) expandableListBowling.findViewById(R.id.expandable_match_scoreCard);
-        ExpListItemsBowling = ScoreCardExpandableListDataPump.getDataBowling();
+        ExpListItemsBowling = ScoreCardExpandableListDataPump.getDataBowlingTeam1();
         ExpAdapterBowling = new ScoreCardExpandableListAdapterBowling(getActivity(), ExpListItemsBowling);
         ExpandListBowling.setAdapter(ExpAdapterBowling);
 

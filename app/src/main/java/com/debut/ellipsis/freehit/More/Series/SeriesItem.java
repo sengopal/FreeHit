@@ -12,9 +12,9 @@ public class SeriesItem {
     private String title;
     @SerializedName("date")
     private String date;
-    @SerializedName("team1")
+    @SerializedName("Team1ScoreCardFragment")
     private String team1;
-    @SerializedName("team2")
+    @SerializedName("Team2ScoreCardFragment")
     private String team2;
     @SerializedName("matches")
     private String matches;

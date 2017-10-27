@@ -148,6 +148,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_20sdp"
                                 android:text="@string/match"
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
                                 android:textSize="@dimen/_13sdp" />
 
                             <TextView
@@ -178,6 +180,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_20sdp"
                                 android:text="@string/series"
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
                                 android:textSize="@dimen/_13sdp" />
 
                             <TextView
@@ -208,6 +212,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_20sdp"
                                 android:text="@string/toss"
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
                                 android:textSize="@dimen/_13sdp" />
 
                             <TextView
@@ -238,6 +244,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_20sdp"
                                 android:text="@string/date"
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
                                 android:textSize="@dimen/_13sdp" />
 
                             <TextView
@@ -268,6 +276,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_20sdp"
                                 android:text="@string/lastTime"
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
                                 android:textSize="@dimen/_13sdp" />
 
                             <TextView
@@ -298,6 +308,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_20sdp"
                                 android:text="@string/venue"
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
                                 android:textSize="@dimen/_13sdp" />
 
                             <TextView
@@ -328,6 +340,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_20sdp"
                                 android:text="@string/umpires"
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
                                 android:textSize="@dimen/_13sdp" />
 
                             <TextView
@@ -359,6 +373,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_20sdp"
                                 android:text="@string/referee"
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
                                 android:textSize="@dimen/_13sdp" />
 
                             <TextView
@@ -390,6 +406,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_20sdp"
                                 android:text="@string/weather"
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
                                 android:textSize="@dimen/_13sdp" />
 
 

@@ -20,6 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
             android:paddingTop="@dimen/_6sdp"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_11sdp"
@@ -32,6 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/match_name_past"
             android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
             android:paddingEnd="@dimen/_8sdp"
             android:paddingStart="@dimen/_8sdp"
             android:textSize="@dimen/_10sdp"
@@ -44,6 +46,7 @@
             android:layout_below="@+id/series_name_past"
             android:padding="@dimen/_3sdp"
             android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
             android:textSize="@dimen/_8sdp"
             tools:text="M Chinnaswamy ,Bangalore , India" />
 
