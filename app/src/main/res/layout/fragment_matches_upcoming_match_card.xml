@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        card_view:cardBackgroundColor="@color/grey_100"
+        card_view:cardBackgroundColor="@color/match_cards"
         card_view:cardCornerRadius="@dimen/_10sdp"
         card_view:cardElevation="@dimen/_5sdp"
         card_view:cardUseCompatPadding="true">
@@ -148,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:paddingTop="15dp"
-                android:textColor="@color/black"
+                android:textColor="@android:color/black"
                 android:textSize="@dimen/_12sdp"
                 tools:text="Sep 03 2017, Sun" />
 

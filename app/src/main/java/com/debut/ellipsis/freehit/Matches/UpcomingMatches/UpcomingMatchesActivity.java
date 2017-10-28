@@ -54,7 +54,6 @@ public class UpcomingMatchesActivity extends AppCompatActivity {
         fab.setImageResource(R.drawable.arrow_up);
 
         View viewRecycler = findViewById(R.id.match_list_team);
-        viewRecycler.setBackgroundColor(getResources().getColor(R.color.grey_200));
         rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
 
         mLinearLayoutManager = new LinearLayoutManager(this);

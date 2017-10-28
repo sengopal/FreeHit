@@ -1,5 +1,6 @@
 package com.debut.ellipsis.freehit.More.Series;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
@@ -7,8 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.debut.ellipsis.freehit.R;
 
 public class SeriesPerformance extends Fragment {
 
@@ -25,7 +24,7 @@ public class SeriesPerformance extends Fragment {
         textView.setText("COMING SOON");
         textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         textView.setTextSize(35);
-        textView.setTextColor(getResources().getColor(R.color.black));
+        textView.setTextColor(Color.BLACK);
         return textView;
 
     }

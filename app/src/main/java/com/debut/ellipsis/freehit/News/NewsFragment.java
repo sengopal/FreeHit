@@ -59,7 +59,6 @@ public class NewsFragment extends Fragment {
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
 
         final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
-        recyclerView.setBackgroundColor(getResources().getColor(R.color.grey_200));
         recyclerView.setLayoutManager(mLinearLayoutManager);
 
         View viewProgress = rootView.findViewById(R.id.progress);
