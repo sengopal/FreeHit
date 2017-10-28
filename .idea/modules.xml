@@ -3,9 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FreeHit.iml" filepath="$PROJECT_DIR$/FreeHit.iml" />
-      <module fileurl="file://C:\Users\aseef\StudioProjects\FreeHit\FreeHit\FreeHit-local.iml" filepath="C:\Users\aseef\StudioProjects\FreeHit\FreeHit\FreeHit-local.iml" />
-      <module fileurl="file://C:\Users\aseef\StudioProjects\FreeHit\FreeHit\FreeHit-master.iml" filepath="C:\Users\aseef\StudioProjects\FreeHit\FreeHit\FreeHit-master.iml" />
-      <module fileurl="file://C:\Users\aseef\StudioProjects\FreeHit\FreeHit\FreeHitSH.iml" filepath="C:\Users\aseef\StudioProjects\FreeHit\FreeHit\FreeHitSH.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

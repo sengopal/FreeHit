@@ -2,6 +2,6 @@
 // Its QueryUtil Bitches
 // back to fuck up your CODE
 
-//JOKE OF THE DAY : Jayanth G.k
+//JOKE OF THE DAY : Nikhil
 
-//Quotes by Jayanth : " Y U COME "
+//Quotes by Nikhil "I have a dick"
