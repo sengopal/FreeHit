@@ -31,7 +31,7 @@
     <string name="EmptyNews">NO NEWS FOUND</string>
 
     <!--FOR EMPTY VIEW OF POLLS FRAGMENT-->
-    <string name="EmptyPolls">NO POLLS FOUND</string>
+    <string name="EmptyPolls">Come Back Later For More !</string>
 
     <!--FOR EMPTY VIEW LIVE MATCHES -->
     <string name="EmptyLiveMatches">NO LIVE MATCHES</string>

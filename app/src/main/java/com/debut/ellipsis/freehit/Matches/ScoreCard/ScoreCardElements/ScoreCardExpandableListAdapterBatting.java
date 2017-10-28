@@ -24,7 +24,7 @@ public class ScoreCardExpandableListAdapterBatting extends BaseExpandableListAda
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        ArrayList<ScoreCardItemBatting> chList = groups.get(groupPosition).getItems();
+        ArrayList<ScoreCardItemBatting> chList = new ArrayList<>(10);
         return chList.get(childPosition);
     }
 
@@ -45,8 +45,7 @@ public class ScoreCardExpandableListAdapterBatting extends BaseExpandableListAda
         }
 
         if (convertView == null) {
-            LayoutInflater infalInflater = (LayoutInflater) context
-                    .getSystemService(context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.fragment_matchscorecard_title_list_item_batting, null);
         }
 

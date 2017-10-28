@@ -97,6 +97,11 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
 
         TextView option4 = (TextView) pollRes.findViewById(R.id.option_4);
 
+        final RelativeLayout poll_result_1 = (RelativeLayout) rlayout.findViewById(R.id.poll_1);
+        final RelativeLayout poll_result_2 = (RelativeLayout) rlayout.findViewById(R.id.poll_2);
+        final RelativeLayout poll_result_3 = (RelativeLayout) rlayout.findViewById(R.id.poll_3);
+        final RelativeLayout poll_result_4 = (RelativeLayout) rlayout.findViewById(R.id.poll_4);
+
 
         final TextView peroption1 = (TextView) pollRes.findViewById(R.id.percentage_option_1);
 
@@ -140,10 +145,10 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
             holder.button2.setText(PollCardItems.get(position).getCtitle(1));
             option2.setText(PollCardItems.get(position).getCtitle(1));
 
-            option3.setVisibility(View.INVISIBLE);
-            option4.setVisibility(View.INVISIBLE);
-            holder.button3.setVisibility(View.INVISIBLE);
-            holder.button4.setVisibility(View.INVISIBLE);
+            option3.setVisibility(View.GONE);
+            option4.setVisibility(View.GONE);
+            holder.button3.setVisibility(View.GONE);
+            holder.button4.setVisibility(View.GONE);
         }
 
         if (PollCardItems.get(position).getCount() == 3) {
@@ -156,8 +161,8 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
             holder.button3.setText(PollCardItems.get(position).getCtitle(2));
             option3.setText(PollCardItems.get(position).getCtitle(2));
 
-            option4.setVisibility(View.INVISIBLE);
-            holder.button4.setVisibility(View.INVISIBLE);
+            option4.setVisibility(View.GONE);
+            holder.button4.setVisibility(View.GONE);
         }
 
         if (PollCardItems.get(position).getCount() == 4) {
@@ -203,45 +208,63 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
                             holder.title.setVisibility(View.VISIBLE);
 
                             if (PollCardItems.get(holder.getAdapterPosition()).getCount() == 2) {
+
+                                poll_result_1.setVisibility(View.VISIBLE);
+                                poll_result_2.setVisibility(View.VISIBLE);
+
                                 progress1.setMax(100);
                                 progress1.setProgress(PollResult(poll.getCvotes(0), total));
                                 progress2.setMax(100);
                                 progress2.setProgress(PollResult(poll.getCvotes(1), total));
-                                progress3.setVisibility(View.INVISIBLE);
-                                progress4.setVisibility(View.INVISIBLE);
+                                progress3.setVisibility(View.GONE);
+                                progress4.setVisibility(View.GONE);
 
                                 peroption1.setText(String.format("%.2f", (PollResult(poll.getCvotes(0), total))) + '%');
                                 peroption2.setText(String.format("%.2f", (PollResult(poll.getCvotes(1), total))) + '%');
-                                peroption3.setText(" ");
-                                peroption4.setText(" ");
+                                /*peroption3.setText(" ");
+                                peroption4.setText(" ");*/
 
                                 valueoption1.setText("( "+poll.getCvotes(0)+" )");
                                 valueoption2.setText("( "+poll.getCvotes(1)+" )");
-                                valueoption3.setText(" ");
-                                valueoption4.setText(" ");
+                                valueoption3.setVisibility(View.GONE);
+                                valueoption4.setVisibility(View.GONE);
+
+                                /*valueoption3.setText(" ");
+                                valueoption4.setText(" ");*/
                             }
 
                             if (PollCardItems.get(holder.getAdapterPosition()).getCount() == 3) {
+                                poll_result_1.setVisibility(View.VISIBLE);
+                                poll_result_2.setVisibility(View.VISIBLE);
+                                poll_result_3.setVisibility(View.VISIBLE);
+
                                 progress1.setMax(100);
                                 progress1.setProgress(PollResult(poll.getCvotes(0), total));
                                 progress2.setMax(100);
                                 progress2.setProgress(PollResult(poll.getCvotes(1), total));
                                 progress3.setMax(100);
                                 progress3.setProgress(PollResult(poll.getCvotes(2), total));
-                                progress4.setVisibility(View.INVISIBLE);
+                                progress4.setVisibility(View.GONE);
 
                                 peroption1.setText(String.format("%.2f", (PollResult(poll.getCvotes(0), total))) + '%');
                                 peroption2.setText(String.format("%.2f", (PollResult(poll.getCvotes(1), total))) + '%');
                                 peroption3.setText(String.format("%.2f", (PollResult(poll.getCvotes(1), total))) + '%');
-                                peroption4.setText(" ");
+                                /*peroption4.setText(" ");*/
 
                                 valueoption1.setText("( "+poll.getCvotes(0)+" )");
                                 valueoption2.setText("( "+poll.getCvotes(1)+" )");
                                 valueoption3.setText("( "+poll.getCvotes(2)+" )");
-                                valueoption4.setText(" ");
+                                valueoption4.setVisibility(View.GONE);
+
+                                /*valueoption4.setText(" ");*/
                             }
 
                             if (PollCardItems.get(holder.getAdapterPosition()).getCount() == 4) {
+                                poll_result_1.setVisibility(View.VISIBLE);
+                                poll_result_2.setVisibility(View.VISIBLE);
+                                poll_result_3.setVisibility(View.VISIBLE);
+                                poll_result_4.setVisibility(View.VISIBLE);
+
                                 progress1.setMax(100);
                                 progress1.setProgress(PollResult(poll.getCvotes(0), total));
                                 progress2.setMax(100);
@@ -297,45 +320,63 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
                     int total = poll.get(holder.getAdapterPosition()).getTotalVotes();
 
                     if (PollCardItems.get(holder.getAdapterPosition()).getCount() == 2) {
+                        poll_result_1.setVisibility(View.VISIBLE);
+                        poll_result_2.setVisibility(View.VISIBLE);
+
                         progress1.setMax(100);
                         progress1.setProgress(PollResult(poll.get(holder.getAdapterPosition()).getCvotes(0), total));
                         progress2.setMax(100);
                         progress2.setProgress(PollResult(poll.get(holder.getAdapterPosition()).getCvotes(1), total));
-                        progress3.setVisibility(View.INVISIBLE);
-                        progress4.setVisibility(View.INVISIBLE);
+                        progress3.setVisibility(View.GONE);
+                        progress4.setVisibility(View.GONE);
 
                         peroption1.setText(String.format("%.2f", (PollResult(poll.get(holder.getAdapterPosition()).getCvotes(0), total))) + '%');
                         peroption2.setText(String.format("%.2f", (PollResult(poll.get(holder.getAdapterPosition()).getCvotes(1), total))) + '%');
-                        peroption3.setText(" ");
-                        peroption4.setText(" ");
+                        /*peroption3.setText(" ");
+                        peroption4.setText(" ");*/
 
                         valueoption1.setText("( "+poll.get(holder.getAdapterPosition()).getCvotes(0)+" )");
                         valueoption2.setText("( "+poll.get(holder.getAdapterPosition()).getCvotes(1)+" )");
-                        valueoption3.setText(" ");
-                        valueoption4.setText(" ");
+                        valueoption3.setVisibility(View.GONE);
+                        valueoption4.setVisibility(View.GONE);
+
+
+                        /*valueoption3.setText(" ");
+                        valueoption4.setText(" ");*/
                     }
 
                     if (PollCardItems.get(holder.getAdapterPosition()).getCount() == 3) {
+                        poll_result_1.setVisibility(View.VISIBLE);
+                        poll_result_2.setVisibility(View.VISIBLE);
+                        poll_result_3.setVisibility(View.VISIBLE);
+
                         progress1.setMax(100);
                         progress1.setProgress(PollResult(poll.get(holder.getAdapterPosition()).getCvotes(0), total));
                         progress2.setMax(100);
                         progress2.setProgress(PollResult(poll.get(holder.getAdapterPosition()).getCvotes(1), total));
                         progress3.setMax(100);
                         progress3.setProgress(PollResult(poll.get(holder.getAdapterPosition()).getCvotes(2), total));
-                        progress4.setVisibility(View.INVISIBLE);
+                        progress4.setVisibility(View.GONE);
 
                         peroption1.setText(String.format("%.2f", (PollResult(poll.get(holder.getAdapterPosition()).getCvotes(0), total))) + '%');
                         peroption2.setText(String.format("%.2f", (PollResult(poll.get(holder.getAdapterPosition()).getCvotes(1), total))) + '%');
                         peroption3.setText(String.format("%.2f", (PollResult(poll.get(holder.getAdapterPosition()).getCvotes(1), total))) + '%');
-                        peroption4.setText(" ");
+                        /*peroption4.setText(" ");*/
 
                         valueoption1.setText("( "+poll.get(holder.getAdapterPosition()).getCvotes(0)+" )");
                         valueoption2.setText("( "+poll.get(holder.getAdapterPosition()).getCvotes(1)+" )");
                         valueoption3.setText("( "+poll.get(holder.getAdapterPosition()).getCvotes(2)+" )");
-                        valueoption4.setText(" ");
+                        valueoption4.setVisibility(View.GONE);
+
+                        /*valueoption4.setText(" ");*/
                     }
 
                     if (PollCardItems.get(holder.getAdapterPosition()).getCount() == 4) {
+                        poll_result_1.setVisibility(View.VISIBLE);
+                        poll_result_2.setVisibility(View.VISIBLE);
+                        poll_result_3.setVisibility(View.VISIBLE);
+                        poll_result_4.setVisibility(View.VISIBLE);
+
                         progress1.setMax(100);
                         progress1.setProgress(PollResult(poll.get(holder.getAdapterPosition()).getCvotes(0), total));
                         progress2.setMax(100);
