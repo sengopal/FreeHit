@@ -93,7 +93,7 @@ public class SeriesItemAdapter extends RecyclerView.Adapter<SeriesItemAdapter.Se
 
         }
 
-        
+
         final String Team1Name = WelcomeActivity.countryHash.getCountrySN(team1.toUpperCase());
         final String Team2Name = WelcomeActivity.countryHash.getCountrySN(team2.toUpperCase());
 

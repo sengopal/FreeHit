@@ -43,6 +43,7 @@ public class PastMatchesActivity extends AppCompatActivity {
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
         View viewRecycler = findViewById(R.id.match_list_team);
+        viewRecycler.setBackgroundColor(getResources().getColor(R.color.grey_200));
         rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
 
         refresh_layout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
