@@ -1,6 +1,7 @@
 package com.debut.ellipsis.freehit.Matches.UpcomingMatches;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,7 +30,9 @@ public class UpcomingMatchesActivity extends AppCompatActivity {
     private ProgressBar mProgressBar;
     private RecyclerView rv;
     public TextView mEmptyView;
+    private FloatingActionButton fab;
     public SwipeRefreshLayout refresh_layout;
+    private LinearLayoutManager mLinearLayoutManager;
 
     public UpcomingMatchesActivity() {
         // Required empty public constructor
@@ -45,10 +48,18 @@ public class UpcomingMatchesActivity extends AppCompatActivity {
         View viewProgress = findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
+        View viewFAB = findViewById(R.id.fab);
+        fab = (FloatingActionButton) viewFAB.findViewById(R.id.common_fab);
+        fab.hide();
+        fab.setImageResource(R.drawable.arrow_up);
+
         View viewRecycler = findViewById(R.id.match_list_team);
+        viewRecycler.setBackgroundColor(getResources().getColor(R.color.grey_200));
         rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
 
-        rv.setLayoutManager(new LinearLayoutManager(this));
+        mLinearLayoutManager = new LinearLayoutManager(this);
+
+        rv.setLayoutManager(mLinearLayoutManager);
 
         refresh_layout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
@@ -130,6 +141,34 @@ public class UpcomingMatchesActivity extends AppCompatActivity {
             }
         }
         );
+        rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+
+                if(mLinearLayoutManager.findFirstCompletelyVisibleItemPosition()==0){
+                    fab.hide();
+
+                } else {
+                    fab.show();
+                }
+            }
+        });
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int firstVisibleItemIndex = mLinearLayoutManager.findFirstVisibleItemPosition();
+                if (firstVisibleItemIndex > 0) {
+                    mLinearLayoutManager.smoothScrollToPosition(rv,null,0);
+                }
+            }
+        });
+
     }
 
     @Override

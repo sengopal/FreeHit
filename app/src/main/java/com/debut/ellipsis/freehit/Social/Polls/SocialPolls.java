@@ -1,7 +1,6 @@
 package com.debut.ellipsis.freehit.Social.Polls;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -76,7 +75,7 @@ public class SocialPolls extends Fragment {
         NoPollsButton = (Button) No_polls.findViewById(R.id.No_Live_Matches_button);
 
         final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
-        
+
         NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
 
@@ -85,21 +84,26 @@ public class SocialPolls extends Fragment {
             @Override
             public void onResponse(Call<PollCardItem> call, Response<PollCardItem> response) {
                 mProgressBar.setVisibility(View.INVISIBLE);
+
+                List<PollCardItem> polls = response.body().getResults();
+
                 if (getActivity() != null) {
 
-                    List<PollCardItem> polls = response.body().getResults();
                     if (polls.size() == 0) {
 
                         No_polls.setVisibility(View.VISIBLE);
                         NoPollsText.setText(R.string.EmptyPolls);
+                        NoPollsText.setTextSize(getResources().getDimensionPixelSize(R.dimen._7sdp));
                         NoPollsButton.setOnClickListener(new View.OnClickListener() {
 
                             public void onClick(View v) {
-                                Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
+                                /*Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
                                 i.putExtra("Main_tab",2);
                                 i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                                 i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                startActivity(i);
+                                startActivity(i);*/
+                                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
                             }
                         });
 
@@ -174,7 +178,7 @@ public class SocialPolls extends Fragment {
                                                    public void onFailure(Call<PollCardItem> call, Throwable t) {
                                                        mProgressBar.setVisibility(View.INVISIBLE);
                                                        mProgressBar.setVisibility(View.INVISIBLE);
-                                                       Toast toast=Toast.makeText(getContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
+                                                       Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
                                                        toast.show();
                                                        call.cancel();
                                                    }
@@ -212,7 +216,7 @@ public class SocialPolls extends Fragment {
                 int lastVisibleItemIndex = mLinearLayoutManager.findLastVisibleItemPosition();
 
                 if (lastVisibleItemIndex >= totalItemCount) return;
-                mLinearLayoutManager.smoothScrollToPosition(recyclerView,null,totalItemCount+1);
+                mLinearLayoutManager.smoothScrollToPosition(recyclerView, null, totalItemCount + 1);
             }
         });
 
