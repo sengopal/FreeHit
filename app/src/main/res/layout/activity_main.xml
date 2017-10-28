@@ -21,8 +21,8 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
             <ImageView
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_width="@dimen/_38sdp"
+                android:layout_height="@dimen/_38sdp"
                 android:layout_gravity="start"
                 android:src="@mipmap/logo_app_bar" />
 
@@ -30,11 +30,11 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingEnd="@dimen/_5sdp"
-                android:paddingStart="@dimen/_5sdp"
+                android:paddingStart="@dimen/_3sdp"
+                android:gravity="center_vertical"
                 android:text="@string/app_label"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_21sdp" />
+                android:textSize="@dimen/_18sdp" />
 
         </android.support.v7.widget.Toolbar>
 

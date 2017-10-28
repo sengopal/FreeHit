@@ -22,14 +22,14 @@
             android:paddingTop="@dimen/_5sdp"
             android:textAppearance="?android:textAppearanceLarge"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/_18sdp"
+            android:textSize="@dimen/_15sdp"
             android:textStyle="bold"
             tools:text="Virat once again plays a captains knock" />
 
         <ImageView
             android:id="@+id/image_view"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_150sdp"
+            android:layout_height="@dimen/_125sdp"
             android:layout_below="@+id/header_text_view"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/_8sdp"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/image_view"
             android:paddingStart="@dimen/_15sdp"
-            android:textSize="@dimen/_12sdp"
+            android:textSize="@dimen/_10sdp"
             tools:text="27 September 2017" />
 
         <ImageView
@@ -60,7 +60,7 @@
             android:layout_below="@+id/news_date"
             android:layout_marginStart="5dp"
             android:layout_toRightOf="@+id/news_tag_image"
-            android:textSize="@dimen/_12sdp"
+            android:textSize="@dimen/_10sdp"
             tools:text="David Andrew Warner" />
 
         <TextView
@@ -75,7 +75,7 @@
             android:scrollHorizontally="true"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/_14sdp"
+            android:textSize="@dimen/_12sdp"
             android:textStyle="italic"
             tools:text="Description text of the news article you should read and waste some time . This  is getting to be too long, but I have to write enough text to test the code." />
 

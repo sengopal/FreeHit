@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
@@ -139,11 +140,11 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
                     // Start the new activity
                     context.startActivity(UpcomingIntent);
                 } else {
-                    Intent PastMatchScoreCardIntent = new Intent(context, PastMatchScoreCard.class);
+                    /*Intent PastMatchScoreCardIntent = new Intent(context, PastMatchScoreCard.class);
                     PastMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getNdid());
                     PastMatchScoreCardIntent.putExtra("match_name", dataObjectList.get(position).getTitle());
-                    context.startActivity(PastMatchScoreCardIntent);
-                    /*Toast.makeText(context,"Coming Soon !",Toast.LENGTH_SHORT).show();*/
+                    context.startActivity(PastMatchScoreCardIntent);*/
+                    Toast.makeText(context,"Coming Soon !",Toast.LENGTH_SHORT).show();
                 }
             }
         });

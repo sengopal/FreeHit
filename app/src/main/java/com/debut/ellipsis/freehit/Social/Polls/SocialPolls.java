@@ -57,7 +57,7 @@ public class SocialPolls extends Fragment {
         View viewFAB = rootView.findViewById(R.id.fab);
         fab = (FloatingActionButton) viewFAB.findViewById(R.id.common_fab);
 
-        fab.setImageResource(android.R.drawable.arrow_down_float);
+        fab.setImageResource(R.drawable.arrow_down);
         fab.setVisibility(View.INVISIBLE);
 
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
