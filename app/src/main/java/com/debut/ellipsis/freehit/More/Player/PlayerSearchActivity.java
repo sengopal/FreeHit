@@ -1,7 +1,9 @@
 package com.debut.ellipsis.freehit.More.Player;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -42,49 +44,58 @@ public class PlayerSearchActivity extends AppCompatActivity {
         setTitle("Player Search");
 
 
-        View viewRecycler = findViewById(R.id.player_search_list);
-
-        final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
+        // Get a reference to the ConnectivityManager to check state of network connectivity
+        ConnectivityManager connMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        // Get details on the currently active default data network
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
         EditText playerSearchEdit = (EditText) findViewById(R.id.editText_player);
-        playerSearchEdit.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+        // If there is a network connection, fetch data
+        if (networkInfo != null && networkInfo.isConnected()) {
 
-            }
 
-            @Override
-            public void afterTextChanged(Editable s) {
+            playerSearchEdit.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
 
-                MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
-                final Call<PlayerCountryItem> playerInfo = MainActivity.apiInterface.doGetPlayerList(s.toString());
-                playerInfo.enqueue(new Callback<PlayerCountryItem>() {
-                    @Override
-                    public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
-                        List<PlayerCountryItem> playerCountryItems = response.body().getResults();
-                        for (int i = 0; i < playerCountryItems.size(); i++) {
-                            recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
-                            refLayout.setRefreshing(false);
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
+                    final Call<PlayerCountryItem> playerInfo = MainActivity.apiInterface.doGetPlayerList(s.toString());
+                    playerInfo.enqueue(new Callback<PlayerCountryItem>() {
+                        @Override
+                        public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
+                            List<PlayerCountryItem> playerCountryItems = response.body().getResults();
+                            for (int i = 0; i < playerCountryItems.size(); i++) {
+                                recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<PlayerCountryItem> call, Throwable t) {
-                        refLayout.setRefreshing(false);
-                        Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+                        @Override
+                        public void onFailure(Call<PlayerCountryItem> call, Throwable t) {
 
-                    }
-                });
+                        }
+                    });
 
-            }
-        });
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+
+                }
+            });
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+        }
 
     }
 

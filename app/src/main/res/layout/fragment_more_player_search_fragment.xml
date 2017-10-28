@@ -32,8 +32,13 @@
         android:layout_below="@+id/editText_player"
         android:padding="@dimen/_10sdp">
 
-        <include
-            android:id="@+id/player_search_list"
-            layout="@layout/common_recycler_view_list" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@color/background"
+            android:padding="@dimen/_8sdp" />
     </RelativeLayout>
+
 </RelativeLayout>

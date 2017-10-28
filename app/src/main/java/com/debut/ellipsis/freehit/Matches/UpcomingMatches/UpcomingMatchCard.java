@@ -100,11 +100,7 @@ public class UpcomingMatchCard extends Fragment {
                 NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
                     public void onClick(View v) {
-                        /*Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
-                        i.putExtra("Main_tab",0);
-                        i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-                        i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(i);*/
+
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
                         ft.detach(UpcomingMatchCard.this).attach(UpcomingMatchCard.this).commit();
 

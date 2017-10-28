@@ -97,11 +97,7 @@ public class SocialPolls extends Fragment {
                         NoPollsButton.setOnClickListener(new View.OnClickListener() {
 
                             public void onClick(View v) {
-                                /*Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
-                                i.putExtra("Main_tab",2);
-                                i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-                                i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                startActivity(i);*/
+
                                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                                 ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
                             }
@@ -122,11 +118,7 @@ public class SocialPolls extends Fragment {
                 NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
                     public void onClick(View v) {
-                        /*Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
-                        i.putExtra("Main_tab",2);
-                        i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-                        i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(i);*/
+
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
                         ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
 
@@ -141,7 +133,7 @@ public class SocialPolls extends Fragment {
                                            public void onRefresh() {
                                                // Checking if connected or not on refresh
                                                refLayout.setRefreshing(true);
-
+                                               fab.hide();
                                                Call<PollCardItem> call = MainActivity.apiInterface.doGetPollsListResources();
                                                call.enqueue(new Callback<PollCardItem>() {
                                                    @Override
@@ -149,6 +141,7 @@ public class SocialPolls extends Fragment {
                                                        mProgressBar.setVisibility(View.INVISIBLE);
                                                        no_internet_connection.setVisibility(View.INVISIBLE);
                                                        No_polls.setVisibility(View.INVISIBLE);
+                                                       fab.show();
                                                        if (getActivity() != null) {
 
                                                            List<PollCardItem> polls = response.body().getResults();
@@ -159,11 +152,7 @@ public class SocialPolls extends Fragment {
                                                                NoPollsButton.setOnClickListener(new View.OnClickListener() {
 
                                                                    public void onClick(View v) {
-                                                                      /* Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
-                                                                       i.putExtra("Main_tab",2);
-                                                                       i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-                                                                       i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                                                       startActivity(i);*/
+
                                                                        FragmentTransaction ft = getFragmentManager().beginTransaction();
                                                                        ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
                                                                    }
@@ -178,6 +167,7 @@ public class SocialPolls extends Fragment {
                                                    public void onFailure(Call<PollCardItem> call, Throwable t) {
                                                        mProgressBar.setVisibility(View.INVISIBLE);
                                                        mProgressBar.setVisibility(View.INVISIBLE);
+                                                       fab.hide();
                                                        Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
                                                        toast.show();
                                                        call.cancel();
@@ -199,12 +189,20 @@ public class SocialPolls extends Fragment {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
 
-                if (dy < 0) {
-                    fab.show();
+                int totalItemCount = recyclerView.getAdapter().getItemCount();
+                if(mLinearLayoutManager.findFirstCompletelyVisibleItemPosition()>=totalItemCount){
+                    fab.hide();
 
-                } else if (dy > 0) {
+                }
+                if(mLinearLayoutManager.findLastCompletelyVisibleItemPosition()>=totalItemCount-2){
+                    //Its at bottom ..
                     fab.hide();
                 }
+                else if(mLinearLayoutManager.findFirstCompletelyVisibleItemPosition()>=0||mLinearLayoutManager.findLastCompletelyVisibleItemPosition()<totalItemCount-2)
+                 {
+                    fab.show();
+                 }
+
             }
         });
 

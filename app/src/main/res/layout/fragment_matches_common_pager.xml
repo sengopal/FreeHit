@@ -7,6 +7,7 @@
     <include
         android:id="@+id/progress"
         layout="@layout/common_progressbar"
+        android:visibility="visible"
         />
 
     <include

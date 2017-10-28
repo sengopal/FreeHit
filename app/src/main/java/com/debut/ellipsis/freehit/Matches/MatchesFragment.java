@@ -44,6 +44,8 @@ public class MatchesFragment extends Fragment {
 
         tabLayout.setupWithViewPager(viewPager);
 
+        viewPager.setOffscreenPageLimit(3);
+
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
