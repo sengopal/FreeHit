@@ -67,7 +67,7 @@ public class SocialPolls extends Fragment {
         final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
 
         mLinearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
-        
+
         recyclerView.setLayoutManager(mLinearLayoutManager);
 
         View viewProgress = rootView.findViewById(R.id.progress);
