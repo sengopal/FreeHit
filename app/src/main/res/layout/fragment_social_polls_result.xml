@@ -9,20 +9,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginStart="@dimen/_13sdp">
+        android:layout_marginStart="@dimen/_10sdp">
 
         <RelativeLayout
-            android:id="@+id/poll_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_marginTop="@dimen/_14sdp">
+            android:layout_marginTop="@dimen/_10sdp">
 
             <TextView
                 android:id="@+id/option_1"
                 android:layout_width="@dimen/_85sdp"
                 android:layout_height="@dimen/_25sdp"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/_10sdp"
                 android:textStyle="bold"
@@ -31,8 +29,8 @@
 
             <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
                 android:id="@+id/progress_bar_option1"
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_22sdp"
+                android:layout_width="@dimen/_85sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_toEndOf="@+id/option_1"
                 app:rcBackgroundPadding="5dp" />
 
@@ -41,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:layout_toEndOf="@+id/progress_bar_option1"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/_10sdp"
@@ -52,8 +50,8 @@
                 android:id="@+id/votecount_option_1"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:layout_toEndOf="@+id/percentage_option_1"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/_10sdp"
@@ -61,17 +59,15 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/poll_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_marginTop="@dimen/_14sdp">
+            android:layout_marginTop="@dimen/_5sdp">
 
             <TextView
                 android:id="@+id/option_2"
                 android:layout_width="@dimen/_85sdp"
                 android:layout_height="@dimen/_25sdp"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/_10sdp"
                 android:textStyle="bold"
@@ -80,8 +76,8 @@
 
             <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
                 android:id="@+id/progress_bar_option2"
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_22sdp"
+                android:layout_width="@dimen/_85sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_toEndOf="@+id/option_2"
                 app:rcBackgroundPadding="5dp" />
 
@@ -90,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:layout_toEndOf="@+id/progress_bar_option2"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/_10sdp"
@@ -101,8 +97,8 @@
                 android:id="@+id/votecount_option_2"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:layout_toEndOf="@+id/percentage_option_2"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/_10sdp"
@@ -110,17 +106,15 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/poll_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_marginTop="@dimen/_14sdp">
+            android:layout_marginTop="@dimen/_5sdp">
 
             <TextView
                 android:id="@+id/option_3"
                 android:layout_width="@dimen/_85sdp"
                 android:layout_height="@dimen/_25sdp"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/_10sdp"
                 android:textStyle="bold"
@@ -129,8 +123,8 @@
 
             <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
                 android:id="@+id/progress_bar_option3"
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_22sdp"
+                android:layout_width="@dimen/_85sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_toEndOf="@+id/option_3"
                 app:rcBackgroundPadding="5dp" />
 
@@ -139,7 +133,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:layout_toEndOf="@+id/progress_bar_option3"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/_10sdp"
@@ -150,8 +144,8 @@
                 android:id="@+id/votecount_option_3"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:layout_toEndOf="@+id/percentage_option_3"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/_10sdp"
@@ -159,18 +153,15 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/poll_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_14sdp"
-            android:visibility="gone"
-            android:layout_marginTop="@dimen/_14sdp">
+            android:layout_marginTop="@dimen/_5sdp">
 
             <TextView
                 android:id="@+id/option_4"
                 android:layout_width="@dimen/_85sdp"
                 android:layout_height="@dimen/_25sdp"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/_10sdp"
                 android:textStyle="bold"
@@ -179,8 +170,8 @@
 
             <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
                 android:id="@+id/progress_bar_option4"
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_22sdp"
+                android:layout_width="@dimen/_85sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_toEndOf="@+id/option_4"
                 app:rcBackgroundPadding="5dp" />
 
@@ -189,7 +180,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:layout_toEndOf="@+id/progress_bar_option4"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/_10sdp"
@@ -200,8 +191,8 @@
                 android:id="@+id/votecount_option_4"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:layout_toEndOf="@+id/percentage_option_4"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/_10sdp"
