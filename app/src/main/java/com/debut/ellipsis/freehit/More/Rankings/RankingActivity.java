@@ -11,10 +11,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class RankingActivity extends AppCompatActivity {
@@ -22,6 +27,7 @@ public class RankingActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    public List<RankingItem> QueryList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +43,20 @@ public class RankingActivity extends AppCompatActivity {
         View viewRankingPager = (View) findViewById(R.id.ranking_viewpager);
 
         viewPager = (ViewPager) viewRankingPager.findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
-        viewPager.setOffscreenPageLimit(3);
+        Call<RankingItem> call = MainActivity.apiInterface.doGetRankingResources();
+        call.enqueue(new Callback<RankingItem>() {
+            @Override
+            public void onResponse(Call<RankingItem> call, Response<RankingItem> response) {
+                QueryList = response.body().getResults();
+                viewPager.setOffscreenPageLimit(3);
+                setupViewPager(viewPager);
+            }
+
+            @Override
+            public void onFailure(Call<RankingItem> call, Throwable t) {
+
+            }
+        });
 
         tabLayout = (TabLayout) viewToolbar.findViewById(R.id.tabs);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
@@ -103,6 +121,9 @@ public class RankingActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
+    }
+    public List<RankingItem> getQList(){
+        return QueryList;
     }
 
 }
