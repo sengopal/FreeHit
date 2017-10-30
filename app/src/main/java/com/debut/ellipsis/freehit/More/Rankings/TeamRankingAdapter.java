@@ -20,7 +20,7 @@ import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
 
-public class TeamRankingAdapterODI extends RecyclerView.Adapter<TeamRankingAdapterODI.ViewHolder> {
+public class TeamRankingAdapter extends RecyclerView.Adapter<TeamRankingAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // Your holder should contain a member variable
@@ -55,7 +55,7 @@ public class TeamRankingAdapterODI extends RecyclerView.Adapter<TeamRankingAdapt
     private Context mContext;
 
     // Pass in the contact array into the constructor
-    public TeamRankingAdapterODI(Context context, List<RankingItem.Team> TeamList) {
+    public TeamRankingAdapter(Context context, List<RankingItem.Team> TeamList) {
         mTeamList = TeamList;
         mContext = context;
     }
@@ -67,7 +67,7 @@ public class TeamRankingAdapterODI extends RecyclerView.Adapter<TeamRankingAdapt
 
     // Usually involves inflating a layout from XML and returning the holder
     @Override
-    public TeamRankingAdapterODI.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public TeamRankingAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -80,7 +80,7 @@ public class TeamRankingAdapterODI extends RecyclerView.Adapter<TeamRankingAdapt
 
     // Involves populating data into the item through holder
     @Override
-    public void onBindViewHolder(TeamRankingAdapterODI.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(TeamRankingAdapter.ViewHolder viewHolder, int position) {
         // Get the data model based on position
         RankingItem.Team TeamItem = mTeamList.get(position);
 

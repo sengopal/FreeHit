@@ -1,0 +1,48 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlcontainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/parent_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/rank"
+            android:layout_width="@dimen/_33sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_18sdp"
+            android:layout_gravity="center_vertical"
+            android:textAlignment="center"
+            android:textSize="@dimen/_12sdp"
+            android:layout_weight="0.5"
+            tools:text="1" />
+
+
+        <TextView
+            android:id="@+id/team"
+            android:layout_width="@dimen/_135sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_35sdp"
+            android:textSize="@dimen/_12sdp"
+            android:layout_weight="2"
+            android:layout_gravity="center_vertical"
+            tools:text="abcdevghijklmnoqrstuvwxyz" />
+
+        <TextView
+            android:id="@+id/ratings"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_35sdp"
+            android:textAlignment="center"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/_12sdp"
+            android:layout_weight="2"
+            tools:text="111" />
+
+    </LinearLayout>
+</RelativeLayout>
