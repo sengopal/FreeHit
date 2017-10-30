@@ -63,16 +63,17 @@ public class SeriesItemAdapter extends RecyclerView.Adapter<SeriesItemAdapter.Se
     @Override
     public void onBindViewHolder(SeriesItemAdapter.SeriesViewHolder holder, final int position) {
         String Title = seriesItems.get(position).getTitle();
+
         Title = Title + ",";
         String[] t = Title.split(",");
         String[] origTeam = new String[10];
         origTeam[0] = " ";
         origTeam[1] = " ";
 
-        holder.SeriesTitle.setText(t[0]);
+        holder.SeriesTitle.setText(Title);
         String team1 = seriesItems.get(position).getTeam1();
         String team2 = seriesItems.get(position).getTeam2();
-        //
+
         final String date = seriesItems.get(position).getDate();
         origTeam = t[0].split(" ");
         origTeam[0] = origTeam[0].trim();

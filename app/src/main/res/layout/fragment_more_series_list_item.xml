@@ -28,7 +28,7 @@
             android:layout_marginTop="@dimen/_4sdp"
             android:gravity="center_horizontal"
             android:padding="@dimen/_5sdp"
-            android:textColor="@color/black"
+            android:textColor="@android:color/black"
             tools:text="INDIA TOUR OF AUSTRALIA 2017" />
 
         <ImageView

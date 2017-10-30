@@ -2,8 +2,10 @@ package com.debut.ellipsis.freehit;
 
 import com.debut.ellipsis.freehit.Matches.LiveMatches.LiveMatchCardItem;
 import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchCardItem;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements.ScoreCardItem;
 import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchCardItem;
 import com.debut.ellipsis.freehit.More.Player.PlayerItem;
+import com.debut.ellipsis.freehit.More.Rankings.RankingItem;
 import com.debut.ellipsis.freehit.More.Series.SeriesItem;
 import com.debut.ellipsis.freehit.News.NewsArticleItem;
 import com.debut.ellipsis.freehit.News.NewsItem;
@@ -63,6 +65,9 @@ public interface APIInterface {
     @GET("player?")
     Call<PlayerCountryItem> doGetFavTeamPlayers(@Query ("id") String TeamID);
 
+    @GET("player?")
+    Call<PlayerCountryItem> doGetTeamPlayers(@Query("fav") String PlayerName);
+
     @GET("series")
     Call<SeriesItem> doGetSeries();
 
@@ -72,5 +77,10 @@ public interface APIInterface {
     @GET("upcoming?")
     Call<UpcomingMatchCardItem> doGetUpComingSeriesMatches(@Query("sfav") String team1,@Query("date") String date);
 
+    @GET("scorecard?")
+    Call<ScoreCardItem> doGetMatchScoreCard(@Query("ndid") String match_id);
+
+    @GET("ranking")
+    Call<RankingItem> doGetRankingResources();
 
 }

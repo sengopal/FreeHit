@@ -38,9 +38,11 @@ public class RankingActivity extends AppCompatActivity {
 
         viewPager = (ViewPager) viewRankingPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
+        viewPager.setOffscreenPageLimit(3);
 
         tabLayout = (TabLayout) viewToolbar.findViewById(R.id.tabs);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setupWithViewPager(viewPager);
 
     }
@@ -69,7 +71,7 @@ public class RankingActivity extends AppCompatActivity {
         RankingActivity.ViewPagerAdapter adapter = new RankingActivity.ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new TeamRankingFragment(), "TEAMS");
         adapter.addFrag(new BattingRankingFragment(), "BATSMEN");
-        adapter.addFrag(new BowlingRankingFragment(), "BOLWER");
+        adapter.addFrag(new BowlingRankingFragment(), "BOWLER");
         adapter.addFrag(new AllrounderRankingFragment(), "ALL ROUNDER");
         viewPager.setAdapter(adapter);
     }

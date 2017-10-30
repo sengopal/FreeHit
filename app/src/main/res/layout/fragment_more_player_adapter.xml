@@ -11,7 +11,7 @@
         android:layout_marginTop="@dimen/_1sdp"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:textColor="@color/black"
+        android:textColor="@android:color/black"
         android:textSize="@dimen/_10sdp"
         tools:text="999999" />
 

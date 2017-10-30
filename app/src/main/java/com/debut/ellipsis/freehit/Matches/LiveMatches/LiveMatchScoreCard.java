@@ -14,9 +14,9 @@ import android.view.View;
 
 import com.debut.ellipsis.freehit.Matches.ScoreCard.ChanceToWinFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.CommentaryFragment;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHeadFragment;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHead.HeadToHeadFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.InfoFragment;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements.ScoreCardFragment;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.SummaryFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.TwitterFragment;
 import com.debut.ellipsis.freehit.R;

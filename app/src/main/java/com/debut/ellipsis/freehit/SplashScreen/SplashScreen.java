@@ -13,7 +13,6 @@ import com.debut.ellipsis.freehit.R;
 
 public class SplashScreen extends Activity {
 
-    private static int SPLASH_TIMER = 2500;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,7 +26,7 @@ public class SplashScreen extends Activity {
                 startService(new Intent(getBaseContext(), OnClearFromRecentService.class));
                 finish();
             }
-        }, SPLASH_TIMER);
+        }, 500);
 
 
     }

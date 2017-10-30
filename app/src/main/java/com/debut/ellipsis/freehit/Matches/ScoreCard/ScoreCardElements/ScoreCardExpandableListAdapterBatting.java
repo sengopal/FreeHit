@@ -45,8 +45,7 @@ public class ScoreCardExpandableListAdapterBatting extends BaseExpandableListAda
         }
 
         if (convertView == null) {
-            LayoutInflater infalInflater = (LayoutInflater) context
-                    .getSystemService(context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.fragment_matchscorecard_title_list_item_batting, null);
         }
 

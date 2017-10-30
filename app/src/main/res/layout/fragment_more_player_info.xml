@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -19,10 +20,10 @@
 
             <ImageView
                 android:id="@+id/Player_image"
-                android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_70sdp"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 app:srcCompat="@drawable/matches" />
 
             <TextView
@@ -30,9 +31,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/_14sdp"
+                android:textSize="@dimen/_11sdp"
                 android:textStyle="bold"
                 tools:text="PlayerName" />
 
@@ -42,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_10sdp"
                 android:textStyle="bold"
                 tools:text="country" />
 
@@ -50,6 +51,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/divider"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
                 android:textSize="@dimen/_1sdp" />
 
             <TextView
@@ -57,16 +60,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_3sdp"
                 android:text="PERSONAL INFORMATION"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/_15sdp" />
+                android:textSize="@dimen/_12sdp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/divider"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
                 android:textSize="@dimen/_1sdp" />
 
             <LinearLayout
@@ -84,22 +89,22 @@
                         android:id="@+id/DOBLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:paddingLeft="@dimen/_4sdp"
                         android:text="DOB : "
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_11sdp"
+                        android:textSize="@dimen/_10sdp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/DOB"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:layout_toEndOf="@+id/DOBLabel"
                         android:paddingStart="@dimen/_6sdp"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_11sdp"
+                        android:textSize="@dimen/_10sdp"
                         tools:text="9999/9999/999" />
 
                 </RelativeLayout>
@@ -112,22 +117,22 @@
                         android:id="@+id/AgeLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:paddingStart="@dimen/_4sdp"
                         android:text="Age : "
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_11sdp"
+                        android:textSize="@dimen/_10sdp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/Age"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:layout_toEndOf="@+id/AgeLabel"
                         android:paddingStart="@dimen/_6sdp"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_11sdp"
+                        android:textSize="@dimen/_10sdp"
                         tools:text="9999/9999/999" />
 
                 </RelativeLayout>
@@ -140,22 +145,22 @@
                         android:id="@+id/battingStyleLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:paddingStart="@dimen/_4sdp"
                         android:text="Batting Style : "
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_11sdp"
+                        android:textSize="@dimen/_10sdp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/battingStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:layout_toEndOf="@+id/battingStyleLabel"
                         android:paddingStart="@dimen/_6sdp"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_11sdp"
+                        android:textSize="@dimen/_10sdp"
                         tools:text="9999/9999/999" />
 
                 </RelativeLayout>
@@ -168,22 +173,22 @@
                         android:id="@+id/BowlingStyleLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:paddingLeft="@dimen/_4sdp"
                         android:text="Bowling Style : "
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_11sdp"
+                        android:textSize="@dimen/_10sdp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/BowlingStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:layout_toEndOf="@+id/BowlingStyleLabel"
                         android:paddingLeft="@dimen/_6sdp"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_11sdp"
+                        android:textSize="@dimen/_10sdp"
                         tools:text="9999/9999/999" />
 
                 </RelativeLayout>
@@ -196,22 +201,22 @@
                         android:id="@+id/Teams_PlayedLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:paddingLeft="@dimen/_4sdp"
                         android:text="Teams Played For : "
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_11sdp"
+                        android:textSize="@dimen/_10sdp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/Teams_Played"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:layout_toEndOf="@+id/Teams_PlayedLabel"
                         android:paddingLeft="@dimen/_6sdp"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_11sdp"
+                        android:textSize="@dimen/_10sdp"
                         tools:text="9999/9999/999" />
 
                 </RelativeLayout>
@@ -233,24 +238,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/divider"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
                 android:textSize="@dimen/_1sdp" />
 
             <TextView
                 android:id="@+id/ICC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_3sdp"
                 android:gravity="center_horizontal"
                 android:text="ICC RANKING"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/_15sdp" />
+                android:textSize="@dimen/_12sdp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ICC"
                 android:background="@color/divider"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
                 android:textSize="@dimen/_1sdp" />
 
 
@@ -275,10 +284,10 @@
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:padding="@dimen/_18sdp"
+                        android:padding="@dimen/_13sdp"
                         android:text=" "
                         android:textAlignment="center"
-                        android:textColor="#000000"
+                        android:textColor="@android:color/black"
                         android:textSize="@dimen/_8sdp" />
 
                     <TextView
@@ -286,10 +295,10 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:padding="@dimen/_18sdp"
+                        android:padding="@dimen/_13sdp"
                         android:text="ODI"
                         android:textAlignment="center"
-                        android:textColor="#000000"
+                        android:textColor="@android:color/black"
                         android:textSize="@dimen/_8sdp"
                         android:textStyle="bold" />
 
@@ -299,10 +308,10 @@
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:padding="@dimen/_18sdp"
+                        android:padding="@dimen/_13sdp"
                         android:text="TEST"
                         android:textAlignment="center"
-                        android:textColor="#000000"
+                        android:textColor="@android:color/black"
                         android:textSize="@dimen/_8sdp"
                         android:textStyle="bold" />
 
@@ -312,10 +321,10 @@
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:padding="@dimen/_18sdp"
+                        android:padding="@dimen/_13sdp"
                         android:text="T20I"
                         android:textAlignment="center"
-                        android:textColor="#000000"
+                        android:textColor="@android:color/black"
                         android:textSize="@dimen/_8sdp"
                         android:textStyle="bold" />
 
@@ -333,7 +342,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:padding="@dimen/_18sdp"
+                        android:padding="@dimen/_13sdp"
                         android:text="Batting"
                         android:textAlignment="center"
                         android:textColor="#000000"
@@ -346,7 +355,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:padding="@dimen/_18sdp"
+                        android:padding="@dimen/_13sdp"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="@dimen/_8sdp"
@@ -358,7 +367,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:padding="@dimen/_18sdp"
+                        android:padding="@dimen/_13sdp"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="@dimen/_8sdp"
@@ -370,7 +379,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:padding="@dimen/_18sdp"
+                        android:padding="@dimen/_13sdp"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="@dimen/_8sdp"
@@ -390,7 +399,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:padding="@dimen/_18sdp"
+                        android:padding="@dimen/_13sdp"
                         android:text="Bowling"
                         android:textAlignment="center"
                         android:textColor="#000000"
@@ -403,7 +412,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:padding="@dimen/_18sdp"
+                        android:padding="@dimen/_13sdp"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="@dimen/_8sdp"
@@ -415,7 +424,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:padding="@dimen/_18sdp"
+                        android:padding="@dimen/_13sdp"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="@dimen/_8sdp"
@@ -427,7 +436,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:padding="@dimen/_18sdp"
+                        android:padding="@dimen/_13sdp"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="@dimen/_8sdp"
@@ -441,24 +450,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/divider"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
                 android:textSize="@dimen/_1sdp" />
 
             <TextView
                 android:id="@+id/MOTM"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_3sdp"
                 android:gravity="center_horizontal"
                 android:text="MAN OF THE MATCH"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/_15sdp" />
+                android:textSize="@dimen/_12sdp" />
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ICC"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
                 android:background="@color/divider"
                 android:textSize="@dimen/_1sdp" />
 
@@ -482,7 +495,7 @@
                         android:layout_marginTop="@dimen/_5sdp"
                         android:layout_height="match_parent"
                         android:background="#ffffff"
-                        android:padding="@dimen/_8sdp"
+                        android:padding="@dimen/_5sdp"
                         android:stretchColumns="*">
 
                         <TableRow
@@ -493,7 +506,7 @@
 
                             <TextView
                                 android:id="@+id/MOTM_Label_TEST"
-                                android:layout_height="@dimen/_58sdp"
+                                android:layout_height="@dimen/_45sdp"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
                                 android:padding="@dimen/_18sdp"
@@ -505,7 +518,7 @@
 
                             <TextView
                                 android:id="@+id/MOTM_Label_ODI"
-                                android:layout_height="@dimen/_58sdp"
+                                android:layout_height="@dimen/_45sdp"
                                 android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
@@ -518,7 +531,7 @@
 
                             <TextView
                                 android:id="@+id/MOTM_Label_T20"
-                                android:layout_height="@dimen/_58sdp"
+                                android:layout_height="@dimen/_45sdp"
                                 android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
@@ -531,7 +544,7 @@
 
                             <TextView
                                 android:id="@+id/MOTM_Label_WorldCup"
-                                android:layout_height="@dimen/_58sdp"
+                                android:layout_height="@dimen/_45sdp"
                                 android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
@@ -544,7 +557,7 @@
 
                             <TextView
                                 android:id="@+id/MOTM_Label_IPL"
-                                android:layout_height="@dimen/_58sdp"
+                                android:layout_height="@dimen/_45sdp"
                                 android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
@@ -557,7 +570,7 @@
 
                             <TextView
                                 android:id="@+id/MOTM_Label_CL"
-                                android:layout_height="@dimen/_58sdp"
+                                android:layout_height="@dimen/_45sdp"
                                 android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
@@ -578,7 +591,7 @@
 
                             <TextView
                                 android:id="@+id/MOTM_Test"
-                                android:layout_height="@dimen/_58sdp"
+                                android:layout_height="@dimen/_45sdp"
                                 android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
@@ -590,7 +603,7 @@
 
                             <TextView
                                 android:id="@+id/MOTM_Odi"
-                                android:layout_height="@dimen/_58sdp"
+                                android:layout_height="@dimen/_45sdp"
                                 android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
@@ -602,7 +615,7 @@
 
                             <TextView
                                 android:id="@+id/MOTM_T20"
-                                android:layout_height="@dimen/_58sdp"
+                                android:layout_height="@dimen/_45sdp"
                                 android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
@@ -614,7 +627,7 @@
 
                             <TextView
                                 android:id="@+id/MOTM_WorldCup"
-                                android:layout_height="@dimen/_58sdp"
+                                android:layout_height="@dimen/_45sdp"
                                 android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
@@ -626,7 +639,7 @@
 
                             <TextView
                                 android:id="@+id/MOTM_IPL"
-                                android:layout_height="@dimen/_58sdp"
+                                android:layout_height="@dimen/_45sdp"
                                 android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
@@ -638,7 +651,7 @@
 
                             <TextView
                                 android:id="@+id/MOTM_CL"
-                                android:layout_height="@dimen/_58sdp"
+                                android:layout_height="@dimen/_45sdp"
                                 android:layout_weight="1"
                                 android:background="@drawable/cell_shape"
                                 android:gravity="center"
@@ -661,24 +674,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/divider"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
                 android:textSize="@dimen/_1sdp" />
 
             <TextView
                 android:id="@+id/PlayerInfoCareer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_3sdp"
                 android:gravity="center_horizontal"
                 android:text="INFO"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/_15sdp" />
+                android:textSize="@dimen/_12sdp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ICC"
                 android:background="@color/divider"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
                 android:textSize="@dimen/_1sdp" />
 
             <android.support.v4.widget.NestedScrollView
@@ -703,7 +720,7 @@
                         android:background="@android:color/white"
                         android:textAlignment="textStart"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_13sdp" />
+                        android:textSize="@dimen/_11sdp" />
 
 
                 </RelativeLayout>

@@ -11,9 +11,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHeadFragment;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHead.HeadToHeadFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.InfoFragment;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements.ScoreCardFragment;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardFragment;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
@@ -46,7 +46,11 @@ public class PastMatchScoreCard extends AppCompatActivity {
         viewPager = (ViewPager) viewViewPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
+        viewPager.setOffscreenPageLimit(3);
+
         tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setupWithViewPager(viewPager);
 
 
