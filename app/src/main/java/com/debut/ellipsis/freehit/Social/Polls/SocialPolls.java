@@ -66,9 +66,12 @@ public class SocialPolls extends Fragment {
 
         final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
 
-        mLinearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+        mLinearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
 
         recyclerView.setLayoutManager(mLinearLayoutManager);
+
+        mLinearLayoutManager.setReverseLayout(true);
+        mLinearLayoutManager.setStackFromEnd(true);
 
         View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
@@ -108,7 +111,7 @@ public class SocialPolls extends Fragment {
                     }
                     recyclerView.setVisibility(View.VISIBLE);
                     recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item, getContext()));
-                    if(mLinearLayoutManager.findLastVisibleItemPosition()==polls.size()-1) {
+                    if (mLinearLayoutManager.findLastVisibleItemPosition() == polls.size() - 1) {
                         recyclerViewReadyCallback = new RecyclerViewReadyCallback() {
                             @Override
                             public void onLayoutReady() {
@@ -180,17 +183,17 @@ public class SocialPolls extends Fragment {
                                                            recyclerView.setVisibility(View.VISIBLE);
                                                            recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item, getContext()));
                                                            /*if(mLinearLayoutManager.findLastVisibleItemPosition()>=polls.size()-2) {*/
-                                                               recyclerViewReadyCallback = new RecyclerViewReadyCallback() {
-                                                                   @Override
-                                                                   public void onLayoutReady() {
-                                                                       recyclerView.setOnTouchListener(new View.OnTouchListener() {
-                                                                           @Override
-                                                                           public boolean onTouch(View v, MotionEvent event) {
-                                                                               return false;
-                                                                           }
-                                                                       });
-                                                                   }
-                                                               };
+                                                           recyclerViewReadyCallback = new RecyclerViewReadyCallback() {
+                                                               @Override
+                                                               public void onLayoutReady() {
+                                                                   recyclerView.setOnTouchListener(new View.OnTouchListener() {
+                                                                       @Override
+                                                                       public boolean onTouch(View v, MotionEvent event) {
+                                                                           return false;
+                                                                       }
+                                                                   });
+                                                               }
+                                                           };
                                                            /*}*/
                                                            refLayout.setRefreshing(false);
                                                        }
@@ -213,7 +216,7 @@ public class SocialPolls extends Fragment {
                                                            }
                                                        };
                                                        refLayout.setRefreshing(false);
-                                                       Toast toast=Toast.makeText(getContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
+                                                       Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
                                                        toast.show();
                                                        call.cancel();
                                                    }
@@ -223,7 +226,6 @@ public class SocialPolls extends Fragment {
                                            }
                                        }
         );
-
 
 
         recyclerView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -263,15 +265,13 @@ public class SocialPolls extends Fragment {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 int totalItemCount = recyclerView.getAdapter().getItemCount();
-                if(mLinearLayoutManager.findFirstVisibleItemPosition()==0){
+                if (mLinearLayoutManager.findFirstCompletelyVisibleItemPosition() >= totalItemCount) {
                     fab.hide();
-
                 }
-                /*else if(mLinearLayoutManager.findLastVisibleItemPosition()==totalItemCount-1)
-                {
+                if (mLinearLayoutManager.findLastCompletelyVisibleItemPosition() >= totalItemCount - 2) {
                     fab.hide();
-                }*/
-                else {
+                }                   //Its at bottom ..
+                else if (mLinearLayoutManager.findFirstCompletelyVisibleItemPosition() >= 0 || mLinearLayoutManager.findLastCompletelyVisibleItemPosition() < totalItemCount - 2) {
                     fab.show();
                 }
             }
@@ -283,7 +283,7 @@ public class SocialPolls extends Fragment {
                 int totalItemCount = recyclerView.getAdapter().getItemCount();
                 int firstVisibleItemIndex = mLinearLayoutManager.findFirstVisibleItemPosition();
                 if (firstVisibleItemIndex > 0) {
-                    mLinearLayoutManager.smoothScrollToPosition(recyclerView,null,totalItemCount+1);
+                    mLinearLayoutManager.smoothScrollToPosition(recyclerView, null, 0);
                 }
             }
         });
