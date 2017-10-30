@@ -65,15 +65,37 @@ public class PlayerSearchActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                public void onTextChanged(final CharSequence s, int start, int before, int count) {
                     MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
                     final Call<PlayerCountryItem> playerInfo = MainActivity.apiInterface.doGetPlayerList(s.toString());
                     playerInfo.enqueue(new Callback<PlayerCountryItem>() {
                         @Override
                         public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
                             List<PlayerCountryItem> playerCountryItems = response.body().getResults();
+                            System.out.println(s+"SIZE : "+ playerCountryItems.size());
                             for (int i = 0; i < playerCountryItems.size(); i++) {
                                 recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
+                            }
+
+                            //When not found in player list
+                            if(playerCountryItems.isEmpty())
+                            {
+                                System.out.println("GOING HERE");
+                                Call<PlayerCountryItem> call1 = MainActivity.apiInterface.doGetTeamPlayers(s.toString());
+                                call1.enqueue(new Callback<PlayerCountryItem>() {
+                                    @Override
+                                    public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
+                                        List<PlayerCountryItem> playerCountryItems = response.body().getResults();
+                                        for (int i = 0; i < playerCountryItems.size(); i++) {
+                                            recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<PlayerCountryItem> call, Throwable t) {
+
+                                    }
+                                });
                             }
                         }
 

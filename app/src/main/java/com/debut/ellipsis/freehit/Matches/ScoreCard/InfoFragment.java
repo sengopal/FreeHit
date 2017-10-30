@@ -25,7 +25,7 @@ import retrofit2.Response;
 public class InfoFragment extends Fragment {
 
     private ProgressBar mProgressBar;
-    private String match_id;
+    public static List<ScoreCardItem> scoreCardItems;
 
     public InfoFragment() {
         // Required empty public constructor
@@ -36,7 +36,8 @@ public class InfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              final Bundle savedInstanceState) {
 
-        match_id = getActivity().getIntent().getStringExtra("match_id");
+        String match_id = getActivity().getIntent().getStringExtra("match_id");
+        final String match_name = getActivity().getIntent().getStringExtra("match_name");
         // Inflate the layout for this fragment
         final View rootView = inflater.inflate(R.layout.fragment_matchscorecard_info, container, false);
 
@@ -51,46 +52,52 @@ public class InfoFragment extends Fragment {
             public void onResponse(Call<ScoreCardItem> call, Response<ScoreCardItem> response) {
 
                 mProgressBar.setVisibility(View.GONE);
-                List<ScoreCardItem> scoreCardInfo = response.body().getResults();
+                scoreCardItems = response.body().getResults();
 
                 TextView match_info_team1 = (TextView) rootView.findViewById(R.id.match_info_team1);
-                match_info_team1.setText(scoreCardInfo.get(0).getScorecard().getTeam1().getTeam());
+                match_info_team1.setText(scoreCardItems.get(0).getScorecard().getTeam1().getTeam());
 
                 TextView match_info_team2 = (TextView) rootView.findViewById(R.id.match_info_team2);
-                match_info_team2.setText(scoreCardInfo.get(0).getScorecard().getTeam2().getTeam());
+                match_info_team2.setText(scoreCardItems.get(0).getScorecard().getTeam2().getTeam());
 
                 TextView match = (TextView) rootView.findViewById(R.id.match_info_match_name);
-                match.setText(scoreCardInfo.get(1).getInfo().getMatch());
+                match.setText(match_name);
 
                 TextView series = (TextView) rootView.findViewById(R.id.match_info_series_name);
-                series.setText(scoreCardInfo.get(1).getInfo().getSeries());
+                series.setText(scoreCardItems.get(1).getInfo().getSeries());
 
                 TextView toss = (TextView) rootView.findViewById(R.id.match_info_toss_status);
-                toss.setText(scoreCardInfo.get(1).getInfo().getToss());
+                toss.setText(scoreCardItems.get(1).getInfo().getToss());
 
                 TextView MOTM = (TextView) rootView.findViewById(R.id.match_info_motm_status);
-                MOTM.setText(scoreCardInfo.get(1).getInfo().getMom());
+                MOTM.setText(scoreCardItems.get(1).getInfo().getMom());
+
+                TextView MOTS = (TextView) rootView.findViewById(R.id.match_info_mots_status);
+                MOTS.setText(scoreCardItems.get(1).getInfo().getManofseries());
+
+                TextView result = (TextView) rootView.findViewById(R.id.match_info_result_status);
+                result.setText(scoreCardItems.get(1).getInfo().getResult());
 
                 TextView SeriesStatus = (TextView) rootView.findViewById(R.id.match_info_SeriesStatus_status);
-                SeriesStatus.setText(scoreCardInfo.get(1).getInfo().getStatus());
+                SeriesStatus.setText(scoreCardItems.get(1).getInfo().getStatus());
 
                 TextView date = (TextView) rootView.findViewById(R.id.match_info_date);
-                date.setText(scoreCardInfo.get(1).getInfo().getDay());
+                date.setText(scoreCardItems.get(1).getInfo().getDay());
 
                 TextView time = (TextView) rootView.findViewById(R.id.match_info_time);
-                time.setText(scoreCardInfo.get(1).getInfo().getTime());
+                time.setText(scoreCardItems.get(1).getInfo().getTime());
 
                 TextView stadium = (TextView) rootView.findViewById(R.id.match_info_stadium);
-                stadium.setText(R.string.venue);
+                stadium.setText(scoreCardItems.get(1).getInfo().getStadium());
 
                 TextView umpires = (TextView) rootView.findViewById(R.id.match_info_umpires);
-                umpires.setText(scoreCardInfo.get(1).getInfo().getUmpires());
+                umpires.setText(scoreCardItems.get(1).getInfo().getUmpires());
 
                 TextView ref = (TextView) rootView.findViewById(R.id.match_info_referee);
-                ref.setText(scoreCardInfo.get(1).getInfo().getRef());
+                ref.setText(scoreCardItems.get(1).getInfo().getRef());
 
                 TextView weather = (TextView) rootView.findViewById(R.id.match_info_weather);
-                weather.setText(scoreCardInfo.get(1).getInfo().getWeather());
+                weather.setText(scoreCardItems.get(1).getInfo().getWeather());
 
             }
             @Override

@@ -10,6 +10,8 @@ public class ScoreCardItem {
     private Info info;
     @SerializedName("scorecard")
     private Scorecard scorecard;
+    @SerializedName("h2h")
+    private H2H h2h;
     @SerializedName("result")
     public List<ScoreCardItem> results = new ArrayList<>();
 
@@ -19,6 +21,10 @@ public class ScoreCardItem {
 
     public Scorecard getScorecard() {
         return scorecard;
+    }
+
+    public H2H getH2h() {
+        return h2h;
     }
 
     public List<ScoreCardItem> getResults() {
@@ -33,10 +39,16 @@ public class ScoreCardItem {
         private String match;
         @SerializedName("mom")
         private String mom;
+        @SerializedName("manofseries")
+        private String manofseries;
         @SerializedName("ref")
         private String ref;
+        @SerializedName("result")
+        private String result;
         @SerializedName("series")
         private String series;
+        @SerializedName("stadium")
+        private String stadium;
         @SerializedName("status")
         private String status;
         @SerializedName("time")
@@ -60,12 +72,24 @@ public class ScoreCardItem {
             return mom;
         }
 
+        public String getManofseries() {
+            return manofseries;
+        }
+
         public String getRef() {
             return ref;
         }
 
+        public String getResult() {
+            return result;
+        }
+
         public String getSeries() {
             return series;
+        }
+
+        public String getStadium() {
+            return stadium;
         }
 
         public String getStatus() {
@@ -115,4 +139,101 @@ public class ScoreCardItem {
             return team;
         }
     }
+
+    public class H2H
+    {
+        @SerializedName("status")
+        private Status status;
+        @SerializedName("team1")
+        private TeamH2H team1;
+        @SerializedName("team2")
+        private TeamH2H team2;
+
+        public Status getStatus() {
+            return status;
+        }
+
+        public TeamH2H getTeam1() {
+            return team1;
+        }
+
+        public TeamH2H getTeam2() {
+            return team2;
+        }
+    }
+
+    public class Status
+    {
+        @SerializedName("drawn")
+        private String drawn;
+        @SerializedName("matches")
+        private String matches;
+        @SerializedName("tied")
+        private String tied;
+
+        public String getMatches() {
+            return matches;
+        }
+
+        public String getDrawn() {
+            return drawn;
+        }
+
+        public String getTied() {
+            return tied;
+        }
+    }
+
+    public class TeamH2H
+    {
+        @SerializedName("away")
+        private String away;
+        @SerializedName("chased")
+        private String chased;
+        @SerializedName("defended")
+        private String defended;
+        @SerializedName("highest")
+        private String highest;
+        @SerializedName("home")
+        private String home;
+        @SerializedName("lowest")
+        private String lowest;
+        @SerializedName("matches")
+        private String matches;
+        @SerializedName("team")
+        private String team;
+
+        public String getAway() {
+            return away;
+        }
+
+        public String getChased() {
+            return chased;
+        }
+
+        public String getDefended() {
+            return defended;
+        }
+
+        public String getHighest() {
+            return highest;
+        }
+
+        public String getHome() {
+            return home;
+        }
+
+        public String getLowest() {
+            return lowest;
+        }
+
+        public String getMatches() {
+            return matches;
+        }
+
+        public String getTeam() {
+            return team;
+        }
+    }
+
 }

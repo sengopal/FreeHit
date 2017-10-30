@@ -250,6 +250,67 @@
                         </TableRow>
 
                         <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:background="@color/divider" />
+
+                        <TableRow
+                            android:id="@+id/MOTS"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/white"
+                            android:padding="@dimen/_5sdp">
+
+                            <TextView
+                                android:id="@+id/match_info_mots_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_20sdp"
+                                android:text="@string/mots"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/_12sdp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/match_info_mots_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_20sdp"
+                                android:textColor="@android:color/black"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:textSize="@dimen/_12sdp"
+                                tools:text="Christopher Henry Gayle" />
+                        </TableRow>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:background="@color/divider" />
+
+                        <TableRow
+                            android:id="@+id/result"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/white"
+                            android:padding="@dimen/_5sdp">
+
+                            <TextView
+                                android:id="@+id/match_info_result_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_20sdp"
+                                android:text="@string/result"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/_12sdp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/match_info_result_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_20sdp"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/_12sdp"
+                                tools:text="India beat Sri Lanka by 36 runs" />
+                        </TableRow>
+
+                        <TextView
                             android:id="@+id/seriesStatus_motm_line"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_1sdp"

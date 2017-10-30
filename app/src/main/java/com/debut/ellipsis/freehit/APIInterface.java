@@ -64,6 +64,9 @@ public interface APIInterface {
     @GET("player?")
     Call<PlayerCountryItem> doGetFavTeamPlayers(@Query ("id") String TeamID);
 
+    @GET("player?")
+    Call<PlayerCountryItem> doGetTeamPlayers(@Query("fav") String PlayerName);
+
     @GET("series")
     Call<SeriesItem> doGetSeries();
 

@@ -103,7 +103,9 @@
     <string name="weather">WEATHER : </string>
     <string name="toss">TOSS : </string>
     <string name="motm">MOTM : </string>
+    <string name="mots">MAN OF SERIES : </string>
     <string name="seriesStatus">SERIES STATUS : </string>
+    <string name="result">RESULT : </string>
 
     <!-- For Settings gear Icon -->
     <string name="settings_menu_item">Settings</string>
