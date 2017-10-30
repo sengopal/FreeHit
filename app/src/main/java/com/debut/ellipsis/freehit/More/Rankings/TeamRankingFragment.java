@@ -68,9 +68,10 @@ public class TeamRankingFragment extends Fragment {
         {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
-                String selectedItem = parent.getItemAtPosition(position).toString();
-                if(selectedItem.equals("ODI"))
-                {
+                rv.setAdapter(null);
+                mProgressBar.setVisibility(View.VISIBLE);
+                final String selectedItem = parent.getItemAtPosition(position).toString();
+
                     System.out.println("going here");
                     Call<RankingItem> call = MainActivity.apiInterface.doGetRankingResources();
                     call.enqueue(new Callback<RankingItem>() {
@@ -82,9 +83,12 @@ public class TeamRankingFragment extends Fragment {
                             mProgressBar.setVisibility(View.GONE);
 
                             System.out.println("TEST "+teamList.get(0).getOdi().getTeamList().get(0).getTeam());
-
+                            if(selectedItem.equals("ODI"))
                             rv.setAdapter(new TeamRankingAdapterODI(getContext(), teamList.get(0).getOdi().getTeamList()));
-
+                            else if(selectedItem.equals("T20"))
+                                rv.setAdapter(new TeamRankingAdapterODI(getContext(), teamList.get(0).getT20().getTeamList()));
+                            else if(selectedItem.equals("TEST"))
+                                rv.setAdapter(new TeamRankingAdapterODI(getContext(), teamList.get(0).getTest().getTeamList()));
 
                         }
 
@@ -96,7 +100,7 @@ public class TeamRankingFragment extends Fragment {
                             call.cancel();
                         }
                     });
-                }
+
             } // to close the onItemSelected
             public void onNothingSelected(AdapterView<?> parent)
             {
