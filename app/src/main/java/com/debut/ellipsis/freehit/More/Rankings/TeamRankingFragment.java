@@ -16,9 +16,7 @@ import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class TeamRankingFragment extends Fragment {
 
     private RecyclerView rv;
@@ -34,10 +32,9 @@ public class TeamRankingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView =  inflater.inflate(R.layout.fragment_ranking_team, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_more_ranking_team, container, false);
 
-        View viewRecycler = rootView.findViewById(R.id.team_list);
-        rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
+        rv = (RecyclerView) rootView.findViewById(R.id.recycler_list);
 
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
 
@@ -48,35 +45,34 @@ public class TeamRankingFragment extends Fragment {
 
 
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.format_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.format_array, R.layout.spinner_item_selected);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         team_format.setAdapter(adapter);
-                final List<RankingItem> teamList = ((RankingActivity)getActivity()).getQList();
-                System.out.println("going into on response with size "+teamList.size());
-                System.out.println("TEST "+teamList.get(0).getOdi().getTeamList().get(0).getTeam());
-                rv.setAdapter(new TeamRankingAdapter(getContext(), teamList.get(0).getOdi().getTeamList()));
-                team_format.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-                {
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-                    {
-                        rv.setAdapter(null);
-                        final String selectedItem = parent.getItemAtPosition(position).toString();
-                        System.out.println("going here");
-                if(selectedItem.equals("ODI"))
-                    rv.setAdapter(new TeamRankingAdapter(getContext(), teamList.get(0).getOdi().getTeamList()));
-                else if(selectedItem.equals("T20"))
-                    rv.setAdapter(new TeamRankingAdapter(getContext(), teamList.get(0).getT20().getTeamList()));
-                else if(selectedItem.equals("TEST"))
-                    rv.setAdapter(new TeamRankingAdapter(getContext(), teamList.get(0).getTest().getTeamList()));
-                    } // to close the onItemSelected
-                    public void onNothingSelected(AdapterView<?> parent)
-                    {
+        final List<RankingItem> teamList = ((RankingActivity) getActivity()).getQList();
 
-                    }
-                });
-// GITPUSH
+        rv.setAdapter(new TeamRankingAdapter(getContext(), teamList.get(0).getOdi().getTeamList()));
+        team_format.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                rv.setAdapter(null);
+                final String selectedItem = parent.getItemAtPosition(position).toString();
+
+
+                if (selectedItem.equals("ODI"))
+                    rv.setAdapter(new TeamRankingAdapter(getContext(), teamList.get(0).getOdi().getTeamList()));
+
+                else if (selectedItem.equals("T20"))
+                    rv.setAdapter(new TeamRankingAdapter(getContext(), teamList.get(0).getT20().getTeamList()));
+
+                else if (selectedItem.equals("TEST"))
+                    rv.setAdapter(new TeamRankingAdapter(getContext(), teamList.get(0).getTest().getTeamList()));
+            } // to close the onItemSelected
+
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         return rootView;
     }

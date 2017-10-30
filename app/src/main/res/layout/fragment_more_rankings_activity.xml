@@ -21,4 +21,8 @@
             layout="@layout/common_viewpager" />
 
     </LinearLayout>
+
+    <include
+        android:id="@+id/progress"
+        layout="@layout/common_progressbar" />
 </RelativeLayout>

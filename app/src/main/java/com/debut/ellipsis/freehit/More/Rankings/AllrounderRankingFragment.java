@@ -34,10 +34,9 @@ public class AllrounderRankingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView =  inflater.inflate(R.layout.fragment_ranking_batting, container, false);
+        View rootView =  inflater.inflate(R.layout.fragment_more_ranking_batting, container, false);
 
-        View viewRecycler = rootView.findViewById(R.id.team_list);
-        rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
+        rv = (RecyclerView) rootView.findViewById(R.id.recycler_list);
 
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
 
@@ -47,14 +46,13 @@ public class AllrounderRankingFragment extends Fragment {
         team_format = (Spinner) teamSpinner.findViewById(R.id.spinner);
 
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.format_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.format_array, R.layout.spinner_item_selected);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         team_format.setAdapter(adapter);
                 final List<RankingItem> teamList = ((RankingActivity)getActivity()).getQList();
-                System.out.println("going into on response with size "+teamList.size());
-                System.out.println("TEST "+teamList.get(0).getOdi().getTeamList().get(0).getTeam());
+
                 rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getOdi().getAllRounders()));
                 team_format.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
                 {
@@ -62,7 +60,7 @@ public class AllrounderRankingFragment extends Fragment {
                     {
                         rv.setAdapter(null);
                         final String selectedItem = parent.getItemAtPosition(position).toString();
-                        System.out.println("going here");
+
                         if(selectedItem.equals("ODI"))
                             rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getOdi().getAllRounders()));
                         else if(selectedItem.equals("T20"))

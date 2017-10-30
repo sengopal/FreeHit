@@ -72,7 +72,7 @@ public class TeamRankingAdapter extends RecyclerView.Adapter<TeamRankingAdapter.
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View contactView = inflater.inflate(R.layout.fragment_ranking_team_item, parent, false);
+        View contactView = inflater.inflate(R.layout.fragment_more_ranking_team_item, parent, false);
 
         // Return a new holder instance
         return new ViewHolder(contactView);
@@ -84,16 +84,12 @@ public class TeamRankingAdapter extends RecyclerView.Adapter<TeamRankingAdapter.
     @Override
     public void onBindViewHolder(TeamRankingAdapter.ViewHolder viewHolder, int position) {
         // Get the data model based on position
-        RankingItem.Team TeamItem = mTeamList.get(position);
-
-        System.out.println("Team Name " +TeamItem.getTeam());
+        final RankingItem.Team TeamItem = mTeamList.get(position);
 
         // Set item views based on your views and data model
 
         TextView teamName = viewHolder.teamName;
         teamName.setText(TeamItem.getTeam());
-
-        final String team = TeamItem.getTeam();
 
         TextView rank = viewHolder.teamRank;
         rank.setText(TeamItem.getPos());
@@ -101,7 +97,7 @@ public class TeamRankingAdapter extends RecyclerView.Adapter<TeamRankingAdapter.
         TextView ratings = viewHolder.teamRatings;
         ratings.setText(TeamItem.getRating());
 
-        String team_logo_url = WelcomeActivity.countryHash.getCountryFlag(team.toUpperCase());
+        String team_logo_url = WelcomeActivity.countryHash.getCountryFlag(TeamItem.getTeam().toUpperCase());
 
         ImageView imageViewTeamLogo = viewHolder.teamFlag;
 
@@ -119,7 +115,7 @@ public class TeamRankingAdapter extends RecyclerView.Adapter<TeamRankingAdapter.
             public void onClick(View view) {
 
                 Intent teamIntent = new Intent(mContext, TeamActivity.class);
-                teamIntent.putExtra("fav_country", team);
+                teamIntent.putExtra("fav_country", TeamItem.getTeam());
 
                 teamIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext.startActivity(teamIntent);

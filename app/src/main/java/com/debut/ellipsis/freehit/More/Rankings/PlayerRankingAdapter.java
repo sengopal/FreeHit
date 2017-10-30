@@ -65,7 +65,7 @@ public class PlayerRankingAdapter extends RecyclerView.Adapter<PlayerRankingAdap
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View contactView = inflater.inflate(R.layout.fragment_ranking_batting_item, parent, false);
+        View contactView = inflater.inflate(R.layout.fragment_more_ranking_batting_item, parent, false);
 
         // Return a new holder instance
         return new ViewHolder(contactView);
@@ -83,28 +83,16 @@ public class PlayerRankingAdapter extends RecyclerView.Adapter<PlayerRankingAdap
         TextView teamName = viewHolder.playerName;
         teamName.setText(PlayerItem.getName() + " (" + PlayerItem.getCountry() + ')');
 
-        final String team = PlayerItem.getCountry();
-
         TextView rank = viewHolder.playerRank;
         rank.setText(PlayerItem.getPos());
 
         TextView ratings = viewHolder.playerRatings;
         ratings.setText(PlayerItem.getRating());
 
-//        String team_logo_url = WelcomeActivity.countryHash.getCountryFlag(team.toUpperCase());
-
-//        ImageView imageViewTeamLogo = viewHolder.teamFlag;
-//
-//        MainActivity.requestBuilder = GlideApp.with(mContext).load(team_logo_url).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
-//
-//        MainActivity.requestBuilder.into(imageViewTeamLogo);
-
         RelativeLayout RLContainer = viewHolder.rlcontainer;
 
         View.OnClickListener mClickListener;
 
-// GITPUSH
-// GITPUSH
 
         mClickListener = new View.OnClickListener() {
             @Override

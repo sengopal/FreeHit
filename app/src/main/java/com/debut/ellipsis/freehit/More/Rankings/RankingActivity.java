@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
@@ -27,6 +29,7 @@ public class RankingActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private ProgressBar mProgressBar;
     public List<RankingItem> QueryList;
 
     @Override
@@ -40,6 +43,12 @@ public class RankingActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        setTitle(R.string.rankings);
+
+        View viewProgress = findViewById(R.id.progress);
+
+        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
+
         View viewRankingPager = (View) findViewById(R.id.ranking_viewpager);
 
         viewPager = (ViewPager) viewRankingPager.findViewById(R.id.viewpager);
@@ -47,6 +56,7 @@ public class RankingActivity extends AppCompatActivity {
         call.enqueue(new Callback<RankingItem>() {
             @Override
             public void onResponse(Call<RankingItem> call, Response<RankingItem> response) {
+                mProgressBar.setVisibility(View.INVISIBLE);
                 QueryList = response.body().getResults();
                 viewPager.setOffscreenPageLimit(3);
                 setupViewPager(viewPager);
@@ -54,6 +64,8 @@ public class RankingActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<RankingItem> call, Throwable t) {
+                mProgressBar.setVisibility(View.GONE);
+                Toast.makeText(getBaseContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
 
             }
         });

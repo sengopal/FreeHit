@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
         android:layout_below="@id/team_format_select"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:paddingTop="@dimen/_8sdp"
         android:background="@color/bg_screen1"
         android:orientation="horizontal">
 
@@ -24,22 +24,20 @@
             android:id="@+id/rank"
             android:layout_width="@dimen/_33sdp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="@dimen/_18sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:text="RANK"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:text="@string/rank"
             android:textAlignment="viewStart"
+            android:layout_weight="0.1"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_12sdp" />
 
         <TextView
             android:id="@+id/team"
-            android:layout_width="@dimen/_135sdp"
+            android:layout_width="@dimen/_110sdp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:layout_marginStart="@dimen/_35sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:text="PLAYER NAME"
+            android:layout_marginStart="@dimen/_55sdp"
+            android:text="@string/team"
+            android:layout_weight="2.0"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_12sdp" />
 
@@ -47,10 +45,9 @@
             android:id="@+id/ratings"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:layout_marginStart="@dimen/_35sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:text="POINTS"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:text="@string/points"
+            android:layout_weight="1"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_12sdp" />
 
@@ -62,9 +59,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/parent_layout">
 
-        <include
-            android:id="@+id/team_list"
-            layout="@layout/common_recycler_view_list" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_list"
+            android:paddingStart="@dimen/_5sdp"
+            android:paddingEnd="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:paddingTop="@dimen/_1sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 
