@@ -50,12 +50,12 @@ public class TeamRankingAdapterODI extends RecyclerView.Adapter<TeamRankingAdapt
     }
 
     // Store a member variable for the contacts
-    private List<RankingItem> mTeamList;
+    private List<RankingItem.Team> mTeamList;
     // Store the context for easy access
     private Context mContext;
 
     // Pass in the contact array into the constructor
-    public TeamRankingAdapterODI(Context context, List<RankingItem> TeamList) {
+    public TeamRankingAdapterODI(Context context, List<RankingItem.Team> TeamList) {
         mTeamList = TeamList;
         mContext = context;
     }
@@ -82,24 +82,24 @@ public class TeamRankingAdapterODI extends RecyclerView.Adapter<TeamRankingAdapt
     @Override
     public void onBindViewHolder(TeamRankingAdapterODI.ViewHolder viewHolder, int position) {
         // Get the data model based on position
-        RankingItem TeamItem = mTeamList.get(0);
+        RankingItem.Team TeamItem = mTeamList.get(position);
 
-        System.out.println("Team Name " +TeamItem.getOdi().getTeamList().get(3).getTeam());
+        System.out.println("Team Name " +TeamItem.getTeam());
 
         // Set item views based on your views and data model
 
         TextView teamName = viewHolder.teamName;
-        teamName.setText(TeamItem.getOdi().getTeamList().get(position).getTeam());
+        teamName.setText(TeamItem.getTeam());
 
-        final String team = TeamItem.getOdi().getTeamList().get(position).getTeam();
+        final String team = TeamItem.getTeam();
 
         TextView rank = viewHolder.teamRank;
-        rank.setText(TeamItem.getOdi().getTeamList().get(position).getPos());
+        rank.setText(TeamItem.getPos());
 
         TextView ratings = viewHolder.teamRatings;
-        ratings.setText(TeamItem.getOdi().getTeamList().get(position).getRating());
+        ratings.setText(TeamItem.getRating());
 
-        String team_logo_url = WelcomeActivity.countryHash.getCountryFlag(TeamItem.getOdi().getTeamList().get(position).getTeam().toUpperCase());
+        String team_logo_url = WelcomeActivity.countryHash.getCountryFlag(team.toUpperCase());
 
         ImageView imageViewTeamLogo = viewHolder.teamFlag;
 

@@ -83,7 +83,7 @@ public class TeamRankingFragment extends Fragment {
 
                             System.out.println("TEST "+teamList.get(0).getOdi().getTeamList().get(0).getTeam());
 
-                            rv.setAdapter(new TeamRankingAdapterODI(getContext(), teamList));
+                            rv.setAdapter(new TeamRankingAdapterODI(getContext(), teamList.get(0).getOdi().getTeamList()));
 
 
                         }
