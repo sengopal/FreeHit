@@ -17,6 +17,7 @@
         android:layout_height="@dimen/_35sdp"
         android:layout_below="@id/team_format_select"
         android:layout_marginTop="@dimen/_10sdp"
+        android:background="@color/bg_screen1"
         android:orientation="horizontal">
 
         <TextView

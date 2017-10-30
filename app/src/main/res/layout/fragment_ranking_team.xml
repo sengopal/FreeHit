@@ -16,18 +16,18 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
         android:layout_below="@id/team_format_select"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:paddingTop="@dimen/_8sdp"
+        android:background="@color/bg_screen1"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/rank"
             android:layout_width="@dimen/_33sdp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="@dimen/_18sdp"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_10sdp"
             android:text="RANK"
             android:textAlignment="viewStart"
+            android:layout_weight="0.1"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_12sdp" />
 
@@ -35,10 +35,9 @@
             android:id="@+id/team"
             android:layout_width="@dimen/_110sdp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_8sdp"
             android:layout_marginStart="@dimen/_55sdp"
-            android:layout_marginTop="@dimen/_8sdp"
             android:text="TEAM"
+            android:layout_weight="2.0"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_12sdp" />
 
@@ -46,10 +45,9 @@
             android:id="@+id/ratings"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:layout_marginStart="@dimen/_35sdp"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_2sdp"
             android:text="RATINGS"
+            android:layout_weight="1"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_12sdp" />
 
