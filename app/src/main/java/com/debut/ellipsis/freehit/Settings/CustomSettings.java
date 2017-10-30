@@ -26,7 +26,6 @@ import static com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity.MY_PREFS_NAM
 
 public class CustomSettings extends AppCompatActivity {
 
-    public ImageView NoConnectionImage;
     public Button NoConnectionButton;
 
     @Override
@@ -81,10 +80,7 @@ public class CustomSettings extends AppCompatActivity {
             NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
                 public void onClick(View v) {
-                    /*Intent i = getIntent();
-                    i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-                    i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    startActivity(i);*/
+
                     finish();
                     startActivity(getIntent());
                     overridePendingTransition( 0, 0);

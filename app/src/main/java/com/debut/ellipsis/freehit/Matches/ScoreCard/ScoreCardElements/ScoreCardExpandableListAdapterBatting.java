@@ -24,7 +24,7 @@ public class ScoreCardExpandableListAdapterBatting extends BaseExpandableListAda
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        ArrayList<ScoreCardItemBatting> chList = new ArrayList<>(10);
+        ArrayList<ScoreCardItemBatting> chList = groups.get(groupPosition).getItems();
         return chList.get(childPosition);
     }
 

@@ -33,7 +33,7 @@
                 android:paddingStart="@dimen/_3sdp"
                 android:gravity="center_vertical"
                 android:text="@string/app_label"
-                android:textColor="@color/white"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/_18sdp" />
 
         </android.support.v7.widget.Toolbar>

@@ -53,6 +53,8 @@ public class TeamActivity extends AppCompatActivity {
         ViewPager viewPager = (ViewPager) viewTeamPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
+        viewPager.setOffscreenPageLimit(3);
+
         TabLayout tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.setupWithViewPager(viewPager);

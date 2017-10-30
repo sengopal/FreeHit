@@ -18,7 +18,7 @@
             android:layout_height="@dimen/_15sdp"
             android:textSize="@dimen/_13sdp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@android:color/black"
             tools:text="SL"/>
 
         <ImageView

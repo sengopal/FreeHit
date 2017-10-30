@@ -9,8 +9,10 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -27,9 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class SocialPolls extends Fragment {
 
     private ProgressBar mProgressBar;
@@ -38,6 +38,11 @@ public class SocialPolls extends Fragment {
     public Button NoConnectionButton;
     private FloatingActionButton fab;
     private LinearLayoutManager mLinearLayoutManager;
+    private RecyclerViewReadyCallback recyclerViewReadyCallback;
+
+    public interface RecyclerViewReadyCallback {
+        void onLayoutReady();
+    }
 
     public SocialPolls() {
         // Required empty public constructor
@@ -59,9 +64,10 @@ public class SocialPolls extends Fragment {
         fab.setImageResource(R.drawable.arrow_down);
         fab.setVisibility(View.INVISIBLE);
 
-        mLinearLayoutManager = new LinearLayoutManager(getActivity());
-
         final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
+
+        mLinearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+
         recyclerView.setLayoutManager(mLinearLayoutManager);
 
         View viewProgress = rootView.findViewById(R.id.progress);
@@ -78,30 +84,22 @@ public class SocialPolls extends Fragment {
 
         NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
-
+        refLayout.setEnabled(false);
         final Call<PollCardItem> call = MainActivity.apiInterface.doGetPollsListResources();
         call.enqueue(new Callback<PollCardItem>() {
             @Override
             public void onResponse(Call<PollCardItem> call, Response<PollCardItem> response) {
                 mProgressBar.setVisibility(View.INVISIBLE);
-
-                List<PollCardItem> polls = response.body().getResults();
-
                 if (getActivity() != null) {
 
+                    List<PollCardItem> polls = response.body().getResults();
                     if (polls.size() == 0) {
 
                         No_polls.setVisibility(View.VISIBLE);
                         NoPollsText.setText(R.string.EmptyPolls);
-                        NoPollsText.setTextSize(getResources().getDimensionPixelSize(R.dimen._7sdp));
                         NoPollsButton.setOnClickListener(new View.OnClickListener() {
 
                             public void onClick(View v) {
-                                /*Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
-                                i.putExtra("Main_tab",2);
-                                i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-                                i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                startActivity(i);*/
                                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                                 ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
                             }
@@ -110,6 +108,19 @@ public class SocialPolls extends Fragment {
                     }
                     recyclerView.setVisibility(View.VISIBLE);
                     recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item, getContext()));
+                    if(mLinearLayoutManager.findLastVisibleItemPosition()==polls.size()-1) {
+                        recyclerViewReadyCallback = new RecyclerViewReadyCallback() {
+                            @Override
+                            public void onLayoutReady() {
+                                recyclerView.setOnTouchListener(new View.OnTouchListener() {
+                                    @Override
+                                    public boolean onTouch(View v, MotionEvent event) {
+                                        return false;
+                                    }
+                                });
+                            }
+                        };
+                    }
                 }
 
             }
@@ -122,11 +133,6 @@ public class SocialPolls extends Fragment {
                 NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
                     public void onClick(View v) {
-                        /*Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
-                        i.putExtra("Main_tab",2);
-                        i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-                        i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(i);*/
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
                         ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
 
@@ -139,16 +145,22 @@ public class SocialPolls extends Fragment {
         refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                                            @Override
                                            public void onRefresh() {
-                                               // Checking if connected or not on refresh
+                                               recyclerView.setOnTouchListener(new View.OnTouchListener() {
+                                                   @Override
+                                                   public boolean onTouch(View v, MotionEvent event) {
+                                                       return true;
+                                                   }
+                                               });
                                                refLayout.setRefreshing(true);
-
                                                Call<PollCardItem> call = MainActivity.apiInterface.doGetPollsListResources();
                                                call.enqueue(new Callback<PollCardItem>() {
                                                    @Override
                                                    public void onResponse(Call<PollCardItem> call, Response<PollCardItem> response) {
+
                                                        mProgressBar.setVisibility(View.INVISIBLE);
                                                        no_internet_connection.setVisibility(View.INVISIBLE);
                                                        No_polls.setVisibility(View.INVISIBLE);
+                                                       fab.hide();
                                                        if (getActivity() != null) {
 
                                                            List<PollCardItem> polls = response.body().getResults();
@@ -159,51 +171,108 @@ public class SocialPolls extends Fragment {
                                                                NoPollsButton.setOnClickListener(new View.OnClickListener() {
 
                                                                    public void onClick(View v) {
-                                                                      /* Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
-                                                                       i.putExtra("Main_tab",2);
-                                                                       i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-                                                                       i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                                                       startActivity(i);*/
                                                                        FragmentTransaction ft = getFragmentManager().beginTransaction();
                                                                        ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
                                                                    }
                                                                });
+
                                                            }
                                                            recyclerView.setVisibility(View.VISIBLE);
                                                            recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item, getContext()));
+                                                           /*if(mLinearLayoutManager.findLastVisibleItemPosition()>=polls.size()-2) {*/
+                                                               recyclerViewReadyCallback = new RecyclerViewReadyCallback() {
+                                                                   @Override
+                                                                   public void onLayoutReady() {
+                                                                       recyclerView.setOnTouchListener(new View.OnTouchListener() {
+                                                                           @Override
+                                                                           public boolean onTouch(View v, MotionEvent event) {
+                                                                               return false;
+                                                                           }
+                                                                       });
+                                                                   }
+                                                               };
+                                                           /*}*/
+                                                           refLayout.setRefreshing(false);
                                                        }
                                                    }
 
                                                    @Override
                                                    public void onFailure(Call<PollCardItem> call, Throwable t) {
+
                                                        mProgressBar.setVisibility(View.INVISIBLE);
                                                        mProgressBar.setVisibility(View.INVISIBLE);
-                                                       Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                                                       recyclerViewReadyCallback = new RecyclerViewReadyCallback() {
+                                                           @Override
+                                                           public void onLayoutReady() {
+                                                               recyclerView.setOnTouchListener(new View.OnTouchListener() {
+                                                                   @Override
+                                                                   public boolean onTouch(View v, MotionEvent event) {
+                                                                       return false;
+                                                                   }
+                                                               });
+                                                           }
+                                                       };
+                                                       refLayout.setRefreshing(false);
+                                                       Toast toast=Toast.makeText(getContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
                                                        toast.show();
                                                        call.cancel();
                                                    }
                                                });
-                                               refLayout.setRefreshing(false);
+
+
                                            }
-
-
                                        }
         );
+
+
+
+        recyclerView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                if (recyclerViewReadyCallback != null) {
+                    recyclerViewReadyCallback.onLayoutReady();
+                }
+                recyclerViewReadyCallback = null;
+            }
+        });
+
+        recyclerViewReadyCallback = new RecyclerViewReadyCallback() {
+            @Override
+            public void onLayoutReady() {
+                //
+                //here comes your code that will be executed after all items has are laid down
+                //
+                refLayout.setEnabled(true);
+                recyclerView.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        return false;
+                    }
+                });
+            }
+        };
+
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
+
             }
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-
-                if (dy < 0) {
-                    fab.show();
-
-                } else if (dy > 0) {
+                int totalItemCount = recyclerView.getAdapter().getItemCount();
+                if(mLinearLayoutManager.findFirstVisibleItemPosition()==0){
                     fab.hide();
+
+                }
+                /*else if(mLinearLayoutManager.findLastVisibleItemPosition()==totalItemCount-1)
+                {
+                    fab.hide();
+                }*/
+                else {
+                    fab.show();
                 }
             }
         });
@@ -212,11 +281,10 @@ public class SocialPolls extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 int totalItemCount = recyclerView.getAdapter().getItemCount();
-                if (totalItemCount <= 0) return;
-                int lastVisibleItemIndex = mLinearLayoutManager.findLastVisibleItemPosition();
-
-                if (lastVisibleItemIndex >= totalItemCount) return;
-                mLinearLayoutManager.smoothScrollToPosition(recyclerView, null, totalItemCount + 1);
+                int firstVisibleItemIndex = mLinearLayoutManager.findFirstVisibleItemPosition();
+                if (firstVisibleItemIndex > 0) {
+                    mLinearLayoutManager.smoothScrollToPosition(recyclerView,null,totalItemCount+1);
+                }
             }
         });
 

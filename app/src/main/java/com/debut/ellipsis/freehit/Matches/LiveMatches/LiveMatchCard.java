@@ -1,7 +1,6 @@
 package com.debut.ellipsis.freehit.Matches.LiveMatches;
 
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,13 +28,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
 public class LiveMatchCard extends Fragment {
 
     private ProgressBar mProgressBar;
     public PageIndicatorView indicator;
     private LiveMatchCardAdapter mAdapter;
     public ViewPager vp;
-    public ImageView NoConnectionImage;
     public Button NoConnectionButton;
     public TextView NoLiveMatchesText;
     public Button NoLiveMatchesButton;
@@ -47,8 +45,8 @@ public class LiveMatchCard extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
+                             final Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_matches_common_pager, container, false);
 
 
@@ -78,16 +76,16 @@ public class LiveMatchCard extends Fragment {
         NoLiveMatchesText = (TextView) No_live_matches.findViewById(R.id.empty_view);
         NoLiveMatchesButton = (Button) No_live_matches.findViewById(R.id.No_Live_Matches_button);
 
+
         Call<LiveMatchCardItem> call = MainActivity.apiInterface.doGetLiveMatchResources();
         call.enqueue(new Callback<LiveMatchCardItem>() {
             @Override
             public void onResponse(Call<LiveMatchCardItem> call, Response<LiveMatchCardItem> response) {
 
-                mProgressBar.setVisibility(View.GONE);
 
                 common_match_cards.setVisibility(View.VISIBLE);
                 no_internet_connection.setVisibility(View.INVISIBLE);
-
+                mProgressBar.setVisibility(View.INVISIBLE);
                 indicator.setVisibility(View.VISIBLE);
 
                 indicator.setViewPager(vp);
@@ -101,10 +99,7 @@ public class LiveMatchCard extends Fragment {
                         NoLiveMatchesButton.setOnClickListener(new View.OnClickListener() {
 
                             public void onClick(View v) {
-                                /*Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
-                                i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-                                i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                startActivity(i);*/
+
                                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                                 ft.detach(LiveMatchCard.this).attach(LiveMatchCard.this).commit();
                             }
@@ -121,16 +116,13 @@ public class LiveMatchCard extends Fragment {
 
             @Override
             public void onFailure(Call<LiveMatchCardItem> call, Throwable t) {
-                mProgressBar.setVisibility(View.GONE);
+                mProgressBar.setVisibility(View.INVISIBLE);
                 no_internet_connection.setVisibility(View.VISIBLE);
                 common_match_cards.setVisibility(View.INVISIBLE);
                 NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
                     public void onClick(View v) {
-                       /* Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
-                        i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-                        i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(i);*/
+
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
                         ft.detach(LiveMatchCard.this).attach(LiveMatchCard.this).commit();
 
@@ -139,9 +131,6 @@ public class LiveMatchCard extends Fragment {
                 call.cancel();
             }
         });
-
-
-
 
         refreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
             @Override
@@ -153,7 +142,7 @@ public class LiveMatchCard extends Fragment {
                     @Override
                     public void onResponse(Call<LiveMatchCardItem> call, Response<LiveMatchCardItem> response) {
 
-                        mProgressBar.setVisibility(View.GONE);
+                        mProgressBar.setVisibility(View.INVISIBLE);
 
                         common_match_cards.setVisibility(View.VISIBLE);
                         no_internet_connection.setVisibility(View.INVISIBLE);
@@ -170,10 +159,8 @@ public class LiveMatchCard extends Fragment {
                                 NoLiveMatchesButton.setOnClickListener(new View.OnClickListener() {
 
                                     public void onClick(View v) {
-                                        Intent i = new Intent(getContext(), MainActivity.class);
-                                        i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-                                        i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                        startActivity(i);
+                                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                        ft.detach(LiveMatchCard.this).attach(LiveMatchCard.this).commit();
                                     }
                                 });
                             }
@@ -213,5 +200,14 @@ public class LiveMatchCard extends Fragment {
         indicator.setAnimationDuration(500);
 
     }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+        }
+    }
+
 
 }

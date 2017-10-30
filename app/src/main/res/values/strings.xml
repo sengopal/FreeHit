@@ -90,18 +90,22 @@
 
 
     <!-- For Information fragment of match ScoreCard -->
-    <string name="info">Match Info : </string>
-    <string name="match">Match : </string>
-    <string name="series">Series : </string>
-    <string name="date">Date : </string>
-    <string name="lastTime">Time : </string>
-    <string name="venue">Stadium : </string>
-    <string name="umpires">Umpires:</string>
-    <string name="third_umpires">3rd Umpires : </string>
-    <string name="referee">Referee : </string>
-    <string name="PlayingX1">Playing XI : </string>
-    <string name="weather">Weather : </string>
-    <string name="toss">Toss : </string>
+    <string name="info">MATCH Info : </string>
+    <string name="match">MATCH : </string>
+    <string name="series">SERIES : </string>
+    <string name="date">DATE : </string>
+    <string name="lastTime">TIME : </string>
+    <string name="venue">STADIUM : </string>
+    <string name="umpires">UMPIRES : </string>
+    <string name="third_umpires">3rd UMPIRES : </string>
+    <string name="referee">REFEREE : </string>
+    <string name="PlayingX1">PLAYING XI : </string>
+    <string name="weather">WEATHER : </string>
+    <string name="toss">TOSS : </string>
+    <string name="motm">MOTM : </string>
+    <string name="mots">MAN OF SERIES : </string>
+    <string name="seriesStatus">SERIES STATUS : </string>
+    <string name="result">RESULT : </string>
 
     <!-- For Settings gear Icon -->
     <string name="settings_menu_item">Settings</string>

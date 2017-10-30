@@ -48,6 +48,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/background"
             android:orientation="vertical"
             android:paddingBottom="@dimen/_15sdp"
             android:paddingLeft="@dimen/_15sdp"
@@ -80,6 +81,7 @@
                     android:id="@+id/news_tag_image"
                     android:layout_width="@dimen/_8sdp"
                     android:layout_height="@dimen/_13sdp"
+                    android:layout_marginTop="@dimen/_1sdp"
                     android:src="@drawable/tag"
                     android:visibility="invisible" />
 
@@ -97,6 +99,7 @@
                     android:layout_width="@dimen/_8sdp"
                     android:layout_height="@dimen/_13sdp"
                     android:layout_below="@+id/news_tag_image"
+                    android:layout_marginTop="@dimen/_1sdp"
                     android:src="@drawable/tag"
                     android:visibility="invisible" />
 
@@ -115,6 +118,7 @@
                     android:layout_width="@dimen/_8sdp"
                     android:layout_height="@dimen/_13sdp"
                     android:layout_below="@+id/news_tag_image_1"
+                    android:layout_marginTop="@dimen/_1sdp"
                     android:src="@drawable/tag"
                     android:visibility="invisible" />
 

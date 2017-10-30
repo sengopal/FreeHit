@@ -45,6 +45,7 @@ public class NewsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View rootView = inflater.inflate(R.layout.fragment_news_list, container, false);
 
         MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
@@ -59,7 +60,6 @@ public class NewsFragment extends Fragment {
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
 
         final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
-        recyclerView.setBackgroundColor(getResources().getColor(R.color.grey_200));
         recyclerView.setLayoutManager(mLinearLayoutManager);
 
         View viewProgress = rootView.findViewById(R.id.progress);
@@ -91,11 +91,7 @@ public class NewsFragment extends Fragment {
                         NoNewsButton.setOnClickListener(new View.OnClickListener() {
 
                             public void onClick(View v) {
-                                /*Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
-                                i.putExtra("Main_tab", 1);
-                                i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-                                i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                startActivity(i);*/
+
                                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                                 ft.detach(NewsFragment.this).attach(NewsFragment.this).commit();
                             }
@@ -115,11 +111,7 @@ public class NewsFragment extends Fragment {
                 NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
                     public void onClick(View v) {
-                        /*Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
-                        i.putExtra("Main_tab", 1);
-                        i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-                        i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(i);*/
+
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
                         ft.detach(NewsFragment.this).attach(NewsFragment.this).commit();
 
@@ -136,7 +128,7 @@ public class NewsFragment extends Fragment {
                                            public void onRefresh() {
                                                // Checking if connected or not on refresh
                                                refLayout.setRefreshing(true);
-
+                                                fab.hide();
                                                Call<NewsItem> call = MainActivity.apiInterface.doGetNewsListResources();
                                                call.enqueue(new Callback<NewsItem>() {
                                                    @Override
@@ -144,6 +136,7 @@ public class NewsFragment extends Fragment {
                                                        mProgressBar.setVisibility(View.INVISIBLE);
                                                        no_internet_connection.setVisibility(View.INVISIBLE);
                                                        No_news.setVisibility(View.INVISIBLE);
+                                                       fab.show();
                                                        if (getActivity() != null) {
                                                            List<NewsItem> NewsListItem = response.body().getResults();
                                                            if (NewsListItem.size() == 0) {
@@ -153,11 +146,7 @@ public class NewsFragment extends Fragment {
                                                                NoNewsButton.setOnClickListener(new View.OnClickListener() {
 
                                                                    public void onClick(View v) {
-                                                                       /*Intent i = new Intent(getContext(), MainActivity.class);//which is your mainActivity-Launcher
-                                                                       i.putExtra("Main_tab", 1);
-                                                                       i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-                                                                       i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                                                       startActivity(i);*/
+
                                                                        FragmentTransaction ft = getFragmentManager().beginTransaction();
                                                                        ft.detach(NewsFragment.this).attach(NewsFragment.this).commit();
                                                                    }
@@ -171,9 +160,11 @@ public class NewsFragment extends Fragment {
                                                    @Override
                                                    public void onFailure(Call<NewsItem> call, Throwable t) {
                                                        mProgressBar.setVisibility(View.INVISIBLE);
+                                                       fab.hide();
                                                        Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
                                                        toast.show();
                                                        call.cancel();
+
 
                                                    }
                                                });
@@ -193,7 +184,7 @@ public class NewsFragment extends Fragment {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
 
-                if(mLinearLayoutManager.findFirstCompletelyVisibleItemPosition()==0){
+                if(mLinearLayoutManager.findFirstVisibleItemPosition()==0){
                     fab.hide();
 
                 } else {

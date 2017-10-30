@@ -45,6 +45,8 @@ public class PlayerActivity extends AppCompatActivity {
         ViewPager viewPager = (ViewPager) viewPlayerViewPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
+        viewPager.setOffscreenPageLimit(3);
+
         TabLayout tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);

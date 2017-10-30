@@ -35,7 +35,7 @@ public class Team2ScoreCardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Intent i = getActivity().getIntent();
-        Toast.makeText(this.getActivity(), i.getStringExtra("match_id"), Toast.LENGTH_SHORT).show();
+        /*Toast.makeText(this.getActivity(), i.getStringExtra("match_id"), Toast.LENGTH_SHORT).show();*/
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_matchscorecard_scorecard, container, false);
 

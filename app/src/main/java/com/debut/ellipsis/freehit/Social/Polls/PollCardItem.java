@@ -27,7 +27,7 @@ public class PollCardItem {
     public String voteid;
 
     @SerializedName("result")
-    public List<PollCardItem> result = new ArrayList<>(5);
+    public List<PollCardItem> result = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -55,8 +55,10 @@ public class PollCardItem {
 
     public int getTotalVotes() {
         int sum = 0;
-        for (int i = 0; i < cvotes.size(); i++) {
-            sum += cvotes.get(i);
+        if (cvotes.size() != -1 || cvotes.size()!=0 || !cvotes.isEmpty()) {
+            for (int i = 0; i < cvotes.size(); i++) {
+                sum += cvotes.get(i);
+            }
         }
         return sum;
     }
