@@ -63,10 +63,6 @@
             android:id="@+id/team_list"
             layout="@layout/common_recycler_view_list" />
 
-        <include
-            android:id="@id/progress"
-            layout="@layout/common_progressbar" />
-
     </RelativeLayout>
 
 </RelativeLayout>
