@@ -103,6 +103,8 @@ public class PlayerRankingAdapter extends RecyclerView.Adapter<PlayerRankingAdap
 
         View.OnClickListener mClickListener;
 
+// GITPUSH
+// GITPUSH
 
         mClickListener = new View.OnClickListener() {
             @Override

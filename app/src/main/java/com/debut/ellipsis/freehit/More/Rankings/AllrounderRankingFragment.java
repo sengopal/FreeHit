@@ -10,18 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +22,6 @@ import retrofit2.Response;
 public class AllrounderRankingFragment extends Fragment {
 
     private RecyclerView rv;
-    private ProgressBar mProgressBar;
     private Spinner team_format;
     private LinearLayoutManager mLinearLayoutManager;
 
@@ -54,24 +46,14 @@ public class AllrounderRankingFragment extends Fragment {
         View teamSpinner = rootView.findViewById(R.id.team_format_select);
         team_format = (Spinner) teamSpinner.findViewById(R.id.spinner);
 
-        View viewProgress = rootView.findViewById(R.id.progress);
-        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
-
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.format_array, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         team_format.setAdapter(adapter);
-
-        Call<RankingItem> call = MainActivity.apiInterface.doGetRankingResources();
-        call.enqueue(new Callback<RankingItem>() {
-            @Override
-            public void onResponse(Call<RankingItem> call, Response<RankingItem> response) {
-
-                final List<RankingItem> teamList = response.body().getResults();
+                final List<RankingItem> teamList = ((RankingActivity)getActivity()).getQList();
                 System.out.println("going into on response with size "+teamList.size());
-                mProgressBar.setVisibility(View.GONE);
                 System.out.println("TEST "+teamList.get(0).getOdi().getTeamList().get(0).getTeam());
                 rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getOdi().getAllRounders()));
                 team_format.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
@@ -92,19 +74,10 @@ public class AllrounderRankingFragment extends Fragment {
                     {
 
                     }
-                });
-            }
 
-            @Override
-            public void onFailure(Call<RankingItem> call, Throwable t) {
-                mProgressBar.setVisibility(View.INVISIBLE);
-                Toast toast=Toast.makeText(getContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
-                toast.show();
-                call.cancel();
-            }
         });
 
-
+// GITPUSH
         return rootView;
     }
 

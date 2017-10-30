@@ -63,6 +63,8 @@ public class BattingRankingFragment extends Fragment {
                     {
                         rv.setAdapter(null);
                         final String selectedItem = parent.getItemAtPosition(position).toString();
+                        // GITPUSH
+// GITPUSH
                         System.out.println("going here");
                         if(selectedItem.equals("ODI"))
                             rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getOdi().getBattingList()));

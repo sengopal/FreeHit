@@ -77,6 +77,8 @@ public class TeamRankingAdapter extends RecyclerView.Adapter<TeamRankingAdapter.
         // Return a new holder instance
         return new ViewHolder(contactView);
     }
+// GITPUSH
+// GITPUSH
 
     // Involves populating data into the item through holder
     @Override

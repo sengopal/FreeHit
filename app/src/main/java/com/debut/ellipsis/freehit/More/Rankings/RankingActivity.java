@@ -117,7 +117,9 @@ public class RankingActivity extends AppCompatActivity {
             mFragmentTitleList.add(title);
         }
 
-        @Override
+        @Override// GITPUSH
+// GITPUSH
+
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
