@@ -64,49 +64,46 @@ public class TeamRankingFragment extends Fragment {
         // Apply the adapter to the spinner
         team_format.setAdapter(adapter);
 
-        team_format.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-            {
-                rv.setAdapter(null);
-                mProgressBar.setVisibility(View.VISIBLE);
-                final String selectedItem = parent.getItemAtPosition(position).toString();
+        Call<RankingItem> call = MainActivity.apiInterface.doGetRankingResources();
+        call.enqueue(new Callback<RankingItem>() {
+            @Override
+            public void onResponse(Call<RankingItem> call, Response<RankingItem> response) {
 
-                    System.out.println("going here");
-                    Call<RankingItem> call = MainActivity.apiInterface.doGetRankingResources();
-                    call.enqueue(new Callback<RankingItem>() {
-                        @Override
-                        public void onResponse(Call<RankingItem> call, Response<RankingItem> response) {
+                final List<RankingItem> teamList = response.body().getResults();
+                System.out.println("going into on response with size "+teamList.size());
+                mProgressBar.setVisibility(View.GONE);
+                System.out.println("TEST "+teamList.get(0).getOdi().getTeamList().get(0).getTeam());
+                rv.setAdapter(new TeamRankingAdapterODI(getContext(), teamList.get(0).getOdi().getTeamList()));
+                team_format.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+                {
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+                    {
+                        rv.setAdapter(null);
+                        final String selectedItem = parent.getItemAtPosition(position).toString();
+                        System.out.println("going here");
+                if(selectedItem.equals("ODI"))
+                    rv.setAdapter(new TeamRankingAdapterODI(getContext(), teamList.get(0).getOdi().getTeamList()));
+                else if(selectedItem.equals("T20"))
+                    rv.setAdapter(new TeamRankingAdapterODI(getContext(), teamList.get(0).getT20().getTeamList()));
+                else if(selectedItem.equals("TEST"))
+                    rv.setAdapter(new TeamRankingAdapterODI(getContext(), teamList.get(0).getTest().getTeamList()));
+                    } // to close the onItemSelected
+                    public void onNothingSelected(AdapterView<?> parent)
+                    {
 
-                            List<RankingItem> teamList = response.body().getResults();
-                            System.out.println("going into on response with size "+teamList.size());
-                            mProgressBar.setVisibility(View.GONE);
+                    }
+                });
+            }
 
-                            System.out.println("TEST "+teamList.get(0).getOdi().getTeamList().get(0).getTeam());
-                            if(selectedItem.equals("ODI"))
-                            rv.setAdapter(new TeamRankingAdapterODI(getContext(), teamList.get(0).getOdi().getTeamList()));
-                            else if(selectedItem.equals("T20"))
-                                rv.setAdapter(new TeamRankingAdapterODI(getContext(), teamList.get(0).getT20().getTeamList()));
-                            else if(selectedItem.equals("TEST"))
-                                rv.setAdapter(new TeamRankingAdapterODI(getContext(), teamList.get(0).getTest().getTeamList()));
-
-                        }
-
-                        @Override
-                        public void onFailure(Call<RankingItem> call, Throwable t) {
-                            mProgressBar.setVisibility(View.INVISIBLE);
-                            Toast toast=Toast.makeText(getContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
-                            toast.show();
-                            call.cancel();
-                        }
-                    });
-
-            } // to close the onItemSelected
-            public void onNothingSelected(AdapterView<?> parent)
-            {
-
+            @Override
+            public void onFailure(Call<RankingItem> call, Throwable t) {
+                mProgressBar.setVisibility(View.INVISIBLE);
+                Toast toast=Toast.makeText(getContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
+                toast.show();
+                call.cancel();
             }
         });
+
 
         return rootView;
     }
