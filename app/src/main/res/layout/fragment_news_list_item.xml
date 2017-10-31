@@ -40,10 +40,11 @@
             <ImageView
                 android:id="@+id/image_view"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_125sdp"
+                android:layout_height="@dimen/_135sdp"
                 android:layout_below="@+id/header_text_view"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
                 android:scaleType="fitXY"
                 tools:src="@drawable/matches" />
 
@@ -51,6 +52,7 @@
                 android:id="@+id/news_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
                 android:layout_below="@+id/image_view"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:textSize="@dimen/_10sdp"

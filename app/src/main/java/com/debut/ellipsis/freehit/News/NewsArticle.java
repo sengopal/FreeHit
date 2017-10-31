@@ -96,7 +96,7 @@ public class NewsArticle extends AppCompatActivity {
 
                 final String ImageURL = newsArticle.getImage();
 
-                MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(ImageURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(ImageURL).format(DecodeFormat.PREFER_RGB_565);
 
                 MainActivity.requestBuilder.into(articleImage);
 
