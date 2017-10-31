@@ -64,7 +64,7 @@ public class SeriesItemAdapter extends RecyclerView.Adapter<SeriesItemAdapter.Se
     public void onBindViewHolder(SeriesItemAdapter.SeriesViewHolder holder, final int position) {
         String Title = seriesItems.get(position).getTitle();
 
-        Title = Title + ",";
+        Title = Title /*+ ","*/;
         String[] t = Title.split(",");
         String[] origTeam = new String[10];
         origTeam[0] = " ";

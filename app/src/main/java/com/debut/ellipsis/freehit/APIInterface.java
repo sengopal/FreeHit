@@ -22,6 +22,8 @@ public interface APIInterface {
 
     @GET("news?")
     Call<NewsArticleItem> doGetNewsArticle(@Query("id") String id);
+    @GET("ranking")
+    Call<RankingItem> doGetRanking();
 
     @GET("playerbio?")
     Call<PlayerItem> doGetPlayerInfo(@Query("url") String url);

@@ -128,6 +128,8 @@
     <string name="settings_title">FreeHit Settings</string>
     <string name="search_hint">player name</string>
     <string name="app_label">FREEHIT</string>
+    <!-- For Settings player bio-->
+    <string name="batting"><b>BATTING</b></string>
 
 
 </resources>
