@@ -19,6 +19,7 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_weight="0.5"
             android:textAlignment="center"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/_12sdp"
             tools:text="1" />
 
@@ -30,6 +31,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/_35sdp"
             android:layout_weight="2"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/_12sdp"
             tools:text="abcdevghijklmnoqrstuvwxyz" />
 
@@ -41,6 +43,7 @@
             android:layout_marginStart="@dimen/_35sdp"
             android:layout_weight="2"
             android:textAlignment="center"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/_12sdp"
             tools:text="111" />
 

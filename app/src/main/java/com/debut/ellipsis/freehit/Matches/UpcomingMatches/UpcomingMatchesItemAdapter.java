@@ -15,6 +15,7 @@ import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
 import com.debut.ellipsis.freehit.MainActivity;
+import com.debut.ellipsis.freehit.Matches.MatchesActivity;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
@@ -101,7 +102,8 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
                 if (position == 5) {
                     // Intent to move to list view for Click to view more
                     // Create a new intent to open the {@link UpcomingMatchesActivity}
-                    Intent UpcomingIntent = new Intent(context, UpcomingMatchesActivity.class);
+                    Intent UpcomingIntent = new Intent(context, MatchesActivity.class);
+                    UpcomingIntent.putExtra("match_format","UPCOMING");
                     // Start the new activity
                     context.startActivity(UpcomingIntent);
                 } else {

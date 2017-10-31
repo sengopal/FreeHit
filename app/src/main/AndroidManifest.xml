@@ -37,6 +37,7 @@
         <activity
             android:name=".Matches.PastMatches.PastMatchesActivity"
             android:label="Past_Matches" />
+        <activity android:name=".Matches.MatchesActivity"/>
         <activity android:name=".Matches.PastMatches.PastMatchScoreCard" />
         <activity android:name=".Matches.LiveMatches.LiveMatchScoreCard" />
         <activity android:name=".Matches.UpcomingMatches.UpcomingMatchScoreCard" />

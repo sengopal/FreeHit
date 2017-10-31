@@ -65,8 +65,8 @@ public class SeriesMatchesFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         SeriesMatchesFragment.ViewPagerAdapter adapter = new SeriesMatchesFragment.ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFrag(new SeriesUpcoming(), "UPCOMING");
-        adapter.addFrag(new SeriesPast(), "PAST");
+        adapter.addFrag(new SeriesMatches(), "UPCOMING");
+        adapter.addFrag(new SeriesMatches(), "PAST");
         viewPager.setAdapter(adapter);
 
     }
@@ -92,6 +92,19 @@ public class SeriesMatchesFragment extends Fragment {
         public void addFrag(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
+            if(mFragmentTitleList.get(0).equals("UPCOMING"))
+            {
+                Bundle bundle=new Bundle();
+                bundle.putString("fragment_name", "UPCOMING");
+                fragment.setArguments(bundle);
+            }
+            if(mFragmentTitleList.size()==2) {
+                if (mFragmentTitleList.get(1).equals("PAST")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("fragment_name", "PAST");
+                    fragment.setArguments(bundle);
+                }
+            }
         }
 
         @Override

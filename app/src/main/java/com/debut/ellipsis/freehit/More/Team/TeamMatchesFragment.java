@@ -1,6 +1,5 @@
 package com.debut.ellipsis.freehit.More.Team;
 
-
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -17,9 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class TeamMatchesFragment extends Fragment {
 
     public ViewPager viewPager;

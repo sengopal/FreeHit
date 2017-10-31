@@ -99,10 +99,10 @@ public class RankingActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         RankingActivity.ViewPagerAdapter adapter = new RankingActivity.ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new TeamRankingFragment(), "TEAMS");
-        adapter.addFrag(new BattingRankingFragment(), "BATSMEN");
-        adapter.addFrag(new BowlingRankingFragment(), "BOWLER");
-        adapter.addFrag(new AllrounderRankingFragment(), "ALL ROUNDER");
+        adapter.addFrag(new RankingFragment(), "TEAMS");
+        adapter.addFrag(new RankingFragment(), "BATSMEN");
+        adapter.addFrag(new RankingFragment(), "BOWLER");
+        adapter.addFrag(new RankingFragment(), "ALL ROUNDER");
         viewPager.setAdapter(adapter);
     }
 
@@ -127,6 +127,33 @@ public class RankingActivity extends AppCompatActivity {
         public void addFrag(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
+            if(mFragmentTitleList.get(0).equals("TEAMS"))
+            {
+                Bundle bundle=new Bundle();
+                bundle.putString("fragment_name", "TEAMS");
+                fragment.setArguments(bundle);
+            }
+            if(mFragmentTitleList.size()==2) {
+                if (mFragmentTitleList.get(1).equals("BATSMEN")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("fragment_name", "BATSMEN");
+                    fragment.setArguments(bundle);
+                }
+            }
+            if(mFragmentTitleList.size()==3) {
+                if (mFragmentTitleList.get(2).equals("BOWLER")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("fragment_name", "BOWLER");
+                    fragment.setArguments(bundle);
+                }
+            }
+            if(mFragmentTitleList.size()==4) {
+                if (mFragmentTitleList.get(3).equals("ALL ROUNDER")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("fragment_name", "ALL ROUNDER");
+                    fragment.setArguments(bundle);
+                }
+            }
         }
 
         @Override
