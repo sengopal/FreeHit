@@ -107,6 +107,22 @@
     <string name="seriesStatus">SERIES STATUS : </string>
     <string name="result">RESULT : </string>
 
+    <!-- For Rankings Select Category -->
+    <string name="format">Select Format</string>
+
+    <string-array name="format_array">
+        <item>ODI</item>
+        <item>T20</item>
+        <item>TEST</item>
+    </string-array>
+
+    <string name="rank">RANK</string>
+    <string name="points">POINTS</string>
+    <string name="ratings">RATING</string>
+    <string name="team">TEAM</string>
+    <string name="player_name">PLAYER NAME</string>
+
+
     <!-- For Settings gear Icon -->
     <string name="settings_menu_item">Settings</string>
     <string name="settings_title">FreeHit Settings</string>

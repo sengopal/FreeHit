@@ -5,6 +5,7 @@ import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchCardItem;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements.ScoreCardItem;
 import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchCardItem;
 import com.debut.ellipsis.freehit.More.Player.PlayerItem;
+import com.debut.ellipsis.freehit.More.Rankings.RankingItem;
 import com.debut.ellipsis.freehit.More.Series.SeriesItem;
 import com.debut.ellipsis.freehit.News.NewsArticleItem;
 import com.debut.ellipsis.freehit.News.NewsItem;
@@ -79,5 +80,7 @@ public interface APIInterface {
     @GET("scorecard?")
     Call<ScoreCardItem> doGetMatchScoreCard(@Query("ndid") String match_id);
 
+    @GET("ranking")
+    Call<RankingItem> doGetRankingResources();
 
 }

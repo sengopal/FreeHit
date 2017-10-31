@@ -10,11 +10,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class RankingActivity extends AppCompatActivity {
@@ -22,6 +29,8 @@ public class RankingActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private ProgressBar mProgressBar;
+    public List<RankingItem> QueryList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +43,36 @@ public class RankingActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        setTitle(R.string.rankings);
+
+        View viewProgress = findViewById(R.id.progress);
+
+        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
+
         View viewRankingPager = (View) findViewById(R.id.ranking_viewpager);
 
         viewPager = (ViewPager) viewRankingPager.findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
+        Call<RankingItem> call = MainActivity.apiInterface.doGetRankingResources();
+        call.enqueue(new Callback<RankingItem>() {
+            @Override
+            public void onResponse(Call<RankingItem> call, Response<RankingItem> response) {
+                mProgressBar.setVisibility(View.INVISIBLE);
+                QueryList = response.body().getResults();
+                setupViewPager(viewPager);
+                viewPager.setOffscreenPageLimit(3);
+            }
+
+            @Override
+            public void onFailure(Call<RankingItem> call, Throwable t) {
+                mProgressBar.setVisibility(View.GONE);
+                Toast.makeText(getBaseContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
         tabLayout = (TabLayout) viewToolbar.findViewById(R.id.tabs);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setupWithViewPager(viewPager);
 
     }
@@ -69,7 +101,7 @@ public class RankingActivity extends AppCompatActivity {
         RankingActivity.ViewPagerAdapter adapter = new RankingActivity.ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new TeamRankingFragment(), "TEAMS");
         adapter.addFrag(new BattingRankingFragment(), "BATSMEN");
-        adapter.addFrag(new BowlingRankingFragment(), "BOLWER");
+        adapter.addFrag(new BowlingRankingFragment(), "BOWLER");
         adapter.addFrag(new AllrounderRankingFragment(), "ALL ROUNDER");
         viewPager.setAdapter(adapter);
     }
@@ -101,6 +133,9 @@ public class RankingActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
+    }
+    public List<RankingItem> getQList(){
+        return QueryList;
     }
 
 }

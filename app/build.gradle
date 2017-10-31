@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
@@ -7,8 +7,8 @@ android {
         applicationId "com.debut.ellipsis.freehit"
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 0
-        versionName "0.01"
+        versionCode 3
+        versionName "0.1 Beta"
     }
     buildTypes {
         release {

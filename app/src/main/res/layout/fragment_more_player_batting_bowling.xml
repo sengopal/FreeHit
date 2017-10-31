@@ -1,0 +1,858 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:scrollbars="horizontal|vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/Ranking_Table"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/background"
+            android:padding="@dimen/_3sdp"
+            android:shrinkColumns="*"
+            android:stretchColumns="*">
+
+            <TableRow
+                android:id="@+id/Ranking_lablels"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp">
+
+                <TextView
+                    android:id="@+id/Batting_Label"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:text="BATTING"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/test_label"
+                    android:layout_height="@dimen/_50sdp"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:text="TEST"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/odi_label"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:text="ODI"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/T20I_label"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:text="T20I"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/IPL_Label"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:text="IPL"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/first_row"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp">
+
+                <TextView
+                    android:id="@+id/Matches_Innings_label"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:text="MATCHES"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/m_i_test"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="01" />
+
+                <TextView
+                    android:id="@+id/m_i_odi"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="02" />
+
+                <TextView
+                    android:id="@+id/m_i_t20"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="T20I" />
+
+                <TextView
+                    android:id="@+id/m_i_ipl"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/second_row"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp">
+
+                <TextView
+                    android:id="@+id/Innings_Overs_label"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:text="INNINGS"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/i_o_test"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/i_o_odi"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/i_o_t20"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/i_o_ipl"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/third_row"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp">
+
+                <TextView
+                    android:id="@+id/NotOut_Maidens_Label"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:text="NOT OUT"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/no_m_test"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/no_m_odi"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/no_m_t20"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/no_m_ipl"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/fourth_row"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp">
+
+                <TextView
+                    android:id="@+id/Runs_Runs_label"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:text="RUNS"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/r_r_test"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="15000" />
+
+                <TextView
+                    android:id="@+id/r_r_odi"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="15000" />
+
+                <TextView
+                    android:id="@+id/r_r_t20"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="15000" />
+
+                <TextView
+                    android:id="@+id/r_r_ipl"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="15000" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/fifth_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/highest_Wickets_label"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="HIGHEST"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/h_w_test"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/h_w_odi"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/h_w_t20"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/h_w_ipl"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/sixth_row"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp">
+
+                <TextView
+                    android:id="@+id/hundreds_best_label"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="100s"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/h_b_test"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/h_b_odi"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/h_b_t20"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/h_b_ipl"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/seventh_row"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp">
+
+                <TextView
+                    android:id="@+id/fifties_3w_label"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:text="50s"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/f_3w_test"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/f_3w_odi"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/f_3w_t20"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/f_3w_ipl"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/eighth_row"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp">
+
+                <TextView
+                    android:id="@+id/sixes_average_label"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:text="6s"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/s_avg_test"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/s_avg_odi"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/s_avg_t20"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/s_avg_ipl"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/ninth_row"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp">
+
+                <TextView
+                    android:id="@+id/fours_5wickets_label"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:text="4s"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/f_5w_test"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/f_5w_odi"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/f_5w_t20"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/f_5w_ipl"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tenth_row"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp">
+
+                <TextView
+                    android:id="@+id/average_economy_label"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:text="AVERAGE"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/avg_eco_test"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/avg_eco_odi"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/avg_eco_t20"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/avg_eco_ipl"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/eleventh_row"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp">
+
+                <TextView
+                    android:id="@+id/StrikeRate_label"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:text="STRIKE RATE"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/sr_test"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/sr_odi"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/sr_t20"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+                <TextView
+                    android:id="@+id/sr_ipl"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="--" />
+
+            </TableRow>
+        </TableLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.constraint.ConstraintLayout>

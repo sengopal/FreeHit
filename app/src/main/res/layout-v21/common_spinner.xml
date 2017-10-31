@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.debut.ellipsis.freehit.CustomSpinner
+        android:id="@+id/spinner"
+        style="@style/Widget.AppCompat.Spinner"
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_width="@dimen/_200sdp"
+        android:dropDownWidth="@dimen/_200sdp"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:layout_height="?attr/dropdownListPreferredItemHeight"
+        android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
+        android:background="@drawable/spinner_bg"
+        android:popupBackground="@android:color/white"
+        android:paddingStart="@dimen/_12sdp"
+        android:paddingEnd="@dimen/_12sdp"
+        android:stateListAnimator="@drawable/spinner_sla"
+        android:popupElevation="@dimen/_3sdp" />
+</RelativeLayout>

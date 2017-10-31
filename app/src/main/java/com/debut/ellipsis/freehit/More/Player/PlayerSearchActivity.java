@@ -72,7 +72,7 @@ public class PlayerSearchActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
                             List<PlayerCountryItem> playerCountryItems = response.body().getResults();
-                            System.out.println(s+"SIZE : "+ playerCountryItems.size());
+
                             for (int i = 0; i < playerCountryItems.size(); i++) {
                                 recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
                             }
@@ -80,7 +80,7 @@ public class PlayerSearchActivity extends AppCompatActivity {
                             //When not found in player list
                             if(playerCountryItems.isEmpty())
                             {
-                                System.out.println("GOING HERE");
+
                                 Call<PlayerCountryItem> call1 = MainActivity.apiInterface.doGetTeamPlayers(s.toString());
                                 call1.enqueue(new Callback<PlayerCountryItem>() {
                                     @Override
