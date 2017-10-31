@@ -2,6 +2,7 @@ package com.debut.ellipsis.freehit.More.Team;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,12 +36,19 @@ public class TeamUpcoming extends Fragment {
     private RecyclerView rv;
     public SwipeRefreshLayout refresh_layout;
     public TextView mEmptyView;
+    private FloatingActionButton fab;
+    private LinearLayoutManager mLinearLayoutManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_more_team_complete_match_list, container, false);
+
+        View viewFAB = rootView.findViewById(R.id.fab);
+        fab = (FloatingActionButton) viewFAB.findViewById(R.id.common_fab);
+        fab.hide();
+        fab.setImageResource(R.drawable.arrow_up);
 
         Intent i = getActivity().getIntent();
         TeamActivity.Team = i.getIntExtra("CountryName", 0);
@@ -67,7 +75,9 @@ public class TeamUpcoming extends Fragment {
         View viewRecycler = rootView.findViewById(R.id.complete_match_list);
         rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
 
-        rv.setLayoutManager(new LinearLayoutManager(getContext()));
+        mLinearLayoutManager = new LinearLayoutManager(getContext());
+
+        rv.setLayoutManager(mLinearLayoutManager);
 
         refresh_layout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
@@ -138,6 +148,34 @@ public class TeamUpcoming extends Fragment {
             }
         }
         );
+
+        rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+
+                if(mLinearLayoutManager.findFirstCompletelyVisibleItemPosition()==0){
+                    fab.hide();
+
+                } else {
+                    fab.show();
+                }
+            }
+        });
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int firstVisibleItemIndex = mLinearLayoutManager.findFirstVisibleItemPosition();
+                if (firstVisibleItemIndex > 0) {
+                    mLinearLayoutManager.smoothScrollToPosition(rv,null,0);
+                }
+            }
+        });
 
 
         return rootView;

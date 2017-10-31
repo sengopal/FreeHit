@@ -15,6 +15,10 @@
     </RelativeLayout>
 
     <include
+        android:id="@+id/fab"
+        layout="@layout/common_fab" />
+
+    <include
         android:id="@id/progress"
         layout="@layout/common_progressbar" />
 

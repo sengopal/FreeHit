@@ -2,6 +2,7 @@ package com.debut.ellipsis.freehit.More.Team;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,6 +34,8 @@ public class TeamNews extends Fragment {
     private ProgressBar mProgressBar;
     public TextView NoNewsText;
     public Button NoNewsButton;
+    private FloatingActionButton fab;
+    private LinearLayoutManager mLinearLayoutManager;
 
     public TeamNews() {
 
@@ -43,6 +46,11 @@ public class TeamNews extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_news_list, container, false);
+
+        View viewFAB = rootView.findViewById(R.id.fab);
+        fab = (FloatingActionButton) viewFAB.findViewById(R.id.common_fab);
+        fab.hide();
+        fab.setImageResource(R.drawable.arrow_up);
 
         Intent i = getActivity().getIntent();
         TeamActivity.Team = i.getIntExtra("CountryName", 0);
@@ -57,17 +65,16 @@ public class TeamNews extends Fragment {
             TeamActivity.tempTeamName = this.getContext().getString(TeamActivity.Team);
         }
 
-        TeamActivity.tempTeamName = TeamActivity.tempTeamName.toLowerCase();
+        final String Team = TeamActivity.tempTeamName.toLowerCase();
 
         MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
         View viewRecycler = rootView.findViewById(R.id.news_list);
 
-        View viewFAB = rootView.findViewById(R.id.fab);
-        viewFAB.setVisibility(View.GONE);
-
         final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        mLinearLayoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(mLinearLayoutManager);
 
         mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
 
@@ -78,7 +85,7 @@ public class TeamNews extends Fragment {
 
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
-        Call<NewsItem> call = MainActivity.apiInterface.doGetNewsArticleTeam(TeamActivity.tempTeamName);
+        Call<NewsItem> call = MainActivity.apiInterface.doGetNewsArticleTeam(Team);
         call.enqueue(new Callback<NewsItem>() {
             @Override
             public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
@@ -87,6 +94,7 @@ public class TeamNews extends Fragment {
 
                 List<NewsItem> news = response.body().getResults();
                 if (news.size() == 0) {
+                    fab.setVisibility(View.GONE);
                     No_news.setVisibility(View.VISIBLE);
                     NoNewsButton.setVisibility(View.INVISIBLE);
                     NoNewsText.setText(R.string.EmptyNews);
@@ -113,7 +121,7 @@ public class TeamNews extends Fragment {
                                                // Checking if connected or not on refresh
                                                refLayout.setRefreshing(true);
 
-                                               Call<NewsItem> call = MainActivity.apiInterface.doGetNewsArticleTeam(TeamActivity.tempTeamName);
+                                               Call<NewsItem> call = MainActivity.apiInterface.doGetNewsArticleTeam(Team);
                                                call.enqueue(new Callback<NewsItem>() {
                                                    @Override
                                                    public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
@@ -121,6 +129,7 @@ public class TeamNews extends Fragment {
 
                                                        List<NewsItem> news = response.body().getResults();
                                                        if (news.size() == 0) {
+                                                           fab.setVisibility(View.GONE);
                                                            No_news.setVisibility(View.VISIBLE);
                                                            NoNewsButton.setVisibility(View.INVISIBLE);
                                                            NoNewsText.setText(R.string.EmptyNews);
@@ -144,6 +153,34 @@ public class TeamNews extends Fragment {
                                            }
                                        }
         );
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+
+                if(mLinearLayoutManager.findFirstVisibleItemPosition()==0){
+                    fab.hide();
+
+                } else {
+                    fab.show();
+                }
+            }
+        });
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int firstVisibleItemIndex = mLinearLayoutManager.findFirstVisibleItemPosition();
+                if (firstVisibleItemIndex > 0) {
+                    mLinearLayoutManager.smoothScrollToPosition(recyclerView,null,0);
+                }
+            }
+        });
 
 
         return rootView;
