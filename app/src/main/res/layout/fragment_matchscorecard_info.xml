@@ -21,9 +21,6 @@
             android:orientation="vertical"
             android:visibility="visible">
 
-            <include
-                android:id="@+id/progress"
-                layout="@layout/common_progressbar" />
 
             <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
@@ -56,7 +53,7 @@
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:layout_gravity="center"
-                        android:src="@drawable/arrow"/>
+                        android:src="@drawable/arrow" />
 
 
                     <TextView
@@ -86,7 +83,7 @@
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:layout_gravity="center"
-                        android:src="@drawable/arrow"/>
+                        android:src="@drawable/arrow" />
 
                     <TextView
                         android:id="@+id/match_info_team2"
@@ -274,8 +271,8 @@
                                 android:id="@+id/match_info_mots_status"
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_20sdp"
-                                android:textColor="@android:color/black"
                                 android:layout_marginStart="@dimen/_5sdp"
+                                android:textColor="@android:color/black"
                                 android:textSize="@dimen/_12sdp"
                                 tools:text="Christopher Henry Gayle" />
                         </TableRow>
@@ -336,8 +333,8 @@
                                 android:id="@+id/match_info_SeriesStatus_status"
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_20sdp"
-                                android:textColor="@android:color/black"
                                 android:layout_marginStart="@dimen/_4sdp"
+                                android:textColor="@android:color/black"
                                 android:textSize="@dimen/_12sdp"
                                 tools:text="India win the series 3-0" />
                         </TableRow>

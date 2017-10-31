@@ -1,8 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHead.HeadToHeadFragment">
 
     <LinearLayout
@@ -58,9 +58,9 @@
     </LinearLayout>
 
     <TextView
-        android:layout_below="@+id/LinearLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1sdp"
+        android:layout_below="@+id/LinearLayout"
         android:background="@color/divider" />
     <!--.....For Matches..... -->
     <LinearLayout
@@ -133,68 +133,57 @@
     </LinearLayout>
 
     <TextView
-        android:layout_below="@+id/LinearLayoutMatches"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1sdp"
+        android:layout_below="@+id/LinearLayoutMatches"
         android:background="@color/divider" />
 
     <android.support.v4.widget.NestedScrollView
-        android:layout_below="@id/LinearLayoutMatches"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/_2sdp"
+        android:layout_below="@id/LinearLayoutMatches"
         android:layout_marginBottom="2dip"
+        android:layout_marginTop="@dimen/_2sdp"
         android:background="@android:color/white"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <include
-            android:id="@+id/matches_won"
-            layout="@layout/fragment_matchscorecard_head_to_head_item" />
+            <include
+                android:id="@+id/matches_won"
+                layout="@layout/fragment_matchscorecard_head_to_head_item" />
 
-        <include
-            android:id="@+id/home_wins"
-            layout="@layout/fragment_matchscorecard_head_to_head_item" />
+            <include
+                android:id="@+id/home_wins"
+                layout="@layout/fragment_matchscorecard_head_to_head_item" />
 
-        <include
-            android:id="@+id/away_wins"
-            layout="@layout/fragment_matchscorecard_head_to_head_item" />
+            <include
+                android:id="@+id/away_wins"
+                layout="@layout/fragment_matchscorecard_head_to_head_item" />
 
-        <include
-            android:id="@+id/highest_score"
-            layout="@layout/fragment_matchscorecard_head_to_head_item" />
+            <include
+                android:id="@+id/highest_score"
+                layout="@layout/fragment_matchscorecard_head_to_head_item" />
 
-        <include
-            android:id="@+id/lowest_score"
-            layout="@layout/fragment_matchscorecard_head_to_head_item" />
+            <include
+                android:id="@+id/lowest_score"
+                layout="@layout/fragment_matchscorecard_head_to_head_item" />
 
-        <include
-            android:id="@+id/highest_total_chased"
-            layout="@layout/fragment_matchscorecard_head_to_head_item" />
+            <include
+                android:id="@+id/highest_total_chased"
+                layout="@layout/fragment_matchscorecard_head_to_head_item" />
 
-        <include
-            android:id="@+id/lowest_data_defended"
-            layout="@layout/fragment_matchscorecard_head_to_head_item" />
+            <include
+                android:id="@+id/lowest_data_defended"
+                layout="@layout/fragment_matchscorecard_head_to_head_item" />
 
-    </LinearLayout>
+        </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
-
-    <TextView
-        android:id="@+id/empty_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textAppearance="?android:textAppearanceMedium" />
-
-    <include
-        android:id="@+id/progress"
-        layout="@layout/common_progressbar" />
 
 
 </RelativeLayout>

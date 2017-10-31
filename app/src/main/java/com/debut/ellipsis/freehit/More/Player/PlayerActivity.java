@@ -12,16 +12,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class PlayerActivity extends AppCompatActivity {
 
-    public static String player_name;
-    public static String player_url;
+    public PlayerItem playerItem;
+    private ViewPager viewPager;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +38,8 @@ public class PlayerActivity extends AppCompatActivity {
         setContentView(R.layout.fragment_more_player_activity);
 
         Intent i = getIntent();
-        player_name = i.getStringExtra("player_name");
-        player_url = i.getStringExtra("player_url");
+        String player_name = i.getStringExtra("player_name");
+        String player_url = i.getStringExtra("player_url");
 
         View viewToolbarTabs = findViewById(R.id.toolbar_player);
 
@@ -42,10 +50,30 @@ public class PlayerActivity extends AppCompatActivity {
 
         View viewPlayerViewPager = findViewById(R.id.player_viewpager);
 
-        ViewPager viewPager = (ViewPager) viewPlayerViewPager.findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
+        View viewProgress = findViewById(R.id.progress);
 
-        viewPager.setOffscreenPageLimit(3);
+        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
+
+        viewPager = (ViewPager) viewPlayerViewPager.findViewById(R.id.viewpager);
+        Call<PlayerItem> call = MainActivity.apiInterface.doGetPlayerInfo(player_url);
+        call.enqueue(new Callback<PlayerItem>() {
+            @Override
+            public void onResponse(Call<PlayerItem> call, Response<PlayerItem> response) {
+                mProgressBar.setVisibility(View.INVISIBLE);
+                playerItem = response.body();
+                setupViewPager(viewPager);
+                viewPager.setOffscreenPageLimit(3);
+
+            }
+
+            @Override
+            public void onFailure(Call<PlayerItem> call, Throwable t) {
+                mProgressBar.setVisibility(View.GONE);
+                Toast.makeText(getBaseContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
 
         TabLayout tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -78,8 +106,8 @@ public class PlayerActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         PlayerActivity.ViewPagerAdapter adapter = new PlayerActivity.ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new Info_Fragment(), "PLAYER INFO");
-        adapter.addFrag(new Batting_Fragment(), "BATTING");
-        adapter.addFrag(new Bowling_Fragment(), "BOWLING");
+        adapter.addFrag(new BattingFragment(), "BATTING");
+        adapter.addFrag(new BowlingFragment(), "BOWLING");
         viewPager.setAdapter(adapter);
     }
 
@@ -112,6 +140,8 @@ public class PlayerActivity extends AppCompatActivity {
         }
     }
 
-
+    public PlayerItem getQuery(){
+        return playerItem;
+    }
 }
 

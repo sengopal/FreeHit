@@ -58,8 +58,8 @@ public class RankingActivity extends AppCompatActivity {
             public void onResponse(Call<RankingItem> call, Response<RankingItem> response) {
                 mProgressBar.setVisibility(View.INVISIBLE);
                 QueryList = response.body().getResults();
-                viewPager.setOffscreenPageLimit(3);
                 setupViewPager(viewPager);
+                viewPager.setOffscreenPageLimit(3);
             }
 
             @Override
@@ -129,9 +129,7 @@ public class RankingActivity extends AppCompatActivity {
             mFragmentTitleList.add(title);
         }
 
-        @Override// GITPUSH
-// GITPUSH
-
+        @Override
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }

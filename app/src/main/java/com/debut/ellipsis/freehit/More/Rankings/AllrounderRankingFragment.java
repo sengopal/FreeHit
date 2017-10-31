@@ -75,7 +75,6 @@ public class AllrounderRankingFragment extends Fragment {
 
         });
 
-// GITPUSH
         return rootView;
     }
 

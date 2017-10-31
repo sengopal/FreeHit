@@ -142,6 +142,7 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
                     Intent PastMatchScoreCardIntent = new Intent(context, PastMatchScoreCard.class);
                     PastMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getNdid());
                     PastMatchScoreCardIntent.putExtra("match_name", dataObjectList.get(position).getTitle());
+                    PastMatchScoreCardIntent.putExtra("match_type","PAST");
                     context.startActivity(PastMatchScoreCardIntent);
                     /*Toast.makeText(context,"Coming Soon !",Toast.LENGTH_SHORT).show();*/
                 }
