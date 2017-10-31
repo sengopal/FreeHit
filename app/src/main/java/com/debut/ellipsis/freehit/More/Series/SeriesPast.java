@@ -33,8 +33,6 @@ public class SeriesPast extends Fragment {
     public SwipeRefreshLayout refresh_layout;
     private ProgressBar mProgressBar;
     private RecyclerView rv;
-    private FloatingActionButton fab;
-    private LinearLayoutManager mLinearLayoutManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,9 +41,8 @@ public class SeriesPast extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_more_team_complete_match_list, container, false);
 
         View viewFAB = rootView.findViewById(R.id.fab);
-        fab = (FloatingActionButton) viewFAB.findViewById(R.id.common_fab);
-        fab.hide();
-        fab.setImageResource(R.drawable.arrow_up);
+        FloatingActionButton fab = (FloatingActionButton) viewFAB.findViewById(R.id.common_fab);
+        fab.setVisibility(View.GONE);
 
         Intent i = getActivity().getIntent();
         SeriesActivity.date = i.getStringExtra("date");
@@ -60,9 +57,7 @@ public class SeriesPast extends Fragment {
         View viewRecycler = rootView.findViewById(R.id.complete_match_list);
         rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
 
-        mLinearLayoutManager = new LinearLayoutManager(getContext());
-
-        rv.setLayoutManager(mLinearLayoutManager);
+        rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
         View viewEmpty = rootView.findViewById(R.id.empty);
         final TextView emptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);
@@ -126,35 +121,6 @@ public class SeriesPast extends Fragment {
                                                 }
                                             }
         );
-
-        rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-
-                if(mLinearLayoutManager.findFirstCompletelyVisibleItemPosition()==0){
-                    fab.hide();
-
-                } else {
-                    fab.show();
-                }
-            }
-        });
-
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                int firstVisibleItemIndex = mLinearLayoutManager.findFirstVisibleItemPosition();
-                if (firstVisibleItemIndex > 0) {
-                    mLinearLayoutManager.smoothScrollToPosition(rv,null,0);
-                }
-            }
-        });
-
 
         return rootView;
     }

@@ -43,6 +43,9 @@ public class TeamPast extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_more_team_complete_match_list, container, false);
+        String fragment_name = getArguments().getString("fragment_name");
+
+        System.out.println("FRAGMENT NAME :"+fragment_name);
 
         View viewFAB = rootView.findViewById(R.id.fab);
         fab = (FloatingActionButton) viewFAB.findViewById(R.id.common_fab);

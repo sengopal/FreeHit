@@ -70,8 +70,8 @@ public class TeamMatchesFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFrag(new TeamUpcoming(), "UPCOMING");
-        adapter.addFrag(new TeamPast(), "PAST");
+        adapter.addFrag(new TeamMatches(), "UPCOMING");
+        adapter.addFrag(new TeamMatches(), "PAST");
         viewPager.setAdapter(adapter);
 
     }
@@ -97,6 +97,19 @@ public class TeamMatchesFragment extends Fragment {
         public void addFrag(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
+            if(mFragmentTitleList.get(0).equals("UPCOMING"))
+            {
+                Bundle bundle=new Bundle();
+                bundle.putString("fragment_name", "UPCOMING");
+                fragment.setArguments(bundle);
+            }
+            if(mFragmentTitleList.size()==2) {
+                if (mFragmentTitleList.get(1).equals("PAST")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("fragment_name", "PAST");
+                    fragment.setArguments(bundle);
+                }
+            }
         }
 
         @Override
