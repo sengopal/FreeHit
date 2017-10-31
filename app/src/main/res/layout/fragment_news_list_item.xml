@@ -44,7 +44,7 @@
                 android:layout_below="@+id/header_text_view"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/_5sdp"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 tools:src="@drawable/matches" />
 
             <TextView

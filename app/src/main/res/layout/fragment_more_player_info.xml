@@ -12,273 +12,273 @@
         android:orientation="vertical"
         app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
 
-                    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_12sdp"
+            android:paddingTop="@dimen/_12sdp"
+            android:visibility="visible">
+
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingTop="@dimen/_12sdp"
-                            android:paddingBottom="@dimen/_12sdp"
-                            android:visibility="visible">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_2sdp"
-                            android:paddingTop="@dimen/_12sdp"
-                            android:paddingBottom="@dimen/_12sdp"
-                            android:background="@color/divider"
-                            android:layout_marginStart="@dimen/_8sdp"
-                            android:layout_marginEnd="@dimen/_8sdp"
-                            android:textSize="@dimen/_1sdp" />
+                android:layout_height="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:background="@color/divider"
+                android:paddingBottom="@dimen/_12sdp"
+                android:paddingTop="@dimen/_12sdp"
+                android:textSize="@dimen/_1sdp" />
 
-                        <TextView
-                            android:id="@+id/Player_personal_information"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginBottom="@dimen/_3sdp"
-                            android:layout_marginTop="@dimen/_3sdp"
-                            android:text="PERSONAL INFORMATION"
-                            android:textColor="@android:color/black"
-                            android:textSize="@dimen/_12sdp" />
+            <TextView
+                android:id="@+id/Player_personal_information"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:text="PERSONAL INFORMATION"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_12sdp" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/divider"
-                            android:layout_marginStart="@dimen/_8sdp"
-                            android:layout_marginEnd="@dimen/_8sdp"
-                            android:textSize="@dimen/_1sdp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:background="@color/divider"
+                android:textSize="@dimen/_1sdp" />
 
-                        <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/r2">
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardBackgroundColor="@android:color/white"
+                card_view:cardCornerRadius="@dimen/_8sdp"
+                card_view:cardElevation="@dimen/_2sdp"
+                card_view:cardUseCompatPadding="true">
 
-                <ImageView
-                    android:id="@+id/Player_image"
-                    android:layout_width="@dimen/_60sdp"
-                    android:layout_height="@dimen/_60sdp"
-
-                    android:layout_marginTop="@dimen/_10sdp"
-                    app:srcCompat="@drawable/matches" />
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/Player_image"
-                        android:orientation="vertical"
-
-                        >
-                    <TextView
-                        android:id="@+id/Player_name_stats_info"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/_11sdp"
-                        android:paddingLeft="@dimen/_5sdp"
-                        android:textStyle="bold"
-                        tools:text="PlayerName" />
-
-
-                    <TextView
-                        android:id="@+id/player_country"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/_10sdp"
-                        android:paddingLeft="@dimen/_5sdp"
-                        android:textStyle="bold"
-                        tools:text="country" />
-                    </LinearLayout>
-                            </RelativeLayout>
-
-
-
-
-
-
-
-                <LinearLayout
-                    android:id="@+id/linearLayout2"
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_toRightOf="@id/r2"
-                    android:padding="@dimen/_5sdp">
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp">
 
                     <RelativeLayout
+                        android:id="@+id/r2"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/_5sdp">
 
-                        <TextView
-                            android:id="@+id/DOBLabel"
+                        <ImageView
+                            android:id="@+id/Player_image"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_60sdp"
+
+                            android:layout_marginTop="@dimen/_10sdp"
+                            app:srcCompat="@drawable/matches" />
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            android:paddingLeft="@dimen/_4sdp"
-                            android:text="DOB : "
-                            android:textColor="@android:color/black"
-                            android:textSize="@dimen/_10sdp"
-                            android:textStyle="bold" />
+                            android:layout_below="@id/Player_image"
+                            android:orientation="vertical"
 
-                        <TextView
-                            android:id="@+id/DOB"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            android:layout_toEndOf="@+id/DOBLabel"
-                            android:paddingStart="@dimen/_6sdp"
-                            android:textColor="@android:color/black"
-                            android:textSize="@dimen/_10sdp"
-                            tools:text="9999/9999/999" />
+                            >
 
-                    </RelativeLayout>
+                            <TextView
+                                android:id="@+id/Player_name_stats_info"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:paddingLeft="@dimen/_5sdp"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/_11sdp"
+                                android:textStyle="bold"
+                                tools:text="PlayerName" />
 
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
 
-                        <TextView
-                            android:id="@+id/AgeLabel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            android:paddingStart="@dimen/_4sdp"
-                            android:text="Age : "
-                            android:textColor="@android:color/black"
-                            android:textSize="@dimen/_10sdp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/Age"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            android:layout_toEndOf="@+id/AgeLabel"
-                            android:paddingStart="@dimen/_6sdp"
-                            android:textColor="@android:color/black"
-                            android:textSize="@dimen/_10sdp"
-                            tools:text="9999/9999/999" />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/battingStyleLabel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            android:paddingStart="@dimen/_4sdp"
-                            android:text="Batting Style : "
-                            android:textColor="@android:color/black"
-                            android:textSize="@dimen/_10sdp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/battingStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            android:layout_toEndOf="@+id/battingStyleLabel"
-                            android:paddingStart="@dimen/_6sdp"
-                            android:textColor="@android:color/black"
-                            android:textSize="@dimen/_10sdp"
-                            tools:text="9999/9999/999" />
-
+                            <TextView
+                                android:id="@+id/player_country"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:paddingLeft="@dimen/_5sdp"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/_10sdp"
+                                android:textStyle="bold"
+                                tools:text="country" />
+                        </LinearLayout>
                     </RelativeLayout>
 
 
+                    <LinearLayout
+                        android:id="@+id/linearLayout2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/r2"
+                        android:orientation="vertical"
+                        android:paddingEnd="@dimen/_3sdp"
+                        android:paddingStart="@dimen/_10sdp">
 
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/BowlingStyleLabel"
+                        <RelativeLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            android:paddingLeft="@dimen/_4sdp"
-                            android:text="Bowling Style : "
-                            android:textColor="@android:color/black"
-                            android:textSize="@dimen/_10sdp"
-                            android:textStyle="bold" />
-                        <TextView
-                            android:id="@+id/BowlingStyle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            android:layout_toEndOf="@+id/BowlingStyleLabel"
-                            android:paddingLeft="@dimen/_6sdp"
-                            android:textColor="@android:color/black"
-                            android:textSize="@dimen/_10sdp"
-                            tools:text="9999/9999/999" />
+                            android:layout_height="wrap_content">
 
-                    </RelativeLayout>
+                            <TextView
+                                android:id="@+id/DOBLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:paddingStart="@dimen/_4sdp"
+                                android:text="DOB : "
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/_10sdp"
+                                android:textStyle="bold" />
 
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/DOB"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_toEndOf="@+id/DOBLabel"
+                                android:paddingStart="@dimen/_6sdp"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/_10sdp"
+                                tools:text="9999/9999/999" />
 
-                        <TextView
-                            android:id="@+id/Teams_PlayedLabel"
+                        </RelativeLayout>
+
+                        <RelativeLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            android:paddingLeft="@dimen/_4sdp"
-                            android:text="Teams Played For : "
-                            android:textColor="@android:color/black"
-                            android:textSize="@dimen/_10sdp"
-                            android:textStyle="bold" />
+                            android:layout_height="wrap_content">
 
-                        <TextView
-                            android:id="@+id/Teams_Played"
+                            <TextView
+                                android:id="@+id/AgeLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:paddingStart="@dimen/_4sdp"
+                                android:text="Age : "
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/_10sdp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/Age"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_toEndOf="@+id/AgeLabel"
+                                android:paddingStart="@dimen/_6sdp"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/_10sdp"
+                                tools:text="9999/9999/999" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            android:layout_toEndOf="@+id/Teams_PlayedLabel"
-                            android:paddingLeft="@dimen/_6sdp"
-                            android:textColor="@android:color/black"
-                            android:textSize="@dimen/_10sdp"
-                            tools:text="9999/9999/999" />
+                            android:layout_height="wrap_content">
 
-                    </RelativeLayout>
+                            <TextView
+                                android:id="@+id/battingStyleLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:paddingStart="@dimen/_4sdp"
+                                android:text="Batting Style : "
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/_10sdp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/battingStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_toEndOf="@+id/battingStyleLabel"
+                                android:paddingStart="@dimen/_6sdp"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/_10sdp"
+                                tools:text="9999/9999/999" />
+
+                        </RelativeLayout>
 
 
-                </LinearLayout>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/BowlingStyleLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:paddingLeft="@dimen/_4sdp"
+                                android:text="Bowling Style : "
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/_10sdp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/BowlingStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_toEndOf="@+id/BowlingStyleLabel"
+                                android:paddingLeft="@dimen/_6sdp"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/_10sdp"
+                                tools:text="9999/9999/999" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/Teams_PlayedLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:paddingLeft="@dimen/_4sdp"
+                                android:text="Teams Played For : "
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/_10sdp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/Teams_Played"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_toEndOf="@+id/Teams_PlayedLabel"
+                                android:paddingLeft="@dimen/_6sdp"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/_10sdp"
+                                tools:text="9999/9999/999" />
+
+                        </RelativeLayout>
 
 
-
-
-
-
-
-
-
+                    </LinearLayout>
 
 
                 </RelativeLayout>
-
-
-
+            </android.support.v7.widget.CardView>
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/divider"
-                android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:background="@color/divider"
                 android:textSize="@dimen/_1sdp" />
 
             <TextView
@@ -296,201 +296,211 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ICC"
-                android:background="@color/divider"
-                android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:background="@color/divider"
                 android:textSize="@dimen/_1sdp" />
 
-
-            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/Ranking_Table"
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view_ranking"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#ffffff"
-                android:padding="@dimen/_8sdp"
-                android:shrinkColumns="*"
-                android:stretchColumns="*">
+                android:layout_height="wrap_content"
+                card_view:cardBackgroundColor="@android:color/white"
+                card_view:cardCornerRadius="@dimen/_5sdp"
+                card_view:cardElevation="@dimen/_2sdp"
+                card_view:cardUseCompatPadding="true">
 
-                <TableRow
-                    android:id="@+id/Ranking_lablels"
+                <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/Ranking_Table"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:layout_weight="1"
+                    android:background="#ffffff"
+                    android:shrinkColumns="*"
+                    android:stretchColumns="*">
 
-                    <TextView
-                        android:id="@+id/initial_blank"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="center"
-                        android:padding="@dimen/_13sdp"
-                        android:text=" "
-                        android:textAlignment="center"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/_8sdp" />
+                    <TableRow
+                        android:id="@+id/Ranking_lablels"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/Label_ODI"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="center"
-                        android:padding="@dimen/_13sdp"
-                        android:text="ODI"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/_8sdp"
-                        android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/initial_blank"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/cell_shape"
+                            android:gravity="center"
+                            android:padding="@dimen/_13sdp"
+                            android:text=" "
+                            android:textAlignment="center"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_8sdp" />
 
-                    <TextView
-                        android:id="@+id/Label_TEST"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="center"
-                        android:padding="@dimen/_13sdp"
-                        android:text="TEST"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/_8sdp"
-                        android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/Label_ODI"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/cell_shape"
+                            android:gravity="center"
+                            android:padding="@dimen/_13sdp"
+                            android:text="ODI"
+                            android:textAlignment="center"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_8sdp"
+                            android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/Label_T20"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="center"
-                        android:padding="@dimen/_13sdp"
-                        android:text="T20I"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/_8sdp"
-                        android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/Label_TEST"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/cell_shape"
+                            android:gravity="center"
+                            android:padding="@dimen/_13sdp"
+                            android:text="TEST"
+                            android:textAlignment="center"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_8sdp"
+                            android:textStyle="bold" />
 
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/Batting_Ranking"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/Batting_Label"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="center"
-                        android:padding="@dimen/_13sdp"
-                        android:text="Batting"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/_8sdp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/odibattingRanking"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="center"
-                        android:padding="@dimen/_13sdp"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/_8sdp"
-                        tools:text="01" />
-
-                    <TextView
-                        android:id="@+id/testBattingRanking"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="center"
-                        android:padding="@dimen/_13sdp"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/_8sdp"
-                        tools:text="02" />
-
-                    <TextView
-                        android:id="@+id/T20BattingRanking"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="center"
-                        android:padding="@dimen/_13sdp"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/_8sdp"
-                        tools:text="T20I" />
+                        <TextView
+                            android:id="@+id/Label_T20"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/cell_shape"
+                            android:gravity="center"
+                            android:padding="@dimen/_13sdp"
+                            android:text="T20I"
+                            android:textAlignment="center"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_8sdp"
+                            android:textStyle="bold" />
 
 
-                </TableRow>
+                    </TableRow>
 
-                <TableRow
-                    android:id="@+id/Bowling_Ranking"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    <TableRow
+                        android:id="@+id/Batting_Ranking"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/Bowling_Label"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="center"
-                        android:padding="@dimen/_13sdp"
-                        android:text="Bowling"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/_8sdp"
-                        android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/Batting_Label"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/cell_shape"
+                            android:gravity="center"
+                            android:padding="@dimen/_13sdp"
+                            android:text="Batting"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_8sdp"
+                            android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/odiBowlingRanking"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="center"
-                        android:padding="@dimen/_13sdp"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/_8sdp"
-                        tools:text="--" />
+                        <TextView
+                            android:id="@+id/odibattingRanking"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/cell_shape"
+                            android:gravity="center"
+                            android:padding="@dimen/_13sdp"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_8sdp"
+                            tools:text="01" />
 
-                    <TextView
-                        android:id="@+id/testBowlingRanking"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="center"
-                        android:padding="@dimen/_13sdp"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/_8sdp"
-                        tools:text="--" />
+                        <TextView
+                            android:id="@+id/testBattingRanking"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/cell_shape"
+                            android:gravity="center"
+                            android:padding="@dimen/_13sdp"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_8sdp"
+                            tools:text="02" />
 
-                    <TextView
-                        android:id="@+id/T20BowlingRanking"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="center"
-                        android:padding="@dimen/_13sdp"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/_8sdp"
-                        tools:text="--" />
+                        <TextView
+                            android:id="@+id/T20BattingRanking"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/cell_shape"
+                            android:gravity="center"
+                            android:padding="@dimen/_13sdp"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_8sdp"
+                            tools:text="T20I" />
 
 
-                </TableRow>
-            </TableLayout>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/Bowling_Ranking"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/Bowling_Label"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/cell_shape"
+                            android:gravity="center"
+                            android:padding="@dimen/_13sdp"
+                            android:text="Bowling"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_8sdp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/odiBowlingRanking"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/cell_shape"
+                            android:gravity="center"
+                            android:padding="@dimen/_13sdp"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_8sdp"
+                            tools:text="--" />
+
+                        <TextView
+                            android:id="@+id/testBowlingRanking"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/cell_shape"
+                            android:gravity="center"
+                            android:padding="@dimen/_13sdp"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_8sdp"
+                            tools:text="--" />
+
+                        <TextView
+                            android:id="@+id/T20BowlingRanking"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/cell_shape"
+                            android:gravity="center"
+                            android:padding="@dimen/_13sdp"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_8sdp"
+                            tools:text="--" />
+
+
+                    </TableRow>
+                </TableLayout>
+            </android.support.v7.widget.CardView>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/divider"
-                android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:background="@color/divider"
                 android:textSize="@dimen/_1sdp" />
 
             <TextView
@@ -509,8 +519,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ICC"
-                android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_8sdp"
                 android:background="@color/divider"
                 android:textSize="@dimen/_1sdp" />
 
@@ -528,183 +538,193 @@
                     android:layout_height="wrap_content"
                     android:scrollbars="horizontal|vertical">
 
-                    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:id="@+id/MOTM_Table"
+                    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/card_view_motm"
                         android:layout_width="wrap_content"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:layout_height="match_parent"
-                        android:background="#ffffff"
-                        android:padding="@dimen/_5sdp"
-                        android:stretchColumns="*">
+                        android:layout_height="wrap_content"
+                        card_view:cardBackgroundColor="@android:color/white"
+                        card_view:cardCornerRadius="@dimen/_5sdp"
+                        card_view:cardElevation="@dimen/_2sdp"
+                        card_view:cardUseCompatPadding="true">
 
-                        <TableRow
-                            android:id="@+id/MOTM_Lablels"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:id="@+id/MOTM_Table"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="#ffffff"
+                            android:stretchColumns="*">
 
-
-                            <TextView
-                                android:id="@+id/MOTM_Label_TEST"
-                                android:layout_height="@dimen/_45sdp"
-                                android:background="@drawable/cell_shape"
-                                android:gravity="center"
-                                android:padding="@dimen/_18sdp"
-                                android:text="TEST"
-                                android:textAlignment="center"
-                                android:textColor="#000000"
-                                android:textSize="@dimen/_8sdp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/MOTM_Label_ODI"
-                                android:layout_height="@dimen/_45sdp"
-                                android:layout_weight="1"
-                                android:background="@drawable/cell_shape"
-                                android:gravity="center"
-                                android:padding="@dimen/_18sdp"
-                                android:text="  ODI  "
-                                android:textAlignment="center"
-                                android:textColor="#000000"
-                                android:textSize="@dimen/_8sdp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/MOTM_Label_T20"
-                                android:layout_height="@dimen/_45sdp"
-                                android:layout_weight="1"
-                                android:background="@drawable/cell_shape"
-                                android:gravity="center"
-                                android:padding="@dimen/_18sdp"
-                                android:text="T20I"
-                                android:textAlignment="center"
-                                android:textColor="#000000"
-                                android:textSize="@dimen/_8sdp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/MOTM_Label_WorldCup"
-                                android:layout_height="@dimen/_45sdp"
-                                android:layout_weight="1"
-                                android:background="@drawable/cell_shape"
-                                android:gravity="center"
-                                android:padding="@dimen/_18sdp"
-                                android:text="WORLD CUP"
-                                android:textAlignment="center"
-                                android:textColor="#000000"
-                                android:textSize="@dimen/_8sdp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/MOTM_Label_IPL"
-                                android:layout_height="@dimen/_45sdp"
-                                android:layout_weight="1"
-                                android:background="@drawable/cell_shape"
-                                android:gravity="center"
-                                android:padding="@dimen/_18sdp"
-                                android:text="  IPL  "
-                                android:textAlignment="center"
-                                android:textColor="#000000"
-                                android:textSize="@dimen/_8sdp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/MOTM_Label_CL"
-                                android:layout_height="@dimen/_45sdp"
-                                android:layout_weight="1"
-                                android:background="@drawable/cell_shape"
-                                android:gravity="center"
-                                android:padding="@dimen/_18sdp"
-                                android:text="  CL  "
-                                android:textAlignment="center"
-                                android:textColor="#000000"
-                                android:textSize="@dimen/_8sdp"
-                                android:textStyle="bold" />
+                            <TableRow
+                                android:id="@+id/MOTM_Lablels"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
 
 
-                        </TableRow>
+                                <TextView
+                                    android:id="@+id/MOTM_Label_TEST"
+                                    android:layout_height="@dimen/_45sdp"
+                                    android:background="@drawable/cell_shape"
+                                    android:gravity="center"
+                                    android:padding="@dimen/_18sdp"
+                                    android:text="TEST"
+                                    android:textAlignment="center"
+                                    android:textColor="#000000"
+                                    android:textSize="@dimen/_8sdp"
+                                    android:textStyle="bold" />
 
-                        <TableRow
-                            android:id="@+id/MOTM_Values"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                                <TextView
+                                    android:id="@+id/MOTM_Label_ODI"
+                                    android:layout_height="@dimen/_45sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/cell_shape"
+                                    android:gravity="center"
+                                    android:padding="@dimen/_18sdp"
+                                    android:text="  ODI  "
+                                    android:textAlignment="center"
+                                    android:textColor="#000000"
+                                    android:textSize="@dimen/_8sdp"
+                                    android:textStyle="bold" />
 
-                            <TextView
-                                android:id="@+id/MOTM_Test"
-                                android:layout_height="@dimen/_45sdp"
-                                android:layout_weight="1"
-                                android:background="@drawable/cell_shape"
-                                android:gravity="center"
-                                android:padding="@dimen/_18sdp"
-                                android:textAlignment="center"
-                                android:textColor="#000000"
-                                android:textSize="@dimen/_8sdp"
-                                tools:text="3" />
+                                <TextView
+                                    android:id="@+id/MOTM_Label_T20"
+                                    android:layout_height="@dimen/_45sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/cell_shape"
+                                    android:gravity="center"
+                                    android:padding="@dimen/_18sdp"
+                                    android:text="T20I"
+                                    android:textAlignment="center"
+                                    android:textColor="#000000"
+                                    android:textSize="@dimen/_8sdp"
+                                    android:textStyle="bold" />
 
-                            <TextView
-                                android:id="@+id/MOTM_Odi"
-                                android:layout_height="@dimen/_45sdp"
-                                android:layout_weight="1"
-                                android:background="@drawable/cell_shape"
-                                android:gravity="center"
-                                android:padding="@dimen/_18sdp"
-                                android:textAlignment="center"
-                                android:textColor="#000000"
-                                android:textSize="@dimen/_8sdp"
-                                tools:text="6" />
+                                <TextView
+                                    android:id="@+id/MOTM_Label_WorldCup"
+                                    android:layout_height="@dimen/_45sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/cell_shape"
+                                    android:gravity="center"
+                                    android:padding="@dimen/_18sdp"
+                                    android:text="WORLD CUP"
+                                    android:textAlignment="center"
+                                    android:textColor="#000000"
+                                    android:textSize="@dimen/_8sdp"
+                                    android:textStyle="bold" />
 
-                            <TextView
-                                android:id="@+id/MOTM_T20"
-                                android:layout_height="@dimen/_45sdp"
-                                android:layout_weight="1"
-                                android:background="@drawable/cell_shape"
-                                android:gravity="center"
-                                android:padding="@dimen/_18sdp"
-                                android:textAlignment="center"
-                                android:textColor="#000000"
-                                android:textSize="@dimen/_8sdp"
-                                tools:text="2" />
+                                <TextView
+                                    android:id="@+id/MOTM_Label_IPL"
+                                    android:layout_height="@dimen/_45sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/cell_shape"
+                                    android:gravity="center"
+                                    android:padding="@dimen/_18sdp"
+                                    android:text="  IPL  "
+                                    android:textAlignment="center"
+                                    android:textColor="#000000"
+                                    android:textSize="@dimen/_8sdp"
+                                    android:textStyle="bold" />
 
-                            <TextView
-                                android:id="@+id/MOTM_WorldCup"
-                                android:layout_height="@dimen/_45sdp"
-                                android:layout_weight="1"
-                                android:background="@drawable/cell_shape"
-                                android:gravity="center"
-                                android:padding="@dimen/_18sdp"
-                                android:textAlignment="center"
-                                android:textColor="#000000"
-                                android:textSize="@dimen/_8sdp"
-                                tools:text="2" />
-
-                            <TextView
-                                android:id="@+id/MOTM_IPL"
-                                android:layout_height="@dimen/_45sdp"
-                                android:layout_weight="1"
-                                android:background="@drawable/cell_shape"
-                                android:gravity="center"
-                                android:padding="@dimen/_18sdp"
-                                android:textAlignment="center"
-                                android:textColor="#000000"
-                                android:textSize="@dimen/_8sdp"
-                                tools:text="2" />
-
-                            <TextView
-                                android:id="@+id/MOTM_CL"
-                                android:layout_height="@dimen/_45sdp"
-                                android:layout_weight="1"
-                                android:background="@drawable/cell_shape"
-                                android:gravity="center"
-                                android:padding="@dimen/_18sdp"
-                                android:textAlignment="center"
-                                android:textColor="#000000"
-                                android:textSize="@dimen/_8sdp"
-                                tools:text="0" />
+                                <TextView
+                                    android:id="@+id/MOTM_Label_CL"
+                                    android:layout_height="@dimen/_45sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/cell_shape"
+                                    android:gravity="center"
+                                    android:padding="@dimen/_18sdp"
+                                    android:text="  CL  "
+                                    android:textAlignment="center"
+                                    android:textColor="#000000"
+                                    android:textSize="@dimen/_8sdp"
+                                    android:textStyle="bold" />
 
 
-                        </TableRow>
+                            </TableRow>
+
+                            <TableRow
+                                android:id="@+id/MOTM_Values"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/MOTM_Test"
+                                    android:layout_height="@dimen/_45sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/cell_shape"
+                                    android:gravity="center"
+                                    android:padding="@dimen/_18sdp"
+                                    android:textAlignment="center"
+                                    android:textColor="#000000"
+                                    android:textSize="@dimen/_8sdp"
+                                    tools:text="3" />
+
+                                <TextView
+                                    android:id="@+id/MOTM_Odi"
+                                    android:layout_height="@dimen/_45sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/cell_shape"
+                                    android:gravity="center"
+                                    android:padding="@dimen/_18sdp"
+                                    android:textAlignment="center"
+                                    android:textColor="#000000"
+                                    android:textSize="@dimen/_8sdp"
+                                    tools:text="6" />
+
+                                <TextView
+                                    android:id="@+id/MOTM_T20"
+                                    android:layout_height="@dimen/_45sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/cell_shape"
+                                    android:gravity="center"
+                                    android:padding="@dimen/_18sdp"
+                                    android:textAlignment="center"
+                                    android:textColor="#000000"
+                                    android:textSize="@dimen/_8sdp"
+                                    tools:text="2" />
+
+                                <TextView
+                                    android:id="@+id/MOTM_WorldCup"
+                                    android:layout_height="@dimen/_45sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/cell_shape"
+                                    android:gravity="center"
+                                    android:padding="@dimen/_18sdp"
+                                    android:textAlignment="center"
+                                    android:textColor="#000000"
+                                    android:textSize="@dimen/_8sdp"
+                                    tools:text="2" />
+
+                                <TextView
+                                    android:id="@+id/MOTM_IPL"
+                                    android:layout_height="@dimen/_45sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/cell_shape"
+                                    android:gravity="center"
+                                    android:padding="@dimen/_18sdp"
+                                    android:textAlignment="center"
+                                    android:textColor="#000000"
+                                    android:textSize="@dimen/_8sdp"
+                                    tools:text="2" />
+
+                                <TextView
+                                    android:id="@+id/MOTM_CL"
+                                    android:layout_height="@dimen/_45sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/cell_shape"
+                                    android:gravity="center"
+                                    android:padding="@dimen/_18sdp"
+                                    android:textAlignment="center"
+                                    android:textColor="#000000"
+                                    android:textSize="@dimen/_8sdp"
+                                    tools:text="0" />
 
 
-                    </TableLayout>
+                            </TableRow>
+
+                        </TableLayout>
+
+                    </android.support.v7.widget.CardView>
 
                 </HorizontalScrollView>
             </ScrollView>
@@ -712,9 +732,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/divider"
-                android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:background="@color/divider"
                 android:textSize="@dimen/_1sdp" />
 
             <TextView
@@ -732,9 +753,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ICC"
-                android:background="@color/divider"
-                android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:background="@color/divider"
                 android:textSize="@dimen/_1sdp" />
 
             <android.support.v4.widget.NestedScrollView
@@ -743,32 +764,41 @@
                 android:orientation="vertical"
                 app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
 
-                <RelativeLayout
+                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/card_view_info"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="@dimen/_15sdp"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    card_view:cardBackgroundColor="@android:color/white"
+                    card_view:cardCornerRadius="@dimen/_5sdp"
+                    card_view:cardElevation="@dimen/_2sdp"
+                    card_view:cardUseCompatPadding="true">
 
-                    <TextView
-                        android:id="@+id/PlayerInfo"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dip"
-                        android:gravity="center"
-                        android:padding="@dimen/_10sdp"
-                        android:background="@android:color/white"
-                        android:textAlignment="textStart"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/_11sdp"
-                        tools:ignore="RtlCompat" />
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:id="@+id/PlayerInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dip"
+                            android:background="@android:color/white"
+                            android:gravity="center"
+                            android:padding="@dimen/_5sdp"
+                            android:textAlignment="textStart"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_11sdp"
+                            tools:ignore="RtlCompat" />
+                    </RelativeLayout>
 
-                </RelativeLayout>
+                </android.support.v7.widget.CardView>
             </android.support.v4.widget.NestedScrollView>
 
 
         </LinearLayout>
-                    </android.support.v7.widget.CardView>
+
     </android.support.v4.widget.NestedScrollView>
 
 </android.support.design.widget.CoordinatorLayout>
