@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchScoreCard;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements.ScoreCardItem;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements;
+package com.debut.ellipsis.freehit.Matches.ScoreCard;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -132,12 +132,117 @@ public class ScoreCardItem {
 
     public class Team
     {
+        @SerializedName("firstinn")
+        private Innings firstinn;
+        @SerializedName("secondinn")
+        private Innings secondinn;
+
+        public Innings getFirstinn() {
+            return firstinn;
+        }
+
+        public Innings getSecondinn() {
+            return secondinn;
+        }
+
+    }
+
+    public class Innings
+    {
+        @SerializedName("batting")
+        public List<Batting> batting = new ArrayList<>();
+        @SerializedName("bowling")
+        public List<Bowling> bowling = new ArrayList<>();
+        @SerializedName("extras")
+        private String extras;
+        @SerializedName("fow")
+        public List<FOW> fow = new ArrayList<>();
         @SerializedName("team")
         private String team;
+
+        public List<Batting> getBatting() {
+            return batting;
+        }
+
+        public List<Bowling> getBowling() {
+            return bowling;
+        }
+
+        public String getExtras() {
+            return extras;
+        }
+
+        public List<FOW> getFow() {
+            return fow;
+        }
 
         public String getTeam() {
             return team;
         }
+    }
+
+    public class Batting
+    {
+        @SerializedName("balls")
+        private String balls;
+        @SerializedName("name")
+        private String name;
+        @SerializedName("runs")
+        private String runs;
+        @SerializedName("score")
+        private BattingScore score;
+        @SerializedName("sr")
+        private String sr;
+        @SerializedName("status")
+        private String status;
+
+        public String getBalls() {
+            return balls;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getRuns() {
+            return runs;
+        }
+
+        public BattingScore getScore() {
+            return score;
+        }
+
+        public String getSr() {
+            return sr;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+    }
+
+    public class BattingScore
+    {
+        @SerializedName("dots")
+        private String dots;
+        @SerializedName("fours")
+        private String fours;
+        @SerializedName("sixes")
+        private String sixes;
+
+        public String getDots() {
+            return dots;
+        }
+
+        public String getFours() {
+            return fours;
+        }
+
+        public String getSixes() {
+            return sixes;
+        }
+
     }
 
     public class H2H
@@ -160,6 +265,99 @@ public class ScoreCardItem {
         public TeamH2H getTeam2() {
             return team2;
         }
+    }
+
+    public class Bowling
+    {
+        @SerializedName("er")
+        private String er;
+        @SerializedName("name")
+        private String name;
+        @SerializedName("runs")
+        private String runs;
+        @SerializedName("score")
+        private BowlingScore score;
+        @SerializedName("wickets")
+        private String wickets;
+
+        public String getEr() {
+            return er;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getRuns() {
+            return runs;
+        }
+
+        public BowlingScore getScore() {
+            return score;
+        }
+
+        public String getWickets() {
+            return wickets;
+        }
+
+    }
+
+    public class BowlingScore
+    {
+        @SerializedName("dots")
+        private String dots;
+        @SerializedName("maidens")
+        private  String maidens;
+        @SerializedName("nb")
+        private String nb;
+        @SerializedName("overs")
+        private String overs;
+        @SerializedName("wide")
+        private String wide;
+
+        public String getDots() {
+            return dots;
+        }
+
+        public String getMaidens() {
+            return maidens;
+        }
+
+        public String getNb() {
+            return nb;
+        }
+
+        public String getOvers() {
+            return overs;
+        }
+
+        public String getWide() {
+            return wide;
+        }
+
+    }
+
+    public class FOW
+    {
+        @SerializedName("name")
+        private String name;
+        @SerializedName("overs")
+        private String overs;
+        @SerializedName("score")
+        private String score;
+
+        public String getName() {
+            return name;
+        }
+
+        public String getOvers() {
+            return overs;
+        }
+
+        public String getScore() {
+            return score;
+        }
+
     }
 
     public class Status

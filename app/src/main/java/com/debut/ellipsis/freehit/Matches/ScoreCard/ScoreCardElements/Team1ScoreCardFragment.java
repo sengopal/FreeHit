@@ -1,7 +1,6 @@
 package com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -34,8 +33,10 @@ public class Team1ScoreCardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Intent i = getActivity().getIntent();
-        /*Toast.makeText(this.getActivity(), i.getStringExtra("match_id"), Toast.LENGTH_SHORT).show();*/
+
+        String match_id =  getActivity().getIntent().getStringExtra("match_id");
+        String match_type = getActivity().getIntent().getStringExtra("match_type");
+
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_matchscorecard_scorecard, container, false);
 

@@ -12,7 +12,6 @@ import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchScoreCard;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements.ScoreCardItem;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
@@ -44,10 +43,10 @@ public class InfoFragment extends Fragment {
         }
 
         TextView match_info_team1 = rootView.findViewById(R.id.match_info_team1);
-        match_info_team1.setText(teamList.get(0).getScorecard().getTeam1().getTeam());
+        match_info_team1.setText(teamList.get(0).getScorecard().getTeam1().getFirstinn().getTeam());
 
         TextView match_info_team2 = rootView.findViewById(R.id.match_info_team2);
-        match_info_team2.setText(teamList.get(0).getScorecard().getTeam2().getTeam());
+        match_info_team2.setText(teamList.get(0).getScorecard().getTeam2().getFirstinn().getTeam());
 
         TextView match = rootView.findViewById(R.id.match_info_match_name);
         match.setText(match_name);

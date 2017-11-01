@@ -2,7 +2,7 @@ package com.debut.ellipsis.freehit;
 
 import com.debut.ellipsis.freehit.Matches.LiveMatches.LiveMatchCardItem;
 import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchCardItem;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements.ScoreCardItem;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardItem;
 import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchCardItem;
 import com.debut.ellipsis.freehit.More.Player.PlayerItem;
 import com.debut.ellipsis.freehit.More.Rankings.RankingItem;

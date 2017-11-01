@@ -16,8 +16,8 @@ import android.widget.Toast;
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHeadFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.InfoFragment;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements.ScoreCardItem;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardFragment;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardItem;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
