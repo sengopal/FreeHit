@@ -236,7 +236,7 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
 
                                 peroption1.setText(String.format("%.2f", (PollResult(poll.getCvotes(0), total))) + '%');
                                 peroption2.setText(String.format("%.2f", (PollResult(poll.getCvotes(1), total))) + '%');
-                                peroption3.setText(String.format("%.2f", (PollResult(poll.getCvotes(1), total))) + '%');
+                                peroption3.setText(String.format("%.2f", (PollResult(poll.getCvotes(2), total))) + '%');
                                 peroption4.setVisibility(View.GONE);
 
                                 valueoption1.setText("( " + poll.getCvotes(0) + " )");
@@ -335,7 +335,7 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
 
                             peroption1.setText(String.format("%.2f", (PollResult(poll.get(holder.getAdapterPosition()).getCvotes(0), total))) + '%');
                             peroption2.setText(String.format("%.2f", (PollResult(poll.get(holder.getAdapterPosition()).getCvotes(1), total))) + '%');
-                            peroption3.setText(String.format("%.2f", (PollResult(poll.get(holder.getAdapterPosition()).getCvotes(1), total))) + '%');
+                            peroption3.setText(String.format("%.2f", (PollResult(poll.get(holder.getAdapterPosition()).getCvotes(2), total))) + '%');
                             peroption4.setVisibility(View.GONE);
 
                             valueoption1.setText("( " + poll.get(holder.getAdapterPosition()).getCvotes(0) + " )");
