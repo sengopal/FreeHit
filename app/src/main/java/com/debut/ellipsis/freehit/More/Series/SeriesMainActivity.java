@@ -24,6 +24,7 @@ import retrofit2.Response;
 
 public class SeriesMainActivity extends AppCompatActivity {
 
+    private ProgressBar mProgressbar;
 
     public SeriesMainActivity() {
 
@@ -50,8 +51,8 @@ public class SeriesMainActivity extends AppCompatActivity {
 
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
-        View vProgress = findViewById(R.id.progress);
-        final ProgressBar mProgressbar = (ProgressBar) vProgress.findViewById(R.id.progress_bar);
+        View ProgressView = findViewById(R.id.progress);
+        mProgressbar = (ProgressBar) ProgressView.findViewById(R.id.progress_bar);
 
         MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
@@ -59,14 +60,15 @@ public class SeriesMainActivity extends AppCompatActivity {
         seriesInfo.enqueue(new Callback<com.debut.ellipsis.freehit.More.Series.SeriesItem>() {
             @Override
             public void onResponse(Call<SeriesItem> call, Response<SeriesItem> response) {
-                mProgressbar.setVisibility(View.GONE);
+                mProgressbar.setVisibility(View.INVISIBLE);
                 List<SeriesItem> seriesInfo = response.body().getResults();
-
                 recyclerView.setAdapter(new SeriesItemAdapter(seriesInfo, R.layout.fragment_more_series_list_item, getApplicationContext()));
+
             }
 
             @Override
             public void onFailure(Call<SeriesItem> call, Throwable t) {
+                mProgressbar.setVisibility(View.INVISIBLE);
                 Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
                 call.cancel();
             }
@@ -74,30 +76,31 @@ public class SeriesMainActivity extends AppCompatActivity {
 
         refLayout.setColorSchemeResources(R.color.orange);
         refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                                                @Override
-                                                public void onRefresh() {
-                                                    // Checking if connected or not on refresh
-                                                    refLayout.setRefreshing(true);
+                                           @Override
+                                           public void onRefresh() {
+                                               // Checking if connected or not on refresh
+                                               refLayout.setRefreshing(true);
 
-                                                    Call<SeriesItem> seriesInfo = MainActivity.apiInterface.doGetSeries();
-                                                    seriesInfo.enqueue(new Callback<com.debut.ellipsis.freehit.More.Series.SeriesItem>() {
-                                                        @Override
-                                                        public void onResponse(Call<SeriesItem> call, Response<SeriesItem> response) {
-                                                            mProgressbar.setVisibility(View.GONE);
-                                                            List<SeriesItem> seriesInfo = response.body().getResults();
-                                                            recyclerView.setAdapter(new SeriesItemAdapter(seriesInfo, R.layout.fragment_more_series_list_item, getApplicationContext()));
+                                               Call<SeriesItem> seriesInfo = MainActivity.apiInterface.doGetSeries();
+                                               seriesInfo.enqueue(new Callback<com.debut.ellipsis.freehit.More.Series.SeriesItem>() {
+                                                   @Override
+                                                   public void onResponse(Call<SeriesItem> call, Response<SeriesItem> response) {
+                                                       mProgressbar.setVisibility(View.INVISIBLE);
+                                                       List<SeriesItem> seriesInfo = response.body().getResults();
+                                                       recyclerView.setAdapter(new SeriesItemAdapter(seriesInfo, R.layout.fragment_more_series_list_item, getApplicationContext()));
 
-                                                        }
+                                                   }
 
-                                                        @Override
-                                                        public void onFailure(Call<SeriesItem> call, Throwable t) {
-                                                            Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
-                                                            call.cancel();
-                                                        }
-                                                    });
-                                                    refLayout.setRefreshing(false);
-                                                }
-                                            }
+                                                   @Override
+                                                   public void onFailure(Call<SeriesItem> call, Throwable t) {
+                                                       mProgressbar.setVisibility(View.INVISIBLE);
+                                                       Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+                                                       call.cancel();
+                                                   }
+                                               });
+                                               refLayout.setRefreshing(false);
+                                           }
+                                       }
         );
 
     }

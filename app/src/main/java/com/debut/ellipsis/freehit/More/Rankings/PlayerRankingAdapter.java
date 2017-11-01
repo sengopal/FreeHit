@@ -38,7 +38,6 @@ public class PlayerRankingAdapter extends RecyclerView.Adapter<PlayerRankingAdap
             rlcontainer = (RelativeLayout) itemView.findViewById(R.id.rlcontainer);
 
 
-
         }
     }
 
@@ -93,20 +92,21 @@ public class PlayerRankingAdapter extends RecyclerView.Adapter<PlayerRankingAdap
 
         View.OnClickListener mClickListener;
 
+        if (!PlayerItem.getLink().equals("")) {
 
-        mClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent teamIntent = new Intent(mContext, PlayerActivity.class);
-                teamIntent.putExtra("player_name", PlayerItem.getName());
-                teamIntent.putExtra("player_url", PlayerItem.getLink());
-                teamIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                mContext.startActivity(teamIntent);
+            mClickListener = new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent teamIntent = new Intent(mContext, PlayerActivity.class);
+                    teamIntent.putExtra("player_name", PlayerItem.getName());
+                    teamIntent.putExtra("player_url", PlayerItem.getLink());
+                    teamIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    mContext.startActivity(teamIntent);
 
-            }
-        };
-        RLContainer.setOnClickListener(mClickListener);
-
+                }
+            };
+            RLContainer.setOnClickListener(mClickListener);
+        }
 
     }
 

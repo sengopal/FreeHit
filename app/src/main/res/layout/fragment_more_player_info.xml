@@ -69,8 +69,8 @@
                         android:id="@+id/r2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingStart="@dimen/_5sdp"
-                        android:paddingEnd="@dimen/_3sdp">
+                        android:paddingEnd="@dimen/_3sdp"
+                        android:paddingStart="@dimen/_5sdp">
 
                         <ImageView
                             android:id="@+id/Player_image"
@@ -788,10 +788,8 @@
                             android:background="@android:color/white"
                             android:gravity="center"
                             android:padding="@dimen/_5sdp"
-                            android:textAlignment="textStart"
                             android:textColor="@android:color/black"
-                            android:textSize="@dimen/_11sdp"
-                            tools:ignore="RtlCompat" />
+                            android:textSize="@dimen/_11sdp" />
                     </RelativeLayout>
 
                 </android.support.v7.widget.CardView>

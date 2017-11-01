@@ -9,15 +9,6 @@
         android:id="@+id/series_toolbar"
         layout="@layout/common_toolbar" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center">
-
-        <include
-            android:id="@+id/progress"
-            layout="@layout/common_progressbar" />
-    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -28,5 +19,9 @@
             android:id="@+id/series_list"
             layout="@layout/common_recycler_view_list" />
     </RelativeLayout>
+
+    <include
+        android:id="@+id/progress"
+        layout="@layout/common_progressbar" />
 
 </RelativeLayout>

@@ -30,10 +30,11 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingStart="@dimen/_3sdp"
+                android:padding="@dimen/_2sdp"
                 android:gravity="center_vertical"
                 android:text="@string/app_label"
                 android:textColor="@android:color/white"
+                android:textStyle="bold"
                 android:textSize="@dimen/_18sdp" />
 
         </android.support.v7.widget.Toolbar>

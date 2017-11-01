@@ -84,12 +84,12 @@ public class LiveMatchCard extends Fragment {
 
                 common_match_cards.setVisibility(View.VISIBLE);
                 no_internet_connection.setVisibility(View.INVISIBLE);
-                mProgressBar.setVisibility(View.INVISIBLE);
                 indicator.setVisibility(View.VISIBLE);
 
                 indicator.setViewPager(vp);
 
                 List<LiveMatchCardItem> LiveMatches = response.body().getResults();
+                mProgressBar.setVisibility(View.INVISIBLE);
 
                 if (getActivity() != null) {
 
@@ -141,8 +141,6 @@ public class LiveMatchCard extends Fragment {
                     @Override
                     public void onResponse(Call<LiveMatchCardItem> call, Response<LiveMatchCardItem> response) {
 
-                        mProgressBar.setVisibility(View.INVISIBLE);
-
                         common_match_cards.setVisibility(View.VISIBLE);
                         no_internet_connection.setVisibility(View.INVISIBLE);
 
@@ -151,6 +149,7 @@ public class LiveMatchCard extends Fragment {
                         indicator.setViewPager(vp);
 
                         List<LiveMatchCardItem> LiveMatches = response.body().getResults();
+                        mProgressBar.setVisibility(View.INVISIBLE);
 
                         if (getActivity() != null) {
                             if (LiveMatches.size() == 0) {
