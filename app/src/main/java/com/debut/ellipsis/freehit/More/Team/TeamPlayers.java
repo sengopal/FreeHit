@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
-import com.debut.ellipsis.freehit.CountryItem;
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.PlayerCountryItem;
 import com.debut.ellipsis.freehit.R;
@@ -30,7 +29,6 @@ import retrofit2.Response;
 
 public class TeamPlayers extends Fragment {
 
-    private String TeamID;
     private ProgressBar mProgressBar;
     public TextView mEmptyView;
 
@@ -40,19 +38,16 @@ public class TeamPlayers extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_more_fav_team_player_list, container, false);
 
         Intent i = getActivity().getIntent();
-        TeamActivity.Team = i.getIntExtra("CountryName",0);
+        TeamActivity.Team = i.getIntExtra("CountryName", 0);
         TeamActivity.favTeam = i.getStringExtra("fav_country");
 
-        if(TeamActivity.Team == 0)
-        {
+        if (TeamActivity.Team == 0) {
             TeamActivity.tempTeamName = TeamActivity.favTeam;
-        }
-        else
-        {
+        } else {
             TeamActivity.tempTeamName = this.getContext().getString(TeamActivity.Team);
         }
 
-        final String Team = TeamActivity.tempTeamName ;
+        final String Team = TeamActivity.tempTeamName;
 
         View viewToolbar = rootView.findViewById(R.id.toolbar_fav_players);
 
@@ -75,47 +70,26 @@ public class TeamPlayers extends Fragment {
 
         final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
-        Call<CountryItem> call = MainActivity.apiInterface.doGetCountryResources();
-        call.enqueue(new Callback<CountryItem>() {
+
+        Call<PlayerCountryItem> call1 = MainActivity.apiInterface.doGetFavTeamPlayers(Team);
+        call1.enqueue(new Callback<PlayerCountryItem>() {
             @Override
-            public void onResponse(Call<CountryItem> call, Response<CountryItem> response) {
+            public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
 
-                List<CountryItem> countries = response.body().getResults();
-                for (int i = 0; i < countries.size(); i++) {
-                    if (countries.get(i).getTitle().equals(Team)) {
-                        int teamID = countries.get(i).getId();
-                        TeamID = String.valueOf(teamID);
-
-                        Call<PlayerCountryItem> call1 = MainActivity.apiInterface.doGetFavTeamPlayers(TeamID);
-                        call1.enqueue(new Callback<PlayerCountryItem>() {
-                            @Override
-                            public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
-
-                                mProgressBar.setVisibility(View.GONE);
-                                List<PlayerCountryItem> playerCountryItems = response.body().getResults();
-                                if (playerCountryItems.size() == 0) {
-                                    mEmptyView.setVisibility(View.VISIBLE);
-                                    mEmptyView.setText(R.string.NoPlayers);
-                                }
-                                recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getContext()));
-
-                            }
-
-                            @Override
-                            public void onFailure(Call<PlayerCountryItem> call, Throwable t) {
-                                mProgressBar.setVisibility(View.INVISIBLE);
-                                mEmptyView.setVisibility(View.INVISIBLE);
-                                Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
-                                toast.show();
-                                call.cancel();
-                            }
-                        });
-                    }
+                mProgressBar.setVisibility(View.GONE);
+                List<PlayerCountryItem> playerCountryItems = response.body().getResults();
+                if (playerCountryItems.size() == 0) {
+                    mEmptyView.setVisibility(View.VISIBLE);
+                    mEmptyView.setText(R.string.NoPlayers);
                 }
+                recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getContext()));
+
             }
 
             @Override
-            public void onFailure(Call<CountryItem> call, Throwable t) {
+            public void onFailure(Call<PlayerCountryItem> call, Throwable t) {
+                mProgressBar.setVisibility(View.INVISIBLE);
+                mEmptyView.setVisibility(View.INVISIBLE);
                 Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
                 toast.show();
                 call.cancel();
@@ -129,52 +103,33 @@ public class TeamPlayers extends Fragment {
             public void onRefresh() {
                 refLayout.setRefreshing(true);
 
-                Call<CountryItem> call = MainActivity.apiInterface.doGetCountryResources();
-                call.enqueue(new Callback<CountryItem>() {
+
+                Call<PlayerCountryItem> call1 = MainActivity.apiInterface.doGetFavTeamPlayers(Team);
+                call1.enqueue(new Callback<PlayerCountryItem>() {
                     @Override
-                    public void onResponse(Call<CountryItem> call, Response<CountryItem> response) {
+                    public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
 
-                        List<CountryItem> countries = response.body().getResults();
-                        for (int i = 0; i < countries.size(); i++) {
-                            if (countries.get(i).getTitle().equals(Team)) {
-                                int teamID = countries.get(i).getId();
-                                TeamID = String.valueOf(teamID);
-
-                                Call<PlayerCountryItem> call1 = MainActivity.apiInterface.doGetFavTeamPlayers(TeamID);
-                                call1.enqueue(new Callback<PlayerCountryItem>() {
-                                    @Override
-                                    public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
-
-                                        mProgressBar.setVisibility(View.GONE);
-                                        List<PlayerCountryItem> playerCountryItems = response.body().getResults();
-                                        if (playerCountryItems.size() == 0) {
-                                            mEmptyView.setVisibility(View.VISIBLE);
-                                            mEmptyView.setText(R.string.NoPlayers);
-                                        }
-                                        recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getContext()));
-
-                                    }
-
-                                    @Override
-                                    public void onFailure(Call<PlayerCountryItem> call, Throwable t) {
-                                        mProgressBar.setVisibility(View.INVISIBLE);
-                                        mEmptyView.setVisibility(View.INVISIBLE);
-                                        Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
-                                        toast.show();
-                                        call.cancel();
-                                    }
-                                });
-                            }
+                        mProgressBar.setVisibility(View.GONE);
+                        List<PlayerCountryItem> playerCountryItems = response.body().getResults();
+                        if (playerCountryItems.size() == 0) {
+                            mEmptyView.setVisibility(View.VISIBLE);
+                            mEmptyView.setText(R.string.NoPlayers);
                         }
+                        recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getContext()));
+
                     }
 
                     @Override
-                    public void onFailure(Call<CountryItem> call, Throwable t) {
+                    public void onFailure(Call<PlayerCountryItem> call, Throwable t) {
+                        mProgressBar.setVisibility(View.INVISIBLE);
+                        mEmptyView.setVisibility(View.INVISIBLE);
                         Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
                         toast.show();
                         call.cancel();
                     }
                 });
+
+
                 refLayout.setRefreshing(false);
             }
         });

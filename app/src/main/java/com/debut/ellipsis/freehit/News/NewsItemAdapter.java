@@ -71,6 +71,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
 
         String URLNewsImage = newsItems.get(position).getImage();
 
+
         MainActivity.requestBuilder = GlideApp.with(context).load(URLNewsImage).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
         MainActivity.requestBuilder.into(holder.image);

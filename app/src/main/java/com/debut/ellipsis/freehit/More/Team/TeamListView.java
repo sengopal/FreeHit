@@ -68,7 +68,7 @@ public class TeamListView extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(), TeamActivity.class);
                 i.putExtra("CountryName", TeamItem.get(position).getmTeamName());
                 startActivity(i);
-                setIntent(i);
+                /*setIntent(i);*/
             }
         });
     }

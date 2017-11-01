@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.debut.ellipsis.freehit.More.TeamSeriesMatchesFragment;
-import com.debut.ellipsis.freehit.News.NewsFragment;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
@@ -88,7 +87,6 @@ public class TeamActivity extends AppCompatActivity {
         TeamActivity.ViewPagerAdapter adapter = new TeamActivity.ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new TeamPlayers(), "PLAYERS");
         adapter.addFrag(new TeamSeriesMatchesFragment(), "SCHEDULE");
-        adapter.addFrag(new NewsFragment(), "NEWS");
         viewPager.setAdapter(adapter);
     }
 
@@ -122,13 +120,6 @@ public class TeamActivity extends AppCompatActivity {
                 }
             }
 
-            if(mFragmentTitleList.size()==3) {
-                if (mFragmentTitleList.get(2).equals("NEWS")) {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("fragment_name", "TEAM NEWS");
-                    fragment.setArguments(bundle);
-                }
-            }
         }
 
         @Override

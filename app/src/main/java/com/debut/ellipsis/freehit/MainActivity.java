@@ -146,13 +146,6 @@ public class MainActivity extends AppCompatActivity {
         public void addFrag(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
-            if(mFragmentTitleList.size()==2) {
-                if (mFragmentTitleList.get(1).equals("NEWS")) {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("fragment_name", "NEWS");
-                    fragment.setArguments(bundle);
-                }
-            }
         }
 
         @Override
