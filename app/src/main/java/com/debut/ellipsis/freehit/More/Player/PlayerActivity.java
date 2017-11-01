@@ -105,9 +105,9 @@ public class PlayerActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         PlayerActivity.ViewPagerAdapter adapter = new PlayerActivity.ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new Info_Fragment(), "PLAYER INFO");
-        adapter.addFrag(new BattingFragment(), "BATTING");
-        adapter.addFrag(new BowlingFragment(), "BOWLING");
+        adapter.addFrag(new PlayerFragment(), "PLAYER INFO");
+        adapter.addFrag(new PlayerFragment(), "BATTING");
+        adapter.addFrag(new PlayerFragment(), "BOWLING");
         viewPager.setAdapter(adapter);
     }
 
@@ -132,6 +132,26 @@ public class PlayerActivity extends AppCompatActivity {
         public void addFrag(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
+            if(mFragmentTitleList.get(0).equals("PLAYER INFO"))
+            {
+                Bundle bundle=new Bundle();
+                bundle.putString("fragment_name", "PLAYER INFO");
+                fragment.setArguments(bundle);
+            }
+            if(mFragmentTitleList.size()==2) {
+                if (mFragmentTitleList.get(1).equals("BATTING")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("fragment_name", "BATTING");
+                    fragment.setArguments(bundle);
+                }
+            }
+            if(mFragmentTitleList.size()==3) {
+                if (mFragmentTitleList.get(2).equals("BOWLING")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("fragment_name", "BOWLING");
+                    fragment.setArguments(bundle);
+                }
+            }
         }
 
         @Override

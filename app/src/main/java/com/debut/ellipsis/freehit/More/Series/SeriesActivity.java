@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.debut.ellipsis.freehit.More.TeamSeriesMatchesFragment;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
@@ -74,7 +75,7 @@ public class SeriesActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         SeriesActivity.ViewPagerAdapter adapter = new SeriesActivity.ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new SeriesMatchesFragment(), "SCHEDULE");
+        adapter.addFrag(new TeamSeriesMatchesFragment(), "SCHEDULE");
         adapter.addFrag(new SeriesPerformance(), "TOP PERFORMANCE");
         viewPager.setAdapter(adapter);
     }
@@ -100,6 +101,12 @@ public class SeriesActivity extends AppCompatActivity {
         public void addFrag(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
+            if(mFragmentTitleList.get(0).equals("SCHEDULE"))
+            {
+                Bundle bundle=new Bundle();
+                bundle.putString("fragment_name", "SERIES SCHEDULE");
+                fragment.setArguments(bundle);
+            }
         }
 
         @Override

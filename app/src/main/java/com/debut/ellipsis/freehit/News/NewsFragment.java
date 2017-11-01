@@ -1,6 +1,7 @@
 package com.debut.ellipsis.freehit.News;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.MainActivity;
+import com.debut.ellipsis.freehit.More.Team.TeamActivity;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
@@ -45,6 +47,8 @@ public class NewsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        String fragment_name = getArguments().getString("fragment_name");
 
         View rootView = inflater.inflate(R.layout.fragment_news_list, container, false);
 
@@ -78,10 +82,11 @@ public class NewsFragment extends Fragment {
         NoNewsButton = (Button) No_news.findViewById(R.id.No_Live_Matches_button);
 
 
-        Call<NewsItem> call = MainActivity.apiInterface.doGetNewsListResources();
-        call.enqueue(new Callback<NewsItem>() {
-            @Override
-            public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
+        if(fragment_name.equals("NEWS")) {
+            Call<NewsItem> call = MainActivity.apiInterface.doGetNewsListResources();
+            call.enqueue(new Callback<NewsItem>() {
+                @Override
+                public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
 
 
                     List<NewsItem> news = response.body().getResults();
@@ -97,83 +102,172 @@ public class NewsFragment extends Fragment {
                             }
                         });
                     }
-                if (getActivity() != null) {
-                    mProgressBar.setVisibility(View.INVISIBLE);
-                    no_internet_connection.setVisibility(View.INVISIBLE);
-                    recyclerView.setAdapter(new NewsItemAdapter(news, R.layout.fragment_news_list_item, getContext()));
+                    if (getActivity() != null) {
+                        mProgressBar.setVisibility(View.INVISIBLE);
+                        no_internet_connection.setVisibility(View.INVISIBLE);
+                        recyclerView.setAdapter(new NewsItemAdapter(news, R.layout.fragment_news_list_item, getContext()));
+                    }
                 }
+
+                @Override
+                public void onFailure(Call<NewsItem> call, Throwable t) {
+                    mProgressBar.setVisibility(View.GONE);
+                    no_internet_connection.setVisibility(View.VISIBLE);
+                    NoConnectionButton.setOnClickListener(new View.OnClickListener() {
+
+                        public void onClick(View v) {
+
+                            FragmentTransaction ft = getFragmentManager().beginTransaction();
+                            ft.detach(NewsFragment.this).attach(NewsFragment.this).commit();
+
+                        }
+                    });
+
+                    call.cancel();
+                }
+            });
+
+            refLayout.setColorSchemeResources(R.color.orange);
+            refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                                               @Override
+                                               public void onRefresh() {
+                                                   // Checking if connected or not on refresh
+                                                   refLayout.setRefreshing(true);
+                                                   fab.hide();
+                                                   Call<NewsItem> call = MainActivity.apiInterface.doGetNewsListResources();
+                                                   call.enqueue(new Callback<NewsItem>() {
+                                                       @Override
+                                                       public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
+                                                           mProgressBar.setVisibility(View.INVISIBLE);
+                                                           no_internet_connection.setVisibility(View.INVISIBLE);
+                                                           No_news.setVisibility(View.INVISIBLE);
+                                                           fab.show();
+                                                           if (getActivity() != null) {
+                                                               List<NewsItem> NewsListItem = response.body().getResults();
+                                                               if (NewsListItem.size() == 0) {
+                                                                   No_news.setVisibility(View.VISIBLE);
+
+                                                                   NoNewsText.setText(R.string.EmptyNews);
+                                                                   NoNewsButton.setOnClickListener(new View.OnClickListener() {
+
+                                                                       public void onClick(View v) {
+
+                                                                           FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                                                           ft.detach(NewsFragment.this).attach(NewsFragment.this).commit();
+                                                                       }
+                                                                   });
+                                                               }
+                                                               recyclerView.setVisibility(View.VISIBLE);
+                                                               recyclerView.setAdapter(new NewsItemAdapter(NewsListItem, R.layout.fragment_news_list_item, getContext()));
+                                                           }
+                                                       }
+
+                                                       @Override
+                                                       public void onFailure(Call<NewsItem> call, Throwable t) {
+                                                           mProgressBar.setVisibility(View.INVISIBLE);
+                                                           fab.hide();
+                                                           Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                                                           toast.show();
+                                                           call.cancel();
+
+
+                                                       }
+                                                   });
+
+
+                                                   refLayout.setRefreshing(false);
+                                               }
+                                           }
+            );
+        }
+
+        if(fragment_name.equals("TEAM NEWS"))
+        {
+
+            Intent i = getActivity().getIntent();
+            TeamActivity.Team = i.getIntExtra("CountryName", 0);
+            TeamActivity.favTeam = i.getStringExtra("fav_country");
+
+            if(TeamActivity.Team == 0)
+            {
+                TeamActivity.tempTeamName = TeamActivity.favTeam;
+            }
+            else
+            {
+                TeamActivity.tempTeamName = this.getContext().getString(TeamActivity.Team);
             }
 
-            @Override
-            public void onFailure(Call<NewsItem> call, Throwable t) {
-                mProgressBar.setVisibility(View.GONE);
-                no_internet_connection.setVisibility(View.VISIBLE);
-                NoConnectionButton.setOnClickListener(new View.OnClickListener() {
+            final String Team = TeamActivity.tempTeamName.toLowerCase();
 
-                    public void onClick(View v) {
+            Call<NewsItem> call = MainActivity.apiInterface.doGetNewsArticleTeam(Team);
+            call.enqueue(new Callback<NewsItem>() {
+                @Override
+                public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
 
-                        FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        ft.detach(NewsFragment.this).attach(NewsFragment.this).commit();
+                    mProgressBar.setVisibility(View.INVISIBLE);
+
+                    List<NewsItem> news = response.body().getResults();
+                    if (news.size() == 0) {
+                        fab.setVisibility(View.GONE);
+                        No_news.setVisibility(View.VISIBLE);
+                        NoNewsButton.setVisibility(View.INVISIBLE);
+                        NoNewsText.setText(R.string.EmptyNews);
 
                     }
-                });
+                    recyclerView.setAdapter(new NewsItemAdapter(news, R.layout.fragment_news_list_item, getContext()));
+                }
 
-                call.cancel();
-            }
-        });
+                @Override
+                public void onFailure(Call<NewsItem> call, Throwable t) {
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    No_news.setVisibility(View.INVISIBLE);
+                    Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                    toast.show();
+                    call.cancel();
+                }
+            });
 
-        refLayout.setColorSchemeResources(R.color.orange);
-        refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                                           @Override
-                                           public void onRefresh() {
-                                               // Checking if connected or not on refresh
-                                               refLayout.setRefreshing(true);
-                                                fab.hide();
-                                               Call<NewsItem> call = MainActivity.apiInterface.doGetNewsListResources();
-                                               call.enqueue(new Callback<NewsItem>() {
-                                                   @Override
-                                                   public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
-                                                       mProgressBar.setVisibility(View.INVISIBLE);
-                                                       no_internet_connection.setVisibility(View.INVISIBLE);
-                                                       No_news.setVisibility(View.INVISIBLE);
-                                                       fab.show();
-                                                       if (getActivity() != null) {
-                                                           List<NewsItem> NewsListItem = response.body().getResults();
-                                                           if (NewsListItem.size() == 0) {
+
+            refLayout.setColorSchemeResources(R.color.orange);
+            refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                                               @Override
+                                               public void onRefresh() {
+                                                   // Checking if connected or not on refresh
+                                                   refLayout.setRefreshing(true);
+
+                                                   Call<NewsItem> call = MainActivity.apiInterface.doGetNewsArticleTeam(Team);
+                                                   call.enqueue(new Callback<NewsItem>() {
+                                                       @Override
+                                                       public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
+                                                           mProgressBar.setVisibility(View.INVISIBLE);
+
+                                                           List<NewsItem> news = response.body().getResults();
+                                                           if (news.size() == 0) {
+                                                               fab.setVisibility(View.GONE);
                                                                No_news.setVisibility(View.VISIBLE);
-
+                                                               NoNewsButton.setVisibility(View.INVISIBLE);
                                                                NoNewsText.setText(R.string.EmptyNews);
-                                                               NoNewsButton.setOnClickListener(new View.OnClickListener() {
 
-                                                                   public void onClick(View v) {
-
-                                                                       FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                                                       ft.detach(NewsFragment.this).attach(NewsFragment.this).commit();
-                                                                   }
-                                                               });
                                                            }
-                                                           recyclerView.setVisibility(View.VISIBLE);
-                                                           recyclerView.setAdapter(new NewsItemAdapter(NewsListItem, R.layout.fragment_news_list_item, getContext()));
+                                                           recyclerView.setAdapter(new NewsItemAdapter(news, R.layout.fragment_news_list_item, getContext()));
                                                        }
-                                                   }
 
-                                                   @Override
-                                                   public void onFailure(Call<NewsItem> call, Throwable t) {
-                                                       mProgressBar.setVisibility(View.INVISIBLE);
-                                                       fab.hide();
-                                                       Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
-                                                       toast.show();
-                                                       call.cancel();
+                                                       @Override
+                                                       public void onFailure(Call<NewsItem> call, Throwable t) {
+                                                           mProgressBar.setVisibility(View.INVISIBLE);
+                                                           No_news.setVisibility(View.INVISIBLE);
+                                                           Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                                                           toast.show();
+                                                           call.cancel();
 
+                                                       }
+                                                   });
 
-                                                   }
-                                               });
-
-
-                                               refLayout.setRefreshing(false);
+                                                   refLayout.setRefreshing(false);
+                                               }
                                            }
-                                       }
-        );
+            );
+        }
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override

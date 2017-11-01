@@ -1,4 +1,5 @@
-package com.debut.ellipsis.freehit.More.Series;
+package com.debut.ellipsis.freehit.More;
+
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -10,24 +11,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.debut.ellipsis.freehit.More.Series.SeriesMatches;
+import com.debut.ellipsis.freehit.More.Team.TeamMatches;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class SeriesMatchesFragment extends Fragment {
-
+public class TeamSeriesMatchesFragment extends Fragment {
     public ViewPager viewPager;
-
-    public SeriesMatchesFragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        String fragment_name = getArguments().getString("fragment_name");
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_matches, container, false);
 
@@ -35,8 +33,14 @@ public class SeriesMatchesFragment extends Fragment {
         View viewMatchesViewPager = rootView.findViewById(R.id.matches_viewpagegr);
 
         viewPager = (ViewPager) viewMatchesViewPager.findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
 
+        if(fragment_name.equals("SERIES SCHEDULE")) {
+            setupViewPagerSeries(viewPager);
+        }
+        if(fragment_name.equals("TEAM SCHEDULE"))
+        {
+            setupViewPagerTean(viewPager);
+        }
 
         View viewMatchCardTabs = rootView.findViewById(R.id.match_card_tabs);
         TabLayout tabLayout = (TabLayout) viewMatchCardTabs.findViewById(R.id.tabs);
@@ -59,14 +63,22 @@ public class SeriesMatchesFragment extends Fragment {
 
             }
         });
+
         return rootView;
     }
 
-
-    private void setupViewPager(ViewPager viewPager) {
-        SeriesMatchesFragment.ViewPagerAdapter adapter = new SeriesMatchesFragment.ViewPagerAdapter(getChildFragmentManager());
+    private void setupViewPagerSeries(ViewPager viewPager) {
+        TeamSeriesMatchesFragment.ViewPagerAdapter adapter = new TeamSeriesMatchesFragment.ViewPagerAdapter(getChildFragmentManager());
         adapter.addFrag(new SeriesMatches(), "UPCOMING");
         adapter.addFrag(new SeriesMatches(), "PAST");
+        viewPager.setAdapter(adapter);
+
+    }
+
+    private void setupViewPagerTean(ViewPager viewPager) {
+        TeamSeriesMatchesFragment.ViewPagerAdapter adapter = new TeamSeriesMatchesFragment.ViewPagerAdapter(getChildFragmentManager());
+        adapter.addFrag(new TeamMatches(), "UPCOMING");
+        adapter.addFrag(new TeamMatches(), "PAST");
         viewPager.setAdapter(adapter);
 
     }
@@ -92,13 +104,12 @@ public class SeriesMatchesFragment extends Fragment {
         public void addFrag(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
-            if(mFragmentTitleList.get(0).equals("UPCOMING"))
-            {
-                Bundle bundle=new Bundle();
+            if (mFragmentTitleList.get(0).equals("UPCOMING")) {
+                Bundle bundle = new Bundle();
                 bundle.putString("fragment_name", "UPCOMING");
                 fragment.setArguments(bundle);
             }
-            if(mFragmentTitleList.size()==2) {
+            if (mFragmentTitleList.size() == 2) {
                 if (mFragmentTitleList.get(1).equals("PAST")) {
                     Bundle bundle = new Bundle();
                     bundle.putString("fragment_name", "PAST");

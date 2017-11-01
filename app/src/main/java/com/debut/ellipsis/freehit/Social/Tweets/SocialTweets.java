@@ -2,6 +2,7 @@ package com.debut.ellipsis.freehit.Social.Tweets;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.R;
@@ -36,6 +38,8 @@ public class SocialTweets extends Fragment {
     public RecyclerView rv;
     private ProgressBar mProgressBar;
     public Button NoConnectionButton;
+    public TextView NotweetsText;
+    public Button NotweetsButton;
 
     public SocialTweets() {
         // Required empty public constructor
@@ -45,6 +49,7 @@ public class SocialTweets extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        String fragment_name = getArguments().getString("fragment_name");
         // Inflate the layout for this fragment
         View socTweets = inflater.inflate(R.layout.fragment_social_tweets, container, false);
 
@@ -62,6 +67,11 @@ public class SocialTweets extends Fragment {
 
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
         mProgressBar.setVisibility(View.VISIBLE);
+
+        final View No_tweets = socTweets.findViewById(R.id.No_tweets);
+
+        NotweetsText = (TextView) No_tweets.findViewById(R.id.empty_view);
+        NotweetsButton = (Button) No_tweets.findViewById(R.id.No_Live_Matches_button);
 
         final View no_internet_connection = socTweets.findViewById(R.id.Unavailable_connection);
 
@@ -112,25 +122,51 @@ public class SocialTweets extends Fragment {
         // Get details on the currently active default data network
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
-        // If there is a network connection, fetch data
-        if (networkInfo != null && networkInfo.isConnected()) {
-            mProgressBar.setVisibility(View.INVISIBLE);
-            no_internet_connection.setVisibility(View.INVISIBLE);
-            String queryToSearch = "#cricket";
-            tabCall(queryToSearch, SearchTimeline.ResultType.RECENT);
+        if(fragment_name.equals("TWEETS")) {
+            // If there is a network connection, fetch data
+            if (networkInfo != null && networkInfo.isConnected()) {
+                mProgressBar.setVisibility(View.INVISIBLE);
+                no_internet_connection.setVisibility(View.INVISIBLE);
+                String queryToSearch = "#cricket";
+                tabCall(queryToSearch, SearchTimeline.ResultType.RECENT);
 
-        } else {
-            no_internet_connection.setVisibility(View.VISIBLE);
-            mProgressBar.setVisibility(View.INVISIBLE);
-            NoConnectionButton.setOnClickListener(new View.OnClickListener() {
+            } else {
+                no_internet_connection.setVisibility(View.VISIBLE);
+                mProgressBar.setVisibility(View.INVISIBLE);
+                NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
-                public void onClick(View v) {
+                    public void onClick(View v) {
 
-                    FragmentTransaction ft = getFragmentManager().beginTransaction();
-                    ft.detach(SocialTweets.this).attach(SocialTweets.this).commit();
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.detach(SocialTweets.this).attach(SocialTweets.this).commit();
 
-                }
-            });
+                    }
+                });
+            }
+        }
+        if(fragment_name.equals("LIVE TWEETS"))
+        {
+            Intent i = getActivity().getIntent();
+            String Team1Name = i.getStringExtra("Team1Name");
+            String Team2Name = i.getStringExtra("Team2Name");
+
+            final String QueryToSearch1 = "#" + Team1Name + "vs" + Team2Name;
+            final String QueryToSearch2 = "#" + Team2Name + "vs" + Team1Name;
+
+            if (networkInfo != null && networkInfo.isConnected()) {
+                mProgressBar.setVisibility(View.INVISIBLE);
+                No_tweets.setVisibility(View.INVISIBLE);
+                tabCall(QueryToSearch1 + "," + QueryToSearch2, SearchTimeline.ResultType.RECENT);
+
+            } else {
+                No_tweets.setVisibility(View.VISIBLE);
+                mProgressBar.setVisibility(View.INVISIBLE);
+                NotweetsButton.setVisibility(View.INVISIBLE);
+                NotweetsText.setText(R.string.EmptyNews);
+                NotweetsText.setText(R.string.no_internet_connection);
+                tabCall(QueryToSearch1 + "," + QueryToSearch2, SearchTimeline.ResultType.RECENT);
+
+            }
         }
 
 

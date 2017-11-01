@@ -14,12 +14,12 @@ import android.view.View;
 
 import com.debut.ellipsis.freehit.Matches.ScoreCard.ChanceToWinFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.CommentaryFragment;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHead.HeadToHeadFragment;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHeadFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.InfoFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.SummaryFragment;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.TwitterFragment;
 import com.debut.ellipsis.freehit.R;
+import com.debut.ellipsis.freehit.Social.Tweets.SocialTweets;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +77,7 @@ public class LiveMatchScoreCard extends AppCompatActivity {
         adapter.addFrag(new SummaryFragment(), "SUMMARY");
         adapter.addFrag(new ScoreCardFragment(), "SCORE CARD");
         adapter.addFrag(new CommentaryFragment(), "COMMENTARY");
-        adapter.addFrag(new TwitterFragment(), "TWEETS");
+        adapter.addFrag(new SocialTweets(), "TWEETS");
         adapter.addFrag(new HeadToHeadFragment(), "HEAD-TO-HEAD");
         adapter.addFrag(new ChanceToWinFragment(), "WIN %");
         viewPager.setAdapter(adapter);
@@ -104,6 +104,13 @@ public class LiveMatchScoreCard extends AppCompatActivity {
         public void addFrag(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
+            if(mFragmentTitleList.size()==5) {
+                if (mFragmentTitleList.get(4).equals("TWEETS")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("fragment_name", "LIVE TWEETS");
+                    fragment.setArguments(bundle);
+                }
+            }
         }
 
         @Override

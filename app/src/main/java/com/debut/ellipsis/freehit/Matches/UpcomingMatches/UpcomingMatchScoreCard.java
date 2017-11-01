@@ -14,7 +14,7 @@ import android.view.View;
 
 import com.debut.ellipsis.freehit.Matches.ScoreCard.CommentaryFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.CountDownAndFormFragment;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHead.HeadToHeadFragment;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHeadFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.InfoFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.SquadsFragment;
 import com.debut.ellipsis.freehit.R;

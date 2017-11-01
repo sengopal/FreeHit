@@ -114,6 +114,13 @@ public class SocialMainFragment extends Fragment {
         public void addFrag(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
+            if(mFragmentTitleList.size()==2) {
+                if (mFragmentTitleList.get(1).equals("TWEETS")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("fragment_name", "TWEETS");
+                    fragment.setArguments(bundle);
+                }
+            }
         }
 
         @Override

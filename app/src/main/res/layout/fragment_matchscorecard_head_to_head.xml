@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey_100"
-    tools:context="com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHead.HeadToHeadFragment">
+    tools:context="com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHeadFragment">
 
     <LinearLayout
         android:id="@+id/LinearLayout"

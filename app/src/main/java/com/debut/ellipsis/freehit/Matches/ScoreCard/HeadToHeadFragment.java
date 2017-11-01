@@ -1,4 +1,4 @@
-package com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHead;
+package com.debut.ellipsis.freehit.Matches.ScoreCard;
 
 
 import android.os.Bundle;

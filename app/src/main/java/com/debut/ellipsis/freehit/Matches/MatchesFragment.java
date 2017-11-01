@@ -10,9 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.debut.ellipsis.freehit.Matches.LiveMatches.LiveMatchCard;
-import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchCard;
-import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchCard;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
@@ -68,9 +65,9 @@ public class MatchesFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFrag(new LiveMatchCard(), "LIVE");
-        adapter.addFrag(new UpcomingMatchCard(), "UPCOMING");
-        adapter.addFrag(new PastMatchCard(), "PAST");
+        adapter.addFrag(new MatchesMatchCards(), "LIVE");
+        adapter.addFrag(new MatchesMatchCards(), "UPCOMING");
+        adapter.addFrag(new MatchesMatchCards(), "PAST");
         viewPager.setAdapter(adapter);
 
     }
@@ -96,6 +93,26 @@ public class MatchesFragment extends Fragment {
         public void addFrag(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
+            if(mFragmentTitleList.get(0).equals("LIVE"))
+            {
+                Bundle bundle=new Bundle();
+                bundle.putString("fragment_name", "LIVE");
+                fragment.setArguments(bundle);
+            }
+            if(mFragmentTitleList.size()==2) {
+                if (mFragmentTitleList.get(1).equals("UPCOMING")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("fragment_name", "UPCOMING");
+                    fragment.setArguments(bundle);
+                }
+            }
+            if(mFragmentTitleList.size()==3) {
+                if (mFragmentTitleList.get(2).equals("PAST")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("fragment_name", "PAST");
+                    fragment.setArguments(bundle);
+                }
+            }
         }
 
         @Override
