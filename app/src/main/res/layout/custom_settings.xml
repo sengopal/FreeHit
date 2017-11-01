@@ -77,6 +77,33 @@
             android:textSize="@dimen/_1sdp" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/night_mode_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/country_select_layout"
+        android:padding="@dimen/_15sdp">
+
+        <TextView
+            android:id="@+id/night_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="SWITCH TO NIGHT MODE"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold" />
+
+        <Switch
+            android:layout_toEndOf="@+id/night_mode"
+            android:id="@+id/switch_night_mode"
+            android:paddingStart="@dimen/_10sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:textAppearanceSmall" />
+
+    </RelativeLayout>
+
 
     <RelativeLayout
         android:layout_width="wrap_content"

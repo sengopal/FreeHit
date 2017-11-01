@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,6 +35,11 @@ public class RankingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            setTheme(R.style.AppThemeDark);
+        }
+
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         setContentView(R.layout.fragment_more_rankings_activity);
@@ -52,6 +58,12 @@ public class RankingActivity extends AppCompatActivity {
         View viewRankingPager = (View) findViewById(R.id.ranking_viewpager);
 
         viewPager = (ViewPager) viewRankingPager.findViewById(R.id.viewpager);
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            setTheme(R.style.AppThemeDark);
+        }
+
+
         Call<RankingItem> call = MainActivity.apiInterface.doGetRankingResources();
         call.enqueue(new Callback<RankingItem>() {
             @Override
@@ -127,27 +139,26 @@ public class RankingActivity extends AppCompatActivity {
         public void addFrag(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
-            if(mFragmentTitleList.get(0).equals("TEAMS"))
-            {
-                Bundle bundle=new Bundle();
+            if (mFragmentTitleList.get(0).equals("TEAMS")) {
+                Bundle bundle = new Bundle();
                 bundle.putString("fragment_name", "TEAMS");
                 fragment.setArguments(bundle);
             }
-            if(mFragmentTitleList.size()==2) {
+            if (mFragmentTitleList.size() == 2) {
                 if (mFragmentTitleList.get(1).equals("BATSMEN")) {
                     Bundle bundle = new Bundle();
                     bundle.putString("fragment_name", "BATSMEN");
                     fragment.setArguments(bundle);
                 }
             }
-            if(mFragmentTitleList.size()==3) {
+            if (mFragmentTitleList.size() == 3) {
                 if (mFragmentTitleList.get(2).equals("BOWLER")) {
                     Bundle bundle = new Bundle();
                     bundle.putString("fragment_name", "BOWLER");
                     fragment.setArguments(bundle);
                 }
             }
-            if(mFragmentTitleList.size()==4) {
+            if (mFragmentTitleList.size() == 4) {
                 if (mFragmentTitleList.get(3).equals("ALL ROUNDER")) {
                     Bundle bundle = new Bundle();
                     bundle.putString("fragment_name", "ALL ROUNDER");
@@ -161,7 +172,8 @@ public class RankingActivity extends AppCompatActivity {
             return mFragmentTitleList.get(position);
         }
     }
-    public List<RankingItem> getQList(){
+
+    public List<RankingItem> getQList() {
         return QueryList;
     }
 

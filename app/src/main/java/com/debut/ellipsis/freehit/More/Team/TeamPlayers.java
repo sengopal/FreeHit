@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -62,6 +63,11 @@ public class TeamPlayers extends Fragment {
 
         View viewRecycler = rootView.findViewById(R.id.player_list);
         final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            recyclerView.setBackgroundColor(getResources().getColor(R.color.night_background));
+            toolbar.setBackgroundColor(getResources().getColor(R.color.dark));
+        }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 

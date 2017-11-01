@@ -3,6 +3,8 @@ package com.debut.ellipsis.freehit.More.Series;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -91,6 +93,10 @@ public class SeriesItemAdapter extends RecyclerView.Adapter<SeriesItemAdapter.Se
             team2 = team1;
             team1 = origTeam[1];
 
+        }
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            holder.SeriesTitle.setTextColor(Color.WHITE);
         }
 
 

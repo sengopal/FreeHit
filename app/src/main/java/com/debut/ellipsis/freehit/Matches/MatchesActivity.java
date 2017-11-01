@@ -1,15 +1,22 @@
 package com.debut.ellipsis.freehit.Matches;
 
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +48,7 @@ public class MatchesActivity extends AppCompatActivity {
     public TextView mEmptyView;
     private LinearLayoutManager mLinearLayoutManager;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_matches_complete_match_list);
@@ -60,6 +68,8 @@ public class MatchesActivity extends AppCompatActivity {
         View viewRecycler = findViewById(R.id.match_list_team);
         rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
 
+
+
         refresh_layout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
 
         mLinearLayoutManager = new LinearLayoutManager(this);
@@ -71,6 +81,15 @@ public class MatchesActivity extends AppCompatActivity {
         toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            rv.setBackgroundColor(getResources().getColor(R.color.night_background));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.dark)));
+            toolbar.setBackgroundColor(getResources().getColor(R.color.dark));
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.BLACK);
+        }
 
         View viewEmpty = findViewById(R.id.empty);
         mEmptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);

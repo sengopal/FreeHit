@@ -2,7 +2,9 @@ package com.debut.ellipsis.freehit.Matches.UpcomingMatches;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -131,6 +133,18 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
 
             MainActivity.requestBuilder.into(imageViewTeam2Logo);
 
+        }
+
+        if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_YES)
+        {
+            cardView.setCardBackgroundColor(Color.parseColor("#484a4f"));
+            textViewMatchName.setTextColor(Color.WHITE);
+            textViewStadiumName.setTextColor(Color.parseColor("#d1d1db"));
+            textViewSeriesName.setTextColor(Color.parseColor("#d1d1db"));
+            shortName1.setTextColor(Color.WHITE);
+            shortName2.setTextColor(Color.WHITE);
+            MatchDate.setTextColor(Color.WHITE);
+            ViewMore.setTextColor(Color.WHITE);
         }
         container.addView(view);
         return view;

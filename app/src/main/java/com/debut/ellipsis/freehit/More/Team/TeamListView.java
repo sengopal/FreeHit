@@ -1,11 +1,17 @@
 package com.debut.ellipsis.freehit.More.Team;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -24,6 +30,7 @@ public class TeamListView extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +63,13 @@ public class TeamListView extends AppCompatActivity {
 
         View view = findViewById(R.id.team_list);
         listView = (ListView) view.findViewById(R.id.list);
-
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            listView.setBackgroundColor(getResources().getColor(R.color.night_background));
+            toolbar.setBackgroundColor(getResources().getColor(R.color.dark));
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.BLACK);
+        }
         adapter = new TeamListAdapter(this, TeamItem);
         listView.setAdapter(adapter);
 

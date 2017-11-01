@@ -2,7 +2,11 @@ package com.debut.ellipsis.freehit.Social.Polls;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.os.Build;
+import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +48,7 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
         RadioButton button3;
         RadioButton button4;
         Button submit;
+        CardView cardView;
         RelativeLayout RlContainer;
 
 
@@ -56,6 +61,7 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
             button3 = (RadioButton) v.findViewById(R.id.option_3);
             button4 = (RadioButton) v.findViewById(R.id.option_4);
             submit = (Button) v.findViewById(R.id.poll_submit);
+            cardView = (CardView) v.findViewById(R.id.card_view);
 
             RlContainer = (RelativeLayout) v.findViewById(R.id.parent_layout);
         }
@@ -78,7 +84,7 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
 
 
     @Override
-    public void onBindViewHolder(final PollItemAdapter.PollsViewHolder holder, int position) {
+    public void onBindViewHolder(final PollsViewHolder holder, int position) {
 
         final SharedPreferences.Editor editor = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
 
@@ -130,6 +136,37 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
         progress4.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
 
         holder.title.setText(PollCardItems.get(position).getQuestion());
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            holder.cardView.setBackgroundColor(Color.parseColor("#484a4f"));
+            holder.title.setTextColor(Color.WHITE);
+            option1.setTextColor(Color.WHITE);
+            option2.setTextColor(Color.WHITE);
+            option3.setTextColor(Color.WHITE);
+            option4.setTextColor(Color.WHITE);
+            holder.button1.setTextColor(Color.WHITE);
+            holder.button2.setTextColor(Color.WHITE);
+            holder.button3.setTextColor(Color.WHITE);
+            holder.button4.setTextColor(Color.WHITE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                holder.button1.setButtonTintList(ColorStateList.valueOf(Color.WHITE));
+                holder.button2.setButtonTintList(ColorStateList.valueOf(Color.WHITE));
+                holder.button3.setButtonTintList(ColorStateList.valueOf(Color.WHITE));
+                holder.button4.setButtonTintList(ColorStateList.valueOf(Color.WHITE));
+            }
+
+            holder.submit.setBackgroundResource(R.drawable.button_shape_dark);
+            holder.submit.setTextColor(Color.BLACK);
+            peroption1.setTextColor(Color.WHITE);
+            peroption2.setTextColor(Color.WHITE);
+            peroption3.setTextColor(Color.WHITE);
+            peroption4.setTextColor(Color.WHITE);
+            valueoption1.setTextColor(Color.WHITE);
+            valueoption2.setTextColor(Color.WHITE);
+            valueoption3.setTextColor(Color.WHITE);
+            valueoption4.setTextColor(Color.WHITE);
+
+        }
 
         if (PollCardItems.get(position).getCount() == 2) {
             holder.button1.setText(PollCardItems.get(position).getCtitle(0));

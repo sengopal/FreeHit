@@ -1,11 +1,14 @@
 package com.debut.ellipsis.freehit.Social.Polls;
 
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -82,6 +85,16 @@ public class SocialPolls extends Fragment {
 
         NoPollsText = (TextView) No_polls.findViewById(R.id.empty_view);
         NoPollsButton = (Button) No_polls.findViewById(R.id.No_Live_Matches_button);
+
+        if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_YES)
+        {
+            recyclerView.setBackgroundColor(getResources().getColor(R.color.night_background));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.dark)));
+            NoPollsText.setTextColor(Color.WHITE);
+            NoPollsButton.setBackgroundResource(R.drawable.button_shape_dark);
+            NoPollsButton.setTextColor(Color.BLACK);
+        }
+
 
         final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
 

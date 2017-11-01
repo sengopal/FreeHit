@@ -1,10 +1,14 @@
 package com.debut.ellipsis.freehit.More.Player;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -12,7 +16,10 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
@@ -30,6 +37,7 @@ import retrofit2.Response;
 
 public class PlayerSearchActivity extends AppCompatActivity {
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -43,8 +51,21 @@ public class PlayerSearchActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Player Search");
 
+        RelativeLayout parentLayout = findViewById(R.id.parent_layout);
+
+        RelativeLayout relativeLayout = findViewById(R.id.player_list_layout);
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_list);
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            relativeLayout.setBackgroundColor(getResources().getColor(R.color.night_background));
+            parentLayout.setBackgroundColor(getResources().getColor(R.color.night_background));
+            toolbar.setBackgroundColor(getResources().getColor(R.color.dark));
+            recyclerView.setBackgroundColor(getResources().getColor(R.color.night_background));
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.BLACK);
+        }
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         // Get a reference to the ConnectivityManager to check state of network connectivity

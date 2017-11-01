@@ -1,12 +1,16 @@
 package com.debut.ellipsis.freehit.More.Player;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.load.DecodeFormat;
@@ -25,10 +29,10 @@ public class PlayerFragment extends Fragment {
 
         View rootView = null;
 
-        if(fragment_name.equals("PLAYER INFO"))
-        {
+        if (fragment_name.equals("PLAYER INFO")) {
             rootView = inflater.inflate(R.layout.fragment_more_player_info, container, false);
 
+            RelativeLayout parentlayout = (RelativeLayout) rootView.findViewById(R.id.parent_layout);
             TextView name = (TextView) rootView.findViewById(R.id.Player_name_stats_info);
             TextView country = (TextView) rootView.findViewById(R.id.player_country);
             TextView DOB = (TextView) rootView.findViewById(R.id.DOB);
@@ -37,6 +41,11 @@ public class PlayerFragment extends Fragment {
             TextView BowlingStyle = (TextView) rootView.findViewById((R.id.BowlingStyle));
             TextView TeamsPlayed = (TextView) rootView.findViewById((R.id.Teams_Played));
             TextView description = (TextView) rootView.findViewById((R.id.PlayerInfo));
+
+            TextView Player_personal_information = (TextView) rootView.findViewById(R.id.Player_personal_information);
+            TextView ICC = (TextView) rootView.findViewById(R.id.ICC);
+            TextView MOTMLabel = (TextView) rootView.findViewById(R.id.MOTM);
+            TextView PlayerInfoCareer = (TextView) rootView.findViewById(R.id.PlayerInfoCareer);
 
 
             PlayerItem info = ((PlayerActivity) getActivity()).getQuery();
@@ -233,11 +242,26 @@ public class PlayerFragment extends Fragment {
                 }
             }
 
-            description.setText(info.getDesc());
-        }
+            CardView card_view = (CardView) rootView.findViewById(R.id.card_view);
+            CardView cardView_ranking = (CardView) rootView.findViewById(R.id.card_view_ranking);
+            CardView cardView_motm = (CardView) rootView.findViewById(R.id.card_view_motm);
+            CardView cardView_info = (CardView) rootView.findViewById(R.id.card_view_info);
 
-        else
-        {
+            description.setText(info.getDesc());
+            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                parentlayout.setBackgroundColor(getResources().getColor(R.color.night_background));
+                Player_personal_information.setTextColor(Color.WHITE);
+                ICC.setTextColor(Color.WHITE);
+                MOTMLabel.setTextColor(Color.WHITE);
+                PlayerInfoCareer.setTextColor(Color.WHITE);
+                card_view.setBackgroundColor(Color.parseColor("#484a4f"));
+                cardView_ranking.setBackgroundColor(Color.parseColor("#484a4f"));
+                cardView_motm.setBackgroundColor(Color.parseColor("#484a4f"));
+                cardView_info.setBackgroundColor(Color.parseColor("#484a4f"));
+            }
+
+
+        } else {
             rootView = inflater.inflate(R.layout.fragment_more_player_batting_bowling, container, false);
 
             TextView Matches_Innings_label = rootView.findViewById(R.id.Matches_Innings_label);
@@ -309,8 +333,7 @@ public class PlayerFragment extends Fragment {
 
             PlayerItem info = ((PlayerActivity) getActivity()).getQuery();
 
-            if(fragment_name.equals("BATTING"))
-            {
+            if (fragment_name.equals("BATTING")) {
                 //Number Of Matches in Test,Odi,T20,IPL
                 m_i_test.setText(info.getBatstats().getTest().getMatches());
                 m_i_odi.setText(info.getBatstats().getOdi().getMatches());
@@ -378,8 +401,7 @@ public class PlayerFragment extends Fragment {
                 sr_ipl.setText(info.getBatstats().getIpl().getBatstr());
             }
 
-            if(fragment_name.equals("BOWLING"))
-            {
+            if (fragment_name.equals("BOWLING")) {
                 //Number Of Innings in Test,Odi,T20,IPL
                 Matches_Innings_label.setText("INNINGS");
                 m_i_test.setText(info.getBowlstats().getTest().getinnbowled());

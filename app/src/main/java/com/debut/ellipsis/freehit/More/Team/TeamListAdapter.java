@@ -2,6 +2,8 @@ package com.debut.ellipsis.freehit.More.Team;
 
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +37,10 @@ public class TeamListAdapter extends ArrayAdapter<TeamListItem> {
 
         TextView TeamName = (TextView) listItemView.findViewById(R.id.row_title);
         TeamName.setText(currentItem.getmTeamName());
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            TeamName.setTextColor(Color.WHITE);
+        }
 
         ImageView TeamIcon = (ImageView) listItemView.findViewById(R.id.row_icon);
 

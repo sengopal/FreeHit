@@ -12,6 +12,17 @@
         <item name="colorAccent">@color/colorSecondary</item>
     </style>
 
+    <!-- Dark base activity theme -->
+    <style name="AppThemeDark"    parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:windowDisablePreview">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="colorPrimary">#23252b</item>
+        <item name="colorPrimaryDark">#000000</item>
+        <item name="colorAccent">#4b4d54</item>
+    </style>
+
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 

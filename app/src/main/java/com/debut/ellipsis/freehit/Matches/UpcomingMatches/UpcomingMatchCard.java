@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,8 +45,7 @@ public class UpcomingMatchCard extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_matches_common_pager, container, false);
-
+        View rootView = inflater.inflate(R.layout.fragment_matches_common_pager, container, false);
 
         MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
@@ -57,6 +57,12 @@ public class UpcomingMatchCard extends Fragment {
         View viewViewPager = common_match_cards.findViewById(R.id.match_card_viewpagegr);
 
         vp = (ViewPager) viewViewPager.findViewById(R.id.viewpager);
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            vp.setBackgroundColor(getResources().getColor(R.color.night_background));
+        }
+
+
         indicator = (PageIndicatorView) common_match_cards.findViewById(R.id.indicator);
         final PullRefreshLayout refreshLayout = (PullRefreshLayout) common_match_cards.findViewById(R.id.swipeRefreshLayout);
 
@@ -82,7 +88,7 @@ public class UpcomingMatchCard extends Fragment {
 
                 List<UpcomingMatchCardItem> upcomingMatches = response.body().getResults();
 
-                if(getActivity()!=null) {
+                if (getActivity() != null) {
                     mAdapter = new UpcomingMatchesItemAdapter(getActivity(), upcomingMatches);
                     indicator.setViewPager(vp);
                     indicator.setCount(mAdapter.getCount());
@@ -155,16 +161,19 @@ public class UpcomingMatchCard extends Fragment {
         });
 
 
-
-
         return rootView;
     }
 
     private void IndicatorConfig() {
         indicator.setVisibility(View.VISIBLE);
         indicator.setAnimationType(AnimationType.WORM);
-        indicator.setUnselectedColor(Color.parseColor("#f94d44"));
-        indicator.setSelectedColor(Color.parseColor("#bf031b"));
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            indicator.setUnselectedColor(Color.parseColor("#5e5e6a"));
+            indicator.setSelectedColor(Color.parseColor("#0e0d19"));
+        } else {
+            indicator.setUnselectedColor(getResources().getColor(R.color.colorPrimaryLight));
+            indicator.setSelectedColor(getResources().getColor(R.color.colorPrimary));
+        }
         indicator.setInteractiveAnimation(true);
         indicator.setAnimationDuration(500);
 

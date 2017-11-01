@@ -3,6 +3,8 @@ package com.debut.ellipsis.freehit.More.Team;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,6 +74,10 @@ public class TeamPlayerAdapter extends RecyclerView.Adapter<TeamPlayerAdapter.Te
         LinearLayout RLContainer = holder.rlcontainer;
 
         View.OnClickListener mClickListener;
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            holder.PlayerName.setTextColor(Color.WHITE);
+        }
 
 
         mClickListener = new View.OnClickListener() {

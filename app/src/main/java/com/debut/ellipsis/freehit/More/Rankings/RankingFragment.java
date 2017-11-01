@@ -1,8 +1,10 @@
 package com.debut.ellipsis.freehit.More.Rankings;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,7 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.debut.ellipsis.freehit.R;
 
@@ -32,12 +36,12 @@ public class RankingFragment extends Fragment {
                              Bundle savedInstanceState) {
         String fragment_name = getArguments().getString("fragment_name");
         // Inflate the layout for this fragment
-        View rootView = null ;
+        View rootView = null;
 
 
         final List<RankingItem> teamList = ((RankingActivity) getActivity()).getQList();
 
-        if(fragment_name.equals("TEAMS")) {
+        if (fragment_name.equals("TEAMS")) {
 
             rootView = inflater.inflate(R.layout.fragment_more_ranking_team, container, false);
 
@@ -49,8 +53,25 @@ public class RankingFragment extends Fragment {
             rv.setLayoutManager(mLinearLayoutManager);
 
             View teamSpinner = rootView.findViewById(R.id.team_format_select);
+
+            LinearLayout parentLayout = (LinearLayout) rootView.findViewById(R.id.parent_layout);
+
             team_format = (Spinner) teamSpinner.findViewById(R.id.spinner);
 
+            TextView rank = (TextView) rootView.findViewById(R.id.rank);
+            TextView team = (TextView) rootView.findViewById(R.id.team);
+            TextView rating = (TextView) rootView.findViewById(R.id.ratings);
+
+
+            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                rv.setBackgroundColor(getResources().getColor(R.color.night_background));
+                team_format.setPopupBackgroundResource(R.color.night_background);
+                team_format.setBackgroundColor(Color.parseColor("#2c2c35"));
+                parentLayout.setBackgroundColor(Color.parseColor("#30303a"));
+                rank.setTextColor(Color.WHITE);
+                team.setTextColor(Color.WHITE);
+                rating.setTextColor(Color.WHITE);
+            }
 
             // Create an ArrayAdapter using the string array and a default spinner layout
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.format_array, R.layout.spinner_item_selected);
@@ -79,10 +100,8 @@ public class RankingFragment extends Fragment {
 
                 }
             });
-        }
-        else
-        {
-            rootView =  inflater.inflate(R.layout.fragment_more_ranking_batting, container, false);
+        } else {
+            rootView = inflater.inflate(R.layout.fragment_more_ranking_batting, container, false);
 
             rv = (RecyclerView) rootView.findViewById(R.id.recycler_list);
 
@@ -90,10 +109,26 @@ public class RankingFragment extends Fragment {
 
             rv.setLayoutManager(mLinearLayoutManager);
 
+            LinearLayout parentLayout = (LinearLayout) rootView.findViewById(R.id.parent_layout);
+
+
             View teamSpinner = rootView.findViewById(R.id.team_format_select);
             team_format = (Spinner) teamSpinner.findViewById(R.id.spinner);
 
 
+            TextView rank = (TextView) rootView.findViewById(R.id.rank);
+            TextView team = (TextView) rootView.findViewById(R.id.team);
+            TextView rating = (TextView) rootView.findViewById(R.id.ratings);
+
+            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                rv.setBackgroundColor(getResources().getColor(R.color.night_background));
+                team_format.setPopupBackgroundResource(R.color.night_background);
+                team_format.setBackgroundColor(Color.parseColor("#2c2c35"));
+                parentLayout.setBackgroundColor(Color.parseColor("#30303a"));
+                rank.setTextColor(Color.WHITE);
+                team.setTextColor(Color.WHITE);
+                rating.setTextColor(Color.WHITE);
+            }
             // Create an ArrayAdapter using the string array and a default spinner layout
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.format_array, R.layout.spinner_item_selected);
             // Specify the layout to use when the list of choices appears
@@ -101,75 +136,66 @@ public class RankingFragment extends Fragment {
             // Apply the adapter to the spinner
             team_format.setAdapter(adapter);
 
-            if(fragment_name.equals("BATSMEN"))
-            {
+            if (fragment_name.equals("BATSMEN")) {
                 rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getOdi().getBattingList()));
-                team_format.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-                {
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-                    {
+                team_format.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         rv.setAdapter(null);
                         final String selectedItem = parent.getItemAtPosition(position).toString();
 
-                        if(selectedItem.equals("ODI"))
+                        if (selectedItem.equals("ODI"))
                             rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getOdi().getBattingList()));
 
-                        else if(selectedItem.equals("T20"))
+                        else if (selectedItem.equals("T20"))
                             rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getT20().getBattingList()));
 
-                        else if(selectedItem.equals("TEST"))
+                        else if (selectedItem.equals("TEST"))
                             rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getTest().getBattingList()));
                     }
-                    public void onNothingSelected(AdapterView<?> parent)
-                    {
+
+                    public void onNothingSelected(AdapterView<?> parent) {
 
                     }
                 });
             }
 
-            if(fragment_name.equals("BOWLER"))
-            {
+            if (fragment_name.equals("BOWLER")) {
                 rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getOdi().getAllRounders()));
-                team_format.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-                {
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-                    {
+                team_format.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         rv.setAdapter(null);
                         final String selectedItem = parent.getItemAtPosition(position).toString();
 
-                        if(selectedItem.equals("ODI"))
+                        if (selectedItem.equals("ODI"))
                             rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getOdi().getBowlingList()));
-                        else if(selectedItem.equals("T20"))
+                        else if (selectedItem.equals("T20"))
                             rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getT20().getBowlingList()));
-                        else if(selectedItem.equals("TEST"))
+                        else if (selectedItem.equals("TEST"))
                             rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getTest().getBowlingList()));
                     } // to close the onItemSelected
-                    public void onNothingSelected(AdapterView<?> parent)
-                    {
+
+                    public void onNothingSelected(AdapterView<?> parent) {
 
                     }
                 });
             }
 
-            if (fragment_name.equals("ALL ROUNDER"))
-            {
+            if (fragment_name.equals("ALL ROUNDER")) {
                 rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getOdi().getAllRounders()));
-                team_format.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-                {
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-                    {
+                team_format.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         rv.setAdapter(null);
                         final String selectedItem = parent.getItemAtPosition(position).toString();
 
-                        if(selectedItem.equals("ODI"))
+                        if (selectedItem.equals("ODI"))
                             rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getOdi().getAllRounders()));
-                        else if(selectedItem.equals("T20"))
+                        else if (selectedItem.equals("T20"))
                             rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getT20().getAllRounders()));
-                        else if(selectedItem.equals("TEST"))
+                        else if (selectedItem.equals("TEST"))
                             rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getTest().getAllRounders()));
                     } // to close the onItemSelected
-                    public void onNothingSelected(AdapterView<?> parent)
-                    {
+
+                    public void onNothingSelected(AdapterView<?> parent) {
 
                     }
 

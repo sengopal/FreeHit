@@ -1,12 +1,14 @@
 package com.debut.ellipsis.freehit.More;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +46,12 @@ public class TeamSeriesMatchesFragment extends Fragment {
 
         View viewMatchCardTabs = rootView.findViewById(R.id.match_card_tabs);
         TabLayout tabLayout = (TabLayout) viewMatchCardTabs.findViewById(R.id.tabs);
+
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+        {
+            tabLayout.setBackgroundColor(Color.parseColor("#2c2c35"));
+        }
 
         tabLayout.setupWithViewPager(viewPager);
 

@@ -2,13 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fragment_container"
     android:layout_width="match_parent"
-    android:background="@color/background"
     android:layout_height="match_parent">
 
     <include
         android:id="@+id/common_match_cards"
-        layout="@layout/fragment_matches_match_card"
-        android:visibility="invisible"/>
+        layout="@layout/fragment_matches_match_card"/>
 
     <include
         android:id="@+id/Unavailable_connection"

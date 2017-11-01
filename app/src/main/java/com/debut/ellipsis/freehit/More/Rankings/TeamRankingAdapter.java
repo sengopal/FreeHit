@@ -3,6 +3,8 @@ package com.debut.ellipsis.freehit.More.Rankings;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -106,6 +108,12 @@ public class TeamRankingAdapter extends RecyclerView.Adapter<TeamRankingAdapter.
         RelativeLayout RLContainer = viewHolder.rlcontainer;
 
         View.OnClickListener mClickListener;
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+           teamName.setTextColor(Color.WHITE);
+           rank.setTextColor(Color.WHITE);
+           ratings.setTextColor(Color.WHITE);
+        }
 
 
         mClickListener = new View.OnClickListener() {

@@ -9,7 +9,7 @@
 
     <include
         android:id="@+id/team_format_select"
-        layout="@layout/common_spinner" />
+        layout="@layout/custom_spinner" />
 
     <LinearLayout
         android:id="@+id/parent_layout"

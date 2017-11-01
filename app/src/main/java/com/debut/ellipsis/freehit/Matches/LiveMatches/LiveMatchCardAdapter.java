@@ -2,7 +2,9 @@ package com.debut.ellipsis.freehit.Matches.LiveMatches;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -177,6 +179,23 @@ public class LiveMatchCardAdapter extends PagerAdapter {
         MainActivity.requestBuilder.into(imageViewTeam2Logo);
 
         container.addView(view);
+        if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_YES)
+        {
+            textViewMatchName.setTextColor(Color.WHITE);
+            textViewSeriesName.setTextColor(Color.parseColor("#d1d1db"));
+            textViewStadiumName.setTextColor(Color.parseColor("#d1d1db"));
+            shortName1.setTextColor(Color.WHITE);
+            shortName2.setTextColor(Color.WHITE);
+            team1Innings1.setTextColor(Color.parseColor("#d1d1db"));
+            team1Innings2.setTextColor(Color.parseColor("#d1d1db"));
+            team2Innings1.setTextColor(Color.parseColor("#d1d1db"));
+            team2Innings2.setTextColor(Color.parseColor("#d1d1db"));
+            MatchResult.setTextColor(Color.WHITE);
+            MatchDate.setTextColor(Color.parseColor("#d1d1db"));
+            cardView.setCardBackgroundColor(Color.parseColor("#484a4f"));
+        }
+
+
         return view;
 
     }

@@ -2,6 +2,9 @@ package com.debut.ellipsis.freehit.Matches.UpcomingMatches;
 
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +35,7 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
         TextView shortName1;
         TextView shortName2;
         TextView MatchDate;
+        CardView cardView;
         public RelativeLayout rlcontainer;
 
 
@@ -50,6 +54,7 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
             shortName1 = (TextView) itemView.findViewById(R.id.sn_team_1_upcoming);
             shortName2 = (TextView) itemView.findViewById(R.id.sn_team_2_upcoming);
             MatchDate = (TextView) itemView.findViewById(R.id.match_date_upcoming);
+            cardView = (CardView) itemView.findViewById(R.id.card_view);
             rlcontainer = (RelativeLayout) itemView.findViewById(R.id.rlcontainer);
 
 
@@ -133,6 +138,16 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
 
         View.OnClickListener mClickListener;
 
+        if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_YES)
+        {
+            viewHolder.cardView.setCardBackgroundColor(Color.parseColor("#484a4f"));
+            viewHolder.textViewMatchName.setTextColor(Color.WHITE);
+            viewHolder.textViewSeriesName.setTextColor(Color.parseColor("#d1d1db"));
+            viewHolder.textViewStadiumName.setTextColor(Color.parseColor("#d1d1db"));
+            viewHolder.shortName1.setTextColor(Color.WHITE);
+            viewHolder.shortName2.setTextColor(Color.WHITE);
+            viewHolder.MatchDate.setTextColor(Color.WHITE);
+        }
 
         mClickListener = new View.OnClickListener() {
             @Override

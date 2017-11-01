@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 
 
 public class CustomSpinner extends android.support.v7.widget.AppCompatSpinner {
-    private static final String TAG = "CustomSpinner";
+
     private OnSpinnerEventsListener mListener;
     private boolean mOpenInitiated = false;
 
@@ -74,10 +74,8 @@ public class CustomSpinner extends android.support.v7.widget.AppCompatSpinner {
 
     @Override
     public void onWindowFocusChanged(boolean hasWindowFocus) {
-        android.util.Log.d(TAG, "onWindowFocusChanged");
         super.onWindowFocusChanged(hasWindowFocus);
         if (hasBeenOpened() && hasWindowFocus) {
-            android.util.Log.i(TAG, "closing popup");
             performClosedEvent();
         }
     }

@@ -2,6 +2,9 @@ package com.debut.ellipsis.freehit.News;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +35,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
         TextView date;
         TextView tag;
         RelativeLayout rlcontainer;
+        CardView cardView;
 
 
         public NewsViewHolder(View v) {
@@ -41,6 +45,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
             desc = (TextView) v.findViewById(R.id.summary_text_view);
             date = (TextView) v.findViewById(R.id.news_date);
             tag = (TextView) v.findViewById(R.id.news_tag);
+            cardView = (CardView) v.findViewById(R.id.card_view);
             rlcontainer = (RelativeLayout) v.findViewById(R.id.news_layout);
         }
     }
@@ -94,6 +99,11 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
             }
         };
         RLContainer.setOnClickListener(mClickListener);
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            holder.cardView.setBackgroundColor(Color.parseColor("#484a4f"));
+            holder.title.setTextColor(Color.WHITE);
+            holder.desc.setTextColor(Color.WHITE);
+        }
 
 
     }

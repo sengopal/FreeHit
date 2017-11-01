@@ -1,6 +1,8 @@
 package com.debut.ellipsis.freehit.More.MoreMain;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +39,13 @@ public class MoreAdapter extends ArrayAdapter<MoreItem> {
 
         ImageView moreIcon = (ImageView) listItemView.findViewById(R.id.row_icon);
         moreIcon.setImageResource(currentItem.getmMoreIcon());
+
+        if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES)
+        {
+              moreArrowIcon.setColorFilter(Color.WHITE);
+              moreIcon.setColorFilter(Color.WHITE);
+              moreNameTextView.setTextColor(Color.WHITE);
+        }
 
 
         return listItemView;

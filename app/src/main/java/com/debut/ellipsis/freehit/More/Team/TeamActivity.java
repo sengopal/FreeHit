@@ -1,16 +1,23 @@
 package com.debut.ellipsis.freehit.More.Team;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.debut.ellipsis.freehit.More.TeamSeriesMatchesFragment;
 import com.debut.ellipsis.freehit.R;
@@ -24,8 +31,14 @@ public class TeamActivity extends AppCompatActivity {
     public static String favTeam = null;
     public static String tempTeamName = null;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            setTheme(R.style.AppThemeDark);
+        }
+
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         setContentView(R.layout.fragment_more_team_activity);
@@ -33,12 +46,9 @@ public class TeamActivity extends AppCompatActivity {
         Team = i.getIntExtra("CountryName", 0);
         favTeam = i.getStringExtra("fav_country");
 
-        if(Team == 0)
-        {
+        if (Team == 0) {
             tempTeamName = favTeam;
-        }
-        else
-        {
+        } else {
             tempTeamName = this.getApplicationContext().getString(Team);
         }
 
@@ -54,11 +64,20 @@ public class TeamActivity extends AppCompatActivity {
         ViewPager viewPager = (ViewPager) viewTeamPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
+        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
+
         viewPager.setOffscreenPageLimit(3);
 
         TabLayout tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.setupWithViewPager(viewPager);
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            toolbar.setBackgroundColor(getResources().getColor(R.color.dark));
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.BLACK);
+        }
 
 
     }
@@ -112,7 +131,7 @@ public class TeamActivity extends AppCompatActivity {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
 
-            if(mFragmentTitleList.size()==2) {
+            if (mFragmentTitleList.size() == 2) {
                 if (mFragmentTitleList.get(1).equals("SCHEDULE")) {
                     Bundle bundle = new Bundle();
                     bundle.putString("fragment_name", "TEAM SCHEDULE");

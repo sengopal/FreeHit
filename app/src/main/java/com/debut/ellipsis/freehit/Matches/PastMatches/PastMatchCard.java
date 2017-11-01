@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,11 +45,11 @@ public class PastMatchCard extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_matches_common_pager, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_matches_common_pager, container, false);
 
         MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        View viewProgress= rootView.findViewById(R.id.progress);
+        View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
         final View common_match_cards = rootView.findViewById(R.id.common_match_cards);
@@ -56,6 +57,11 @@ public class PastMatchCard extends Fragment {
         View viewViewPager = common_match_cards.findViewById(R.id.match_card_viewpagegr);
 
         vp = (ViewPager) viewViewPager.findViewById(R.id.viewpager);
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            vp.setBackgroundColor(getResources().getColor(R.color.night_background));
+        }
+
         indicator = (PageIndicatorView) common_match_cards.findViewById(R.id.indicator);
         final PullRefreshLayout refreshLayout = (PullRefreshLayout) common_match_cards.findViewById(R.id.swipeRefreshLayout);
 
@@ -137,7 +143,7 @@ public class PastMatchCard extends Fragment {
                                                        public void onFailure(Call<PastMatchCardItem> call, Throwable t) {
                                                            mProgressBar.setVisibility(View.INVISIBLE);
                                                            common_match_cards.setVisibility(View.VISIBLE);
-                                                           Toast toast=Toast.makeText(getContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
+                                                           Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
                                                            toast.show();
                                                            call.cancel();
 
@@ -155,8 +161,13 @@ public class PastMatchCard extends Fragment {
 
     private void IndicatorConfig() {
         indicator.setAnimationType(AnimationType.WORM);
-        indicator.setUnselectedColor(Color.parseColor("#f94d44"));
-        indicator.setSelectedColor(Color.parseColor("#bf031b"));
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            indicator.setUnselectedColor(Color.parseColor("#5e5e6a"));
+            indicator.setSelectedColor(Color.parseColor("#0e0d19"));
+        } else {
+            indicator.setUnselectedColor(getResources().getColor(R.color.colorPrimaryLight));
+            indicator.setSelectedColor(getResources().getColor(R.color.colorPrimary));
+        }
         indicator.setInteractiveAnimation(true);
         indicator.setAnimationDuration(500);
 

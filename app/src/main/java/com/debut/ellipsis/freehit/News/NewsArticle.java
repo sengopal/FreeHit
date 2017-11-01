@@ -1,13 +1,23 @@
 package com.debut.ellipsis.freehit.News;
 
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,22 +48,40 @@ public class NewsArticle extends AppCompatActivity {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_news_article_individual_item);
         match_id = getIntent().getStringExtra("news_id");
 
+        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+
         MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
         View viewProgress = findViewById(R.id.progress);
         mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
 
+        NestedScrollView scrollView = (NestedScrollView) findViewById(R.id.nested_scroll_view) ;
+
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.description);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            linearLayout.setBackgroundColor(Color.parseColor("#484a4f"));
+            scrollView.setBackgroundColor(Color.parseColor("#484a4f"));
+            collapsingToolbarLayout.setBackgroundColor(getResources().getColor(R.color.dark));
+            collapsingToolbarLayout.setContentScrimColor(getResources().getColor(R.color.dark));
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.BLACK);
+        }
 
 
         Call<NewsArticleItem> call = MainActivity.apiInterface.doGetNewsArticle(match_id);
@@ -89,6 +117,18 @@ public class NewsArticle extends AppCompatActivity {
 
                 ImageView tag_3 = (ImageView) findViewById(R.id.news_tag_image_2);
                 tag_3.setVisibility(View.VISIBLE);
+
+                if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                    headline.setTextColor(Color.WHITE);
+                    article_description.setTextColor(Color.WHITE);
+                    date.setTextColor(Color.WHITE);
+                    news_tag_1.setTextColor(Color.WHITE);
+                    news_tag_2.setTextColor(Color.WHITE);
+                    news_tag_3.setTextColor(Color.WHITE);
+                    tag_1.setColorFilter(Color.WHITE);
+                    tag_2.setColorFilter(Color.WHITE);
+                    tag_3.setColorFilter(Color.WHITE);
+                }
 
                 mProgressBar.setVisibility(View.GONE);
 

@@ -12,6 +12,7 @@ public class ApiClient {
 
     public static final String BASE_URL = "http://freehitapi-env.6s5kii7dbh.ap-south-1.elasticbeanstalk.com/";
     public static final String TEST_URL = "http://freehittest-env.3rp2pzz3e5.ap-south-1.elasticbeanstalk.com/";
+    public static final String Heroku_TEST = "http://freehit-api.herokuapp.com/";
     private static Retrofit retrofit = null;
 
     final static OkHttpClient okHttpClient = new OkHttpClient.Builder()
@@ -24,7 +25,7 @@ public class ApiClient {
     public static Retrofit getClient() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+                    .baseUrl(Heroku_TEST)
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(okHttpClient)
                     .build();
