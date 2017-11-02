@@ -1,11 +1,13 @@
 package com.debut.ellipsis.freehit.More.Series;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +25,7 @@ public class SeriesPerformance extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        String fragment_name = getArguments().getString("fragment_name");
-         id=getArguments().getString("id");
+        String id = getActivity().getIntent().getStringExtra("id");
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_matches, container, false);
 
@@ -32,11 +33,15 @@ public class SeriesPerformance extends Fragment {
 
         viewPager = viewMatchesViewPager.findViewById(R.id.viewpager);
 
-
         setupViewPager(viewPager);
 
         View viewMatchCardTabs = rootView.findViewById(R.id.match_card_tabs);
         TabLayout tabLayout = viewMatchCardTabs.findViewById(R.id.tabs);
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+        {
+            tabLayout.setBackgroundColor(Color.parseColor("#2c2c35"));
+        }
 
         tabLayout.setupWithViewPager(viewPager);
 
@@ -62,8 +67,8 @@ public class SeriesPerformance extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         SeriesPerformance.ViewPagerAdapter adapter = new SeriesPerformance.ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFrag(new SeriesBattingPerformance(), "Batting");
-        adapter.addFrag(new SeriesBowlingPerformance(), "Bowling");
+        adapter.addFrag(new SeriesBattingBowlingPerformance(), "BATTING");
+        adapter.addFrag(new SeriesBattingBowlingPerformance(), "BOWLING");
         viewPager.setAdapter(adapter);
 
     }
@@ -91,9 +96,19 @@ public class SeriesPerformance extends Fragment {
         public void addFrag(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
-            Bundle bundle=new Bundle();
-            bundle.putString("id",id);
-            fragment.setArguments(bundle);
+            if(mFragmentTitleList.get(0).equals("BATTING"))
+            {
+                Bundle bundle=new Bundle();
+                bundle.putString("sub_fragment_name", "BATTING");
+                fragment.setArguments(bundle);
+            }
+            if (mFragmentTitleList.size() == 2) {
+                if (mFragmentTitleList.get(1).equals("BOWLING")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("sub_fragment_name", "BOWLING");
+                    fragment.setArguments(bundle);
+                }
+            }
         }
 
         @Override

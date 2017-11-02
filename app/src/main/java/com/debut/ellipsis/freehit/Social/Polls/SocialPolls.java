@@ -86,13 +86,18 @@ public class SocialPolls extends Fragment {
         NoPollsText = No_polls.findViewById(R.id.empty_view);
         NoPollsButton = No_polls.findViewById(R.id.No_Live_Matches_button);
 
-        if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_YES)
-        {
-            recyclerView.setBackgroundColor(getResources().getColor(R.color.night_background));
-            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.dark)));
-            NoPollsText.setTextColor(Color.WHITE);
-            NoPollsButton.setBackgroundResource(R.drawable.button_shape_dark);
-            NoPollsButton.setTextColor(Color.BLACK);
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                recyclerView.setBackgroundColor(getResources().getColor(R.color.night_background));
+                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.dark)));
+                NoPollsText.setTextColor(Color.WHITE);
+                NoPollsButton.setBackgroundResource(R.drawable.button_shape_dark);
+                NoPollsButton.setTextColor(Color.BLACK);
+                refLayout.setColorSchemeColors(Color.BLACK);
+                break;
+            default:
+                refLayout.setColorSchemeResources(R.color.orange);
+                break;
         }
 
 
@@ -163,7 +168,6 @@ public class SocialPolls extends Fragment {
                 call.cancel();
             }
         });
-        refLayout.setColorSchemeResources(R.color.orange);
         refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                                            @Override
                                            public void onRefresh() {

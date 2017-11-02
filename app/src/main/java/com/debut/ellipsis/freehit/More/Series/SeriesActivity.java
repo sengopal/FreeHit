@@ -1,6 +1,5 @@
 package com.debut.ellipsis.freehit.More.Series;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -37,11 +36,7 @@ public class SeriesActivity extends AppCompatActivity {
 
         setContentView(R.layout.fragment_more_series_activity);
 
-        Intent i = getIntent();
-        Series_Name = i.getStringExtra("Series_Name");
-        date = i.getStringExtra("date");
-        Teams = i.getStringExtra("Teams");
-        id=i.getStringExtra("id");
+        Series_Name = getIntent().getStringExtra("Series_Name");
 
         View viewToolbar = findViewById(R.id.toolbar_tabs_series);
 
@@ -115,14 +110,12 @@ public class SeriesActivity extends AppCompatActivity {
                 bundle.putString("fragment_name", "SERIES SCHEDULE");
                 fragment.setArguments(bundle);
             }
-
-            if(mFragmentTitleList.get(1).equals("TOP PERFORMANCE"))
-            {
-                Bundle bundle=new Bundle();
-                bundle.putString("fragment_name", "SERIES SCHEDULE");
-                fragment.setArguments(bundle);
-                bundle.putString("id",id);
-                fragment.setArguments(bundle);
+            if (mFragmentTitleList.size() == 2) {
+                if (mFragmentTitleList.get(1).equals("TOP PERFORMANCE")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("fragment_name", "SERIES SCHEDULE");
+                    fragment.setArguments(bundle);
+                }
             }
 
         }

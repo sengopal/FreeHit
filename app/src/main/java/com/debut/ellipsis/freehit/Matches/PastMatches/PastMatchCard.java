@@ -49,7 +49,7 @@ public class PastMatchCard extends Fragment {
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             rootView = inflater.inflate(R.layout.fragment_matches_common_pager_dark, container, false);
         }
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
+        else if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
             rootView = inflater.inflate(R.layout.fragment_matches_common_pager, container, false);
         }
 
@@ -162,12 +162,15 @@ public class PastMatchCard extends Fragment {
 
     private void IndicatorConfig() {
         indicator.setAnimationType(AnimationType.WORM);
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            indicator.setUnselectedColor(Color.parseColor("#5e5e6a"));
-            indicator.setSelectedColor(Color.parseColor("#0e0d19"));
-        } else {
-            indicator.setUnselectedColor(getResources().getColor(R.color.colorPrimaryLight));
-            indicator.setSelectedColor(getResources().getColor(R.color.colorPrimary));
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                indicator.setUnselectedColor(Color.parseColor("#5e5e6a"));
+                indicator.setSelectedColor(Color.parseColor("#0e0d19"));
+                break;
+            default:
+                indicator.setUnselectedColor(getResources().getColor(R.color.colorPrimaryLight));
+                indicator.setSelectedColor(getResources().getColor(R.color.colorPrimary));
+                break;
         }
         indicator.setInteractiveAnimation(true);
         indicator.setAnimationDuration(500);

@@ -40,7 +40,7 @@ public class TeamSeriesMatchesFragment extends Fragment {
         }
         if(fragment_name.equals("TEAM SCHEDULE"))
         {
-            setupViewPagerTean(viewPager);
+            setupViewPagerTeam(viewPager);
         }
 
         View viewMatchCardTabs = rootView.findViewById(R.id.match_card_tabs);
@@ -82,7 +82,7 @@ public class TeamSeriesMatchesFragment extends Fragment {
 
     }
 
-    private void setupViewPagerTean(ViewPager viewPager) {
+    private void setupViewPagerTeam(ViewPager viewPager) {
         TeamSeriesMatchesFragment.ViewPagerAdapter adapter = new TeamSeriesMatchesFragment.ViewPagerAdapter(getChildFragmentManager());
         adapter.addFrag(new TeamMatches(), "UPCOMING");
         adapter.addFrag(new TeamMatches(), "PAST");

@@ -48,7 +48,7 @@ public class PlayerActivity extends AppCompatActivity {
 
         View viewToolbarTabs = findViewById(R.id.toolbar_player);
 
-        Toolbar toolbar = (Toolbar) viewToolbarTabs.findViewById(R.id.toolbar);
+        Toolbar toolbar = viewToolbarTabs.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(player_name);
@@ -57,9 +57,9 @@ public class PlayerActivity extends AppCompatActivity {
 
         View viewProgress = findViewById(R.id.progress);
 
-        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
+        mProgressBar = viewProgress.findViewById(R.id.progress_bar);
 
-        viewPager = (ViewPager) viewPlayerViewPager.findViewById(R.id.viewpager);
+        viewPager = viewPlayerViewPager.findViewById(R.id.viewpager);
         Call<PlayerItem> call = MainActivity.apiInterface.doGetPlayerInfo(player_url);
         call.enqueue(new Callback<PlayerItem>() {
             @Override
@@ -80,7 +80,7 @@ public class PlayerActivity extends AppCompatActivity {
         });
 
 
-        TabLayout tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);
+        TabLayout tabLayout = viewToolbarTabs.findViewById(R.id.tabs);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.setupWithViewPager(viewPager);

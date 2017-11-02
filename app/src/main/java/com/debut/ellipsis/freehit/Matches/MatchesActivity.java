@@ -2,6 +2,7 @@ package com.debut.ellipsis.freehit.Matches;
 
 
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -78,150 +79,159 @@ public class MatchesActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            setTheme(R.style.AppThemeDark);
-            rv.setBackgroundColor(getResources().getColor(R.color.night_background));
-            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.dark)));
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                setTheme(R.style.AppThemeDark);
+                rv.setBackgroundColor(getResources().getColor(R.color.night_background));
+                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.dark)));
+                refresh_layout.setColorSchemeColors(Color.BLACK);
+                break;
+            default:
+                refresh_layout.setColorSchemeResources(R.color.orange);
+                break;
         }
 
         View viewEmpty = findViewById(R.id.empty);
         mEmptyView = viewEmpty.findViewById(R.id.empty_view);
 
-        if (match_format.equals("PAST")) {
-            setTitle(R.string.past_list);
-            Call<PastMatchCardItem> call = apiInterface.doGetCompletePastCardResources();
-            call.enqueue(new Callback<PastMatchCardItem>() {
-                @Override
-                public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
-                    mProgressBar.setVisibility(View.GONE);
+        switch (match_format) {
+            case "PAST": {
+                setTitle(R.string.past_list);
+                Call<PastMatchCardItem> call = apiInterface.doGetCompletePastCardResources();
+                call.enqueue(new Callback<PastMatchCardItem>() {
+                    @Override
+                    public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
+                        mProgressBar.setVisibility(View.GONE);
 
-                    List<PastMatchCardItem> pastMatchCardItems = response.body().getResults();
-                    if (pastMatchCardItems.size() == 0) {
-                        mEmptyView.setVisibility(View.VISIBLE);
-                        mEmptyView.setText(R.string.EmptyMatches);
+                        List<PastMatchCardItem> pastMatchCardItems = response.body().getResults();
+                        if (pastMatchCardItems.size() == 0) {
+                            mEmptyView.setVisibility(View.VISIBLE);
+                            mEmptyView.setText(R.string.EmptyMatches);
+                        }
+
+                        PastMatchListAdapter = new PastMatchesListAdapter(pastMatchCardItems, getApplicationContext());
+                        rv.setAdapter(PastMatchListAdapter);
                     }
 
-                    PastMatchListAdapter = new PastMatchesListAdapter(pastMatchCardItems, getApplicationContext());
-                    rv.setAdapter(PastMatchListAdapter);
-                }
+                    @Override
+                    public void onFailure(Call<PastMatchCardItem> call, Throwable t) {
+                        mProgressBar.setVisibility(View.INVISIBLE);
+                        mEmptyView.setVisibility(View.INVISIBLE);
+                        Toast toast = Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                        toast.show();
+                        call.cancel();
 
-                @Override
-                public void onFailure(Call<PastMatchCardItem> call, Throwable t) {
-                    mProgressBar.setVisibility(View.INVISIBLE);
-                    mEmptyView.setVisibility(View.INVISIBLE);
-                    Toast toast = Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
-                    toast.show();
-                    call.cancel();
+                    }
+                });
+                refresh_layout.setColorSchemeResources(R.color.orange);
+                refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                                                        @Override
+                                                        public void onRefresh() {
+                                                            // Checking if connected or not on refresh
+                                                            refresh_layout.setRefreshing(true);
 
-                }
-            });
+                                                            Call<PastMatchCardItem> call = apiInterface.doGetCompletePastCardResources();
+                                                            call.enqueue(new Callback<PastMatchCardItem>() {
+                                                                @Override
+                                                                public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
+                                                                    mProgressBar.setVisibility(View.GONE);
 
-            refresh_layout.setColorSchemeResources(R.color.orange);
-            refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                                                    @Override
-                                                    public void onRefresh() {
-                                                        // Checking if connected or not on refresh
-                                                        refresh_layout.setRefreshing(true);
+                                                                    List<PastMatchCardItem> pastMatchCardItems = response.body().getResults();
+                                                                    if (pastMatchCardItems.size() == 0) {
+                                                                        mEmptyView.setVisibility(View.VISIBLE);
+                                                                        mEmptyView.setText(R.string.EmptyMatches);
+                                                                    }
 
-                                                        Call<PastMatchCardItem> call = apiInterface.doGetCompletePastCardResources();
-                                                        call.enqueue(new Callback<PastMatchCardItem>() {
-                                                            @Override
-                                                            public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
-                                                                mProgressBar.setVisibility(View.GONE);
-
-                                                                List<PastMatchCardItem> pastMatchCardItems = response.body().getResults();
-                                                                if (pastMatchCardItems.size() == 0) {
-                                                                    mEmptyView.setVisibility(View.VISIBLE);
-                                                                    mEmptyView.setText(R.string.EmptyMatches);
+                                                                    PastMatchListAdapter = new PastMatchesListAdapter(pastMatchCardItems, getApplicationContext());
+                                                                    rv.setAdapter(PastMatchListAdapter);
                                                                 }
 
-                                                                PastMatchListAdapter = new PastMatchesListAdapter(pastMatchCardItems, getApplicationContext());
-                                                                rv.setAdapter(PastMatchListAdapter);
-                                                            }
+                                                                @Override
+                                                                public void onFailure(Call<PastMatchCardItem> call, Throwable t) {
+                                                                    mProgressBar.setVisibility(View.INVISIBLE);
+                                                                    mEmptyView.setVisibility(View.INVISIBLE);
+                                                                    Toast toast = Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                                                                    toast.show();
+                                                                    call.cancel();
 
-                                                            @Override
-                                                            public void onFailure(Call<PastMatchCardItem> call, Throwable t) {
-                                                                mProgressBar.setVisibility(View.INVISIBLE);
-                                                                mEmptyView.setVisibility(View.INVISIBLE);
-                                                                Toast toast = Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
-                                                                toast.show();
-                                                                call.cancel();
-
-                                                            }
-                                                        });
-                                                        refresh_layout.setRefreshing(false);
+                                                                }
+                                                            });
+                                                            refresh_layout.setRefreshing(false);
+                                                        }
                                                     }
-                                                }
-            );
-        }
-        if (match_format.equals("UPCOMING")) {
-            setTitle(R.string.upcoming_list);
+                );
+                break;
+            }
+            case "UPCOMING": {
+                setTitle(R.string.upcoming_list);
 
-            Call<UpcomingMatchCardItem> call = apiInterface.doGetUpcomingCompleteMatchListResources();
-            call.enqueue(new Callback<UpcomingMatchCardItem>() {
-                @Override
-                public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {
+                Call<UpcomingMatchCardItem> call = apiInterface.doGetUpcomingCompleteMatchListResources();
+                call.enqueue(new Callback<UpcomingMatchCardItem>() {
+                    @Override
+                    public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {
 
-                    mProgressBar.setVisibility(View.GONE);
+                        mProgressBar.setVisibility(View.GONE);
 
-                    List<UpcomingMatchCardItem> upcomingMatchesList = response.body().getResults();
-                    mProgressBar.setVisibility(View.GONE);
-                    if (upcomingMatchesList.size() == 0) {
-                        mEmptyView.setVisibility(View.VISIBLE);
-                        mEmptyView.setText(R.string.EmptyMatches);
+                        List<UpcomingMatchCardItem> upcomingMatchesList = response.body().getResults();
+                        mProgressBar.setVisibility(View.GONE);
+                        if (upcomingMatchesList.size() == 0) {
+                            mEmptyView.setVisibility(View.VISIBLE);
+                            mEmptyView.setText(R.string.EmptyMatches);
+                        }
+
+                        UpcomingMatchListAdapter = new UpcomingMatchListAdapter(getApplicationContext(), upcomingMatchesList);
+                        rv.setAdapter(UpcomingMatchListAdapter);
                     }
 
-                    UpcomingMatchListAdapter = new UpcomingMatchListAdapter(getApplicationContext(), upcomingMatchesList);
-                    rv.setAdapter(UpcomingMatchListAdapter);
-                }
+                    @Override
+                    public void onFailure(Call<UpcomingMatchCardItem> call, Throwable t) {
+                        mProgressBar.setVisibility(View.INVISIBLE);
+                        mEmptyView.setVisibility(View.INVISIBLE);
+                        Toast toast = Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                        toast.show();
+                        call.cancel();
+                    }
+                });
 
-                @Override
-                public void onFailure(Call<UpcomingMatchCardItem> call, Throwable t) {
-                    mProgressBar.setVisibility(View.INVISIBLE);
-                    mEmptyView.setVisibility(View.INVISIBLE);
-                    Toast toast = Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
-                    toast.show();
-                    call.cancel();
-                }
-            });
+                refresh_layout.setColorSchemeResources(R.color.orange);
+                refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                                                        @Override
+                                                        public void onRefresh() {
+                                                            // Checking if connected or not on refresh
+                                                            refresh_layout.setRefreshing(true);
 
-            refresh_layout.setColorSchemeResources(R.color.orange);
-            refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                                                    @Override
-                                                    public void onRefresh() {
-                                                        // Checking if connected or not on refresh
-                                                        refresh_layout.setRefreshing(true);
+                                                            Call<UpcomingMatchCardItem> call = apiInterface.doGetUpcomingCompleteMatchListResources();
+                                                            call.enqueue(new Callback<UpcomingMatchCardItem>() {
+                                                                @Override
+                                                                public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {
+                                                                    mProgressBar.setVisibility(View.GONE);
 
-                                                        Call<UpcomingMatchCardItem> call = apiInterface.doGetUpcomingCompleteMatchListResources();
-                                                        call.enqueue(new Callback<UpcomingMatchCardItem>() {
-                                                            @Override
-                                                            public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {
-                                                                mProgressBar.setVisibility(View.GONE);
+                                                                    List<UpcomingMatchCardItem> upcomingMatchesList = response.body().getResults();
 
-                                                                List<UpcomingMatchCardItem> upcomingMatchesList = response.body().getResults();
-
-                                                                if (upcomingMatchesList.size() == 0) {
-                                                                    mEmptyView.setVisibility(View.VISIBLE);
-                                                                    mEmptyView.setText(R.string.EmptyMatches);
+                                                                    if (upcomingMatchesList.size() == 0) {
+                                                                        mEmptyView.setVisibility(View.VISIBLE);
+                                                                        mEmptyView.setText(R.string.EmptyMatches);
+                                                                    }
+                                                                    UpcomingMatchListAdapter = new UpcomingMatchListAdapter(getApplicationContext(), upcomingMatchesList);
+                                                                    rv.setAdapter(UpcomingMatchListAdapter);
                                                                 }
-                                                                UpcomingMatchListAdapter = new UpcomingMatchListAdapter(getApplicationContext(), upcomingMatchesList);
-                                                                rv.setAdapter(UpcomingMatchListAdapter);
-                                                            }
 
-                                                            @Override
-                                                            public void onFailure(Call<UpcomingMatchCardItem> call, Throwable t) {
-                                                                mProgressBar.setVisibility(View.INVISIBLE);
-                                                                mEmptyView.setVisibility(View.INVISIBLE);
-                                                                Toast toast = Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
-                                                                toast.show();
-                                                                call.cancel();
+                                                                @Override
+                                                                public void onFailure(Call<UpcomingMatchCardItem> call, Throwable t) {
+                                                                    mProgressBar.setVisibility(View.INVISIBLE);
+                                                                    mEmptyView.setVisibility(View.INVISIBLE);
+                                                                    Toast toast = Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                                                                    toast.show();
+                                                                    call.cancel();
 
-                                                            }
-                                                        });
-                                                        refresh_layout.setRefreshing(false);
+                                                                }
+                                                            });
+                                                            refresh_layout.setRefreshing(false);
+                                                        }
                                                     }
-                                                }
-            );
+                );
+                break;
+            }
         }
 
         rv.addOnScrollListener(new RecyclerView.OnScrollListener() {

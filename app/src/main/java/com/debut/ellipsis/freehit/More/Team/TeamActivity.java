@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -54,21 +53,19 @@ public class TeamActivity extends AppCompatActivity {
 
         View viewToolbarTabs = findViewById(R.id.team_toolbar_tabs);
 
-        Toolbar toolbar = (Toolbar) viewToolbarTabs.findViewById(R.id.toolbar);
+        Toolbar toolbar = viewToolbarTabs.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(tempTeamName);
 
         View viewTeamPager = findViewById(R.id.teams_viewpager);
 
-        ViewPager viewPager = (ViewPager) viewTeamPager.findViewById(R.id.viewpager);
+        ViewPager viewPager = viewTeamPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
-
-        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
 
         viewPager.setOffscreenPageLimit(3);
 
-        TabLayout tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);
+        TabLayout tabLayout = viewToolbarTabs.findViewById(R.id.tabs);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.setupWithViewPager(viewPager);
 

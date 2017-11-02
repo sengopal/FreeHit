@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -34,7 +33,6 @@ public class UpcomingMatchCard extends Fragment {
     public PageIndicatorView indicator;
     private UpcomingMatchesItemAdapter mAdapter;
     public ViewPager vp;
-    public ImageView NoConnectionImage;
     public Button NoConnectionButton;
 
     public UpcomingMatchCard() {
@@ -50,7 +48,7 @@ public class UpcomingMatchCard extends Fragment {
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             rootView = inflater.inflate(R.layout.fragment_matches_common_pager_dark, container, false);
         }
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
+        else if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
             rootView = inflater.inflate(R.layout.fragment_matches_common_pager, container, false);
         }
 
@@ -71,7 +69,6 @@ public class UpcomingMatchCard extends Fragment {
 
         final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
 
-        /*NoConnectionImage = (ImageView) no_internet_connection.findViewById(R.id.no_internet_connection);*/
         NoConnectionButton = no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
         Call<UpcomingMatchCardItem> call = MainActivity.apiInterface.doGetUpcomingMatchListResources();
@@ -169,12 +166,15 @@ public class UpcomingMatchCard extends Fragment {
     private void IndicatorConfig() {
         indicator.setVisibility(View.VISIBLE);
         indicator.setAnimationType(AnimationType.WORM);
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            indicator.setUnselectedColor(Color.parseColor("#5e5e6a"));
-            indicator.setSelectedColor(Color.parseColor("#0e0d19"));
-        } else {
-            indicator.setUnselectedColor(getResources().getColor(R.color.colorPrimaryLight));
-            indicator.setSelectedColor(getResources().getColor(R.color.colorPrimary));
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                indicator.setUnselectedColor(Color.parseColor("#5e5e6a"));
+                indicator.setSelectedColor(Color.parseColor("#0e0d19"));
+                break;
+            default:
+                indicator.setUnselectedColor(getResources().getColor(R.color.colorPrimaryLight));
+                indicator.setSelectedColor(getResources().getColor(R.color.colorPrimary));
+                break;
         }
         indicator.setInteractiveAnimation(true);
         indicator.setAnimationDuration(500);

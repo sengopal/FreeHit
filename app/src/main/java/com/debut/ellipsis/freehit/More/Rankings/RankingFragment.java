@@ -111,83 +111,83 @@ public class RankingFragment extends Fragment {
             // Apply the adapter to the spinner
             team_format.setAdapter(adapter);
 
-            if (fragment_name.equals("BATSMEN")) {
-                rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getOdi().getBattingList()));
-                team_format.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        rv.setAdapter(null);
-                        final String selectedItem = parent.getItemAtPosition(position).toString();
+            switch (fragment_name) {
+                case "BATSMEN":
+                    rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getOdi().getBattingList()));
+                    team_format.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            rv.setAdapter(null);
+                            final String selectedItem = parent.getItemAtPosition(position).toString();
 
-                        switch (selectedItem) {
-                            case "ODI":
-                                rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getOdi().getBattingList()));
-                                break;
-                            case "T20":
-                                rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getT20().getBattingList()));
-                                break;
-                            case "TEST":
-                                rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getTest().getBattingList()));
-                                break;
+                            switch (selectedItem) {
+                                case "ODI":
+                                    rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getOdi().getBattingList()));
+                                    break;
+                                case "T20":
+                                    rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getT20().getBattingList()));
+                                    break;
+                                case "TEST":
+                                    rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getTest().getBattingList()));
+                                    break;
+                            }
                         }
-                    }
 
-                    public void onNothingSelected(AdapterView<?> parent) {
+                        public void onNothingSelected(AdapterView<?> parent) {
 
-                    }
-                });
-            }
-
-            if (fragment_name.equals("BOWLER")) {
-                rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getOdi().getAllRounders()));
-                team_format.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        rv.setAdapter(null);
-                        final String selectedItem = parent.getItemAtPosition(position).toString();
-
-                        switch (selectedItem) {
-                            case "ODI":
-                                rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getOdi().getBowlingList()));
-                                break;
-                            case "T20":
-                                rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getT20().getBowlingList()));
-                                break;
-                            case "TEST":
-                                rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getTest().getBowlingList()));
-                                break;
                         }
-                    } // to close the onItemSelected
+                    });
+                    break;
+                case "BOWLER":
+                    rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getOdi().getAllRounders()));
+                    team_format.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            rv.setAdapter(null);
+                            final String selectedItem = parent.getItemAtPosition(position).toString();
 
-                    public void onNothingSelected(AdapterView<?> parent) {
+                            switch (selectedItem) {
+                                case "ODI":
+                                    rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getOdi().getBowlingList()));
+                                    break;
+                                case "T20":
+                                    rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getT20().getBowlingList()));
+                                    break;
+                                case "TEST":
+                                    rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getTest().getBowlingList()));
+                                    break;
+                            }
+                        } // to close the onItemSelected
 
-                    }
-                });
-            }
+                        public void onNothingSelected(AdapterView<?> parent) {
 
-            if (fragment_name.equals("ALL ROUNDER")) {
-                rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getOdi().getAllRounders()));
-                team_format.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        rv.setAdapter(null);
-                        final String selectedItem = parent.getItemAtPosition(position).toString();
-
-                        switch (selectedItem) {
-                            case "ODI":
-                                rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getOdi().getAllRounders()));
-                                break;
-                            case "T20":
-                                rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getT20().getAllRounders()));
-                                break;
-                            case "TEST":
-                                rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getTest().getAllRounders()));
-                                break;
                         }
-                    } // to close the onItemSelected
+                    });
+                    break;
+                case "ALL ROUNDER":
+                    rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getOdi().getAllRounders()));
+                    team_format.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            rv.setAdapter(null);
+                            final String selectedItem = parent.getItemAtPosition(position).toString();
 
-                    public void onNothingSelected(AdapterView<?> parent) {
+                            switch (selectedItem) {
+                                case "ODI":
+                                    rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getOdi().getAllRounders()));
+                                    break;
+                                case "T20":
+                                    rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getT20().getAllRounders()));
+                                    break;
+                                case "TEST":
+                                    rv.setAdapter(new PlayerRankingAdapter(getContext(), teamList.get(0).getTest().getAllRounders()));
+                                    break;
+                            }
+                        } // to close the onItemSelected
 
-                    }
+                        public void onNothingSelected(AdapterView<?> parent) {
 
-                });
+                        }
+
+                    });
+                    break;
             }
         }
 

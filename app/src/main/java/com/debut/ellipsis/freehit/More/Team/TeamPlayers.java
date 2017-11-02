@@ -2,6 +2,7 @@ package com.debut.ellipsis.freehit.More.Team;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -64,17 +65,23 @@ public class TeamPlayers extends Fragment {
         View viewRecycler = rootView.findViewById(R.id.player_list);
         final RecyclerView recyclerView = viewRecycler.findViewById(R.id.recycler_list);
 
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            recyclerView.setBackgroundColor(getResources().getColor(R.color.night_background));
-            toolbar.setBackgroundColor(getResources().getColor(R.color.dark));
-        }
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = viewProgress.findViewById(R.id.progress_bar);
 
         final SwipeRefreshLayout refLayout = viewRecycler.findViewById(R.id.refresh_layout);
+
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                recyclerView.setBackgroundColor(getResources().getColor(R.color.night_background));
+                toolbar.setBackgroundColor(getResources().getColor(R.color.dark));
+                refLayout.setColorSchemeColors(Color.BLACK);
+                break;
+            default:
+                refLayout.setColorSchemeResources(R.color.orange);
+                break;
+        }
 
 
         Call<PlayerCountryItem> call1 = MainActivity.apiInterface.doGetFavTeamPlayers(Team);
@@ -103,7 +110,6 @@ public class TeamPlayers extends Fragment {
         });
 
 
-        refLayout.setColorSchemeResources(R.color.orange);
         refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

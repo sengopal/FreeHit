@@ -35,14 +35,14 @@ public class TeamListAdapter extends ArrayAdapter<TeamListItem> {
 
         TeamListItem currentItem = getItem(position);
 
-        TextView TeamName = (TextView) listItemView.findViewById(R.id.row_title);
+        TextView TeamName = listItemView.findViewById(R.id.row_title);
         TeamName.setText(currentItem.getmTeamName());
 
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             TeamName.setTextColor(Color.WHITE);
         }
 
-        ImageView TeamIcon = (ImageView) listItemView.findViewById(R.id.row_icon);
+        ImageView TeamIcon = listItemView.findViewById(R.id.row_icon);
 
         RequestBuilder requestBuilder = GlideApp.with(getContext()).load(currentItem.getmTeamIconURL()).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 

@@ -3,6 +3,7 @@ package com.debut.ellipsis.freehit.Social.Tweets;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -30,9 +31,6 @@ import com.twitter.sdk.android.tweetui.SearchTimeline;
 import com.twitter.sdk.android.tweetui.TimelineResult;
 import com.twitter.sdk.android.tweetui.TweetTimelineRecyclerViewAdapter;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class SocialTweets extends Fragment {
     public SearchTimeline searchTimeline;
     public TweetTimelineRecyclerViewAdapter adapter;
@@ -57,34 +55,39 @@ public class SocialTweets extends Fragment {
         View viewRecycler = socTweets.findViewById(R.id.tweets_recycler_layout);
 
 
-        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
+        final SwipeRefreshLayout refLayout = viewRecycler.findViewById(R.id.refresh_layout);
 
 
         //  Initializing the RecyclerView for Twitter feed
-        rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
-        if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_YES)
-        {
-            rv.setBackgroundColor(getResources().getColor(R.color.night_background));
+        rv = viewRecycler.findViewById(R.id.recycler_list);
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                rv.setBackgroundColor(getResources().getColor(R.color.night_background));
+                refLayout.setColorSchemeColors(Color.BLACK);
+                break;
+            default:
+                refLayout.setColorSchemeResources(R.color.orange);
+                break;
         }
 
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
         View viewProgress = socTweets.findViewById(R.id.progress);
 
-        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
+        mProgressBar = viewProgress.findViewById(R.id.progress_bar);
         mProgressBar.setVisibility(View.VISIBLE);
 
         final View No_tweets = socTweets.findViewById(R.id.No_tweets);
 
-        NotweetsText = (TextView) No_tweets.findViewById(R.id.empty_view);
-        NotweetsButton = (Button) No_tweets.findViewById(R.id.No_Live_Matches_button);
+        NotweetsText = No_tweets.findViewById(R.id.empty_view);
+        NotweetsButton = No_tweets.findViewById(R.id.No_Live_Matches_button);
 
         final View no_internet_connection = socTweets.findViewById(R.id.Unavailable_connection);
 
-        NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
+        NoConnectionButton = no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
 
-        final RelativeLayout twitrel = (RelativeLayout) socTweets.findViewById(R.id.twit_layout);
+        final RelativeLayout twitrel = socTweets.findViewById(R.id.twit_layout);
 
         container.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +99,6 @@ public class SocialTweets extends Fragment {
             }
         });
 
-        refLayout.setColorSchemeResources(R.color.orange);
         refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -125,51 +127,52 @@ public class SocialTweets extends Fragment {
         // Get details on the currently active default data network
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
-        if(fragment_name.equals("TWEETS")) {
-            // If there is a network connection, fetch data
-            if (networkInfo != null && networkInfo.isConnected()) {
-                mProgressBar.setVisibility(View.INVISIBLE);
-                no_internet_connection.setVisibility(View.INVISIBLE);
-                String queryToSearch = "#cricket";
-                tabCall(queryToSearch, SearchTimeline.ResultType.RECENT);
+        switch (fragment_name) {
+            case "TWEETS":
+                // If there is a network connection, fetch data
+                if (networkInfo != null && networkInfo.isConnected()) {
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    no_internet_connection.setVisibility(View.INVISIBLE);
+                    String queryToSearch = "#cricket";
+                    tabCall(queryToSearch, SearchTimeline.ResultType.RECENT);
 
-            } else {
-                no_internet_connection.setVisibility(View.VISIBLE);
-                mProgressBar.setVisibility(View.INVISIBLE);
-                NoConnectionButton.setOnClickListener(new View.OnClickListener() {
+                } else {
+                    no_internet_connection.setVisibility(View.VISIBLE);
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
-                    public void onClick(View v) {
+                        public void onClick(View v) {
 
-                        FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        ft.detach(SocialTweets.this).attach(SocialTweets.this).commit();
+                            FragmentTransaction ft = getFragmentManager().beginTransaction();
+                            ft.detach(SocialTweets.this).attach(SocialTweets.this).commit();
 
-                    }
-                });
-            }
-        }
-        if(fragment_name.equals("LIVE TWEETS"))
-        {
-            Intent i = getActivity().getIntent();
-            String Team1Name = i.getStringExtra("Team1Name");
-            String Team2Name = i.getStringExtra("Team2Name");
+                        }
+                    });
+                }
+                break;
+            case "LIVE TWEETS":
+                Intent i = getActivity().getIntent();
+                String Team1Name = i.getStringExtra("Team1Name");
+                String Team2Name = i.getStringExtra("Team2Name");
 
-            final String QueryToSearch1 = "#" + Team1Name + "vs" + Team2Name;
-            final String QueryToSearch2 = "#" + Team2Name + "vs" + Team1Name;
+                final String QueryToSearch1 = "#" + Team1Name + "vs" + Team2Name;
+                final String QueryToSearch2 = "#" + Team2Name + "vs" + Team1Name;
 
-            if (networkInfo != null && networkInfo.isConnected()) {
-                mProgressBar.setVisibility(View.INVISIBLE);
-                No_tweets.setVisibility(View.INVISIBLE);
-                tabCall(QueryToSearch1 + "," + QueryToSearch2, SearchTimeline.ResultType.RECENT);
+                if (networkInfo != null && networkInfo.isConnected()) {
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    No_tweets.setVisibility(View.INVISIBLE);
+                    tabCall(QueryToSearch1 + "," + QueryToSearch2, SearchTimeline.ResultType.RECENT);
 
-            } else {
-                No_tweets.setVisibility(View.VISIBLE);
-                mProgressBar.setVisibility(View.INVISIBLE);
-                NotweetsButton.setVisibility(View.INVISIBLE);
-                NotweetsText.setText(R.string.EmptyNews);
-                NotweetsText.setText(R.string.no_internet_connection);
-                tabCall(QueryToSearch1 + "," + QueryToSearch2, SearchTimeline.ResultType.RECENT);
+                } else {
+                    No_tweets.setVisibility(View.VISIBLE);
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    NotweetsButton.setVisibility(View.INVISIBLE);
+                    NotweetsText.setText(R.string.EmptyNews);
+                    NotweetsText.setText(R.string.no_internet_connection);
+                    tabCall(QueryToSearch1 + "," + QueryToSearch2, SearchTimeline.ResultType.RECENT);
 
-            }
+                }
+                break;
         }
 
 
@@ -179,16 +182,17 @@ public class SocialTweets extends Fragment {
     // Simple function to set the adapter to the required search query and ResultType (RECENT,POPULAR,MIXED)
     public void tabCall(String query, SearchTimeline.ResultType type) {
         searchTimeline = new SearchTimeline.Builder().query(query).resultType(type).build();
-        if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_YES) {
-            adapter = new TweetTimelineRecyclerViewAdapter.Builder(getContext()).setTimeline(searchTimeline)
-                    .setViewStyle(R.style.tw__TweetDarkStyle)
-                    .build();
-        }
-        else if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_NO)
-        {
-            adapter = new TweetTimelineRecyclerViewAdapter.Builder(getContext()).setTimeline(searchTimeline)
-                    .setViewStyle(R.style.tw__TweetLightStyle)
-                    .build();
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                adapter = new TweetTimelineRecyclerViewAdapter.Builder(getContext()).setTimeline(searchTimeline)
+                        .setViewStyle(R.style.tw__TweetDarkStyle)
+                        .build();
+                break;
+            case AppCompatDelegate.MODE_NIGHT_NO:
+                adapter = new TweetTimelineRecyclerViewAdapter.Builder(getContext()).setTimeline(searchTimeline)
+                        .setViewStyle(R.style.tw__TweetLightStyle)
+                        .build();
+                break;
         }
         mProgressBar.setVisibility(View.INVISIBLE);
         rv.setAdapter(adapter);

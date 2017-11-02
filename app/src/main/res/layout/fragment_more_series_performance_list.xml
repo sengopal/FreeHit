@@ -7,55 +7,47 @@
     tools:context="com.debut.ellipsis.freehit.More.Rankings.RankingFragment">
 
 
-
-
     <LinearLayout
         android:id="@+id/parent_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
         android:layout_below="@id/team_format_select"
-        android:paddingTop="@dimen/_8sdp"
         android:background="@color/bg_screen1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/_8sdp">
 
         <TextView
-
+            android:id="@+id/sl_no"
             android:layout_width="@dimen/_33sdp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_marginStart="@dimen/_5sdp"
             android:text="Sl No"
-            android:layout_weight="0.1"
-            android:textAlignment="viewStart"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_12sdp" />
 
         <TextView
-
-            android:layout_width="@dimen/_110sdp"
+            android:id="@+id/name"
+            android:layout_width="@dimen/_135sdp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/_5sdp"
             android:text="Name"
-            android:layout_weight="2.0"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_12sdp" />
 
         <TextView
-
-            android:layout_width="@dimen/_49sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_35sdp"
-            android:text="Wickets"
-            android:layout_weight="1"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/_12sdp" />
-        <TextView
-
+            android:id="@+id/Runs_Wickets_Label"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_15sdp"
-            android:text="balls"
-            android:layout_weight="1"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:text="Runs"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_12sdp" />
+
+        <TextView
+            android:id="@+id/Average_balls_Label"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="wrap_content"
+            android:text="Avg"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_12sdp" />
 
@@ -67,16 +59,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/parent_layout">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_list"
-            android:paddingStart="@dimen/_5sdp"
-            android:paddingEnd="@dimen/_5sdp"
-            android:paddingBottom="@dimen/_5sdp"
-            android:paddingTop="@dimen/_1sdp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/background"
-            android:layout_centerHorizontal="true" />
+        <include
+            android:id="@+id/series_performance_list"
+            layout="@layout/common_recycler_view_list" />
+
+        <include
+            android:id="@+id/progress"
+            layout="@layout/common_progressbar" />
 
     </RelativeLayout>
 

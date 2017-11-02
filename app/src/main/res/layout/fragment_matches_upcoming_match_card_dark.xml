@@ -149,9 +149,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:paddingTop="15dp"
+                android:paddingTop="@dimen/_8sdp"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/_12sdp"
+                android:layout_marginBottom="@dimen/_3sdp"
                 tools:text="Sep 03 2017, Sun" />
 
 

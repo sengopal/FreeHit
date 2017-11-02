@@ -2,6 +2,7 @@ package com.debut.ellipsis.freehit.News;
 
 
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -64,15 +65,23 @@ public class NewsFragment extends Fragment {
         final RecyclerView recyclerView = viewRecycler.findViewById(R.id.recycler_list);
         recyclerView.setLayoutManager(mLinearLayoutManager);
 
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            recyclerView.setBackgroundColor(getResources().getColor(R.color.night_background));
-            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.dark)));
-        }
 
         View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = viewProgress.findViewById(R.id.progress_bar);
 
         final SwipeRefreshLayout refLayout = viewRecycler.findViewById(R.id.refresh_layout);
+
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                recyclerView.setBackgroundColor(getResources().getColor(R.color.night_background));
+                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.dark)));
+                refLayout.setColorSchemeColors(Color.BLACK);
+
+                break;
+            default:
+                refLayout.setColorSchemeResources(R.color.orange);
+                break;
+        }
 
         final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
 
@@ -129,7 +138,6 @@ public class NewsFragment extends Fragment {
             }
         });
 
-        refLayout.setColorSchemeResources(R.color.orange);
         refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                                            @Override
                                            public void onRefresh() {

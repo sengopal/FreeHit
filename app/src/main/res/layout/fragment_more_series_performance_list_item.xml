@@ -1,28 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
-    
+
     >
+
     <LinearLayout
         android:id="@+id/parent_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
-        android:layout_below="@id/team_format_select"
-        android:paddingTop="@dimen/_8sdp"
-
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/_8sdp">
 
         <TextView
             android:id="@+id/pos"
             android:layout_width="@dimen/_33sdp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_marginStart="@dimen/_5sdp"
-            android:text="Sl No"
-            android:layout_weight="0.1"
+            tools:text="Sl No"
             android:textAlignment="viewStart"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_12sdp" />
@@ -31,28 +28,24 @@
             android:id="@+id/name"
             android:layout_width="@dimen/_135sdp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_15sdp"
-            android:text="Name"
-            android:layout_weight="2.0"
+            tools:text="Name"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_12sdp" />
 
         <TextView
             android:id="@+id/runs"
-            android:layout_width="@dimen/_45sdp"
+            android:layout_width="@dimen/_60sdp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_35sdp"
-            android:text="runs"
-            android:layout_weight="1"
+            android:layout_marginStart="@dimen/_10sdp"
+            tools:text="runs"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_12sdp" />
+
         <TextView
             android:id="@+id/avg"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_15sdp"
-            android:text="avg"
-            android:layout_weight="1"
+            tools:text="avg"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_12sdp" />
 

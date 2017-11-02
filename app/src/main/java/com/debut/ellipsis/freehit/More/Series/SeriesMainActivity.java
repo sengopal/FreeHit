@@ -56,15 +56,20 @@ public class SeriesMainActivity extends AppCompatActivity {
         final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
+        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
+
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             recyclerView.setBackgroundColor(getResources().getColor(R.color.night_background));
             toolbar.setBackgroundColor(getResources().getColor(R.color.dark));
+            refLayout.setColorSchemeColors(Color.BLACK);
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.BLACK);
         }
-
-        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
+        else
+        {
+            refLayout.setColorSchemeColors(R.color.orange);
+        }
 
         View ProgressView = findViewById(R.id.progress);
         mProgressbar = (ProgressBar) ProgressView.findViewById(R.id.progress_bar);
@@ -89,7 +94,6 @@ public class SeriesMainActivity extends AppCompatActivity {
             }
         });
 
-        refLayout.setColorSchemeResources(R.color.orange);
         refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                                            @Override
                                            public void onRefresh() {
