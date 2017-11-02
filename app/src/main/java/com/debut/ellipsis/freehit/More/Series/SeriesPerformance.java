@@ -17,12 +17,14 @@ import java.util.List;
 
 public class SeriesPerformance extends Fragment {
     public ViewPager viewPager;
+    String id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         String fragment_name = getArguments().getString("fragment_name");
+         id=getArguments().getString("id");
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_matches, container, false);
 
@@ -89,6 +91,9 @@ public class SeriesPerformance extends Fragment {
         public void addFrag(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
+            Bundle bundle=new Bundle();
+            bundle.putString("id",id);
+            fragment.setArguments(bundle);
         }
 
         @Override

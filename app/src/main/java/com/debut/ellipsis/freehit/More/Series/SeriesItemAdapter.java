@@ -125,6 +125,7 @@ public class SeriesItemAdapter extends RecyclerView.Adapter<SeriesItemAdapter.Se
                 Intent SeriesActivityIntent = new Intent(context, SeriesActivity.class);
                 SeriesActivityIntent.putExtra("Series_Name", seriesItems.get(position).getTitle());
                 SeriesActivityIntent.putExtra("date", date);
+                SeriesActivityIntent.putExtra("id", seriesItems.get(position).getId());
                 SeriesActivityIntent.putExtra("Teams", Team1Name + "," + Team2Name);
                 SeriesActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(SeriesActivityIntent);

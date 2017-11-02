@@ -25,6 +25,7 @@ public class SeriesActivity extends AppCompatActivity {
     public static String Series_Name ;
     public static String date;
     public static String Teams ;
+    public static String id;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -40,6 +41,7 @@ public class SeriesActivity extends AppCompatActivity {
         Series_Name = i.getStringExtra("Series_Name");
         date = i.getStringExtra("date");
         Teams = i.getStringExtra("Teams");
+        id=i.getStringExtra("id");
 
         View viewToolbar = findViewById(R.id.toolbar_tabs_series);
 
@@ -113,6 +115,16 @@ public class SeriesActivity extends AppCompatActivity {
                 bundle.putString("fragment_name", "SERIES SCHEDULE");
                 fragment.setArguments(bundle);
             }
+
+            if(mFragmentTitleList.get(1).equals("TOP PERFORMANCE"))
+            {
+                Bundle bundle=new Bundle();
+                bundle.putString("fragment_name", "SERIES SCHEDULE");
+                fragment.setArguments(bundle);
+                bundle.putString("id",id);
+                fragment.setArguments(bundle);
+            }
+
         }
 
         @Override
