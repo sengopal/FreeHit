@@ -1,6 +1,7 @@
 package com.debut.ellipsis.freehit.More.Team;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -50,7 +51,7 @@ public class TeamMatches extends Fragment {
         String fragment_name = getArguments().getString("fragment_name");
 
         View viewFAB = rootView.findViewById(R.id.fab);
-        fab = (FloatingActionButton) viewFAB.findViewById(R.id.common_fab);
+        fab = viewFAB.findViewById(R.id.common_fab);
         fab.hide();
         fab.setImageResource(R.drawable.arrow_up);
 
@@ -71,24 +72,25 @@ public class TeamMatches extends Fragment {
         MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
         View viewProgress = rootView.findViewById(R.id.progress);
-        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
+        mProgressBar = viewProgress.findViewById(R.id.progress_bar);
 
         View viewRecycler = rootView.findViewById(R.id.complete_match_list);
-        rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
+        rv = viewRecycler.findViewById(R.id.recycler_list);
 
         if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
         {
             rv.setBackgroundColor(getResources().getColor(R.color.night_background));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.dark)));
         }
 
         mLinearLayoutManager = new LinearLayoutManager(getContext());
 
         rv.setLayoutManager(mLinearLayoutManager);
 
-        refresh_layout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
+        refresh_layout = viewRecycler.findViewById(R.id.refresh_layout);
 
         View viewEmpty = rootView.findViewById(R.id.empty);
-        mEmptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);
+        mEmptyView = viewEmpty.findViewById(R.id.empty_view);
 
         if (fragment_name.equals("UPCOMING")) {
             Call<UpcomingMatchCardItem> call = MainActivity.apiInterface.doGetUpcomingFavTeam(TeamActivity.tempTeamName);

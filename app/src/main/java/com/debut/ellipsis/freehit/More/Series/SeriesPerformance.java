@@ -26,16 +26,15 @@ public class SeriesPerformance extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_matches, container, false);
 
-
         View viewMatchesViewPager = rootView.findViewById(R.id.matches_viewpagegr);
 
-        viewPager = (ViewPager) viewMatchesViewPager.findViewById(R.id.viewpager);
+        viewPager = viewMatchesViewPager.findViewById(R.id.viewpager);
 
 
         setupViewPager(viewPager);
 
         View viewMatchCardTabs = rootView.findViewById(R.id.match_card_tabs);
-        TabLayout tabLayout = (TabLayout) viewMatchCardTabs.findViewById(R.id.tabs);
+        TabLayout tabLayout = viewMatchCardTabs.findViewById(R.id.tabs);
 
         tabLayout.setupWithViewPager(viewPager);
 

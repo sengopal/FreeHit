@@ -55,13 +55,13 @@ public class NewsFragment extends Fragment {
         View viewRecycler = rootView.findViewById(R.id.news_list);
 
         View viewFAB = rootView.findViewById(R.id.fab);
-        fab = (FloatingActionButton) viewFAB.findViewById(R.id.common_fab);
+        fab = viewFAB.findViewById(R.id.common_fab);
         fab.hide();
         fab.setImageResource(R.drawable.arrow_up);
 
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
 
-        final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
+        final RecyclerView recyclerView = viewRecycler.findViewById(R.id.recycler_list);
         recyclerView.setLayoutManager(mLinearLayoutManager);
 
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
@@ -70,19 +70,19 @@ public class NewsFragment extends Fragment {
         }
 
         View viewProgress = rootView.findViewById(R.id.progress);
-        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
+        mProgressBar = viewProgress.findViewById(R.id.progress_bar);
 
-        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
+        final SwipeRefreshLayout refLayout = viewRecycler.findViewById(R.id.refresh_layout);
 
         final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
 
-        NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
+        NoConnectionButton = no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
 
         final View No_news = rootView.findViewById(R.id.No_news);
 
-        NoNewsText = (TextView) No_news.findViewById(R.id.empty_view);
-        NoNewsButton = (Button) No_news.findViewById(R.id.No_Live_Matches_button);
+        NoNewsText = No_news.findViewById(R.id.empty_view);
+        NoNewsButton = No_news.findViewById(R.id.No_Live_Matches_button);
 
 
         Call<NewsItem> call = MainActivity.apiInterface.doGetNewsListResources();

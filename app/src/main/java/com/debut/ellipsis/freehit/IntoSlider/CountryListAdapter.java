@@ -1,6 +1,8 @@
 package com.debut.ellipsis.freehit.IntoSlider;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +55,10 @@ public class CountryListAdapter extends BaseAdapter {
 
         Cell cell = Cell.from(view);
         cell.textView.setText(country.getName());
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            cell.textView.setTextColor(Color.WHITE);
+        }
 
         String FlagURL = country.getFlag();
 

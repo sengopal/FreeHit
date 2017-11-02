@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/night_background"
     android:orientation="vertical">
 
     <com.baoyz.widget.PullRefreshLayout
@@ -20,7 +20,7 @@
 
             <include
                 android:id="@+id/match_card_viewpagegr"
-                layout="@layout/common_viewpager" />
+                layout="@layout/common_viewpager_dark" />
 
             <TextView
                 android:id="@+id/blank_forPageIndicator"

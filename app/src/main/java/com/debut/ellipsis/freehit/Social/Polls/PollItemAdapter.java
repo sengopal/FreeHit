@@ -2,10 +2,7 @@ package com.debut.ellipsis.freehit.Social.Polls;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.os.Build;
-import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -54,16 +51,16 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
 
         public PollsViewHolder(View v) {
             super(v);
-            rGroup = (RadioGroup) v.findViewById(R.id.poll_group);
-            title = (TextView) v.findViewById(R.id.poll_title);
-            button1 = (RadioButton) v.findViewById(R.id.option_1);
-            button2 = (RadioButton) v.findViewById(R.id.option_2);
-            button3 = (RadioButton) v.findViewById(R.id.option_3);
-            button4 = (RadioButton) v.findViewById(R.id.option_4);
-            submit = (Button) v.findViewById(R.id.poll_submit);
-            cardView = (CardView) v.findViewById(R.id.card_view);
+            rGroup = v.findViewById(R.id.poll_group);
+            title = v.findViewById(R.id.poll_title);
+            button1 = v.findViewById(R.id.option_1);
+            button2 = v.findViewById(R.id.option_2);
+            button3 = v.findViewById(R.id.option_3);
+            button4 = v.findViewById(R.id.option_4);
+            submit = v.findViewById(R.id.poll_submit);
+            cardView = v.findViewById(R.id.card_view);
 
-            RlContainer = (RelativeLayout) v.findViewById(R.id.parent_layout);
+            RlContainer = v.findViewById(R.id.parent_layout);
         }
     }
 
@@ -90,83 +87,53 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
 
         holder.title.setText(PollCardItems.get(position).getQuestion());
         final View pollRes = holder.RlContainer.findViewById(R.id.pollItem_result);
-        final RelativeLayout rlayout = (RelativeLayout) pollRes.findViewById(R.id.pollItem_result);
-        final RelativeLayout pGroupLay = (RelativeLayout) holder.RlContainer.findViewById(R.id.poll_group_layout);
+        final RelativeLayout rlayout = pollRes.findViewById(R.id.pollItem_result);
+        final RelativeLayout pGroupLay = holder.RlContainer.findViewById(R.id.poll_group_layout);
 
-        TextView option1 = (TextView) pollRes.findViewById(R.id.option_1);
+        TextView option1 = pollRes.findViewById(R.id.option_1);
 
-        TextView option2 = (TextView) pollRes.findViewById(R.id.option_2);
+        TextView option2 = pollRes.findViewById(R.id.option_2);
 
-        TextView option3 = (TextView) pollRes.findViewById(R.id.option_3);
+        TextView option3 = pollRes.findViewById(R.id.option_3);
 
-        TextView option4 = (TextView) pollRes.findViewById(R.id.option_4);
-
-
-        final TextView peroption1 = (TextView) pollRes.findViewById(R.id.percentage_option_1);
-
-        final TextView peroption2 = (TextView) pollRes.findViewById(R.id.percentage_option_2);
-
-        final TextView peroption3 = (TextView) pollRes.findViewById(R.id.percentage_option_3);
-
-        final TextView peroption4 = (TextView) pollRes.findViewById(R.id.percentage_option_4);
-
-        final TextView valueoption1 = (TextView) pollRes.findViewById(R.id.votecount_option_1);
-
-        final TextView valueoption2 = (TextView) pollRes.findViewById(R.id.votecount_option_2);
-
-        final TextView valueoption3 = (TextView) pollRes.findViewById(R.id.votecount_option_3);
-
-        final TextView valueoption4 = (TextView) pollRes.findViewById(R.id.votecount_option_4);
+        TextView option4 = pollRes.findViewById(R.id.option_4);
 
 
-        final RoundCornerProgressBar progress1 = (RoundCornerProgressBar) pollRes.findViewById(R.id.progress_bar_option1);
+        final TextView peroption1 = pollRes.findViewById(R.id.percentage_option_1);
+
+        final TextView peroption2 = pollRes.findViewById(R.id.percentage_option_2);
+
+        final TextView peroption3 = pollRes.findViewById(R.id.percentage_option_3);
+
+        final TextView peroption4 = pollRes.findViewById(R.id.percentage_option_4);
+
+        final TextView valueoption1 = pollRes.findViewById(R.id.votecount_option_1);
+
+        final TextView valueoption2 = pollRes.findViewById(R.id.votecount_option_2);
+
+        final TextView valueoption3 = pollRes.findViewById(R.id.votecount_option_3);
+
+        final TextView valueoption4 = pollRes.findViewById(R.id.votecount_option_4);
+
+
+        final RoundCornerProgressBar progress1 = pollRes.findViewById(R.id.progress_bar_option1);
         progress1.setProgressColor(Color.parseColor("#00796b"));
         progress1.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
 
-        final RoundCornerProgressBar progress2 = (RoundCornerProgressBar) pollRes.findViewById(R.id.progress_bar_option2);
+        final RoundCornerProgressBar progress2 = pollRes.findViewById(R.id.progress_bar_option2);
         progress2.setProgressColor(Color.parseColor("#00796b"));
         progress2.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
 
-        final RoundCornerProgressBar progress3 = (RoundCornerProgressBar) pollRes.findViewById(R.id.progress_bar_option3);
+        final RoundCornerProgressBar progress3 = pollRes.findViewById(R.id.progress_bar_option3);
         progress3.setProgressColor(Color.parseColor("#00796b"));
         progress3.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
 
-        final RoundCornerProgressBar progress4 = (RoundCornerProgressBar) pollRes.findViewById(R.id.progress_bar_option4);
+        final RoundCornerProgressBar progress4 = pollRes.findViewById(R.id.progress_bar_option4);
         progress4.setProgressColor(Color.parseColor("#00796b"));
         progress4.setProgressBackgroundColor(Color.parseColor("#D2D0D0"));
 
         holder.title.setText(PollCardItems.get(position).getQuestion());
 
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            holder.cardView.setBackgroundColor(Color.parseColor("#484a4f"));
-            holder.title.setTextColor(Color.WHITE);
-            option1.setTextColor(Color.WHITE);
-            option2.setTextColor(Color.WHITE);
-            option3.setTextColor(Color.WHITE);
-            option4.setTextColor(Color.WHITE);
-            holder.button1.setTextColor(Color.WHITE);
-            holder.button2.setTextColor(Color.WHITE);
-            holder.button3.setTextColor(Color.WHITE);
-            holder.button4.setTextColor(Color.WHITE);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                holder.button1.setButtonTintList(ColorStateList.valueOf(Color.WHITE));
-                holder.button2.setButtonTintList(ColorStateList.valueOf(Color.WHITE));
-                holder.button3.setButtonTintList(ColorStateList.valueOf(Color.WHITE));
-                holder.button4.setButtonTintList(ColorStateList.valueOf(Color.WHITE));
-            }
-
-            holder.submit.setBackgroundResource(R.drawable.button_shape_dark);
-            holder.submit.setTextColor(Color.BLACK);
-            peroption1.setTextColor(Color.WHITE);
-            peroption2.setTextColor(Color.WHITE);
-            peroption3.setTextColor(Color.WHITE);
-            peroption4.setTextColor(Color.WHITE);
-            valueoption1.setTextColor(Color.WHITE);
-            valueoption2.setTextColor(Color.WHITE);
-            valueoption3.setTextColor(Color.WHITE);
-            valueoption4.setTextColor(Color.WHITE);
-
-        }
 
         if (PollCardItems.get(position).getCount() == 2) {
             holder.button1.setText(PollCardItems.get(position).getCtitle(0));
@@ -176,13 +143,9 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
             option2.setText(PollCardItems.get(position).getCtitle(1));
 
             option3.setVisibility(View.GONE);
-            ;
             option4.setVisibility(View.GONE);
-            ;
             holder.button3.setVisibility(View.GONE);
-            ;
             holder.button4.setVisibility(View.GONE);
-            ;
         }
 
         if (PollCardItems.get(position).getCount() == 3) {
@@ -196,9 +159,7 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
             option3.setText(PollCardItems.get(position).getCtitle(2));
 
             option4.setVisibility(View.GONE);
-            ;
             holder.button4.setVisibility(View.GONE);
-            ;
         }
 
         if (PollCardItems.get(position).getCount() == 4) {
@@ -229,7 +190,7 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
                     editor.apply();
 
                     int selectedId = holder.rGroup.getCheckedRadioButtonId();
-                    RadioButton clicked = (RadioButton) holder.RlContainer.findViewById(selectedId);
+                    RadioButton clicked = holder.RlContainer.findViewById(selectedId);
                     String name = clicked.getText().toString();
                     int choice = PollCardItems.get(holder.getAdapterPosition()).searchTitle(name);
                     rlayout.setVisibility(View.VISIBLE);
@@ -412,7 +373,7 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
         }
     }
 
-    public float PollResult(int PollValue, int total) {
+    private float PollResult(int PollValue, int total) {
         return (((float) PollValue / (float) total) * 100);
     }
 

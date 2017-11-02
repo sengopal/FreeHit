@@ -2,7 +2,6 @@ package com.debut.ellipsis.freehit.Matches.UpcomingMatches;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.CardView;
@@ -52,7 +51,14 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, final int position) {
-        View view = this.layoutInflater.inflate(R.layout.fragment_matches_upcoming_match_card, container, false);
+        View view = null ;
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            view = this.layoutInflater.inflate(R.layout.fragment_matches_upcoming_match_card_dark, container, false);
+        }
+        else if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
+            view = this.layoutInflater.inflate(R.layout.fragment_matches_upcoming_match_card, container, false);
+        }
 
         TextView textViewMatchName = (TextView) view.findViewById(R.id.match_name_upcoming);
         textViewMatchName.setText(this.dataObjectList.get(position).getMatch());
@@ -133,18 +139,6 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
 
             MainActivity.requestBuilder.into(imageViewTeam2Logo);
 
-        }
-
-        if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_YES)
-        {
-            cardView.setCardBackgroundColor(Color.parseColor("#484a4f"));
-            textViewMatchName.setTextColor(Color.WHITE);
-            textViewStadiumName.setTextColor(Color.parseColor("#d1d1db"));
-            textViewSeriesName.setTextColor(Color.parseColor("#d1d1db"));
-            shortName1.setTextColor(Color.WHITE);
-            shortName2.setTextColor(Color.WHITE);
-            MatchDate.setTextColor(Color.WHITE);
-            ViewMore.setTextColor(Color.WHITE);
         }
         container.addView(view);
         return view;

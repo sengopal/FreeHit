@@ -1,16 +1,13 @@
 package com.debut.ellipsis.freehit.More.Player;
 
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.load.DecodeFormat;
@@ -30,23 +27,24 @@ public class PlayerFragment extends Fragment {
         View rootView = null;
 
         if (fragment_name.equals("PLAYER INFO")) {
-            rootView = inflater.inflate(R.layout.fragment_more_player_info, container, false);
 
-            RelativeLayout parentlayout = (RelativeLayout) rootView.findViewById(R.id.parent_layout);
-            TextView name = (TextView) rootView.findViewById(R.id.Player_name_stats_info);
-            TextView country = (TextView) rootView.findViewById(R.id.player_country);
-            TextView DOB = (TextView) rootView.findViewById(R.id.DOB);
-            TextView age = (TextView) rootView.findViewById(R.id.Age);
-            TextView BattingStyle = (TextView) rootView.findViewById(R.id.battingStyle);
-            TextView BowlingStyle = (TextView) rootView.findViewById((R.id.BowlingStyle));
-            TextView TeamsPlayed = (TextView) rootView.findViewById((R.id.Teams_Played));
-            TextView description = (TextView) rootView.findViewById((R.id.PlayerInfo));
+            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                rootView = inflater.inflate(R.layout.fragment_more_player_info_dark, container, false);
+            }
 
-            TextView Player_personal_information = (TextView) rootView.findViewById(R.id.Player_personal_information);
-            TextView ICC = (TextView) rootView.findViewById(R.id.ICC);
-            TextView MOTMLabel = (TextView) rootView.findViewById(R.id.MOTM);
-            TextView PlayerInfoCareer = (TextView) rootView.findViewById(R.id.PlayerInfoCareer);
+            else  if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO)
+            {
+                rootView = inflater.inflate(R.layout.fragment_more_player_info, container, false);
+            }
 
+            TextView name = rootView.findViewById(R.id.Player_name_stats_info);
+            TextView country = rootView.findViewById(R.id.player_country);
+            TextView DOB = rootView.findViewById(R.id.DOB);
+            TextView age = rootView.findViewById(R.id.Age);
+            TextView BattingStyle = rootView.findViewById(R.id.battingStyle);
+            TextView BowlingStyle = rootView.findViewById((R.id.BowlingStyle));
+            TextView TeamsPlayed = rootView.findViewById((R.id.Teams_Played));
+            TextView description = rootView.findViewById((R.id.PlayerInfo));
 
             PlayerItem info = ((PlayerActivity) getActivity()).getQuery();
 
@@ -64,7 +62,7 @@ public class PlayerFragment extends Fragment {
 
             TeamsPlayed.setText(info.getTeamsplayed());
 
-            ImageView articleImage = (ImageView) rootView.findViewById(R.id.Player_image);
+            ImageView articleImage = rootView.findViewById(R.id.Player_image);
 
             String ImageURL = info.getImg();
 
@@ -74,9 +72,9 @@ public class PlayerFragment extends Fragment {
                 MainActivity.requestBuilder.into(articleImage);
             }
 
-            TextView odiBat = (TextView) rootView.findViewById(R.id.odibattingRanking);
-            TextView testBat = (TextView) rootView.findViewById(R.id.testBattingRanking);
-            TextView t20Bat = (TextView) rootView.findViewById(R.id.T20BattingRanking);
+            TextView odiBat = rootView.findViewById(R.id.odibattingRanking);
+            TextView testBat = rootView.findViewById(R.id.testBattingRanking);
+            TextView t20Bat = rootView.findViewById(R.id.T20BattingRanking);
 
             String ODI_Batting_rank = "-";
             String TEST_Batting_rank = "-";
@@ -119,9 +117,9 @@ public class PlayerFragment extends Fragment {
             }
 
 
-            TextView odibowl = (TextView) rootView.findViewById(R.id.odiBowlingRanking);
-            TextView testbowl = (TextView) rootView.findViewById(R.id.testBowlingRanking);
-            TextView t20bowl = (TextView) rootView.findViewById(R.id.T20BowlingRanking);
+            TextView odibowl = rootView.findViewById(R.id.odiBowlingRanking);
+            TextView testbowl = rootView.findViewById(R.id.testBowlingRanking);
+            TextView t20bowl = rootView.findViewById(R.id.T20BowlingRanking);
 
 
             String ODI_Bowling_rank = "-";
@@ -164,12 +162,12 @@ public class PlayerFragment extends Fragment {
             }
 
 
-            TextView mom_test = (TextView) rootView.findViewById(R.id.MOTM_Test);
-            TextView mom_odi = (TextView) rootView.findViewById(R.id.MOTM_Odi);
-            TextView mom_t20 = (TextView) rootView.findViewById(R.id.MOTM_T20);
-            TextView mom_wc = (TextView) rootView.findViewById(R.id.MOTM_WorldCup);
-            TextView mom_ipl = (TextView) rootView.findViewById(R.id.MOTM_IPL);
-            TextView mom_cl = (TextView) rootView.findViewById(R.id.MOTM_CL);
+            TextView mom_test = rootView.findViewById(R.id.MOTM_Test);
+            TextView mom_odi = rootView.findViewById(R.id.MOTM_Odi);
+            TextView mom_t20 = rootView.findViewById(R.id.MOTM_T20);
+            TextView mom_wc = rootView.findViewById(R.id.MOTM_WorldCup);
+            TextView mom_ipl = rootView.findViewById(R.id.MOTM_IPL);
+            TextView mom_cl = rootView.findViewById(R.id.MOTM_CL);
 
             String ODI_MOM = "-";
             String TEST_MOM = "-";
@@ -242,27 +240,21 @@ public class PlayerFragment extends Fragment {
                 }
             }
 
-            CardView card_view = (CardView) rootView.findViewById(R.id.card_view);
-            CardView cardView_ranking = (CardView) rootView.findViewById(R.id.card_view_ranking);
-            CardView cardView_motm = (CardView) rootView.findViewById(R.id.card_view_motm);
-            CardView cardView_info = (CardView) rootView.findViewById(R.id.card_view_info);
-
             description.setText(info.getDesc());
-            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-                parentlayout.setBackgroundColor(getResources().getColor(R.color.night_background));
-                Player_personal_information.setTextColor(Color.WHITE);
-                ICC.setTextColor(Color.WHITE);
-                MOTMLabel.setTextColor(Color.WHITE);
-                PlayerInfoCareer.setTextColor(Color.WHITE);
-                card_view.setBackgroundColor(Color.parseColor("#484a4f"));
-                cardView_ranking.setBackgroundColor(Color.parseColor("#484a4f"));
-                cardView_motm.setBackgroundColor(Color.parseColor("#484a4f"));
-                cardView_info.setBackgroundColor(Color.parseColor("#484a4f"));
-            }
+
 
 
         } else {
-            rootView = inflater.inflate(R.layout.fragment_more_player_batting_bowling, container, false);
+
+            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+
+                rootView = inflater.inflate(R.layout.fragment_more_player_batting_bowling_dark, container, false);
+            }
+
+            else  if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO)
+            {
+                rootView = inflater.inflate(R.layout.fragment_more_player_batting_bowling, container, false);
+            }
 
             TextView Matches_Innings_label = rootView.findViewById(R.id.Matches_Innings_label);
             TextView m_i_test = rootView.findViewById(R.id.m_i_test);
@@ -403,21 +395,21 @@ public class PlayerFragment extends Fragment {
 
             if (fragment_name.equals("BOWLING")) {
                 //Number Of Innings in Test,Odi,T20,IPL
-                Matches_Innings_label.setText("INNINGS");
+                Matches_Innings_label.setText(R.string.innings);
                 m_i_test.setText(info.getBowlstats().getTest().getinnbowled());
                 m_i_odi.setText(info.getBowlstats().getOdi().getinnbowled());
                 m_i_t20.setText(info.getBowlstats().getT20().getinnbowled());
                 m_i_ipl.setText(info.getBowlstats().getIpl().getinnbowled());
 
                 //Number Of Overs Bowled in Test,Odi,T20,IPL
-                Innings_Overs_label.setText("OVERS");
+                Innings_Overs_label.setText(R.string.overs);
                 i_o_test.setText(info.getBowlstats().getTest().getoversbowled());
                 i_o_odi.setText(info.getBowlstats().getOdi().getoversbowled());
                 i_o_t20.setText(info.getBowlstats().getT20().getoversbowled());
                 i_o_ipl.setText(info.getBowlstats().getIpl().getoversbowled());
 
                 //Number Of Maidens in Test,Odi,T20,IPL
-                NotOut_Maidens_Label.setText("MAIDENS");
+                NotOut_Maidens_Label.setText(R.string.maidens);
                 no_m_test.setText(info.getBowlstats().getTest().getmaidens());
                 no_m_odi.setText(info.getBowlstats().getOdi().getmaidens());
                 no_m_t20.setText(info.getBowlstats().getT20().getmaidens());
@@ -430,42 +422,42 @@ public class PlayerFragment extends Fragment {
                 r_r_ipl.setText(info.getBowlstats().getIpl().getrunsgiven());
 
                 //Number Of Wickets taken in Test,Odi,T20,IPL
-                highest_Wickets_label.setText("WICKETS");
+                highest_Wickets_label.setText(R.string.wickets);
                 h_w_test.setText(info.getBowlstats().getTest().getwicktaken());
                 h_w_odi.setText(info.getBowlstats().getOdi().getwicktaken());
                 h_w_t20.setText(info.getBowlstats().getT20().getwicktaken());
                 h_w_ipl.setText(info.getBowlstats().getIpl().getwicktaken());
 
                 //Bes innings in Test,Odi,T20,IPL
-                hundreds_best_label.setText("BEST");
+                hundreds_best_label.setText(R.string.best);
                 h_b_test.setText(info.getBowlstats().getTest().getbestinn());
                 h_b_odi.setText(info.getBowlstats().getOdi().getbestinn());
                 h_b_t20.setText(info.getBowlstats().getT20().getbestinn());
                 h_b_ipl.setText(info.getBowlstats().getIpl().getbestinn());
 
                 //Number Of 3 Wicket hauls in Test,Odi,T20,IPL
-                fifties_3w_label.setText("3W");
+                fifties_3w_label.setText(R.string.wickets_3);
                 f_3w_test.setText(info.getBowlstats().getTest().getthreewick());
                 f_3w_odi.setText(info.getBowlstats().getOdi().getthreewick());
                 f_3w_t20.setText(info.getBowlstats().getT20().getthreewick());
                 f_3w_ipl.setText(info.getBowlstats().getIpl().getthreewick());
 
                 //Number of 5 Wicket hauls in Test,Odi,T20,IPL
-                fours_5wickets_label.setText("5W");
+                fours_5wickets_label.setText(R.string.wickets_5);
                 f_5w_test.setText(info.getBowlstats().getTest().getfivewick());
                 f_5w_odi.setText(info.getBowlstats().getOdi().getfivewick());
                 f_5w_t20.setText(info.getBowlstats().getT20().getfivewick());
                 f_5w_ipl.setText(info.getBowlstats().getIpl().getfivewick());
 
                 //Bowling Average in Test,Odi,T20,IPL
-                sixes_average_label.setText("AVERAGE");
+                sixes_average_label.setText(R.string.average);
                 s_avg_test.setText(info.getBowlstats().getTest().getbowlingavg());
                 s_avg_odi.setText(info.getBowlstats().getOdi().getbowlingavg());
                 s_avg_t20.setText(info.getBowlstats().getT20().getbowlingavg());
                 s_avg_ipl.setText(info.getBowlstats().getIpl().getbowlingavg());
 
                 //Economy in Test,Odi,T20,IPL
-                average_economy_label.setText("ECONOMY");
+                average_economy_label.setText(R.string.economy);
                 avg_eco_test.setText(info.getBowlstats().getTest().geteconomy());
                 avg_eco_odi.setText(info.getBowlstats().getOdi().geteconomy());
                 avg_eco_t20.setText(info.getBowlstats().getT20().geteconomy());

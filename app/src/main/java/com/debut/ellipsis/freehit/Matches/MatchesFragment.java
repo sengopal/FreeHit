@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,17 +31,24 @@ public class MatchesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View rootView = null ;
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_matches, container, false);
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            rootView = inflater.inflate(R.layout.fragment_matches, container, false);
+        }
+        else if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
+            rootView = inflater.inflate(R.layout.fragment_matches_dark, container, false);
+        }
 
 
         View viewMatchesViewPager = rootView.findViewById(R.id.matches_viewpagegr);
 
-        viewPager = (ViewPager) viewMatchesViewPager.findViewById(R.id.viewpager);
+        viewPager = viewMatchesViewPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
         View viewMatchCardTabs = rootView.findViewById(R.id.match_card_tabs);
-        tabLayout = (TabLayout) viewMatchCardTabs.findViewById(R.id.tabs);
+        tabLayout = viewMatchCardTabs.findViewById(R.id.tabs);
 
         tabLayout.setupWithViewPager(viewPager);
 

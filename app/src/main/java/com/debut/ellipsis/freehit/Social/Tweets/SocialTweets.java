@@ -3,7 +3,6 @@ package com.debut.ellipsis.freehit.Social.Tweets;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -86,13 +85,6 @@ public class SocialTweets extends Fragment {
 
 
         final RelativeLayout twitrel = (RelativeLayout) socTweets.findViewById(R.id.twit_layout);
-        if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_YES)
-        {
-            twitrel.setBackgroundColor(Color.parseColor("#484a4f"));
-        }
-        //  Using a SearchTimeline to search for a given query, can be changed with (UserTimeline, CollectionTimeline, TwitterListTimeline, or FixedTweetTimeline)
-        //  Defining a recyclerView adapter for the given Timeline, Twitter builds all the icons and intents and all that shit. I love twitter.
-
 
         container.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,9 +179,17 @@ public class SocialTweets extends Fragment {
     // Simple function to set the adapter to the required search query and ResultType (RECENT,POPULAR,MIXED)
     public void tabCall(String query, SearchTimeline.ResultType type) {
         searchTimeline = new SearchTimeline.Builder().query(query).resultType(type).build();
-        adapter = new TweetTimelineRecyclerViewAdapter.Builder(getContext()).setTimeline(searchTimeline)
-                .setViewStyle(R.style.tw__TweetDarkWithActionsStyle)
-                .build();
+        if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_YES) {
+            adapter = new TweetTimelineRecyclerViewAdapter.Builder(getContext()).setTimeline(searchTimeline)
+                    .setViewStyle(R.style.tw__TweetDarkStyle)
+                    .build();
+        }
+        else if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_NO)
+        {
+            adapter = new TweetTimelineRecyclerViewAdapter.Builder(getContext()).setTimeline(searchTimeline)
+                    .setViewStyle(R.style.tw__TweetLightStyle)
+                    .build();
+        }
         mProgressBar.setVisibility(View.INVISIBLE);
         rv.setAdapter(adapter);
 

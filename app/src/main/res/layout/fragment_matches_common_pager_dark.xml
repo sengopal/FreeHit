@@ -6,7 +6,7 @@
 
     <include
         android:id="@+id/common_match_cards"
-        layout="@layout/fragment_matches_match_card" />
+        layout="@layout/fragment_matches_match_card_dark" />
 
     <include
         android:id="@+id/Unavailable_connection"

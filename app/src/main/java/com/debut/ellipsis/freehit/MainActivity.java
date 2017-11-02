@@ -104,7 +104,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                tab.getIcon().setColorFilter(Color.parseColor("#585859"), PorterDuff.Mode.SRC_IN);
+                if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                    tab.getIcon().setColorFilter(Color.parseColor("#6c6c6d"), PorterDuff.Mode.SRC_IN);
+                } else if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
+                    tab.getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+                }
+
             }
 
             @Override
@@ -124,9 +129,17 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(3).setIcon(tabIcons[3]);
 
         tabLayout.getTabAt(0).getIcon().setColorFilter(Color.parseColor("#f5f5f5"), PorterDuff.Mode.SRC_IN);
-        tabLayout.getTabAt(1).getIcon().setColorFilter(Color.parseColor("#585859"), PorterDuff.Mode.SRC_IN);
-        tabLayout.getTabAt(2).getIcon().setColorFilter(Color.parseColor("#585859"), PorterDuff.Mode.SRC_IN);
-        tabLayout.getTabAt(3).getIcon().setColorFilter(Color.parseColor("#585859"), PorterDuff.Mode.SRC_IN);
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            tabLayout.getTabAt(1).getIcon().setColorFilter(Color.parseColor("#6c6c6d"), PorterDuff.Mode.SRC_IN);
+            tabLayout.getTabAt(2).getIcon().setColorFilter(Color.parseColor("#6c6c6d"), PorterDuff.Mode.SRC_IN);
+            tabLayout.getTabAt(3).getIcon().setColorFilter(Color.parseColor("#6c6c6d"), PorterDuff.Mode.SRC_IN);
+        } else if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
+            tabLayout.getTabAt(1).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+            tabLayout.getTabAt(2).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+            tabLayout.getTabAt(3).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+        }
+
     }
 
     private void setupViewPager(ViewPager viewPager) {

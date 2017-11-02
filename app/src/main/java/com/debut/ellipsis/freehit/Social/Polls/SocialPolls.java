@@ -62,12 +62,12 @@ public class SocialPolls extends Fragment {
         View viewRecycler = rootView.findViewById(R.id.news_list);
 
         View viewFAB = rootView.findViewById(R.id.fab);
-        fab = (FloatingActionButton) viewFAB.findViewById(R.id.common_fab);
+        fab = viewFAB.findViewById(R.id.common_fab);
 
         fab.setImageResource(R.drawable.arrow_down);
         fab.setVisibility(View.INVISIBLE);
 
-        final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
+        final RecyclerView recyclerView = viewRecycler.findViewById(R.id.recycler_list);
 
         mLinearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
 
@@ -77,14 +77,14 @@ public class SocialPolls extends Fragment {
         mLinearLayoutManager.setStackFromEnd(true);
 
         View viewProgress = rootView.findViewById(R.id.progress);
-        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
+        mProgressBar = viewProgress.findViewById(R.id.progress_bar);
 
-        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
+        final SwipeRefreshLayout refLayout = viewRecycler.findViewById(R.id.refresh_layout);
 
         final View No_polls = rootView.findViewById(R.id.No_news);
 
-        NoPollsText = (TextView) No_polls.findViewById(R.id.empty_view);
-        NoPollsButton = (Button) No_polls.findViewById(R.id.No_Live_Matches_button);
+        NoPollsText = No_polls.findViewById(R.id.empty_view);
+        NoPollsButton = No_polls.findViewById(R.id.No_Live_Matches_button);
 
         if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_YES)
         {
@@ -98,7 +98,7 @@ public class SocialPolls extends Fragment {
 
         final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
 
-        NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
+        NoConnectionButton = no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
         refLayout.setEnabled(false);
         final Call<PollCardItem> call = MainActivity.apiInterface.doGetPollsListResources();
@@ -123,7 +123,13 @@ public class SocialPolls extends Fragment {
 
                     }
                     recyclerView.setVisibility(View.VISIBLE);
-                    recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item, getContext()));
+                    if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_YES) {
+                        recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item_dark, getContext()));
+                    }
+                    else if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_NO)
+                    {
+                        recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item, getContext()));
+                    }
                     if (mLinearLayoutManager.findLastVisibleItemPosition() == polls.size() - 1) {
                         recyclerViewReadyCallback = new RecyclerViewReadyCallback() {
                             @Override
@@ -194,8 +200,13 @@ public class SocialPolls extends Fragment {
 
                                                            }
                                                            recyclerView.setVisibility(View.VISIBLE);
-                                                           recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item, getContext()));
-                                                           /*if(mLinearLayoutManager.findLastVisibleItemPosition()>=polls.size()-2) {*/
+                                                           if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_YES) {
+                                                               recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item_dark, getContext()));
+                                                           }
+                                                           else if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_NO)
+                                                           {
+                                                               recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item, getContext()));
+                                                           }
                                                            recyclerViewReadyCallback = new RecyclerViewReadyCallback() {
                                                                @Override
                                                                public void onLayoutReady() {

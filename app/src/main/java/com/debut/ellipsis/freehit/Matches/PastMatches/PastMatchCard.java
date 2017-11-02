@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -34,7 +33,6 @@ public class PastMatchCard extends Fragment {
     public PageIndicatorView indicator;
     private PastMatchCardItemAdapter mAdapter;
     public ViewPager vp;
-    public ImageView NoConnectionImage;
     public Button NoConnectionButton;
 
     public PastMatchCard() {
@@ -45,31 +43,34 @@ public class PastMatchCard extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_matches_common_pager, container, false);
+
+        View rootView= null ;
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            rootView = inflater.inflate(R.layout.fragment_matches_common_pager_dark, container, false);
+        }
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
+            rootView = inflater.inflate(R.layout.fragment_matches_common_pager, container, false);
+        }
 
         MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
         View viewProgress = rootView.findViewById(R.id.progress);
-        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
+        mProgressBar = viewProgress.findViewById(R.id.progress_bar);
 
         final View common_match_cards = rootView.findViewById(R.id.common_match_cards);
 
         View viewViewPager = common_match_cards.findViewById(R.id.match_card_viewpagegr);
 
-        vp = (ViewPager) viewViewPager.findViewById(R.id.viewpager);
+        vp = viewViewPager.findViewById(R.id.viewpager);
 
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            vp.setBackgroundColor(getResources().getColor(R.color.night_background));
-        }
-
-        indicator = (PageIndicatorView) common_match_cards.findViewById(R.id.indicator);
-        final PullRefreshLayout refreshLayout = (PullRefreshLayout) common_match_cards.findViewById(R.id.swipeRefreshLayout);
+        indicator = common_match_cards.findViewById(R.id.indicator);
+        final PullRefreshLayout refreshLayout = common_match_cards.findViewById(R.id.swipeRefreshLayout);
 
 
         final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
 
-        /*NoConnectionImage = (ImageView) no_internet_connection.findViewById(R.id.no_internet_connection);*/
-        NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
+        NoConnectionButton = no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
 
         Call<PastMatchCardItem> call = MainActivity.apiInterface.doGetPastCardResources();

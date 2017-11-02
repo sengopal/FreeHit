@@ -2,7 +2,6 @@ package com.debut.ellipsis.freehit.Matches.UpcomingMatches;
 
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -84,7 +83,14 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View contactView = inflater.inflate(R.layout.fragment_matches_upcoming_match_list_item, parent, false);
+        View contactView = null ;
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            contactView = inflater.inflate(R.layout.fragment_matches_upcoming_match_card_dark, parent, false);
+        }
+        else if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
+            contactView = inflater.inflate(R.layout.fragment_matches_upcoming_match_card, parent, false);
+        }
 
         // Return a new holder instance
         return new ViewHolder(contactView);
@@ -138,17 +144,6 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
 
         View.OnClickListener mClickListener;
 
-        if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_YES)
-        {
-            viewHolder.cardView.setCardBackgroundColor(Color.parseColor("#484a4f"));
-            viewHolder.textViewMatchName.setTextColor(Color.WHITE);
-            viewHolder.textViewSeriesName.setTextColor(Color.parseColor("#d1d1db"));
-            viewHolder.textViewStadiumName.setTextColor(Color.parseColor("#d1d1db"));
-            viewHolder.shortName1.setTextColor(Color.WHITE);
-            viewHolder.shortName2.setTextColor(Color.WHITE);
-            viewHolder.MatchDate.setTextColor(Color.WHITE);
-        }
-
         mClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -164,7 +159,6 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
             }
         };
         RLContainer.setOnClickListener(mClickListener);
-
 
     }
 

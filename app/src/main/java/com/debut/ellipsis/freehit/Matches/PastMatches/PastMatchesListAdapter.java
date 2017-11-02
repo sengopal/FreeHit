@@ -2,7 +2,6 @@ package com.debut.ellipsis.freehit.Matches.PastMatches;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -46,21 +45,21 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
 
         public PastViewHolder(View v) {
             super(v);
-            team1image = (ImageView) v.findViewById(R.id.team_logo_1_past);
-            team2image = (ImageView) v.findViewById(R.id.team_logo_2_past);
-            title = (TextView) v.findViewById(R.id.match_name_past);
-            series = (TextView) v.findViewById(R.id.series_name_past);
-            stadium = (TextView) v.findViewById(R.id.stadium_past);
-            sn1 = (TextView) v.findViewById(R.id.sn_team_1_past);
-            t1inn1 = (TextView) v.findViewById(R.id.innings1_team1_past);
-            t1inn2 = (TextView) v.findViewById(R.id.innings2_team1_past);
-            sn2 = (TextView) v.findViewById(R.id.sn_team_2_past);
-            t2inn1 = (TextView) v.findViewById(R.id.innings1_team2_past);
-            t2inn2 = (TextView) v.findViewById(R.id.innings2_team2_past);
-            result = (TextView) v.findViewById(R.id.match_result_past);
-            date = (TextView) v.findViewById(R.id.match_date_past);
-            cardView = (CardView) v.findViewById(R.id.card_view);
-            rlcontainer = (RelativeLayout) itemView.findViewById(R.id.rlcontainer);
+            team1image = v.findViewById(R.id.team_logo_1_past);
+            team2image = v.findViewById(R.id.team_logo_2_past);
+            title = v.findViewById(R.id.match_name_past);
+            series = v.findViewById(R.id.series_name_past);
+            stadium = v.findViewById(R.id.stadium_past);
+            sn1 = v.findViewById(R.id.sn_team_1_past);
+            t1inn1 = v.findViewById(R.id.innings1_team1_past);
+            t1inn2 = v.findViewById(R.id.innings2_team1_past);
+            sn2 = v.findViewById(R.id.sn_team_2_past);
+            t2inn1 = v.findViewById(R.id.innings1_team2_past);
+            t2inn2 = v.findViewById(R.id.innings2_team2_past);
+            result = v.findViewById(R.id.match_result_past);
+            date = v.findViewById(R.id.match_date_past);
+            cardView = v.findViewById(R.id.card_view);
+            rlcontainer = itemView.findViewById(R.id.rlcontainer);
         }
     }
 
@@ -74,7 +73,16 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
         final Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View contactView = inflater.inflate(R.layout.fragment_matches_past_match_list_item, parent, false);
+       /* View contactView = inflater.inflate(R.layout.fragment_matches_past_match_list_item, parent, false);*/
+
+       View contactView = null ;
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            contactView = inflater.inflate(R.layout.fragment_matches_past_match_card_dark, parent, false);
+        }
+        else if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
+            contactView = inflater.inflate(R.layout.fragment_matches_past_match_card, parent, false);
+        }
 
         return new PastViewHolder(contactView);
     }
@@ -107,22 +115,6 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
         RelativeLayout RLContainer = holder.rlcontainer;
 
         View.OnClickListener mClickListener;
-        if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_YES)
-        {
-            holder.cardView.setCardBackgroundColor(Color.parseColor("#484a4f"));
-            holder.title.setTextColor(Color.WHITE);
-            holder.series.setTextColor(Color.parseColor("#d1d1db"));
-            holder.stadium.setTextColor(Color.parseColor("#d1d1db"));
-            holder.sn1.setTextColor(Color.WHITE);
-            holder.sn2.setTextColor(Color.WHITE);
-            holder.result.setTextColor(Color.WHITE);
-            holder.date.setTextColor(Color.parseColor("#d1d1db"));
-            holder.t1inn1.setTextColor(Color.parseColor("#d1d1db"));
-            holder.t1inn2.setTextColor(Color.parseColor("#d1d1db"));
-            holder.t2inn1.setTextColor(Color.parseColor("#d1d1db"));
-            holder.t2inn2.setTextColor(Color.parseColor("#d1d1db"));
-
-        }
 
         mClickListener = new View.OnClickListener() {
             @Override

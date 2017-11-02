@@ -47,41 +47,40 @@ public class LiveMatchCard extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_matches_common_pager, container, false);
-        ;
+
+        View rootView = null;
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            rootView = inflater.inflate(R.layout.fragment_matches_common_pager_dark, container, false);
+        }
+        else if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
+            rootView = inflater.inflate(R.layout.fragment_matches_common_pager, container, false);
+        }
 
 
         MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
 
         View viewProgress = rootView.findViewById(R.id.progress);
-        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
+        mProgressBar = viewProgress.findViewById(R.id.progress_bar);
 
         final View common_match_cards = rootView.findViewById(R.id.common_match_cards);
 
-
         View viewViewPager = common_match_cards.findViewById(R.id.match_card_viewpagegr);
 
-        vp = (ViewPager) viewViewPager.findViewById(R.id.viewpager);
+        vp = viewViewPager.findViewById(R.id.viewpager);
 
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            vp.setBackgroundColor(getResources().getColor(R.color.night_background));
-        }
-
-        indicator = (PageIndicatorView) common_match_cards.findViewById(R.id.indicator);
-        final PullRefreshLayout refreshLayout = (PullRefreshLayout) common_match_cards.findViewById(R.id.swipeRefreshLayout);
-
+        indicator = common_match_cards.findViewById(R.id.indicator);
+        final PullRefreshLayout refreshLayout = common_match_cards.findViewById(R.id.swipeRefreshLayout);
 
         final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
 
-       /* NoConnectionImage = (ImageView) no_internet_connection.findViewById(R.id.no_internet_connection);*/
-        NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
-
+        NoConnectionButton = no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
         final View No_live_matches = rootView.findViewById(R.id.No_Live_Matches);
 
-        NoLiveMatchesText = (TextView) No_live_matches.findViewById(R.id.empty_view);
-        NoLiveMatchesButton = (Button) No_live_matches.findViewById(R.id.No_Live_Matches_button);
+        NoLiveMatchesText = No_live_matches.findViewById(R.id.empty_view);
+        NoLiveMatchesButton = No_live_matches.findViewById(R.id.No_Live_Matches_button);
 
 
         Call<LiveMatchCardItem> call = MainActivity.apiInterface.doGetLiveMatchResources();
@@ -102,6 +101,9 @@ public class LiveMatchCard extends Fragment {
                 if (getActivity() != null) {
 
                     if (LiveMatches.size() == 0) {
+                        NoLiveMatchesText.setTextColor(Color.WHITE);
+                        NoLiveMatchesButton.setBackgroundResource(R.drawable.button_shape_dark);
+                        NoLiveMatchesButton.setTextColor(Color.BLACK);
                         No_live_matches.setVisibility(View.VISIBLE);
                         NoLiveMatchesButton.setOnClickListener(new View.OnClickListener() {
 

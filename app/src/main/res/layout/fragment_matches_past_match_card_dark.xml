@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rlcontainer"
     android:layout_width="match_parent"
+    android:id="@+id/rlcontainer"
     android:layout_height="wrap_content"
     android:tag="cards main container">
 
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        card_view:cardBackgroundColor="@color/match_cards"
+        card_view:cardBackgroundColor="@color/cards_dark"
         card_view:cardCornerRadius="@dimen/_10sdp"
         card_view:cardElevation="@dimen/_5sdp"
         card_view:cardUseCompatPadding="true">
@@ -29,7 +29,7 @@
                 android:layout_centerHorizontal="true"
                 android:gravity="center_horizontal"
                 android:paddingTop="@dimen/_5sdp"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/_11sdp"
                 tools:text="Sri Lanka Vs India, 4th ODI" />
 
@@ -43,6 +43,7 @@
                 android:gravity="center_horizontal"
                 android:paddingEnd="@dimen/_10sdp"
                 android:paddingStart="@dimen/_5sdp"
+                android:textColor="@color/match_card_text"
                 android:textSize="@dimen/_10sdp"
                 tools:text="India Tour of Sri Lanka, 2017" />
 
@@ -53,6 +54,7 @@
                 android:layout_below="@+id/series_name_past"
                 android:layout_centerHorizontal="true"
                 android:gravity="center_horizontal"
+                android:textColor="@color/match_card_text"
                 android:textSize="@dimen/_9sdp"
                 tools:text="M Chinnaswamy ,Bangalore , India" />
 
@@ -64,7 +66,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:gravity="center"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/_20sdp"
                 tools:text="@string/matches_view_more" />
         </RelativeLayout>
@@ -102,7 +104,7 @@
                         android:layout_marginStart="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_toEndOf="@+id/team_logo_1_past"
-                        android:textColor="@android:color/black"
+                        android:textColor="@android:color/white"
                         android:textSize="@dimen/_16sdp"
                         tools:text="SN" />
 
@@ -113,6 +115,7 @@
                         android:layout_marginStart="@dimen/_2sdp"
                         android:layout_marginTop="@dimen/_33sdp"
                         android:layout_toEndOf="@+id/team_logo_1_past"
+                        android:textColor="@color/match_card_text"
                         android:textSize="@dimen/_12sdp"
                         tools:text="207 (42.4)" />
 
@@ -123,6 +126,7 @@
                         android:layout_below="@+id/innings1_team1_past"
                         android:layout_marginEnd="@dimen/_2sdp"
                         android:layout_toEndOf="@+id/team_logo_1_past"
+                        android:textColor="@color/match_card_text"
                         android:textSize="@dimen/_12sdp"
                         tools:text="207 (42.4)" />
 
@@ -150,7 +154,7 @@
                         android:layout_marginEnd="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_toStartOf="@+id/team_logo_2_past"
-                        android:textColor="@android:color/black"
+                        android:textColor="@android:color/white"
                         android:textSize="@dimen/_16sdp"
                         tools:text="IND" />
 
@@ -161,6 +165,7 @@
                         android:layout_marginEnd="@dimen/_2sdp"
                         android:layout_marginTop="@dimen/_33sdp"
                         android:layout_toStartOf="@+id/team_logo_2_past"
+                        android:textColor="@color/match_card_text"
                         android:textSize="@dimen/_12sdp"
                         tools:text="375/5 (50.0)" />
 
@@ -171,6 +176,7 @@
                         android:layout_below="@+id/innings1_team2_past"
                         android:layout_marginEnd="@dimen/_2sdp"
                         android:layout_toStartOf="@+id/team_logo_2_past"
+                        android:textColor="@color/match_card_text"
                         android:textSize="@dimen/_12sdp"
                         tools:text="375/5 (50.0)" />
 
@@ -187,7 +193,7 @@
                 android:gravity="center_horizontal"
                 android:paddingEnd="@dimen/_5sdp"
                 android:paddingStart="@dimen/_5sdp"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/_10sdp"
                 tools:text="India beat Sri Lanka by 168 runs" />
 
@@ -197,6 +203,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/_1sdp"
+                android:textColor="@color/match_card_text"
                 android:textSize="@dimen/_10sdp"
                 tools:text="Sep 03 2017, Sun" />
 

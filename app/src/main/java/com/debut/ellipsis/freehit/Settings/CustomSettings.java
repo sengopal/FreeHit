@@ -44,28 +44,29 @@ public class CustomSettings extends AppCompatActivity {
 
         View viewToolbar = findViewById(R.id.custom_settings_toolbar);
 
-        Toolbar toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
+        Toolbar toolbar = viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final View no_internet_connection = findViewById(R.id.Unavailable_connection);
 
-        Switch NightMode = (Switch) findViewById(R.id.switch_night_mode);
+        Switch NightMode = findViewById(R.id.switch_night_mode);
 
+        Button country_select_button = findViewById(R.id.country_select);
 
         final TextView title_country_select = findViewById(R.id.title_country_select);
-        NoConnectionButton = (Button) no_internet_connection.findViewById(R.id.no_internet_refresh_button);
+        NoConnectionButton = no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
-        RelativeLayout country_select = (RelativeLayout) findViewById(R.id.country_select_layout);
+        RelativeLayout country_select = findViewById(R.id.country_select_layout);
 
-        ImageView country_flag = (ImageView) findViewById(R.id.country_flag);
+        ImageView country_flag = findViewById(R.id.country_flag);
 
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         final String name = prefs.getString("country_name", "Select Your Favourite Country");
 
-        final TextView country_name = (TextView) findViewById(R.id.country_name);
+        final TextView country_name = findViewById(R.id.country_name);
 
-        final TextView night_mode = (TextView) findViewById(R.id.night_mode);
+        final TextView night_mode = findViewById(R.id.night_mode);
 
         String TeamLogoURL = WelcomeActivity.countryHash.getCountryFlag(name.toUpperCase());
 
@@ -74,6 +75,8 @@ public class CustomSettings extends AppCompatActivity {
             title_country_select.setTextColor(Color.WHITE);
             country_name.setTextColor(Color.WHITE);
             night_mode.setTextColor(Color.WHITE);
+            country_select_button.setBackgroundResource(R.drawable.button_shape_dark);
+            country_select_button.setTextColor(Color.BLACK);
         }
         final SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
 
@@ -81,12 +84,12 @@ public class CustomSettings extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // do something, the isChecked will be
                 // true if the switch is in the On position
-                if (isChecked == true) {
+                if (isChecked) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                     editor.putBoolean("switch_state", true);
                     editor.apply();
 
-                } else if (isChecked == false) {
+                } else if (!isChecked) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     editor.putBoolean("switch_state", false);
                     editor.apply();
@@ -141,10 +144,10 @@ public class CustomSettings extends AppCompatActivity {
             @Override
             public void onSelectCountry(String name, String flagURLID) {
                 // Implement your code here
-                TextView country_name = (TextView) findViewById(R.id.country_name);
+                TextView country_name = findViewById(R.id.country_name);
                 country_name.setText(name);
 
-                ImageView before = (ImageView) findViewById(R.id.country_flag);
+                ImageView before = findViewById(R.id.country_flag);
 
                 MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(flagURLID).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 

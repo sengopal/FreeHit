@@ -31,7 +31,6 @@ public class TeamSeriesMatchesFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_matches, container, false);
 
-
         View viewMatchesViewPager = rootView.findViewById(R.id.matches_viewpagegr);
 
         viewPager = (ViewPager) viewMatchesViewPager.findViewById(R.id.viewpager);

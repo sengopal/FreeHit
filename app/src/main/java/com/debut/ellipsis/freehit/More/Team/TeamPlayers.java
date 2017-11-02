@@ -52,17 +52,17 @@ public class TeamPlayers extends Fragment {
 
         View viewToolbar = rootView.findViewById(R.id.toolbar_fav_players);
 
-        Toolbar toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
+        Toolbar toolbar = viewToolbar.findViewById(R.id.toolbar);
         toolbar.setVisibility(View.GONE);
 
         MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
 
         View viewEmpty = rootView.findViewById(R.id.empty);
-        mEmptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);
+        mEmptyView = viewEmpty.findViewById(R.id.empty_view);
 
         View viewRecycler = rootView.findViewById(R.id.player_list);
-        final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
+        final RecyclerView recyclerView = viewRecycler.findViewById(R.id.recycler_list);
 
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             recyclerView.setBackgroundColor(getResources().getColor(R.color.night_background));
@@ -72,9 +72,9 @@ public class TeamPlayers extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         View viewProgress = rootView.findViewById(R.id.progress);
-        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
+        mProgressBar = viewProgress.findViewById(R.id.progress_bar);
 
-        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
+        final SwipeRefreshLayout refLayout = viewRecycler.findViewById(R.id.refresh_layout);
 
 
         Call<PlayerCountryItem> call1 = MainActivity.apiInterface.doGetFavTeamPlayers(Team);

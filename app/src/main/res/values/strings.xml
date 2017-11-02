@@ -18,6 +18,17 @@
     <string name="rankings">Rankings</string>
     <string name="fav_team">Favourite Team</string>
 
+    <!-- FOR BOWLING IN PLAYER INFO -->
+    <string name="innings">INNINGS</string>
+    <string name="overs">OVERS</string>
+    <string name="maidens">MAIDENS</string>
+    <string name="wickets">WICKETS</string>
+    <string name="best">BEST</string>
+    <string name="wickets_3">3W</string>
+    <string name="wickets_5">5W</string>
+    <string name="average">AVERAGE</string>
+    <string name="economy">ECONOMY</string>
+
 
     <!--COMPLETE LIST OF MATCHES-->
     <string name="upcoming_list">Upcoming Matches</string>

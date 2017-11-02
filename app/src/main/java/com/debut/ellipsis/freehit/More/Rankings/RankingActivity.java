@@ -44,8 +44,8 @@ public class RankingActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         setContentView(R.layout.fragment_more_rankings_activity);
 
-        View viewToolbar = (View) findViewById(R.id.toolbar_tabs_ranking);
-        toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
+        View viewToolbar = findViewById(R.id.toolbar_tabs_ranking);
+        toolbar = viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -53,16 +53,11 @@ public class RankingActivity extends AppCompatActivity {
 
         View viewProgress = findViewById(R.id.progress);
 
-        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
+        mProgressBar = viewProgress.findViewById(R.id.progress_bar);
 
-        View viewRankingPager = (View) findViewById(R.id.ranking_viewpager);
+        View viewRankingPager = findViewById(R.id.ranking_viewpager);
 
-        viewPager = (ViewPager) viewRankingPager.findViewById(R.id.viewpager);
-
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            setTheme(R.style.AppThemeDark);
-        }
-
+        viewPager = viewRankingPager.findViewById(R.id.viewpager);
 
         Call<RankingItem> call = MainActivity.apiInterface.doGetRankingResources();
         call.enqueue(new Callback<RankingItem>() {
@@ -82,7 +77,7 @@ public class RankingActivity extends AppCompatActivity {
             }
         });
 
-        tabLayout = (TabLayout) viewToolbar.findViewById(R.id.tabs);
+        tabLayout = viewToolbar.findViewById(R.id.tabs);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setupWithViewPager(viewPager);

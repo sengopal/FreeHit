@@ -2,10 +2,7 @@ package com.debut.ellipsis.freehit.Matches;
 
 
 import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -15,8 +12,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,8 +43,8 @@ public class MatchesActivity extends AppCompatActivity {
     public TextView mEmptyView;
     private LinearLayoutManager mLinearLayoutManager;
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_matches_complete_match_list);
 
@@ -58,19 +53,18 @@ public class MatchesActivity extends AppCompatActivity {
         apiInterface = ApiClient.getClient().create(APIInterface.class);
 
         View viewProgress = findViewById(R.id.progress);
-        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
+        mProgressBar = viewProgress.findViewById(R.id.progress_bar);
 
         View viewFAB = findViewById(R.id.fab);
-        fab = (FloatingActionButton) viewFAB.findViewById(R.id.common_fab);
+        fab = viewFAB.findViewById(R.id.common_fab);
         fab.hide();
         fab.setImageResource(R.drawable.arrow_up);
 
         View viewRecycler = findViewById(R.id.match_list_team);
-        rv = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
+        rv = viewRecycler.findViewById(R.id.recycler_list);
 
 
-
-        refresh_layout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
+        refresh_layout = viewRecycler.findViewById(R.id.refresh_layout);
 
         mLinearLayoutManager = new LinearLayoutManager(this);
 
@@ -78,21 +72,18 @@ public class MatchesActivity extends AppCompatActivity {
 
         View viewToolbar = findViewById(R.id.toolbar_matches_list);
 
-        toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
+        toolbar = viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            setTheme(R.style.AppThemeDark);
             rv.setBackgroundColor(getResources().getColor(R.color.night_background));
             fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.dark)));
-            toolbar.setBackgroundColor(getResources().getColor(R.color.dark));
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.BLACK);
         }
 
         View viewEmpty = findViewById(R.id.empty);
-        mEmptyView = (TextView) viewEmpty.findViewById(R.id.empty_view);
+        mEmptyView = viewEmpty.findViewById(R.id.empty_view);
 
         if (match_format.equals("PAST")) {
             setTitle(R.string.past_list);
@@ -161,8 +152,7 @@ public class MatchesActivity extends AppCompatActivity {
                                                 }
             );
         }
-        if(match_format.equals("UPCOMING"))
-        {
+        if (match_format.equals("UPCOMING")) {
             setTitle(R.string.upcoming_list);
 
             Call<UpcomingMatchCardItem> call = apiInterface.doGetUpcomingCompleteMatchListResources();
@@ -174,8 +164,7 @@ public class MatchesActivity extends AppCompatActivity {
 
                     List<UpcomingMatchCardItem> upcomingMatchesList = response.body().getResults();
                     mProgressBar.setVisibility(View.GONE);
-                    if(upcomingMatchesList.size()==0)
-                    {
+                    if (upcomingMatchesList.size() == 0) {
                         mEmptyView.setVisibility(View.VISIBLE);
                         mEmptyView.setText(R.string.EmptyMatches);
                     }
@@ -188,7 +177,7 @@ public class MatchesActivity extends AppCompatActivity {
                 public void onFailure(Call<UpcomingMatchCardItem> call, Throwable t) {
                     mProgressBar.setVisibility(View.INVISIBLE);
                     mEmptyView.setVisibility(View.INVISIBLE);
-                    Toast toast=Toast.makeText(getApplicationContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
                     toast.show();
                     call.cancel();
                 }
@@ -209,12 +198,11 @@ public class MatchesActivity extends AppCompatActivity {
 
                                                                 List<UpcomingMatchCardItem> upcomingMatchesList = response.body().getResults();
 
-                                                                if(upcomingMatchesList.size()==0)
-                                                                {
+                                                                if (upcomingMatchesList.size() == 0) {
                                                                     mEmptyView.setVisibility(View.VISIBLE);
                                                                     mEmptyView.setText(R.string.EmptyMatches);
                                                                 }
-                                                                UpcomingMatchListAdapter = new UpcomingMatchListAdapter(getApplicationContext(),upcomingMatchesList);
+                                                                UpcomingMatchListAdapter = new UpcomingMatchListAdapter(getApplicationContext(), upcomingMatchesList);
                                                                 rv.setAdapter(UpcomingMatchListAdapter);
                                                             }
 
@@ -222,7 +210,7 @@ public class MatchesActivity extends AppCompatActivity {
                                                             public void onFailure(Call<UpcomingMatchCardItem> call, Throwable t) {
                                                                 mProgressBar.setVisibility(View.INVISIBLE);
                                                                 mEmptyView.setVisibility(View.INVISIBLE);
-                                                                Toast toast=Toast.makeText(getApplicationContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
+                                                                Toast toast = Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
                                                                 toast.show();
                                                                 call.cancel();
 

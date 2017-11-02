@@ -2,7 +2,6 @@ package com.debut.ellipsis.freehit.Matches.LiveMatches;
 
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.CardView;
@@ -57,7 +56,16 @@ public class LiveMatchCardAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, final int position) {
-        View view = this.layoutInflater.inflate(R.layout.fragment_matches_live_match_card, container, false);
+
+        View view = null ;
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            view = this.layoutInflater.inflate(R.layout.fragment_matches_live_match_card_dark, container, false);
+        }
+        else if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
+            view = this.layoutInflater.inflate(R.layout.fragment_matches_live_match_card, container, false);
+        }
+
         String originalMatchName = this.dataObjectList.get(position).getTour();
 
         String match_name = null;
@@ -77,48 +85,48 @@ public class LiveMatchCardAdapter extends PagerAdapter {
             }
         }
 
-        TextView textViewMatchName = (TextView) view.findViewById(R.id.match_name_live);
+        TextView textViewMatchName = view.findViewById(R.id.match_name_live);
         textViewMatchName.setText(match_name);
 
-        TextView textViewSeriesName = (TextView) view.findViewById(R.id.series_name_live);
+        TextView textViewSeriesName = view.findViewById(R.id.series_name_live);
         textViewSeriesName.setText(series_name);
 
-        TextView textViewStadiumName = (TextView) view.findViewById(R.id.stadium_live);
+        TextView textViewStadiumName = view.findViewById(R.id.stadium_live);
         textViewStadiumName.setText("( "+this.dataObjectList.get(position).getStadium()+" )");
 
-        imageViewTeam1Logo = (ImageView) view.findViewById(R.id.team_logo_1_live);
+        imageViewTeam1Logo = view.findViewById(R.id.team_logo_1_live);
 
 
-        imageViewTeam2Logo = (ImageView) view.findViewById(R.id.team_logo_2_live);
+        imageViewTeam2Logo = view.findViewById(R.id.team_logo_2_live);
 
 
-        TextView shortName1 = (TextView) view.findViewById(R.id.sn_team_1_live);
+        TextView shortName1 = view.findViewById(R.id.sn_team_1_live);
         CountryHash countryHash = new CountryHash();
 
         final String ShortNameTeam1 = countryHash.getCountrySN((this.dataObjectList.get(position).getTeam1().getName()).toUpperCase());
 
         shortName1.setText(ShortNameTeam1);
 
-        TextView team1Innings1 = (TextView) view.findViewById(R.id.innings1_team1_live);
+        TextView team1Innings1 = view.findViewById(R.id.innings1_team1_live);
         team1Innings1.setText(this.dataObjectList.get(position).getTeam1().getInn1());
 
-        TextView team1Innings2 = (TextView) view.findViewById(R.id.innings2_team1_live);
+        TextView team1Innings2 = view.findViewById(R.id.innings2_team1_live);
         team1Innings2.setText(this.dataObjectList.get(position).getTeam1().getInn2());
 
         final String ShortNameTeam2 = countryHash.getCountrySN((this.dataObjectList.get(position).getTeam2().getName()).toUpperCase());
 
 
-        TextView shortName2 = (TextView) view.findViewById(R.id.sn_team_2_live);
+        TextView shortName2 = view.findViewById(R.id.sn_team_2_live);
         shortName2.setText(ShortNameTeam2);
 
-        TextView team2Innings1 = (TextView) view.findViewById(R.id.innings1_team2_live);
+        TextView team2Innings1 = view.findViewById(R.id.innings1_team2_live);
         team2Innings1.setText(this.dataObjectList.get(position).getTeam2().getInn1());
 
-        TextView team2Innings2 = (TextView) view.findViewById(R.id.innings2_team2_live);
+        TextView team2Innings2 = view.findViewById(R.id.innings2_team2_live);
         team2Innings2.setText(this.dataObjectList.get(position).getTeam2().getInn2());
 
 
-        TextView MatchResult = (TextView) view.findViewById(R.id.match_target_trail_leadBy_live);
+        TextView MatchResult = view.findViewById(R.id.match_target_trail_leadBy_live);
         MatchResult.setText(this.dataObjectList.get(position).getMresult());
 
 
@@ -135,7 +143,7 @@ public class LiveMatchCardAdapter extends PagerAdapter {
 
         }
 
-        final CardView cardView = (CardView) view.findViewById(R.id.card_view);
+        final CardView cardView = view.findViewById(R.id.card_view);
 
         final String finalMatch_name = match_name;
         cardView.setOnClickListener(new View.OnClickListener() {
@@ -164,7 +172,7 @@ public class LiveMatchCardAdapter extends PagerAdapter {
         String outputDateStr = outputFormat.format(date);
 
 
-        TextView MatchDate = (TextView) view.findViewById(R.id.match_date_live);
+        TextView MatchDate = view.findViewById(R.id.match_date_live);
         MatchDate.setText(outputDateStr);
 
         logo_string1 =  WelcomeActivity.countryHash.getCountryFlag(this.dataObjectList.get(position).getTeam1().getName().toUpperCase());
@@ -179,22 +187,6 @@ public class LiveMatchCardAdapter extends PagerAdapter {
         MainActivity.requestBuilder.into(imageViewTeam2Logo);
 
         container.addView(view);
-        if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_YES)
-        {
-            textViewMatchName.setTextColor(Color.WHITE);
-            textViewSeriesName.setTextColor(Color.parseColor("#d1d1db"));
-            textViewStadiumName.setTextColor(Color.parseColor("#d1d1db"));
-            shortName1.setTextColor(Color.WHITE);
-            shortName2.setTextColor(Color.WHITE);
-            team1Innings1.setTextColor(Color.parseColor("#d1d1db"));
-            team1Innings2.setTextColor(Color.parseColor("#d1d1db"));
-            team2Innings1.setTextColor(Color.parseColor("#d1d1db"));
-            team2Innings2.setTextColor(Color.parseColor("#d1d1db"));
-            MatchResult.setTextColor(Color.WHITE);
-            MatchDate.setTextColor(Color.parseColor("#d1d1db"));
-            cardView.setCardBackgroundColor(Color.parseColor("#484a4f"));
-        }
-
 
         return view;
 

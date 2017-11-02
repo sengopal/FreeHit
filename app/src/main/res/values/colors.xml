@@ -26,7 +26,12 @@
 
     <color name="dark">#23252b</color>
 
-    <color name="match_cards_dark">#5c5e65</color>
+    <color name="cards_dark">#484a4f</color>
+
+    <color name="match_card_text">#d1d1db</color>
+
+    <color name="ranking_layout">#30303a</color>
+
     <!-- For Progress Bar -->
     <color name="orange">#FF9900</color>
 

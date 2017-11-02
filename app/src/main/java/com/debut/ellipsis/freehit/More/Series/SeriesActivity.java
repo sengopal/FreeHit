@@ -27,10 +27,11 @@ public class SeriesActivity extends AppCompatActivity {
     public static String Teams ;
 
     protected void onCreate(Bundle savedInstanceState) {
+
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             setTheme(R.style.AppThemeDark);
         }
-        
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.fragment_more_series_activity);
@@ -42,7 +43,7 @@ public class SeriesActivity extends AppCompatActivity {
 
         View viewToolbar = findViewById(R.id.toolbar_tabs_series);
 
-        Toolbar toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
+        Toolbar toolbar = viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -50,10 +51,10 @@ public class SeriesActivity extends AppCompatActivity {
 
         View viewSeriesPager = findViewById(R.id.series_viewpager);
 
-        ViewPager viewPager = (ViewPager) viewSeriesPager.findViewById(R.id.viewpager);
+        ViewPager viewPager = viewSeriesPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-        TabLayout tabLayout = (TabLayout) viewToolbar.findViewById(R.id.tabs);
+        TabLayout tabLayout = viewToolbar.findViewById(R.id.tabs);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.setupWithViewPager(viewPager);
 
