@@ -19,7 +19,12 @@ import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.Matches.MatchesActivity;
 import com.debut.ellipsis.freehit.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 
 public class UpcomingMatchesItemAdapter extends PagerAdapter {
@@ -31,6 +36,8 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
     private String logo_string2;
     private ImageView imageViewTeam1Logo;
     private ImageView imageViewTeam2Logo;
+
+    private static final String TIME_SEPARATOR = "T";
 
     public UpcomingMatchesItemAdapter(Context context, List<UpcomingMatchCardItem> dataObjectList) {
         this.context = context;
@@ -60,36 +67,57 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
             view = this.layoutInflater.inflate(R.layout.fragment_matches_upcoming_match_card, container, false);
         }
 
-        TextView textViewMatchName = (TextView) view.findViewById(R.id.match_name_upcoming);
+        TextView textViewMatchName = view.findViewById(R.id.match_name_upcoming);
         textViewMatchName.setText(this.dataObjectList.get(position).getMatch());
 
-        TextView textViewSeriesName = (TextView) view.findViewById(R.id.series_name_upcoming);
+        TextView textViewSeriesName = view.findViewById(R.id.series_name_upcoming);
         textViewSeriesName.setText(this.dataObjectList.get(position).getTour());
 
-        TextView textViewStadiumName = (TextView) view.findViewById(R.id.stadium_upcoming);
+        TextView textViewStadiumName = view.findViewById(R.id.stadium_upcoming);
         textViewStadiumName.setText("( "+this.dataObjectList.get(position).getStadium()+" )");
 
-        imageViewTeam1Logo = (ImageView) view.findViewById(R.id.team_logo_1_upcoming);
+        imageViewTeam1Logo = view.findViewById(R.id.team_logo_1_upcoming);
 
-        imageViewTeam2Logo = (ImageView) view.findViewById(R.id.team_logo_2_upcoming);
+        imageViewTeam2Logo = view.findViewById(R.id.team_logo_2_upcoming);
+
+        String originalMatchTime = this.dataObjectList.get(position).getTime();
 
 
-        TextView shortName1 = (TextView) view.findViewById(R.id.sn_team_1_upcoming);
+        Date time = null ;
+        try {
+            time = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")).parse(originalMatchTime.replaceAll("Z$", "+0000"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        SimpleDateFormat date_format = new SimpleDateFormat("dd MMM yyyy , E", Locale.ENGLISH);
+        date_format.setTimeZone(TimeZone.getTimeZone("IND"));
+        date_format.setTimeZone(TimeZone.getDefault());
+        String formattedDate = date_format.format(time);
+
+
+        SimpleDateFormat time_format = new SimpleDateFormat(" hh:mm a", Locale.ENGLISH);
+        time_format.setTimeZone(TimeZone.getTimeZone("IND"));
+        time_format.setTimeZone(TimeZone.getDefault());
+        String formattedTime = time_format.format(time);
+
+        TextView shortName1 = view.findViewById(R.id.sn_team_1_upcoming);
         shortName1.setText(this.dataObjectList.get(position).getTeam1().getSn());
 
-
-        TextView shortName2 = (TextView) view.findViewById(R.id.sn_team_2_upcoming);
+        TextView shortName2 = view.findViewById(R.id.sn_team_2_upcoming);
         shortName2.setText(this.dataObjectList.get(position).getTeam2().getSn());
 
+        TextView MatchTime = view.findViewById(R.id.match_time_upcoming);
+        MatchTime.setText(formattedTime);
 
-        TextView MatchDate = (TextView) view.findViewById(R.id.match_date_upcoming);
-        MatchDate.setText(this.dataObjectList.get(position).getDate().getFinaldate());
+        TextView MatchDate = view.findViewById(R.id.match_date_upcoming);
+        MatchDate.setText(formattedDate);
 
-        TextView ViewMore = (TextView) view.findViewById(R.id.upcoming_view_more);
+        TextView ViewMore = view.findViewById(R.id.upcoming_view_more);
         ViewMore.setText(R.string.matches_view_more);
         ViewMore.setVisibility(View.INVISIBLE);
 
-        final CardView cardView = (CardView) view.findViewById(R.id.card_view);
+        final CardView cardView = view.findViewById(R.id.card_view);
 
         if (position == 5) {
             ViewMore.setVisibility(View.VISIBLE);
@@ -101,6 +129,7 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
             shortName1.setVisibility(View.INVISIBLE);
             shortName2.setVisibility(View.INVISIBLE);
             MatchDate.setVisibility(View.INVISIBLE);
+            MatchTime.setVisibility(View.INVISIBLE);
 
         }
 

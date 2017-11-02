@@ -101,9 +101,11 @@ public class LiveMatchCard extends Fragment {
                 if (getActivity() != null) {
 
                     if (LiveMatches.size() == 0) {
-                        NoLiveMatchesText.setTextColor(Color.WHITE);
-                        NoLiveMatchesButton.setBackgroundResource(R.drawable.button_shape_dark);
-                        NoLiveMatchesButton.setTextColor(Color.BLACK);
+                        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                            NoLiveMatchesText.setTextColor(Color.WHITE);
+                            NoLiveMatchesButton.setBackgroundResource(R.drawable.button_shape_dark);
+                            NoLiveMatchesButton.setTextColor(Color.BLACK);
+                        }
                         No_live_matches.setVisibility(View.VISIBLE);
                         NoLiveMatchesButton.setOnClickListener(new View.OnClickListener() {
 

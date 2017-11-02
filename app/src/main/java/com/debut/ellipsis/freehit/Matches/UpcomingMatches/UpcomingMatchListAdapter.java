@@ -19,7 +19,12 @@ import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatchListAdapter.ViewHolder> {
 
@@ -35,6 +40,7 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
         TextView shortName2;
         TextView MatchDate;
         CardView cardView;
+        TextView MatchTime;
         public RelativeLayout rlcontainer;
 
 
@@ -45,16 +51,17 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
             // to access the context from any ViewHolder instance.
             super(itemView);
 
-            textViewMatchName = (TextView) itemView.findViewById(R.id.match_name_upcoming);
-            textViewSeriesName = (TextView) itemView.findViewById(R.id.series_name_upcoming);
-            textViewStadiumName = (TextView) itemView.findViewById(R.id.stadium_upcoming);
-            imageViewTeam1Logo = (ImageView) itemView.findViewById(R.id.team_logo_1_upcoming);
-            imageViewTeam2Logo = (ImageView) itemView.findViewById(R.id.team_logo_2_upcoming);
-            shortName1 = (TextView) itemView.findViewById(R.id.sn_team_1_upcoming);
-            shortName2 = (TextView) itemView.findViewById(R.id.sn_team_2_upcoming);
-            MatchDate = (TextView) itemView.findViewById(R.id.match_date_upcoming);
-            cardView = (CardView) itemView.findViewById(R.id.card_view);
-            rlcontainer = (RelativeLayout) itemView.findViewById(R.id.rlcontainer);
+            textViewMatchName = itemView.findViewById(R.id.match_name_upcoming);
+            textViewSeriesName = itemView.findViewById(R.id.series_name_upcoming);
+            textViewStadiumName = itemView.findViewById(R.id.stadium_upcoming);
+            imageViewTeam1Logo = itemView.findViewById(R.id.team_logo_1_upcoming);
+            imageViewTeam2Logo = itemView.findViewById(R.id.team_logo_2_upcoming);
+            shortName1 = itemView.findViewById(R.id.sn_team_1_upcoming);
+            shortName2 = itemView.findViewById(R.id.sn_team_2_upcoming);
+            MatchTime = itemView.findViewById(R.id.match_time_upcoming);
+            MatchDate = itemView.findViewById(R.id.match_date_upcoming);
+            cardView = itemView.findViewById(R.id.card_view);
+            rlcontainer = itemView.findViewById(R.id.rlcontainer);
 
 
         }
@@ -121,6 +128,26 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
 
         ImageView imageViewTeam2Logo = viewHolder.imageViewTeam2Logo;
 
+        String originalMatchTime = upcomingMatchCards.getTime();
+
+        Date time = null ;
+        try {
+            time = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")).parse(originalMatchTime.replaceAll("Z$", "+0000"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        SimpleDateFormat date_format = new SimpleDateFormat("dd MMM yyyy , E", Locale.ENGLISH);
+        date_format.setTimeZone(TimeZone.getTimeZone("IND"));
+        date_format.setTimeZone(TimeZone.getDefault());
+        String formattedDate = date_format.format(time);
+
+
+        SimpleDateFormat time_format = new SimpleDateFormat(" hh:mm a", Locale.ENGLISH);
+        time_format.setTimeZone(TimeZone.getTimeZone("IND"));
+        time_format.setTimeZone(TimeZone.getDefault());
+        String formattedTime = time_format.format(time);
+
         TextView shortName1 = viewHolder.shortName1;
         shortName1.setText(upcomingMatchCards.getTeam1().getSn());
 
@@ -128,8 +155,9 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
         shortName2.setText(upcomingMatchCards.getTeam2().getSn());
 
         TextView MatchDate = viewHolder.MatchDate;
-        MatchDate.setText(upcomingMatchCards.getDate().getFinaldate());
+        MatchDate.setText(formattedDate);
 
+        viewHolder.MatchTime.setText(formattedTime);
 
         MainActivity.requestBuilder = GlideApp.with(mContext).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 

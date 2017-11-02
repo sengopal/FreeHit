@@ -18,6 +18,8 @@ public class UpcomingMatchCardItem {
     private String match;
     @SerializedName("stadium")
     private String stadium;
+    @SerializedName("time")
+    private String time;
     @SerializedName("date")
     private Date date;
     @SerializedName("team1info")
@@ -46,6 +48,10 @@ public class UpcomingMatchCardItem {
 
     public String getStadium() {
         return stadium;
+    }
+
+    public String getTime() {
+        return time;
     }
 
     public String getTitle() {

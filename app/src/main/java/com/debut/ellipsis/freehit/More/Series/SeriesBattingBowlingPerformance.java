@@ -84,7 +84,6 @@ public class SeriesBattingBowlingPerformance extends Fragment {
 
                     @Override
                     public void onFailure(Call<PerformanceItem> call, Throwable t) {
-                        Toast.makeText(getActivity(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
                         call.cancel();
 
                     }
@@ -108,7 +107,6 @@ public class SeriesBattingBowlingPerformance extends Fragment {
 
                                                            @Override
                                                            public void onFailure(Call<PerformanceItem> call, Throwable t) {
-                                                               Toast.makeText(getActivity(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
                                                                call.cancel();
                                                            }
                                                        });

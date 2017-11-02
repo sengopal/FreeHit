@@ -121,12 +121,14 @@
     <!-- For Rankings Select Category -->
     <string name="format">Select Format</string>
 
+    <!-- For Ranking Spinner -->
     <string-array name="format_array">
         <item>ODI</item>
         <item>T20</item>
         <item>TEST</item>
     </string-array>
 
+    <!-- For Ranking -->
     <string name="rank">RANK</string>
     <string name="points">POINTS</string>
     <string name="ratings">RATING</string>

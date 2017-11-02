@@ -164,6 +164,8 @@ public class SeriesMatches extends Fragment {
 
                 @Override
                 public void onFailure(Call<PastMatchCardItem> call, Throwable t) {
+                    Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                    toast.show();
                     call.cancel();
                 }
             });
