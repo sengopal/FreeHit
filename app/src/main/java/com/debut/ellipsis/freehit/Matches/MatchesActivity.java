@@ -44,7 +44,9 @@ public class MatchesActivity extends AppCompatActivity {
     private LinearLayoutManager mLinearLayoutManager;
 
     protected void onCreate(Bundle savedInstanceState) {
-
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            setTheme(R.style.AppThemeDark);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_matches_complete_match_list);
 
