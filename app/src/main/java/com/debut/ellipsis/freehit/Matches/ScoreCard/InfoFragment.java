@@ -1,11 +1,16 @@
 package com.debut.ellipsis.freehit.Matches.ScoreCard;
 
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.debut.ellipsis.freehit.APIInterface;
@@ -24,14 +29,29 @@ public class InfoFragment extends Fragment {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              final Bundle savedInstanceState) {
 
         String match_type = getActivity().getIntent().getStringExtra("match_type");
         final String match_name = getActivity().getIntent().getStringExtra("match_name");
-        // Inflate the layout for this fragment
-        final View rootView = inflater.inflate(R.layout.fragment_matchscorecard_info, container, false);
+
+        View rootView= null ;
+
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                rootView = inflater.inflate(R.layout.fragment_matchscorecard_info_dark, container, false);
+                ImageView arrow1 = rootView.findViewById(R.id.arrow_team_1);
+                arrow1.setColorFilter(Color.WHITE);
+                ImageView arrow2 = rootView.findViewById(R.id.arrow_team_2);
+                arrow2.setColorFilter(Color.WHITE);;
+                break;
+            case AppCompatDelegate.MODE_NIGHT_NO:
+                rootView = inflater.inflate(R.layout.fragment_matchscorecard_info, container, false);
+                break;
+        }
 
         MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 

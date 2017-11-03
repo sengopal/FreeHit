@@ -18,7 +18,12 @@ import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 
 public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesListAdapter.PastViewHolder> {
@@ -89,7 +94,22 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
 
     @Override
     public void onBindViewHolder(PastMatchesListAdapter.PastViewHolder holder, final int position) {
-        holder.date.setText(pastMatchCardItems.get(position).getTime());
+        String originalMatchTime = pastMatchCardItems.get(position).getDate().getFinaldatetime();
+
+
+        Date time = null ;
+        try {
+            time = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")).parse(originalMatchTime.replaceAll("Z$", "+0000"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        SimpleDateFormat date_format = new SimpleDateFormat("dd MMM yyyy , E", Locale.ENGLISH);
+        date_format.setTimeZone(TimeZone.getTimeZone("IND"));
+        date_format.setTimeZone(TimeZone.getDefault());
+        String formattedDate = date_format.format(time);
+
+        holder.date.setText(formattedDate);
         holder.result.setText(pastMatchCardItems.get(position).getResult());
         holder.series.setText(pastMatchCardItems.get(position).getTour());
         holder.sn1.setText(pastMatchCardItems.get(position).getTeam1Info().getSn());

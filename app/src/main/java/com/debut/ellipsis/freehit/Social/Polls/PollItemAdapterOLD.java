@@ -30,7 +30,7 @@ import static android.content.Context.MODE_PRIVATE;
 import static com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity.MY_PREFS_NAME;
 
 
-public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.freehit.Social.Polls.PollItemAdapter.PollsViewHolder> {
+public class PollItemAdapterOLD extends RecyclerView.Adapter<PollItemAdapterOLD.PollsViewHolder> {
 
     private List<PollCardItem> PollCardItems;
     private int rowLayout;
@@ -64,7 +64,7 @@ public class PollItemAdapter extends RecyclerView.Adapter<com.debut.ellipsis.fre
         }
     }
 
-    public PollItemAdapter(List<PollCardItem> news, int rowLayout, Context context) {
+    public PollItemAdapterOLD(List<PollCardItem> news, int rowLayout, Context context) {
         this.PollCardItems = news;
         this.rowLayout = rowLayout;
         this.context = context;

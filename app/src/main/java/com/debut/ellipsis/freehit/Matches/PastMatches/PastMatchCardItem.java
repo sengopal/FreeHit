@@ -13,14 +13,14 @@ public class PastMatchCardItem {
     private String stadium;
     @SerializedName("tour")
     private String tour;
-    @SerializedName("time")
-    private String time;
     @SerializedName("team1info")
     private TeamInfo team1;
     @SerializedName("team2info")
     private TeamInfo team2;
     @SerializedName("id")
     private int id;
+    @SerializedName("date")
+    private Date date;
     @SerializedName("ndid")
     private String ndid;
     @SerializedName("mresult")
@@ -39,6 +39,10 @@ public class PastMatchCardItem {
 
     public String getTour() {
         return tour;
+    }
+
+    public Date getDate() {
+        return date;
     }
 
     public String getResult() {
@@ -61,15 +65,19 @@ public class PastMatchCardItem {
         return ndid;
     }
 
-    public String getTime() {
-        return time;
-    }
-
     public List<PastMatchCardItem> getResults() {
         return results;
     }
 
+    public class Date
+    {
+        @SerializedName("final")
+        private String finaldatetime;
 
+        public String getFinaldatetime() {
+            return finaldatetime;
+        }
+    }
 
     public class TeamInfo {
         @SerializedName("sn")

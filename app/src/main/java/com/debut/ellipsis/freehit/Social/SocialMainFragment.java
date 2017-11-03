@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.debut.ellipsis.freehit.R;
-import com.debut.ellipsis.freehit.Social.Polls.SocialPolls;
+import com.debut.ellipsis.freehit.Social.Polls.SocialPollsTEST;
 import com.debut.ellipsis.freehit.Social.Tweets.SocialTweets;
 
 import java.util.ArrayList;
@@ -86,7 +86,7 @@ public class SocialMainFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         SocialMainFragment.ViewPagerAdapter adapter = new SocialMainFragment.ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFrag(new SocialPolls(), "POLLS");
+        adapter.addFrag(new SocialPollsTEST(), "POLLS");
         adapter.addFrag(new SocialTweets(), "TWEETS");
         viewPager.setAdapter(adapter);
 

@@ -40,10 +40,13 @@ public class RankingFragment extends Fragment {
         LinearLayoutManager mLinearLayoutManager;
         if (fragment_name.equals("TEAMS")) {
 
-            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-                rootView = inflater.inflate(R.layout.fragment_more_ranking_team_dark, container, false);
-            } else if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
-                rootView = inflater.inflate(R.layout.fragment_more_ranking_team, container, false);
+            switch (AppCompatDelegate.getDefaultNightMode()) {
+                case AppCompatDelegate.MODE_NIGHT_YES:
+                    rootView = inflater.inflate(R.layout.fragment_more_ranking_team_dark, container, false);
+                    break;
+                case AppCompatDelegate.MODE_NIGHT_NO:
+                    rootView = inflater.inflate(R.layout.fragment_more_ranking_team, container, false);
+                    break;
             }
 
 

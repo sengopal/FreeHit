@@ -3,6 +3,7 @@ package com.debut.ellipsis.freehit.Matches.ScoreCard;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,9 +28,16 @@ public class HeadToHeadFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         String match_type = getActivity().getIntent().getStringExtra("match_type");
+        View rootView= null ;
 
-        // Inflate the layout for this fragment
-        final View rootView = inflater.inflate(R.layout.fragment_matchscorecard_head_to_head, container, false);
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                rootView = inflater.inflate(R.layout.fragment_matchscorecard_head_to_head_dark, container, false);
+                break;
+            case AppCompatDelegate.MODE_NIGHT_NO:
+                rootView = inflater.inflate(R.layout.fragment_matchscorecard_head_to_head, container, false);
+                break;
+        }
 
         final View matches_won = rootView.findViewById(R.id.matches_won);
 

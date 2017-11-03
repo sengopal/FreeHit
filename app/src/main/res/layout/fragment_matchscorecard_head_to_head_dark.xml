@@ -1,0 +1,197 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/night_background"
+    tools:context="com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHeadFragment">
+
+    <LinearLayout
+        android:id="@+id/LinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ranking_layout">
+        <!--.....Team A...... -->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/team1_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_18sdp"
+                tools:text="TEAM A" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray" />
+        <!--......Team B...... -->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/team2_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_18sdp"
+                tools:text="TEAM B" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/team_divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_below="@+id/LinearLayout"
+        android:background="@android:color/darker_gray" />
+    <!--.....For Matches..... -->
+    <LinearLayout
+        android:id="@+id/LinearLayoutMatches"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ranking_layout"
+        android:layout_below="@+id/team_divider">
+        <!--.....MATCHES...... -->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.3"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/no_of_matches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_13sdp"
+                tools:text="MATCHES: 153" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray" />
+        <!--......TIED...... -->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tied_matches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_13sdp"
+                tools:text="TIED: 0" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/_1sdp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray" />
+        <!--......DRAWN OR N/R...... -->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/drawn_NR_matches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_13sdp"
+                tools:text="DRAWN: 51 " />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_below="@+id/LinearLayoutMatches"
+        android:background="@android:color/darker_gray" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/LinearLayoutMatches"
+        android:layout_marginBottom="2dip"
+        android:layout_marginTop="@dimen/_2sdp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/matches_won"
+                layout="@layout/fragment_matchscorecard_head_to_head_item_dark" />
+
+            <include
+                android:id="@+id/home_wins"
+                layout="@layout/fragment_matchscorecard_head_to_head_item_dark" />
+
+            <include
+                android:id="@+id/away_wins"
+                layout="@layout/fragment_matchscorecard_head_to_head_item_dark" />
+
+            <include
+                android:id="@+id/highest_score"
+                layout="@layout/fragment_matchscorecard_head_to_head_item_dark" />
+
+            <include
+                android:id="@+id/lowest_score"
+                layout="@layout/fragment_matchscorecard_head_to_head_item_dark" />
+
+            <include
+                android:id="@+id/highest_total_chased"
+                layout="@layout/fragment_matchscorecard_head_to_head_item_dark" />
+
+            <include
+                android:id="@+id/lowest_data_defended"
+                layout="@layout/fragment_matchscorecard_head_to_head_item_dark" />
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+</RelativeLayout>

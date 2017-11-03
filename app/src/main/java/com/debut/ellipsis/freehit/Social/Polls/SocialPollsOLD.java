@@ -33,7 +33,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class SocialPolls extends Fragment {
+public class SocialPollsOLD extends Fragment {
 
     private ProgressBar mProgressBar;
     public TextView NoPollsText;
@@ -47,7 +47,7 @@ public class SocialPolls extends Fragment {
         void onLayoutReady();
     }
 
-    public SocialPolls() {
+    public SocialPollsOLD() {
         // Required empty public constructor
     }
 
@@ -122,18 +122,18 @@ public class SocialPolls extends Fragment {
 
                             public void onClick(View v) {
                                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
+                                ft.detach(SocialPollsOLD.this).attach(SocialPollsOLD.this).commit();
                             }
                         });
 
                     }
                     recyclerView.setVisibility(View.VISIBLE);
                     if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_YES) {
-                        recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item_dark, getContext()));
+                        recyclerView.setAdapter(new PollItemAdapterOLD(polls, R.layout.fragment_social_polls_list_item_dark, getContext()));
                     }
                     else if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_NO)
                     {
-                        recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item, getContext()));
+                        recyclerView.setAdapter(new PollItemAdapterOLD(polls, R.layout.fragment_social_polls_list_item, getContext()));
                     }
                     if (mLinearLayoutManager.findLastVisibleItemPosition() == polls.size() - 1) {
                         recyclerViewReadyCallback = new RecyclerViewReadyCallback() {
@@ -161,7 +161,7 @@ public class SocialPolls extends Fragment {
 
                     public void onClick(View v) {
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
+                        ft.detach(SocialPollsOLD.this).attach(SocialPollsOLD.this).commit();
 
                     }
                 });
@@ -198,18 +198,18 @@ public class SocialPolls extends Fragment {
 
                                                                    public void onClick(View v) {
                                                                        FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                                                       ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
+                                                                       ft.detach(SocialPollsOLD.this).attach(SocialPollsOLD.this).commit();
                                                                    }
                                                                });
 
                                                            }
                                                            recyclerView.setVisibility(View.VISIBLE);
                                                            if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_YES) {
-                                                               recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item_dark, getContext()));
+                                                               recyclerView.setAdapter(new PollItemAdapterOLD(polls, R.layout.fragment_social_polls_list_item_dark, getContext()));
                                                            }
                                                            else if(AppCompatDelegate.getDefaultNightMode() ==AppCompatDelegate.MODE_NIGHT_NO)
                                                            {
-                                                               recyclerView.setAdapter(new PollItemAdapter(polls, R.layout.fragment_social_polls_list_item, getContext()));
+                                                               recyclerView.setAdapter(new PollItemAdapterOLD(polls, R.layout.fragment_social_polls_list_item, getContext()));
                                                            }
                                                            recyclerViewReadyCallback = new RecyclerViewReadyCallback() {
                                                                @Override

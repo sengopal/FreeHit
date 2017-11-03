@@ -19,7 +19,12 @@ import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.Matches.MatchesActivity;
 import com.debut.ellipsis.freehit.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class PastMatchCardItemAdapter extends PagerAdapter {
     private Context context;
@@ -52,6 +57,21 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
         else if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
             view = this.layoutInflater.inflate(R.layout.fragment_matches_past_match_card, container, false);
         }
+
+        String originalMatchTime = this.dataObjectList.get(position).getDate().getFinaldatetime();
+
+
+        Date time = null ;
+        try {
+            time = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")).parse(originalMatchTime.replaceAll("Z$", "+0000"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        SimpleDateFormat date_format = new SimpleDateFormat("dd MMM yyyy , E", Locale.ENGLISH);
+        date_format.setTimeZone(TimeZone.getTimeZone("IND"));
+        date_format.setTimeZone(TimeZone.getDefault());
+        String formattedDate = date_format.format(time);
 
         TextView textViewMatchName = view.findViewById(R.id.match_name_past);
         textViewMatchName.setText(this.dataObjectList.get(position).getTitle());
@@ -95,7 +115,7 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
 
 
         TextView MatchDate = view.findViewById(R.id.match_date_past);
-        MatchDate.setText(this.dataObjectList.get(position).getTime());
+        MatchDate.setText(formattedDate);
 
         final CardView cardView = view.findViewById(R.id.card_view);
         TextView ViewMore = view.findViewById(R.id.past_view_more);
