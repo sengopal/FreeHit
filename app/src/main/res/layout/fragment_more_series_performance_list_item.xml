@@ -34,10 +34,10 @@
 
         <TextView
             android:id="@+id/runs"
-            android:layout_width="@dimen/_60sdp"
+            android:layout_width="@dimen/_50sdp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
             tools:text="runs"
+            android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_12sdp" />
 
@@ -46,6 +46,7 @@
             android:layout_width="@dimen/_60sdp"
             android:layout_height="wrap_content"
             tools:text="avg"
+            android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_12sdp" />
 
