@@ -82,7 +82,6 @@ public class SocialPollsTEST extends Fragment {
         }
 
 
-
         Call<PollCardItem> call = MainActivity.apiInterface.doGetPollsListResources();
         call.enqueue(new Callback<PollCardItem>() {
             @Override
@@ -101,14 +100,14 @@ public class SocialPollsTEST extends Fragment {
                                 ft.detach(SocialPollsTEST.this).attach(SocialPollsTEST.this).commit();
                             }
                         });
-                    }
+                    } else {
                         mAdapter = new PollsItemAdapterTEST(getContext(), polls);
                         listView.setAdapter(mAdapter);
                         mAdapter.notifyDataSetChanged();
 
                     }
-
                 }
+            }
 
             @Override
             public void onFailure(Call<PollCardItem> call, Throwable t) {
@@ -149,12 +148,13 @@ public class SocialPollsTEST extends Fragment {
                                         ft.detach(SocialPollsTEST.this).attach(SocialPollsTEST.this).commit();
                                     }
                                 });
+
+                            } else {
+                                mAdapter = new PollsItemAdapterTEST(getContext(), polls);
+                                listView.setAdapter(mAdapter);
+                                mAdapter.notifyDataSetChanged();
+
                             }
-                            mAdapter = new PollsItemAdapterTEST(getContext(), polls);
-                            listView.setAdapter(mAdapter);
-                            mAdapter.notifyDataSetChanged();
-
-
                         }
 
                     }

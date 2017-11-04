@@ -46,7 +46,7 @@ public class InfoFragment extends Fragment {
                 ImageView arrow1 = rootView.findViewById(R.id.arrow_team_1);
                 arrow1.setColorFilter(Color.WHITE);
                 ImageView arrow2 = rootView.findViewById(R.id.arrow_team_2);
-                arrow2.setColorFilter(Color.WHITE);;
+                arrow2.setColorFilter(Color.WHITE);
                 break;
             case AppCompatDelegate.MODE_NIGHT_NO:
                 rootView = inflater.inflate(R.layout.fragment_matchscorecard_info, container, false);
