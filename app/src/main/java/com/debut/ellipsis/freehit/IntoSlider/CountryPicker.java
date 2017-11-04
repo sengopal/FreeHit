@@ -3,6 +3,7 @@ package com.debut.ellipsis.freehit.IntoSlider;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AppCompatDelegate;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -48,6 +49,11 @@ public class CountryPicker extends DialogFragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.country_picker, null);
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+        {
+            view = inflater.inflate(R.layout.country_picker_dark,null);
+        }
 
         Bundle args = getArguments();
         if (args != null) {

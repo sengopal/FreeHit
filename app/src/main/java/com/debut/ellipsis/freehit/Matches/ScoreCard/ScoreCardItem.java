@@ -134,11 +134,17 @@ public class ScoreCardItem {
     {
         @SerializedName("firstinn")
         private Innings firstinn;
+        @SerializedName("inncount")
+        private int inncount;
         @SerializedName("secondinn")
         private Innings secondinn;
 
         public Innings getFirstinn() {
             return firstinn;
+        }
+
+        public int getInncount() {
+            return inncount;
         }
 
         public Innings getSecondinn() {
@@ -189,8 +195,12 @@ public class ScoreCardItem {
         private String name;
         @SerializedName("runs")
         private String runs;
-        @SerializedName("score")
-        private BattingScore score;
+        @SerializedName("dots")
+        private String dots;
+        @SerializedName("fours")
+        private String fours;
+        @SerializedName("sixes")
+        private String sixes;
         @SerializedName("sr")
         private String sr;
         @SerializedName("status")
@@ -208,29 +218,6 @@ public class ScoreCardItem {
             return runs;
         }
 
-        public BattingScore getScore() {
-            return score;
-        }
-
-        public String getSr() {
-            return sr;
-        }
-
-        public String getStatus() {
-            return status;
-        }
-
-    }
-
-    public class BattingScore
-    {
-        @SerializedName("dots")
-        private String dots;
-        @SerializedName("fours")
-        private String fours;
-        @SerializedName("sixes")
-        private String sixes;
-
         public String getDots() {
             return dots;
         }
@@ -243,7 +230,16 @@ public class ScoreCardItem {
             return sixes;
         }
 
+        public String getSr() {
+            return sr;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
     }
+
 
     public class H2H
     {
@@ -275,8 +271,16 @@ public class ScoreCardItem {
         private String name;
         @SerializedName("runs")
         private String runs;
-        @SerializedName("score")
-        private BowlingScore score;
+        @SerializedName("dots")
+        private String dots;
+        @SerializedName("maidens")
+        private  String maidens;
+        @SerializedName("nb")
+        private String nb;
+        @SerializedName("overs")
+        private String overs;
+        @SerializedName("wide")
+        private String wide;
         @SerializedName("wickets")
         private String wickets;
 
@@ -291,29 +295,6 @@ public class ScoreCardItem {
         public String getRuns() {
             return runs;
         }
-
-        public BowlingScore getScore() {
-            return score;
-        }
-
-        public String getWickets() {
-            return wickets;
-        }
-
-    }
-
-    public class BowlingScore
-    {
-        @SerializedName("dots")
-        private String dots;
-        @SerializedName("maidens")
-        private  String maidens;
-        @SerializedName("nb")
-        private String nb;
-        @SerializedName("overs")
-        private String overs;
-        @SerializedName("wide")
-        private String wide;
 
         public String getDots() {
             return dots;
@@ -335,7 +316,12 @@ public class ScoreCardItem {
             return wide;
         }
 
+        public String getWickets() {
+            return wickets;
+        }
+
     }
+
 
     public class FOW
     {

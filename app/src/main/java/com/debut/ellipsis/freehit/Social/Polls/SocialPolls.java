@@ -1,10 +1,8 @@
 package com.debut.ellipsis.freehit.Social.Polls;
 
 
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -29,14 +27,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class SocialPollsTEST extends Fragment {
+public class SocialPolls extends Fragment {
 
     private ProgressBar mProgressBar;
     public TextView NoPollsText;
     public Button NoPollsButton;
     public Button NoConnectionButton;
-    private FloatingActionButton fab;
-    PollsItemAdapterTEST mAdapter;
+    PollsItemAdapter mAdapter;
+    private ListView listView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,13 +43,7 @@ public class SocialPollsTEST extends Fragment {
 
         MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        View viewFAB = rootView.findViewById(R.id.fab);
-        fab = viewFAB.findViewById(R.id.common_fab);
-
-        fab.setImageResource(R.drawable.arrow_down);
-        fab.setVisibility(View.INVISIBLE);
-
-        final ListView listView = rootView.findViewById(R.id.list);
+        listView = rootView.findViewById(R.id.list);
 
         View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = viewProgress.findViewById(R.id.progress_bar);
@@ -70,7 +62,6 @@ public class SocialPollsTEST extends Fragment {
         switch (AppCompatDelegate.getDefaultNightMode()) {
             case AppCompatDelegate.MODE_NIGHT_YES:
                 listView.setBackgroundColor(getResources().getColor(R.color.night_background));
-                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.dark)));
                 NoPollsText.setTextColor(Color.WHITE);
                 NoPollsButton.setBackgroundResource(R.drawable.button_shape_dark);
                 NoPollsButton.setTextColor(Color.BLACK);
@@ -97,11 +88,11 @@ public class SocialPollsTEST extends Fragment {
 
                             public void onClick(View v) {
                                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                ft.detach(SocialPollsTEST.this).attach(SocialPollsTEST.this).commit();
+                                ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
                             }
                         });
                     } else {
-                        mAdapter = new PollsItemAdapterTEST(getContext(), polls);
+                        mAdapter = new PollsItemAdapter(getContext(), polls);
                         listView.setAdapter(mAdapter);
                         mAdapter.notifyDataSetChanged();
 
@@ -117,7 +108,7 @@ public class SocialPollsTEST extends Fragment {
 
                     public void onClick(View v) {
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        ft.detach(SocialPollsTEST.this).attach(SocialPollsTEST.this).commit();
+                        ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
 
                     }
                 });
@@ -145,12 +136,12 @@ public class SocialPollsTEST extends Fragment {
 
                                     public void onClick(View v) {
                                         FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                        ft.detach(SocialPollsTEST.this).attach(SocialPollsTEST.this).commit();
+                                        ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
                                     }
                                 });
 
                             } else {
-                                mAdapter = new PollsItemAdapterTEST(getContext(), polls);
+                                mAdapter = new PollsItemAdapter(getContext(), polls);
                                 listView.setAdapter(mAdapter);
                                 mAdapter.notifyDataSetChanged();
 
@@ -167,7 +158,7 @@ public class SocialPollsTEST extends Fragment {
 
                             public void onClick(View v) {
                                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                ft.detach(SocialPollsTEST.this).attach(SocialPollsTEST.this).commit();
+                                ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
 
                             }
                         });

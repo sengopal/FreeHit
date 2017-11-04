@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +16,15 @@ import android.widget.TextView;
 
 import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
+import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
 import com.debut.ellipsis.freehit.MainActivity;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements.Team1ScoreCardFragment;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements.Team2ScoreCardFragment;
+import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchScoreCard;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElementsTemp.Team1ScoreCardFragment;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElementsTemp.Team2ScoreCardFragment;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity.countryHash;
 
 public class ScoreCardFragment extends Fragment {
 
@@ -31,6 +32,9 @@ public class ScoreCardFragment extends Fragment {
     private TabLayout tabLayout;
     private TextView TeamName;
     private ImageView TeamLogo;
+    private String team_1;
+    private String team_2;
+    private List<ScoreCardItem> teamList = null;
 
     public ScoreCardFragment() {
         // Required empty public constructor
@@ -41,30 +45,41 @@ public class ScoreCardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        String match_type = getActivity().getIntent().getStringExtra("match_type");
 
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_social_main, container, false);
 
         View viewSocialPager = rootView.findViewById(R.id.social_viewpager);
 
-        viewPager = (ViewPager) viewSocialPager.findViewById(R.id.viewpager);
+        viewPager = viewSocialPager.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
         View viewTabSocial = rootView.findViewById(R.id.social_tabs);
-        tabLayout = (TabLayout) viewTabSocial.findViewById(R.id.tabs);
+        tabLayout = viewTabSocial.findViewById(R.id.tabs);
 
         tabLayout.setupWithViewPager(viewPager);
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            tabLayout.setBackgroundColor(getResources().getColor(R.color.night_background));
+        }
+
+        if (match_type.equals("PAST")) {
+            teamList = ((PastMatchScoreCard) getActivity()).getQList();
+        }
+
+        team_1 = teamList.get(0).getScorecard().getTeam1().getFirstinn().getTeam();
+        team_2 = teamList.get(0).getScorecard().getTeam2().getFirstinn().getTeam();
+
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-                /*tab.getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);*/
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-               /* tab.getIcon().setColorFilter(Color.parseColor("#a8a8a8"), PorterDuff.Mode.SRC_IN);*/
 
             }
 
@@ -80,22 +95,33 @@ public class ScoreCardFragment extends Fragment {
     }
 
     private void setupTabIcons() {
-        tabLayout.getTabAt(0).setCustomView(R.layout.fragment_matchescorecard_scorecard_custom_tab);
-        tabLayout.getTabAt(1).setCustomView(R.layout.fragment_matchescorecard_scorecard_custom_tab);
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                tabLayout.getTabAt(0).setCustomView(R.layout.fragment_matchescorecard_scorecard_custom_tab_dark);
+                tabLayout.getTabAt(1).setCustomView(R.layout.fragment_matchescorecard_scorecard_custom_tab_dark);
+                break;
+            case AppCompatDelegate.MODE_NIGHT_NO:
+                tabLayout.getTabAt(0).setCustomView(R.layout.fragment_matchescorecard_scorecard_custom_tab);
+                tabLayout.getTabAt(1).setCustomView(R.layout.fragment_matchescorecard_scorecard_custom_tab);
+                break;
+        }
 
-        TeamName = (TextView) tabLayout.getTabAt(0).getCustomView().findViewById(R.id.team_sn);
-        TeamName.setText("WI");
-        TeamName = (TextView) tabLayout.getTabAt(1).getCustomView().findViewById(R.id.team_sn);
-        TeamName.setText("ENG");
 
-        TeamLogo = (ImageView) tabLayout.getTabAt(0).getCustomView().findViewById(R.id.team_logo);
-        String teamLogo = countryHash.getCountryFlag("WEST INDIES");
+        TeamName = tabLayout.getTabAt(0).getCustomView().findViewById(R.id.team_sn);
+        TeamName.setText(teamList.get(0).getScorecard().getTeam1().getFirstinn().getTeam());
+        TeamName = tabLayout.getTabAt(1).getCustomView().findViewById(R.id.team_sn);
+        TeamName.setText(teamList.get(0).getScorecard().getTeam2().getFirstinn().getTeam());
+
+        TeamLogo = tabLayout.getTabAt(0).getCustomView().findViewById(R.id.team_logo);
+
+        String teamLogo = WelcomeActivity.countryHash.getCountryFlag(team_1.toUpperCase());
 
         MainActivity.requestBuilder = GlideApp.with(getContext()).load(teamLogo).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
         MainActivity.requestBuilder.into(TeamLogo);
 
-        TeamLogo = (ImageView) tabLayout.getTabAt(1).getCustomView().findViewById(R.id.team_logo);
-        teamLogo = countryHash.getCountryFlag("ENGLAND");
+        TeamLogo = tabLayout.getTabAt(1).getCustomView().findViewById(R.id.team_logo);
+
+        teamLogo = WelcomeActivity.countryHash.getCountryFlag(team_2.toUpperCase());
 
         MainActivity.requestBuilder = GlideApp.with(getContext()).load(teamLogo).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
         MainActivity.requestBuilder.into(TeamLogo);

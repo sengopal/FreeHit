@@ -45,6 +45,7 @@ public class PastMatchScoreCard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_matches_match_scorecard);
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+
         String match_name = getIntent().getStringExtra("match_name");
         String match_id = getIntent().getStringExtra("match_id");
 
@@ -52,7 +53,7 @@ public class PastMatchScoreCard extends AppCompatActivity {
 
         View viewToolbarTabs = findViewById(R.id.toolbar_tabs_matches_scorecard);
 
-        toolbar = (Toolbar) viewToolbarTabs.findViewById(R.id.toolbar);
+        toolbar = viewToolbarTabs.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -60,9 +61,9 @@ public class PastMatchScoreCard extends AppCompatActivity {
 
         View viewProgress = findViewById(R.id.progress);
 
-        mProgressBar = (ProgressBar) viewProgress.findViewById(R.id.progress_bar);
+        mProgressBar = viewProgress.findViewById(R.id.progress_bar);
 
-        viewPager = (ViewPager) viewViewPager.findViewById(R.id.viewpager);
+        viewPager = viewViewPager.findViewById(R.id.viewpager);
         Call<ScoreCardItem> call = MainActivity.apiInterface.doGetMatchScoreCard(match_id);
         call.enqueue(new Callback<ScoreCardItem>() {
             @Override
@@ -83,7 +84,7 @@ public class PastMatchScoreCard extends AppCompatActivity {
         });
 
 
-        tabLayout = (TabLayout) viewToolbarTabs.findViewById(R.id.tabs);
+        tabLayout = viewToolbarTabs.findViewById(R.id.tabs);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setupWithViewPager(viewPager);

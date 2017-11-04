@@ -144,6 +144,10 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
                 pastMatchScoreCardIntent.putExtra("match_id", pastMatchCardItems.get(position).getNdid());
                 pastMatchScoreCardIntent.putExtra("match_name", pastMatchCardItems.get(position).getTitle());
                 pastMatchScoreCardIntent.putExtra("match_type","PAST");
+                pastMatchScoreCardIntent.putExtra("team1_innings1",pastMatchCardItems.get(position).getTeam1Info().getInn1());
+                pastMatchScoreCardIntent.putExtra("team1_innings2",pastMatchCardItems.get(position).getTeam1Info().getInn2());
+                pastMatchScoreCardIntent.putExtra("team2_innings1",pastMatchCardItems.get(position).getTeam2Info().getInn1());
+                pastMatchScoreCardIntent.putExtra("team2_innings2",pastMatchCardItems.get(position).getTeam2Info().getInn2());
                 pastMatchScoreCardIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(pastMatchScoreCardIntent);
                 /*Toast.makeText(context,"Coming Soon !",Toast.LENGTH_SHORT).show();*/

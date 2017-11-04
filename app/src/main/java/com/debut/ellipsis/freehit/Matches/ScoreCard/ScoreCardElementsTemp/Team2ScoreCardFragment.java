@@ -1,35 +1,32 @@
-package com.debut.ellipsis.freehit.Social;
+package com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElementsTemp;
 
 
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchScoreCard;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardItem;
 import com.debut.ellipsis.freehit.R;
-import com.debut.ellipsis.freehit.Social.Polls.SocialPolls;
-import com.debut.ellipsis.freehit.Social.Tweets.SocialTweets;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SocialMainFragment extends Fragment {
+public class Team2ScoreCardFragment extends Fragment {
 
     public ViewPager viewPager;
     private TabLayout tabLayout;
-    private int[] tabIcons = {
-            R.drawable.poll,
-            R.drawable.twitter
-    };
+    private List<ScoreCardItem> teamList = null;
 
-    public SocialMainFragment() {
+    public Team2ScoreCardFragment() {
         // Required empty public constructor
     }
 
@@ -38,16 +35,30 @@ public class SocialMainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        String match_type = getActivity().getIntent().getStringExtra("match_type");
+
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_social_main, container, false);
 
         View viewSocialPager = rootView.findViewById(R.id.social_viewpager);
 
-        viewPager = (ViewPager) viewSocialPager.findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
+        viewPager = viewSocialPager.findViewById(R.id.viewpager);
+
 
         View viewTabSocial = rootView.findViewById(R.id.social_tabs);
-        tabLayout = (TabLayout) viewTabSocial.findViewById(R.id.tabs);
+        tabLayout = viewTabSocial.findViewById(R.id.tabs);
+
+        if (match_type.equals("PAST")) {
+            teamList = ((PastMatchScoreCard) getActivity()).getQList();
+        }
+
+        if (teamList.get(0).getScorecard().getTeam2().getInncount() == 1)
+            setupViewPagerOneInnings(viewPager);
+        else
+            setupViewPagerTwoInnings(viewPager);
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+            tabLayout.setBackgroundColor(Color.parseColor("#36393f"));
 
         tabLayout.setupWithViewPager(viewPager);
 
@@ -55,12 +66,10 @@ public class SocialMainFragment extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-                tab.getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                tab.getIcon().setColorFilter(Color.parseColor("#a8a8a8"), PorterDuff.Mode.SRC_IN);
 
             }
 
@@ -70,24 +79,22 @@ public class SocialMainFragment extends Fragment {
             }
         });
 
-        setupTabIcons();
 
         return rootView;
     }
 
-    private void setupTabIcons() {
-        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
-        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
 
-        tabLayout.getTabAt(0).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-        tabLayout.getTabAt(1).getIcon().setColorFilter(Color.parseColor("#a8a8a8"), PorterDuff.Mode.SRC_IN);
+    private void setupViewPagerTwoInnings(ViewPager viewPager) {
+        Team2ScoreCardFragment.ViewPagerAdapter adapter = new Team2ScoreCardFragment.ViewPagerAdapter(getChildFragmentManager());
+        adapter.addFrag(new Innings1_Innings2(), "Innings 1");
+        adapter.addFrag(new Innings1_Innings2(), "Innings 2");
+        viewPager.setAdapter(adapter);
+
     }
 
-
-    private void setupViewPager(ViewPager viewPager) {
-        SocialMainFragment.ViewPagerAdapter adapter = new SocialMainFragment.ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFrag(new SocialPolls(), "POLLS");
-        adapter.addFrag(new SocialTweets(), "TWEETS");
+    private void setupViewPagerOneInnings(ViewPager viewPager) {
+        Team2ScoreCardFragment.ViewPagerAdapter adapter = new Team2ScoreCardFragment.ViewPagerAdapter(getChildFragmentManager());
+        adapter.addFrag(new Innings1_Innings2(), "Innings 1");
         viewPager.setAdapter(adapter);
 
     }
@@ -113,10 +120,16 @@ public class SocialMainFragment extends Fragment {
         public void addFrag(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
+            if (mFragmentTitleList.get(0).equals("Innings 1")) {
+                Bundle bundle = new Bundle();
+                bundle.putString("fragment_name", "Team_2_Innings_1");
+                fragment.setArguments(bundle);
+            }
+
             if(mFragmentTitleList.size()==2) {
-                if (mFragmentTitleList.get(1).equals("TWEETS")) {
+                if (mFragmentTitleList.get(1).equals("Innings 2")) {
                     Bundle bundle = new Bundle();
-                    bundle.putString("fragment_name", "TWEETS");
+                    bundle.putString("fragment_name", "Team_2_Innings_2");
                     fragment.setArguments(bundle);
                 }
             }

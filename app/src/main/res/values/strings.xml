@@ -144,5 +144,14 @@
     <!-- For Settings player bio-->
     <string name="batting"><b>BATTING</b></string>
 
+    <!-- For ScoreCard -->
+    <string name="extras"><b>Extras : </b></string>
+    <string name="total"><b>Total : </b></string>
+    <string name="batsman">Batsman</string>
+    <string name="bowler">Bowler</string>
+    <string name="bowling"><b>BOWLING</b></string>
+    <string name="fow"><b>FALL OF WICKETS</b></string>
+    <string name="fall_of_wicket">Fall Of Wicket</string>
+
 
 </resources>

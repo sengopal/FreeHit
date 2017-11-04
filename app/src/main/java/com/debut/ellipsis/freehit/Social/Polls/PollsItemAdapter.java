@@ -31,13 +31,13 @@ import retrofit2.Response;
 import static android.content.Context.MODE_PRIVATE;
 import static com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity.MY_PREFS_NAME;
 
-public class PollsItemAdapterTEST extends ArrayAdapter {
+public class PollsItemAdapter extends ArrayAdapter {
 
 
     List<PollCardItem> PollCardItems;
 
 
-    public PollsItemAdapterTEST(Context context, List<PollCardItem> pollCardItems) {
+    public PollsItemAdapter(Context context, List<PollCardItem> pollCardItems) {
         super(context, 0, pollCardItems);
         PollCardItems = pollCardItems;
     }

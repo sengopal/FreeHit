@@ -43,9 +43,9 @@ public class SeriesMainActivity extends AppCompatActivity {
         setContentView(R.layout.fragment_more_series_listview);
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
 
-        View viewToolbar = (View) findViewById(R.id.series_toolbar);
+        View viewToolbar = findViewById(R.id.series_toolbar);
 
-        Toolbar toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
+        Toolbar toolbar = viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -53,10 +53,10 @@ public class SeriesMainActivity extends AppCompatActivity {
 
         View viewRecycler = findViewById(R.id.series_list);
 
-        final RecyclerView recyclerView = (RecyclerView) viewRecycler.findViewById(R.id.recycler_list);
+        final RecyclerView recyclerView = viewRecycler.findViewById(R.id.recycler_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-        final SwipeRefreshLayout refLayout = (SwipeRefreshLayout) viewRecycler.findViewById(R.id.refresh_layout);
+        final SwipeRefreshLayout refLayout = viewRecycler.findViewById(R.id.refresh_layout);
 
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             recyclerView.setBackgroundColor(getResources().getColor(R.color.night_background));
@@ -68,11 +68,11 @@ public class SeriesMainActivity extends AppCompatActivity {
         }
         else
         {
-            refLayout.setColorSchemeColors(R.color.orange);
+            refLayout.setColorSchemeColors(getResources().getColor(R.color.orange));
         }
 
         View ProgressView = findViewById(R.id.progress);
-        mProgressbar = (ProgressBar) ProgressView.findViewById(R.id.progress_bar);
+        mProgressbar = ProgressView.findViewById(R.id.progress_bar);
 
         MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
