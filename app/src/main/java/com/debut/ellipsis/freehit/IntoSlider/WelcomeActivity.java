@@ -9,15 +9,17 @@ import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,10 +65,10 @@ public class WelcomeActivity extends AppCompatActivity {
 
         View viewViewPager = findViewById(R.id.welcome_viewpager);
 
-        viewPager = (ViewPager) viewViewPager.findViewById(R.id.viewpager);
-        dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
-        btnSkip = (Button) findViewById(R.id.btn_skip);
-        btnNext = (Button) findViewById(R.id.btn_next);
+        viewPager = viewViewPager.findViewById(R.id.viewpager);
+        dotsLayout = findViewById(R.id.layoutDots);
+        btnSkip = findViewById(R.id.btn_skip);
+        btnNext = findViewById(R.id.btn_next);
 
 
         // layouts of all welcome sliders
@@ -126,7 +128,6 @@ public class WelcomeActivity extends AppCompatActivity {
         int[] colorsInactive = getResources().getIntArray(R.array.array_dot_inactive);
 
         int width = getResources().getDimensionPixelSize(R.dimen._15sdp);
-        ;
         int height = getResources().getDimensionPixelSize(R.dimen._15sdp);
         dotsLayout.removeAllViews();
         for (int i = 0; i < dots.length; i++) {
@@ -217,23 +218,52 @@ public class WelcomeActivity extends AppCompatActivity {
 
             View view = layoutInflater.inflate(layouts[position], container, false);
             container.addView(view);
+
             if (position == 4) {
-                ImageView country_flag = (ImageView) findViewById(R.id.country_flag);
+
+                Switch NightMode = findViewById(R.id.switch_night_mode);
+                final SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+
+                NightMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        // do something, the isChecked will be
+                        // true if the switch is in the On position
+                        if (isChecked) {
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                            editor.putBoolean("switch_state", true);
+
+                        } else if (!isChecked) {
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                            editor.putBoolean("switch_state", false);
+
+                        }
+                        editor.apply();
+                    }
+                });
+
+
+                ImageView country_flag = findViewById(R.id.country_flag);
 
                 SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
                 String name = prefs.getString("country_name", "SELECT COUNTRY");
 
-                TextView country_name = (TextView) findViewById(R.id.country_name);
-                country_name.setText(name);
+                TextView country_name = findViewById(R.id.country_name);
+                country_name.setText(name.toUpperCase());
 
-                String flagID = prefs.getString("country_flag", "");
-                Log.e("test", flagID);
 
                 String TeamLogo = countryHash.getCountryFlag(name.toUpperCase());
 
                 MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogo).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
                 MainActivity.requestBuilder.into(country_flag);
+
+                Boolean NightModeState = prefs.getBoolean("switch_state", false);
+
+                if (NightModeState) {
+                    NightMode.setChecked(true);
+                } else {
+                    NightMode.setChecked(false);
+                }
 
             }
             return view;
@@ -264,17 +294,14 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onSelectCountry(String name, String flagURLID) {
                 // Implement your code here
-                TextView country_name = (TextView) findViewById(R.id.country_name);
-                country_name.setText(name);
+                TextView country_name = findViewById(R.id.country_name);
+                country_name.setText(name.toUpperCase());
 
-                ImageView before = (ImageView) findViewById(R.id.country_flag);
+                ImageView before = findViewById(R.id.country_flag);
 
                 RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(flagURLID).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
                 requestBuilder.into(before);
-
-                TextView description = (TextView) findViewById(R.id.slide5description);
-                description.setVisibility(View.GONE);
 
                 SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
                 editor.putString("country_name", name);
@@ -288,5 +315,6 @@ public class WelcomeActivity extends AppCompatActivity {
         picker.show(getSupportFragmentManager(), "COUNTRY_PICKER");
 
     }
+
 
 }

@@ -140,13 +140,13 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
         SimpleDateFormat date_format = new SimpleDateFormat("dd MMM yyyy , E", Locale.ENGLISH);
         date_format.setTimeZone(TimeZone.getTimeZone("IND"));
         date_format.setTimeZone(TimeZone.getDefault());
-        String formattedDate = date_format.format(time);
+        final String formattedDate = date_format.format(time);
 
 
         SimpleDateFormat time_format = new SimpleDateFormat(" hh:mm a", Locale.ENGLISH);
         time_format.setTimeZone(TimeZone.getTimeZone("IND"));
         time_format.setTimeZone(TimeZone.getDefault());
-        String formattedTime = time_format.format(time);
+        final String formattedTime = time_format.format(time);
 
         TextView shortName1 = viewHolder.shortName1;
         shortName1.setText(upcomingMatchCards.getTeam1().getSn());
@@ -176,13 +176,7 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
             @Override
             public void onClick(View view) {
 
-                /*Intent UpcomingMatchScoreCardIntent = new Intent(mContext, UpcomingMatchScoreCard.class);
-                UpcomingMatchScoreCardIntent.putExtra("match_id", upcomingMatchCards.getNdid());
-                UpcomingMatchScoreCardIntent.putExtra("match_name",  upcomingMatchCards.getMatch() + "(" + upcomingMatchCards.getTeam1().getSn() + " vs " + upcomingMatchCards.getTeam2().getSn() + ")");
-
-                UpcomingMatchScoreCardIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                mContext.startActivity(UpcomingMatchScoreCardIntent);*/
-                Toast.makeText(mContext,"Coming Soon !",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext,"\t \t \t \t Match Stars on \n \t \t \t"+formattedDate+"\n"+" At "+formattedTime+" Local Time",Toast.LENGTH_SHORT).show();
 
             }
         };

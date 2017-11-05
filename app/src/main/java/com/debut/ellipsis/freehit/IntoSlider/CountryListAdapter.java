@@ -57,7 +57,7 @@ public class CountryListAdapter extends BaseAdapter {
         cell.textView.setText(country.getName());
 
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            cell.textView.setTextColor(Color.WHITE);
+           cell.textView.setTextColor(Color.WHITE);
         }
 
         String FlagURL = country.getFlag();

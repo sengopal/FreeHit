@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_15sdp"
                 android:layout_below="@id/batting_heading"
-                android:background="@color/bg_screen1"
+                android:background="@color/colorPrimary"
                 android:orientation="horizontal">
 
                 <TextView
@@ -204,7 +204,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_15sdp"
                 android:layout_below="@id/bowling_heading"
-                android:background="@color/bg_screen1"
+                android:background="@color/colorPrimary"
                 android:orientation="horizontal">
 
                 <TextView
@@ -307,7 +307,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_15sdp"
                 android:layout_below="@id/FallOfWicket_heading"
-                android:background="@color/bg_screen1"
+                android:background="@color/colorPrimary"
                 android:orientation="horizontal">
 
                 <TextView

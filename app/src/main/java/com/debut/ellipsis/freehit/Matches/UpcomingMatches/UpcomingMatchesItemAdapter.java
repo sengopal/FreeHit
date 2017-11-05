@@ -93,13 +93,13 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
         SimpleDateFormat date_format = new SimpleDateFormat("dd MMM yyyy , E", Locale.ENGLISH);
         date_format.setTimeZone(TimeZone.getTimeZone("IND"));
         date_format.setTimeZone(TimeZone.getDefault());
-        String formattedDate = date_format.format(time);
+        final String formattedDate = date_format.format(time);
 
 
         SimpleDateFormat time_format = new SimpleDateFormat(" hh:mm a", Locale.ENGLISH);
         time_format.setTimeZone(TimeZone.getTimeZone("IND"));
         time_format.setTimeZone(TimeZone.getDefault());
-        String formattedTime = time_format.format(time);
+        final String formattedTime = time_format.format(time);
 
         TextView shortName1 = view.findViewById(R.id.sn_team_1_upcoming);
         shortName1.setText(this.dataObjectList.get(position).getTeam1().getSn());
@@ -144,11 +144,8 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
                     // Start the new activity
                     context.startActivity(UpcomingIntent);
                 } else {
-                    /*Intent UpcomingMatchScoreCardIntent = new Intent(context, UpcomingMatchScoreCard.class);
-                    UpcomingMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getNdid());
-                    UpcomingMatchScoreCardIntent.putExtra("match_name", dataObjectList.get(position).getMatch() + "(" + dataObjectList.get(position).getTeam1().getSn() + " vs " + dataObjectList.get(position).getTeam2().getSn() + ")");
-                    context.startActivity(UpcomingMatchScoreCardIntent);*/
-                    Toast.makeText(context,"Coming Soon !",Toast.LENGTH_SHORT).show();
+
+                    Toast.makeText(context,"\t \t \t \t Match Stars on \n \t \t \t"+formattedDate+"\n"+" At "+formattedTime+" Local Time",Toast.LENGTH_SHORT).show();
                 }
             }
         });
