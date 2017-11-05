@@ -97,9 +97,7 @@ public class ScoreCardFragment extends Fragment {
                 team_1 =team_2_intent;
             }
         }
-
-        System.out.println("TEAM 1 "+team_1);
-        System.out.println("TEAM 2 "+team_2);
+        
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
