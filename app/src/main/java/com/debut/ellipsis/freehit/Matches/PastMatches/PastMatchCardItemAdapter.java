@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
@@ -158,30 +159,36 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
         }
 
 
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (position == 5) {
-                    // Intent to move to list view for Click to view more
-                    // Create a new intent to open the {@link UpcomingMatchesActivity}
-                    Intent UpcomingIntent = new Intent(context, MatchesActivity.class);
-                    UpcomingIntent.putExtra("match_format","PAST");
-                    // Start the new activity
-                    context.startActivity(UpcomingIntent);
-                } else {
-                    Intent PastMatchScoreCardIntent = new Intent(context, PastMatchScoreCard.class);
-                    PastMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getNdid());
-                    PastMatchScoreCardIntent.putExtra("match_name", dataObjectList.get(position).getTitle());
-                    PastMatchScoreCardIntent.putExtra("match_type","PAST");
-                    PastMatchScoreCardIntent.putExtra("team1_innings1",dataObjectList.get(position).getTeam1Info().getInn1());
-                    PastMatchScoreCardIntent.putExtra("team1_innings2",dataObjectList.get(position).getTeam1Info().getInn2());
-                    PastMatchScoreCardIntent.putExtra("team2_innings1",dataObjectList.get(position).getTeam2Info().getInn1());
-                    PastMatchScoreCardIntent.putExtra("team2_innings2",dataObjectList.get(position).getTeam2Info().getInn2());
-                    context.startActivity(PastMatchScoreCardIntent);
-                    /*Toast.makeText(context,"Coming Soon !",Toast.LENGTH_SHORT).show();*/
+
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (position == 5) {
+                        // Intent to move to list view for Click to view more
+                        // Create a new intent to open the {@link UpcomingMatchesActivity}
+                        Intent UpcomingIntent = new Intent(context, MatchesActivity.class);
+                        UpcomingIntent.putExtra("match_format","PAST");
+                        // Start the new activity
+                        context.startActivity(UpcomingIntent);
+                    } else {
+
+                        if (dataObjectList.get(position).getTeam2Info().getInn1().equals("")&&dataObjectList.get(position).getTeam2Info().getInn1().equals("")){
+                            Toast.makeText(context, "Match was Abandoned !", Toast.LENGTH_SHORT).show();
+                        } else
+                        {
+                            Intent PastMatchScoreCardIntent = new Intent(context, PastMatchScoreCard.class);
+                        PastMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getNdid());
+                        PastMatchScoreCardIntent.putExtra("match_name", dataObjectList.get(position).getTitle());
+                        PastMatchScoreCardIntent.putExtra("match_type", "PAST");
+                        PastMatchScoreCardIntent.putExtra("team1", WelcomeActivity.countryHash.getCountryName(dataObjectList.get(position).getTeam1Info().getSn()));
+                        PastMatchScoreCardIntent.putExtra("team2", WelcomeActivity.countryHash.getCountryName(dataObjectList.get(position).getTeam2Info().getSn()));
+                        context.startActivity(PastMatchScoreCardIntent);
+                    }
+
+                    }
                 }
-            }
-        });
+            });
+
 
         container.addView(view);
         return view;

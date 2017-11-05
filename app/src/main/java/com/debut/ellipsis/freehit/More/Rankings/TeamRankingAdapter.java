@@ -101,7 +101,16 @@ public class TeamRankingAdapter extends RecyclerView.Adapter<TeamRankingAdapter.
 
         ImageView imageViewTeamLogo = viewHolder.teamFlag;
 
-        MainActivity.requestBuilder = GlideApp.with(mContext).load(team_logo_url).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+        {
+            MainActivity.requestBuilder = GlideApp.with(mContext).load(team_logo_url).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+
+        }
+        else
+        {
+            MainActivity.requestBuilder = GlideApp.with(mContext).load(team_logo_url).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+
+        }
 
         MainActivity.requestBuilder.into(imageViewTeamLogo);
 

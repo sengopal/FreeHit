@@ -67,18 +67,20 @@ public class TeamPlayerAdapter extends RecyclerView.Adapter<TeamPlayerAdapter.Te
 
         String PlayerURL = playerCountryItems.get(position).getImage();
 
-        MainActivity.requestBuilder = GlideApp.with(context).load(PlayerURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
-
-        MainActivity.requestBuilder.into(holder.PlayerImage);
-
         LinearLayout RLContainer = holder.rlcontainer;
 
         View.OnClickListener mClickListener;
 
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             holder.PlayerName.setTextColor(Color.WHITE);
+            MainActivity.requestBuilder = GlideApp.with(context).load(PlayerURL).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+        }
+        else
+        {
+            MainActivity.requestBuilder = GlideApp.with(context).load(PlayerURL).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
         }
 
+        MainActivity.requestBuilder.into(holder.PlayerImage);
 
         mClickListener = new View.OnClickListener() {
             @Override

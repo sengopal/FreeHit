@@ -34,10 +34,10 @@ public class PlayerRankingAdapter extends RecyclerView.Adapter<PlayerRankingAdap
             // Stores the itemView in a public final member variable that can be used
             // to access the context from any ViewHolder instance.
             super(itemView);
-            playerRank = (TextView) itemView.findViewById(R.id.rank);
-            playerName = (TextView) itemView.findViewById(R.id.team);
-            playerRatings = (TextView) itemView.findViewById(R.id.ratings);
-            rlcontainer = (RelativeLayout) itemView.findViewById(R.id.rlcontainer);
+            playerRank = itemView.findViewById(R.id.rank);
+            playerName = itemView.findViewById(R.id.team);
+            playerRatings = itemView.findViewById(R.id.ratings);
+            rlcontainer = itemView.findViewById(R.id.rlcontainer);
 
 
         }

@@ -54,12 +54,18 @@ public class Team2ScoreCardFragment extends Fragment {
 
         if (teamList.get(0).getScorecard().getTeam2().getInncount() == 1)
             setupViewPagerOneInnings(viewPager);
-        else
+        else if(teamList.get(0).getScorecard().getTeam2().getInncount() == 2)
             setupViewPagerTwoInnings(viewPager);
+        else
+        {
 
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+        }
+
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             tabLayout.setBackgroundColor(Color.parseColor("#36393f"));
-
+            viewPager.setBackgroundColor(getResources().getColor(R.color.night_background));
+        }
         tabLayout.setupWithViewPager(viewPager);
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

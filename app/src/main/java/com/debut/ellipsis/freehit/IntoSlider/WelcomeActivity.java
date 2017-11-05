@@ -252,8 +252,14 @@ public class WelcomeActivity extends AppCompatActivity {
 
 
                 String TeamLogo = countryHash.getCountryFlag(name.toUpperCase());
+                if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                    MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogo).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+                }
+                else
+                {
+                    MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogo).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
+                }
 
-                MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogo).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
 
                 MainActivity.requestBuilder.into(country_flag);
 

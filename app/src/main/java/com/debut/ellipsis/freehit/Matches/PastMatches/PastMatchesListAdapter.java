@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
@@ -139,22 +140,26 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
         mClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent pastMatchScoreCardIntent = new Intent(context, PastMatchScoreCard.class);
-                pastMatchScoreCardIntent.putExtra("match_id", pastMatchCardItems.get(position).getNdid());
-                pastMatchScoreCardIntent.putExtra("match_name", pastMatchCardItems.get(position).getTitle());
-                pastMatchScoreCardIntent.putExtra("match_type","PAST");
-                pastMatchScoreCardIntent.putExtra("team1_innings1",pastMatchCardItems.get(position).getTeam1Info().getInn1());
-                pastMatchScoreCardIntent.putExtra("team1_innings2",pastMatchCardItems.get(position).getTeam1Info().getInn2());
-                pastMatchScoreCardIntent.putExtra("team2_innings1",pastMatchCardItems.get(position).getTeam2Info().getInn1());
-                pastMatchScoreCardIntent.putExtra("team2_innings2",pastMatchCardItems.get(position).getTeam2Info().getInn2());
-                pastMatchScoreCardIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(pastMatchScoreCardIntent);
-                /*Toast.makeText(context,"Coming Soon !",Toast.LENGTH_SHORT).show();*/
+                if(pastMatchCardItems.get(position).getTeam1Info().getInn1().equals("")&&pastMatchCardItems.get(position).getTeam2Info().getInn1().equals(""))
+                {
+                    Toast.makeText(context,"Match was Abandoned !",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent pastMatchScoreCardIntent = new Intent(context, PastMatchScoreCard.class);
+                    pastMatchScoreCardIntent.putExtra("match_id", pastMatchCardItems.get(position).getNdid());
+                    pastMatchScoreCardIntent.putExtra("match_name", pastMatchCardItems.get(position).getTitle());
+                    pastMatchScoreCardIntent.putExtra("match_type", "PAST");
+                    pastMatchScoreCardIntent.putExtra("team1", WelcomeActivity.countryHash.getCountryName(pastMatchCardItems.get(position).getTeam1Info().getSn()));
+                    pastMatchScoreCardIntent.putExtra("team2", WelcomeActivity.countryHash.getCountryName(pastMatchCardItems.get(position).getTeam2Info().getSn()));
+                    pastMatchScoreCardIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(pastMatchScoreCardIntent);
+                }
 
             }
         };
-        RLContainer.setOnClickListener(mClickListener);
+
+
+            RLContainer.setOnClickListener(mClickListener);
 
 
     }

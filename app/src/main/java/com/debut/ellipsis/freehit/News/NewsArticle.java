@@ -111,6 +111,12 @@ public class NewsArticle extends AppCompatActivity {
                 ImageView tag_3 = findViewById(R.id.news_tag_image_2);
                 tag_3.setVisibility(View.VISIBLE);
 
+                mProgressBar.setVisibility(View.GONE);
+
+                final ImageView articleImage = findViewById(R.id.news_article_image);
+
+                final String ImageURL = newsArticle.getImage();
+
                 if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
                     headline.setTextColor(Color.WHITE);
                     article_description.setTextColor(Color.WHITE);
@@ -122,12 +128,6 @@ public class NewsArticle extends AppCompatActivity {
                     tag_2.setColorFilter(Color.WHITE);
                     tag_3.setColorFilter(Color.WHITE);
                 }
-
-                mProgressBar.setVisibility(View.GONE);
-
-                final ImageView articleImage = findViewById(R.id.news_article_image);
-
-                final String ImageURL = newsArticle.getImage();
 
                 MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(ImageURL).format(DecodeFormat.PREFER_RGB_565);
 

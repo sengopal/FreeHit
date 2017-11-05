@@ -76,8 +76,18 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
 
         String URLNewsImage = newsItems.get(position).getImage();
 
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            holder.cardView.setBackgroundColor(Color.parseColor("#484a4f"));
+            holder.title.setTextColor(Color.WHITE);
+            holder.desc.setTextColor(Color.WHITE);
+            MainActivity.requestBuilder = GlideApp.with(context).load(URLNewsImage).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+        }
+        else
+        {
+            MainActivity.requestBuilder = GlideApp.with(context).load(URLNewsImage).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
 
-        MainActivity.requestBuilder = GlideApp.with(context).load(URLNewsImage).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        }
+
 
         MainActivity.requestBuilder.into(holder.image);
 
@@ -99,11 +109,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
             }
         };
         RLContainer.setOnClickListener(mClickListener);
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            holder.cardView.setBackgroundColor(Color.parseColor("#484a4f"));
-            holder.title.setTextColor(Color.WHITE);
-            holder.desc.setTextColor(Color.WHITE);
-        }
+
 
 
     }

@@ -29,10 +29,6 @@ public class Innings1_Innings2 extends Fragment {
                              Bundle savedInstanceState) {
         String fragment_name = getArguments().getString("fragment_name");
         String match_type = getActivity().getIntent().getStringExtra("match_type");
-        String team1_innings1 = getActivity().getIntent().getStringExtra("team1_innings1");
-        String team2_innings1 = getActivity().getIntent().getStringExtra("team2_innings1");
-        String team1_innings2 = getActivity().getIntent().getStringExtra("team1_innings2");
-        String team2_innings2 = getActivity().getIntent().getStringExtra("team2_innings2");
 
         if (match_type.equals("PAST")) {
             teamList = ((PastMatchScoreCard) getActivity()).getQList();
@@ -57,7 +53,7 @@ public class Innings1_Innings2 extends Fragment {
 
         TextView extras = rootView.findViewById(R.id.extras);
         TextView TotalScore = rootView.findViewById(R.id.TotalScore);
-        String Extras,Total ;
+        String Extras ;
 
         switch (fragment_name) {
             case "Team_1_Innings_1":
@@ -67,8 +63,7 @@ public class Innings1_Innings2 extends Fragment {
                 justifyListViewHeightBasedOnChildren(listViewBatting);
                 Extras = teamList.get(0).getScorecard().getTeam1().getFirstinn().getExtras();
                 extras.setText(Extras);
-                Total = team1_innings1;
-                TotalScore.setText(Total);
+                TotalScore.setText(teamList.get(0).getScorecard().getTeam1().getFirstinn().getScore());
 
                 mBowlingAdapter = new ScoreCardBowlingAdapter(getContext(), teamList.get(0).getScorecard().getTeam1().getFirstinn().getBowling());
                 listViewBowling.setAdapter(mBowlingAdapter);
@@ -87,9 +82,8 @@ public class Innings1_Innings2 extends Fragment {
                 mBattingAdapter.notifyDataSetChanged();
                 justifyListViewHeightBasedOnChildren(listViewBatting);
                 Extras = teamList.get(0).getScorecard().getTeam2().getFirstinn().getExtras();
-                Total = team2_innings1;
                 extras.setText(Extras);
-                TotalScore.setText(Total);
+                TotalScore.setText(teamList.get(0).getScorecard().getTeam2().getFirstinn().getScore());
 
                 mBowlingAdapter = new ScoreCardBowlingAdapter(getContext(), teamList.get(0).getScorecard().getTeam2().getFirstinn().getBowling());
                 listViewBowling.setAdapter(mBowlingAdapter);
@@ -106,10 +100,9 @@ public class Innings1_Innings2 extends Fragment {
                 listViewBatting.setAdapter(mBattingAdapter);
                 mBattingAdapter.notifyDataSetChanged();
                 justifyListViewHeightBasedOnChildren(listViewBatting);
-                Extras = teamList.get(0).getScorecard().getTeam1().getFirstinn().getExtras();
-                Total = team1_innings2;
+                Extras = teamList.get(0).getScorecard().getTeam1().getSecondinn().getExtras();
                 extras.setText(Extras);
-                TotalScore.setText(Total);
+                TotalScore.setText(teamList.get(0).getScorecard().getTeam1().getSecondinn().getScore());
 
                 mBowlingAdapter = new ScoreCardBowlingAdapter(getContext(), teamList.get(0).getScorecard().getTeam1().getSecondinn().getBowling());
                 listViewBowling.setAdapter(mBowlingAdapter);
@@ -128,9 +121,8 @@ public class Innings1_Innings2 extends Fragment {
                 mBattingAdapter.notifyDataSetChanged();
                 justifyListViewHeightBasedOnChildren(listViewBatting);
                 Extras = teamList.get(0).getScorecard().getTeam2().getFirstinn().getExtras();
-                Total = team2_innings2;
                 extras.setText(Extras);
-                TotalScore.setText(Total);
+                TotalScore.setText(teamList.get(0).getScorecard().getTeam2().getSecondinn().getScore());
 
                 mBowlingAdapter = new ScoreCardBowlingAdapter(getContext(), teamList.get(0).getScorecard().getTeam2().getSecondinn().getBowling());
                 listViewBowling.setAdapter(mBowlingAdapter);

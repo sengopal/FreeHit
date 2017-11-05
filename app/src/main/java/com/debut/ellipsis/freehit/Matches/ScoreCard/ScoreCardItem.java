@@ -136,6 +136,8 @@ public class ScoreCardItem {
         private Innings firstinn;
         @SerializedName("inncount")
         private int inncount;
+        @SerializedName("teamname")
+        private String teamname;
         @SerializedName("secondinn")
         private Innings secondinn;
 
@@ -145,6 +147,10 @@ public class ScoreCardItem {
 
         public int getInncount() {
             return inncount;
+        }
+
+        public String getTeamname() {
+            return teamname;
         }
 
         public Innings getSecondinn() {
@@ -163,6 +169,8 @@ public class ScoreCardItem {
         private String extras;
         @SerializedName("fow")
         public List<FOW> fow = new ArrayList<>();
+        @SerializedName("score")
+        private String score;
         @SerializedName("team")
         private String team;
 
@@ -180,6 +188,10 @@ public class ScoreCardItem {
 
         public List<FOW> getFow() {
             return fow;
+        }
+
+        public String getScore() {
+            return score;
         }
 
         public String getTeam() {

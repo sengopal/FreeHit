@@ -37,10 +37,10 @@ public class SeriesItemAdapter extends RecyclerView.Adapter<SeriesItemAdapter.Se
 
         public SeriesViewHolder(View v) {
             super(v);
-            Team1Logo = (ImageView) v.findViewById(R.id.Team1Logo);
-            Team2Logo = (ImageView) v.findViewById(R.id.Team2Logo);
-            SeriesTitle = (TextView) v.findViewById(R.id.series_title);
-            RlContainer = (RelativeLayout) v.findViewById(R.id.series_layout);
+            Team1Logo = v.findViewById(R.id.Team1Logo);
+            Team2Logo = v.findViewById(R.id.Team2Logo);
+            SeriesTitle = v.findViewById(R.id.series_title);
+            RlContainer = v.findViewById(R.id.series_layout);
         }
     }
 

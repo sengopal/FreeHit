@@ -46,6 +46,8 @@ public class ScoreCardFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         String match_type = getActivity().getIntent().getStringExtra("match_type");
+        String team_1_intent = getActivity().getIntent().getStringExtra("team1");
+        String team_2_intent = getActivity().getIntent().getStringExtra("team2");
 
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_social_main, container, false);
@@ -62,15 +64,42 @@ public class ScoreCardFragment extends Fragment {
 
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             tabLayout.setBackgroundColor(getResources().getColor(R.color.night_background));
+            viewPager.setBackgroundColor(getResources().getColor(R.color.night_background));
         }
 
         if (match_type.equals("PAST")) {
             teamList = ((PastMatchScoreCard) getActivity()).getQList();
         }
 
-        team_1 = teamList.get(0).getScorecard().getTeam1().getFirstinn().getTeam();
-        team_2 = teamList.get(0).getScorecard().getTeam2().getFirstinn().getTeam();
 
+        if(teamList.get(0).getScorecard().getTeam1().getInncount()!=0)
+        {
+            if(teamList.get(0).getScorecard().getTeam1().getTeamname().equals(team_1_intent)) {
+                team_1 = team_1_intent;
+                team_2 = team_2_intent;
+            }
+            else
+            {
+                team_1 = team_2_intent;
+                team_2 = team_1_intent;
+            }
+        }
+
+        else if(teamList.get(0).getScorecard().getTeam2().getInncount()!=0)
+        {
+            if(teamList.get(0).getScorecard().getTeam2().getTeamname().equals(team_2_intent)) {
+                team_2 = team_2_intent;
+                team_1 = team_1_intent;
+            }
+            else
+            {
+                team_2 = team_1_intent;
+                team_1 =team_2_intent;
+            }
+        }
+
+        System.out.println("TEAM 1 "+team_1);
+        System.out.println("TEAM 2 "+team_2);
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -88,8 +117,8 @@ public class ScoreCardFragment extends Fragment {
 
             }
         });
-
         setupTabIcons();
+
 
         return rootView;
     }
@@ -108,9 +137,9 @@ public class ScoreCardFragment extends Fragment {
 
 
         TeamName = tabLayout.getTabAt(0).getCustomView().findViewById(R.id.team_sn);
-        TeamName.setText(teamList.get(0).getScorecard().getTeam1().getFirstinn().getTeam());
+        TeamName.setText(team_1);
         TeamName = tabLayout.getTabAt(1).getCustomView().findViewById(R.id.team_sn);
-        TeamName.setText(teamList.get(0).getScorecard().getTeam2().getFirstinn().getTeam());
+        TeamName.setText(team_2);
 
         TeamLogo = tabLayout.getTabAt(0).getCustomView().findViewById(R.id.team_logo);
 

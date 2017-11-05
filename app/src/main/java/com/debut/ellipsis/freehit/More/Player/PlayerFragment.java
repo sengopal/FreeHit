@@ -67,7 +67,16 @@ public class PlayerFragment extends Fragment {
             String ImageURL = info.getImg();
 
             if (isAdded()) {
-                MainActivity.requestBuilder = GlideApp.with(getContext()).load(ImageURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+
+                if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+                {
+                    MainActivity.requestBuilder = GlideApp.with(getContext()).load(ImageURL).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+                }
+                else
+                {
+                    MainActivity.requestBuilder = GlideApp.with(getContext()).load(ImageURL).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
+                }
+
 
                 MainActivity.requestBuilder.into(articleImage);
             }
