@@ -97,7 +97,7 @@ public class ScoreCardFragment extends Fragment {
                 team_1 =team_2_intent;
             }
         }
-        
+
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
