@@ -34,6 +34,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
         TextView desc;
         TextView date;
         TextView tag;
+        ImageView news_tag;
         RelativeLayout rlcontainer;
         CardView cardView;
 
@@ -44,6 +45,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
             title = (TextView) v.findViewById(R.id.header_text_view);
             desc = (TextView) v.findViewById(R.id.summary_text_view);
             date = (TextView) v.findViewById(R.id.news_date);
+            news_tag = v.findViewById(R.id.news_tag_image);
             tag = (TextView) v.findViewById(R.id.news_tag);
             cardView = (CardView) v.findViewById(R.id.card_view);
             rlcontainer = (RelativeLayout) v.findViewById(R.id.news_layout);
@@ -80,6 +82,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
             holder.cardView.setBackgroundColor(Color.parseColor("#484a4f"));
             holder.title.setTextColor(Color.WHITE);
             holder.desc.setTextColor(Color.WHITE);
+            holder.news_tag.setColorFilter(Color.WHITE);
             MainActivity.requestBuilder = GlideApp.with(context).load(URLNewsImage).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
         }
         else

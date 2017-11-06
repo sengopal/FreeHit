@@ -39,7 +39,7 @@
                 android:id="@+id/country_flag"
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_40sdp"
-                tools:src="@drawable/matches" />
+                tools:src="@drawable/matches_vector" />
 
             <TextView
                 android:id="@+id/country_name"
@@ -99,8 +99,7 @@
             android:id="@+id/switch_night_mode"
             android:paddingStart="@dimen/_10sdp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:textAppearanceSmall" />
+            android:layout_height="wrap_content" />
 
     </RelativeLayout>
 

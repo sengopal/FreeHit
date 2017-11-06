@@ -95,7 +95,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/_3sdp"
-                        tools:src="@drawable/matches" />
+                        tools:src="@drawable/matches_vector" />
 
                     <TextView
                         android:id="@+id/sn_team_1_past"
@@ -145,7 +145,7 @@
                         android:layout_height="@dimen/_75sdp"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="@dimen/_3sdp"
-                        tools:src="@drawable/matches" />
+                        tools:src="@drawable/matches_vector" />
 
                     <TextView
                         android:id="@+id/sn_team_2_past"

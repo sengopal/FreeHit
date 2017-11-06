@@ -61,7 +61,7 @@ public class MatchesActivity extends AppCompatActivity {
         View viewFAB = findViewById(R.id.fab);
         fab = viewFAB.findViewById(R.id.common_fab);
         fab.hide();
-        fab.setImageResource(R.drawable.arrow_up);
+        fab.setImageResource(R.drawable.arrow_up_vector);
 
         View viewRecycler = findViewById(R.id.match_list_team);
         rv = viewRecycler.findViewById(R.id.recycler_list);
@@ -83,7 +83,7 @@ public class MatchesActivity extends AppCompatActivity {
             case AppCompatDelegate.MODE_NIGHT_YES:
                 setTheme(R.style.AppThemeDark);
                 rv.setBackgroundColor(getResources().getColor(R.color.night_background));
-                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.dark)));
+                fab.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
                 refresh_layout.setColorSchemeColors(Color.BLACK);
                 break;
             default:

@@ -137,7 +137,7 @@ public class WelcomeActivity extends AppCompatActivity {
             dots[i].setLayoutParams(params);
             params.setMargins(15, 15, 0, 0);
             //parms.setMargins(left, top, right, bottom);
-            dots[i].setImageResource(R.drawable.circle);
+            dots[i].setImageResource(R.drawable.circle_vector);
             dots[i].setColorFilter(colorsInactive[currentPage]);
             dotsLayout.addView(dots[i]);
         }
@@ -305,7 +305,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
                 ImageView before = findViewById(R.id.country_flag);
 
-                RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(flagURLID).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+                RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(flagURLID).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
 
                 requestBuilder.into(before);
 

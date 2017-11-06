@@ -159,11 +159,11 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
 
         viewHolder.MatchTime.setText(formattedTime);
 
-        MainActivity.requestBuilder = GlideApp.with(mContext).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        MainActivity.requestBuilder = GlideApp.with(mContext).load(logo_string1).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
 
         MainActivity.requestBuilder.into(imageViewTeam1Logo);
 
-        MainActivity.requestBuilder = GlideApp.with(mContext).load(logo_string2).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        MainActivity.requestBuilder = GlideApp.with(mContext).load(logo_string2).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
 
         MainActivity.requestBuilder.into(imageViewTeam2Logo);
 

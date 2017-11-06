@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="center_vertical"
     android:background="@color/bg_screen5">
 
@@ -22,7 +23,7 @@
                 android:id="@+id/country_flag"
                 android:layout_width="@dimen/_75sdp"
                 android:layout_height="@dimen/_75sdp"
-                android:src="@drawable/matches" />
+                tools:src="@drawable/matches_vector" />
 
             <TextView
                 android:id="@+id/country_name"

@@ -35,6 +35,7 @@ public class NewsFragment extends Fragment {
 
     private ProgressBar mProgressBar;
     public Button NoConnectionButton;
+    public TextView NoConnection;
     public TextView NoNewsText;
     public Button NoNewsButton;
     private FloatingActionButton fab;
@@ -58,13 +59,23 @@ public class NewsFragment extends Fragment {
         View viewFAB = rootView.findViewById(R.id.fab);
         fab = viewFAB.findViewById(R.id.common_fab);
         fab.hide();
-        fab.setImageResource(R.drawable.arrow_up);
+        fab.setImageResource(R.drawable.arrow_up_vector);
 
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
 
         final RecyclerView recyclerView = viewRecycler.findViewById(R.id.recycler_list);
         recyclerView.setLayoutManager(mLinearLayoutManager);
 
+        final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
+
+        NoConnectionButton = no_internet_connection.findViewById(R.id.no_internet_refresh_button);
+
+        NoConnection = no_internet_connection.findViewById(R.id.no_internet_connection_text);
+
+        final View No_news = rootView.findViewById(R.id.No_news);
+
+        NoNewsText = No_news.findViewById(R.id.empty_view);
+        NoNewsButton = No_news.findViewById(R.id.No_Live_Matches_button);
 
         View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = viewProgress.findViewById(R.id.progress_bar);
@@ -74,24 +85,15 @@ public class NewsFragment extends Fragment {
         switch (AppCompatDelegate.getDefaultNightMode()) {
             case AppCompatDelegate.MODE_NIGHT_YES:
                 recyclerView.setBackgroundColor(getResources().getColor(R.color.night_background));
-                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.dark)));
+                fab.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
                 refLayout.setColorSchemeColors(Color.BLACK);
-
+                NoConnectionButton.setTextColor(Color.BLACK);
+                NoConnection.setTextColor(Color.WHITE);
                 break;
             default:
                 refLayout.setColorSchemeResources(R.color.orange);
                 break;
         }
-
-        final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
-
-        NoConnectionButton = no_internet_connection.findViewById(R.id.no_internet_refresh_button);
-
-
-        final View No_news = rootView.findViewById(R.id.No_news);
-
-        NoNewsText = No_news.findViewById(R.id.empty_view);
-        NoNewsButton = No_news.findViewById(R.id.No_Live_Matches_button);
 
 
         Call<NewsItem> call = MainActivity.apiInterface.doGetNewsListResources();

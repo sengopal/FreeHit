@@ -42,10 +42,10 @@ public class MoreFragment extends Fragment {
 
         final ArrayList<MoreItem> moreItem = new ArrayList<MoreItem>();
 
-        moreItem.add(new MoreItem(R.drawable.player, R.string.search_player));
-        moreItem.add(new MoreItem(R.drawable.team, R.string.search_team));
-        moreItem.add(new MoreItem(R.drawable.series, R.string.search_series));
-        moreItem.add(new MoreItem(R.drawable.fav, R.string.fav_team));
+        moreItem.add(new MoreItem(R.drawable.player_vector, R.string.search_player));
+        moreItem.add(new MoreItem(R.drawable.team_vector, R.string.search_team));
+        moreItem.add(new MoreItem(R.drawable.series_vector, R.string.search_series));
+        moreItem.add(new MoreItem(R.drawable.fav_vector, R.string.fav_team));
         moreItem.add(new MoreItem(R.drawable.rankings, R.string.rankings));
 
         MoreAdapter adapter = new MoreAdapter(getActivity(), moreItem);

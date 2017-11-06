@@ -44,7 +44,7 @@ public class TeamListAdapter extends ArrayAdapter<TeamListItem> {
 
         ImageView TeamIcon = listItemView.findViewById(R.id.row_icon);
 
-        RequestBuilder requestBuilder = GlideApp.with(getContext()).load(currentItem.getmTeamIconURL()).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        RequestBuilder requestBuilder = GlideApp.with(getContext()).load(currentItem.getmTeamIconURL()).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
 
         requestBuilder.into(TeamIcon);
 

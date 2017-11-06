@@ -37,6 +37,7 @@ public class SocialTweets extends Fragment {
     public RecyclerView rv;
     private ProgressBar mProgressBar;
     public Button NoConnectionButton;
+    public TextView NoConnection;
     public TextView NotweetsText;
     public Button NotweetsButton;
 
@@ -57,21 +58,6 @@ public class SocialTweets extends Fragment {
 
         final SwipeRefreshLayout refLayout = viewRecycler.findViewById(R.id.refresh_layout);
 
-
-        //  Initializing the RecyclerView for Twitter feed
-        rv = viewRecycler.findViewById(R.id.recycler_list);
-        switch (AppCompatDelegate.getDefaultNightMode()) {
-            case AppCompatDelegate.MODE_NIGHT_YES:
-                rv.setBackgroundColor(getResources().getColor(R.color.night_background));
-                refLayout.setColorSchemeColors(Color.BLACK);
-                break;
-            default:
-                refLayout.setColorSchemeResources(R.color.orange);
-                break;
-        }
-
-        rv.setLayoutManager(new LinearLayoutManager(getContext()));
-
         View viewProgress = socTweets.findViewById(R.id.progress);
 
         mProgressBar = viewProgress.findViewById(R.id.progress_bar);
@@ -86,8 +72,28 @@ public class SocialTweets extends Fragment {
 
         NoConnectionButton = no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
+        NoConnection = no_internet_connection.findViewById(R.id.no_internet_connection_text);
 
         final RelativeLayout twitrel = socTweets.findViewById(R.id.twit_layout);
+
+
+        //  Initializing the RecyclerView for Twitter feed
+        rv = viewRecycler.findViewById(R.id.recycler_list);
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                rv.setBackgroundColor(getResources().getColor(R.color.night_background));
+                refLayout.setColorSchemeColors(Color.BLACK);
+                NotweetsButton.setBackgroundResource(R.drawable.button_shape_dark);
+                NotweetsButton.setTextColor(Color.BLACK);
+                NoConnectionButton.setTextColor(Color.BLACK);
+                NoConnection.setTextColor(Color.WHITE);
+                break;
+            default:
+                refLayout.setColorSchemeResources(R.color.orange);
+                break;
+        }
+
+        rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
         container.setOnClickListener(new View.OnClickListener() {
             @Override

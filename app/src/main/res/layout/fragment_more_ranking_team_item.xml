@@ -30,7 +30,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_weight="0.5"
-            android:src="@drawable/matches" />
+            tools:src="@drawable/matches_vector" />
 
         <TextView
             android:id="@+id/team"

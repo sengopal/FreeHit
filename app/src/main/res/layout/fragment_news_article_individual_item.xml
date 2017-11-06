@@ -84,7 +84,7 @@
                     android:layout_width="@dimen/_8sdp"
                     android:layout_height="@dimen/_13sdp"
                     android:layout_marginTop="@dimen/_1sdp"
-                    android:src="@drawable/tag"
+                    android:src="@drawable/tag_vector"
                     android:visibility="invisible" />
 
                 <TextView
@@ -102,7 +102,7 @@
                     android:layout_height="@dimen/_13sdp"
                     android:layout_below="@+id/news_tag_image"
                     android:layout_marginTop="@dimen/_1sdp"
-                    android:src="@drawable/tag"
+                    android:src="@drawable/tag_vector"
                     android:visibility="invisible" />
 
                 <TextView
@@ -121,7 +121,7 @@
                     android:layout_height="@dimen/_13sdp"
                     android:layout_below="@+id/news_tag_image_1"
                     android:layout_marginTop="@dimen/_1sdp"
-                    android:src="@drawable/tag"
+                    android:src="@drawable/tag_vector"
                     android:visibility="invisible" />
 
                 <TextView

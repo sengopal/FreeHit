@@ -79,7 +79,7 @@
                             android:layout_height="@dimen/_60sdp"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="@dimen/_10sdp"
-                            app:srcCompat="@drawable/matches" />
+                            tools:src="@drawable/matches_vector" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"

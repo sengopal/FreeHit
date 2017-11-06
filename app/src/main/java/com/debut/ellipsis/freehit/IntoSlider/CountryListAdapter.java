@@ -62,7 +62,7 @@ public class CountryListAdapter extends BaseAdapter {
 
         String FlagURL = country.getFlag();
 
-        RequestBuilder requestBuilder = GlideApp.with(mContext).load(FlagURL).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        RequestBuilder requestBuilder = GlideApp.with(mContext).load(FlagURL).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
 
         requestBuilder.into(cell.imageView);
 

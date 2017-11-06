@@ -33,6 +33,7 @@ public class SocialPolls extends Fragment {
     public TextView NoPollsText;
     public Button NoPollsButton;
     public Button NoConnectionButton;
+    public TextView NoConnection;
     PollsItemAdapter mAdapter;
     private ListView listView;
 
@@ -59,6 +60,8 @@ public class SocialPolls extends Fragment {
 
         NoConnectionButton = no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
+        NoConnection = no_internet_connection.findViewById(R.id.no_internet_connection_text);
+
         switch (AppCompatDelegate.getDefaultNightMode()) {
             case AppCompatDelegate.MODE_NIGHT_YES:
                 listView.setBackgroundColor(getResources().getColor(R.color.night_background));
@@ -66,6 +69,8 @@ public class SocialPolls extends Fragment {
                 NoPollsButton.setBackgroundResource(R.drawable.button_shape_dark);
                 NoPollsButton.setTextColor(Color.BLACK);
                 refLayout.setColorSchemeColors(Color.BLACK);
+                NoConnectionButton.setTextColor(Color.BLACK);
+                NoConnection.setTextColor(Color.WHITE);
                 break;
             default:
                 refLayout.setColorSchemeResources(R.color.orange);

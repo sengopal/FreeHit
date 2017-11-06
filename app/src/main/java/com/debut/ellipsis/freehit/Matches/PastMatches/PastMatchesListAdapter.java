@@ -125,11 +125,11 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
         String logo_string1 = WelcomeActivity.countryHash.getCountryFlag(WelcomeActivity.countryHash.getCountryName(pastMatchCardItems.get(position).getTeam1Info().getSn()).toUpperCase());
         String logo_string2 = WelcomeActivity.countryHash.getCountryFlag(WelcomeActivity.countryHash.getCountryName(pastMatchCardItems.get(position).getTeam2Info().getSn()).toUpperCase());
 
-        MainActivity.requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        MainActivity.requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
 
         MainActivity.requestBuilder.into(holder.team1image);
 
-        MainActivity.requestBuilder = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        MainActivity.requestBuilder = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
 
         MainActivity.requestBuilder.into(holder.team2image);
 

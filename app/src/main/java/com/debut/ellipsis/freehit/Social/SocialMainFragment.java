@@ -25,8 +25,8 @@ public class SocialMainFragment extends Fragment {
     public ViewPager viewPager;
     private TabLayout tabLayout;
     private int[] tabIcons = {
-            R.drawable.poll,
-            R.drawable.twitter
+            R.drawable.poll_vector,
+            R.drawable.twitter_vector
     };
 
     public SocialMainFragment() {

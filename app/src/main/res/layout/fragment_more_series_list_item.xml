@@ -17,7 +17,7 @@
             android:id="@+id/Team1Logo"
             android:layout_width="@dimen/_35sdp"
             android:layout_height="@dimen/_35sdp"
-            android:src="@drawable/matches" />
+            tools:src="@drawable/matches_vector" />
 
 
         <TextView
@@ -35,7 +35,7 @@
             android:id="@+id/Team2Logo"
             android:layout_width="@dimen/_35sdp"
             android:layout_height="@dimen/_35sdp"
-            android:src="@drawable/matches" />
+            tools:src="@drawable/matches_vector" />
 
 
     </LinearLayout>

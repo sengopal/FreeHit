@@ -37,10 +37,10 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private int[] tabIcons = {
-            R.drawable.matches,
-            R.drawable.news,
-            R.drawable.social,
-            R.drawable.more,
+            R.drawable.matches_vector,
+            R.drawable.news_vector,
+            R.drawable.social_vector,
+            R.drawable.more_vector,
     };
 
     public static RequestBuilder requestBuilder;

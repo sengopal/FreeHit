@@ -26,7 +26,7 @@
             android:layout_toEndOf="@id/team_sn"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
-            android:src="@drawable/matches"/>
+            tools:src="@drawable/matches_vector"/>
 
     </RelativeLayout>
 

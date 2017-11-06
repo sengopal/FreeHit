@@ -141,14 +141,14 @@ public class ScoreCardFragment extends Fragment {
 
         String teamLogo = WelcomeActivity.countryHash.getCountryFlag(team_1.toUpperCase());
 
-        MainActivity.requestBuilder = GlideApp.with(getContext()).load(teamLogo).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        MainActivity.requestBuilder = GlideApp.with(getContext()).load(teamLogo).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
         MainActivity.requestBuilder.into(teamLogo1);
 
         teamLogo1 = tabLayout.getTabAt(1).getCustomView().findViewById(R.id.team_logo);
 
         teamLogo = WelcomeActivity.countryHash.getCountryFlag(team_2.toUpperCase());
 
-        MainActivity.requestBuilder = GlideApp.with(getContext()).load(teamLogo).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        MainActivity.requestBuilder = GlideApp.with(getContext()).load(teamLogo).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
         MainActivity.requestBuilder.into(teamLogo1);
 
     }

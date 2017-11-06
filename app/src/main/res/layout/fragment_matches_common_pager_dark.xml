@@ -10,7 +10,7 @@
 
     <include
         android:id="@+id/Unavailable_connection"
-        layout="@layout/no_internet_connection"
+        layout="@layout/no_internet_connection_dark"
         android:visibility="invisible" />
 
     <include

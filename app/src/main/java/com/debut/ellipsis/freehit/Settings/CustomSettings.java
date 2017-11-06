@@ -31,6 +31,7 @@ import static com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity.MY_PREFS_NAM
 public class CustomSettings extends AppCompatActivity {
 
     public Button NoConnectionButton;
+    public TextView NoConnection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,9 @@ public class CustomSettings extends AppCompatActivity {
         final TextView title_country_select = findViewById(R.id.title_country_select);
         NoConnectionButton = no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
+        NoConnection = no_internet_connection.findViewById(R.id.no_internet_connection_text);
+        NoConnection.setTextColor(Color.WHITE);
+
         RelativeLayout country_select = findViewById(R.id.country_select_layout);
 
         ImageView country_flag = findViewById(R.id.country_flag);
@@ -77,6 +81,7 @@ public class CustomSettings extends AppCompatActivity {
             night_mode.setTextColor(Color.WHITE);
             country_select_button.setBackgroundResource(R.drawable.button_shape_dark);
             country_select_button.setTextColor(Color.BLACK);
+            NoConnectionButton.setTextColor(Color.BLACK);
         }
         final SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
 
@@ -128,6 +133,8 @@ public class CustomSettings extends AppCompatActivity {
 
             MainActivity.requestBuilder.into(country_flag);
         } else {
+            night_mode.setVisibility(View.INVISIBLE);
+            NightMode.setVisibility(View.INVISIBLE);
             country_select.setVisibility(View.INVISIBLE);
             no_internet_connection.setVisibility(View.VISIBLE);
             NoConnectionButton.setOnClickListener(new View.OnClickListener() {
@@ -157,7 +164,7 @@ public class CustomSettings extends AppCompatActivity {
 
                 ImageView before = findViewById(R.id.country_flag);
 
-                MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(flagURLID).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(flagURLID).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
 
                 MainActivity.requestBuilder.into(before);
 

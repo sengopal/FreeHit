@@ -32,7 +32,6 @@ public class MoreAdapter extends ArrayAdapter<MoreItem> {
         MoreItem currentItem = getItem(position);
 
         ImageView moreArrowIcon = (ImageView) listItemView.findViewById(R.id.arrow_icon);
-        moreArrowIcon.setImageResource(R.drawable.arrow);
 
         TextView moreNameTextView = (TextView) listItemView.findViewById(R.id.row_title);
         moreNameTextView.setText(currentItem.getmMoreName());

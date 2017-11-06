@@ -47,7 +47,7 @@
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginEnd="@dimen/_5sdp"
                 android:scaleType="fitXY"
-                tools:src="@drawable/matches" />
+                tools:src="@drawable/matches_vector" />
 
             <TextView
                 android:id="@+id/news_date"
@@ -62,10 +62,11 @@
             <ImageView
                 android:id="@+id/news_tag_image"
                 android:layout_width="@dimen/_8sdp"
-                android:layout_height="@dimen/_9sdp"
+                android:layout_height="@dimen/_10sdp"
                 android:layout_below="@+id/news_date"
+                android:layout_marginTop="@dimen/_2sdp"
                 android:layout_marginStart="@dimen/_15sdp"
-                android:src="@drawable/tag" />
+                android:src="@drawable/tag_vector" />
 
             <TextView
                 android:id="@+id/news_tag"

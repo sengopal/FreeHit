@@ -55,7 +55,7 @@
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:layout_gravity="center"
-                        android:src="@drawable/arrow" />
+                        android:src="@drawable/arrow_vector" />
 
 
                     <TextView
@@ -86,7 +86,7 @@
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:layout_gravity="center"
-                        android:src="@drawable/arrow" />
+                        android:src="@drawable/arrow_vector" />
 
                     <TextView
                         android:id="@+id/match_info_team2"

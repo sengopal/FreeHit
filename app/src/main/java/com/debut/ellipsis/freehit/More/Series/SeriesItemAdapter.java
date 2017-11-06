@@ -106,11 +106,11 @@ public class SeriesItemAdapter extends RecyclerView.Adapter<SeriesItemAdapter.Se
         String Team1LogoUrl = WelcomeActivity.countryHash.getCountryFlag(team1.toUpperCase());
         String Team2LogoUrl = WelcomeActivity.countryHash.getCountryFlag(team2.toUpperCase());
 
-        MainActivity.requestBuilder = GlideApp.with(context).load(Team1LogoUrl).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        MainActivity.requestBuilder = GlideApp.with(context).load(Team1LogoUrl).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
 
         MainActivity.requestBuilder.into(holder.Team1Logo);
 
-        MainActivity.requestBuilder = GlideApp.with(context).load(Team2LogoUrl).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
+        MainActivity.requestBuilder = GlideApp.with(context).load(Team2LogoUrl).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
 
         MainActivity.requestBuilder.into(holder.Team2Logo);
 

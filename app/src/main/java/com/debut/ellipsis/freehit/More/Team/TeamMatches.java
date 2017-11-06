@@ -54,7 +54,7 @@ public class TeamMatches extends Fragment {
         View viewFAB = rootView.findViewById(R.id.fab);
         fab = viewFAB.findViewById(R.id.common_fab);
         fab.hide();
-        fab.setImageResource(R.drawable.arrow_up);
+        fab.setImageResource(R.drawable.arrow_up_vector);
 
         Intent i = getActivity().getIntent();
         TeamActivity.Team = i.getIntExtra("CountryName", 0);
@@ -87,7 +87,7 @@ public class TeamMatches extends Fragment {
         switch (AppCompatDelegate.getDefaultNightMode()) {
             case AppCompatDelegate.MODE_NIGHT_YES:
                 rv.setBackgroundColor(getResources().getColor(R.color.night_background));
-                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.dark)));
+                fab.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
                 refresh_layout.setColorSchemeColors(Color.BLACK);
                 break;
             default:
