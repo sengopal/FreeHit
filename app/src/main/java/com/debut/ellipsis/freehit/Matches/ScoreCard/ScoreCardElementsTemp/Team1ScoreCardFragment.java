@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchScoreCard;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardItem;
@@ -52,6 +53,7 @@ public class Team1ScoreCardFragment extends Fragment {
             teamList = ((PastMatchScoreCard) getActivity()).getQList();
         }
 
+        TextView no_match_data = rootView.findViewById(R.id.No_match_data);
 
         if (teamList.get(0).getScorecard().getTeam1().getInncount() == 1)
             setupViewPagerOneInnings(viewPager);
@@ -59,7 +61,9 @@ public class Team1ScoreCardFragment extends Fragment {
             setupViewPagerTwoInnings(viewPager);
         else
         {
-
+            viewPager.setVisibility(View.INVISIBLE);
+            no_match_data.setVisibility(View.VISIBLE);
+            no_match_data.setText(R.string.no_match_data);
         }
 
 

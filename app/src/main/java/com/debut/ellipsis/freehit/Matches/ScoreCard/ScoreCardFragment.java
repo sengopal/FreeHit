@@ -68,7 +68,7 @@ public class ScoreCardFragment extends Fragment {
         }
 
         if (match_type.equals("PAST")) {
-            teamList = ((PastMatchScoreCard) getActivity()).getQList();
+            teamList = PastMatchScoreCard.getQList();
         }
 
 

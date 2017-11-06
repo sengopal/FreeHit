@@ -152,6 +152,7 @@
     <string name="bowling"><b>BOWLING</b></string>
     <string name="fow"><b>FALL OF WICKETS</b></string>
     <string name="fall_of_wicket">Fall Of Wicket</string>
+    <string name="no_match_data">No Match Data Available</string>
 
 
 </resources>

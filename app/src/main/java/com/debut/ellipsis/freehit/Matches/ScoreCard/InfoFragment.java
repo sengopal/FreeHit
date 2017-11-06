@@ -1,6 +1,7 @@
 package com.debut.ellipsis.freehit.Matches.ScoreCard;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,7 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
@@ -23,6 +26,8 @@ import java.util.List;
 
 
 public class InfoFragment extends Fragment {
+
+    String team_1, team_2;
 
     public InfoFragment() {
         // Required empty public constructor
@@ -36,9 +41,11 @@ public class InfoFragment extends Fragment {
                              final Bundle savedInstanceState) {
 
         String match_type = getActivity().getIntent().getStringExtra("match_type");
-        final String match_name = getActivity().getIntent().getStringExtra("match_name");
+        String match_name = getActivity().getIntent().getStringExtra("match_name");
+        final String team_1_intent = getActivity().getIntent().getStringExtra("team1");
+        String team_2_intent = getActivity().getIntent().getStringExtra("team2");
 
-        View rootView= null ;
+        View rootView = null;
 
         switch (AppCompatDelegate.getDefaultNightMode()) {
             case AppCompatDelegate.MODE_NIGHT_YES:
@@ -59,14 +66,32 @@ public class InfoFragment extends Fragment {
         List<ScoreCardItem> teamList = null;
 
         if (match_type.equals("PAST")) {
-            teamList = ((PastMatchScoreCard) getActivity()).getQList();
+            teamList = PastMatchScoreCard.getQList();
+        }
+
+        if (teamList.get(0).getScorecard().getTeam1().getInncount() != 0) {
+            if (teamList.get(0).getScorecard().getTeam1().getTeamname().equals(team_1_intent)) {
+                team_1 = team_1_intent;
+                team_2 = team_2_intent;
+            } else {
+                team_1 = team_2_intent;
+                team_2 = team_1_intent;
+            }
+        } else if (teamList.get(0).getScorecard().getTeam2().getInncount() != 0) {
+            if (teamList.get(0).getScorecard().getTeam2().getTeamname().equals(team_2_intent)) {
+                team_2 = team_2_intent;
+                team_1 = team_1_intent;
+            } else {
+                team_2 = team_1_intent;
+                team_1 = team_2_intent;
+            }
         }
 
         TextView match_info_team1 = rootView.findViewById(R.id.match_info_team1);
-        match_info_team1.setText(teamList.get(0).getScorecard().getTeam1().getFirstinn().getTeam());
+        match_info_team1.setText(team_1);
 
         TextView match_info_team2 = rootView.findViewById(R.id.match_info_team2);
-        match_info_team2.setText(teamList.get(0).getScorecard().getTeam2().getFirstinn().getTeam());
+        match_info_team2.setText(team_2);
 
         TextView match = rootView.findViewById(R.id.match_info_match_name);
         match.setText(match_name);
@@ -106,6 +131,46 @@ public class InfoFragment extends Fragment {
 
         TextView weather = rootView.findViewById(R.id.match_info_weather);
         weather.setText(teamList.get(1).getInfo().getWeather());
+
+        TableRow team1 = rootView.findViewById(R.id.team1);
+
+        final List<ScoreCardItem> finalTeamList = teamList;
+        team1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(finalTeamList.get(0).getScorecard().getTeam1().getTeamname()!= null)
+                {
+                    Intent PlayingX1 = new Intent(getActivity().getBaseContext(), com.debut.ellipsis.freehit.Matches.ScoreCard.PlayingX1.class);
+                    PlayingX1.putExtra("team", "TEAM_1");
+                    PlayingX1.putExtra("match_type", "PAST");
+                    getActivity().startActivity(PlayingX1);
+                }
+                else
+                {
+                    Toast.makeText(getContext(),"Playing X1 not available",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        TableRow team2 = rootView.findViewById(R.id.team2);
+
+        team2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(finalTeamList.get(0).getScorecard().getTeam2().getTeamname()!= null)
+                {
+                    Intent PlayingX1 = new Intent(getActivity().getBaseContext(), com.debut.ellipsis.freehit.Matches.ScoreCard.PlayingX1.class);
+                    PlayingX1.putExtra("team", "TEAM_2");
+                    PlayingX1.putExtra("match_type", "PAST");
+                    getActivity().startActivity(PlayingX1);
+                }
+                else
+                {
+                    Toast.makeText(getContext(),"Playing X1 not available",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         return rootView;
     }

@@ -43,6 +43,7 @@
                 </TableRow>
 
                 <TableRow
+                    android:id="@+id/team1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
@@ -73,6 +74,7 @@
                     android:background="@color/divider" />
 
                 <TableRow
+                    android:id="@+id/team2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"

@@ -56,7 +56,7 @@ public class HeadToHeadFragment extends Fragment {
         List<ScoreCardItem> teamList = null;
 
         if (match_type.equals("PAST")) {
-            teamList = ((PastMatchScoreCard) getActivity()).getQList();
+            teamList = PastMatchScoreCard.getQList();
         }
 
         TextView team1_name = rootView.findViewById(R.id.team1_name);

@@ -34,7 +34,7 @@ public class PastMatchScoreCard extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private ProgressBar mProgressBar;
-    public List<ScoreCardItem> scoreCardItems;
+    public static List<ScoreCardItem> scoreCardItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,7 +150,7 @@ public class PastMatchScoreCard extends AppCompatActivity {
         }
     }
 
-    public List<ScoreCardItem> getQList(){
+    public static List<ScoreCardItem> getQList(){
         return scoreCardItems;
     }
 

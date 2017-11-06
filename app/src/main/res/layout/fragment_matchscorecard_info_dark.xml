@@ -44,6 +44,7 @@
                 </TableRow>
 
                 <TableRow
+                    android:id="@+id/team1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/ranking_layout"
@@ -74,6 +75,7 @@
                     android:background="@color/grey_300" />
 
                 <TableRow
+                    android:id="@+id/team2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/ranking_layout"
