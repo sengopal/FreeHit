@@ -6,7 +6,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.LinearLayoutManager;
@@ -37,7 +36,6 @@ import retrofit2.Response;
 
 public class PlayerSearchActivity extends AppCompatActivity {
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -62,14 +60,17 @@ public class PlayerSearchActivity extends AppCompatActivity {
             toolbar.setBackgroundColor(getResources().getColor(R.color.dark));
             recyclerView.setBackgroundColor(getResources().getColor(R.color.night_background));
             Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.BLACK);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(Color.BLACK);
+            }
+
         }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         // Get a reference to the ConnectivityManager to check state of network connectivity
-        ConnectivityManager connMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
         // Get details on the currently active default data network
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -99,8 +100,7 @@ public class PlayerSearchActivity extends AppCompatActivity {
                             }
 
                             //When not found in player list
-                            if(playerCountryItems.isEmpty())
-                            {
+                            if (playerCountryItems.isEmpty()) {
 
                                 Call<PlayerCountryItem> call1 = MainActivity.apiInterface.doGetTeamPlayers(s.toString());
                                 call1.enqueue(new Callback<PlayerCountryItem>() {
@@ -134,9 +134,7 @@ public class PlayerSearchActivity extends AppCompatActivity {
 
                 }
             });
-        }
-        else
-        {
+        } else {
             Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
         }
 

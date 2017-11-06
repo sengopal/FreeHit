@@ -3,7 +3,6 @@ package com.debut.ellipsis.freehit.More.Series;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
@@ -36,7 +35,6 @@ public class SeriesMainActivity extends AppCompatActivity {
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,8 +61,11 @@ public class SeriesMainActivity extends AppCompatActivity {
             toolbar.setBackgroundColor(getResources().getColor(R.color.dark));
             refLayout.setColorSchemeColors(Color.BLACK);
             Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.BLACK);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(Color.BLACK);
+            }
+
         }
         else
         {
@@ -77,7 +78,7 @@ public class SeriesMainActivity extends AppCompatActivity {
         MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
         Call<SeriesItem> seriesInfo = MainActivity.apiInterface.doGetSeries();
-        seriesInfo.enqueue(new Callback<com.debut.ellipsis.freehit.More.Series.SeriesItem>() {
+        seriesInfo.enqueue(new Callback<SeriesItem>() {
             @Override
             public void onResponse(Call<SeriesItem> call, Response<SeriesItem> response) {
                 mProgressbar.setVisibility(View.INVISIBLE);
@@ -101,7 +102,7 @@ public class SeriesMainActivity extends AppCompatActivity {
                                                refLayout.setRefreshing(true);
 
                                                Call<SeriesItem> seriesInfo = MainActivity.apiInterface.doGetSeries();
-                                               seriesInfo.enqueue(new Callback<com.debut.ellipsis.freehit.More.Series.SeriesItem>() {
+                                               seriesInfo.enqueue(new Callback<SeriesItem>() {
                                                    @Override
                                                    public void onResponse(Call<SeriesItem> call, Response<SeriesItem> response) {
                                                        mProgressbar.setVisibility(View.INVISIBLE);

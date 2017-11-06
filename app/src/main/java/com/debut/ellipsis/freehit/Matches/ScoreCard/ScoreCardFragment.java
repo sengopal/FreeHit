@@ -30,8 +30,6 @@ public class ScoreCardFragment extends Fragment {
 
     public ViewPager viewPager;
     private TabLayout tabLayout;
-    private TextView TeamName;
-    private ImageView TeamLogo;
     private String team_1;
     private String team_2;
     private List<ScoreCardItem> teamList = null;
@@ -134,24 +132,24 @@ public class ScoreCardFragment extends Fragment {
         }
 
 
-        TeamName = tabLayout.getTabAt(0).getCustomView().findViewById(R.id.team_sn);
-        TeamName.setText(team_1);
-        TeamName = tabLayout.getTabAt(1).getCustomView().findViewById(R.id.team_sn);
-        TeamName.setText(team_2);
+        TextView teamName = tabLayout.getTabAt(0).getCustomView().findViewById(R.id.team_sn);
+        teamName.setText(team_1);
+        teamName = tabLayout.getTabAt(1).getCustomView().findViewById(R.id.team_sn);
+        teamName.setText(team_2);
 
-        TeamLogo = tabLayout.getTabAt(0).getCustomView().findViewById(R.id.team_logo);
+        ImageView teamLogo1 = tabLayout.getTabAt(0).getCustomView().findViewById(R.id.team_logo);
 
         String teamLogo = WelcomeActivity.countryHash.getCountryFlag(team_1.toUpperCase());
 
         MainActivity.requestBuilder = GlideApp.with(getContext()).load(teamLogo).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
-        MainActivity.requestBuilder.into(TeamLogo);
+        MainActivity.requestBuilder.into(teamLogo1);
 
-        TeamLogo = tabLayout.getTabAt(1).getCustomView().findViewById(R.id.team_logo);
+        teamLogo1 = tabLayout.getTabAt(1).getCustomView().findViewById(R.id.team_logo);
 
         teamLogo = WelcomeActivity.countryHash.getCountryFlag(team_2.toUpperCase());
 
         MainActivity.requestBuilder = GlideApp.with(getContext()).load(teamLogo).placeholder(R.drawable.matches).format(DecodeFormat.PREFER_RGB_565);
-        MainActivity.requestBuilder.into(TeamLogo);
+        MainActivity.requestBuilder.into(teamLogo1);
 
     }
 

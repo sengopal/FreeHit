@@ -24,7 +24,6 @@ import java.util.List;
 public class Team2ScoreCardFragment extends Fragment {
 
     public ViewPager viewPager;
-    private TabLayout tabLayout;
     private List<ScoreCardItem> teamList = null;
 
     public Team2ScoreCardFragment() {
@@ -47,10 +46,10 @@ public class Team2ScoreCardFragment extends Fragment {
 
 
         View viewTabSocial = rootView.findViewById(R.id.social_tabs);
-        tabLayout = viewTabSocial.findViewById(R.id.tabs);
+        TabLayout tabLayout = viewTabSocial.findViewById(R.id.tabs);
 
         if (match_type.equals("PAST")) {
-            teamList = ((PastMatchScoreCard) getActivity()).getQList();
+            teamList = PastMatchScoreCard.getQList();
         }
 
         TextView no_match_data = rootView.findViewById(R.id.No_match_data);

@@ -50,7 +50,7 @@ public class Team1ScoreCardFragment extends Fragment {
         tabLayout = viewTabSocial.findViewById(R.id.tabs);
 
         if (match_type.equals("PAST")) {
-            teamList = ((PastMatchScoreCard) getActivity()).getQList();
+            teamList = PastMatchScoreCard.getQList();
         }
 
         TextView no_match_data = rootView.findViewById(R.id.No_match_data);
