@@ -123,44 +123,45 @@ public class PollsItemAdapter extends ArrayAdapter {
 
         holder = (ViewHolder) listItemView.getTag();
 
-        holder.title.setText(PollCardItems.get(position).getQuestion());
+        holder.title.setText(PollCardItems.get(PollCardItems.size()-position-1).getQuestion());
 
 
-        if (PollCardItems.get(position).getCount() == 2) {
-            holder.button1.setText(PollCardItems.get(position).getCtitle(0));
-            holder.option1.setText(PollCardItems.get(position).getCtitle(0));
 
-            holder.button2.setText(PollCardItems.get(position).getCtitle(1));
-            holder.option2.setText(PollCardItems.get(position).getCtitle(1));
+        if (PollCardItems.get(PollCardItems.size()-position-1).getCount() == 2) {
+            holder.button1.setText(PollCardItems.get(PollCardItems.size()-position-1).getCtitle(0));
+            holder.option1.setText(PollCardItems.get(PollCardItems.size()-position-1).getCtitle(0));
+
+            holder.button2.setText(PollCardItems.get(PollCardItems.size()-position-1).getCtitle(1));
+            holder.option2.setText(PollCardItems.get(PollCardItems.size()-position-1).getCtitle(1));
 
             holder.option3.setVisibility(View.GONE);
             holder.option4.setVisibility(View.GONE);
             holder.button3.setVisibility(View.GONE);
             holder.button4.setVisibility(View.GONE);
-        } else if (PollCardItems.get(position).getCount() == 3) {
-            holder.button1.setText(PollCardItems.get(position).getCtitle(0));
-            holder.option1.setText(PollCardItems.get(position).getCtitle(0));
+        } else if (PollCardItems.get(PollCardItems.size()-position-1).getCount() == 3) {
+            holder.button1.setText(PollCardItems.get(PollCardItems.size()-position-1).getCtitle(0));
+            holder.option1.setText(PollCardItems.get(PollCardItems.size()-position-1).getCtitle(0));
 
-            holder.button2.setText(PollCardItems.get(position).getCtitle(1));
-            holder.option2.setText(PollCardItems.get(position).getCtitle(1));
+            holder.button2.setText(PollCardItems.get(PollCardItems.size()-position-1).getCtitle(1));
+            holder.option2.setText(PollCardItems.get(PollCardItems.size()-position-1).getCtitle(1));
 
-            holder.button3.setText(PollCardItems.get(position).getCtitle(2));
-            holder.option3.setText(PollCardItems.get(position).getCtitle(2));
+            holder.button3.setText(PollCardItems.get(PollCardItems.size()-position-1).getCtitle(2));
+            holder.option3.setText(PollCardItems.get(PollCardItems.size()-position-1).getCtitle(2));
 
             holder.option4.setVisibility(View.GONE);
             holder.button4.setVisibility(View.GONE);
-        } else if (PollCardItems.get(position).getCount() == 4) {
-            holder.button1.setText(PollCardItems.get(position).getCtitle(0));
-            holder.option1.setText(PollCardItems.get(position).getCtitle(0));
+        } else if (PollCardItems.get(PollCardItems.size()-position-1).getCount() == 4) {
+            holder.button1.setText(PollCardItems.get(PollCardItems.size()-position-1).getCtitle(0));
+            holder.option1.setText(PollCardItems.get(PollCardItems.size()-position-1).getCtitle(0));
 
-            holder.button2.setText(PollCardItems.get(position).getCtitle(1));
-            holder.option2.setText(PollCardItems.get(position).getCtitle(1));
+            holder.button2.setText(PollCardItems.get(PollCardItems.size()-position-1).getCtitle(1));
+            holder.option2.setText(PollCardItems.get(PollCardItems.size()-position-1).getCtitle(1));
 
-            holder.button3.setText(PollCardItems.get(position).getCtitle(2));
-            holder.option3.setText(PollCardItems.get(position).getCtitle(2));
+            holder.button3.setText(PollCardItems.get(PollCardItems.size()-position-1).getCtitle(2));
+            holder.option3.setText(PollCardItems.get(PollCardItems.size()-position-1).getCtitle(2));
 
-            holder.button4.setText(PollCardItems.get(position).getCtitle(3));
-            holder.option4.setText(PollCardItems.get(position).getCtitle(3));
+            holder.button4.setText(PollCardItems.get(PollCardItems.size()-position-1).getCtitle(3));
+            holder.option4.setText(PollCardItems.get(PollCardItems.size()-position-1).getCtitle(3));
 
         }
 
@@ -174,7 +175,7 @@ public class PollsItemAdapter extends ArrayAdapter {
                     finalHolder.title.setVisibility(View.VISIBLE);
                     finalHolder.pGroupLay.setVisibility(View.INVISIBLE);
 
-                    editor.putBoolean("has_voted_" + PollCardItems.get(position).getVoteid(), true);
+                    editor.putBoolean("has_voted_" + PollCardItems.get(PollCardItems.size()-position-1).getVoteid(), true);
                     editor.apply();
 
                     int selectedId = finalHolder.rGroup.getCheckedRadioButtonId();
@@ -183,12 +184,12 @@ public class PollsItemAdapter extends ArrayAdapter {
 
                     String name = clicked.getText().toString();
 
-                    int choice = PollCardItems.get(position).searchTitle(name);
+                    int choice = PollCardItems.get(PollCardItems.size()-position-1).searchTitle(name);
 
                     finalHolder.rlayout.setVisibility(View.VISIBLE);
 
                     APIInterface apiInterface = ApiClient.getClient().create(APIInterface.class);
-                    Call<PollCardItem> call = apiInterface.doVotePollListResources(PollCardItems.get(position).getId().toString(), String.valueOf(choice));
+                    Call<PollCardItem> call = apiInterface.doVotePollListResources(PollCardItems.get(PollCardItems.size()-position-1).getId().toString(), String.valueOf(choice));
                     call.enqueue(new Callback<PollCardItem>() {
                         @Override
                         public void onResponse(Call<PollCardItem> call, Response<PollCardItem> response) {
@@ -197,7 +198,7 @@ public class PollsItemAdapter extends ArrayAdapter {
                             int total = poll.getTotalVotes();
                             finalHolder.title.setVisibility(View.VISIBLE);
 
-                            if (PollCardItems.get(position).getCount() == 2) {
+                            if (PollCardItems.get(PollCardItems.size()-position-1).getCount() == 2) {
                                 finalHolder.progress1.setMax(100);
                                 finalHolder.progress1.setProgress(PollResult(poll.getCvotes(0), total));
                                 finalHolder.progress2.setMax(100);
@@ -214,7 +215,7 @@ public class PollsItemAdapter extends ArrayAdapter {
                                 finalHolder.valueoption2.setText("( " + poll.getCvotes(1) + " )");
                                 finalHolder.valueoption3.setVisibility(View.GONE);
                                 finalHolder.valueoption4.setVisibility(View.GONE);
-                            } else if (PollCardItems.get(position).getCount() == 3) {
+                            } else if (PollCardItems.get(PollCardItems.size()-position-1).getCount() == 3) {
                                 finalHolder.progress1.setMax(100);
                                 finalHolder.progress1.setProgress(PollResult(poll.getCvotes(0), total));
                                 finalHolder.progress2.setMax(100);
@@ -232,7 +233,7 @@ public class PollsItemAdapter extends ArrayAdapter {
                                 finalHolder.valueoption2.setText("( " + poll.getCvotes(1) + " )");
                                 finalHolder.valueoption3.setText("( " + poll.getCvotes(2) + " )");
                                 finalHolder.valueoption4.setVisibility(View.GONE);
-                            } else if (PollCardItems.get(position).getCount() == 4) {
+                            } else if (PollCardItems.get(PollCardItems.size()-position-1).getCount() == 4) {
                                 finalHolder.progress1.setMax(100);
                                 finalHolder.progress1.setProgress(PollResult(poll.getCvotes(0), total));
                                 finalHolder.progress2.setMax(100);
@@ -263,14 +264,14 @@ public class PollsItemAdapter extends ArrayAdapter {
                     });
                 } else {
 
-                    Toast.makeText(getContext(), "Please select an option for Poll : " + (position + 1), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Please select an option for Poll : " + (PollCardItems.size()-position-1 + 1), Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
 
         SharedPreferences prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        boolean name = prefs.getBoolean("has_voted_" + PollCardItems.get(position).getVoteid(), false);
+        boolean name = prefs.getBoolean("has_voted_" + PollCardItems.get(PollCardItems.size()-position-1).getVoteid(), false);
         if (name) {
             finalHolder.submit.setVisibility(View.INVISIBLE);
 
@@ -289,62 +290,62 @@ public class PollsItemAdapter extends ArrayAdapter {
                     }
                     finalHolder.title.setVisibility(View.VISIBLE);
                     finalHolder.rlayout.setVisibility(View.VISIBLE);
-                    int total = poll.get(position).getTotalVotes();
+                    int total = poll.get(PollCardItems.size()-position-1).getTotalVotes();
 
                     if (poll.size() != -1) {
-                        if (PollCardItems.get(position).getCount() == 2) {
+                        if (PollCardItems.get(PollCardItems.size()-position-1).getCount() == 2) {
                             finalHolder.progress1.setMax(100);
-                            finalHolder.progress1.setProgress(PollResult(poll.get(position).getCvotes(0), total));
+                            finalHolder.progress1.setProgress(PollResult(poll.get(PollCardItems.size()-position-1).getCvotes(0), total));
                             finalHolder.progress2.setMax(100);
-                            finalHolder.progress2.setProgress(PollResult(poll.get(position).getCvotes(1), total));
+                            finalHolder.progress2.setProgress(PollResult(poll.get(PollCardItems.size()-position-1).getCvotes(1), total));
                             finalHolder.progress3.setVisibility(View.GONE);
                             finalHolder.progress4.setVisibility(View.GONE);
 
-                            finalHolder.peroption1.setText(String.format("%.2f", (PollResult(poll.get(position).getCvotes(0), total))) + '%');
-                            finalHolder.peroption2.setText(String.format("%.2f", (PollResult(poll.get(position).getCvotes(1), total))) + '%');
+                            finalHolder.peroption1.setText(String.format("%.2f", (PollResult(poll.get(PollCardItems.size()-position-1).getCvotes(0), total))) + '%');
+                            finalHolder.peroption2.setText(String.format("%.2f", (PollResult(poll.get(PollCardItems.size()-position-1).getCvotes(1), total))) + '%');
                             finalHolder.peroption3.setVisibility(View.GONE);
                             finalHolder.peroption4.setVisibility(View.GONE);
 
-                            finalHolder.valueoption1.setText("( " + poll.get(position).getCvotes(0) + " )");
-                            finalHolder.valueoption2.setText("( " + poll.get(position).getCvotes(1) + " )");
+                            finalHolder.valueoption1.setText("( " + poll.get(PollCardItems.size()-position-1).getCvotes(0) + " )");
+                            finalHolder.valueoption2.setText("( " + poll.get(PollCardItems.size()-position-1).getCvotes(1) + " )");
                             finalHolder.valueoption3.setVisibility(View.GONE);
                             finalHolder.valueoption4.setVisibility(View.GONE);
-                        } else if (PollCardItems.get(position).getCount() == 3) {
+                        } else if (PollCardItems.get(PollCardItems.size()-position-1).getCount() == 3) {
                             finalHolder.progress1.setMax(100);
-                            finalHolder.progress1.setProgress(PollResult(poll.get(position).getCvotes(0), total));
+                            finalHolder.progress1.setProgress(PollResult(poll.get(PollCardItems.size()-position-1).getCvotes(0), total));
                             finalHolder.progress2.setMax(100);
-                            finalHolder.progress2.setProgress(PollResult(poll.get(position).getCvotes(1), total));
+                            finalHolder.progress2.setProgress(PollResult(poll.get(PollCardItems.size()-position-1).getCvotes(1), total));
                             finalHolder.progress3.setMax(100);
-                            finalHolder.progress3.setProgress(PollResult(poll.get(position).getCvotes(2), total));
+                            finalHolder.progress3.setProgress(PollResult(poll.get(PollCardItems.size()-position-1).getCvotes(2), total));
                             finalHolder.progress4.setVisibility(View.GONE);
 
-                            finalHolder.peroption1.setText(String.format("%.2f", (PollResult(poll.get(position).getCvotes(0), total))) + '%');
-                            finalHolder.peroption2.setText(String.format("%.2f", (PollResult(poll.get(position).getCvotes(1), total))) + '%');
-                            finalHolder.peroption3.setText(String.format("%.2f", (PollResult(poll.get(position).getCvotes(2), total))) + '%');
+                            finalHolder.peroption1.setText(String.format("%.2f", (PollResult(poll.get(PollCardItems.size()-position-1).getCvotes(0), total))) + '%');
+                            finalHolder.peroption2.setText(String.format("%.2f", (PollResult(poll.get(PollCardItems.size()-position-1).getCvotes(1), total))) + '%');
+                            finalHolder.peroption3.setText(String.format("%.2f", (PollResult(poll.get(PollCardItems.size()-position-1).getCvotes(2), total))) + '%');
                             finalHolder.peroption4.setVisibility(View.GONE);
 
-                            finalHolder.valueoption1.setText("( " + poll.get(position).getCvotes(0) + " )");
-                            finalHolder.valueoption2.setText("( " + poll.get(position).getCvotes(1) + " )");
-                            finalHolder.valueoption3.setText("( " + poll.get(position).getCvotes(2) + " )");
+                            finalHolder.valueoption1.setText("( " + poll.get(PollCardItems.size()-position-1).getCvotes(0) + " )");
+                            finalHolder.valueoption2.setText("( " + poll.get(PollCardItems.size()-position-1).getCvotes(1) + " )");
+                            finalHolder.valueoption3.setText("( " + poll.get(PollCardItems.size()-position-1).getCvotes(2) + " )");
                             finalHolder.valueoption4.setVisibility(View.GONE);
-                        } else if (PollCardItems.get(position).getCount() == 4) {
+                        } else if (PollCardItems.get(PollCardItems.size()-position-1).getCount() == 4) {
                             finalHolder.progress1.setMax(100);
-                            finalHolder.progress1.setProgress(PollResult(poll.get(position).getCvotes(0), total));
+                            finalHolder.progress1.setProgress(PollResult(poll.get(PollCardItems.size()-position-1).getCvotes(0), total));
                             finalHolder.progress2.setMax(100);
-                            finalHolder.progress2.setProgress(PollResult(poll.get(position).getCvotes(1), total));
+                            finalHolder.progress2.setProgress(PollResult(poll.get(PollCardItems.size()-position-1).getCvotes(1), total));
                             finalHolder.progress3.setMax(100);
-                            finalHolder.progress3.setProgress(PollResult(poll.get(position).getCvotes(2), total));
+                            finalHolder.progress3.setProgress(PollResult(poll.get(PollCardItems.size()-position-1).getCvotes(2), total));
                             finalHolder.progress4.setMax(100);
-                            finalHolder.progress4.setProgress(PollResult(poll.get(position).getCvotes(3), total));
-                            finalHolder.peroption1.setText(String.format("%.2f", (PollResult(poll.get(position).getCvotes(0), total))) + '%');
-                            finalHolder.peroption2.setText(String.format("%.2f", (PollResult(poll.get(position).getCvotes(1), total))) + '%');
-                            finalHolder.peroption3.setText(String.format("%.2f", (PollResult(poll.get(position).getCvotes(2), total))) + '%');
-                            finalHolder.peroption4.setText(String.format("%.2f", (PollResult(poll.get(position).getCvotes(3), total))) + '%');
+                            finalHolder.progress4.setProgress(PollResult(poll.get(PollCardItems.size()-position-1).getCvotes(3), total));
+                            finalHolder.peroption1.setText(String.format("%.2f", (PollResult(poll.get(PollCardItems.size()-position-1).getCvotes(0), total))) + '%');
+                            finalHolder.peroption2.setText(String.format("%.2f", (PollResult(poll.get(PollCardItems.size()-position-1).getCvotes(1), total))) + '%');
+                            finalHolder.peroption3.setText(String.format("%.2f", (PollResult(poll.get(PollCardItems.size()-position-1).getCvotes(2), total))) + '%');
+                            finalHolder.peroption4.setText(String.format("%.2f", (PollResult(poll.get(PollCardItems.size()-position-1).getCvotes(3), total))) + '%');
 
-                            finalHolder.valueoption1.setText("( " + poll.get(position).getCvotes(0) + " )");
-                            finalHolder.valueoption2.setText("( " + poll.get(position).getCvotes(1) + " )");
-                            finalHolder.valueoption3.setText("( " + poll.get(position).getCvotes(2) + " )");
-                            finalHolder.valueoption4.setText("( " + poll.get(position).getCvotes(3) + " )");
+                            finalHolder.valueoption1.setText("( " + poll.get(PollCardItems.size()-position-1).getCvotes(0) + " )");
+                            finalHolder.valueoption2.setText("( " + poll.get(PollCardItems.size()-position-1).getCvotes(1) + " )");
+                            finalHolder.valueoption3.setText("( " + poll.get(PollCardItems.size()-position-1).getCvotes(2) + " )");
+                            finalHolder.valueoption4.setText("( " + poll.get(PollCardItems.size()-position-1).getCvotes(3) + " )");
                         }
                     }
                 }

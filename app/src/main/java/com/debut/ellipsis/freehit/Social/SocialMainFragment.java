@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +61,14 @@ public class SocialMainFragment extends Fragment {
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                tab.getIcon().setColorFilter(Color.parseColor("#a8a8a8"), PorterDuff.Mode.SRC_IN);
+                switch (AppCompatDelegate.getDefaultNightMode()) {
+                    case AppCompatDelegate.MODE_NIGHT_YES:
+                        tab.getIcon().setColorFilter(Color.parseColor("#6c6c6d"), PorterDuff.Mode.SRC_IN);
+                        break;
+                    case AppCompatDelegate.MODE_NIGHT_NO:
+                        tab.getIcon().setColorFilter(Color.parseColor("#c2c2c2"), PorterDuff.Mode.SRC_IN);
+                        break;
+                }
 
             }
 
@@ -80,7 +88,16 @@ public class SocialMainFragment extends Fragment {
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
 
         tabLayout.getTabAt(0).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-        tabLayout.getTabAt(1).getIcon().setColorFilter(Color.parseColor("#a8a8a8"), PorterDuff.Mode.SRC_IN);
+
+
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                tabLayout.getTabAt(1).getIcon().setColorFilter(Color.parseColor("#6c6c6d"), PorterDuff.Mode.SRC_IN);
+                break;
+            case AppCompatDelegate.MODE_NIGHT_NO:
+                tabLayout.getTabAt(1).getIcon().setColorFilter(Color.parseColor("#c2c2c2"), PorterDuff.Mode.SRC_IN);
+                break;
+        }
     }
 
 
@@ -113,7 +130,7 @@ public class SocialMainFragment extends Fragment {
         public void addFrag(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
-            if(mFragmentTitleList.size()==2) {
+            if (mFragmentTitleList.size() == 2) {
                 if (mFragmentTitleList.get(1).equals("TWEETS")) {
                     Bundle bundle = new Bundle();
                     bundle.putString("fragment_name", "TWEETS");
