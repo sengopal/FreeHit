@@ -43,7 +43,7 @@ public class SeriesBattingBowlingPerformance extends Fragment {
 
         TextView sl_no = rootView.findViewById(R.id.sl_no);
         TextView name = rootView.findViewById(R.id.name);
-        TextView Runs_Wickets_Label= rootView.findViewById(R.id.Runs_Wickets_Label);
+        TextView Runs_Wickets_Label = rootView.findViewById(R.id.Runs_Wickets_Label);
         TextView Average_balls_Label = rootView.findViewById(R.id.Average_balls_Label);
 
         LinearLayout LabelStrip = rootView.findViewById(R.id.parent_layout);
@@ -58,15 +58,12 @@ public class SeriesBattingBowlingPerformance extends Fragment {
             Runs_Wickets_Label.setTextColor(Color.WHITE);
             Average_balls_Label.setTextColor(Color.WHITE);
             refLayout.setColorSchemeColors(Color.BLACK);
-        }
-        else
-        {
+        } else {
             refLayout.setColorSchemeResources(R.color.orange);
         }
 
         View vProgress = rootView.findViewById(R.id.progress);
         final ProgressBar mProgressbar = vProgress.findViewById(R.id.progress_bar);
-
 
 
         switch (fragment_name) {

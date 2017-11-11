@@ -1,7 +1,6 @@
 package com.debut.ellipsis.freehit.More.Series;
 
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -61,14 +60,10 @@ public class SeriesMainActivity extends AppCompatActivity {
             toolbar.setBackgroundColor(getResources().getColor(R.color.dark));
             refLayout.setColorSchemeColors(Color.BLACK);
             Window window = getWindow();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.setStatusBarColor(Color.BLACK);
-            }
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.BLACK);
 
-        }
-        else
-        {
+        } else {
             refLayout.setColorSchemeColors(getResources().getColor(R.color.orange));
         }
 

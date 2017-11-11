@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
@@ -108,6 +109,7 @@ public class SocialPolls extends Fragment {
             @Override
             public void onFailure(Call<PollCardItem> call, Throwable t) {
                 mProgressBar.setVisibility(View.GONE);
+                listView.setAdapter(null);
                 no_internet_connection.setVisibility(View.VISIBLE);
                 NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
@@ -158,15 +160,8 @@ public class SocialPolls extends Fragment {
                     @Override
                     public void onFailure(Call<PollCardItem> call, Throwable t) {
                         mProgressBar.setVisibility(View.GONE);
-                        no_internet_connection.setVisibility(View.VISIBLE);
-                        NoConnectionButton.setOnClickListener(new View.OnClickListener() {
-
-                            public void onClick(View v) {
-                                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
-
-                            }
-                        });
+                        Toast toast = Toast.makeText(getContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
+                        toast.show();
                         call.cancel();
                     }
                 });

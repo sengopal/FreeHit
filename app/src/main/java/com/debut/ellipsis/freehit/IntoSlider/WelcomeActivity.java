@@ -112,7 +112,7 @@ public class WelcomeActivity extends AppCompatActivity {
                         launchHomeScreen();
                     } else {
 
-                        Toast.makeText(getBaseContext(),R.string.select_team_alert,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), R.string.select_team_alert, Toast.LENGTH_SHORT).show();
 
                     }
 
@@ -196,11 +196,9 @@ public class WelcomeActivity extends AppCompatActivity {
      * Making notification bar transparent
      */
     private void changeStatusBarColor() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.TRANSPARENT);
-        }
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(Color.TRANSPARENT);
     }
 
     /**
@@ -254,9 +252,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 String TeamLogo = countryHash.getCountryFlag(name.toUpperCase());
                 if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
                     MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogo).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
-                }
-                else
-                {
+                } else {
                     MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogo).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
                 }
 

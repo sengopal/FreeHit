@@ -59,7 +59,6 @@ public class CustomSettings extends AppCompatActivity {
         NoConnectionButton = no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
         NoConnection = no_internet_connection.findViewById(R.id.no_internet_connection_text);
-        NoConnection.setTextColor(Color.WHITE);
 
         RelativeLayout country_select = findViewById(R.id.country_select_layout);
 
@@ -81,7 +80,12 @@ public class CustomSettings extends AppCompatActivity {
             night_mode.setTextColor(Color.WHITE);
             country_select_button.setBackgroundResource(R.drawable.button_shape_dark);
             country_select_button.setTextColor(Color.BLACK);
+            NoConnection.setTextColor(Color.WHITE);
             NoConnectionButton.setTextColor(Color.BLACK);
+        }
+        else
+        {
+            NoConnection.setTextColor(Color.BLACK);
         }
         final SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
 

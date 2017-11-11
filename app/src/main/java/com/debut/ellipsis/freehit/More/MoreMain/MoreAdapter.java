@@ -31,12 +31,12 @@ public class MoreAdapter extends ArrayAdapter<MoreItem> {
 
         MoreItem currentItem = getItem(position);
 
-        ImageView moreArrowIcon = (ImageView) listItemView.findViewById(R.id.arrow_icon);
+        ImageView moreArrowIcon = listItemView.findViewById(R.id.arrow_icon);
 
-        TextView moreNameTextView = (TextView) listItemView.findViewById(R.id.row_title);
+        TextView moreNameTextView = listItemView.findViewById(R.id.row_title);
         moreNameTextView.setText(currentItem.getmMoreName());
 
-        ImageView moreIcon = (ImageView) listItemView.findViewById(R.id.row_icon);
+        ImageView moreIcon = listItemView.findViewById(R.id.row_icon);
         moreIcon.setImageResource(currentItem.getmMoreIcon());
 
         if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES)

@@ -2,7 +2,6 @@ package com.debut.ellipsis.freehit.News;
 
 
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.widget.NestedScrollView;
@@ -70,11 +69,8 @@ public class NewsArticle extends AppCompatActivity {
             collapsingToolbarLayout.setBackgroundColor(getResources().getColor(R.color.dark));
             collapsingToolbarLayout.setContentScrimColor(getResources().getColor(R.color.dark));
             Window window = getWindow();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.setStatusBarColor(Color.BLACK);
-            }
-
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.BLACK);
         }
 
 
@@ -115,7 +111,7 @@ public class NewsArticle extends AppCompatActivity {
             @Override
             public void onFailure(Call<NewsArticleItem> call, Throwable t) {
                 mProgressBar.setVisibility(View.GONE);
-                Toast.makeText(getApplicationContext(),R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
                 call.cancel();
             }
         });

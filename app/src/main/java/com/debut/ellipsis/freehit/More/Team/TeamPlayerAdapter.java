@@ -37,9 +37,9 @@ public class TeamPlayerAdapter extends RecyclerView.Adapter<TeamPlayerAdapter.Te
 
         public TeamPlayerViewHolder(View v) {
             super(v);
-            PlayerImage = (ImageView) v.findViewById(R.id.row_icon);
-            PlayerName = (TextView) v.findViewById(R.id.row_title);
-            rlcontainer = (LinearLayout) v.findViewById(R.id.row_layout);
+            PlayerImage = v.findViewById(R.id.row_icon);
+            PlayerName = v.findViewById(R.id.row_title);
+            rlcontainer = v.findViewById(R.id.row_layout);
         }
     }
 

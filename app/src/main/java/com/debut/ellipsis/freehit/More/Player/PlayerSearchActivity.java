@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
@@ -44,7 +43,7 @@ public class PlayerSearchActivity extends AppCompatActivity {
 
         View viewToolbar = findViewById(R.id.toolbar_player_search);
 
-        Toolbar toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
+        Toolbar toolbar = viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Player Search");
@@ -53,18 +52,15 @@ public class PlayerSearchActivity extends AppCompatActivity {
 
         RelativeLayout relativeLayout = findViewById(R.id.player_list_layout);
 
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_list);
+        final RecyclerView recyclerView = findViewById(R.id.recycler_list);
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             relativeLayout.setBackgroundColor(getResources().getColor(R.color.night_background));
             parentLayout.setBackgroundColor(getResources().getColor(R.color.night_background));
             toolbar.setBackgroundColor(getResources().getColor(R.color.dark));
             recyclerView.setBackgroundColor(getResources().getColor(R.color.night_background));
             Window window = getWindow();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.setStatusBarColor(Color.BLACK);
-            }
-
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.BLACK);
         }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -75,7 +71,7 @@ public class PlayerSearchActivity extends AppCompatActivity {
         // Get details on the currently active default data network
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
-        EditText playerSearchEdit = (EditText) findViewById(R.id.editText_player);
+        EditText playerSearchEdit = findViewById(R.id.editText_player);
 
         // If there is a network connection, fetch data
         if (networkInfo != null && networkInfo.isConnected()) {

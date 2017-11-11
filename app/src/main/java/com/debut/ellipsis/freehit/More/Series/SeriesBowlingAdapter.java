@@ -24,26 +24,24 @@ public class SeriesBowlingAdapter extends RecyclerView.Adapter<SeriesBowlingAdap
         TextView avg;
         TextView name;
         TextView slno;
+
         public SeriesViewHolder(View itemView) {
             super(itemView);
-            runs=itemView.findViewById(R.id.runs);
-            avg=itemView.findViewById(R.id.avg);
-            name=itemView.findViewById(R.id.name);
-            slno=itemView.findViewById(R.id.pos);
+            runs = itemView.findViewById(R.id.runs);
+            avg = itemView.findViewById(R.id.avg);
+            name = itemView.findViewById(R.id.name);
+            slno = itemView.findViewById(R.id.pos);
 
         }
     }
 
 
     public SeriesBowlingAdapter(List<PerformanceItem> seriesInfo, int rowLayout, Context context) {
-        this.seriesItems=seriesInfo;
-        this.rowLayout=rowLayout;
-        this.context=context;
+        this.seriesItems = seriesInfo;
+        this.rowLayout = rowLayout;
+        this.context = context;
 
     }
-
-
-
 
 
     @Override
@@ -64,8 +62,7 @@ public class SeriesBowlingAdapter extends RecyclerView.Adapter<SeriesBowlingAdap
         holder.slno.setText(seriesItems.get(0).getBowling().get(position).getPosition());
         holder.runs.setText(seriesItems.get(0).getBowling().get(position).getwkts());
 
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
-        {
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             holder.name.setTextColor(Color.WHITE);
             holder.avg.setTextColor(Color.WHITE);
             holder.slno.setTextColor(Color.WHITE);

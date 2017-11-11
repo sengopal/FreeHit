@@ -2,7 +2,6 @@ package com.debut.ellipsis.freehit.More.Team;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
@@ -37,7 +36,7 @@ public class TeamListView extends AppCompatActivity {
         final ArrayList<TeamListItem> TeamItem = new ArrayList<TeamListItem>();
 
         View viewToolbar = findViewById(R.id.team_list_toolbar);
-        Toolbar toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
+        Toolbar toolbar = viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -60,15 +59,13 @@ public class TeamListView extends AppCompatActivity {
         TeamItem.add(new TeamListItem(WelcomeActivity.countryHash.getCountryFlag("ZIMBABWE"), R.string.settings_team_Zimbabwe_label));
 
         View view = findViewById(R.id.team_list);
-        listView = (ListView) view.findViewById(R.id.list);
+        listView = view.findViewById(R.id.list);
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             listView.setBackgroundColor(getResources().getColor(R.color.night_background));
             toolbar.setBackgroundColor(getResources().getColor(R.color.dark));
             Window window = getWindow();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.setStatusBarColor(Color.BLACK);
-            }
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.BLACK);
 
         }
         adapter = new TeamListAdapter(this, TeamItem);

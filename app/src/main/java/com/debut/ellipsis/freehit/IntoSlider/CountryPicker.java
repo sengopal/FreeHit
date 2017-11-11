@@ -64,8 +64,8 @@ public class CountryPicker extends DialogFragment {
             int height = getResources().getDimensionPixelSize(R.dimen._250sdp);
             getDialog().getWindow().setLayout(width, height);
         }
-        searchEditText = (EditText) view.findViewById(R.id.country_code_picker_search);
-        countryListView = (ListView) view.findViewById(R.id.country_code_picker_listview);
+        searchEditText = view.findViewById(R.id.country_code_picker_search);
+        countryListView = view.findViewById(R.id.country_code_picker_listview);
 
         selectedCountriesList = new ArrayList<>(countriesList.size());
         selectedCountriesList.addAll(countriesList);

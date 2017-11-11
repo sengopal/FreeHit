@@ -27,54 +27,51 @@ public class SeriesBattingAdapter extends RecyclerView.Adapter<SeriesBattingAdap
         TextView name;
         TextView slno;
         LinearLayout RlContainer;
+
         public SeriesViewHolder(View itemView) {
             super(itemView);
-            runs=itemView.findViewById(R.id.runs);
-            avg=itemView.findViewById(R.id.avg);
-            name=itemView.findViewById(R.id.name);
-            slno=itemView.findViewById(R.id.pos);
+            runs = itemView.findViewById(R.id.runs);
+            avg = itemView.findViewById(R.id.avg);
+            name = itemView.findViewById(R.id.name);
+            slno = itemView.findViewById(R.id.pos);
 
         }
     }
 
 
     public SeriesBattingAdapter(List<PerformanceItem> seriesInfo, int rowLayout, Context context) {
-        this.seriesItems=seriesInfo;
-        this.rowLayout=rowLayout;
-        this.context=context;
+        this.seriesItems = seriesInfo;
+        this.rowLayout = rowLayout;
+        this.context = context;
 
     }
 
 
-
-
-
-        @Override
+    @Override
     public SeriesBattingAdapter.SeriesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = null;
-            if (viewType == 0) {
-                view = LayoutInflater.from(parent.getContext()).inflate(rowLayout, parent, false);
-            }
-            return new SeriesBattingAdapter.SeriesViewHolder(view);
-
+        View view = null;
+        if (viewType == 0) {
+            view = LayoutInflater.from(parent.getContext()).inflate(rowLayout, parent, false);
         }
+        return new SeriesBattingAdapter.SeriesViewHolder(view);
+
+    }
 
     @Override
     public void onBindViewHolder(SeriesBattingAdapter.SeriesViewHolder holder, int position) {
 
-       holder.name.setText(seriesItems.get(0).getBatting().get(position).getName());
-       holder.avg.setText(seriesItems.get(0).getBatting().get(position).getAvg());
-       holder.slno.setText(seriesItems.get(0).getBatting().get(position).getPosition());
-       holder.runs.setText(seriesItems.get(0).getBatting().get(position).getRuns());
+        holder.name.setText(seriesItems.get(0).getBatting().get(position).getName());
+        holder.avg.setText(seriesItems.get(0).getBatting().get(position).getAvg());
+        holder.slno.setText(seriesItems.get(0).getBatting().get(position).getPosition());
+        holder.runs.setText(seriesItems.get(0).getBatting().get(position).getRuns());
 
-       if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
-       {
-           holder.name.setTextColor(Color.WHITE);
-           holder.avg.setTextColor(Color.WHITE);
-           holder.slno.setTextColor(Color.WHITE);
-           holder.runs.setTextColor(Color.WHITE);
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            holder.name.setTextColor(Color.WHITE);
+            holder.avg.setTextColor(Color.WHITE);
+            holder.slno.setTextColor(Color.WHITE);
+            holder.runs.setTextColor(Color.WHITE);
 
-       }
+        }
 
     }
 

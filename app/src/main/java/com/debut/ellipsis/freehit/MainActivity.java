@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         Twitter.initialize(this);
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -81,13 +81,13 @@ public class MainActivity extends AppCompatActivity {
         View viewMainPager = findViewById(R.id.main_viewpager);
 
 
-        viewPager = (ViewPager) viewMainPager.findViewById(R.id.viewpager);
+        viewPager = viewMainPager.findViewById(R.id.viewpager);
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             viewPager.setBackgroundColor(getResources().getColor(R.color.night_background));
         }
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
         viewPager.setOffscreenPageLimit(4);

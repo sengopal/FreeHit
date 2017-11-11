@@ -49,7 +49,7 @@ public class MoreFragment extends Fragment {
         moreItem.add(new MoreItem(R.drawable.rankings, R.string.rankings));
 
         MoreAdapter adapter = new MoreAdapter(getActivity(), moreItem);
-        final ListView listView = (ListView) rootView.findViewById(R.id.list);
+        final ListView listView = rootView.findViewById(R.id.list);
         listView.setAdapter(adapter);
         listView.setClickable(true);
         listView.setOnItemClickListener(new ListView.OnItemClickListener() {
@@ -82,8 +82,6 @@ public class MoreFragment extends Fragment {
                 else if (position==4){
                     Intent RankingIntent = new Intent(getActivity(), RankingActivity.class);
                     startActivity(RankingIntent);
-                    /*Toast.makeText(getContext(),"Coming Soon !",Toast.LENGTH_SHORT).show();*/
-
                 }
 
             }
