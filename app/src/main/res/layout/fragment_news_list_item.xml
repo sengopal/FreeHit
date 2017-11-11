@@ -30,8 +30,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/_5sdp"
-                android:paddingEnd="@dimen/_8sdp"
-                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:paddingStart="@dimen/_10sdp"
                 android:textAppearance="?android:textAppearanceLarge"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/_14sdp"
@@ -41,11 +41,11 @@
             <ImageView
                 android:id="@+id/image_view"
                 android:layout_width="@dimen/_270sdp"
-                android:layout_height="@dimen/_160sdp"
+                android:layout_height="@dimen/_120sdp"
                 android:layout_below="@+id/header_text_view"
                 android:layout_centerHorizontal="true"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_3sdp"
                 android:scaleType="fitXY"
                 tools:src="@drawable/matches_vector" />
 
@@ -90,7 +90,7 @@
                 android:scrollHorizontally="true"
                 android:textAppearance="?android:textAppearanceMedium"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_11sdp"
                 android:textStyle="italic"
                 tools:text="Description text of the news article you should read and waste some time . This  is getting to be too long, but I have to write enough text to test the code." />
 

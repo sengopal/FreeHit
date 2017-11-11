@@ -94,24 +94,6 @@ public class NewsArticle extends AppCompatActivity {
                 TextView date = findViewById(R.id.news_date);
                 date.setText(newsArticle.getDate());
 
-                TextView news_tag_1 = findViewById(R.id.news_tag);
-                news_tag_1.setText(newsArticle.getTag1());
-
-                TextView news_tag_2 = findViewById(R.id.news_tag_1);
-                news_tag_2.setText(newsArticle.getTag2());
-
-                TextView news_tag_3 = findViewById(R.id.news_tag_2);
-                news_tag_3.setText(newsArticle.getTag3());
-
-                ImageView tag_1 = findViewById(R.id.news_tag_image);
-                tag_1.setVisibility(View.VISIBLE);
-
-                ImageView tag_2 = findViewById(R.id.news_tag_image_1);
-                tag_2.setVisibility(View.VISIBLE);
-
-                ImageView tag_3 = findViewById(R.id.news_tag_image_2);
-                tag_3.setVisibility(View.VISIBLE);
-
                 mProgressBar.setVisibility(View.GONE);
 
                 final ImageView articleImage = findViewById(R.id.news_article_image);
@@ -122,12 +104,6 @@ public class NewsArticle extends AppCompatActivity {
                     headline.setTextColor(Color.WHITE);
                     article_description.setTextColor(Color.WHITE);
                     date.setTextColor(Color.WHITE);
-                    news_tag_1.setTextColor(Color.WHITE);
-                    news_tag_2.setTextColor(Color.WHITE);
-                    news_tag_3.setTextColor(Color.WHITE);
-                    tag_1.setColorFilter(Color.WHITE);
-                    tag_2.setColorFilter(Color.WHITE);
-                    tag_3.setColorFilter(Color.WHITE);
                 }
 
                 MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(ImageURL).format(DecodeFormat.PREFER_RGB_565);

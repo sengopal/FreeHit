@@ -133,20 +133,20 @@ public class ScoreCardFragment extends Fragment {
 
 
         TextView teamName = tabLayout.getTabAt(0).getCustomView().findViewById(R.id.team_sn);
-        teamName.setText(team_1);
-        teamName = tabLayout.getTabAt(1).getCustomView().findViewById(R.id.team_sn);
         teamName.setText(team_2);
+        teamName = tabLayout.getTabAt(1).getCustomView().findViewById(R.id.team_sn);
+        teamName.setText(team_1);
 
         ImageView teamLogo1 = tabLayout.getTabAt(0).getCustomView().findViewById(R.id.team_logo);
 
-        String teamLogo = WelcomeActivity.countryHash.getCountryFlag(team_1.toUpperCase());
+        String teamLogo = WelcomeActivity.countryHash.getCountryFlag(team_2.toUpperCase());
 
         MainActivity.requestBuilder = GlideApp.with(getContext()).load(teamLogo).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
         MainActivity.requestBuilder.into(teamLogo1);
 
         teamLogo1 = tabLayout.getTabAt(1).getCustomView().findViewById(R.id.team_logo);
 
-        teamLogo = WelcomeActivity.countryHash.getCountryFlag(team_2.toUpperCase());
+        teamLogo = WelcomeActivity.countryHash.getCountryFlag(team_1.toUpperCase());
 
         MainActivity.requestBuilder = GlideApp.with(getContext()).load(teamLogo).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
         MainActivity.requestBuilder.into(teamLogo1);

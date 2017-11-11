@@ -55,9 +55,9 @@ public class Team1ScoreCardFragment extends Fragment {
 
         TextView no_match_data = rootView.findViewById(R.id.No_match_data);
 
-        if (teamList.get(0).getScorecard().getTeam1().getInncount() == 1)
+        if (teamList.get(0).getScorecard().getTeam2().getInncount() == 1)
             setupViewPagerOneInnings(viewPager);
-        else if(teamList.get(0).getScorecard().getTeam1().getInncount() == 2)
+        else if(teamList.get(0).getScorecard().getTeam2().getInncount() == 2)
             setupViewPagerTwoInnings(viewPager);
         else
         {

@@ -57,26 +57,6 @@ public class Innings1_Innings2 extends Fragment {
 
         switch (fragment_name) {
             case "Team_1_Innings_1":
-                mBattingAdapter = new ScoreCardBattingAdapter(getContext(), teamList.get(0).getScorecard().getTeam1().getFirstinn().getBatting());
-                listViewBatting.setAdapter(mBattingAdapter);
-                mBattingAdapter.notifyDataSetChanged();
-                justifyListViewHeightBasedOnChildren(listViewBatting);
-                Extras = teamList.get(0).getScorecard().getTeam1().getFirstinn().getExtras();
-                extras.setText(Extras);
-                TotalScore.setText(teamList.get(0).getScorecard().getTeam1().getFirstinn().getScore());
-
-                mBowlingAdapter = new ScoreCardBowlingAdapter(getContext(), teamList.get(0).getScorecard().getTeam1().getFirstinn().getBowling());
-                listViewBowling.setAdapter(mBowlingAdapter);
-                mBowlingAdapter.notifyDataSetChanged();
-                justifyListViewHeightBasedOnChildren(listViewBowling);
-
-                mFowAdapter = new ScoreCardFOWAdapter(getContext(), teamList.get(0).getScorecard().getTeam1().getFirstinn().getFow());
-                listViewFow.setAdapter(mFowAdapter);
-                mFowAdapter.notifyDataSetChanged();
-                justifyListViewHeightBasedOnChildren(listViewFow);
-
-                break;
-            case "Team_2_Innings_1":
                 mBattingAdapter = new ScoreCardBattingAdapter(getContext(), teamList.get(0).getScorecard().getTeam2().getFirstinn().getBatting());
                 listViewBatting.setAdapter(mBattingAdapter);
                 mBattingAdapter.notifyDataSetChanged();
@@ -94,33 +74,33 @@ public class Innings1_Innings2 extends Fragment {
                 listViewFow.setAdapter(mFowAdapter);
                 mFowAdapter.notifyDataSetChanged();
                 justifyListViewHeightBasedOnChildren(listViewFow);
+
                 break;
-            case "Team_1_Innings_2":
-                mBattingAdapter = new ScoreCardBattingAdapter(getContext(), teamList.get(0).getScorecard().getTeam1().getSecondinn().getBatting());
+            case "Team_2_Innings_1":
+                mBattingAdapter = new ScoreCardBattingAdapter(getContext(), teamList.get(0).getScorecard().getTeam1().getFirstinn().getBatting());
                 listViewBatting.setAdapter(mBattingAdapter);
                 mBattingAdapter.notifyDataSetChanged();
                 justifyListViewHeightBasedOnChildren(listViewBatting);
-                Extras = teamList.get(0).getScorecard().getTeam1().getSecondinn().getExtras();
+                Extras = teamList.get(0).getScorecard().getTeam1().getFirstinn().getExtras();
                 extras.setText(Extras);
-                TotalScore.setText(teamList.get(0).getScorecard().getTeam1().getSecondinn().getScore());
+                TotalScore.setText(teamList.get(0).getScorecard().getTeam1().getFirstinn().getScore());
 
-                mBowlingAdapter = new ScoreCardBowlingAdapter(getContext(), teamList.get(0).getScorecard().getTeam1().getSecondinn().getBowling());
+                mBowlingAdapter = new ScoreCardBowlingAdapter(getContext(), teamList.get(0).getScorecard().getTeam1().getFirstinn().getBowling());
                 listViewBowling.setAdapter(mBowlingAdapter);
                 mBowlingAdapter.notifyDataSetChanged();
                 justifyListViewHeightBasedOnChildren(listViewBowling);
 
-                mFowAdapter = new ScoreCardFOWAdapter(getContext(), teamList.get(0).getScorecard().getTeam1().getSecondinn().getFow());
+                mFowAdapter = new ScoreCardFOWAdapter(getContext(), teamList.get(0).getScorecard().getTeam1().getFirstinn().getFow());
                 listViewFow.setAdapter(mFowAdapter);
                 mFowAdapter.notifyDataSetChanged();
                 justifyListViewHeightBasedOnChildren(listViewFow);
-
                 break;
-            case "Team_2_Innings_2":
+            case "Team_1_Innings_2":
                 mBattingAdapter = new ScoreCardBattingAdapter(getContext(), teamList.get(0).getScorecard().getTeam2().getSecondinn().getBatting());
                 listViewBatting.setAdapter(mBattingAdapter);
                 mBattingAdapter.notifyDataSetChanged();
                 justifyListViewHeightBasedOnChildren(listViewBatting);
-                Extras = teamList.get(0).getScorecard().getTeam2().getFirstinn().getExtras();
+                Extras = teamList.get(0).getScorecard().getTeam2().getSecondinn().getExtras();
                 extras.setText(Extras);
                 TotalScore.setText(teamList.get(0).getScorecard().getTeam2().getSecondinn().getScore());
 
@@ -130,6 +110,26 @@ public class Innings1_Innings2 extends Fragment {
                 justifyListViewHeightBasedOnChildren(listViewBowling);
 
                 mFowAdapter = new ScoreCardFOWAdapter(getContext(), teamList.get(0).getScorecard().getTeam2().getSecondinn().getFow());
+                listViewFow.setAdapter(mFowAdapter);
+                mFowAdapter.notifyDataSetChanged();
+                justifyListViewHeightBasedOnChildren(listViewFow);
+
+                break;
+            case "Team_2_Innings_2":
+                mBattingAdapter = new ScoreCardBattingAdapter(getContext(), teamList.get(0).getScorecard().getTeam1().getSecondinn().getBatting());
+                listViewBatting.setAdapter(mBattingAdapter);
+                mBattingAdapter.notifyDataSetChanged();
+                justifyListViewHeightBasedOnChildren(listViewBatting);
+                Extras = teamList.get(0).getScorecard().getTeam1().getFirstinn().getExtras();
+                extras.setText(Extras);
+                TotalScore.setText(teamList.get(0).getScorecard().getTeam1().getSecondinn().getScore());
+
+                mBowlingAdapter = new ScoreCardBowlingAdapter(getContext(), teamList.get(0).getScorecard().getTeam1().getSecondinn().getBowling());
+                listViewBowling.setAdapter(mBowlingAdapter);
+                mBowlingAdapter.notifyDataSetChanged();
+                justifyListViewHeightBasedOnChildren(listViewBowling);
+
+                mFowAdapter = new ScoreCardFOWAdapter(getContext(), teamList.get(0).getScorecard().getTeam1().getSecondinn().getFow());
                 listViewFow.setAdapter(mFowAdapter);
                 mFowAdapter.notifyDataSetChanged();
                 justifyListViewHeightBasedOnChildren(listViewFow);
