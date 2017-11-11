@@ -46,15 +46,31 @@ public class ScoreCardBattingAdapter extends ArrayAdapter {
         TextView fours_value = listItemView.findViewById(R.id.fours_value);
         TextView sixes_value = listItemView.findViewById(R.id.sixes_value);
         TextView StrikeRate_value = listItemView.findViewById(R.id.StrikeRate_value);
+        TextView player_yet_average_label = listItemView.findViewById(R.id.player_yet_average_label);
+        TextView player_yet_average_value = listItemView.findViewById(R.id.player_yet_average_value);
+        TextView player_yet_sr_label = listItemView.findViewById(R.id.player_yet_sr_label);
+        TextView player_yet_sr_value = listItemView.findViewById(R.id.player_yet_sr_value);
+        View divider = listItemView.findViewById(R.id.sr_average_view);
 
         batsman_value.setText(currentBatsman.getName());
-        player_out_type.setText(currentBatsman.getStatus());
-        runs_value.setText(currentBatsman.getRuns());
-        balls_value.setText(currentBatsman.getBalls());
-        fours_value.setText(currentBatsman.getFours());
-        sixes_value.setText(currentBatsman.getSixes());
-        StrikeRate_value.setText(currentBatsman.getSr());
-
+        if (currentBatsman.getStatus().equals("-")) {
+            player_out_type.setVisibility(View.INVISIBLE);
+            player_yet_average_label.setVisibility(View.VISIBLE);
+            player_yet_average_value.setVisibility(View.VISIBLE);
+            player_yet_sr_label.setVisibility(View.VISIBLE);
+            player_yet_sr_value.setVisibility(View.VISIBLE);
+            divider.setVisibility(View.VISIBLE);
+            player_yet_average_value.setText(currentBatsman.getAvg());
+            player_yet_sr_value.setText(currentBatsman.getSr());
+            StrikeRate_value.setText("");
+        } else {
+            player_out_type.setText(currentBatsman.getStatus());
+            runs_value.setText(currentBatsman.getRuns());
+            balls_value.setText(currentBatsman.getBalls());
+            fours_value.setText(currentBatsman.getFours());
+            sixes_value.setText(currentBatsman.getSixes());
+            StrikeRate_value.setText(currentBatsman.getSr());
+        }
         return listItemView;
 
     }

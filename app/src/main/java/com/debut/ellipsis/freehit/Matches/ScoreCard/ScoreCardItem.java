@@ -217,6 +217,8 @@ public class ScoreCardItem {
         private String sr;
         @SerializedName("status")
         private String status;
+        @SerializedName("avg")
+        private String avg;
 
         public String getBalls() {
             return balls;
@@ -250,6 +252,9 @@ public class ScoreCardItem {
             return status;
         }
 
+        public String getAvg() {
+            return avg;
+        }
     }
 
 

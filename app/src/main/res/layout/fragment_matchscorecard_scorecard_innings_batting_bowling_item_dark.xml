@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/night_background"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/night_background">
 
     <LinearLayout
         android:id="@+id/Batting_Values"
@@ -32,9 +32,72 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/batsman_value"
                 android:layout_marginStart="@dimen/_2sdp"
-                android:textSize="@dimen/_10sdp"
                 android:textColor="@color/match_card_text"
+                android:textSize="@dimen/_10sdp"
                 tools:text="c and b Mohammad Hafeez" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/batsman_value">
+
+                <LinearLayout
+                    android:layout_width="@dimen/_130sdp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/player_yet_average_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:text="AVG : "
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/_10sdp"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/player_yet_average_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/match_card_text"
+                        android:textSize="@dimen/_10sdp"
+                        android:visibility="invisible"
+                        tools:text="99.99" />
+
+                    <View
+                        android:id="@+id/sr_average_view"
+                        android:layout_width="@dimen/_1sdp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/_3sdp"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:background="@color/tw__composer_white"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/player_yet_sr_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:text="SR : "
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/_10sdp"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/player_yet_sr_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/match_card_text"
+                        android:textSize="@dimen/_10sdp"
+                        android:visibility="invisible"
+                        tools:text="99.99" />
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
