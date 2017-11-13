@@ -88,6 +88,7 @@ public class MatchesActivity extends AppCompatActivity {
                 break;
             default:
                 refresh_layout.setColorSchemeResources(R.color.orange);
+                fab.setColorFilter(Color.WHITE);
                 break;
         }
 

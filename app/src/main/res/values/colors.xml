@@ -18,6 +18,8 @@
 
     <color name="match_cards">#FBFBFB</color>
 
+    <color name="dark_text">#f0f0f0</color>
+
     <!-- Common Background for all -->
     <color name="background">#FCFCFC</color>
     <color name="night_background">#33343b</color>

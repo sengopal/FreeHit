@@ -72,13 +72,15 @@ public class SeriesMatches extends Fragment {
 
         refresh_layout = viewRecycler.findViewById(R.id.refresh_layout);
 
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            rv.setBackgroundColor(getResources().getColor(R.color.night_background));
-            refresh_layout.setColorSchemeColors(Color.BLACK);
-        }
-        else
-        {
-            refresh_layout.setColorSchemeResources(R.color.orange);
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                rv.setBackgroundColor(getResources().getColor(R.color.night_background));
+                refresh_layout.setColorSchemeColors(Color.BLACK);
+                break;
+            default:
+                refresh_layout.setColorSchemeResources(R.color.orange);
+                fab.setColorFilter(Color.WHITE);
+                break;
         }
 
 

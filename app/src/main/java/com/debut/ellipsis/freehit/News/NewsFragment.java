@@ -92,6 +92,7 @@ public class NewsFragment extends Fragment {
                 break;
             default:
                 refLayout.setColorSchemeResources(R.color.orange);
+                fab.setColorFilter(Color.WHITE);
                 break;
         }
 

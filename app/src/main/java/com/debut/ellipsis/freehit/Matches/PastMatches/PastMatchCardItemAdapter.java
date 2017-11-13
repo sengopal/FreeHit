@@ -18,6 +18,7 @@ import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.Matches.MatchesActivity;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardItem;
 import com.debut.ellipsis.freehit.R;
 
 import java.text.ParseException;
@@ -26,6 +27,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PastMatchCardItemAdapter extends PagerAdapter {
     private Context context;
@@ -110,9 +115,7 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
 
 
         TextView MatchResult = view.findViewById(R.id.match_result_past);
-        MatchResult.setText(this.dataObjectList.get(position).getResult());
-
-        TextView viewMore = view.findViewById(R.id.past_view_more);
+        MatchResult.setVisibility(View.GONE);
 
 
         TextView MatchDate = view.findViewById(R.id.match_date_past);
@@ -127,7 +130,18 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
         String logo_string1 = WelcomeActivity.countryHash.getCountryFlag(WelcomeActivity.countryHash.getCountryName(this.dataObjectList.get(position).getTeam1Info().getSn()).toUpperCase());
         String logo_string2 = WelcomeActivity.countryHash.getCountryFlag(WelcomeActivity.countryHash.getCountryName(this.dataObjectList.get(position).getTeam2Info().getSn()).toUpperCase());
 
+        TextView match_result_value = view.findViewById(R.id.match_result_value);
+        match_result_value.setText(this.dataObjectList.get(position).getResult());
 
+        final TextView motm_value = view.findViewById(R.id.motm_value);
+
+        final TextView mots_value = view.findViewById(R.id.mots_value);
+
+        TextView match_result_label = view.findViewById(R.id.match_result_label);
+
+        TextView motm_label = view.findViewById(R.id.motm_label);
+
+        TextView mots_label = view.findViewById(R.id.mots_label);
 
         if (position < 5) {
 
@@ -141,7 +155,7 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
 
         }
         if (position == 5) {
-            viewMore.setVisibility(View.VISIBLE);
+            ViewMore.setVisibility(View.VISIBLE);
             textViewMatchName.setVisibility(View.INVISIBLE);
             textViewSeriesName.setVisibility(View.INVISIBLE);
             textViewStadiumName.setVisibility(View.INVISIBLE);
@@ -153,10 +167,30 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
             team1Innings2.setVisibility(View.INVISIBLE);
             team2Innings1.setVisibility(View.INVISIBLE);
             team2Innings2.setVisibility(View.INVISIBLE);
-            MatchResult.setVisibility(View.INVISIBLE);
+            MatchResult.setVisibility(View.GONE);
             MatchDate.setVisibility(View.INVISIBLE);
-
+            match_result_value.setVisibility(View.INVISIBLE);
+            motm_value.setVisibility(View.INVISIBLE);
+            mots_value.setVisibility(View.INVISIBLE);
+            match_result_label.setVisibility(View.INVISIBLE);
+            motm_label.setVisibility(View.INVISIBLE);
+            mots_label.setVisibility(View.INVISIBLE);
         }
+        Call<ScoreCardItem> call = MainActivity.apiInterface.doGetMatchScoreCard(this.dataObjectList.get(position).getNdid());
+        call.enqueue(new Callback<ScoreCardItem>() {
+            @Override
+            public void onResponse(Call<ScoreCardItem> call, Response<ScoreCardItem> response) {
+                List<ScoreCardItem> pastMatchCardItems = response.body().getResults();
+                motm_value.setText(pastMatchCardItems.get(1).getInfo().getMom());
+                mots_value.setText(pastMatchCardItems.get(1).getInfo().getManofseries().equals("") ? "N/A" : pastMatchCardItems.get(1).getInfo().getManofseries());
+            }
+
+            @Override
+            public void onFailure(Call<ScoreCardItem> call, Throwable t) {
+                Toast.makeText(context, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
 
 

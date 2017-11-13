@@ -47,6 +47,7 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
         TextView result;
         TextView date;
         RelativeLayout rlcontainer;
+        RelativeLayout relative_layout_for_past_desc;
         CardView cardView;
 
         public PastViewHolder(View v) {
@@ -66,6 +67,7 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
             date = v.findViewById(R.id.match_date_past);
             cardView = v.findViewById(R.id.card_view);
             rlcontainer = itemView.findViewById(R.id.rlcontainer);
+            relative_layout_for_past_desc = v.findViewById(R.id.relative_layout_for_past_desc);
         }
     }
 
@@ -109,6 +111,8 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
         date_format.setTimeZone(TimeZone.getTimeZone("IND"));
         date_format.setTimeZone(TimeZone.getDefault());
         String formattedDate = date_format.format(time);
+
+        holder.relative_layout_for_past_desc.setVisibility(View.GONE);
 
         holder.date.setText(formattedDate);
         holder.result.setText(pastMatchCardItems.get(position).getResult());

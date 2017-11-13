@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/rlcontainer"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:tag="cards main container">
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_175sdp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         card_view:cardBackgroundColor="@color/cards_dark"
@@ -212,5 +212,87 @@
 
 
     </android.support.v7.widget.CardView>
+
+    <RelativeLayout
+        android:id="@+id/relative_layout_for_past_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/card_view"
+        android:layout_marginTop="@dimen/_30sdp">
+
+        <TextView
+            android:id="@+id/match_result_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:text="@string/match_result"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_11sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/match_result_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_toEndOf="@+id/match_result_label"
+            android:textColor="@color/dark_text"
+            android:textSize="@dimen/_11sdp"
+            tools:text="India beat Sri Lanka by 168 runs" />
+
+        <TextView
+            android:id="@+id/motm_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/match_result_value"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="@string/motm"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_11sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/motm_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/match_result_value"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_toEndOf="@+id/motm_label"
+            android:textColor="@color/dark_text"
+            android:textSize="@dimen/_11sdp"
+            tools:text="Viral Kohli" />
+
+        <TextView
+            android:id="@+id/mots_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/motm_value"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+
+            android:text="@string/mots"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_11sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/mots_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/motm_value"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_toEndOf="@+id/mots_label"
+            android:textColor="@color/dark_text"
+            android:textSize="@dimen/_11sdp"
+            tools:text="Viral Kohli" />
+
+
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -47,10 +47,10 @@ public class PastMatchCard extends Fragment {
         View rootView= null ;
 
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            rootView = inflater.inflate(R.layout.fragment_matches_common_pager_dark, container, false);
+            rootView = inflater.inflate(R.layout.fragment_matches_past_pager_dark, container, false);
         }
         else if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
-            rootView = inflater.inflate(R.layout.fragment_matches_common_pager, container, false);
+            rootView = inflater.inflate(R.layout.fragment_matches_past_pager, container, false);
         }
 
         MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
@@ -63,6 +63,8 @@ public class PastMatchCard extends Fragment {
         View viewViewPager = common_match_cards.findViewById(R.id.match_card_viewpagegr);
 
         vp = viewViewPager.findViewById(R.id.viewpager);
+
+        vp.setOffscreenPageLimit(5);
 
         indicator = common_match_cards.findViewById(R.id.indicator);
         final PullRefreshLayout refreshLayout = common_match_cards.findViewById(R.id.swipeRefreshLayout);
@@ -77,21 +79,22 @@ public class PastMatchCard extends Fragment {
         call.enqueue(new Callback<PastMatchCardItem>() {
             @Override
             public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
-                mProgressBar.setVisibility(View.GONE);
-
-                common_match_cards.setVisibility(View.VISIBLE);
                 no_internet_connection.setVisibility(View.INVISIBLE);
-
-                indicator.setVisibility(View.VISIBLE);
-
-                indicator.setViewPager(vp);
-
                 List<PastMatchCardItem> pastMatchCardItems = response.body().getResults();
                 if (getActivity() != null) {
                     mAdapter = new PastMatchCardItemAdapter(getActivity(), pastMatchCardItems);
                     indicator.setCount(mAdapter.getCount());
                     IndicatorConfig();
                     vp.setAdapter(new PastMatchCardItemAdapter(getContext(), pastMatchCardItems));
+                    mProgressBar.setVisibility(View.GONE);
+
+                    common_match_cards.setVisibility(View.VISIBLE);
+
+
+                    indicator.setVisibility(View.VISIBLE);
+
+                    indicator.setViewPager(vp);
+
                 }
             }
 
@@ -123,20 +126,20 @@ public class PastMatchCard extends Fragment {
                                                    call.enqueue(new Callback<PastMatchCardItem>() {
                                                        @Override
                                                        public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
-                                                           mProgressBar.setVisibility(View.GONE);
-
-                                                           common_match_cards.setVisibility(View.VISIBLE);
                                                            no_internet_connection.setVisibility(View.INVISIBLE);
-
-                                                           indicator.setVisibility(View.VISIBLE);
-
-                                                           indicator.setViewPager(vp);
                                                            List<PastMatchCardItem> pastMatchCardItems = response.body().getResults();
                                                            if (getActivity() != null) {
                                                                mAdapter = new PastMatchCardItemAdapter(getActivity(), pastMatchCardItems);
                                                                indicator.setCount(mAdapter.getCount());
                                                                IndicatorConfig();
                                                                vp.setAdapter(new PastMatchCardItemAdapter(getContext(), pastMatchCardItems));
+                                                               mProgressBar.setVisibility(View.GONE);
+
+                                                               common_match_cards.setVisibility(View.VISIBLE);
+
+                                                               indicator.setVisibility(View.VISIBLE);
+
+                                                               indicator.setViewPager(vp);
                                                            }
                                                        }
 

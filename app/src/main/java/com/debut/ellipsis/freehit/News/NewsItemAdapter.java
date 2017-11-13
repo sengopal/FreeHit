@@ -28,7 +28,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
     private Context context;
 
 
-    public static class NewsViewHolder extends RecyclerView.ViewHolder {
+    public class NewsViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
         TextView title;
         TextView desc;
@@ -41,14 +41,14 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
 
         public NewsViewHolder(View v) {
             super(v);
-            image = (ImageView) v.findViewById(R.id.image_view);
-            title = (TextView) v.findViewById(R.id.header_text_view);
-            desc = (TextView) v.findViewById(R.id.summary_text_view);
-            date = (TextView) v.findViewById(R.id.news_date);
+            image = v.findViewById(R.id.image_view);
+            title = v.findViewById(R.id.header_text_view);
+            desc = v.findViewById(R.id.summary_text_view);
+            date = v.findViewById(R.id.news_date);
             news_tag = v.findViewById(R.id.news_tag_image);
-            tag = (TextView) v.findViewById(R.id.news_tag);
-            cardView = (CardView) v.findViewById(R.id.card_view);
-            rlcontainer = (RelativeLayout) v.findViewById(R.id.news_layout);
+            tag = v.findViewById(R.id.news_tag);
+            cardView = v.findViewById(R.id.card_view);
+            rlcontainer = v.findViewById(R.id.news_layout);
         }
     }
 
@@ -57,6 +57,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
         this.rowLayout = rowLayout;
         this.context = context;
     }
+
 
     @Override
     public NewsItemAdapter.NewsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -70,25 +71,31 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
 
 
     @Override
-    public void onBindViewHolder(NewsItemAdapter.NewsViewHolder holder, final int position) {
+    public void onBindViewHolder(NewsItemAdapter.NewsViewHolder holder, int position) {
         holder.title.setText(newsItems.get(position).getTitle());
         holder.desc.setText(newsItems.get(position).getDesc());
         holder.date.setText(newsItems.get(position).getDate());
-        holder.tag.setText(newsItems.get(position).getTag());
-
+        if (newsItems.get(position).getTag().equals("")) {
+            holder.tag.setVisibility(View.GONE);
+            holder.news_tag.setVisibility(View.GONE);
+        } else {
+            holder.tag.setVisibility(View.VISIBLE);
+            holder.news_tag.setVisibility(View.VISIBLE);
+            holder.tag.setText(newsItems.get(position).getTag());
+        }
         String URLNewsImage = newsItems.get(position).getImage();
 
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            holder.cardView.setBackgroundColor(Color.parseColor("#484a4f"));
-            holder.title.setTextColor(Color.WHITE);
-            holder.desc.setTextColor(Color.WHITE);
-            holder.news_tag.setColorFilter(Color.WHITE);
-            MainActivity.requestBuilder = GlideApp.with(context).load(URLNewsImage).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
-        }
-        else
-        {
-            MainActivity.requestBuilder = GlideApp.with(context).load(URLNewsImage).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
-
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                holder.cardView.setBackgroundColor(Color.parseColor("#484a4f"));
+                holder.title.setTextColor(Color.WHITE);
+                holder.desc.setTextColor(Color.WHITE);
+                holder.news_tag.setColorFilter(Color.WHITE);
+                MainActivity.requestBuilder = GlideApp.with(context).load(URLNewsImage).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+                break;
+            default:
+                MainActivity.requestBuilder = GlideApp.with(context).load(URLNewsImage).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
+                break;
         }
 
 
@@ -98,14 +105,14 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
 
         View.OnClickListener mClickListener;
 
-
+        final int newsArticlePosition = position;
         mClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Intent NewsArticleIntent = new Intent(context, NewsArticle.class);
 
-                NewsArticleIntent.putExtra("news_id", newsItems.get(position).getId().toString());
+                NewsArticleIntent.putExtra("news_id", newsItems.get(newsArticlePosition).getId().toString());
                 NewsArticleIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(NewsArticleIntent);
 
@@ -114,11 +121,12 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
         RLContainer.setOnClickListener(mClickListener);
 
 
-
     }
 
     @Override
     public int getItemCount() {
         return newsItems.size();
     }
+
+
 }

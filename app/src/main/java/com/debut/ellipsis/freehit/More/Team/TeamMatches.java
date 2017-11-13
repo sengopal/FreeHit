@@ -92,6 +92,7 @@ public class TeamMatches extends Fragment {
                 break;
             default:
                 refresh_layout.setColorSchemeResources(R.color.orange);
+                fab.setColorFilter(Color.WHITE);
                 break;
         }
 
