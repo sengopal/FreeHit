@@ -49,12 +49,12 @@
                     android:background="@android:color/white"
                     android:padding="@dimen/_5sdp">
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/arrow_team_1"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:layout_gravity="center"
-                        android:src="@drawable/arrow_vector" />
+                        app:srcCompat="@drawable/arrow_vector" />
 
 
                     <TextView
@@ -80,12 +80,12 @@
                     android:background="@android:color/white"
                     android:padding="@dimen/_5sdp">
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/arrow_team_2"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:layout_gravity="center"
-                        android:src="@drawable/arrow_vector" />
+                        app:srcCompat="@drawable/arrow_vector" />
 
                     <TextView
                         android:id="@+id/match_info_team2"

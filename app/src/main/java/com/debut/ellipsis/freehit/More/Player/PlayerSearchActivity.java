@@ -4,7 +4,9 @@ import android.content.Context;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.LinearLayoutManager;
@@ -41,6 +43,10 @@ public class PlayerSearchActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         setContentView(R.layout.fragment_more_player_search_fragment);
 
+        EditText playerSearchEdit= findViewById(R.id.editText_player);
+        VectorDrawableCompat drawableCompat= VectorDrawableCompat.create(getResources(), R.drawable.ic_search, playerSearchEdit.getContext().getTheme());
+        playerSearchEdit.setCompoundDrawablesRelativeWithIntrinsicBounds(drawableCompat, null, null, null);
+
         View viewToolbar = findViewById(R.id.toolbar_player_search);
 
         Toolbar toolbar = viewToolbar.findViewById(R.id.toolbar);
@@ -59,8 +65,11 @@ public class PlayerSearchActivity extends AppCompatActivity {
             toolbar.setBackgroundColor(getResources().getColor(R.color.dark));
             recyclerView.setBackgroundColor(getResources().getColor(R.color.night_background));
             Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.BLACK);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(Color.BLACK);
+            }
+
         }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -69,9 +78,10 @@ public class PlayerSearchActivity extends AppCompatActivity {
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
         // Get details on the currently active default data network
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-
-        EditText playerSearchEdit = findViewById(R.id.editText_player);
+        NetworkInfo networkInfo = null;
+        if (connMgr != null) {
+            networkInfo = connMgr.getActiveNetworkInfo();
+        }
 
         // If there is a network connection, fetch data
         if (networkInfo != null && networkInfo.isConnected()) {

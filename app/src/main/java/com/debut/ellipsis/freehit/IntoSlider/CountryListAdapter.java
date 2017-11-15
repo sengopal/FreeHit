@@ -21,8 +21,8 @@ import java.util.List;
 public class CountryListAdapter extends BaseAdapter {
 
     private Context mContext;
-    List<Country> countries;
-    LayoutInflater inflater;
+    private List<Country> countries;
+    private LayoutInflater inflater;
 
     public CountryListAdapter(Context context, List<Country> countries) {
         super();
@@ -70,8 +70,8 @@ public class CountryListAdapter extends BaseAdapter {
     }
 
     static class Cell {
-        public TextView textView;
-        public ImageView imageView;
+        TextView textView;
+        ImageView imageView;
 
         static Cell from(View view) {
             if (view == null)
@@ -79,8 +79,8 @@ public class CountryListAdapter extends BaseAdapter {
 
             if (view.getTag() == null) {
                 Cell cell = new Cell();
-                cell.textView = (TextView) view.findViewById(R.id.row_title);
-                cell.imageView = (ImageView) view.findViewById(R.id.row_icon);
+                cell.textView = view.findViewById(R.id.row_title);
+                cell.imageView = view.findViewById(R.id.row_icon);
                 view.setTag(cell);
                 return cell;
             } else {

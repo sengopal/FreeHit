@@ -76,7 +76,7 @@
                     android:layout_marginTop="@dimen/_10sdp">
 
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/team_logo_1_live"
                         android:layout_width="@dimen/_50sdp"
                         android:layout_height="@dimen/_75sdp"
@@ -125,7 +125,7 @@
                     android:layout_marginTop="@dimen/_10sdp">
 
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/team_logo_2_live"
                         android:layout_width="@dimen/_50sdp"
                         android:layout_height="@dimen/_75sdp"

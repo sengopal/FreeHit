@@ -1,6 +1,7 @@
 package com.debut.ellipsis.freehit.More.Series;
 
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -55,16 +56,20 @@ public class SeriesMainActivity extends AppCompatActivity {
 
         final SwipeRefreshLayout refLayout = viewRecycler.findViewById(R.id.refresh_layout);
 
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            recyclerView.setBackgroundColor(getResources().getColor(R.color.night_background));
-            toolbar.setBackgroundColor(getResources().getColor(R.color.dark));
-            refLayout.setColorSchemeColors(Color.BLACK);
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.BLACK);
-
-        } else {
-            refLayout.setColorSchemeColors(getResources().getColor(R.color.orange));
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                recyclerView.setBackgroundColor(getResources().getColor(R.color.night_background));
+                toolbar.setBackgroundColor(getResources().getColor(R.color.dark));
+                refLayout.setColorSchemeColors(Color.BLACK);
+                Window window = getWindow();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                    window.setStatusBarColor(Color.BLACK);
+                }
+                break;
+            default:
+                refLayout.setColorSchemeColors(getResources().getColor(R.color.orange));
+                break;
         }
 
         View ProgressView = findViewById(R.id.progress);

@@ -88,7 +88,7 @@
                     android:layout_marginTop="@dimen/_20sdp">
 
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/team_logo_1_past"
                         android:layout_width="@dimen/_50sdp"
                         android:layout_height="@dimen/_75sdp"
@@ -139,7 +139,7 @@
                     android:layout_marginTop="@dimen/_20sdp">
 
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/team_logo_2_past"
                         android:layout_width="@dimen/_50sdp"
                         android:layout_height="@dimen/_75sdp"
@@ -249,7 +249,7 @@
             android:layout_below="@+id/match_result_value"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_5sdp"
-            android:text="@string/motm"
+            android:text="@string/MOTM"
             android:textColor="@android:color/white"
             android:textSize="@dimen/_11sdp"
             android:textStyle="bold" />
@@ -274,7 +274,6 @@
             android:layout_below="@+id/motm_value"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_5sdp"
-
             android:text="@string/mots"
             android:textColor="@android:color/white"
             android:textSize="@dimen/_11sdp"

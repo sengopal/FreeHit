@@ -23,7 +23,7 @@
             android:textSize="@dimen/_12sdp"
             tools:text="1" />
 
-        <ImageView
+        <android.support.v7.widget.AppCompatImageView
             android:id="@+id/team_flag"
             android:layout_width="@dimen/_30sdp"
             android:layout_height="@dimen/_30sdp"

@@ -46,7 +46,7 @@ public class MoreFragment extends Fragment {
         moreItem.add(new MoreItem(R.drawable.team_vector, R.string.search_team));
         moreItem.add(new MoreItem(R.drawable.series_vector, R.string.search_series));
         moreItem.add(new MoreItem(R.drawable.fav_vector, R.string.fav_team));
-        moreItem.add(new MoreItem(R.drawable.rankings, R.string.rankings));
+        moreItem.add(new MoreItem(R.drawable.ranking, R.string.rankings));
 
         MoreAdapter adapter = new MoreAdapter(getActivity(), moreItem);
         final ListView listView = rootView.findViewById(R.id.list);

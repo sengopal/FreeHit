@@ -73,7 +73,7 @@
                         android:paddingEnd="@dimen/_3sdp"
                         android:paddingStart="@dimen/_5sdp">
 
-                        <ImageView
+                        <android.support.v7.widget.AppCompatImageView
                             android:id="@+id/Player_image"
                             android:layout_width="@dimen/_60sdp"
                             android:layout_height="@dimen/_60sdp"

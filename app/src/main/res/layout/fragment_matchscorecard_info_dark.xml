@@ -25,7 +25,7 @@
             <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/tw__composer_light_gray"
+                android:background="@color/tw__composer_deep_gray"
                 android:stretchColumns="1">
 
                 <TableRow>
@@ -50,12 +50,12 @@
                     android:background="@color/ranking_layout"
                     android:padding="@dimen/_5sdp">
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/arrow_team_1"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:layout_gravity="center"
-                        android:src="@drawable/arrow_vector" />
+                        app:srcCompat="@drawable/arrow_vector" />
 
 
                     <TextView
@@ -81,12 +81,12 @@
                     android:background="@color/ranking_layout"
                     android:padding="@dimen/_5sdp">
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/arrow_team_2"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:layout_gravity="center"
-                        android:src="@drawable/arrow_vector" />
+                        app:srcCompat="@drawable/arrow_vector" />
 
                     <TextView
                         android:id="@+id/match_info_team2"
@@ -120,7 +120,7 @@
                     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/tw__composer_light_gray"
+                        android:background="@color/tw__composer_deep_gray"
                         android:stretchColumns="*">
 
                         <TableRow>

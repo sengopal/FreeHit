@@ -29,6 +29,9 @@
     <string name="average">AVERAGE</string>
     <string name="economy">ECONOMY</string>
 
+    <string name="refresh">REFRESH</string>
+
+    <string name="night_mode">SWITCH TO NIGHT MODE</string>
 
     <!--COMPLETE LIST OF MATCHES-->
     <string name="upcoming_list">Upcoming Matches</string>

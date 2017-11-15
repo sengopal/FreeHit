@@ -2,6 +2,7 @@ package com.debut.ellipsis.freehit.IntoSlider;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatDelegate;
 import android.text.Editable;
@@ -22,8 +23,6 @@ import java.util.Locale;
 
 public class CountryPicker extends DialogFragment {
 
-    private EditText searchEditText;
-    private ListView countryListView;
     private CountryListAdapter adapter;
     private List<Country> countriesList = new ArrayList<>();
     private List<Country> selectedCountriesList = new ArrayList<>();
@@ -32,10 +31,10 @@ public class CountryPicker extends DialogFragment {
     /**
      * To support show as dialog
      */
-    public static CountryPicker newInstance(String dialogTitle) {
+    public static CountryPicker newInstance() {
         CountryPicker picker = new CountryPicker();
         Bundle bundle = new Bundle();
-        bundle.putString("dialogTitle", dialogTitle);
+        bundle.putString("dialogTitle", "Select Country");
         picker.setArguments(bundle);
         return picker;
     }
@@ -55,6 +54,10 @@ public class CountryPicker extends DialogFragment {
             view = inflater.inflate(R.layout.country_picker_dark,null);
         }
 
+        EditText searchEditText = view.findViewById(R.id.country_code_picker_search);
+        VectorDrawableCompat drawableCompat= VectorDrawableCompat.create(getResources(), R.drawable.ic_search, searchEditText.getContext().getTheme());
+        searchEditText.setCompoundDrawablesRelativeWithIntrinsicBounds(drawableCompat, null, null, null);
+
         Bundle args = getArguments();
         if (args != null) {
             String dialogTitle = args.getString("dialogTitle");
@@ -64,8 +67,7 @@ public class CountryPicker extends DialogFragment {
             int height = getResources().getDimensionPixelSize(R.dimen._250sdp);
             getDialog().getWindow().setLayout(width, height);
         }
-        searchEditText = view.findViewById(R.id.country_code_picker_search);
-        countryListView = view.findViewById(R.id.country_code_picker_listview);
+        ListView countryListView = view.findViewById(R.id.country_code_picker_listview);
 
         selectedCountriesList = new ArrayList<>(countriesList.size());
         selectedCountriesList.addAll(countriesList);

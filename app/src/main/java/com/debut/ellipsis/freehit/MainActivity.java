@@ -98,8 +98,6 @@ public class MainActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
                 tab.getIcon().setColorFilter(Color.parseColor("#f5f5f5"), PorterDuff.Mode.SRC_IN);
-
-
             }
 
             @Override
@@ -192,7 +190,6 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             Intent settingsIntent = new Intent(this, CustomSettings.class);
             startActivity(settingsIntent);
-
             return true;
         }
         return super.onOptionsItemSelected(item);

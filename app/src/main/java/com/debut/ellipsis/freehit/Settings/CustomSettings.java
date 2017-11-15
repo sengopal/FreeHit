@@ -158,7 +158,7 @@ public class CustomSettings extends AppCompatActivity {
 
     public void select_country(View view) {
 
-        final CountryPicker picker = CountryPicker.newInstance("Select Country");  // dialog title
+        final CountryPicker picker = CountryPicker.newInstance();  // dialog title
         picker.setListener(new CountryPickerListener() {
             @Override
             public void onSelectCountry(String name, String flagURLID) {

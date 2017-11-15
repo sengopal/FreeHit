@@ -87,8 +87,6 @@ public class LiveMatchCard extends Fragment {
         call.enqueue(new Callback<LiveMatchCardItem>() {
             @Override
             public void onResponse(Call<LiveMatchCardItem> call, Response<LiveMatchCardItem> response) {
-
-
                 common_match_cards.setVisibility(View.VISIBLE);
                 no_internet_connection.setVisibility(View.INVISIBLE);
                 indicator.setVisibility(View.VISIBLE);

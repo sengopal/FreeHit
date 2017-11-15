@@ -197,8 +197,10 @@ public class WelcomeActivity extends AppCompatActivity {
      */
     private void changeStatusBarColor() {
         Window window = getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(Color.TRANSPARENT);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setStatusBarColor(Color.TRANSPARENT);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        }
     }
 
     /**
@@ -291,7 +293,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     public void select_country(View view) {
 
-        final CountryPicker picker = CountryPicker.newInstance("Select Country");  // dialog title
+        final CountryPicker picker = CountryPicker.newInstance();  // dialog title
         picker.setListener(new CountryPickerListener() {
             @Override
             public void onSelectCountry(String name, String flagURLID) {

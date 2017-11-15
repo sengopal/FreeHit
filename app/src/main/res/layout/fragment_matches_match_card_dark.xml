@@ -17,7 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
             <include
                 android:id="@+id/match_card_viewpagegr"
                 layout="@layout/common_viewpager_dark" />
