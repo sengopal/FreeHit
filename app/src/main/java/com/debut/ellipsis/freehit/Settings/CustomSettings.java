@@ -2,6 +2,7 @@ package com.debut.ellipsis.freehit.Settings;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
@@ -73,20 +74,38 @@ public class CustomSettings extends AppCompatActivity {
 
         String TeamLogoURL = WelcomeActivity.countryHash.getCountryFlag(name.toUpperCase());
 
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            setTheme(R.style.AppThemeDark);
-            title_country_select.setTextColor(Color.WHITE);
-            country_name.setTextColor(Color.WHITE);
-            night_mode.setTextColor(Color.WHITE);
-            country_select_button.setBackgroundResource(R.drawable.button_shape_dark);
-            country_select_button.setTextColor(Color.BLACK);
-            NoConnection.setTextColor(Color.WHITE);
-            NoConnectionButton.setTextColor(Color.BLACK);
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                setTheme(R.style.AppThemeDark);
+                title_country_select.setTextColor(Color.WHITE);
+                country_name.setTextColor(Color.WHITE);
+                night_mode.setTextColor(Color.WHITE);
+                country_select_button.setBackgroundResource(R.drawable.button_shape_dark);
+                country_select_button.setTextColor(Color.BLACK);
+                NoConnection.setTextColor(Color.WHITE);
+                NoConnectionButton.setTextColor(Color.BLACK);
+                break;
+            default:
+                setTheme(R.style.AppTheme);
+                NoConnection.setTextColor(Color.BLACK);
+                break;
         }
-        else
-        {
-            NoConnection.setTextColor(Color.BLACK);
-        }
+
+        final View.OnClickListener mClickListener;
+
+        mClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = getIntent();
+                overridePendingTransition(0, 0);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(intent);
+
+            }
+        };
+
         final SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
 
         NightMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -97,22 +116,21 @@ public class CustomSettings extends AppCompatActivity {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                     editor.putBoolean("switch_state", true);
                     editor.apply();
-
-                } else if (!isChecked) {
+                    night_mode.setOnClickListener(mClickListener);
+                } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     editor.putBoolean("switch_state", false);
                     editor.apply();
-
+                    night_mode.setOnClickListener(mClickListener);
                 }
             }
         });
 
+
+        NightMode.setOnClickListener(mClickListener);
+
         Boolean NightModeState = prefs.getBoolean("switch_state", false);
-        if (NightModeState) {
-            NightMode.setChecked(true);
-        } else {
-            NightMode.setChecked(false);
-        }
+        NightMode.setChecked(NightModeState);
 
 
         // Get a reference to the ConnectivityManager to check state of network connectivity
@@ -125,13 +143,13 @@ public class CustomSettings extends AppCompatActivity {
         if (networkInfo != null && networkInfo.isConnected()) {
             country_name.setText(name);
 
-            if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
-            {
-                MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogoURL).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
-            }
-            else
-            {
-                MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogoURL).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
+            switch (AppCompatDelegate.getDefaultNightMode()) {
+                case AppCompatDelegate.MODE_NIGHT_YES:
+                    MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogoURL).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+                    break;
+                default:
+                    MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(TeamLogoURL).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
+                    break;
             }
 
 
@@ -182,6 +200,4 @@ public class CustomSettings extends AppCompatActivity {
         picker.show(getSupportFragmentManager(), "COUNTRY_PICKER");
 
     }
-
-
 }
