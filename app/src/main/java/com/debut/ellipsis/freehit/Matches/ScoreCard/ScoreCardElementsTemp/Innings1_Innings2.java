@@ -11,6 +11,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.debut.ellipsis.freehit.Matches.LiveMatches.LiveMatchScoreCard;
 import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchScoreCard;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardItem;
 import com.debut.ellipsis.freehit.R;
@@ -32,6 +33,8 @@ public class Innings1_Innings2 extends Fragment {
 
         if (match_type.equals("PAST")) {
             teamList = ((PastMatchScoreCard) getActivity()).getQList();
+        }else if(match_type.equals("LIVE")) {
+            teamList = LiveMatchScoreCard.getQList();
         }
 
         View rootView = null ;

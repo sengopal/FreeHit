@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.MainActivity;
+import com.debut.ellipsis.freehit.Matches.LiveMatches.LiveMatchScoreCard;
 import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchScoreCard;
 import com.debut.ellipsis.freehit.R;
 
@@ -40,7 +41,7 @@ public class InfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              final Bundle savedInstanceState) {
 
-        String match_type = getActivity().getIntent().getStringExtra("match_type");
+        final String match_type = getActivity().getIntent().getStringExtra("match_type");
         String match_name = getActivity().getIntent().getStringExtra("match_name");
         final String team_1_intent = getActivity().getIntent().getStringExtra("team1");
         String team_2_intent = getActivity().getIntent().getStringExtra("team2");
@@ -68,6 +69,9 @@ public class InfoFragment extends Fragment {
         if (match_type.equals("PAST")) {
             teamList = PastMatchScoreCard.getQList();
         }
+        else if(match_type.equals("LIVE")){
+            teamList = LiveMatchScoreCard.getQList();
+        }
 
         if (teamList.get(0).getScorecard().getTeam1().getInncount() != 0) {
             if (teamList.get(0).getScorecard().getTeam1().getTeamname().equals(team_1_intent)) {
@@ -93,7 +97,7 @@ public class InfoFragment extends Fragment {
         TextView match_info_team2 = rootView.findViewById(R.id.match_info_team2);
         match_info_team2.setText(team_2);
 
-        TextView match = rootView.findViewById(R.id.match_info_match_name);
+        final TextView match = rootView.findViewById(R.id.match_info_match_name);
         match.setText(match_name);
 
         TextView series = rootView.findViewById(R.id.match_info_series_name);
@@ -142,7 +146,12 @@ public class InfoFragment extends Fragment {
                 {
                     Intent PlayingX1 = new Intent(getActivity().getBaseContext(), com.debut.ellipsis.freehit.Matches.ScoreCard.PlayingX1.class);
                     PlayingX1.putExtra("team", "TEAM_1");
-                    PlayingX1.putExtra("match_type", "PAST");
+                    if (match_type.equals("PAST")) {
+                        PlayingX1.putExtra("match_type", "PAST");
+                    }
+                    else if(match_type.equals("LIVE")) {
+                        PlayingX1.putExtra("match_type","LIVE");
+                    }
                     getActivity().startActivity(PlayingX1);
                 }
                 else
@@ -162,7 +171,12 @@ public class InfoFragment extends Fragment {
                 {
                     Intent PlayingX1 = new Intent(getActivity().getBaseContext(), com.debut.ellipsis.freehit.Matches.ScoreCard.PlayingX1.class);
                     PlayingX1.putExtra("team", "TEAM_2");
-                    PlayingX1.putExtra("match_type", "PAST");
+                    if (match_type.equals("PAST")) {
+                        PlayingX1.putExtra("match_type", "PAST");
+                    }
+                    else if(match_type.equals("LIVE")) {
+                        PlayingX1.putExtra("match_type","LIVE");
+                    }
                     getActivity().startActivity(PlayingX1);
                 }
                 else

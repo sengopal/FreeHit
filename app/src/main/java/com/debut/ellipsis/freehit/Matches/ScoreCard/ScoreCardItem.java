@@ -59,6 +59,8 @@ public class ScoreCardItem {
         private String umpires;
         @SerializedName("weather")
         private String weather;
+        /*@SerializedName("top")
+        private Top top;*/
 
         public String getDay() {
             return day;
@@ -112,7 +114,22 @@ public class ScoreCardItem {
             return weather;
         }
 
+        /*public Top getTop() {
+            return top;
+        }*/
     }
+
+    /*public class Top
+    {
+        @SerializedName("bat1")
+        private String bat1;
+        @SerializedName("bat2")
+        private String bat2;
+        @SerializedName("bowl1")
+        private String bowl1;
+        @SerializedName("bowl2")
+        private String bowl2;
+    }*/
 
     public class Scorecard
     {
@@ -120,6 +137,8 @@ public class ScoreCardItem {
         private Team team1;
         @SerializedName("team2")
         private Team team2;
+        @SerializedName("currentover")
+        private CurrentOver currentOver;
 
         public Team getTeam1() {
             return team1;
@@ -127,6 +146,88 @@ public class ScoreCardItem {
 
         public Team getTeam2() {
             return team2;
+        }
+
+        public CurrentOver getCurrentOver() {
+            return currentOver;
+        }
+    }
+
+    public class CurrentOver
+    {
+        @SerializedName("bat1")
+        private CurrentBat bat1;
+        @SerializedName("bat2")
+        private CurrentBat bat2;
+        @SerializedName("bowl")
+        private CurrentBowl bowler;
+        @SerializedName("currover")
+        private List<String> overs;
+
+        public CurrentBat getBat1() {
+            return bat1;
+        }
+
+        public CurrentBat getBat2() {
+            return bat2;
+        }
+
+        public CurrentBowl getBowler() {
+            return bowler;
+        }
+
+        public List<String> getOvers() {
+            return overs;
+        }
+    }
+
+    public class CurrentBat
+    {
+        @SerializedName("name")
+        private String name;
+        @SerializedName("overs")
+        private String overs;
+        @SerializedName("score")
+        private String score;
+        @SerializedName("status")
+        private String status;
+
+        public String getName() {
+            return name;
+        }
+
+        public String getScore() {
+            return score;
+        }
+
+        public String getOvers() {
+            return overs;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+    }
+
+    public class CurrentBowl
+    {
+        @SerializedName("name")
+        private String name;
+        @SerializedName("overs")
+        private String overs;
+        @SerializedName("score")
+        private String score;
+
+        public String getName() {
+            return name;
+        }
+
+        public String getScore() {
+            return score;
+        }
+
+        public String getOvers() {
+            return overs;
         }
     }
 
@@ -140,6 +241,8 @@ public class ScoreCardItem {
         private String teamname;
         @SerializedName("secondinn")
         private Innings secondinn;
+        @SerializedName("lineup")
+        public List<LineUp> lineup = new ArrayList<>();
 
         public Innings getFirstinn() {
             return firstinn;
@@ -157,7 +260,21 @@ public class ScoreCardItem {
             return secondinn;
         }
 
+        public List<LineUp> getLineup() {
+            return lineup;
+        }
     }
+
+    public class LineUp
+    {
+        @SerializedName("name")
+        private String name;
+
+        public String getName() {
+            return name;
+        }
+    }
+
 
     public class Innings
     {

@@ -18,6 +18,7 @@ import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
 import com.debut.ellipsis.freehit.MainActivity;
+import com.debut.ellipsis.freehit.Matches.LiveMatches.LiveMatchScoreCard;
 import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchScoreCard;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElementsTemp.Team1ScoreCardFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElementsTemp.Team2ScoreCardFragment;
@@ -67,6 +68,9 @@ public class ScoreCardFragment extends Fragment {
 
         if (match_type.equals("PAST")) {
             teamList = PastMatchScoreCard.getQList();
+        }
+        else if(match_type.equals("LIVE")) {
+            teamList = LiveMatchScoreCard.getQList();
         }
 
 

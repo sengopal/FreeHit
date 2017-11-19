@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.debut.ellipsis.freehit.Matches.LiveMatches.LiveMatchScoreCard;
 import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchScoreCard;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardItem;
 import com.debut.ellipsis.freehit.R;
@@ -50,6 +51,8 @@ public class Team2ScoreCardFragment extends Fragment {
 
         if (match_type.equals("PAST")) {
             teamList = PastMatchScoreCard.getQList();
+        } else if(match_type.equals("LIVE")) {
+            teamList = LiveMatchScoreCard.getQList();
         }
 
         TextView no_match_data = rootView.findViewById(R.id.No_match_data);

@@ -2,6 +2,7 @@ package com.debut.ellipsis.freehit.Matches.LiveMatches;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.CardView;
@@ -10,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.CountryHash;
@@ -100,7 +100,7 @@ public class LiveMatchCardAdapter extends PagerAdapter {
         imageViewTeam2Logo = view.findViewById(R.id.team_logo_2_live);
 
 
-        TextView shortName1 = view.findViewById(R.id.sn_team_1_live);
+        final TextView shortName1 = view.findViewById(R.id.sn_team_1_live);
         CountryHash countryHash = new CountryHash();
 
         final String ShortNameTeam1 = countryHash.getCountrySN((this.dataObjectList.get(position).getTeam1().getName()).toUpperCase());
@@ -149,13 +149,13 @@ public class LiveMatchCardAdapter extends PagerAdapter {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* Intent LiveMatchScoreCardIntent = new Intent(context, LiveMatchScoreCard.class);
+                Intent LiveMatchScoreCardIntent = new Intent(context, LiveMatchScoreCard.class);
                 LiveMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getNdid());
                 LiveMatchScoreCardIntent.putExtra("match_name", finalMatch_name + "( " +ShortNameTeam1+ " vs " +ShortNameTeam2+ " )");
-                LiveMatchScoreCardIntent.putExtra("Team1Name", ShortNameTeam1);
-                LiveMatchScoreCardIntent.putExtra("Team2Name", ShortNameTeam2);
-                context.startActivity(LiveMatchScoreCardIntent);*/
-                Toast.makeText(context,"Coming Soon !",Toast.LENGTH_SHORT).show();
+                LiveMatchScoreCardIntent.putExtra("team1", WelcomeActivity.countryHash.getCountryName(ShortNameTeam1));
+                LiveMatchScoreCardIntent.putExtra("team2",  WelcomeActivity.countryHash.getCountryName(ShortNameTeam2));
+                LiveMatchScoreCardIntent.putExtra("match_type", "LIVE");
+                context.startActivity(LiveMatchScoreCardIntent);
 
             }
         });

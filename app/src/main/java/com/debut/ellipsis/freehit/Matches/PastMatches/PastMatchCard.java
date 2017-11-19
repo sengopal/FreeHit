@@ -75,6 +75,7 @@ public class PastMatchCard extends Fragment {
         NoConnectionButton = no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
 
+
         Call<PastMatchCardItem> call = MainActivity.apiInterface.doGetPastCardResources();
         call.enqueue(new Callback<PastMatchCardItem>() {
             @Override
@@ -82,21 +83,21 @@ public class PastMatchCard extends Fragment {
                 no_internet_connection.setVisibility(View.INVISIBLE);
                 List<PastMatchCardItem> pastMatchCardItems = response.body().getResults();
                 if (getActivity() != null) {
-                    mAdapter = new PastMatchCardItemAdapter(getActivity(), pastMatchCardItems);
-                    indicator.setCount(mAdapter.getCount());
-                    IndicatorConfig();
-                    vp.setAdapter(new PastMatchCardItemAdapter(getContext(), pastMatchCardItems));
-                    mProgressBar.setVisibility(View.GONE);
+                        mAdapter = new PastMatchCardItemAdapter(getActivity(), pastMatchCardItems);
+                        indicator.setCount(mAdapter.getCount());
+                        IndicatorConfig();
+                        vp.setAdapter(new PastMatchCardItemAdapter(getContext(), pastMatchCardItems));
+                        mProgressBar.setVisibility(View.GONE);
 
-                    common_match_cards.setVisibility(View.VISIBLE);
+                        common_match_cards.setVisibility(View.VISIBLE);
 
 
-                    indicator.setVisibility(View.VISIBLE);
+                        indicator.setVisibility(View.VISIBLE);
 
-                    indicator.setViewPager(vp);
+                        indicator.setViewPager(vp);
 
+                    }
                 }
-            }
 
             @Override
             public void onFailure(Call<PastMatchCardItem> call, Throwable t) {

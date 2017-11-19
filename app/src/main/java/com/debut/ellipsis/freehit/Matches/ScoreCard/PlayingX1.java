@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
+import com.debut.ellipsis.freehit.Matches.LiveMatches.LiveMatchScoreCard;
 import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchScoreCard;
 import com.debut.ellipsis.freehit.R;
 
@@ -16,6 +17,7 @@ import java.util.List;
 
 public class PlayingX1 extends AppCompatActivity {
     ScoreCardPlayingX1Adapter mAdapter;
+    LiveScoreCardPlayingX1Adapter mLiveAdapter;
     private List<ScoreCardItem> teamList = null;
     private Toolbar toolbar;
 
@@ -39,27 +41,44 @@ public class PlayingX1 extends AppCompatActivity {
 
         if (match_type.equals("PAST")) {
             teamList = PastMatchScoreCard.getQList();
+        } else if (match_type.equals("LIVE")) {
+            teamList = LiveMatchScoreCard.getQList();
         }
 
         View playingX1_list = findViewById(R.id.playingX1_list);
 
         ListView listTeam = playingX1_list.findViewById(R.id.list);
 
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
-        {
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             listTeam.setBackgroundColor(getResources().getColor(R.color.night_background));
         }
 
-        if (team.equals("TEAM_1")) {
-            setTitle(teamList.get(0).getScorecard().getTeam1().getTeamname());
-            mAdapter = new ScoreCardPlayingX1Adapter(getBaseContext(), teamList.get(0).getScorecard().getTeam1().getFirstinn().getBatting());
-            listTeam.setAdapter(mAdapter);
-            mAdapter.notifyDataSetChanged();
-        } else if (team.equals("TEAM_2")) {
-            setTitle(teamList.get(0).getScorecard().getTeam2().getTeamname());
-            mAdapter = new ScoreCardPlayingX1Adapter(getBaseContext(), teamList.get(0).getScorecard().getTeam2().getFirstinn().getBatting());
-            listTeam.setAdapter(mAdapter);
-            mAdapter.notifyDataSetChanged();
+        if (match_type.equals("PAST")) {
+            if (team.equals("TEAM_1")) {
+                setTitle(teamList.get(0).getScorecard().getTeam1().getTeamname());
+                mAdapter = new ScoreCardPlayingX1Adapter(getBaseContext(), teamList.get(0).getScorecard().getTeam1().getFirstinn().getBatting());
+                listTeam.setAdapter(mAdapter);
+                mAdapter.notifyDataSetChanged();
+            } else if (team.equals("TEAM_2")) {
+                setTitle(teamList.get(0).getScorecard().getTeam2().getTeamname());
+                mAdapter = new ScoreCardPlayingX1Adapter(getBaseContext(), teamList.get(0).getScorecard().getTeam2().getFirstinn().getBatting());
+                listTeam.setAdapter(mAdapter);
+                mAdapter.notifyDataSetChanged();
+            }
+        }
+        else if(match_type.equals("LIVE")) {
+            if (team.equals("TEAM_1")) {
+                setTitle(teamList.get(0).getScorecard().getTeam1().getTeamname());
+                mLiveAdapter = new LiveScoreCardPlayingX1Adapter(getBaseContext(), teamList.get(0).getScorecard().getTeam1().getLineup());
+                listTeam.setAdapter(mLiveAdapter);
+                mLiveAdapter.notifyDataSetChanged();
+            } else if (team.equals("TEAM_2")) {
+                setTitle(teamList.get(0).getScorecard().getTeam2().getTeamname());
+                mLiveAdapter = new LiveScoreCardPlayingX1Adapter(getBaseContext(), teamList.get(0).getScorecard().getTeam2().getLineup());
+                listTeam.setAdapter(mLiveAdapter);
+                mLiveAdapter.notifyDataSetChanged();
+            }
+
         }
     }
 

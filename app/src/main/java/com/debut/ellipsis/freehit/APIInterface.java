@@ -2,6 +2,7 @@ package com.debut.ellipsis.freehit;
 
 import com.debut.ellipsis.freehit.Matches.LiveMatches.LiveMatchCardItem;
 import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchCardItem;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.CommentaryElements.CommentaryItem;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardItem;
 import com.debut.ellipsis.freehit.Matches.UpcomingMatches.UpcomingMatchCardItem;
 import com.debut.ellipsis.freehit.More.Player.PlayerItem;
@@ -81,10 +82,16 @@ public interface APIInterface {
     @GET("scorecard?")
     Call<ScoreCardItem> doGetMatchScoreCard(@Query("ndid") String match_id);
 
+    @GET("scorecardlive?")
+    Call<ScoreCardItem> doGetLiveMatchScoreCard(@Query("ndid") String match_id);
+
     @GET("ranking")
     Call<RankingItem> doGetRankingResources();
 
     @GET("series?")
-    Call<PerformanceItem> doGetSeriesPerformance(@Query("id")String id);
+    Call<PerformanceItem> doGetSeriesPerformance(@Query("id") String id);
+
+    @GET("comm?")
+    Call<CommentaryItem> doGetLiveMatchCommentary(@Query("ndid") String match_id );
 
 }
