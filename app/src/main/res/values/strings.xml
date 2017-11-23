@@ -40,6 +40,7 @@
 
     <string name="players">Players</string>
 
+    <string name="server_issues">The Servers are down , we\'ll be back in a while</string>
 
     <!--FOR EMPTY VIEW OF NEWS FRAGMENT-->
     <string name="EmptyNews">NO NEWS FOUND</string>

@@ -81,10 +81,16 @@ public class SeriesMainActivity extends AppCompatActivity {
         seriesInfo.enqueue(new Callback<SeriesItem>() {
             @Override
             public void onResponse(Call<SeriesItem> call, Response<SeriesItem> response) {
-                mProgressbar.setVisibility(View.INVISIBLE);
-                List<SeriesItem> seriesInfo = response.body().getResults();
-                recyclerView.setAdapter(new SeriesItemAdapter(seriesInfo, R.layout.fragment_more_series_list_item, getApplicationContext()));
-
+                if(response.isSuccessful()) {
+                    mProgressbar.setVisibility(View.INVISIBLE);
+                    List<SeriesItem> seriesInfo = response.body().getResults();
+                    recyclerView.setAdapter(new SeriesItemAdapter(seriesInfo, R.layout.fragment_more_series_list_item, getApplicationContext()));
+                }
+                else
+                {
+                    mProgressbar.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getApplicationContext(),R.string.server_issues,Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -105,10 +111,16 @@ public class SeriesMainActivity extends AppCompatActivity {
                                                seriesInfo.enqueue(new Callback<SeriesItem>() {
                                                    @Override
                                                    public void onResponse(Call<SeriesItem> call, Response<SeriesItem> response) {
-                                                       mProgressbar.setVisibility(View.INVISIBLE);
-                                                       List<SeriesItem> seriesInfo = response.body().getResults();
-                                                       recyclerView.setAdapter(new SeriesItemAdapter(seriesInfo, R.layout.fragment_more_series_list_item, getApplicationContext()));
-
+                                                       if(response.isSuccessful()) {
+                                                           mProgressbar.setVisibility(View.INVISIBLE);
+                                                           List<SeriesItem> seriesInfo = response.body().getResults();
+                                                           recyclerView.setAdapter(new SeriesItemAdapter(seriesInfo, R.layout.fragment_more_series_list_item, getApplicationContext()));
+                                                       }
+                                                       else
+                                                       {
+                                                           mProgressbar.setVisibility(View.INVISIBLE);
+                                                           Toast.makeText(getApplicationContext(),R.string.server_issues,Toast.LENGTH_SHORT).show();
+                                                       }
                                                    }
 
                                                    @Override

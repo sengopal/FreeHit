@@ -88,15 +88,21 @@ public class TeamPlayers extends Fragment {
         call1.enqueue(new Callback<PlayerCountryItem>() {
             @Override
             public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
+                if (response.isSuccessful()) {
+                    mProgressBar.setVisibility(View.GONE);
+                    List<PlayerCountryItem> playerCountryItems = response.body().getResults();
+                    if (playerCountryItems.size() == 0) {
+                        mEmptyView.setVisibility(View.VISIBLE);
+                        mEmptyView.setText(R.string.NoPlayers);
+                    }
+                    recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getContext()));
 
-                mProgressBar.setVisibility(View.GONE);
-                List<PlayerCountryItem> playerCountryItems = response.body().getResults();
-                if (playerCountryItems.size() == 0) {
-                    mEmptyView.setVisibility(View.VISIBLE);
-                    mEmptyView.setText(R.string.NoPlayers);
+                } else {
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    mEmptyView.setVisibility(View.INVISIBLE);
+                    Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                    toast.show();
                 }
-                recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getContext()));
-
             }
 
             @Override
@@ -120,15 +126,21 @@ public class TeamPlayers extends Fragment {
                 call1.enqueue(new Callback<PlayerCountryItem>() {
                     @Override
                     public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
+                        if (response.isSuccessful()) {
+                            mProgressBar.setVisibility(View.GONE);
+                            List<PlayerCountryItem> playerCountryItems = response.body().getResults();
+                            if (playerCountryItems.size() == 0) {
+                                mEmptyView.setVisibility(View.VISIBLE);
+                                mEmptyView.setText(R.string.NoPlayers);
+                            }
+                            recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getContext()));
 
-                        mProgressBar.setVisibility(View.GONE);
-                        List<PlayerCountryItem> playerCountryItems = response.body().getResults();
-                        if (playerCountryItems.size() == 0) {
-                            mEmptyView.setVisibility(View.VISIBLE);
-                            mEmptyView.setText(R.string.NoPlayers);
+                        } else {
+                            mProgressBar.setVisibility(View.INVISIBLE);
+                            mEmptyView.setVisibility(View.INVISIBLE);
+                            Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                            toast.show();
                         }
-                        recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getContext()));
-
                     }
 
                     @Override
@@ -140,8 +152,6 @@ public class TeamPlayers extends Fragment {
                         call.cancel();
                     }
                 });
-
-
                 refLayout.setRefreshing(false);
             }
         });

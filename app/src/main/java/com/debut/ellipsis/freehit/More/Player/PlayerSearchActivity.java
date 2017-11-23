@@ -99,30 +99,36 @@ public class PlayerSearchActivity extends AppCompatActivity {
                     playerInfo.enqueue(new Callback<PlayerCountryItem>() {
                         @Override
                         public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
-                            List<PlayerCountryItem> playerCountryItems = response.body().getResults();
+                            if (response.isSuccessful()) {
+                                List<PlayerCountryItem> playerCountryItems = response.body().getResults();
 
-                            for (int i = 0; i < playerCountryItems.size(); i++) {
-                                recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
-                            }
+                                for (int i = 0; i < playerCountryItems.size(); i++) {
+                                    recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
+                                }
 
-                            //When not found in player list
-                            if (playerCountryItems.isEmpty()) {
+                                //When not found in player list
+                                if (playerCountryItems.isEmpty()) {
 
-                                Call<PlayerCountryItem> call1 = MainActivity.apiInterface.doGetTeamPlayers(s.toString());
-                                call1.enqueue(new Callback<PlayerCountryItem>() {
-                                    @Override
-                                    public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
-                                        List<PlayerCountryItem> playerCountryItems = response.body().getResults();
-                                        for (int i = 0; i < playerCountryItems.size(); i++) {
-                                            recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
+                                    Call<PlayerCountryItem> call1 = MainActivity.apiInterface.doGetTeamPlayers(s.toString());
+                                    call1.enqueue(new Callback<PlayerCountryItem>() {
+                                        @Override
+                                        public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
+                                            List<PlayerCountryItem> playerCountryItems = response.body().getResults();
+                                            for (int i = 0; i < playerCountryItems.size(); i++) {
+                                                recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
+                                            }
                                         }
-                                    }
 
-                                    @Override
-                                    public void onFailure(Call<PlayerCountryItem> call, Throwable t) {
+                                        @Override
+                                        public void onFailure(Call<PlayerCountryItem> call, Throwable t) {
 
-                                    }
-                                });
+                                        }
+                                    });
+                                }
+                            }
+                            else
+                            {
+                                Toast.makeText(getApplicationContext(), R.string.server_issues, Toast.LENGTH_SHORT).show();
                             }
                         }
 

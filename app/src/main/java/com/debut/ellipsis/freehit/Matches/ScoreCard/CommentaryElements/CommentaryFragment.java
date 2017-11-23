@@ -20,7 +20,6 @@ public class CommentaryFragment extends Fragment {
     private List<String> commentaryItems;
     private CommentaryAdapter commentaryAdapter;
 
-
     public CommentaryFragment() {
         // Required empty public constructor
     }
@@ -31,12 +30,12 @@ public class CommentaryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_matchscorecard_commentary, container, false);
-        String match_id = getActivity().getIntent().getStringExtra("match_id");
-        System.out.println(match_id);
+
+
         CommentaryItem commentaryItem = LiveMatchScoreCard.getCQList();
         commentaryItems = commentaryItem.getCommentary();
 
-        List<String> preLoad = new ArrayList<>();
+        final List<String> preLoad = new ArrayList<>();
 
         for (int i = 0; i < 10; i++) {
             preLoad.add(commentaryItems.get(i));
@@ -52,28 +51,31 @@ public class CommentaryFragment extends Fragment {
         commentaryAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
-                /*if (commentaryItems.size() <= 20) {*/
-                    commentaryItems.add(null);
-                    commentaryAdapter.notifyItemInserted(commentaryItems.size() - 1);
+                if (preLoad.size() <= commentaryItems.size()) {
+                    preLoad.add(null);
+                    commentaryAdapter.notifyItemInserted(preLoad.size() - 1);
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            commentaryItems.remove(commentaryItems.size() - 1);
-                            commentaryAdapter.notifyItemRemoved(commentaryItems.size());
-                            List<String> afterLoad = new ArrayList<>();
+                            preLoad.remove(preLoad.size() - 1);
+                            commentaryAdapter.notifyItemRemoved(preLoad.size());
                             //Generating more data
-                            int index = commentaryItems.size();
-                            int end = index + 10;
+                            int index = preLoad.size();
+                            int end;
+                            if (index + 10 > commentaryItems.size()) {
+                                end = commentaryItems.size();
+                            } else {
+                                end = index + 10;
+                            }
                             for (int i = index; i < end; i++) {
-                                afterLoad.add(commentaryItems.get(i));
+                                preLoad.add(commentaryItems.get(i));
                             }
                             commentaryAdapter.notifyDataSetChanged();
                             commentaryAdapter.setLoaded();
                         }
-                    }, 1000);
-                /*} else {
-                    Toast.makeText(getContext(), "Loading data completed", Toast.LENGTH_SHORT).show();
-                }*/
+                    }, 500);
+                }
+
             }
         });
 

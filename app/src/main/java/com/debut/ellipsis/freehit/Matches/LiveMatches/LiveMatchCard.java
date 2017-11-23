@@ -37,6 +37,7 @@ public class LiveMatchCard extends Fragment {
     public ViewPager vp;
     public Button NoConnectionButton;
     public TextView NoLiveMatchesText;
+    public TextView NoConnectionText;
     public Button NoLiveMatchesButton;
 
     public LiveMatchCard() {
@@ -52,8 +53,7 @@ public class LiveMatchCard extends Fragment {
 
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             rootView = inflater.inflate(R.layout.fragment_matches_common_pager_dark, container, false);
-        }
-        else if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
+        } else if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
             rootView = inflater.inflate(R.layout.fragment_matches_common_pager, container, false);
         }
 
@@ -75,6 +75,7 @@ public class LiveMatchCard extends Fragment {
 
         final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
 
+        NoConnectionText = no_internet_connection.findViewById(R.id.no_internet_connection_text);
         NoConnectionButton = no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
         final View No_live_matches = rootView.findViewById(R.id.No_Live_Matches);
@@ -87,39 +88,54 @@ public class LiveMatchCard extends Fragment {
         call.enqueue(new Callback<LiveMatchCardItem>() {
             @Override
             public void onResponse(Call<LiveMatchCardItem> call, Response<LiveMatchCardItem> response) {
-                common_match_cards.setVisibility(View.VISIBLE);
-                no_internet_connection.setVisibility(View.INVISIBLE);
-                indicator.setVisibility(View.VISIBLE);
-
-                indicator.setViewPager(vp);
-
-                List<LiveMatchCardItem> LiveMatches = response.body().getResults();
-                mProgressBar.setVisibility(View.INVISIBLE);
-
-                if (getActivity() != null) {
-
-                    if (LiveMatches.size() == 0) {
-                        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-                            NoLiveMatchesText.setTextColor(Color.WHITE);
-                            NoLiveMatchesButton.setBackgroundResource(R.drawable.button_shape_dark);
-                            NoLiveMatchesButton.setTextColor(Color.BLACK);
-                        }
-                        No_live_matches.setVisibility(View.VISIBLE);
-                        NoLiveMatchesButton.setOnClickListener(new View.OnClickListener() {
-
-                            public void onClick(View v) {
-
-                                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                ft.detach(LiveMatchCard.this).attach(LiveMatchCard.this).commit();
-                            }
-                        });
-
-                    }
-                    mAdapter = new LiveMatchCardAdapter(getActivity(), LiveMatches);
+                if (response.isSuccessful()) {
+                    common_match_cards.setVisibility(View.VISIBLE);
+                    no_internet_connection.setVisibility(View.INVISIBLE);
+                    indicator.setVisibility(View.VISIBLE);
                     indicator.setViewPager(vp);
-                    indicator.setCount(mAdapter.getCount());
-                    IndicatorConfig();
-                    vp.setAdapter(mAdapter);
+                    List<LiveMatchCardItem> LiveMatches = response.body().getResults();
+                    mProgressBar.setVisibility(View.INVISIBLE);
+
+                    if (getActivity() != null) {
+                        if (LiveMatches.size() == 0) {
+                            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                                NoLiveMatchesText.setTextColor(Color.WHITE);
+                                NoLiveMatchesButton.setBackgroundResource(R.drawable.button_shape_dark);
+                                NoLiveMatchesButton.setTextColor(Color.BLACK);
+                            }
+                            No_live_matches.setVisibility(View.VISIBLE);
+                            NoLiveMatchesButton.setOnClickListener(new View.OnClickListener() {
+
+                                public void onClick(View v) {
+
+                                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                    ft.detach(LiveMatchCard.this).attach(LiveMatchCard.this).commit();
+                                }
+                            });
+
+                        }
+                        mAdapter = new LiveMatchCardAdapter(getActivity(), LiveMatches);
+                        indicator.setViewPager(vp);
+                        indicator.setCount(mAdapter.getCount());
+                        IndicatorConfig();
+                        vp.setAdapter(mAdapter);
+                    }
+                } else {
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    no_internet_connection.setVisibility(View.VISIBLE);
+                    common_match_cards.setVisibility(View.INVISIBLE);
+                    NoConnectionText.setText(R.string.server_issues);
+                    NoConnectionButton.setOnClickListener(new View.OnClickListener() {
+
+                        public void onClick(View v) {
+
+                            FragmentTransaction ft = getFragmentManager().beginTransaction();
+                            ft.detach(LiveMatchCard.this).attach(LiveMatchCard.this).commit();
+
+                        }
+                    });
+                    call.cancel();
+
                 }
             }
 
@@ -150,41 +166,62 @@ public class LiveMatchCard extends Fragment {
                 call.enqueue(new Callback<LiveMatchCardItem>() {
                     @Override
                     public void onResponse(Call<LiveMatchCardItem> call, Response<LiveMatchCardItem> response) {
-
-                        common_match_cards.setVisibility(View.VISIBLE);
-                        no_internet_connection.setVisibility(View.INVISIBLE);
-
-                        indicator.setVisibility(View.VISIBLE);
-
-                        indicator.setViewPager(vp);
-
-                        List<LiveMatchCardItem> LiveMatches = response.body().getResults();
-                        mProgressBar.setVisibility(View.INVISIBLE);
-
-                        if (getActivity() != null) {
-                            if (LiveMatches.size() == 0) {
-                                No_live_matches.setVisibility(View.VISIBLE);
-                                NoLiveMatchesButton.setOnClickListener(new View.OnClickListener() {
-
-                                    public void onClick(View v) {
-                                        FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                        ft.detach(LiveMatchCard.this).attach(LiveMatchCard.this).commit();
-                                    }
-                                });
-                            }
-                            mAdapter = new LiveMatchCardAdapter(getActivity(), LiveMatches);
+                        if (response.isSuccessful()) {
+                            common_match_cards.setVisibility(View.VISIBLE);
+                            no_internet_connection.setVisibility(View.INVISIBLE);
+                            indicator.setVisibility(View.VISIBLE);
                             indicator.setViewPager(vp);
-                            indicator.setCount(mAdapter.getCount());
-                            indicator.setVisibility(View.INVISIBLE);
-                            IndicatorConfig();
-                            vp.setAdapter(mAdapter);
+                            List<LiveMatchCardItem> LiveMatches = response.body().getResults();
+                            mProgressBar.setVisibility(View.INVISIBLE);
+
+                            if (getActivity() != null) {
+                                if (LiveMatches.size() == 0) {
+                                    if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                                        NoLiveMatchesText.setTextColor(Color.WHITE);
+                                        NoLiveMatchesButton.setBackgroundResource(R.drawable.button_shape_dark);
+                                        NoLiveMatchesButton.setTextColor(Color.BLACK);
+                                    }
+                                    No_live_matches.setVisibility(View.VISIBLE);
+                                    NoLiveMatchesButton.setOnClickListener(new View.OnClickListener() {
+
+                                        public void onClick(View v) {
+
+                                            FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                            ft.detach(LiveMatchCard.this).attach(LiveMatchCard.this).commit();
+                                        }
+                                    });
+
+                                }
+                                mAdapter = new LiveMatchCardAdapter(getActivity(), LiveMatches);
+                                indicator.setViewPager(vp);
+                                indicator.setCount(mAdapter.getCount());
+                                IndicatorConfig();
+                                vp.setAdapter(mAdapter);
+                            }
+                        } else {
+                            mProgressBar.setVisibility(View.INVISIBLE);
+                            no_internet_connection.setVisibility(View.VISIBLE);
+                            common_match_cards.setVisibility(View.INVISIBLE);
+                            NoConnectionText.setText(R.string.server_issues);
+                            NoConnectionButton.setOnClickListener(new View.OnClickListener() {
+
+                                public void onClick(View v) {
+
+                                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                    ft.detach(LiveMatchCard.this).attach(LiveMatchCard.this).commit();
+
+                                }
+                            });
+                            call.cancel();
+
                         }
                     }
 
                     @Override
                     public void onFailure(Call<LiveMatchCardItem> call, Throwable t) {
                         mProgressBar.setVisibility(View.INVISIBLE);
-                        common_match_cards.setVisibility(View.VISIBLE);
+                        no_internet_connection.setVisibility(View.INVISIBLE);
+                        common_match_cards.setVisibility(View.INVISIBLE);
                         Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
                         toast.show();
                         call.cancel();

@@ -81,34 +81,38 @@ public class NewsArticle extends AppCompatActivity {
         call.enqueue(new Callback<NewsArticleItem>() {
             @Override
             public void onResponse(Call<NewsArticleItem> call, Response<NewsArticleItem> response) {
+                if (response.isSuccessful()) {
+                    NewsArticleItem newsArticle = response.body();
 
-                NewsArticleItem newsArticle = response.body();
+                    TextView headline = findViewById(R.id.news_article_heading);
+                    headline.setText(newsArticle.getTitle());
 
-                TextView headline = findViewById(R.id.news_article_heading);
-                headline.setText(newsArticle.getTitle());
+                    TextView article_description = findViewById(R.id.news_article_description);
+                    article_description.setText(newsArticle.getDesc());
 
-                TextView article_description = findViewById(R.id.news_article_description);
-                article_description.setText(newsArticle.getDesc());
+                    TextView date = findViewById(R.id.news_date);
+                    date.setText(newsArticle.getDate());
 
-                TextView date = findViewById(R.id.news_date);
-                date.setText(newsArticle.getDate());
+                    mProgressBar.setVisibility(View.GONE);
 
-                mProgressBar.setVisibility(View.GONE);
+                    final ImageView articleImage = findViewById(R.id.news_article_image);
 
-                final ImageView articleImage = findViewById(R.id.news_article_image);
+                    final String ImageURL = newsArticle.getImage();
 
-                final String ImageURL = newsArticle.getImage();
+                    if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                        headline.setTextColor(Color.WHITE);
+                        article_description.setTextColor(Color.WHITE);
+                        date.setTextColor(Color.WHITE);
+                    }
 
-                if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-                    headline.setTextColor(Color.WHITE);
-                    article_description.setTextColor(Color.WHITE);
-                    date.setTextColor(Color.WHITE);
+                    MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(ImageURL).format(DecodeFormat.PREFER_RGB_565);
+
+                    MainActivity.requestBuilder.into(articleImage);
+
+                } else {
+                    mProgressBar.setVisibility(View.GONE);
+                    Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
                 }
-
-                MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(ImageURL).format(DecodeFormat.PREFER_RGB_565);
-
-                MainActivity.requestBuilder.into(articleImage);
-
             }
 
             @Override

@@ -3,6 +3,7 @@ package com.debut.ellipsis.freehit.Matches.ScoreCard.CommentaryElements;
 import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,7 +71,7 @@ public class CommentaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof CommentaryViewHolder) {
             CommentaryViewHolder userViewHolder = (CommentaryViewHolder) holder;
-            userViewHolder.commentary.setText(commentaryItems.get(position));
+            userViewHolder.commentary.setText(Html.fromHtml(commentaryItems.get(position)));
         } else if (holder instanceof LoadingViewHolder) {
             LoadingViewHolder loadingViewHolder = (LoadingViewHolder) holder;
             loadingViewHolder.progressBar.setIndeterminate(true);

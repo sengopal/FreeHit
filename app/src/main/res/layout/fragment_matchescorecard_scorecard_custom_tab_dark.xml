@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/team_sn"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/_15sdp"
+        android:layout_height="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_2sdp"
         android:paddingEnd="@dimen/_10sdp"
         android:paddingStart="@dimen/_10sdp"
@@ -17,10 +17,11 @@
         android:textStyle="bold"
         tools:text="SL" />
 
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/team_logo"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
+        android:layout_centerVertical="true"
         android:layout_toEndOf="@id/team_sn"
         tools:src="@drawable/matches_vector" />
 

@@ -64,11 +64,18 @@ public class PlayerActivity extends AppCompatActivity {
         call.enqueue(new Callback<PlayerItem>() {
             @Override
             public void onResponse(Call<PlayerItem> call, Response<PlayerItem> response) {
-                mProgressBar.setVisibility(View.INVISIBLE);
-                playerItem = response.body();
-                setupViewPager(viewPager);
-                viewPager.setOffscreenPageLimit(3);
+                if (response.isSuccessful()) {
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    playerItem = response.body();
+                    setupViewPager(viewPager);
+                    viewPager.setOffscreenPageLimit(3);
 
+                }
+                else
+                {
+                    mProgressBar.setVisibility(View.GONE);
+                    Toast.makeText(getBaseContext(), R.string.server_issues, Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

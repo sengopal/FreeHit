@@ -83,26 +83,39 @@ public class SocialPolls extends Fragment {
         call.enqueue(new Callback<PollCardItem>() {
             @Override
             public void onResponse(Call<PollCardItem> call, Response<PollCardItem> response) {
-                mProgressBar.setVisibility(View.INVISIBLE);
+                if (response.isSuccessful()) {
+                    mProgressBar.setVisibility(View.INVISIBLE);
 
-                if (getActivity() != null) {
-                    List<PollCardItem> polls = response.body().getResults();
-                    if (polls.size() == 0) {
-                        No_polls.setVisibility(View.VISIBLE);
-                        NoPollsText.setText(R.string.EmptyPolls);
-                        NoPollsButton.setOnClickListener(new View.OnClickListener() {
+                    if (getActivity() != null) {
+                        List<PollCardItem> polls = response.body().getResults();
+                        if (polls.size() == 0) {
+                            No_polls.setVisibility(View.VISIBLE);
+                            NoPollsText.setText(R.string.EmptyPolls);
+                            NoPollsButton.setOnClickListener(new View.OnClickListener() {
 
-                            public void onClick(View v) {
-                                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
-                            }
-                        });
-                    } else {
-                        mAdapter = new PollsItemAdapter(getContext(), polls);
-                        listView.setAdapter(mAdapter);
-                        mAdapter.notifyDataSetChanged();
+                                public void onClick(View v) {
+                                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                    ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
+                                }
+                            });
+                        } else {
+                            mAdapter = new PollsItemAdapter(getContext(), polls);
+                            listView.setAdapter(mAdapter);
+                            mAdapter.notifyDataSetChanged();
 
+                        }
                     }
+                } else {
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    no_internet_connection.setVisibility(View.VISIBLE);
+                    NoConnection.setText(R.string.server_issues);
+                    NoConnectionButton.setOnClickListener(new View.OnClickListener() {
+
+                        public void onClick(View v) {
+                            FragmentTransaction ft = getFragmentManager().beginTransaction();
+                            ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
+                        }
+                    });
                 }
             }
 
@@ -132,35 +145,48 @@ public class SocialPolls extends Fragment {
                 call.enqueue(new Callback<PollCardItem>() {
                     @Override
                     public void onResponse(Call<PollCardItem> call, Response<PollCardItem> response) {
-                        mProgressBar.setVisibility(View.INVISIBLE);
-                        if (getActivity() != null) {
-                            List<PollCardItem> polls = response.body().getResults();
+                        if (response.isSuccessful()) {
+                            mProgressBar.setVisibility(View.INVISIBLE);
 
-                            if (polls.size() == 0) {
-                                No_polls.setVisibility(View.VISIBLE);
-                                NoPollsText.setText(R.string.EmptyPolls);
-                                NoPollsButton.setOnClickListener(new View.OnClickListener() {
+                            if (getActivity() != null) {
+                                List<PollCardItem> polls = response.body().getResults();
+                                if (polls.size() == 0) {
+                                    No_polls.setVisibility(View.VISIBLE);
+                                    NoPollsText.setText(R.string.EmptyPolls);
+                                    NoPollsButton.setOnClickListener(new View.OnClickListener() {
 
-                                    public void onClick(View v) {
-                                        FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                        ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
-                                    }
-                                });
+                                        public void onClick(View v) {
+                                            FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                            ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
+                                        }
+                                    });
+                                } else {
+                                    mAdapter = new PollsItemAdapter(getContext(), polls);
+                                    listView.setAdapter(mAdapter);
+                                    mAdapter.notifyDataSetChanged();
 
-                            } else {
-                                mAdapter = new PollsItemAdapter(getContext(), polls);
-                                listView.setAdapter(mAdapter);
-                                mAdapter.notifyDataSetChanged();
-
+                                }
                             }
-                        }
+                        } else {
+                            mProgressBar.setVisibility(View.INVISIBLE);
+                            no_internet_connection.setVisibility(View.VISIBLE);
+                            NoConnection.setText(R.string.server_issues);
+                            NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
+                                public void onClick(View v) {
+                                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                    ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
+                                }
+                            });
+                        }
                     }
 
                     @Override
                     public void onFailure(Call<PollCardItem> call, Throwable t) {
                         mProgressBar.setVisibility(View.GONE);
-                        Toast toast = Toast.makeText(getContext(),R.string.no_internet_connection,Toast.LENGTH_SHORT);
+                        listView.setAdapter(null);
+                        no_internet_connection.setVisibility(View.INVISIBLE);
+                        Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
                         toast.show();
                         call.cancel();
                     }

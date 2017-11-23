@@ -101,13 +101,30 @@ public class NewsFragment extends Fragment {
         call.enqueue(new Callback<NewsItem>() {
             @Override
             public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
+                if (response.isSuccessful()) {
+                    List<NewsItem> news = response.body().getResults();
+                    if (news.size() == 0) {
+                        No_news.setVisibility(View.VISIBLE);
+                        NoNewsText.setText(R.string.EmptyNews);
+                        NoNewsButton.setOnClickListener(new View.OnClickListener() {
 
+                            public void onClick(View v) {
 
-                List<NewsItem> news = response.body().getResults();
-                if (news.size() == 0) {
-                    No_news.setVisibility(View.VISIBLE);
-                    NoNewsText.setText(R.string.EmptyNews);
-                    NoNewsButton.setOnClickListener(new View.OnClickListener() {
+                                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                ft.detach(NewsFragment.this).attach(NewsFragment.this).commit();
+                            }
+                        });
+                    }
+                    if (getActivity() != null) {
+                        mProgressBar.setVisibility(View.INVISIBLE);
+                        no_internet_connection.setVisibility(View.INVISIBLE);
+                        recyclerView.setAdapter(new NewsItemAdapter(news, R.layout.fragment_news_list_item, getContext()));
+                    }
+                } else {
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    no_internet_connection.setVisibility(View.VISIBLE);
+                    NoConnection.setText(R.string.server_issues);
+                    NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
                         public void onClick(View v) {
 
@@ -115,11 +132,6 @@ public class NewsFragment extends Fragment {
                             ft.detach(NewsFragment.this).attach(NewsFragment.this).commit();
                         }
                     });
-                }
-                if (getActivity() != null) {
-                    mProgressBar.setVisibility(View.INVISIBLE);
-                    no_internet_connection.setVisibility(View.INVISIBLE);
-                    recyclerView.setAdapter(new NewsItemAdapter(news, R.layout.fragment_news_list_item, getContext()));
                 }
             }
 
@@ -130,7 +142,6 @@ public class NewsFragment extends Fragment {
                 NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
                     public void onClick(View v) {
-
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
                         ft.detach(NewsFragment.this).attach(NewsFragment.this).commit();
 
@@ -151,15 +162,10 @@ public class NewsFragment extends Fragment {
                                                call.enqueue(new Callback<NewsItem>() {
                                                    @Override
                                                    public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
-                                                       mProgressBar.setVisibility(View.INVISIBLE);
-                                                       no_internet_connection.setVisibility(View.INVISIBLE);
-                                                       No_news.setVisibility(View.INVISIBLE);
-                                                       fab.show();
-                                                       if (getActivity() != null) {
-                                                           List<NewsItem> NewsListItem = response.body().getResults();
-                                                           if (NewsListItem.size() == 0) {
+                                                       if (response.isSuccessful()) {
+                                                           List<NewsItem> news = response.body().getResults();
+                                                           if (news.size() == 0) {
                                                                No_news.setVisibility(View.VISIBLE);
-
                                                                NoNewsText.setText(R.string.EmptyNews);
                                                                NoNewsButton.setOnClickListener(new View.OnClickListener() {
 
@@ -170,20 +176,39 @@ public class NewsFragment extends Fragment {
                                                                    }
                                                                });
                                                            }
-                                                           recyclerView.setVisibility(View.VISIBLE);
-                                                           recyclerView.setAdapter(new NewsItemAdapter(NewsListItem, R.layout.fragment_news_list_item, getContext()));
+                                                           if (getActivity() != null) {
+                                                               mProgressBar.setVisibility(View.INVISIBLE);
+                                                               no_internet_connection.setVisibility(View.INVISIBLE);
+                                                               recyclerView.setAdapter(new NewsItemAdapter(news, R.layout.fragment_news_list_item, getContext()));
+                                                           }
+                                                       } else {
+                                                           mProgressBar.setVisibility(View.INVISIBLE);
+                                                           no_internet_connection.setVisibility(View.VISIBLE);
+                                                           NoConnection.setText(R.string.server_issues);
+                                                           NoConnectionButton.setOnClickListener(new View.OnClickListener() {
+
+                                                               public void onClick(View v) {
+                                                                   FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                                                   ft.detach(NewsFragment.this).attach(NewsFragment.this).commit();
+                                                               }
+                                                           });
                                                        }
                                                    }
 
                                                    @Override
                                                    public void onFailure(Call<NewsItem> call, Throwable t) {
-                                                       mProgressBar.setVisibility(View.INVISIBLE);
-                                                       fab.hide();
-                                                       Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
-                                                       toast.show();
+                                                       mProgressBar.setVisibility(View.GONE);
+                                                       no_internet_connection.setVisibility(View.INVISIBLE);
+                                                       NoConnectionButton.setOnClickListener(new View.OnClickListener() {
+
+                                                           public void onClick(View v) {
+                                                               Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                                                               toast.show();
+
+                                                           }
+                                                       });
+
                                                        call.cancel();
-
-
                                                    }
                                                });
 

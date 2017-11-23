@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.MainActivity;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.CommentaryElements.CommentaryItem;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHeadFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.InfoFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardFragment;
@@ -34,7 +35,9 @@ public class PastMatchScoreCard extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private ProgressBar mProgressBar;
+    public static List<String> commentaryItems;
     public static List<ScoreCardItem> scoreCardItems;
+    public static CommentaryItem commentaryItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +50,7 @@ public class PastMatchScoreCard extends AppCompatActivity {
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
 
         String match_name = getIntent().getStringExtra("match_name");
-        String match_id = getIntent().getStringExtra("match_id");
+        final String match_id = getIntent().getStringExtra("match_id");
 
         setTitle(match_name);
 
@@ -68,18 +71,24 @@ public class PastMatchScoreCard extends AppCompatActivity {
         call.enqueue(new Callback<ScoreCardItem>() {
             @Override
             public void onResponse(Call<ScoreCardItem> call, Response<ScoreCardItem> response) {
-                mProgressBar.setVisibility(View.INVISIBLE);
-                scoreCardItems = response.body().getResults();
-                setupViewPager(viewPager);
-                viewPager.setOffscreenPageLimit(3);
+                if (response.isSuccessful()) {
+                    scoreCardItems = response.body().getResults();
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    setupViewPager(viewPager);
+                    viewPager.setOffscreenPageLimit(3);
 
+                }
+                else
+                {
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getBaseContext(), R.string.server_issues, Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onFailure(Call<ScoreCardItem> call, Throwable t) {
                 mProgressBar.setVisibility(View.GONE);
                 Toast.makeText(getBaseContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
-
             }
         });
 
@@ -150,8 +159,12 @@ public class PastMatchScoreCard extends AppCompatActivity {
         }
     }
 
-    public static List<ScoreCardItem> getQList(){
+    public static List<ScoreCardItem> getQList() {
         return scoreCardItems;
+    }
+
+    public static CommentaryItem getCQList() {
+        return commentaryItem;
     }
 
 

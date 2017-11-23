@@ -57,12 +57,11 @@ public class SeriesMatches extends Fragment {
 
         MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        View viewProgress = rootView.findViewById(R.id.progress);
+        final View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = viewProgress.findViewById(R.id.progress_bar);
 
         View viewRecycler = rootView.findViewById(R.id.complete_match_list);
         rv = viewRecycler.findViewById(R.id.recycler_list);
-
 
 
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -90,15 +89,20 @@ public class SeriesMatches extends Fragment {
                 call.enqueue(new Callback<UpcomingMatchCardItem>() {
                     @Override
                     public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {
+                        if (response.isSuccessful()) {
+                            List<UpcomingMatchCardItem> upcomingMatchesList = response.body().getResults();
+                            mProgressBar.setVisibility(View.GONE);
+                            if (upcomingMatchesList.size() == 0) {
+                                emptyView.setText(R.string.EmptyMatches);
+                                emptyView.setVisibility(View.VISIBLE);
+                            }
 
-                        List<UpcomingMatchCardItem> upcomingMatchesList = response.body().getResults();
-                        mProgressBar.setVisibility(View.GONE);
-                        if (upcomingMatchesList.size() == 0) {
-                            emptyView.setText(R.string.EmptyMatches);
-                            emptyView.setVisibility(View.VISIBLE);
+                            rv.setAdapter(new UpcomingMatchListAdapter(getContext(), upcomingMatchesList));
+                        } else {
+                            mProgressBar.setVisibility(View.INVISIBLE);
+                            Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                            toast.show();
                         }
-
-                        rv.setAdapter(new UpcomingMatchListAdapter(getContext(), upcomingMatchesList));
                     }
 
                     @Override
@@ -121,14 +125,20 @@ public class SeriesMatches extends Fragment {
                                                             call.enqueue(new Callback<UpcomingMatchCardItem>() {
                                                                 @Override
                                                                 public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {
-                                                                    mProgressBar.setVisibility(View.GONE);
+                                                                    if (response.isSuccessful()) {
+                                                                        List<UpcomingMatchCardItem> upcomingMatchesList = response.body().getResults();
+                                                                        mProgressBar.setVisibility(View.GONE);
+                                                                        if (upcomingMatchesList.size() == 0) {
+                                                                            emptyView.setText(R.string.EmptyMatches);
+                                                                            emptyView.setVisibility(View.VISIBLE);
+                                                                        }
 
-                                                                    List<UpcomingMatchCardItem> upcomingMatchesList = response.body().getResults();
-                                                                    if (upcomingMatchesList.size() == 0) {
-                                                                        emptyView.setVisibility(View.VISIBLE);
-                                                                        emptyView.setText(R.string.EmptyMatches);
+                                                                        rv.setAdapter(new UpcomingMatchListAdapter(getContext(), upcomingMatchesList));
+                                                                    } else {
+                                                                        mProgressBar.setVisibility(View.INVISIBLE);
+                                                                        Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                                                                        toast.show();
                                                                     }
-                                                                    rv.setAdapter(new UpcomingMatchListAdapter(getContext(), upcomingMatchesList));
                                                                 }
 
                                                                 @Override
@@ -138,7 +148,6 @@ public class SeriesMatches extends Fragment {
                                                                     Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
                                                                     toast.show();
                                                                     call.cancel();
-
                                                                 }
                                                             });
                                                             refresh_layout.setRefreshing(false);
@@ -153,19 +162,25 @@ public class SeriesMatches extends Fragment {
             call.enqueue(new Callback<PastMatchCardItem>() {
                 @Override
                 public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
+                    if (response.isSuccessful()) {
+                        List<PastMatchCardItem> pastMatchesList = response.body().getResults();
+                        mProgressBar.setVisibility(View.GONE);
+                        if (pastMatchesList.size() == 0) {
+                            emptyView.setText(R.string.EmptyMatches);
+                            emptyView.setVisibility(View.VISIBLE);
+                        }
 
-                    List<PastMatchCardItem> pastMatchesList = response.body().getResults();
-                    mProgressBar.setVisibility(View.GONE);
-                    if (pastMatchesList.size() == 0) {
-                        emptyView.setText(R.string.EmptyMatches);
-                        emptyView.setVisibility(View.VISIBLE);
+                        rv.setAdapter(new PastMatchesListAdapter(pastMatchesList, getContext()));
+                    } else {
+                        mProgressBar.setVisibility(View.INVISIBLE);
+                        Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                        toast.show();
                     }
-
-                    rv.setAdapter(new PastMatchesListAdapter(pastMatchesList, getContext()));
                 }
 
                 @Override
                 public void onFailure(Call<PastMatchCardItem> call, Throwable t) {
+                    mProgressBar.setVisibility(View.INVISIBLE);
                     Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
                     toast.show();
                     call.cancel();
@@ -182,24 +197,28 @@ public class SeriesMatches extends Fragment {
                                                         call.enqueue(new Callback<PastMatchCardItem>() {
                                                             @Override
                                                             public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
-                                                                mProgressBar.setVisibility(View.GONE);
+                                                                if (response.isSuccessful()) {
+                                                                    List<PastMatchCardItem> pastMatchesList = response.body().getResults();
+                                                                    mProgressBar.setVisibility(View.GONE);
+                                                                    if (pastMatchesList.size() == 0) {
+                                                                        emptyView.setText(R.string.EmptyMatches);
+                                                                        emptyView.setVisibility(View.VISIBLE);
+                                                                    }
 
-                                                                List<PastMatchCardItem> pastMatchesList = response.body().getResults();
-                                                                if (pastMatchesList.size() == 0) {
-                                                                    emptyView.setVisibility(View.VISIBLE);
-                                                                    emptyView.setText(R.string.EmptyMatches);
+                                                                    rv.setAdapter(new PastMatchesListAdapter(pastMatchesList, getContext()));
+                                                                } else {
+                                                                    mProgressBar.setVisibility(View.INVISIBLE);
+                                                                    Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                                                                    toast.show();
                                                                 }
-                                                                rv.setAdapter(new PastMatchesListAdapter(pastMatchesList, getContext()));
                                                             }
 
                                                             @Override
                                                             public void onFailure(Call<PastMatchCardItem> call, Throwable t) {
                                                                 mProgressBar.setVisibility(View.INVISIBLE);
-                                                                emptyView.setVisibility(View.INVISIBLE);
                                                                 Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
                                                                 toast.show();
                                                                 call.cancel();
-
                                                             }
                                                         });
                                                         refresh_layout.setRefreshing(false);

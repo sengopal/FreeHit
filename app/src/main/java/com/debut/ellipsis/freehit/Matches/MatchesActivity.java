@@ -102,8 +102,9 @@ public class MatchesActivity extends AppCompatActivity {
                 call.enqueue(new Callback<PastMatchCardItem>() {
                     @Override
                     public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
+                        if(response.isSuccessful())
+                        {
                         mProgressBar.setVisibility(View.GONE);
-
                         List<PastMatchCardItem> pastMatchCardItems = response.body().getResults();
                         if (pastMatchCardItems.size() == 0) {
                             mEmptyView.setVisibility(View.VISIBLE);
@@ -113,6 +114,15 @@ public class MatchesActivity extends AppCompatActivity {
                         PastMatchListAdapter = new PastMatchesListAdapter(pastMatchCardItems, getApplicationContext());
                         rv.setAdapter(PastMatchListAdapter);
                     }
+                    else
+                        {
+                            mProgressBar.setVisibility(View.INVISIBLE);
+                            mEmptyView.setVisibility(View.INVISIBLE);
+                            Toast toast = Toast.makeText(getApplicationContext(), R.string.server_issues, Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
+                    }
+
 
                     @Override
                     public void onFailure(Call<PastMatchCardItem> call, Throwable t) {

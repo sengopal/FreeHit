@@ -79,22 +79,24 @@ public class LiveMatchScoreCard extends AppCompatActivity {
             @Override
             public void onResponse(Call<ScoreCardItem> call, Response<ScoreCardItem> response) {
                 LivescoreCardItems = response.body().getResults();
-                System.out.println("ENTERING HERE 1");
-
 
             Call<CommentaryItem> call1 = MainActivity.apiInterface.doGetLiveMatchCommentary(match_id);
             call1.enqueue(new Callback<CommentaryItem>() {
             @Override
             public void onResponse(Call<CommentaryItem> call1, Response<CommentaryItem> response) {
-                System.out.println("ENTERING HERE 2");
-                commentaryItems = response.body().getCommentary();
-                System.out.println("commentary"+commentaryItems);
-                mProgressBar.setVisibility(View.INVISIBLE);
-                setupViewPager(viewPager);
-                commentaryItem = response.body();
-                System.out.print(commentaryItem);
-                viewPager.setOffscreenPageLimit(4);
+                if (response.isSuccessful()) {
+                    commentaryItems = response.body().getCommentary();
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    setupViewPager(viewPager);
+                    commentaryItem = response.body();
+                    viewPager.setOffscreenPageLimit(4);
 
+                }
+                else
+                {
+                    mProgressBar.setVisibility(View.GONE);
+                    Toast.makeText(getBaseContext(), R.string.server_issues, Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -172,10 +174,10 @@ public class LiveMatchScoreCard extends AppCompatActivity {
         public void addFrag(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
-            if(mFragmentTitleList.size()==5) {
-                if (mFragmentTitleList.get(4).equals("TWEETS")) {
+            if(mFragmentTitleList.size()==4) {
+                if (mFragmentTitleList.get(3).equals("COMMENTARY")) {
                     Bundle bundle = new Bundle();
-                    bundle.putString("fragment_name", "LIVE TWEETS");
+                    bundle.putString("fragment_name", "LIVE");
                     fragment.setArguments(bundle);
                 }
             }
@@ -194,6 +196,4 @@ public class LiveMatchScoreCard extends AppCompatActivity {
     public static CommentaryItem getCQList(){
         return commentaryItem;
     }
-
-
 }

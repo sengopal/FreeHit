@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baoyz.widget.PullRefreshLayout;
@@ -34,6 +35,7 @@ public class PastMatchCard extends Fragment {
     private PastMatchCardItemAdapter mAdapter;
     public ViewPager vp;
     public Button NoConnectionButton;
+    public TextView NoConnectionText;
 
     public PastMatchCard() {
         // Required empty public constructor
@@ -72,6 +74,7 @@ public class PastMatchCard extends Fragment {
 
         final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
 
+        NoConnectionText = no_internet_connection.findViewById(R.id.no_internet_connection_text);
         NoConnectionButton = no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
 
@@ -80,24 +83,34 @@ public class PastMatchCard extends Fragment {
         call.enqueue(new Callback<PastMatchCardItem>() {
             @Override
             public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
-                no_internet_connection.setVisibility(View.INVISIBLE);
-                List<PastMatchCardItem> pastMatchCardItems = response.body().getResults();
-                if (getActivity() != null) {
+                if (response.isSuccessful()) {
+                    no_internet_connection.setVisibility(View.INVISIBLE);
+                    List<PastMatchCardItem> pastMatchCardItems = response.body().getResults();
+                    if (getActivity() != null) {
                         mAdapter = new PastMatchCardItemAdapter(getActivity(), pastMatchCardItems);
                         indicator.setCount(mAdapter.getCount());
                         IndicatorConfig();
                         vp.setAdapter(new PastMatchCardItemAdapter(getContext(), pastMatchCardItems));
                         mProgressBar.setVisibility(View.GONE);
-
                         common_match_cards.setVisibility(View.VISIBLE);
-
-
                         indicator.setVisibility(View.VISIBLE);
-
                         indicator.setViewPager(vp);
-
                     }
+                } else {
+                    NoConnectionText.setText(R.string.server_issues);
+                    mProgressBar.setVisibility(View.GONE);
+                    no_internet_connection.setVisibility(View.VISIBLE);
+                    common_match_cards.setVisibility(View.INVISIBLE);
+                    NoConnectionButton.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            FragmentTransaction ft = getFragmentManager().beginTransaction();
+                            ft.detach(PastMatchCard.this).attach(PastMatchCard.this).commit();
+
+                        }
+                    });
+
                 }
+            }
 
             @Override
             public void onFailure(Call<PastMatchCardItem> call, Throwable t) {
@@ -127,31 +140,43 @@ public class PastMatchCard extends Fragment {
                                                    call.enqueue(new Callback<PastMatchCardItem>() {
                                                        @Override
                                                        public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
-                                                           no_internet_connection.setVisibility(View.INVISIBLE);
-                                                           List<PastMatchCardItem> pastMatchCardItems = response.body().getResults();
-                                                           if (getActivity() != null) {
-                                                               mAdapter = new PastMatchCardItemAdapter(getActivity(), pastMatchCardItems);
-                                                               indicator.setCount(mAdapter.getCount());
-                                                               IndicatorConfig();
-                                                               vp.setAdapter(new PastMatchCardItemAdapter(getContext(), pastMatchCardItems));
+                                                           if (response.isSuccessful()) {
+                                                               no_internet_connection.setVisibility(View.INVISIBLE);
+                                                               List<PastMatchCardItem> pastMatchCardItems = response.body().getResults();
+                                                               if (getActivity() != null) {
+                                                                   mAdapter = new PastMatchCardItemAdapter(getActivity(), pastMatchCardItems);
+                                                                   indicator.setCount(mAdapter.getCount());
+                                                                   IndicatorConfig();
+                                                                   vp.setAdapter(new PastMatchCardItemAdapter(getContext(), pastMatchCardItems));
+                                                                   mProgressBar.setVisibility(View.GONE);
+                                                                   common_match_cards.setVisibility(View.VISIBLE);
+                                                                   indicator.setVisibility(View.VISIBLE);
+                                                                   indicator.setViewPager(vp);
+                                                               }
+                                                           } else {
+                                                               NoConnectionText.setText(R.string.server_issues);
                                                                mProgressBar.setVisibility(View.GONE);
+                                                               no_internet_connection.setVisibility(View.VISIBLE);
+                                                               common_match_cards.setVisibility(View.INVISIBLE);
+                                                               NoConnectionButton.setOnClickListener(new View.OnClickListener() {
+                                                                   public void onClick(View v) {
+                                                                       FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                                                       ft.detach(PastMatchCard.this).attach(PastMatchCard.this).commit();
 
-                                                               common_match_cards.setVisibility(View.VISIBLE);
+                                                                   }
+                                                               });
 
-                                                               indicator.setVisibility(View.VISIBLE);
-
-                                                               indicator.setViewPager(vp);
                                                            }
                                                        }
 
                                                        @Override
                                                        public void onFailure(Call<PastMatchCardItem> call, Throwable t) {
-                                                           mProgressBar.setVisibility(View.INVISIBLE);
-                                                           common_match_cards.setVisibility(View.VISIBLE);
+                                                           mProgressBar.setVisibility(View.GONE);
+                                                           no_internet_connection.setVisibility(View.INVISIBLE);
+                                                           common_match_cards.setVisibility(View.INVISIBLE);
                                                            Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
                                                            toast.show();
                                                            call.cancel();
-
                                                        }
                                                    });
                                                    refreshLayout.setRefreshing(false);

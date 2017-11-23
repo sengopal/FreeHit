@@ -21,7 +21,7 @@
         android:layout_gravity="center_horizontal"
         android:text="@string/no_internet_connection"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/_18sdp" />
+        android:textSize="@dimen/_15sdp" />
 
     <Button
         android:id="@+id/no_internet_refresh_button"

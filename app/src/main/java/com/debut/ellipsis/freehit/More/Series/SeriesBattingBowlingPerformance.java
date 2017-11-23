@@ -72,15 +72,22 @@ public class SeriesBattingBowlingPerformance extends Fragment {
                 seriesInfo.enqueue(new Callback<PerformanceItem>() {
                     @Override
                     public void onResponse(Call<PerformanceItem> call, Response<PerformanceItem> response) {
-                        mProgressbar.setVisibility(View.GONE);
-                        List<PerformanceItem> seriesInfo = response.body().getResults();
-                        recyclerView.setAdapter(new SeriesBattingAdapter(seriesInfo, R.layout.fragment_more_series_performance_list_item, getContext()));
-
-
+                        if (response.isSuccessful()) {
+                            mProgressbar.setVisibility(View.GONE);
+                            List<PerformanceItem> seriesInfo = response.body().getResults();
+                            recyclerView.setAdapter(new SeriesBattingAdapter(seriesInfo, R.layout.fragment_more_series_performance_list_item, getContext()));
+                        }
+                        else
+                        {
+                            mProgressbar.setVisibility(View.INVISIBLE);
+                            Toast.makeText(getActivity(),R.string.server_issues,Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     @Override
                     public void onFailure(Call<PerformanceItem> call, Throwable t) {
+                        mProgressbar.setVisibility(View.INVISIBLE);
+                        Toast.makeText(getActivity(),R.string.server_issues,Toast.LENGTH_SHORT).show();
                         call.cancel();
 
                     }
@@ -96,15 +103,24 @@ public class SeriesBattingBowlingPerformance extends Fragment {
                                                        seriesInfo.enqueue(new Callback<PerformanceItem>() {
                                                            @Override
                                                            public void onResponse(Call<PerformanceItem> call, Response<PerformanceItem> response) {
-                                                               mProgressbar.setVisibility(View.GONE);
-                                                               List<PerformanceItem> seriesInfo = response.body().getResults();
-                                                               recyclerView.setAdapter(new SeriesBattingAdapter(seriesInfo, R.layout.fragment_more_series_performance_list_item, getContext()));
-
+                                                               if (response.isSuccessful()) {
+                                                                   mProgressbar.setVisibility(View.GONE);
+                                                                   List<PerformanceItem> seriesInfo = response.body().getResults();
+                                                                   recyclerView.setAdapter(new SeriesBattingAdapter(seriesInfo, R.layout.fragment_more_series_performance_list_item, getContext()));
+                                                               }
+                                                               else
+                                                               {
+                                                                   mProgressbar.setVisibility(View.INVISIBLE);
+                                                                   Toast.makeText(getActivity(),R.string.server_issues,Toast.LENGTH_SHORT).show();
+                                                               }
                                                            }
 
                                                            @Override
                                                            public void onFailure(Call<PerformanceItem> call, Throwable t) {
+                                                               mProgressbar.setVisibility(View.INVISIBLE);
+                                                               Toast.makeText(getActivity(),R.string.server_issues,Toast.LENGTH_SHORT).show();
                                                                call.cancel();
+
                                                            }
                                                        });
                                                        refLayout.setRefreshing(false);

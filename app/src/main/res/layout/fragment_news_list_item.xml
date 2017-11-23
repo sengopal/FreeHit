@@ -72,7 +72,7 @@
             <TextView
                 android:id="@+id/news_tag"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_10sdp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/news_date"
                 android:layout_marginStart="5dp"
                 android:layout_toEndOf="@+id/news_tag_image"

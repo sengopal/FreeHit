@@ -63,10 +63,17 @@ public class RankingActivity extends AppCompatActivity {
         call.enqueue(new Callback<RankingItem>() {
             @Override
             public void onResponse(Call<RankingItem> call, Response<RankingItem> response) {
-                mProgressBar.setVisibility(View.INVISIBLE);
-                QueryList = response.body().getResults();
-                setupViewPager(viewPager);
-                viewPager.setOffscreenPageLimit(3);
+                if(response.isSuccessful()) {
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    QueryList = response.body().getResults();
+                    setupViewPager(viewPager);
+                    viewPager.setOffscreenPageLimit(3);
+                }
+                else
+                {
+                    mProgressBar.setVisibility(View.GONE);
+                    Toast.makeText(getBaseContext(), R.string.server_issues, Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
