@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +39,7 @@ public class NewsFragment extends Fragment {
     public TextView NoConnection;
     public TextView NoNewsText;
     public Button NoNewsButton;
+    public ImageView NoConnectionImage;
     private FloatingActionButton fab;
     private LinearLayoutManager mLinearLayoutManager;
 
@@ -72,6 +74,8 @@ public class NewsFragment extends Fragment {
 
         NoConnection = no_internet_connection.findViewById(R.id.no_internet_connection_text);
 
+        NoConnectionImage = no_internet_connection.findViewById(R.id.no_internet_connection);
+
         final View No_news = rootView.findViewById(R.id.No_news);
 
         NoNewsText = No_news.findViewById(R.id.empty_view);
@@ -89,6 +93,7 @@ public class NewsFragment extends Fragment {
                 refLayout.setColorSchemeColors(Color.BLACK);
                 NoConnectionButton.setTextColor(Color.BLACK);
                 NoConnection.setTextColor(Color.WHITE);
+                NoConnectionImage.setColorFilter(Color.WHITE);
                 break;
             default:
                 refLayout.setColorSchemeResources(R.color.orange);

@@ -41,6 +41,8 @@ public class InfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              final Bundle savedInstanceState) {
 
+        String fragment_name = getArguments().getString("fragment_name");
+
         final String match_type = getActivity().getIntent().getStringExtra("match_type");
         String match_name = getActivity().getIntent().getStringExtra("match_name");
         final String team_1_intent = getActivity().getIntent().getStringExtra("team1");
@@ -63,13 +65,15 @@ public class InfoFragment extends Fragment {
 
         MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
+        TableRow MOTMrow = rootView.findViewById(R.id.MOTM);
+        TableRow MOTSrow = rootView.findViewById(R.id.MOTS);
+        TableRow resultrow = rootView.findViewById(R.id.result);
 
         List<ScoreCardItem> teamList = null;
 
         if (match_type.equals("PAST")) {
             teamList = PastMatchScoreCard.getQList();
-        }
-        else if(match_type.equals("LIVE")){
+        } else if (match_type.equals("LIVE")) {
             teamList = LiveMatchScoreCard.getQList();
         }
 
@@ -106,14 +110,24 @@ public class InfoFragment extends Fragment {
         TextView toss = rootView.findViewById(R.id.match_info_toss_status);
         toss.setText(teamList.get(1).getInfo().getToss());
 
-        TextView MOTM = rootView.findViewById(R.id.match_info_motm_status);
-        MOTM.setText(teamList.get(1).getInfo().getMom());
 
-        TextView MOTS = rootView.findViewById(R.id.match_info_mots_status);
-        MOTS.setText(teamList.get(1).getInfo().getManofseries());
+        if (fragment_name.equals("LIVE")) {
+            MOTMrow.setVisibility(View.GONE);
+            MOTSrow.setVisibility(View.GONE);
+            resultrow.setVisibility(View.GONE);
+        } else {
+            TextView MOTM = rootView.findViewById(R.id.match_info_motm_status);
 
-        TextView result = rootView.findViewById(R.id.match_info_result_status);
-        result.setText(teamList.get(1).getInfo().getResult());
+            TextView MOTS = rootView.findViewById(R.id.match_info_mots_status);
+
+            TextView result = rootView.findViewById(R.id.match_info_result_status);
+
+            MOTM.setText(teamList.get(1).getInfo().getMom());
+
+            MOTS.setText(teamList.get(1).getInfo().getManofseries());
+
+            result.setText(teamList.get(1).getInfo().getResult());
+        }
 
         TextView SeriesStatus = rootView.findViewById(R.id.match_info_SeriesStatus_status);
         SeriesStatus.setText(teamList.get(1).getInfo().getStatus());
@@ -142,21 +156,17 @@ public class InfoFragment extends Fragment {
         team1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(finalTeamList.get(0).getScorecard().getTeam1().getTeamname()!= null)
-                {
+                if (finalTeamList.get(0).getScorecard().getTeam1().getTeamname() != null) {
                     Intent PlayingX1 = new Intent(getActivity().getBaseContext(), com.debut.ellipsis.freehit.Matches.ScoreCard.PlayingX1.class);
                     PlayingX1.putExtra("team", "TEAM_1");
                     if (match_type.equals("PAST")) {
                         PlayingX1.putExtra("match_type", "PAST");
-                    }
-                    else if(match_type.equals("LIVE")) {
-                        PlayingX1.putExtra("match_type","LIVE");
+                    } else if (match_type.equals("LIVE")) {
+                        PlayingX1.putExtra("match_type", "LIVE");
                     }
                     getActivity().startActivity(PlayingX1);
-                }
-                else
-                {
-                    Toast.makeText(getContext(),"Playing X1 not available",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Playing X1 not available", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -167,21 +177,17 @@ public class InfoFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if(finalTeamList.get(0).getScorecard().getTeam2().getTeamname()!= null)
-                {
+                if (finalTeamList.get(0).getScorecard().getTeam2().getTeamname() != null) {
                     Intent PlayingX1 = new Intent(getActivity().getBaseContext(), com.debut.ellipsis.freehit.Matches.ScoreCard.PlayingX1.class);
                     PlayingX1.putExtra("team", "TEAM_2");
                     if (match_type.equals("PAST")) {
                         PlayingX1.putExtra("match_type", "PAST");
-                    }
-                    else if(match_type.equals("LIVE")) {
-                        PlayingX1.putExtra("match_type","LIVE");
+                    } else if (match_type.equals("LIVE")) {
+                        PlayingX1.putExtra("match_type", "LIVE");
                     }
                     getActivity().startActivity(PlayingX1);
-                }
-                else
-                {
-                    Toast.makeText(getContext(),"Playing X1 not available",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Playing X1 not available", Toast.LENGTH_SHORT).show();
                 }
             }
         });

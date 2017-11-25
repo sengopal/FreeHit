@@ -33,6 +33,7 @@ public class CustomSettings extends AppCompatActivity {
 
     public Button NoConnectionButton;
     public TextView NoConnection;
+    public ImageView NoConnectionImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,8 @@ public class CustomSettings extends AppCompatActivity {
 
         NoConnection = no_internet_connection.findViewById(R.id.no_internet_connection_text);
 
+        NoConnectionImage = no_internet_connection.findViewById(R.id.no_internet_connection);
+
         RelativeLayout country_select = findViewById(R.id.country_select_layout);
 
         ImageView country_flag = findViewById(R.id.country_flag);
@@ -84,6 +87,7 @@ public class CustomSettings extends AppCompatActivity {
                 country_select_button.setTextColor(Color.BLACK);
                 NoConnection.setTextColor(Color.WHITE);
                 NoConnectionButton.setTextColor(Color.BLACK);
+                NoConnectionImage.setColorFilter(Color.WHITE);
                 break;
             default:
                 setTheme(R.style.AppTheme);

@@ -12,13 +12,15 @@
         android:layout_width="@dimen/_80sdp"
         android:layout_height="@dimen/_80sdp"
         android:layout_gravity="center_horizontal"
-        app:srcCompat="@drawable/no_internet_connection_vector" />
+        app:srcCompat="@drawable/no_internet_connection_vector"
+        android:tint="@android:color/white"/>
 
     <TextView
         android:id="@+id/no_internet_connection_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
         android:text="@string/no_internet_connection"
         android:textColor="@android:color/white"
         android:textSize="@dimen/_15sdp" />

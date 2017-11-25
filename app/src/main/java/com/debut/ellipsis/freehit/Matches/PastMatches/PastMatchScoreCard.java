@@ -151,6 +151,11 @@ public class PastMatchScoreCard extends AppCompatActivity {
         public void addFrag(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
+            if (mFragmentTitleList.get(0).equals("INFO")) {
+                Bundle bundle = new Bundle();
+                bundle.putString("fragment_name", "PAST");
+                fragment.setArguments(bundle);
+            }
         }
 
         @Override

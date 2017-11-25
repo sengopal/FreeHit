@@ -1,40 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="wrap_content">
 
     <TextView
-        android:background="@color/tw__composer_light_gray"
         android:id="@+id/CurrentBatsmen"
         style="@style/TextAppearance.AppCompat.Headline"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_25sdp"
+        android:background="@color/tw__composer_light_gray"
         android:gravity="center_horizontal"
         android:text="@string/batsman"
         android:textAllCaps="true"
-        android:textSize="@dimen/_15sdp" />
+        android:textSize="@dimen/_15sdp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/Batsman1"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/_120sdp"
         android:layout_height="wrap_content"
         android:layout_below="@id/CurrentBatsmen"
+        android:layout_marginTop="@dimen/_5sdp"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/_15sdp"
+        android:textSize="@dimen/_13sdp"
         tools:text="Dilruwan Perera -" />
 
     <TextView
         android:id="@+id/Batsman1Score"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/_60sdp"
         android:layout_height="wrap_content"
         android:layout_below="@id/CurrentBatsmen"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:layout_toEndOf="@id/Batsman1"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/_15sdp"
-        tools:text="2 (20)" />
+        android:textSize="@dimen/_13sdp"
+        tools:text="999(999)" />
 
     <TextView
         android:id="@+id/Batsman1Status"
@@ -42,30 +45,31 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/CurrentBatsmen"
         android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:layout_toEndOf="@id/Batsman1Score"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/_15sdp"
+        android:textSize="@dimen/_13sdp"
         tools:text="Not Out" />
 
     <TextView
         android:id="@+id/Batsman2"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/_120sdp"
         android:layout_height="wrap_content"
         android:layout_below="@id/Batsman1"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/_15sdp"
+        android:textSize="@dimen/_13sdp"
         tools:text="Rangana Herath * -" />
 
     <TextView
         android:id="@+id/Batsman2Score"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/_60sdp"
         android:layout_height="wrap_content"
         android:layout_below="@id/Batsman1"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_toEndOf="@id/Batsman2"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/_15sdp"
+        android:textSize="@dimen/_13sdp"
         tools:text="16 (30)" />
 
     <TextView
@@ -76,29 +80,31 @@
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_toEndOf="@id/Batsman2Score"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/_15sdp"
+        android:textSize="@dimen/_13sdp"
         tools:text="Not Out" />
 
     <TextView
-        android:background="@color/tw__composer_light_gray"
         android:id="@+id/CurrentBowler"
-        android:layout_below="@id/Batsman2"
-        android:layout_marginTop="@dimen/_10sdp"
         style="@style/TextAppearance.AppCompat.Headline"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_25sdp"
+        android:layout_below="@id/Batsman2"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@color/tw__composer_light_gray"
         android:gravity="center_horizontal"
         android:text="@string/bowler"
         android:textAllCaps="true"
-        android:textSize="@dimen/_15sdp" />
+        android:textSize="@dimen/_15sdp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/Bowler"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/_120sdp"
         android:layout_height="wrap_content"
         android:layout_below="@id/CurrentBowler"
+        android:layout_marginTop="@dimen/_5sdp"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/_15sdp"
+        android:textSize="@dimen/_13sdp"
         tools:text="Mohammed Shami -" />
 
     <TextView
@@ -108,9 +114,10 @@
         android:layout_below="@id/CurrentBowler"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:layout_toEndOf="@id/Bowler"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/_15sdp"
+        android:textSize="@dimen/_13sdp"
         tools:text="2/80 (22)" />
 
 </RelativeLayout>

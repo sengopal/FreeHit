@@ -10,8 +10,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL = "http://freehitapi-env.6s5kii7dbh.ap-south-1.elasticbeanstalk.com/";
-    public static final String TEST_URL = "http://freehit-test-dev.ap-south-1.elasticbeanstalk.com/";
     public static final String HEROKU_TEST = "http://freehit-api.herokuapp.com/";
     private static Retrofit retrofit = null;
 

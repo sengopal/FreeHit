@@ -2,6 +2,7 @@ package com.debut.ellipsis.freehit.Matches.LiveMatches;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -156,6 +157,88 @@ public class LiveMatchCard extends Fragment {
                 call.cancel();
             }
         });
+
+        //Auto Refresh after every 5 minutes
+        final Handler refreshHandler = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                Call<LiveMatchCardItem> call = MainActivity.apiInterface.doGetLiveMatchResources();
+                call.enqueue(new Callback<LiveMatchCardItem>() {
+                    @Override
+                    public void onResponse(Call<LiveMatchCardItem> call, Response<LiveMatchCardItem> response) {
+                        if (response.isSuccessful()) {
+                            common_match_cards.setVisibility(View.VISIBLE);
+                            no_internet_connection.setVisibility(View.INVISIBLE);
+                            indicator.setVisibility(View.VISIBLE);
+                            indicator.setViewPager(vp);
+                            List<LiveMatchCardItem> LiveMatches = response.body().getResults();
+                            mProgressBar.setVisibility(View.INVISIBLE);
+
+                            if (getActivity() != null) {
+                                if (LiveMatches.size() == 0) {
+                                    if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                                        NoLiveMatchesText.setTextColor(Color.WHITE);
+                                        NoLiveMatchesButton.setBackgroundResource(R.drawable.button_shape_dark);
+                                        NoLiveMatchesButton.setTextColor(Color.BLACK);
+                                    }
+                                    No_live_matches.setVisibility(View.VISIBLE);
+                                    NoLiveMatchesButton.setOnClickListener(new View.OnClickListener() {
+
+                                        public void onClick(View v) {
+
+                                            FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                            ft.detach(LiveMatchCard.this).attach(LiveMatchCard.this).commit();
+                                        }
+                                    });
+
+                                }
+                                mAdapter = new LiveMatchCardAdapter(getActivity(), LiveMatches);
+                                indicator.setViewPager(vp);
+                                indicator.setCount(mAdapter.getCount());
+                                IndicatorConfig();
+                                vp.setAdapter(mAdapter);
+                            }
+                        } else {
+                            mProgressBar.setVisibility(View.INVISIBLE);
+                            no_internet_connection.setVisibility(View.VISIBLE);
+                            common_match_cards.setVisibility(View.INVISIBLE);
+                            NoConnectionText.setText(R.string.server_issues);
+                            NoConnectionButton.setOnClickListener(new View.OnClickListener() {
+
+                                public void onClick(View v) {
+
+                                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                    ft.detach(LiveMatchCard.this).attach(LiveMatchCard.this).commit();
+
+                                }
+                            });
+                            call.cancel();
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<LiveMatchCardItem> call, Throwable t) {
+                        mProgressBar.setVisibility(View.INVISIBLE);
+                        no_internet_connection.setVisibility(View.VISIBLE);
+                        common_match_cards.setVisibility(View.INVISIBLE);
+                        NoConnectionButton.setOnClickListener(new View.OnClickListener() {
+
+                            public void onClick(View v) {
+
+                                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                ft.detach(LiveMatchCard.this).attach(LiveMatchCard.this).commit();
+
+                            }
+                        });
+                        call.cancel();
+                    }
+                });
+                refreshHandler.postDelayed(this, 300 * 1000);
+            }
+        };
+        refreshHandler.postDelayed(runnable, 300 * 1000);
 
         refreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
             @Override

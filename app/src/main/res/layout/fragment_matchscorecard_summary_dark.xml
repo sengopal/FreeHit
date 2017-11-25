@@ -1,21 +1,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/night_background">
 
     <RelativeLayout
         android:id="@+id/AtaGlance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
         android:paddingStart="@dimen/_10sdp"
-        android:paddingEnd="@dimen/_10sdp">
+        android:paddingTop="@dimen/_10sdp">
 
         <TextView
             android:id="@+id/currentTeamName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/_25sdp"
             tools:text="SL" />
 
@@ -25,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/currentTeamName"
             android:layout_marginTop="@dimen/_10sdp"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/_13sdp"
             tools:text="Play in Progress" />
 
@@ -34,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/currentStatus"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/_35sdp"
             tools:text="210/7" />
 
@@ -46,7 +47,7 @@
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_toEndOf="@id/currentTeamScore"
-            android:textColor="@color/cards_dark"
+            android:textColor="@color/match_card_text"
             android:textSize="@dimen/_15sdp"
             tools:text="RR 3.53" />
 
@@ -55,7 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/currentTeamScore"
-            android:textColor="@color/cards_dark"
+            android:textColor="@color/match_card_text"
             android:textSize="@dimen/_15sdp"
             tools:text="58.5 ov" />
 
@@ -66,7 +67,7 @@
             android:layout_below="@id/currentTeamOvers"
             android:layout_marginTop="@dimen/_10sdp"
             android:textAllCaps="true"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/_15sdp"
             tools:text="LEAD BY 45 RUNS" />
 
@@ -77,7 +78,7 @@
             android:layout_below="@id/currentTeamScore"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_toEndOf="@id/currentTeamOvers"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/_15sdp"
             tools:text="| 1 | 2 | 0 | 4 | W | 0 |" />
 
@@ -93,11 +94,11 @@
 
         <include
             android:id="@+id/currentPlayers"
-            layout="@layout/fragment_matchscorecard_sumary_currentplayer" />
+            layout="@layout/fragment_matchscorecard_sumary_currentplayer_dark" />
 
         <include
             android:id="@+id/topPlayers"
-            layout="@layout/fragment_matchscorecard_summary_topperformance" />
+            layout="@layout/fragment_matchscorecard_summary_topperformance_dark" />
 
     </RelativeLayout>
 

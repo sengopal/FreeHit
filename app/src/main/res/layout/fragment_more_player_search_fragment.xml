@@ -15,14 +15,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar_player_search"
         android:layout_marginBottom="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:background="@drawable/background_edittext"
         android:drawablePadding="@dimen/_10sdp"
-        android:hint="Enter Player Name"
+        android:hint="Enter Player Name (min 4 Characters)"
         android:inputType="textVisiblePassword"
-        android:padding="@dimen/_3sdp"
+        android:padding="@dimen/_2sdp"
         android:textColorHint="@color/grey_500" />
 
     <RelativeLayout

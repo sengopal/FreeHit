@@ -1,6 +1,7 @@
 package com.debut.ellipsis.freehit.Matches.ScoreCard.CommentaryElements;
 
 import android.app.Activity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -58,7 +59,7 @@ public class CommentaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_ITEM) {
-            View view = LayoutInflater.from(activity).inflate(R.layout.fragment_matchscorecard_commentary_item, parent, false);
+            View view = AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES ? LayoutInflater.from(activity).inflate(R.layout.fragment_matchscorecard_commentary_item_dark, parent, false) : LayoutInflater.from(activity).inflate(R.layout.fragment_matchscorecard_commentary_item, parent, false);
             return new CommentaryViewHolder(view);
         } else if (viewType == VIEW_TYPE_LOADING) {
             View view = LayoutInflater.from(activity).inflate(R.layout.fragment_matchscorecard_commentary_item_loading, parent, false);

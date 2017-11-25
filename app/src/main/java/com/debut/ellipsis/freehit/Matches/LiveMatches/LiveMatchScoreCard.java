@@ -15,10 +15,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.MainActivity;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.CommentaryElements.CommentaryFragment;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.CommentaryElements.CommentaryItem;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHeadFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.InfoFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardFragment;
@@ -38,9 +35,6 @@ public class LiveMatchScoreCard extends AppCompatActivity {
     private ViewPager viewPager;
     private ProgressBar mProgressBar;
     public static List<ScoreCardItem> LivescoreCardItems;
-    public static List<String> commentaryItems;
-    APIInterface apiInterface;
-    public static CommentaryItem commentaryItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +47,7 @@ public class LiveMatchScoreCard extends AppCompatActivity {
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
 
         String match_name = getIntent().getStringExtra("match_name");
-        final String match_id = getIntent().getStringExtra("match_id");
+        String match_id = getIntent().getStringExtra("match_id");
 
         setTitle(match_name);
 
@@ -69,47 +63,23 @@ public class LiveMatchScoreCard extends AppCompatActivity {
 
         mProgressBar = viewProgress.findViewById(R.id.progress_bar);
 
-        System.out.println(match_id);
-
-
-
         viewPager = viewViewPager.findViewById(R.id.viewpager);
         Call<ScoreCardItem> call = MainActivity.apiInterface.doGetLiveMatchScoreCard(match_id);
         call.enqueue(new Callback<ScoreCardItem>() {
             @Override
             public void onResponse(Call<ScoreCardItem> call, Response<ScoreCardItem> response) {
                 LivescoreCardItems = response.body().getResults();
+                mProgressBar.setVisibility(View.INVISIBLE);
+                setupViewPager(viewPager);
+                viewPager.setOffscreenPageLimit(5);
 
-            Call<CommentaryItem> call1 = MainActivity.apiInterface.doGetLiveMatchCommentary(match_id);
-            call1.enqueue(new Callback<CommentaryItem>() {
-            @Override
-            public void onResponse(Call<CommentaryItem> call1, Response<CommentaryItem> response) {
-                if (response.isSuccessful()) {
-                    commentaryItems = response.body().getCommentary();
-                    mProgressBar.setVisibility(View.INVISIBLE);
-                    setupViewPager(viewPager);
-                    commentaryItem = response.body();
-                    viewPager.setOffscreenPageLimit(4);
-
-                }
-                else
-                {
-                    mProgressBar.setVisibility(View.GONE);
-                    Toast.makeText(getBaseContext(), R.string.server_issues, Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CommentaryItem> call1, Throwable t) {
-                call1.cancel();
-            }
-            });
             }
 
             @Override
             public void onFailure(Call<ScoreCardItem> call, Throwable t) {
                 mProgressBar.setVisibility(View.GONE);
-                Toast.makeText(getBaseContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), R.string.no_internet_connection , Toast.LENGTH_SHORT).show();
+                System.out.println(t.getLocalizedMessage());
 
             }
         });
@@ -148,7 +118,7 @@ public class LiveMatchScoreCard extends AppCompatActivity {
         adapter.addFrag(new InfoFragment(), "INFO");
         adapter.addFrag(new SummaryFragment(), "SUMMARY");
         adapter.addFrag(new ScoreCardFragment(), "SCORE CARD");
-        adapter.addFrag(new CommentaryFragment(), "COMMENTARY");
+        /*adapter.addFrag(new CommentaryFragment(), "COMMENTARY");*/
         adapter.addFrag(new HeadToHeadFragment(), "HEAD-TO-HEAD");
         viewPager.setAdapter(adapter);
     }
@@ -174,12 +144,10 @@ public class LiveMatchScoreCard extends AppCompatActivity {
         public void addFrag(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
-            if(mFragmentTitleList.size()==4) {
-                if (mFragmentTitleList.get(3).equals("COMMENTARY")) {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("fragment_name", "LIVE");
-                    fragment.setArguments(bundle);
-                }
+            if (mFragmentTitleList.get(0).equals("INFO")) {
+                Bundle bundle = new Bundle();
+                bundle.putString("fragment_name", "LIVE");
+                fragment.setArguments(bundle);
             }
         }
 
@@ -189,11 +157,8 @@ public class LiveMatchScoreCard extends AppCompatActivity {
         }
     }
 
-    public static List<ScoreCardItem> getQList(){
+    public static List<ScoreCardItem> getQList() {
         return LivescoreCardItems;
     }
 
-    public static CommentaryItem getCQList(){
-        return commentaryItem;
-    }
 }

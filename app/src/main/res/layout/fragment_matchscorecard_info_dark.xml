@@ -55,6 +55,7 @@
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:layout_gravity="center"
+                        android:tint="@android:color/white"
                         app:srcCompat="@drawable/arrow_vector" />
 
 
@@ -86,6 +87,7 @@
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:layout_gravity="center"
+                        android:tint="@android:color/white"
                         app:srcCompat="@drawable/arrow_vector" />
 
                     <TextView

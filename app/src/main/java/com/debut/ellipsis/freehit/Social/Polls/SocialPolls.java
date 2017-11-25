@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -37,6 +38,7 @@ public class SocialPolls extends Fragment {
     public TextView NoConnection;
     PollsItemAdapter mAdapter;
     private ListView listView;
+    public ImageView NoConnectionImage;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,6 +65,8 @@ public class SocialPolls extends Fragment {
 
         NoConnection = no_internet_connection.findViewById(R.id.no_internet_connection_text);
 
+        NoConnectionImage = no_internet_connection.findViewById(R.id.no_internet_connection);
+
         switch (AppCompatDelegate.getDefaultNightMode()) {
             case AppCompatDelegate.MODE_NIGHT_YES:
                 listView.setBackgroundColor(getResources().getColor(R.color.night_background));
@@ -72,6 +76,7 @@ public class SocialPolls extends Fragment {
                 refLayout.setColorSchemeColors(Color.BLACK);
                 NoConnectionButton.setTextColor(Color.BLACK);
                 NoConnection.setTextColor(Color.WHITE);
+                NoConnectionImage.setColorFilter(Color.WHITE);
                 break;
             default:
                 refLayout.setColorSchemeResources(R.color.orange);

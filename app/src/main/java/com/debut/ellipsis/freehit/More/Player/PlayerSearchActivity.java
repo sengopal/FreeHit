@@ -37,14 +37,16 @@ import retrofit2.Response;
 
 public class PlayerSearchActivity extends AppCompatActivity {
 
+    private EditText playerSearchEdit;
+
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         setContentView(R.layout.fragment_more_player_search_fragment);
 
-        EditText playerSearchEdit= findViewById(R.id.editText_player);
-        VectorDrawableCompat drawableCompat= VectorDrawableCompat.create(getResources(), R.drawable.ic_search, playerSearchEdit.getContext().getTheme());
+        playerSearchEdit = findViewById(R.id.editText_player);
+        VectorDrawableCompat drawableCompat = VectorDrawableCompat.create(getResources(), R.drawable.ic_search, playerSearchEdit.getContext().getTheme());
         playerSearchEdit.setCompoundDrawablesRelativeWithIntrinsicBounds(drawableCompat, null, null, null);
 
         View viewToolbar = findViewById(R.id.toolbar_player_search);
@@ -88,56 +90,61 @@ public class PlayerSearchActivity extends AppCompatActivity {
 
 
             playerSearchEdit.addTextChangedListener(new TextWatcher() {
+                int length = 0;
+
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 }
 
                 @Override
                 public void onTextChanged(final CharSequence s, int start, int before, int count) {
-                    MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
-                    final Call<PlayerCountryItem> playerInfo = MainActivity.apiInterface.doGetPlayerList(s.toString());
-                    playerInfo.enqueue(new Callback<PlayerCountryItem>() {
-                        @Override
-                        public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
-                            if (response.isSuccessful()) {
-                                List<PlayerCountryItem> playerCountryItems = response.body().getResults();
 
-                                for (int i = 0; i < playerCountryItems.size(); i++) {
-                                    recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
-                                }
+                    String str = playerSearchEdit.getText().toString();
+                    length = str.length();
+                    if (length >= 4) {
+                        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
+                        final Call<PlayerCountryItem> playerInfo = MainActivity.apiInterface.doGetPlayerList(s.toString());
+                        playerInfo.enqueue(new Callback<PlayerCountryItem>() {
+                            @Override
+                            public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
+                                if (response.isSuccessful()) {
+                                    List<PlayerCountryItem> playerCountryItems = response.body().getResults();
 
-                                //When not found in player list
-                                if (playerCountryItems.isEmpty()) {
+                                    for (int i = 0; i < playerCountryItems.size(); i++) {
+                                        recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
+                                    }
 
-                                    Call<PlayerCountryItem> call1 = MainActivity.apiInterface.doGetTeamPlayers(s.toString());
-                                    call1.enqueue(new Callback<PlayerCountryItem>() {
-                                        @Override
-                                        public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
-                                            List<PlayerCountryItem> playerCountryItems = response.body().getResults();
-                                            for (int i = 0; i < playerCountryItems.size(); i++) {
-                                                recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
+                                    //When not found in player list
+                                    if (playerCountryItems.isEmpty()) {
+
+                                        Call<PlayerCountryItem> call1 = MainActivity.apiInterface.doGetTeamPlayers(s.toString());
+                                        call1.enqueue(new Callback<PlayerCountryItem>() {
+                                            @Override
+                                            public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
+                                                List<PlayerCountryItem> playerCountryItems = response.body().getResults();
+                                                for (int i = 0; i < playerCountryItems.size(); i++) {
+                                                    recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
+                                                }
                                             }
-                                        }
 
-                                        @Override
-                                        public void onFailure(Call<PlayerCountryItem> call, Throwable t) {
+                                            @Override
+                                            public void onFailure(Call<PlayerCountryItem> call, Throwable t) {
 
-                                        }
-                                    });
+                                            }
+                                        });
+                                    }
+                                } else {
+                                    Toast.makeText(getApplicationContext(), R.string.server_issues, Toast.LENGTH_SHORT).show();
                                 }
                             }
-                            else
-                            {
-                                Toast.makeText(getApplicationContext(), R.string.server_issues, Toast.LENGTH_SHORT).show();
+
+                            @Override
+                            public void onFailure(Call<PlayerCountryItem> call, Throwable t) {
+
                             }
-                        }
+                        });
 
-                        @Override
-                        public void onFailure(Call<PlayerCountryItem> call, Throwable t) {
-
-                        }
-                    });
-
+                    }
                 }
 
                 @Override
