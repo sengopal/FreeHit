@@ -47,6 +47,8 @@ public class ScoreCardItem {
         private String result;
         @SerializedName("series")
         private String series;
+        @SerializedName("session")
+        private String session;
         @SerializedName("stadium")
         private String stadium;
         @SerializedName("status")
@@ -90,6 +92,10 @@ public class ScoreCardItem {
 
         public String getSeries() {
             return series;
+        }
+
+        public String getSession() {
+            return session;
         }
 
         public Summary getSummary() {

@@ -104,7 +104,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/tw__composer_deep_gray"
+                android:background="@color/tw__composer_light_gray"
                 android:gravity="center_horizontal"
                 android:text="@string/info"
                 android:textAllCaps="true"

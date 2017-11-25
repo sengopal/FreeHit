@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.debut.ellipsis.freehit.R;
@@ -26,7 +25,6 @@ public class SeriesBattingAdapter extends RecyclerView.Adapter<SeriesBattingAdap
         TextView avg;
         TextView name;
         TextView slno;
-        LinearLayout RlContainer;
 
         public SeriesViewHolder(View itemView) {
             super(itemView);

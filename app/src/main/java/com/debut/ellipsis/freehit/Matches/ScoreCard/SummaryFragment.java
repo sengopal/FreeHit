@@ -14,9 +14,6 @@ import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class SummaryFragment extends Fragment {
 
 
@@ -38,6 +35,7 @@ public class SummaryFragment extends Fragment {
         TextView currentTeamStatus = rootView.findViewById(R.id.currentTeamStatus);
         TextView currentTeamcurrover = rootView.findViewById(R.id.currentTeamcurrover);
         TextView currentStatus = rootView.findViewById(R.id.currentStatus);
+        TextView currentDay = rootView.findViewById(R.id.currentDay);
 
         View currentPlayers = rootView.findViewById(R.id.currentPlayers);
         TextView Batsman1 = currentPlayers.findViewById(R.id.Batsman1);
@@ -75,6 +73,9 @@ public class SummaryFragment extends Fragment {
         currentTeamScore.setText(teamList.get(1).getInfo().getSummary().getSummscore());
         currentTeamOvers.setText(teamList.get(1).getInfo().getSummary().getSummover());
         currentStatus.setText(teamList.get(1).getInfo().getSummary().getSummmatchstat());
+        if(!teamList.get(1).getInfo().getSession().equals("")) {
+            currentDay.setText("(" + teamList.get(1).getInfo().getSession() + ")");
+        }
         currentTeamRR.setText(teamList.get(1).getInfo().getSummary().getSummrr());
         currentTeamStatus.setText(teamList.get(1).getInfo().getSummary().getSummstatus());
         String currover = "";

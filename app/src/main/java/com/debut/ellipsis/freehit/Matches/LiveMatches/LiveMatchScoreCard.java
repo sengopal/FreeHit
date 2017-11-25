@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.MainActivity;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.CommentaryElements.CommentaryFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHeadFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.InfoFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardFragment;
@@ -118,7 +119,7 @@ public class LiveMatchScoreCard extends AppCompatActivity {
         adapter.addFrag(new InfoFragment(), "INFO");
         adapter.addFrag(new SummaryFragment(), "SUMMARY");
         adapter.addFrag(new ScoreCardFragment(), "SCORE CARD");
-        /*adapter.addFrag(new CommentaryFragment(), "COMMENTARY");*/
+        adapter.addFrag(new CommentaryFragment(), "COMMENTARY");
         adapter.addFrag(new HeadToHeadFragment(), "HEAD-TO-HEAD");
         viewPager.setAdapter(adapter);
     }
