@@ -8,7 +8,7 @@
 
 
     <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -16,14 +16,14 @@
 
         <LinearLayout
             android:id="@+id/match_info_container"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:visibility="visible">
 
 
             <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/tw__composer_light_gray"
                 android:stretchColumns="1">
@@ -39,12 +39,13 @@
                         android:gravity="center_vertical"
                         android:text="@string/PlayingX1"
                         android:textAllCaps="true"
+                        android:textColor="@android:color/black"
                         android:textSize="@dimen/_15sdp" />
                 </TableRow>
 
                 <TableRow
                     android:id="@+id/team1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
                     android:padding="@dimen/_5sdp">
@@ -71,11 +72,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_1sdp"
-                    android:background="@color/divider" />
+                    android:background="@color/grey_300" />
 
                 <TableRow
                     android:id="@+id/team2"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
                     android:padding="@dimen/_5sdp">
@@ -100,437 +101,444 @@
                 </TableRow>
             </TableLayout>
 
-
-            <ScrollView
-                android:id="@+id/layout"
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fillViewport="true"
-                android:scrollbarStyle="outsideInset"
-                android:scrollbars="horizontal|vertical">
+                android:layout_height="wrap_content"
+                android:background="@color/tw__composer_deep_gray"
+                android:gravity="center_horizontal"
+                android:text="@string/info"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_15sdp" />
 
-                <HorizontalScrollView
-                    android:id="@+id/horizontalView"
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/match_info_match_name_label"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@string/match"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/match_info_match_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:scrollbars="horizontal|vertical">
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:layout_toEndOf="@+id/match_info_match_name_label"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    tools:text="England Vs West Indies, 5th ODI" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/grey_300" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/match_info_series_name_label"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@string/series"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/match_info_series_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:layout_toEndOf="@+id/match_info_series_name_label"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    tools:text="West Indies tour of England, 2017" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/grey_300" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/match_info_series_toss_status_label"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@string/toss"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/match_info_toss_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:layout_toEndOf="@+id/match_info_series_toss_status_label"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    tools:text="England won the toss and elected to field" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/toss_motm_line"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/grey_300" />
+
+            <RelativeLayout
+                android:id="@+id/MOTM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/match_info_motm_label"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@string/motm"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/match_info_motm_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:layout_toEndOf="@+id/match_info_motm_label"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    tools:text="Christopher Henry Gayle" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/grey_300" />
+
+            <RelativeLayout
+                android:id="@+id/MOTS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/match_info_mots_label"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@string/mots"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/match_info_mots_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_toEndOf="@+id/match_info_mots_label"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    tools:text="Christopher Henry Gayle" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/grey_300" />
+
+            <RelativeLayout
+                android:id="@+id/result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/match_info_result_label"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@string/result"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/match_info_result_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:layout_toEndOf="@+id/match_info_result_label"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    tools:text="India beat Sri Lanka by 36 runs" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/seriesStatus_motm_line"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/grey_300" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/match_info_SeriesStatus_label"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@string/seriesStatus"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/match_info_SeriesStatus_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_toEndOf="@+id/match_info_SeriesStatus_label"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    tools:text="India win the series 3-0" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/grey_300" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/match_info_date_label"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@string/date"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/match_info_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:layout_toEndOf="@+id/match_info_date_label"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    tools:text="29 Sep 2017 , Fri" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/grey_300" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/match_info_time_label"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@string/lastTime"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/match_info_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:layout_toEndOf="@+id/match_info_time_label"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    tools:text="16 : 30 (IST)" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/grey_300" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/match_info_stadium_label"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@string/venue"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/match_info_stadium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_toEndOf="@+id/match_info_stadium_label"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    tools:text="The Rose Bowl, Southampton" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/grey_300" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/match_info_umpires_label"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@string/umpires"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/match_info_umpires"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_toEndOf="@+id/match_info_umpires_label"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    tools:text="Simon Fry (AUS),Michael Gough (ENG) and Rod Tucker (AUS)" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/grey_300" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/match_info_referee_label"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@string/referee"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/match_info_referee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:layout_toEndOf="@+id/match_info_referee_label"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    tools:text="Javagal Srinath (IND)" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/grey_300" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/match_info_weather_label"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@string/weather"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
 
 
-                    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/tw__composer_light_gray"
-                        android:stretchColumns="*">
+                <TextView
+                    android:id="@+id/match_info_weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_toEndOf="@+id/match_info_weather_label"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp"
+                    tools:text="CLEAR" />
+            </RelativeLayout>
 
-                        <TableRow>
-
-                            <TextView
-                                style="@style/TextAppearance.AppCompat.Headline"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_25sdp"
-                                android:layout_span="2"
-                                android:gravity="center"
-                                android:text="@string/info"
-                                android:textAllCaps="true"
-                                android:textSize="@dimen/_15sdp" />
-                        </TableRow>
-
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@android:color/white"
-                            android:padding="@dimen/_5sdp">
-
-                            <TextView
-                                android:id="@+id/match_info_match_name_label"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:text="@string/match"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/match_info_match_name"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                tools:text="England Vs West Indies, 5th ODI" />
-                        </TableRow>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_1sdp"
-                            android:background="@color/divider" />
-
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@android:color/white"
-                            android:padding="@dimen/_5sdp">
-
-                            <TextView
-                                android:id="@+id/match_info_series_name_label"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:text="@string/series"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/match_info_series_name"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                tools:text="West Indies tour of England, 2017" />
-                        </TableRow>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_1sdp"
-                            android:background="@color/divider" />
-
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@android:color/white"
-                            android:padding="@dimen/_5sdp">
-
-                            <TextView
-                                android:id="@+id/match_info_series_toss_status_label"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:text="@string/toss"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/match_info_toss_status"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                tools:text="England won the toss and elected to field" />
-                        </TableRow>
-
-                        <TextView
-                            android:id="@+id/toss_motm_line"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_1sdp"
-                            android:background="@color/divider" />
-
-                        <TableRow
-                            android:id="@+id/MOTM"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@android:color/white"
-                            android:padding="@dimen/_5sdp">
-
-                            <TextView
-                                android:id="@+id/match_info_motm_label"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:text="@string/motm"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/match_info_motm_status"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                tools:text="Christopher Henry Gayle" />
-                        </TableRow>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_1sdp"
-                            android:background="@color/divider" />
-
-                        <TableRow
-                            android:id="@+id/MOTS"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@android:color/white"
-                            android:padding="@dimen/_5sdp">
-
-                            <TextView
-                                android:id="@+id/match_info_mots_label"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:text="@string/mots"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/match_info_mots_status"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:layout_marginStart="@dimen/_5sdp"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                tools:text="Christopher Henry Gayle" />
-                        </TableRow>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_1sdp"
-                            android:background="@color/divider" />
-
-                        <TableRow
-                            android:id="@+id/result"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@android:color/white"
-                            android:padding="@dimen/_5sdp">
-
-                            <TextView
-                                android:id="@+id/match_info_result_label"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:text="@string/result"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/match_info_result_status"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                tools:text="India beat Sri Lanka by 36 runs" />
-                        </TableRow>
-
-                        <TextView
-                            android:id="@+id/seriesStatus_motm_line"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_1sdp"
-                            android:background="@color/divider" />
-
-                        <TableRow
-                            android:id="@+id/SeriesStatus"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@android:color/white"
-                            android:padding="@dimen/_5sdp">
-
-                            <TextView
-                                android:id="@+id/match_info_SeriesStatus_label"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:text="@string/seriesStatus"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/match_info_SeriesStatus_status"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:layout_marginStart="@dimen/_4sdp"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                tools:text="India win the series 3-0" />
-                        </TableRow>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_1sdp"
-                            android:background="@color/divider" />
-
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/white"
-                            android:padding="@dimen/_5sdp">
-
-                            <TextView
-                                android:id="@+id/match_info_date_label"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:text="@string/date"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/match_info_date"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                tools:text="29 Sep 2017 , Fri" />
-                        </TableRow>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_1sdp"
-                            android:background="@color/divider" />
-
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/white"
-                            android:padding="@dimen/_5sdp">
-
-                            <TextView
-                                android:id="@+id/match_info_time_label"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:text="@string/lastTime"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/match_info_time"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                tools:text="16 : 30 (IST)" />
-                        </TableRow>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_1sdp"
-                            android:background="@color/divider" />
-
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/white"
-                            android:padding="@dimen/_5sdp">
-
-                            <TextView
-                                android:id="@+id/match_info_stadium_label"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:text="@string/venue"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/match_info_stadium"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:layout_marginStart="@dimen/_4sdp"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                tools:text="The Rose Bowl, Southampton" />
-                        </TableRow>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_1sdp"
-                            android:background="@color/divider" />
-
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/white"
-                            android:padding="@dimen/_5sdp">
-
-                            <TextView
-                                android:id="@+id/match_info_umpires_label"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:text="@string/umpires"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/match_info_umpires"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:layout_marginStart="@dimen/_4sdp"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                tools:text="Simon Fry (AUS),Michael Gough (ENG) and Rod Tucker (AUS)" />
-                        </TableRow>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_1sdp"
-                            android:background="@color/divider" />
-
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/white"
-                            android:padding="@dimen/_5sdp">
-
-                            <TextView
-                                android:id="@+id/match_info_referee_label"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:text="@string/referee"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/match_info_referee"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:layout_marginStart="@dimen/_2sdp"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                tools:text="Javagal Srinath (IND)" />
-                        </TableRow>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_1sdp"
-                            android:background="@color/divider" />
-
-                        <TableRow
-                            android:id="@+id/weather"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/white"
-                            android:padding="@dimen/_5sdp">
-
-                            <TextView
-                                android:id="@+id/match_info_weather_label"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:text="@string/weather"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                android:textStyle="bold" />
-
-
-                            <TextView
-                                android:id="@+id/match_info_weather"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_20sdp"
-                                android:layout_marginStart="@dimen/_4sdp"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_12sdp"
-                                tools:text="CLEAR" />
-                        </TableRow>
-
-                        <TextView
-                            android:id="@+id/weather_line"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_1sdp"
-                            android:background="@color/divider" />
-
-                    </TableLayout>
-
-                </HorizontalScrollView>
-            </ScrollView>
+            <TextView
+                android:id="@+id/weather_line"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/divider" />
 
         </LinearLayout>
 

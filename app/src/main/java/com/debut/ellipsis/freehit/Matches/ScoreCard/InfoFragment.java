@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -65,9 +66,9 @@ public class InfoFragment extends Fragment {
 
         MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        TableRow MOTMrow = rootView.findViewById(R.id.MOTM);
-        TableRow MOTSrow = rootView.findViewById(R.id.MOTS);
-        TableRow resultrow = rootView.findViewById(R.id.result);
+        RelativeLayout MOTMrow = rootView.findViewById(R.id.MOTM);
+        RelativeLayout MOTSrow = rootView.findViewById(R.id.MOTS);
+        RelativeLayout resultrow = rootView.findViewById(R.id.result);
 
         List<ScoreCardItem> teamList = null;
 
@@ -101,7 +102,7 @@ public class InfoFragment extends Fragment {
         TextView match_info_team2 = rootView.findViewById(R.id.match_info_team2);
         match_info_team2.setText(team_2);
 
-        final TextView match = rootView.findViewById(R.id.match_info_match_name);
+        TextView match = rootView.findViewById(R.id.match_info_match_name);
         match.setText(match_name);
 
         TextView series = rootView.findViewById(R.id.match_info_series_name);
