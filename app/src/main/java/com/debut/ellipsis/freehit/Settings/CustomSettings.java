@@ -118,7 +118,7 @@ public class CustomSettings extends AppCompatActivity {
         final SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
         editor.putBoolean("auto_refresh", true);
         editor.apply();
-        
+
         NightMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // do something, the isChecked will be

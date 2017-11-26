@@ -71,13 +71,15 @@ public class TeamSeriesMatchesFragment extends Fragment {
             }
         });
 
+        viewPager.setOffscreenPageLimit(2);
+
         return rootView;
     }
 
     private void setupViewPagerSeries(ViewPager viewPager) {
         TeamSeriesMatchesFragment.ViewPagerAdapter adapter = new TeamSeriesMatchesFragment.ViewPagerAdapter(getChildFragmentManager());
         adapter.addFrag(new SeriesMatches(), "UPCOMING");
-        adapter.addFrag(new SeriesMatches(), "PAST");
+        adapter.addFrag(new SeriesMatches(), "RECENT");
         viewPager.setAdapter(adapter);
 
     }
@@ -85,7 +87,7 @@ public class TeamSeriesMatchesFragment extends Fragment {
     private void setupViewPagerTeam(ViewPager viewPager) {
         TeamSeriesMatchesFragment.ViewPagerAdapter adapter = new TeamSeriesMatchesFragment.ViewPagerAdapter(getChildFragmentManager());
         adapter.addFrag(new TeamMatches(), "UPCOMING");
-        adapter.addFrag(new TeamMatches(), "PAST");
+        adapter.addFrag(new TeamMatches(), "RECENT");
         viewPager.setAdapter(adapter);
 
     }
@@ -117,7 +119,7 @@ public class TeamSeriesMatchesFragment extends Fragment {
                 fragment.setArguments(bundle);
             }
             if (mFragmentTitleList.size() == 2) {
-                if (mFragmentTitleList.get(1).equals("PAST")) {
+                if (mFragmentTitleList.get(1).equals("RECENT")) {
                     Bundle bundle = new Bundle();
                     bundle.putString("fragment_name", "PAST");
                     fragment.setArguments(bundle);

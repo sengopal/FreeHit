@@ -69,7 +69,7 @@ public class MatchesFragment extends Fragment {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFrag(new LiveMatchCard(), "LIVE");
         adapter.addFrag(new UpcomingMatchCard(), "UPCOMING");
-        adapter.addFrag(new PastMatchCard(), "PAST");
+        adapter.addFrag(new PastMatchCard(), "RECENT");
         viewPager.setAdapter(adapter);
 
     }

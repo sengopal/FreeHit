@@ -62,6 +62,8 @@ public class SeriesPerformance extends Fragment {
             }
         });
 
+        viewPager.setOffscreenPageLimit(2);
+
         return rootView;
     }
 

@@ -55,6 +55,9 @@ public class SeriesActivity extends AppCompatActivity {
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.setupWithViewPager(viewPager);
 
+        viewPager.setOffscreenPageLimit(2);
+
+
 
     }
 

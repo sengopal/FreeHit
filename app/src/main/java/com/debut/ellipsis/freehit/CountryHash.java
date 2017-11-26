@@ -48,10 +48,25 @@ public class CountryHash {
             case "NEPAL":
                 return "NEP";
             case "OMAN":
-                return "OMN";
+                return "OMA";
             case "WORLD XI":
                 return "WXI";
-
+            case "ROYAL CHALLENGERS BANGALORE":
+                return "RCB";
+            case "KOLKATA KNIGHT RIDERS":
+                return "KKR";
+            case "KINGS XI PUNJAB":
+                return "KXIP";
+            case "DELHI DAREDEVILS":
+                return "DD";
+            case "MUMBAI INDIANS":
+                return "MI";
+            case "SUNRISERS HYDERABAD":
+                return "SRH";
+            case "RISING PUNE SUPERGIANT":
+                return "RPS";
+            case "GUJARAT LIONS":
+                return "GL";
 
         }
         return null;
@@ -107,7 +122,22 @@ public class CountryHash {
                 return "https://s.ndtvimg.com/images/entities/120/oman-107053.png";
             case "WORLD XI":
                 return "https://s.ndtvimg.com/images/entities/300/world-xi_636408269319224373.png";
-
+            case "ROYAL CHALLENGERS BANGALORE":
+                return "https://s.ndtvimg.com/images/entities/120/royal-challengers-bangalore-2138.png";
+            case "KOLKATA KNIGHT RIDERS":
+                return "https://s.ndtvimg.com/images/entities/300/kolkata-knight-riders-2139.png";
+            case "KINGS XI PUNJAB":
+                return "https://s.ndtvimg.com/images/entities/300/kings-xi-punjab-2140.png";
+            case "DELHI DAREDEVILS":
+                return "https://s.ndtvimg.com/images/entities/120/delhi-daredevils-2142.png";
+            case "MUMBAI INDIANS":
+                return "https://s.ndtvimg.com/images/entities/300/mumbai-indians-2144.png";
+            case "SUNRISERS HYDERABAD":
+                return "https://s.ndtvimg.com/images/entities/300/sunrisers-hyderabad-2165.png";
+            case "RISING PUNE SUPERGIANT":
+                return "https://s.ndtvimg.com/images/entities/300/rising-pune-supergiants-107044.png";
+            case "GUJARAT LIONS":
+                return "https://s.ndtvimg.com/images/entities/300/gujarat-lions-107045.png";
         }
         return null;
 
@@ -157,11 +187,26 @@ public class CountryHash {
                 return "Papua New Guinea";
             case "NEP":
                 return "Nepal";
-            case "OMN":
+            case "OMA":
                 return "Oman";
             case "WXI":
                 return "World XI";
-
+            case "RCB":
+                return "ROYAL CHALLENGERS BANGALORE";
+            case "KKR":
+                return "KOLKATA KNIGHT RIDERS";
+            case "KXIP":
+                return "KINGS XI PUNJAB";
+            case "DD":
+                return "DELHI DAREDEVILS";
+            case "MI":
+                return "MUMBAI INDIANS";
+            case "SRH":
+                return "SUNRISERS HYDERABAD";
+            case "RPS":
+                return "RISING PUNE SUPERGIANT";
+            case "GL":
+                return "GUJARAT LIONS";
         }
         return null;
     }
