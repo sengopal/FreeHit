@@ -2,7 +2,6 @@ package com.debut.ellipsis.freehit.Social.Tweets;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -17,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -40,6 +40,7 @@ public class SocialTweets extends Fragment {
     public TextView NoConnection;
     public TextView NotweetsText;
     public Button NotweetsButton;
+    public ImageView NoConnectionImage;
 
     public SocialTweets() {
         // Required empty public constructor
@@ -69,10 +70,9 @@ public class SocialTweets extends Fragment {
         NotweetsButton = No_tweets.findViewById(R.id.No_Live_Matches_button);
 
         final View no_internet_connection = socTweets.findViewById(R.id.Unavailable_connection);
-
         NoConnectionButton = no_internet_connection.findViewById(R.id.no_internet_refresh_button);
-
         NoConnection = no_internet_connection.findViewById(R.id.no_internet_connection_text);
+        NoConnectionImage = no_internet_connection.findViewById(R.id.no_internet_connection);
 
         final RelativeLayout twitrel = socTweets.findViewById(R.id.twit_layout);
 
@@ -87,6 +87,7 @@ public class SocialTweets extends Fragment {
                 NotweetsButton.setTextColor(Color.BLACK);
                 NoConnectionButton.setTextColor(Color.BLACK);
                 NoConnection.setTextColor(Color.WHITE);
+                NoConnectionImage.setColorFilter(Color.WHITE);
                 break;
             default:
                 refLayout.setColorSchemeResources(R.color.orange);
@@ -133,54 +134,27 @@ public class SocialTweets extends Fragment {
         // Get details on the currently active default data network
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
-        switch (fragment_name) {
-            case "TWEETS":
-                // If there is a network connection, fetch data
-                if (networkInfo != null && networkInfo.isConnected()) {
-                    mProgressBar.setVisibility(View.INVISIBLE);
-                    no_internet_connection.setVisibility(View.INVISIBLE);
-                    String queryToSearch = "#cricket";
-                    tabCall(queryToSearch, SearchTimeline.ResultType.RECENT);
 
-                } else {
-                    no_internet_connection.setVisibility(View.VISIBLE);
-                    mProgressBar.setVisibility(View.INVISIBLE);
-                    NoConnectionButton.setOnClickListener(new View.OnClickListener() {
+        // If there is a network connection, fetch data
+        if (networkInfo != null && networkInfo.isConnected()) {
+            mProgressBar.setVisibility(View.INVISIBLE);
+            no_internet_connection.setVisibility(View.INVISIBLE);
+            String queryToSearch = "#cricket";
+            tabCall(queryToSearch, SearchTimeline.ResultType.RECENT);
 
-                        public void onClick(View v) {
+        } else {
+            no_internet_connection.setVisibility(View.VISIBLE);
+            mProgressBar.setVisibility(View.INVISIBLE);
+            NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 
-                            FragmentTransaction ft = getFragmentManager().beginTransaction();
-                            ft.detach(SocialTweets.this).attach(SocialTweets.this).commit();
+                public void onClick(View v) {
 
-                        }
-                    });
-                }
-                break;
-            case "LIVE TWEETS":
-                Intent i = getActivity().getIntent();
-                String Team1Name = i.getStringExtra("Team1Name");
-                String Team2Name = i.getStringExtra("Team2Name");
-
-                final String QueryToSearch1 = "#" + Team1Name + "vs" + Team2Name;
-                final String QueryToSearch2 = "#" + Team2Name + "vs" + Team1Name;
-
-                if (networkInfo != null && networkInfo.isConnected()) {
-                    mProgressBar.setVisibility(View.INVISIBLE);
-                    No_tweets.setVisibility(View.INVISIBLE);
-                    tabCall(QueryToSearch1 + "," + QueryToSearch2, SearchTimeline.ResultType.RECENT);
-
-                } else {
-                    No_tweets.setVisibility(View.VISIBLE);
-                    mProgressBar.setVisibility(View.INVISIBLE);
-                    NotweetsButton.setVisibility(View.INVISIBLE);
-                    NotweetsText.setText(R.string.EmptyNews);
-                    NotweetsText.setText(R.string.no_internet_connection);
-                    tabCall(QueryToSearch1 + "," + QueryToSearch2, SearchTimeline.ResultType.RECENT);
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.detach(SocialTweets.this).attach(SocialTweets.this).commit();
 
                 }
-                break;
+            });
         }
-
 
         return socTweets;
     }

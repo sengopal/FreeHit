@@ -18,10 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.debut.ellipsis.freehit.APIInterface;
-import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 
@@ -34,14 +31,17 @@ import retrofit2.Response;
 
 public class NewsFragment extends Fragment {
 
-    private ProgressBar mProgressBar;
-    public Button NoConnectionButton;
-    public TextView NoConnection;
-    public TextView NoNewsText;
-    public Button NoNewsButton;
-    public ImageView NoConnectionImage;
-    private FloatingActionButton fab;
-    private LinearLayoutManager mLinearLayoutManager;
+    ProgressBar mProgressBar;
+    Button NoConnectionButton;
+    TextView NoConnection;
+    TextView NoNewsText;
+    Button NoNewsButton;
+    ImageView NoConnectionImage;
+    FloatingActionButton fab;
+    LinearLayoutManager mLinearLayoutManager;
+    View no_internet_connection;
+    RecyclerView recyclerView;
+    View No_news;
 
     public NewsFragment() {
         // Required empty public constructor
@@ -54,8 +54,6 @@ public class NewsFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_news_list, container, false);
 
-        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
-
         View viewRecycler = rootView.findViewById(R.id.news_list);
 
         View viewFAB = rootView.findViewById(R.id.fab);
@@ -65,19 +63,15 @@ public class NewsFragment extends Fragment {
 
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
 
-        final RecyclerView recyclerView = viewRecycler.findViewById(R.id.recycler_list);
+        recyclerView = viewRecycler.findViewById(R.id.recycler_list);
         recyclerView.setLayoutManager(mLinearLayoutManager);
 
-        final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
-
+        no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
         NoConnectionButton = no_internet_connection.findViewById(R.id.no_internet_refresh_button);
-
         NoConnection = no_internet_connection.findViewById(R.id.no_internet_connection_text);
-
         NoConnectionImage = no_internet_connection.findViewById(R.id.no_internet_connection);
 
-        final View No_news = rootView.findViewById(R.id.No_news);
-
+        No_news = rootView.findViewById(R.id.No_news);
         NoNewsText = No_news.findViewById(R.id.empty_view);
         NoNewsButton = No_news.findViewById(R.id.No_Live_Matches_button);
 
@@ -101,7 +95,53 @@ public class NewsFragment extends Fragment {
                 break;
         }
 
+        NewsCall();
 
+        refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                                           @Override
+                                           public void onRefresh() {
+                                               // Checking if connected or not on refresh
+                                               refLayout.setRefreshing(true);
+                                               fab.hide();
+                                               NewsCall();
+                                               refLayout.setRefreshing(false);
+                                           }
+                                       }
+        );
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+
+                if (mLinearLayoutManager.findFirstVisibleItemPosition() == 0) {
+                    fab.hide();
+
+                } else {
+                    fab.show();
+                }
+            }
+        });
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int firstVisibleItemIndex = mLinearLayoutManager.findFirstVisibleItemPosition();
+                if (firstVisibleItemIndex > 0) {
+                    mLinearLayoutManager.smoothScrollToPosition(recyclerView, null, 0);
+                }
+            }
+        });
+
+
+        return rootView;
+    }
+
+    void NewsCall() {
         Call<NewsItem> call = MainActivity.apiInterface.doGetNewsListResources();
         call.enqueue(new Callback<NewsItem>() {
             @Override
@@ -156,103 +196,6 @@ public class NewsFragment extends Fragment {
                 call.cancel();
             }
         });
-
-        refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                                           @Override
-                                           public void onRefresh() {
-                                               // Checking if connected or not on refresh
-                                               refLayout.setRefreshing(true);
-                                               fab.hide();
-                                               Call<NewsItem> call = MainActivity.apiInterface.doGetNewsListResources();
-                                               call.enqueue(new Callback<NewsItem>() {
-                                                   @Override
-                                                   public void onResponse(Call<NewsItem> call, Response<NewsItem> response) {
-                                                       if (response.isSuccessful()) {
-                                                           List<NewsItem> news = response.body().getResults();
-                                                           if (news.size() == 0) {
-                                                               No_news.setVisibility(View.VISIBLE);
-                                                               NoNewsText.setText(R.string.EmptyNews);
-                                                               NoNewsButton.setOnClickListener(new View.OnClickListener() {
-
-                                                                   public void onClick(View v) {
-
-                                                                       FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                                                       ft.detach(NewsFragment.this).attach(NewsFragment.this).commit();
-                                                                   }
-                                                               });
-                                                           }
-                                                           if (getActivity() != null) {
-                                                               mProgressBar.setVisibility(View.INVISIBLE);
-                                                               no_internet_connection.setVisibility(View.INVISIBLE);
-                                                               recyclerView.setAdapter(new NewsItemAdapter(news, R.layout.fragment_news_list_item, getContext()));
-                                                           }
-                                                       } else {
-                                                           mProgressBar.setVisibility(View.INVISIBLE);
-                                                           no_internet_connection.setVisibility(View.VISIBLE);
-                                                           NoConnection.setText(R.string.server_issues);
-                                                           NoConnectionButton.setOnClickListener(new View.OnClickListener() {
-
-                                                               public void onClick(View v) {
-                                                                   FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                                                   ft.detach(NewsFragment.this).attach(NewsFragment.this).commit();
-                                                               }
-                                                           });
-                                                       }
-                                                   }
-
-                                                   @Override
-                                                   public void onFailure(Call<NewsItem> call, Throwable t) {
-                                                       mProgressBar.setVisibility(View.GONE);
-                                                       no_internet_connection.setVisibility(View.INVISIBLE);
-                                                       NoConnectionButton.setOnClickListener(new View.OnClickListener() {
-
-                                                           public void onClick(View v) {
-                                                               Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
-                                                               toast.show();
-
-                                                           }
-                                                       });
-
-                                                       call.cancel();
-                                                   }
-                                               });
-
-
-                                               refLayout.setRefreshing(false);
-                                           }
-                                       }
-        );
-
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-
-                if (mLinearLayoutManager.findFirstVisibleItemPosition() == 0) {
-                    fab.hide();
-
-                } else {
-                    fab.show();
-                }
-            }
-        });
-
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                int firstVisibleItemIndex = mLinearLayoutManager.findFirstVisibleItemPosition();
-                if (firstVisibleItemIndex > 0) {
-                    mLinearLayoutManager.smoothScrollToPosition(recyclerView, null, 0);
-                }
-            }
-        });
-
-
-        return rootView;
     }
 
 }

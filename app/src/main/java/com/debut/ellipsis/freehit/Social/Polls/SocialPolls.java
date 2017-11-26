@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
 import com.debut.ellipsis.freehit.ApiClient;
@@ -39,6 +38,8 @@ public class SocialPolls extends Fragment {
     PollsItemAdapter mAdapter;
     private ListView listView;
     public ImageView NoConnectionImage;
+    View no_internet_connection;
+    View No_polls;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,12 +55,12 @@ public class SocialPolls extends Fragment {
 
         final SwipeRefreshLayout refLayout = rootView.findViewById(R.id.refresh_layout);
 
-        final View No_polls = rootView.findViewById(R.id.No_news);
+        No_polls = rootView.findViewById(R.id.No_news);
 
         NoPollsText = No_polls.findViewById(R.id.empty_view);
         NoPollsButton = No_polls.findViewById(R.id.No_Live_Matches_button);
 
-        final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
+        no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
 
         NoConnectionButton = no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
@@ -83,7 +84,22 @@ public class SocialPolls extends Fragment {
                 break;
         }
 
+        Polls();
 
+
+        refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refLayout.setRefreshing(true);
+                Polls();
+                refLayout.setRefreshing(false);
+            }
+        });
+
+        return rootView;
+    }
+
+    void Polls() {
         Call<PollCardItem> call = MainActivity.apiInterface.doGetPollsListResources();
         call.enqueue(new Callback<PollCardItem>() {
             @Override
@@ -140,67 +156,6 @@ public class SocialPolls extends Fragment {
                 call.cancel();
             }
         });
-
-        refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                refLayout.setRefreshing(true);
-
-                Call<PollCardItem> call = MainActivity.apiInterface.doGetPollsListResources();
-                call.enqueue(new Callback<PollCardItem>() {
-                    @Override
-                    public void onResponse(Call<PollCardItem> call, Response<PollCardItem> response) {
-                        if (response.isSuccessful()) {
-                            mProgressBar.setVisibility(View.INVISIBLE);
-
-                            if (getActivity() != null) {
-                                List<PollCardItem> polls = response.body().getResults();
-                                if (polls.size() == 0) {
-                                    No_polls.setVisibility(View.VISIBLE);
-                                    NoPollsText.setText(R.string.EmptyPolls);
-                                    NoPollsButton.setOnClickListener(new View.OnClickListener() {
-
-                                        public void onClick(View v) {
-                                            FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                            ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
-                                        }
-                                    });
-                                } else {
-                                    mAdapter = new PollsItemAdapter(getContext(), polls);
-                                    listView.setAdapter(mAdapter);
-                                    mAdapter.notifyDataSetChanged();
-
-                                }
-                            }
-                        } else {
-                            mProgressBar.setVisibility(View.INVISIBLE);
-                            no_internet_connection.setVisibility(View.VISIBLE);
-                            NoConnection.setText(R.string.server_issues);
-                            NoConnectionButton.setOnClickListener(new View.OnClickListener() {
-
-                                public void onClick(View v) {
-                                    FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                    ft.detach(SocialPolls.this).attach(SocialPolls.this).commit();
-                                }
-                            });
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<PollCardItem> call, Throwable t) {
-                        mProgressBar.setVisibility(View.GONE);
-                        listView.setAdapter(null);
-                        no_internet_connection.setVisibility(View.INVISIBLE);
-                        Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
-                        toast.show();
-                        call.cancel();
-                    }
-                });
-                refLayout.setRefreshing(false);
-            }
-        });
-
-        return rootView;
     }
 
 }

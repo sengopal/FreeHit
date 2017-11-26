@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.APIInterface;
@@ -29,7 +30,10 @@ import retrofit2.Response;
 
 public class SeriesMainActivity extends AppCompatActivity {
 
-    private ProgressBar mProgressbar;
+    ProgressBar mProgressbar;
+    TextView mEmptyView;
+    RecyclerView recyclerView;
+    SwipeRefreshLayout refLayout;
 
     public SeriesMainActivity() {
 
@@ -49,18 +53,22 @@ public class SeriesMainActivity extends AppCompatActivity {
 
         setTitle("Series");
 
+        View emptyView = findViewById(R.id.empty);
+        mEmptyView = emptyView.findViewById(R.id.empty_view);
+
         View viewRecycler = findViewById(R.id.series_list);
 
-        final RecyclerView recyclerView = viewRecycler.findViewById(R.id.recycler_list);
+        recyclerView = viewRecycler.findViewById(R.id.recycler_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-        final SwipeRefreshLayout refLayout = viewRecycler.findViewById(R.id.refresh_layout);
+        refLayout = viewRecycler.findViewById(R.id.refresh_layout);
 
         switch (AppCompatDelegate.getDefaultNightMode()) {
             case AppCompatDelegate.MODE_NIGHT_YES:
                 recyclerView.setBackgroundColor(getResources().getColor(R.color.night_background));
                 toolbar.setBackgroundColor(getResources().getColor(R.color.dark));
                 refLayout.setColorSchemeColors(Color.BLACK);
+                mEmptyView.setTextColor(Color.WHITE);
                 Window window = getWindow();
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -77,59 +85,14 @@ public class SeriesMainActivity extends AppCompatActivity {
 
         MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
-        Call<SeriesItem> seriesInfo = MainActivity.apiInterface.doGetSeries();
-        seriesInfo.enqueue(new Callback<SeriesItem>() {
-            @Override
-            public void onResponse(Call<SeriesItem> call, Response<SeriesItem> response) {
-                if(response.isSuccessful()) {
-                    mProgressbar.setVisibility(View.INVISIBLE);
-                    List<SeriesItem> seriesInfo = response.body().getResults();
-                    recyclerView.setAdapter(new SeriesItemAdapter(seriesInfo, R.layout.fragment_more_series_list_item, getApplicationContext()));
-                }
-                else
-                {
-                    mProgressbar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(getApplicationContext(),R.string.server_issues,Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<SeriesItem> call, Throwable t) {
-                mProgressbar.setVisibility(View.INVISIBLE);
-                Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
-                call.cancel();
-            }
-        });
+        SeriesCall();
 
         refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                                            @Override
                                            public void onRefresh() {
                                                // Checking if connected or not on refresh
                                                refLayout.setRefreshing(true);
-
-                                               Call<SeriesItem> seriesInfo = MainActivity.apiInterface.doGetSeries();
-                                               seriesInfo.enqueue(new Callback<SeriesItem>() {
-                                                   @Override
-                                                   public void onResponse(Call<SeriesItem> call, Response<SeriesItem> response) {
-                                                       if(response.isSuccessful()) {
-                                                           mProgressbar.setVisibility(View.INVISIBLE);
-                                                           List<SeriesItem> seriesInfo = response.body().getResults();
-                                                           recyclerView.setAdapter(new SeriesItemAdapter(seriesInfo, R.layout.fragment_more_series_list_item, getApplicationContext()));
-                                                       }
-                                                       else
-                                                       {
-                                                           mProgressbar.setVisibility(View.INVISIBLE);
-                                                           Toast.makeText(getApplicationContext(),R.string.server_issues,Toast.LENGTH_SHORT).show();
-                                                       }
-                                                   }
-
-                                                   @Override
-                                                   public void onFailure(Call<SeriesItem> call, Throwable t) {
-                                                       mProgressbar.setVisibility(View.INVISIBLE);
-                                                       Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
-                                                       call.cancel();
-                                                   }
-                                               });
+                                               SeriesCall();
                                                refLayout.setRefreshing(false);
                                            }
                                        }
@@ -155,5 +118,33 @@ public class SeriesMainActivity extends AppCompatActivity {
 
     }
 
+    void SeriesCall() {
+        Call<SeriesItem> seriesInfo = MainActivity.apiInterface.doGetSeries();
+        seriesInfo.enqueue(new Callback<SeriesItem>() {
+            @Override
+            public void onResponse(Call<SeriesItem> call, Response<SeriesItem> response) {
+                if (response.isSuccessful()) {
+                    mProgressbar.setVisibility(View.INVISIBLE);
+                    List<SeriesItem> seriesInfo = response.body().getResults();
+                    recyclerView.setAdapter(new SeriesItemAdapter(seriesInfo, R.layout.fragment_more_series_list_item, getApplicationContext()));
+                } else {
+                    mEmptyView.setVisibility(View.VISIBLE);
+                    mEmptyView.setText(R.string.server_issues);
+                    mProgressbar.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getApplicationContext(), R.string.server_issues, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SeriesItem> call, Throwable t) {
+                mEmptyView.setVisibility(View.VISIBLE);
+                mEmptyView.setText(R.string.no_internet_connection);
+                mProgressbar.setVisibility(View.INVISIBLE);
+                Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+                call.cancel();
+            }
+        });
+
+    }
 
 }

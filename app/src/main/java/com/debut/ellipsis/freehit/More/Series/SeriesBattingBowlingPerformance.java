@@ -25,20 +25,25 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SeriesBattingBowlingPerformance extends Fragment {
+
+    TextView mEmptyView;
+    ProgressBar mProgressbar;
+    RecyclerView recyclerView;
+    String id;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        final String id = getActivity().getIntent().getStringExtra("id");
+        id = getActivity().getIntent().getStringExtra("id");
 
         String fragment_name = getArguments().getString("sub_fragment_name");
 
         View rootView = inflater.inflate(R.layout.fragment_more_series_performance_list, container, false);
 
         View viewRecycler = rootView.findViewById(R.id.series_performance_list);
-
-        final RecyclerView recyclerView = viewRecycler.findViewById(R.id.recycler_list);
+        recyclerView = viewRecycler.findViewById(R.id.recycler_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         TextView sl_no = rootView.findViewById(R.id.sl_no);
@@ -50,6 +55,9 @@ public class SeriesBattingBowlingPerformance extends Fragment {
 
         final SwipeRefreshLayout refLayout = viewRecycler.findViewById(R.id.refresh_layout);
 
+        final View emptyView = rootView.findViewById(R.id.empty);
+        mEmptyView = emptyView.findViewById(R.id.empty_view);
+
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             recyclerView.setBackgroundColor(getResources().getColor(R.color.night_background));
             LabelStrip.setBackgroundColor(getResources().getColor(R.color.ranking_layout));
@@ -58,71 +66,24 @@ public class SeriesBattingBowlingPerformance extends Fragment {
             Runs_Wickets_Label.setTextColor(Color.WHITE);
             Average_balls_Label.setTextColor(Color.WHITE);
             refLayout.setColorSchemeColors(Color.BLACK);
+            mEmptyView.setTextColor(Color.WHITE);
         } else {
             refLayout.setColorSchemeResources(R.color.orange);
         }
 
         View vProgress = rootView.findViewById(R.id.progress);
-        final ProgressBar mProgressbar = vProgress.findViewById(R.id.progress_bar);
+        mProgressbar = vProgress.findViewById(R.id.progress_bar);
 
 
         switch (fragment_name) {
             case "BATTING": {
-                Call<PerformanceItem> seriesInfo = MainActivity.apiInterface.doGetSeriesPerformance(id);
-                seriesInfo.enqueue(new Callback<PerformanceItem>() {
-                    @Override
-                    public void onResponse(Call<PerformanceItem> call, Response<PerformanceItem> response) {
-                        if (response.isSuccessful()) {
-                            mProgressbar.setVisibility(View.GONE);
-                            List<PerformanceItem> seriesInfo = response.body().getResults();
-                            recyclerView.setAdapter(new SeriesBattingAdapter(seriesInfo, R.layout.fragment_more_series_performance_list_item, getContext()));
-                        }
-                        else
-                        {
-                            mProgressbar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(getActivity(),R.string.server_issues,Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<PerformanceItem> call, Throwable t) {
-                        mProgressbar.setVisibility(View.INVISIBLE);
-                        Toast.makeText(getActivity(),R.string.server_issues,Toast.LENGTH_SHORT).show();
-                        call.cancel();
-
-                    }
-                });
-
+                Batting();
                 refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                                                    @Override
                                                    public void onRefresh() {
                                                        // Checking if connected or not on refresh
                                                        refLayout.setRefreshing(true);
-
-                                                       Call<PerformanceItem> seriesInfo = MainActivity.apiInterface.doGetSeriesPerformance(id);
-                                                       seriesInfo.enqueue(new Callback<PerformanceItem>() {
-                                                           @Override
-                                                           public void onResponse(Call<PerformanceItem> call, Response<PerformanceItem> response) {
-                                                               if (response.isSuccessful()) {
-                                                                   mProgressbar.setVisibility(View.GONE);
-                                                                   List<PerformanceItem> seriesInfo = response.body().getResults();
-                                                                   recyclerView.setAdapter(new SeriesBattingAdapter(seriesInfo, R.layout.fragment_more_series_performance_list_item, getContext()));
-                                                               }
-                                                               else
-                                                               {
-                                                                   mProgressbar.setVisibility(View.INVISIBLE);
-                                                                   Toast.makeText(getActivity(),R.string.server_issues,Toast.LENGTH_SHORT).show();
-                                                               }
-                                                           }
-
-                                                           @Override
-                                                           public void onFailure(Call<PerformanceItem> call, Throwable t) {
-                                                               mProgressbar.setVisibility(View.INVISIBLE);
-                                                               Toast.makeText(getActivity(),R.string.server_issues,Toast.LENGTH_SHORT).show();
-                                                               call.cancel();
-
-                                                           }
-                                                       });
+                                                       Batting();
                                                        refLayout.setRefreshing(false);
                                                    }
                                                }
@@ -132,50 +93,16 @@ public class SeriesBattingBowlingPerformance extends Fragment {
             case "BOWLING": {
 
                 Runs_Wickets_Label.setText("WIckets");
-
                 Average_balls_Label.setText("Balls");
 
-                Call<PerformanceItem> seriesInfo = MainActivity.apiInterface.doGetSeriesPerformance(id);
-                seriesInfo.enqueue(new Callback<PerformanceItem>() {
-                    @Override
-                    public void onResponse(Call<PerformanceItem> call, Response<PerformanceItem> response) {
-                        mProgressbar.setVisibility(View.GONE);
-                        List<PerformanceItem> seriesInfo = response.body().getResults();
-                        recyclerView.setAdapter(new SeriesBowlingAdapter(seriesInfo, R.layout.fragment_more_series_performance_list_item, getContext()));
-
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<PerformanceItem> call, Throwable t) {
-                        Toast.makeText(getActivity(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
-                        call.cancel();
-
-                    }
-                });
+                Bowling();
 
                 refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                                                    @Override
                                                    public void onRefresh() {
                                                        // Checking if connected or not on refresh
                                                        refLayout.setRefreshing(true);
-
-                                                       Call<PerformanceItem> seriesInfo = MainActivity.apiInterface.doGetSeriesPerformance(id);
-                                                       seriesInfo.enqueue(new Callback<PerformanceItem>() {
-                                                           @Override
-                                                           public void onResponse(Call<PerformanceItem> call, Response<PerformanceItem> response) {
-                                                               mProgressbar.setVisibility(View.GONE);
-                                                               List<PerformanceItem> seriesInfo = response.body().getResults();
-                                                               recyclerView.setAdapter(new SeriesBowlingAdapter(seriesInfo, R.layout.fragment_more_series_performance_list_item, getContext()));
-
-                                                           }
-
-                                                           @Override
-                                                           public void onFailure(Call<PerformanceItem> call, Throwable t) {
-                                                               Toast.makeText(getActivity(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
-                                                               call.cancel();
-                                                           }
-                                                       });
+                                                       Bowling();
                                                        refLayout.setRefreshing(false);
                                                    }
                                                }
@@ -184,8 +111,76 @@ public class SeriesBattingBowlingPerformance extends Fragment {
             }
         }
 
-
         return rootView;
+    }
+
+    void Batting() {
+        Call<PerformanceItem> seriesInfo = MainActivity.apiInterface.doGetSeriesPerformance(id);
+        seriesInfo.enqueue(new Callback<PerformanceItem>() {
+            @Override
+            public void onResponse(Call<PerformanceItem> call, Response<PerformanceItem> response) {
+                if (response.isSuccessful()) {
+                    mProgressbar.setVisibility(View.GONE);
+                    List<PerformanceItem> seriesInfo = response.body().getResults();
+                    if (seriesInfo.size() == 0) {
+                        mEmptyView.setVisibility(View.VISIBLE);
+                        mEmptyView.setText("No Data Available yet");
+                    } else {
+                        recyclerView.setAdapter(new SeriesBattingAdapter(seriesInfo, R.layout.fragment_more_series_performance_list_item, getContext()));
+                    }
+                } else {
+                    mEmptyView.setVisibility(View.VISIBLE);
+                    mEmptyView.setText(R.string.server_issues);
+                    mProgressbar.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getActivity(), R.string.server_issues, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PerformanceItem> call, Throwable t) {
+                mEmptyView.setVisibility(View.VISIBLE);
+                mEmptyView.setText(R.string.no_internet_connection);
+                mProgressbar.setVisibility(View.INVISIBLE);
+                Toast.makeText(getActivity(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+                call.cancel();
+
+            }
+        });
+    }
+
+    void Bowling() {
+        Call<PerformanceItem> seriesInfo = MainActivity.apiInterface.doGetSeriesPerformance(id);
+        seriesInfo.enqueue(new Callback<PerformanceItem>() {
+            @Override
+            public void onResponse(Call<PerformanceItem> call, Response<PerformanceItem> response) {
+                if (response.isSuccessful()) {
+                    mProgressbar.setVisibility(View.GONE);
+                    List<PerformanceItem> seriesInfo = response.body().getResults();
+                    if (seriesInfo.size() == 0) {
+                        mEmptyView.setVisibility(View.VISIBLE);
+                        mEmptyView.setText("No Data Available yet");
+                    } else {
+                        recyclerView.setAdapter(new SeriesBowlingAdapter(seriesInfo, R.layout.fragment_more_series_performance_list_item, getContext()));
+                    }
+                } else {
+                    mEmptyView.setVisibility(View.VISIBLE);
+                    mEmptyView.setText(R.string.server_issues);
+                    mProgressbar.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getActivity(), R.string.server_issues, Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<PerformanceItem> call, Throwable t) {
+                mEmptyView.setVisibility(View.VISIBLE);
+                mEmptyView.setText(R.string.no_internet_connection);
+                mProgressbar.setVisibility(View.INVISIBLE);
+                Toast.makeText(getActivity(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+                call.cancel();
+
+            }
+        });
     }
 
 }

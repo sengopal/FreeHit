@@ -12,10 +12,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.MainActivity;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.CommentaryElements.CommentaryItem;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.HeadToHeadFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.InfoFragment;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardFragment;
@@ -31,13 +31,13 @@ import retrofit2.Response;
 
 public class PastMatchScoreCard extends AppCompatActivity {
 
-    private Toolbar toolbar;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-    private ProgressBar mProgressBar;
+    Toolbar toolbar;
+    TabLayout tabLayout;
+    ViewPager viewPager;
+    TextView no_data_no_connection;
+    ProgressBar mProgressBar;
     public static List<String> commentaryItems;
     public static List<ScoreCardItem> scoreCardItems;
-    public static CommentaryItem commentaryItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,28 +66,32 @@ public class PastMatchScoreCard extends AppCompatActivity {
 
         mProgressBar = viewProgress.findViewById(R.id.progress_bar);
 
+        no_data_no_connection = findViewById(R.id.no_data_no_connection);
+
         viewPager = viewViewPager.findViewById(R.id.viewpager);
         Call<ScoreCardItem> call = MainActivity.apiInterface.doGetMatchScoreCard(match_id);
         call.enqueue(new Callback<ScoreCardItem>() {
             @Override
             public void onResponse(Call<ScoreCardItem> call, Response<ScoreCardItem> response) {
                 if (response.isSuccessful()) {
+                    no_data_no_connection.setVisibility(View.INVISIBLE);
                     scoreCardItems = response.body().getResults();
                     mProgressBar.setVisibility(View.INVISIBLE);
                     setupViewPager(viewPager);
                     viewPager.setOffscreenPageLimit(3);
 
-                }
-                else
-                {
+                } else {
                     mProgressBar.setVisibility(View.INVISIBLE);
+                    no_data_no_connection.setText(R.string.server_issues);
                     Toast.makeText(getBaseContext(), R.string.server_issues, Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ScoreCardItem> call, Throwable t) {
+                call.cancel();
                 mProgressBar.setVisibility(View.GONE);
+                no_data_no_connection.setText(R.string.no_internet_connection);
                 Toast.makeText(getBaseContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
             }
         });
@@ -167,10 +171,5 @@ public class PastMatchScoreCard extends AppCompatActivity {
     public static List<ScoreCardItem> getQList() {
         return scoreCardItems;
     }
-
-    public static CommentaryItem getCQList() {
-        return commentaryItem;
-    }
-
 
 }

@@ -111,7 +111,7 @@ public class NewsArticle extends AppCompatActivity {
 
                 } else {
                     mProgressBar.setVisibility(View.GONE);
-                    Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.server_issues, Toast.LENGTH_SHORT).show();
                 }
             }
 

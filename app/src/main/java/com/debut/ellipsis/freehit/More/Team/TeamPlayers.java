@@ -17,8 +17,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.debut.ellipsis.freehit.APIInterface;
-import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.PlayerCountryItem;
 import com.debut.ellipsis.freehit.R;
@@ -31,8 +29,9 @@ import retrofit2.Response;
 
 public class TeamPlayers extends Fragment {
 
-    private ProgressBar mProgressBar;
-    public TextView mEmptyView;
+    ProgressBar mProgressBar;
+    TextView mEmptyView;
+    RecyclerView recyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,14 +55,11 @@ public class TeamPlayers extends Fragment {
         Toolbar toolbar = viewToolbar.findViewById(R.id.toolbar);
         toolbar.setVisibility(View.GONE);
 
-        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
-
-
         View viewEmpty = rootView.findViewById(R.id.empty);
         mEmptyView = viewEmpty.findViewById(R.id.empty_view);
 
         View viewRecycler = rootView.findViewById(R.id.player_list);
-        final RecyclerView recyclerView = viewRecycler.findViewById(R.id.recycler_list);
+        recyclerView = viewRecycler.findViewById(R.id.recycler_list);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -84,6 +80,22 @@ public class TeamPlayers extends Fragment {
         }
 
 
+        TeamPlayersList(Team);
+
+        refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refLayout.setRefreshing(true);
+                TeamPlayersList(Team);
+                refLayout.setRefreshing(false);
+            }
+        });
+
+        return rootView;
+    }
+
+    void TeamPlayersList(String Team)
+    {
         Call<PlayerCountryItem> call1 = MainActivity.apiInterface.doGetFavTeamPlayers(Team);
         call1.enqueue(new Callback<PlayerCountryItem>() {
             @Override
@@ -114,48 +126,5 @@ public class TeamPlayers extends Fragment {
                 call.cancel();
             }
         });
-
-
-        refLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                refLayout.setRefreshing(true);
-
-
-                Call<PlayerCountryItem> call1 = MainActivity.apiInterface.doGetFavTeamPlayers(Team);
-                call1.enqueue(new Callback<PlayerCountryItem>() {
-                    @Override
-                    public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
-                        if (response.isSuccessful()) {
-                            mProgressBar.setVisibility(View.GONE);
-                            List<PlayerCountryItem> playerCountryItems = response.body().getResults();
-                            if (playerCountryItems.size() == 0) {
-                                mEmptyView.setVisibility(View.VISIBLE);
-                                mEmptyView.setText(R.string.NoPlayers);
-                            }
-                            recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getContext()));
-
-                        } else {
-                            mProgressBar.setVisibility(View.INVISIBLE);
-                            mEmptyView.setVisibility(View.INVISIBLE);
-                            Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
-                            toast.show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<PlayerCountryItem> call, Throwable t) {
-                        mProgressBar.setVisibility(View.INVISIBLE);
-                        mEmptyView.setVisibility(View.INVISIBLE);
-                        Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
-                        toast.show();
-                        call.cancel();
-                    }
-                });
-                refLayout.setRefreshing(false);
-            }
-        });
-
-        return rootView;
     }
 }

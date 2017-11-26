@@ -25,4 +25,9 @@
     <include
         android:id="@+id/progress"
         layout="@layout/common_progressbar" />
+
+    <include
+        android:id="@+id/empty"
+        layout="@layout/common_emptyview" />
+
 </RelativeLayout>

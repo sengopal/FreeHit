@@ -17,8 +17,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.debut.ellipsis.freehit.APIInterface;
-import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchCardItem;
 import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchesListAdapter;
@@ -37,6 +35,8 @@ public class SeriesMatches extends Fragment {
     public SwipeRefreshLayout refresh_layout;
     private ProgressBar mProgressBar;
     private RecyclerView rv;
+    View viewEmpty;
+    TextView emptyView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,22 +54,16 @@ public class SeriesMatches extends Fragment {
         SeriesActivity.date = i.getStringExtra("date");
         SeriesActivity.Teams = i.getStringExtra("Teams");
 
-
-        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
-
         final View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = viewProgress.findViewById(R.id.progress_bar);
 
         View viewRecycler = rootView.findViewById(R.id.complete_match_list);
         rv = viewRecycler.findViewById(R.id.recycler_list);
-
-
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        View viewEmpty = rootView.findViewById(R.id.empty);
-        final TextView emptyView = viewEmpty.findViewById(R.id.empty_view);
-
         refresh_layout = viewRecycler.findViewById(R.id.refresh_layout);
+
+        viewEmpty = rootView.findViewById(R.id.empty);
+        emptyView = viewEmpty.findViewById(R.id.empty_view);
 
         switch (AppCompatDelegate.getDefaultNightMode()) {
             case AppCompatDelegate.MODE_NIGHT_YES:
@@ -82,74 +76,15 @@ public class SeriesMatches extends Fragment {
                 break;
         }
 
-
         switch (fragment_name) {
             case "UPCOMING":
-                Call<UpcomingMatchCardItem> call = MainActivity.apiInterface.doGetUpComingSeriesMatches(SeriesActivity.Teams, SeriesActivity.date);
-                call.enqueue(new Callback<UpcomingMatchCardItem>() {
-                    @Override
-                    public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {
-                        if (response.isSuccessful()) {
-                            List<UpcomingMatchCardItem> upcomingMatchesList = response.body().getResults();
-                            mProgressBar.setVisibility(View.GONE);
-                            if (upcomingMatchesList.size() == 0) {
-                                emptyView.setText(R.string.EmptyMatches);
-                                emptyView.setVisibility(View.VISIBLE);
-                            }
-
-                            rv.setAdapter(new UpcomingMatchListAdapter(getContext(), upcomingMatchesList));
-                        } else {
-                            mProgressBar.setVisibility(View.INVISIBLE);
-                            Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
-                            toast.show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<UpcomingMatchCardItem> call, Throwable t) {
-                        mProgressBar.setVisibility(View.INVISIBLE);
-                        emptyView.setVisibility(View.INVISIBLE);
-                        Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
-                        toast.show();
-                        call.cancel();
-                    }
-                });
-
+                UpcomingSeriesMatches();
                 refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                                                         @Override
                                                         public void onRefresh() {
                                                             // Checking if connected or not on refresh
                                                             refresh_layout.setRefreshing(true);
-
-                                                            Call<UpcomingMatchCardItem> call = MainActivity.apiInterface.doGetUpComingSeriesMatches(SeriesActivity.Teams, SeriesActivity.date);
-                                                            call.enqueue(new Callback<UpcomingMatchCardItem>() {
-                                                                @Override
-                                                                public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {
-                                                                    if (response.isSuccessful()) {
-                                                                        List<UpcomingMatchCardItem> upcomingMatchesList = response.body().getResults();
-                                                                        mProgressBar.setVisibility(View.GONE);
-                                                                        if (upcomingMatchesList.size() == 0) {
-                                                                            emptyView.setText(R.string.EmptyMatches);
-                                                                            emptyView.setVisibility(View.VISIBLE);
-                                                                        }
-
-                                                                        rv.setAdapter(new UpcomingMatchListAdapter(getContext(), upcomingMatchesList));
-                                                                    } else {
-                                                                        mProgressBar.setVisibility(View.INVISIBLE);
-                                                                        Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
-                                                                        toast.show();
-                                                                    }
-                                                                }
-
-                                                                @Override
-                                                                public void onFailure(Call<UpcomingMatchCardItem> call, Throwable t) {
-                                                                    mProgressBar.setVisibility(View.INVISIBLE);
-                                                                    emptyView.setVisibility(View.INVISIBLE);
-                                                                    Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
-                                                                    toast.show();
-                                                                    call.cancel();
-                                                                }
-                                                            });
+                                                            UpcomingSeriesMatches();
                                                             refresh_layout.setRefreshing(false);
                                                         }
                                                     }
@@ -158,77 +93,83 @@ public class SeriesMatches extends Fragment {
                 break;
         }
         if (fragment_name.equals("PAST")) {
-            Call<PastMatchCardItem> call = MainActivity.apiInterface.doGetPastSeriesMatches(SeriesActivity.Teams, SeriesActivity.date);
-            call.enqueue(new Callback<PastMatchCardItem>() {
-                @Override
-                public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
-                    if (response.isSuccessful()) {
-                        List<PastMatchCardItem> pastMatchesList = response.body().getResults();
-                        mProgressBar.setVisibility(View.GONE);
-                        if (pastMatchesList.size() == 0) {
-                            emptyView.setText(R.string.EmptyMatches);
-                            emptyView.setVisibility(View.VISIBLE);
-                        }
-
-                        rv.setAdapter(new PastMatchesListAdapter(pastMatchesList, getContext()));
-                    } else {
-                        mProgressBar.setVisibility(View.INVISIBLE);
-                        Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
-                        toast.show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<PastMatchCardItem> call, Throwable t) {
-                    mProgressBar.setVisibility(View.INVISIBLE);
-                    Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
-                    toast.show();
-                    call.cancel();
-                }
-            });
-
+            PastSeriesMatches();
             refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                                                     @Override
                                                     public void onRefresh() {
                                                         // Checking if connected or not on refresh
                                                         refresh_layout.setRefreshing(true);
 
-                                                        Call<PastMatchCardItem> call = MainActivity.apiInterface.doGetPastSeriesMatches(SeriesActivity.Teams, SeriesActivity.date);
-                                                        call.enqueue(new Callback<PastMatchCardItem>() {
-                                                            @Override
-                                                            public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
-                                                                if (response.isSuccessful()) {
-                                                                    List<PastMatchCardItem> pastMatchesList = response.body().getResults();
-                                                                    mProgressBar.setVisibility(View.GONE);
-                                                                    if (pastMatchesList.size() == 0) {
-                                                                        emptyView.setText(R.string.EmptyMatches);
-                                                                        emptyView.setVisibility(View.VISIBLE);
-                                                                    }
-
-                                                                    rv.setAdapter(new PastMatchesListAdapter(pastMatchesList, getContext()));
-                                                                } else {
-                                                                    mProgressBar.setVisibility(View.INVISIBLE);
-                                                                    Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
-                                                                    toast.show();
-                                                                }
-                                                            }
-
-                                                            @Override
-                                                            public void onFailure(Call<PastMatchCardItem> call, Throwable t) {
-                                                                mProgressBar.setVisibility(View.INVISIBLE);
-                                                                Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
-                                                                toast.show();
-                                                                call.cancel();
-                                                            }
-                                                        });
+                                                        PastSeriesMatches();
                                                         refresh_layout.setRefreshing(false);
                                                     }
                                                 }
             );
         }
 
-
         return rootView;
+    }
+
+    void PastSeriesMatches() {
+        Call<PastMatchCardItem> call = MainActivity.apiInterface.doGetPastSeriesMatches(SeriesActivity.Teams, SeriesActivity.date);
+        call.enqueue(new Callback<PastMatchCardItem>() {
+            @Override
+            public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
+                if (response.isSuccessful()) {
+                    List<PastMatchCardItem> pastMatchesList = response.body().getResults();
+                    mProgressBar.setVisibility(View.GONE);
+                    if (pastMatchesList.size() == 0) {
+                        emptyView.setText(R.string.EmptyMatches);
+                        emptyView.setVisibility(View.VISIBLE);
+                    }
+                    rv.setAdapter(new PastMatchesListAdapter(pastMatchesList, getContext()));
+                } else {
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PastMatchCardItem> call, Throwable t) {
+                mProgressBar.setVisibility(View.INVISIBLE);
+                Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                toast.show();
+                call.cancel();
+            }
+        });
+    }
+
+    void UpcomingSeriesMatches() {
+        Call<UpcomingMatchCardItem> call = MainActivity.apiInterface.doGetUpComingSeriesMatches(SeriesActivity.Teams, SeriesActivity.date);
+        call.enqueue(new Callback<UpcomingMatchCardItem>() {
+            @Override
+            public void onResponse(Call<UpcomingMatchCardItem> call, Response<UpcomingMatchCardItem> response) {
+                if (response.isSuccessful()) {
+                    List<UpcomingMatchCardItem> upcomingMatchesList = response.body().getResults();
+                    mProgressBar.setVisibility(View.GONE);
+                    if (upcomingMatchesList.size() == 0) {
+                        emptyView.setText(R.string.EmptyMatches);
+                        emptyView.setVisibility(View.VISIBLE);
+                    }
+
+                    rv.setAdapter(new UpcomingMatchListAdapter(getContext(), upcomingMatchesList));
+                } else {
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UpcomingMatchCardItem> call, Throwable t) {
+                mProgressBar.setVisibility(View.INVISIBLE);
+                emptyView.setVisibility(View.INVISIBLE);
+                Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                toast.show();
+                call.cancel();
+            }
+        });
     }
 }
 

@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         // Initializing Twitter Kit
         Twitter.initialize(this);
 
+        apiInterface = ApiClient.getClient().create(APIInterface.class);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

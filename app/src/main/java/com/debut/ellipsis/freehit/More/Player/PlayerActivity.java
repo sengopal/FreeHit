@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.MainActivity;
@@ -28,9 +29,10 @@ import retrofit2.Response;
 
 public class PlayerActivity extends AppCompatActivity {
 
-    public PlayerItem playerItem;
-    private ViewPager viewPager;
-    private ProgressBar mProgressBar;
+    PlayerItem playerItem;
+    ViewPager viewPager;
+    ProgressBar mProgressBar;
+    TextView emptyview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,31 +58,38 @@ public class PlayerActivity extends AppCompatActivity {
         View viewPlayerViewPager = findViewById(R.id.player_viewpager);
 
         View viewProgress = findViewById(R.id.progress);
-
         mProgressBar = viewProgress.findViewById(R.id.progress_bar);
 
         viewPager = viewPlayerViewPager.findViewById(R.id.viewpager);
+
+        View EmptyView = findViewById(R.id.empty);
+        emptyview = EmptyView.findViewById(R.id.empty_view);
+
         Call<PlayerItem> call = MainActivity.apiInterface.doGetPlayerInfo(player_url);
         call.enqueue(new Callback<PlayerItem>() {
             @Override
             public void onResponse(Call<PlayerItem> call, Response<PlayerItem> response) {
                 if (response.isSuccessful()) {
+                    emptyview.setVisibility(View.INVISIBLE);
                     mProgressBar.setVisibility(View.INVISIBLE);
                     playerItem = response.body();
                     setupViewPager(viewPager);
                     viewPager.setOffscreenPageLimit(3);
 
-                }
-                else
-                {
+                } else {
+                    emptyview.setVisibility(View.VISIBLE);
                     mProgressBar.setVisibility(View.GONE);
+                    emptyview.setText(R.string.server_issues);
                     Toast.makeText(getBaseContext(), R.string.server_issues, Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<PlayerItem> call, Throwable t) {
+                call.cancel();
+                emptyview.setVisibility(View.VISIBLE);
                 mProgressBar.setVisibility(View.GONE);
+                emptyview.setText(R.string.server_issues);
                 Toast.makeText(getBaseContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
 
             }
@@ -144,20 +153,19 @@ public class PlayerActivity extends AppCompatActivity {
         public void addFrag(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
-            if(mFragmentTitleList.get(0).equals("PLAYER INFO"))
-            {
-                Bundle bundle=new Bundle();
+            if (mFragmentTitleList.get(0).equals("PLAYER INFO")) {
+                Bundle bundle = new Bundle();
                 bundle.putString("fragment_name", "PLAYER INFO");
                 fragment.setArguments(bundle);
             }
-            if(mFragmentTitleList.size()==2) {
+            if (mFragmentTitleList.size() == 2) {
                 if (mFragmentTitleList.get(1).equals("BATTING")) {
                     Bundle bundle = new Bundle();
                     bundle.putString("fragment_name", "BATTING");
                     fragment.setArguments(bundle);
                 }
             }
-            if(mFragmentTitleList.size()==3) {
+            if (mFragmentTitleList.size() == 3) {
                 if (mFragmentTitleList.get(2).equals("BOWLING")) {
                     Bundle bundle = new Bundle();
                     bundle.putString("fragment_name", "BOWLING");
@@ -172,7 +180,7 @@ public class PlayerActivity extends AppCompatActivity {
         }
     }
 
-    public PlayerItem getQuery(){
+    public PlayerItem getQuery() {
         return playerItem;
     }
 }

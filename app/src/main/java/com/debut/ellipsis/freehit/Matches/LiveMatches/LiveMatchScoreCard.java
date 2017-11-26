@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.MainActivity;
@@ -33,8 +34,9 @@ import retrofit2.Response;
 
 public class LiveMatchScoreCard extends AppCompatActivity {
 
-    private ViewPager viewPager;
-    private ProgressBar mProgressBar;
+    ViewPager viewPager;
+    ProgressBar mProgressBar;
+    TextView no_data_no_connection;
     public static List<ScoreCardItem> LivescoreCardItems;
 
     @Override
@@ -64,22 +66,31 @@ public class LiveMatchScoreCard extends AppCompatActivity {
 
         mProgressBar = viewProgress.findViewById(R.id.progress_bar);
 
+        no_data_no_connection = findViewById(R.id.no_data_no_connection);
+
         viewPager = viewViewPager.findViewById(R.id.viewpager);
         Call<ScoreCardItem> call = MainActivity.apiInterface.doGetLiveMatchScoreCard(match_id);
         call.enqueue(new Callback<ScoreCardItem>() {
             @Override
             public void onResponse(Call<ScoreCardItem> call, Response<ScoreCardItem> response) {
-                LivescoreCardItems = response.body().getResults();
-                mProgressBar.setVisibility(View.INVISIBLE);
-                setupViewPager(viewPager);
-                viewPager.setOffscreenPageLimit(5);
+                if (response.isSuccessful()) {
+                    no_data_no_connection.setVisibility(View.INVISIBLE);
+                    LivescoreCardItems = response.body().getResults();
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    setupViewPager(viewPager);
+                    viewPager.setOffscreenPageLimit(5);
 
+                } else {
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    no_data_no_connection.setText(R.string.server_issues);
+                }
             }
 
             @Override
             public void onFailure(Call<ScoreCardItem> call, Throwable t) {
                 mProgressBar.setVisibility(View.GONE);
-                Toast.makeText(getBaseContext(), R.string.no_internet_connection , Toast.LENGTH_SHORT).show();
+                no_data_no_connection.setText(R.string.no_internet_connection);
+                Toast.makeText(getBaseContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
                 System.out.println(t.getLocalizedMessage());
 
             }

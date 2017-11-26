@@ -69,4 +69,8 @@
 
     </RelativeLayout>
 
+    <include
+        android:id="@+id/empty"
+        layout="@layout/common_emptyview" />
+
 </RelativeLayout>

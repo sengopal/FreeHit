@@ -1,5 +1,6 @@
 package com.debut.ellipsis.freehit.More.Rankings;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.debut.ellipsis.freehit.MainActivity;
@@ -27,10 +29,9 @@ import retrofit2.Response;
 
 public class RankingActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-    private ProgressBar mProgressBar;
+    ViewPager viewPager;
+    ProgressBar mProgressBar;
+    TextView mEmptyView;
     public List<RankingItem> QueryList;
 
     @Override
@@ -45,7 +46,7 @@ public class RankingActivity extends AppCompatActivity {
         setContentView(R.layout.fragment_more_rankings_activity);
 
         View viewToolbar = findViewById(R.id.toolbar_tabs_ranking);
-        toolbar = viewToolbar.findViewById(R.id.toolbar);
+        Toolbar toolbar = viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -59,18 +60,26 @@ public class RankingActivity extends AppCompatActivity {
 
         viewPager = viewRankingPager.findViewById(R.id.viewpager);
 
+        View emptyView = findViewById(R.id.empty);
+        mEmptyView = emptyView.findViewById(R.id.empty_view);
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+        {
+            mEmptyView.setTextColor(Color.BLACK);
+        }
+
         Call<RankingItem> call = MainActivity.apiInterface.doGetRankingResources();
         call.enqueue(new Callback<RankingItem>() {
             @Override
             public void onResponse(Call<RankingItem> call, Response<RankingItem> response) {
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     mProgressBar.setVisibility(View.INVISIBLE);
                     QueryList = response.body().getResults();
                     setupViewPager(viewPager);
                     viewPager.setOffscreenPageLimit(3);
-                }
-                else
-                {
+                } else {
+                    mEmptyView.setVisibility(View.VISIBLE);
+                    mEmptyView.setText(R.string.server_issues);
                     mProgressBar.setVisibility(View.GONE);
                     Toast.makeText(getBaseContext(), R.string.server_issues, Toast.LENGTH_SHORT).show();
                 }
@@ -78,13 +87,16 @@ public class RankingActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<RankingItem> call, Throwable t) {
+                call.cancel();
+                mEmptyView.setVisibility(View.VISIBLE);
+                mEmptyView.setText(R.string.no_internet_connection);
                 mProgressBar.setVisibility(View.GONE);
                 Toast.makeText(getBaseContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
 
             }
         });
 
-        tabLayout = viewToolbar.findViewById(R.id.tabs);
+        TabLayout tabLayout = viewToolbar.findViewById(R.id.tabs);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setupWithViewPager(viewPager);

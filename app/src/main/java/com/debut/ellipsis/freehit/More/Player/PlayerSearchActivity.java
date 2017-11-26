@@ -20,10 +20,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.debut.ellipsis.freehit.APIInterface;
-import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.More.Team.TeamPlayerAdapter;
 import com.debut.ellipsis.freehit.PlayerCountryItem;
@@ -37,7 +36,9 @@ import retrofit2.Response;
 
 public class PlayerSearchActivity extends AppCompatActivity {
 
-    private EditText playerSearchEdit;
+    EditText playerSearchEdit;
+    RecyclerView recyclerView;
+    TextView emptyview;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -60,18 +61,24 @@ public class PlayerSearchActivity extends AppCompatActivity {
 
         RelativeLayout relativeLayout = findViewById(R.id.player_list_layout);
 
-        final RecyclerView recyclerView = findViewById(R.id.recycler_list);
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            relativeLayout.setBackgroundColor(getResources().getColor(R.color.night_background));
-            parentLayout.setBackgroundColor(getResources().getColor(R.color.night_background));
-            toolbar.setBackgroundColor(getResources().getColor(R.color.dark));
-            recyclerView.setBackgroundColor(getResources().getColor(R.color.night_background));
-            Window window = getWindow();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.setStatusBarColor(Color.BLACK);
-            }
+        View EmptyView = findViewById(R.id.empty);
+        emptyview = EmptyView.findViewById(R.id.empty_view);
 
+        recyclerView = findViewById(R.id.recycler_list);
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                relativeLayout.setBackgroundColor(getResources().getColor(R.color.night_background));
+                parentLayout.setBackgroundColor(getResources().getColor(R.color.night_background));
+                toolbar.setBackgroundColor(getResources().getColor(R.color.dark));
+                emptyview.setTextColor(Color.WHITE);
+                recyclerView.setBackgroundColor(getResources().getColor(R.color.night_background));
+                Window window = getWindow();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                    window.setStatusBarColor(Color.BLACK);
+                }
+
+                break;
         }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -80,14 +87,10 @@ public class PlayerSearchActivity extends AppCompatActivity {
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
         // Get details on the currently active default data network
-        NetworkInfo networkInfo = null;
-        if (connMgr != null) {
-            networkInfo = connMgr.getActiveNetworkInfo();
-        }
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
         // If there is a network connection, fetch data
         if (networkInfo != null && networkInfo.isConnected()) {
-
 
             playerSearchEdit.addTextChangedListener(new TextWatcher() {
                 int length = 0;
@@ -97,53 +100,11 @@ public class PlayerSearchActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onTextChanged(final CharSequence s, int start, int before, int count) {
-
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
                     String str = playerSearchEdit.getText().toString();
                     length = str.length();
                     if (length >= 4) {
-                        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
-                        final Call<PlayerCountryItem> playerInfo = MainActivity.apiInterface.doGetPlayerList(s.toString());
-                        playerInfo.enqueue(new Callback<PlayerCountryItem>() {
-                            @Override
-                            public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
-                                if (response.isSuccessful()) {
-                                    List<PlayerCountryItem> playerCountryItems = response.body().getResults();
-
-                                    for (int i = 0; i < playerCountryItems.size(); i++) {
-                                        recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
-                                    }
-
-                                    //When not found in player list
-                                    if (playerCountryItems.isEmpty()) {
-
-                                        Call<PlayerCountryItem> call1 = MainActivity.apiInterface.doGetTeamPlayers(s.toString());
-                                        call1.enqueue(new Callback<PlayerCountryItem>() {
-                                            @Override
-                                            public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
-                                                List<PlayerCountryItem> playerCountryItems = response.body().getResults();
-                                                for (int i = 0; i < playerCountryItems.size(); i++) {
-                                                    recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
-                                                }
-                                            }
-
-                                            @Override
-                                            public void onFailure(Call<PlayerCountryItem> call, Throwable t) {
-
-                                            }
-                                        });
-                                    }
-                                } else {
-                                    Toast.makeText(getApplicationContext(), R.string.server_issues, Toast.LENGTH_SHORT).show();
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<PlayerCountryItem> call, Throwable t) {
-
-                            }
-                        });
-
+                        PlayerSearch(s);
                     }
                 }
 
@@ -154,9 +115,54 @@ public class PlayerSearchActivity extends AppCompatActivity {
                 }
             });
         } else {
+            emptyview.setVisibility(View.VISIBLE);
+            emptyview.setText(R.string.no_internet_connection);
             Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    void PlayerSearch(final CharSequence s) {
+        Call<PlayerCountryItem> playerInfo = MainActivity.apiInterface.doGetPlayerList(s.toString());
+        playerInfo.enqueue(new Callback<PlayerCountryItem>() {
+            @Override
+            public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
+                if (response.isSuccessful()) {
+                    List<PlayerCountryItem> playerCountryItems = response.body().getResults();
+
+                    for (int i = 0; i < playerCountryItems.size(); i++) {
+                        recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
+                    }
+
+                    //When not found in player list
+                    if (playerCountryItems.isEmpty()) {
+
+                        Call<PlayerCountryItem> call1 = MainActivity.apiInterface.doGetTeamPlayers(s.toString());
+                        call1.enqueue(new Callback<PlayerCountryItem>() {
+                            @Override
+                            public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
+                                List<PlayerCountryItem> playerCountryItems = response.body().getResults();
+                                for (int i = 0; i < playerCountryItems.size(); i++) {
+                                    recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<PlayerCountryItem> call, Throwable t) {
+
+                            }
+                        });
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.server_issues, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PlayerCountryItem> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override

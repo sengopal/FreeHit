@@ -15,8 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baoyz.widget.PullRefreshLayout;
-import com.debut.ellipsis.freehit.APIInterface;
-import com.debut.ellipsis.freehit.ApiClient;
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.R;
 import com.rd.PageIndicatorView;
@@ -30,12 +28,14 @@ import retrofit2.Response;
 
 public class PastMatchCard extends Fragment {
 
-    private ProgressBar mProgressBar;
-    public PageIndicatorView indicator;
-    private PastMatchCardItemAdapter mAdapter;
-    public ViewPager vp;
-    public Button NoConnectionButton;
-    public TextView NoConnectionText;
+    ProgressBar mProgressBar;
+    PageIndicatorView indicator;
+    PastMatchCardItemAdapter mAdapter;
+    ViewPager vp;
+    Button NoConnectionButton;
+    TextView NoConnectionText;
+    View common_match_cards;
+    View no_internet_connection;
 
     public PastMatchCard() {
         // Required empty public constructor
@@ -46,21 +46,18 @@ public class PastMatchCard extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView= null ;
+        View rootView = null;
 
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             rootView = inflater.inflate(R.layout.fragment_matches_past_pager_dark, container, false);
-        }
-        else if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
+        } else if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
             rootView = inflater.inflate(R.layout.fragment_matches_past_pager, container, false);
         }
-
-        MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 
         View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = viewProgress.findViewById(R.id.progress_bar);
 
-        final View common_match_cards = rootView.findViewById(R.id.common_match_cards);
+        common_match_cards = rootView.findViewById(R.id.common_match_cards);
 
         View viewViewPager = common_match_cards.findViewById(R.id.match_card_viewpagegr);
 
@@ -72,13 +69,29 @@ public class PastMatchCard extends Fragment {
         final PullRefreshLayout refreshLayout = common_match_cards.findViewById(R.id.swipeRefreshLayout);
 
 
-        final View no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
+        no_internet_connection = rootView.findViewById(R.id.Unavailable_connection);
 
         NoConnectionText = no_internet_connection.findViewById(R.id.no_internet_connection_text);
         NoConnectionButton = no_internet_connection.findViewById(R.id.no_internet_refresh_button);
 
+        PastCall();
+
+        refreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+                                               @Override
+                                               public void onRefresh() {
+                                                   // Checking if connected or not on refresh
+                                                   refreshLayout.setRefreshing(true);
+                                                   PastCall();
+                                                   refreshLayout.setRefreshing(false);
+                                               }
+                                           }
+        );
 
 
+        return rootView;
+    }
+
+    void PastCall() {
         Call<PastMatchCardItem> call = MainActivity.apiInterface.doGetPastCardResources();
         call.enqueue(new Callback<PastMatchCardItem>() {
             @Override
@@ -115,81 +128,16 @@ public class PastMatchCard extends Fragment {
             @Override
             public void onFailure(Call<PastMatchCardItem> call, Throwable t) {
                 mProgressBar.setVisibility(View.GONE);
-                no_internet_connection.setVisibility(View.VISIBLE);
+                no_internet_connection.setVisibility(View.INVISIBLE);
                 common_match_cards.setVisibility(View.INVISIBLE);
-                NoConnectionButton.setOnClickListener(new View.OnClickListener() {
-
-                    public void onClick(View v) {
-
-                        FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        ft.detach(PastMatchCard.this).attach(PastMatchCard.this).commit();
-
-                    }
-                });
+                Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
+                toast.show();
                 call.cancel();
             }
         });
-
-        refreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
-                                               @Override
-                                               public void onRefresh() {
-                                                   // Checking if connected or not on refresh
-                                                   refreshLayout.setRefreshing(true);
-
-                                                   Call<PastMatchCardItem> call = MainActivity.apiInterface.doGetPastCardResources();
-                                                   call.enqueue(new Callback<PastMatchCardItem>() {
-                                                       @Override
-                                                       public void onResponse(Call<PastMatchCardItem> call, Response<PastMatchCardItem> response) {
-                                                           if (response.isSuccessful()) {
-                                                               no_internet_connection.setVisibility(View.INVISIBLE);
-                                                               List<PastMatchCardItem> pastMatchCardItems = response.body().getResults();
-                                                               if (getActivity() != null) {
-                                                                   mAdapter = new PastMatchCardItemAdapter(getActivity(), pastMatchCardItems);
-                                                                   indicator.setCount(mAdapter.getCount());
-                                                                   IndicatorConfig();
-                                                                   vp.setAdapter(new PastMatchCardItemAdapter(getContext(), pastMatchCardItems));
-                                                                   mProgressBar.setVisibility(View.GONE);
-                                                                   common_match_cards.setVisibility(View.VISIBLE);
-                                                                   indicator.setVisibility(View.VISIBLE);
-                                                                   indicator.setViewPager(vp);
-                                                               }
-                                                           } else {
-                                                               NoConnectionText.setText(R.string.server_issues);
-                                                               mProgressBar.setVisibility(View.GONE);
-                                                               no_internet_connection.setVisibility(View.VISIBLE);
-                                                               common_match_cards.setVisibility(View.INVISIBLE);
-                                                               NoConnectionButton.setOnClickListener(new View.OnClickListener() {
-                                                                   public void onClick(View v) {
-                                                                       FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                                                       ft.detach(PastMatchCard.this).attach(PastMatchCard.this).commit();
-
-                                                                   }
-                                                               });
-
-                                                           }
-                                                       }
-
-                                                       @Override
-                                                       public void onFailure(Call<PastMatchCardItem> call, Throwable t) {
-                                                           mProgressBar.setVisibility(View.GONE);
-                                                           no_internet_connection.setVisibility(View.INVISIBLE);
-                                                           common_match_cards.setVisibility(View.INVISIBLE);
-                                                           Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
-                                                           toast.show();
-                                                           call.cancel();
-                                                       }
-                                                   });
-                                                   refreshLayout.setRefreshing(false);
-                                               }
-                                           }
-        );
-
-
-        return rootView;
     }
 
-
-    private void IndicatorConfig() {
+    void IndicatorConfig() {
         indicator.setAnimationType(AnimationType.WORM);
         switch (AppCompatDelegate.getDefaultNightMode()) {
             case AppCompatDelegate.MODE_NIGHT_YES:
