@@ -57,12 +57,11 @@ public class LiveMatchCardAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, final int position) {
 
-        View view = null ;
+        View view = null;
 
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             view = this.layoutInflater.inflate(R.layout.fragment_matches_live_match_card_dark, container, false);
-        }
-        else if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
+        } else if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
             view = this.layoutInflater.inflate(R.layout.fragment_matches_live_match_card, container, false);
         }
 
@@ -92,7 +91,7 @@ public class LiveMatchCardAdapter extends PagerAdapter {
         textViewSeriesName.setText(series_name);
 
         TextView textViewStadiumName = view.findViewById(R.id.stadium_live);
-        textViewStadiumName.setText("( "+this.dataObjectList.get(position).getStadium()+" )");
+        textViewStadiumName.setText("( " + this.dataObjectList.get(position).getStadium() + " )");
 
         imageViewTeam1Logo = view.findViewById(R.id.team_logo_1_live);
 
@@ -151,9 +150,9 @@ public class LiveMatchCardAdapter extends PagerAdapter {
             public void onClick(View v) {
                 Intent LiveMatchScoreCardIntent = new Intent(context, LiveMatchScoreCard.class);
                 LiveMatchScoreCardIntent.putExtra("match_id", dataObjectList.get(position).getNdid());
-                LiveMatchScoreCardIntent.putExtra("match_name", finalMatch_name + "( " +ShortNameTeam1+ " vs " +ShortNameTeam2+ " )");
+                LiveMatchScoreCardIntent.putExtra("match_name", finalMatch_name + "( " + ShortNameTeam1 + " vs " + ShortNameTeam2 + " )");
                 LiveMatchScoreCardIntent.putExtra("team1", WelcomeActivity.countryHash.getCountryName(ShortNameTeam1));
-                LiveMatchScoreCardIntent.putExtra("team2",  WelcomeActivity.countryHash.getCountryName(ShortNameTeam2));
+                LiveMatchScoreCardIntent.putExtra("team2", WelcomeActivity.countryHash.getCountryName(ShortNameTeam2));
                 LiveMatchScoreCardIntent.putExtra("match_type", "LIVE");
                 context.startActivity(LiveMatchScoreCardIntent);
 
@@ -175,17 +174,23 @@ public class LiveMatchCardAdapter extends PagerAdapter {
         TextView MatchDate = view.findViewById(R.id.match_date_live);
         MatchDate.setText(outputDateStr);
 
-        logo_string1 =  WelcomeActivity.countryHash.getCountryFlag(this.dataObjectList.get(position).getTeam1().getName().toUpperCase());
-        logo_string2 =  WelcomeActivity.countryHash.getCountryFlag(this.dataObjectList.get(position).getTeam2().getName().toUpperCase());
+        logo_string1 = WelcomeActivity.countryHash.getCountryFlag(this.dataObjectList.get(position).getTeam1().getName().toUpperCase());
+        logo_string2 = WelcomeActivity.countryHash.getCountryFlag(this.dataObjectList.get(position).getTeam2().getName().toUpperCase());
 
-        MainActivity.requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
-
-        MainActivity.requestBuilder.into(imageViewTeam1Logo);
-
-        MainActivity.requestBuilder = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
-
-        MainActivity.requestBuilder.into(imageViewTeam2Logo);
-
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                MainActivity.requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder.into(imageViewTeam1Logo);
+                MainActivity.requestBuilder = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder.into(imageViewTeam2Logo);
+                break;
+            default:
+                MainActivity.requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder.into(imageViewTeam1Logo);
+                MainActivity.requestBuilder = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder.into(imageViewTeam2Logo);
+                break;
+        }
         container.addView(view);
 
         return view;

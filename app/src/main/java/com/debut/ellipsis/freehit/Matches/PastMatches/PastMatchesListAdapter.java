@@ -47,7 +47,6 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
         TextView result;
         TextView date;
         RelativeLayout rlcontainer;
-        RelativeLayout relative_layout_for_past_desc;
         CardView cardView;
 
         public PastViewHolder(View v) {
@@ -67,7 +66,6 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
             date = v.findViewById(R.id.match_date_past);
             cardView = v.findViewById(R.id.card_view);
             rlcontainer = itemView.findViewById(R.id.rlcontainer);
-            relative_layout_for_past_desc = v.findViewById(R.id.relative_layout_for_past_desc);
         }
     }
 
@@ -112,8 +110,6 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
         date_format.setTimeZone(TimeZone.getDefault());
         String formattedDate = date_format.format(time);
 
-        holder.relative_layout_for_past_desc.setVisibility(View.GONE);
-
         holder.date.setText(formattedDate);
         holder.result.setText(pastMatchCardItems.get(position).getResult());
         holder.series.setText(pastMatchCardItems.get(position).getTour());
@@ -129,13 +125,22 @@ public class PastMatchesListAdapter extends RecyclerView.Adapter<PastMatchesList
         String logo_string1 = WelcomeActivity.countryHash.getCountryFlag(WelcomeActivity.countryHash.getCountryName(pastMatchCardItems.get(position).getTeam1Info().getSn()).toUpperCase());
         String logo_string2 = WelcomeActivity.countryHash.getCountryFlag(WelcomeActivity.countryHash.getCountryName(pastMatchCardItems.get(position).getTeam2Info().getSn()).toUpperCase());
 
-        MainActivity.requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
 
-        MainActivity.requestBuilder.into(holder.team1image);
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                MainActivity.requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder.into(holder.team1image);
+                MainActivity.requestBuilder = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder.into(holder.team2image);
+                break;
+            default:
+                MainActivity.requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder.into(holder.team1image);
+                MainActivity.requestBuilder = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder.into(holder.team2image);
+                break;
+        }
 
-        MainActivity.requestBuilder = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
-
-        MainActivity.requestBuilder.into(holder.team2image);
 
         RelativeLayout RLContainer = holder.rlcontainer;
 

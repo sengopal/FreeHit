@@ -303,8 +303,16 @@ public class WelcomeActivity extends AppCompatActivity {
 
                 ImageView before = findViewById(R.id.country_flag);
 
-                RequestBuilder requestBuilder = GlideApp.with(getBaseContext()).load(flagURLID).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
+                RequestBuilder requestBuilder;
 
+                if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+                {
+                    requestBuilder = GlideApp.with(getBaseContext()).load(flagURLID).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+                }
+                else
+                {
+                    requestBuilder = GlideApp.with(getBaseContext()).load(flagURLID).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
+                }
                 requestBuilder.into(before);
 
                 SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();

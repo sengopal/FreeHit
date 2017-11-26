@@ -66,34 +66,11 @@ public class SeriesItemAdapter extends RecyclerView.Adapter<SeriesItemAdapter.Se
     public void onBindViewHolder(SeriesItemAdapter.SeriesViewHolder holder, final int position) {
         String Title = seriesItems.get(position).getTitle();
 
-        Title = Title /*+ ","*/;
-        String[] t = Title.split(",");
-        String[] origTeam = new String[10];
-        origTeam[0] = " ";
-        origTeam[1] = " ";
-
         holder.SeriesTitle.setText(Title);
         String team1 = seriesItems.get(position).getTeam1();
         String team2 = seriesItems.get(position).getTeam2();
 
         final String date = seriesItems.get(position).getDate();
-        origTeam = t[0].split(" ");
-        origTeam[0] = origTeam[0].trim();
-        origTeam[1] = origTeam[1].trim();
-        origTeam[1] = origTeam[0] + " " + origTeam[1];
-
-
-        if (team1.equalsIgnoreCase(origTeam[0])) {
-            team1 = team1;
-        } else if (WelcomeActivity.countryHash.getCountrySN(origTeam[0].toUpperCase()) != null) {
-            team2 = team1;
-            team1 = origTeam[0];
-
-        } else if (WelcomeActivity.countryHash.getCountrySN(origTeam[1].toUpperCase()) != null) {
-            team2 = team1;
-            team1 = origTeam[1];
-
-        }
 
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             holder.SeriesTitle.setTextColor(Color.WHITE);
@@ -106,13 +83,21 @@ public class SeriesItemAdapter extends RecyclerView.Adapter<SeriesItemAdapter.Se
         String Team1LogoUrl = WelcomeActivity.countryHash.getCountryFlag(team1.toUpperCase());
         String Team2LogoUrl = WelcomeActivity.countryHash.getCountryFlag(team2.toUpperCase());
 
-        MainActivity.requestBuilder = GlideApp.with(context).load(Team1LogoUrl).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                MainActivity.requestBuilder = GlideApp.with(context).load(Team1LogoUrl).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder.into(holder.Team1Logo);
+                MainActivity.requestBuilder = GlideApp.with(context).load(Team2LogoUrl).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder.into(holder.Team2Logo);
+                break;
+            default:
+                MainActivity.requestBuilder = GlideApp.with(context).load(Team1LogoUrl).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder.into(holder.Team1Logo);
+                MainActivity.requestBuilder = GlideApp.with(context).load(Team2LogoUrl).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder.into(holder.Team2Logo);
+                break;
+        }
 
-        MainActivity.requestBuilder.into(holder.Team1Logo);
-
-        MainActivity.requestBuilder = GlideApp.with(context).load(Team2LogoUrl).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
-
-        MainActivity.requestBuilder.into(holder.Team2Logo);
 
         RelativeLayout RLContainer = holder.RlContainer;
 

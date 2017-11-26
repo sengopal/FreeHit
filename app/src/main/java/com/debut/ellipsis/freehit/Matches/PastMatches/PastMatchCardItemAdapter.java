@@ -18,7 +18,6 @@ import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.Matches.MatchesActivity;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardItem;
 import com.debut.ellipsis.freehit.R;
 
 import java.text.ParseException;
@@ -28,9 +27,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class PastMatchCardItemAdapter extends PagerAdapter {
     private Context context;
@@ -66,16 +62,6 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
         final TextView ViewMore = view.findViewById(R.id.past_view_more);
 
         final CardView cardView = view.findViewById(R.id.card_view);
-
-        final TextView motm_value = view.findViewById(R.id.motm_value);
-
-        final TextView mots_value = view.findViewById(R.id.mots_value);
-
-        TextView match_result_label = view.findViewById(R.id.match_result_label);
-
-        TextView motm_label = view.findViewById(R.id.motm_label);
-
-        TextView mots_label = view.findViewById(R.id.mots_label);
 
 
         if (position < 5) {
@@ -130,7 +116,7 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
 
 
             TextView MatchResult = view.findViewById(R.id.match_result_past);
-            MatchResult.setVisibility(View.GONE);
+            MatchResult.setText(this.dataObjectList.get(position).getResult());
 
             TextView MatchDate = view.findViewById(R.id.match_date_past);
             MatchDate.setText(formattedDate);
@@ -140,46 +126,28 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
             String logo_string1 = WelcomeActivity.countryHash.getCountryFlag(WelcomeActivity.countryHash.getCountryName(this.dataObjectList.get(position).getTeam1Info().getSn()).toUpperCase());
             String logo_string2 = WelcomeActivity.countryHash.getCountryFlag(WelcomeActivity.countryHash.getCountryName(this.dataObjectList.get(position).getTeam2Info().getSn()).toUpperCase());
 
-            TextView match_result_value = view.findViewById(R.id.match_result_value);
-            match_result_value.setText(this.dataObjectList.get(position).getResult());
+            switch (AppCompatDelegate.getDefaultNightMode()) {
+                case AppCompatDelegate.MODE_NIGHT_YES:
+                    MainActivity.requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+                    MainActivity.requestBuilder.into(imageViewTeam1Logo);
+                    MainActivity.requestBuilder = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+                    MainActivity.requestBuilder.into(imageViewTeam2Logo);
+                    break;
+                default:
+                    MainActivity.requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
+                    MainActivity.requestBuilder.into(imageViewTeam1Logo);
+                    MainActivity.requestBuilder = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
+                    MainActivity.requestBuilder.into(imageViewTeam2Logo);
+                    break;
+            }
 
-
-            MainActivity.requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
-
-            MainActivity.requestBuilder.into(imageViewTeam1Logo);
-
-            MainActivity.requestBuilder = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
-
-            MainActivity.requestBuilder.into(imageViewTeam2Logo);
-
-            motm_value.setText("..........");
-            mots_value.setText("..........");
 
         }
         if (position == 5) {
             ViewMore.setText(R.string.matches_view_more);
             ViewMore.setVisibility(View.VISIBLE);
-            match_result_label.setVisibility(View.INVISIBLE);
-            motm_label.setVisibility(View.INVISIBLE);
-            mots_label.setVisibility(View.INVISIBLE);
 
         }
-        Call<ScoreCardItem> call = MainActivity.apiInterface.doGetMatchScoreCard(this.dataObjectList.get(position).getNdid());
-        call.enqueue(new Callback<ScoreCardItem>() {
-            @Override
-            public void onResponse(Call<ScoreCardItem> call, Response<ScoreCardItem> response) {
-                if (response.isSuccessful()) {
-                    List<ScoreCardItem> pastMatchCardItems = response.body().getResults();
-                    motm_value.setText(pastMatchCardItems.get(1).getInfo().getMom());
-                    mots_value.setText(pastMatchCardItems.get(1).getInfo().getManofseries().equals("") ? "N/A" : pastMatchCardItems.get(1).getInfo().getManofseries());
-                }
-            }
-            @Override
-            public void onFailure(Call<ScoreCardItem> call, Throwable t) {
-                Toast.makeText(context, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
-
-            }
-        });
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -204,7 +172,6 @@ public class PastMatchCardItemAdapter extends PagerAdapter {
                         PastMatchScoreCardIntent.putExtra("team2", WelcomeActivity.countryHash.getCountryName(dataObjectList.get(position).getTeam2Info().getSn()));
                         context.startActivity(PastMatchScoreCardIntent);
                     }
-
                 }
             }
         });

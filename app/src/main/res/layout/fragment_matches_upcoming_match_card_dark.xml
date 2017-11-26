@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        card_view:cardBackgroundColor="@color/cards_dark"
+        card_view:cardBackgroundColor="@color/night_background"
         card_view:cardCornerRadius="@dimen/_10sdp"
         card_view:cardElevation="@dimen/_5sdp"
         card_view:cardUseCompatPadding="true">

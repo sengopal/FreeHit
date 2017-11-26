@@ -123,13 +123,20 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
             logo_string1 = WelcomeActivity.countryHash.getCountryFlag(this.dataObjectList.get(position).getTeam1().getName().toUpperCase());
             logo_string2 = WelcomeActivity.countryHash.getCountryFlag(this.dataObjectList.get(position).getTeam2().getName().toUpperCase());
 
-            MainActivity.requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
-
-            MainActivity.requestBuilder.into(imageViewTeam1Logo);
-
-            MainActivity.requestBuilder = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
-
-            MainActivity.requestBuilder.into(imageViewTeam2Logo);
+            switch (AppCompatDelegate.getDefaultNightMode()) {
+                case AppCompatDelegate.MODE_NIGHT_YES:
+                    MainActivity.requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+                    MainActivity.requestBuilder.into(imageViewTeam1Logo);
+                    MainActivity.requestBuilder = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+                    MainActivity.requestBuilder.into(imageViewTeam2Logo);
+                    break;
+                default:
+                    MainActivity.requestBuilder = GlideApp.with(context).load(logo_string1).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
+                    MainActivity.requestBuilder.into(imageViewTeam1Logo);
+                    MainActivity.requestBuilder = GlideApp.with(context).load(logo_string2).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
+                    MainActivity.requestBuilder.into(imageViewTeam2Logo);
+                    break;
+            }
 
         }
 

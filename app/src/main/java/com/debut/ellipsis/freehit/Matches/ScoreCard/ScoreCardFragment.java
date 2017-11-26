@@ -68,35 +68,26 @@ public class ScoreCardFragment extends Fragment {
 
         if (match_type.equals("PAST")) {
             teamList = PastMatchScoreCard.getQList();
-        }
-        else if(match_type.equals("LIVE")) {
+        } else if (match_type.equals("LIVE")) {
             teamList = LiveMatchScoreCard.getQList();
         }
 
 
-        if(teamList.get(0).getScorecard().getTeam1().getInncount()!=0)
-        {
-            if(teamList.get(0).getScorecard().getTeam1().getTeamname().equals(team_1_intent)) {
+        if (teamList.get(0).getScorecard().getTeam1().getInncount() != 0) {
+            if (teamList.get(0).getScorecard().getTeam1().getTeamname().equals(team_1_intent)) {
                 team_1 = team_1_intent;
                 team_2 = team_2_intent;
-            }
-            else
-            {
+            } else {
                 team_1 = team_2_intent;
                 team_2 = team_1_intent;
             }
-        }
-
-        else if(teamList.get(0).getScorecard().getTeam2().getInncount()!=0)
-        {
-            if(teamList.get(0).getScorecard().getTeam2().getTeamname().equals(team_2_intent)) {
+        } else if (teamList.get(0).getScorecard().getTeam2().getInncount() != 0) {
+            if (teamList.get(0).getScorecard().getTeam2().getTeamname().equals(team_2_intent)) {
                 team_2 = team_2_intent;
                 team_1 = team_1_intent;
-            }
-            else
-            {
+            } else {
                 team_2 = team_1_intent;
-                team_1 =team_2_intent;
+                team_1 = team_2_intent;
             }
         }
 
@@ -140,20 +131,36 @@ public class ScoreCardFragment extends Fragment {
         teamName.setText(team_2);
         teamName = tabLayout.getTabAt(1).getCustomView().findViewById(R.id.team_sn);
         teamName.setText(team_1);
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            ImageView teamLogo1 = tabLayout.getTabAt(0).getCustomView().findViewById(R.id.team_logo);
 
-        ImageView teamLogo1 = tabLayout.getTabAt(0).getCustomView().findViewById(R.id.team_logo);
+            String teamLogo = WelcomeActivity.countryHash.getCountryFlag(team_2.toUpperCase());
 
-        String teamLogo = WelcomeActivity.countryHash.getCountryFlag(team_2.toUpperCase());
+            MainActivity.requestBuilder = GlideApp.with(getContext()).load(teamLogo).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+            MainActivity.requestBuilder.into(teamLogo1);
 
-        MainActivity.requestBuilder = GlideApp.with(getContext()).load(teamLogo).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
-        MainActivity.requestBuilder.into(teamLogo1);
+            teamLogo1 = tabLayout.getTabAt(1).getCustomView().findViewById(R.id.team_logo);
 
-        teamLogo1 = tabLayout.getTabAt(1).getCustomView().findViewById(R.id.team_logo);
+            teamLogo = WelcomeActivity.countryHash.getCountryFlag(team_1.toUpperCase());
 
-        teamLogo = WelcomeActivity.countryHash.getCountryFlag(team_1.toUpperCase());
+            MainActivity.requestBuilder = GlideApp.with(getContext()).load(teamLogo).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+            MainActivity.requestBuilder.into(teamLogo1);
 
-        MainActivity.requestBuilder = GlideApp.with(getContext()).load(teamLogo).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
-        MainActivity.requestBuilder.into(teamLogo1);
+        } else {
+            ImageView teamLogo1 = tabLayout.getTabAt(0).getCustomView().findViewById(R.id.team_logo);
+
+            String teamLogo = WelcomeActivity.countryHash.getCountryFlag(team_2.toUpperCase());
+
+            MainActivity.requestBuilder = GlideApp.with(getContext()).load(teamLogo).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
+            MainActivity.requestBuilder.into(teamLogo1);
+
+            teamLogo1 = tabLayout.getTabAt(1).getCustomView().findViewById(R.id.team_logo);
+
+            teamLogo = WelcomeActivity.countryHash.getCountryFlag(team_1.toUpperCase());
+
+            MainActivity.requestBuilder = GlideApp.with(getContext()).load(teamLogo).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
+            MainActivity.requestBuilder.into(teamLogo1);
+        }
 
     }
 

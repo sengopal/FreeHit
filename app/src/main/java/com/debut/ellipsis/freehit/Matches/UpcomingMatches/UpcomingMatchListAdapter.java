@@ -118,7 +118,7 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
         textViewSeriesName.setText(upcomingMatchCards.getTour());
 
         TextView textViewStadiumName = viewHolder.textViewStadiumName;
-        textViewStadiumName.setText("( "+upcomingMatchCards.getStadium()+" )");
+        textViewStadiumName.setText("( " + upcomingMatchCards.getStadium() + " )");
 
         String logo_string1 = WelcomeActivity.countryHash.getCountryFlag(upcomingMatchCards.getTeam1().getName().toUpperCase());
 
@@ -130,7 +130,7 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
 
         String originalMatchTime = upcomingMatchCards.getTime();
 
-        Date time = null ;
+        Date time = null;
         try {
             time = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")).parse(originalMatchTime.replaceAll("Z$", "+0000"));
         } catch (ParseException e) {
@@ -159,14 +159,20 @@ public class UpcomingMatchListAdapter extends RecyclerView.Adapter<UpcomingMatch
 
         viewHolder.MatchTime.setText(formattedTime);
 
-        MainActivity.requestBuilder = GlideApp.with(mContext).load(logo_string1).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
-
-        MainActivity.requestBuilder.into(imageViewTeam1Logo);
-
-        MainActivity.requestBuilder = GlideApp.with(mContext).load(logo_string2).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
-
-        MainActivity.requestBuilder.into(imageViewTeam2Logo);
-
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                MainActivity.requestBuilder = GlideApp.with(mContext).load(logo_string1).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder.into(imageViewTeam1Logo);
+                MainActivity.requestBuilder = GlideApp.with(mContext).load(logo_string2).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder.into(imageViewTeam2Logo);
+                break;
+            default:
+                MainActivity.requestBuilder = GlideApp.with(mContext).load(logo_string1).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder.into(imageViewTeam1Logo);
+                MainActivity.requestBuilder = GlideApp.with(mContext).load(logo_string2).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder.into(imageViewTeam2Logo);
+                break;
+        }
 
         RelativeLayout RLContainer = viewHolder.rlcontainer;
 

@@ -56,13 +56,18 @@ public class CountryListAdapter extends BaseAdapter {
         Cell cell = Cell.from(view);
         cell.textView.setText(country.getName());
 
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-           cell.textView.setTextColor(Color.WHITE);
-        }
-
         String FlagURL = country.getFlag();
+        RequestBuilder requestBuilder;
 
-        RequestBuilder requestBuilder = GlideApp.with(mContext).load(FlagURL).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                cell.textView.setTextColor(Color.WHITE);
+                requestBuilder = GlideApp.with(mContext).load(FlagURL).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565);
+                break;
+            default:
+                requestBuilder = GlideApp.with(mContext).load(FlagURL).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
+                break;
+        }
 
         requestBuilder.into(cell.imageView);
 

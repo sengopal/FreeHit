@@ -26,6 +26,8 @@
 
     <color name="spinner_background">#34343f</color>
 
+    <color name="match_pager">#8f929b</color>
+
     <color name="dark">#23252b</color>
 
     <color name="cards_dark">#484a4f</color>

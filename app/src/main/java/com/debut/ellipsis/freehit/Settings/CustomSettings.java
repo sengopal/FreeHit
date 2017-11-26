@@ -211,7 +211,7 @@ public class CustomSettings extends AppCompatActivity {
 
                 ImageView before = findViewById(R.id.country_flag);
 
-                MainActivity.requestBuilder = GlideApp.with(getBaseContext()).load(flagURLID).placeholder(R.drawable.matches_vector).format(DecodeFormat.PREFER_RGB_565);
+                MainActivity.requestBuilder = AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES ? GlideApp.with(getBaseContext()).load(flagURLID).placeholder(R.drawable.placeholder_dark).format(DecodeFormat.PREFER_RGB_565) : GlideApp.with(getBaseContext()).load(flagURLID).placeholder(R.drawable.placeholder_light).format(DecodeFormat.PREFER_RGB_565);
 
                 MainActivity.requestBuilder.into(before);
 
