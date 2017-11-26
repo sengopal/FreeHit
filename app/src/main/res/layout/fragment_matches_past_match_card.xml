@@ -9,7 +9,7 @@
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_175sdp"
+        android:layout_height="@dimen/_185sdp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         card_view:cardBackgroundColor="@color/match_cards"
