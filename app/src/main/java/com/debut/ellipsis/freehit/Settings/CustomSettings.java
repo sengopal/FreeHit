@@ -53,6 +53,8 @@ public class CustomSettings extends AppCompatActivity {
 
         final View no_internet_connection = findViewById(R.id.Unavailable_connection);
 
+        Switch auto_refresh = findViewById(R.id.switch_auto_refresh_mode);
+
         Switch NightMode = findViewById(R.id.switch_night_mode);
 
         Button country_select_button = findViewById(R.id.country_select);
@@ -75,6 +77,8 @@ public class CustomSettings extends AppCompatActivity {
 
         final TextView night_mode = findViewById(R.id.night_mode);
 
+        TextView auto_refresh_mode = findViewById(R.id.auto_refresh_mode);
+
         String TeamLogoURL = WelcomeActivity.countryHash.getCountryFlag(name.toUpperCase());
 
         switch (AppCompatDelegate.getDefaultNightMode()) {
@@ -88,6 +92,7 @@ public class CustomSettings extends AppCompatActivity {
                 NoConnection.setTextColor(Color.WHITE);
                 NoConnectionButton.setTextColor(Color.BLACK);
                 NoConnectionImage.setColorFilter(Color.WHITE);
+                auto_refresh_mode.setTextColor(Color.WHITE);
                 break;
             default:
                 setTheme(R.style.AppTheme);
@@ -111,7 +116,9 @@ public class CustomSettings extends AppCompatActivity {
         };
 
         final SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-
+        editor.putBoolean("auto_refresh", true);
+        editor.apply();
+        
         NightMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // do something, the isChecked will be
@@ -130,6 +137,20 @@ public class CustomSettings extends AppCompatActivity {
             }
         });
 
+        auto_refresh.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+               if (isChecked) {
+                    editor.putBoolean("auto_refresh", true);
+                    editor.apply();
+                } else {
+                    editor.putBoolean("auto_refresh", false);
+                    editor.apply();
+                }
+            }
+        });
+
+        Boolean AutoRereshState = prefs.getBoolean("auto_refresh", false);
+        auto_refresh.setChecked(AutoRereshState);
 
         NightMode.setOnClickListener(mClickListener);
 

@@ -1,30 +1,31 @@
 package com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements;
 
 
-import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ExpandableListAdapter;
-import android.widget.ExpandableListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
+import com.debut.ellipsis.freehit.Matches.LiveMatches.LiveMatchScoreCard;
+import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchScoreCard;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardItem;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Team2ScoreCardFragment extends Fragment {
-    private int lastExpandedPosition = -1;
 
-    private ScoreCardExpandableListAdapterBatting ExpAdapterBatting;
-    private ArrayList<ScoreCardItemListBatting> ExpListItemsBatting;
-    private ExpandableListView ExpandListBatting;
-
-    private ScoreCardExpandableListAdapterBowling ExpAdapterBowling;
-    private ArrayList<ScoreCardItemListBowling> ExpListItemsBowling;
-    private ExpandableListView ExpandListBowling;
+    public ViewPager viewPager;
+    private List<ScoreCardItem> teamList = null;
 
     public Team2ScoreCardFragment() {
         // Required empty public constructor
@@ -34,130 +35,60 @@ public class Team2ScoreCardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Intent i = getActivity().getIntent();
-        /*Toast.makeText(this.getActivity(), i.getStringExtra("match_id"), Toast.LENGTH_SHORT).show();*/
+
+        String match_type = getActivity().getIntent().getStringExtra("match_type");
+
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_matchscorecard_scorecard, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_social_main, container, false);
+
+        View viewSocialPager = rootView.findViewById(R.id.social_viewpager);
+
+        viewPager = viewSocialPager.findViewById(R.id.viewpager);
 
 
-        // BATTING
-        View expandableListBatting = rootView.findViewById(R.id.expandable_match_scoreCard_batting);
-        ExpandListBatting = (ExpandableListView) expandableListBatting.findViewById(R.id.expandable_match_scoreCard);
-        ExpListItemsBatting = ScoreCardExpandableListDataPump.getDataBattingTeam2();
-        ExpAdapterBatting = new ScoreCardExpandableListAdapterBatting(getActivity(), ExpListItemsBatting);
-        ExpandListBatting.setAdapter(ExpAdapterBatting);
-        setExpandableListViewHeight(ExpandListBatting, -1);
+        View viewTabSocial = rootView.findViewById(R.id.social_tabs);
+        TabLayout tabLayout = viewTabSocial.findViewById(R.id.tabs);
+
+        if (match_type.equals("PAST")) {
+            teamList = PastMatchScoreCard.getQList();
+        } else if(match_type.equals("LIVE")) {
+            teamList = LiveMatchScoreCard.getQList();
+        }
+
+        TextView no_match_data = rootView.findViewById(R.id.No_match_data);
+
+        if (teamList.get(0).getScorecard().getTeam1().getInncount() == 1)
+            setupViewPagerOneInnings(viewPager);
+        else if(teamList.get(0).getScorecard().getTeam1().getInncount() == 2)
+            setupViewPagerTwoInnings(viewPager);
+        else
+        {
+            viewPager.setVisibility(View.INVISIBLE);
+            no_match_data.setVisibility(View.VISIBLE);
+            no_match_data.setText(R.string.no_match_data);
+        }
 
 
-        ExpandListBatting.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            tabLayout.setBackgroundColor(Color.parseColor("#36393f"));
+            viewPager.setBackgroundColor(getResources().getColor(R.color.night_background));
+        }
+        tabLayout.setupWithViewPager(viewPager);
 
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public boolean onGroupClick(ExpandableListView parent, View v,
-                                        int groupPosition, long id) {
-                setListViewHeight(parent, groupPosition);
-                return false;
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
             }
-        });
-
-
-        ExpandListBatting.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-
-
-            //THIS IS WHERE YOU HAVE TO CALL THE QUERY UTIL CLASS
-            @Override
-            public void onGroupExpand(int groupPosition) {
-                Toast.makeText(getContext(), " List Expanded.", Toast.LENGTH_SHORT).show();
-                if (lastExpandedPosition != -1
-                        && groupPosition != lastExpandedPosition) {
-                    ExpandListBatting.collapseGroup(lastExpandedPosition);
-                }
-                lastExpandedPosition = groupPosition;
-                setExpandableListViewHeight(ExpandListBatting, -1);
-                ExpandListBatting.setSelection(0);
-            }
-        });
-
-
-        // WHEN LIST WILL BE COLLAPSED , No USE FOR US , SHALL BE REMOVED LATER WHILE PARSING
-        ExpandListBatting.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
 
             @Override
-            public void onGroupCollapse(int groupPosition) {
-                Toast.makeText(getContext(), " List Collapsed.", Toast.LENGTH_SHORT).show();
+            public void onTabUnselected(TabLayout.Tab tab) {
 
             }
-        });
-
-
-        // FOR CHILD DATA OnClick
-        ExpandListBatting.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v,
-                                        int groupPosition, int childPosition, long id) {
-                Toast.makeText(
-                        getContext(), "CHILD CLICKED", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        });
-
-
-        //BOWLING
-        View expandableListBowling = rootView.findViewById(R.id.expandable_match_scoreCard_bowling);
-        ExpandListBowling = (ExpandableListView) expandableListBowling.findViewById(R.id.expandable_match_scoreCard);
-        ExpListItemsBowling = ScoreCardExpandableListDataPump.getDataBowlingTeam2();
-        ExpAdapterBowling = new ScoreCardExpandableListAdapterBowling(getActivity(), ExpListItemsBowling);
-        ExpandListBowling.setAdapter(ExpAdapterBowling);
-
-        setExpandableListViewHeight(ExpandListBowling, -1);
-
-        ExpandListBowling.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
 
             @Override
-            public boolean onGroupClick(ExpandableListView parent, View v,
-                                        int groupPosition, long id) {
-                setListViewHeight(parent, groupPosition);
-                return false;
-            }
-        });
+            public void onTabReselected(TabLayout.Tab tab) {
 
-
-        ExpandListBowling.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-
-
-            //THIS IS WHERE YOU HAVE TO CALL THE QUERY UTIL CLASS
-            @Override
-            public void onGroupExpand(int groupPosition) {
-                Toast.makeText(getContext(), " List Expanded.", Toast.LENGTH_SHORT).show();
-                if (lastExpandedPosition != -1
-                        && groupPosition != lastExpandedPosition) {
-                    ExpandListBowling.collapseGroup(lastExpandedPosition);
-                }
-                lastExpandedPosition = groupPosition;
-                setExpandableListViewHeight(ExpandListBowling, -1);
-                ExpandListBowling.setSelection(0);
-            }
-        });
-
-
-        // WHEN LIST WILL BE COLLAPSED , No USE FOR US , SHALL BE REMOVED LATER WHILE PARSING
-        ExpandListBowling.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
-
-            @Override
-            public void onGroupCollapse(int groupPosition) {
-                Toast.makeText(getContext(), " List Collapsed.", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-
-        // FOR CHILD DATA OnClick
-        ExpandListBowling.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v,
-                                        int groupPosition, int childPosition, long id) {
-                Toast.makeText(
-                        getContext(), "CHILD CLICKED", Toast.LENGTH_SHORT).show();
-                return false;
             }
         });
 
@@ -165,76 +96,61 @@ public class Team2ScoreCardFragment extends Fragment {
         return rootView;
     }
 
-    // To control size of expandable listview based upon number of main list items
-    // we'll discuss this feature after the live demo
-    private void setListViewHeight(ExpandableListView listView,
-                                   int group) {
-        ExpandableListAdapter listAdapter = (ExpandableListAdapter) listView.getExpandableListAdapter();
-        int totalHeight = 0;
-        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(),
-                View.MeasureSpec.EXACTLY);
-        for (int i = 0; i < listAdapter.getGroupCount(); i++) {
-            View groupItem = listAdapter.getGroupView(i, false, null, listView);
-            groupItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
 
-            totalHeight += groupItem.getMeasuredHeight();
+    private void setupViewPagerTwoInnings(ViewPager viewPager) {
+        Team2ScoreCardFragment.ViewPagerAdapter adapter = new Team2ScoreCardFragment.ViewPagerAdapter(getChildFragmentManager());
+        adapter.addFrag(new Innings1_Innings2(), "Innings 1");
+        adapter.addFrag(new Innings1_Innings2(), "Innings 2");
+        viewPager.setAdapter(adapter);
 
-            if (((listView.isGroupExpanded(i)) && (i != group))
-                    || ((!listView.isGroupExpanded(i)) && (i == group))) {
-                for (int j = 0; j < listAdapter.getChildrenCount(i); j++) {
-                    View listItem = listAdapter.getChildView(i, j, false, null,
-                            listView);
-                    listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+    }
 
-                    totalHeight += listItem.getMeasuredHeight();
+    private void setupViewPagerOneInnings(ViewPager viewPager) {
+        Team2ScoreCardFragment.ViewPagerAdapter adapter = new Team2ScoreCardFragment.ViewPagerAdapter(getChildFragmentManager());
+        adapter.addFrag(new Innings1_Innings2(), "Innings 1");
+        viewPager.setAdapter(adapter);
 
+    }
+
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFrag(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+            if (mFragmentTitleList.get(0).equals("Innings 1")) {
+                Bundle bundle = new Bundle();
+                bundle.putString("fragment_name", "Team_2_Innings_1");
+                fragment.setArguments(bundle);
+            }
+
+            if(mFragmentTitleList.size()==2) {
+                if (mFragmentTitleList.get(1).equals("Innings 2")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("fragment_name", "Team_2_Innings_2");
+                    fragment.setArguments(bundle);
                 }
             }
         }
 
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-        int height = totalHeight
-                + (listView.getDividerHeight() * (listAdapter.getGroupCount() - 1));
-        if (height < 10)
-            height = 200;
-        params.height = height;
-        listView.setLayoutParams(params);
-        listView.requestLayout();
-
-    }
-
-
-    private void setExpandableListViewHeight(ExpandableListView listView, int group) {
-        ExpandableListAdapter listAdapter = listView.getExpandableListAdapter();
-        if (listAdapter == null) {
-            return;
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
         }
-        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
-        int totalHeight = 100;
-        View view = null;
-        for (int i = 0; i < listAdapter.getGroupCount(); i++) {
-            view = listAdapter.getGroupView(i, false, view, listView);
-            if (i == 0) {
-                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
-            }
-            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
-            totalHeight += view.getMeasuredHeight();
-            if (((listView.isGroupExpanded(i)) && (i != group)) || ((!listView.isGroupExpanded(i)) && (i == group))) {
-                View listItem = null;
-                for (int j = 0; j < listAdapter.getChildrenCount(i); j++) {
-                    listItem = listAdapter.getChildView(i, j, false, listItem, listView);
-                    listItem.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, View.MeasureSpec.UNSPECIFIED));
-                    listItem.measure(
-                            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-                            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-                    totalHeight += listItem.getMeasuredHeight();
-                }
-            }
-        }
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getGroupCount() - 1));
-        listView.setLayoutParams(params);
-        listView.requestLayout();
     }
-
 }

@@ -1,4 +1,4 @@
-package com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElementsTemp;
+package com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements;
 
 
 import android.os.Bundle;

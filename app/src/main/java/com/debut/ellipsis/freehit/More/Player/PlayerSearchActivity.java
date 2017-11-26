@@ -141,9 +141,11 @@ public class PlayerSearchActivity extends AppCompatActivity {
                         call1.enqueue(new Callback<PlayerCountryItem>() {
                             @Override
                             public void onResponse(Call<PlayerCountryItem> call, Response<PlayerCountryItem> response) {
-                                List<PlayerCountryItem> playerCountryItems = response.body().getResults();
-                                for (int i = 0; i < playerCountryItems.size(); i++) {
-                                    recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
+                                if (response.isSuccessful()) {
+                                    List<PlayerCountryItem> playerCountryItems = response.body().getResults();
+                                    for (int i = 0; i < playerCountryItems.size(); i++) {
+                                        recyclerView.setAdapter(new TeamPlayerAdapter(playerCountryItems, R.layout.country_picker_row, getApplicationContext()));
+                                    }
                                 }
                             }
 

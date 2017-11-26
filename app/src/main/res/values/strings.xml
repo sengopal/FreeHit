@@ -32,6 +32,7 @@
     <string name="refresh">REFRESH</string>
 
     <string name="night_mode">SWITCH TO NIGHT MODE</string>
+    <string name="auto_refresh">Auto refresh Live Match Data</string>
 
     <!--COMPLETE LIST OF MATCHES-->
     <string name="upcoming_list">Upcoming Matches</string>

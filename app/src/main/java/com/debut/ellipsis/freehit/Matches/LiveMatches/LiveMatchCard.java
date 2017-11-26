@@ -1,5 +1,6 @@
 package com.debut.ellipsis.freehit.Matches.LiveMatches;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,6 +26,9 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.content.Context.MODE_PRIVATE;
+import static com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity.MY_PREFS_NAME;
 
 
 public class LiveMatchCard extends Fragment {
@@ -52,12 +56,16 @@ public class LiveMatchCard extends Fragment {
 
         View rootView = null;
 
+        SharedPreferences prefs = this.getActivity().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             rootView = inflater.inflate(R.layout.fragment_matches_common_pager_dark, container, false);
         } else if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
             rootView = inflater.inflate(R.layout.fragment_matches_common_pager, container, false);
         }
 
+
+        Boolean AutoRereshState = prefs.getBoolean("auto_refresh", false);
 
         View viewProgress = rootView.findViewById(R.id.progress);
         mProgressBar = viewProgress.findViewById(R.id.progress_bar);
@@ -84,16 +92,18 @@ public class LiveMatchCard extends Fragment {
 
         liveCall();
 
-        //Auto Refresh after every 5 minutes
-        final Handler refreshHandler = new Handler();
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                liveCall();
-                refreshHandler.postDelayed(this, 300 * 1000);
-            }
-        };
-        refreshHandler.postDelayed(runnable, 300 * 1000);
+        if(AutoRereshState) {
+            //Auto Refresh after every 5 minutes
+            final Handler refreshHandler = new Handler();
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    liveCall();
+                    refreshHandler.postDelayed(this, 15 * 1000);
+                }
+            };
+            refreshHandler.postDelayed(runnable, 15 * 1000);
+        }
 
         refreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
             @Override

@@ -20,8 +20,8 @@ import com.debut.ellipsis.freehit.IntoSlider.WelcomeActivity;
 import com.debut.ellipsis.freehit.MainActivity;
 import com.debut.ellipsis.freehit.Matches.LiveMatches.LiveMatchScoreCard;
 import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchScoreCard;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElementsTemp.Team1ScoreCardFragment;
-import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElementsTemp.Team2ScoreCardFragment;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements.Team1ScoreCardFragment;
+import com.debut.ellipsis.freehit.Matches.ScoreCard.ScoreCardElements.Team2ScoreCardFragment;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.ArrayList;
