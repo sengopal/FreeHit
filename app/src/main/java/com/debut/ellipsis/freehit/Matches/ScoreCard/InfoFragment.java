@@ -3,9 +3,7 @@ package com.debut.ellipsis.freehit.Matches.ScoreCard;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
@@ -35,8 +33,6 @@ public class InfoFragment extends Fragment {
         // Required empty public constructor
     }
 
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

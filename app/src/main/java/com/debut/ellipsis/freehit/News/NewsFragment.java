@@ -82,7 +82,7 @@ public class NewsFragment extends Fragment {
 
         switch (AppCompatDelegate.getDefaultNightMode()) {
             case AppCompatDelegate.MODE_NIGHT_YES:
-                recyclerView.setBackgroundColor(getResources().getColor(R.color.night_background));
+                recyclerView.setBackgroundColor(getResources().getColor(R.color.match_pager));
                 fab.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
                 refLayout.setColorSchemeColors(Color.BLACK);
                 NoConnectionButton.setTextColor(Color.BLACK);

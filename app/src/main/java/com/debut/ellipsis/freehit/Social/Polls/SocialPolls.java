@@ -70,7 +70,7 @@ public class SocialPolls extends Fragment {
 
         switch (AppCompatDelegate.getDefaultNightMode()) {
             case AppCompatDelegate.MODE_NIGHT_YES:
-                listView.setBackgroundColor(getResources().getColor(R.color.night_background));
+                listView.setBackgroundColor(getResources().getColor(R.color.match_pager));
                 NoPollsText.setTextColor(Color.WHITE);
                 NoPollsButton.setBackgroundResource(R.drawable.button_shape_dark);
                 NoPollsButton.setTextColor(Color.BLACK);

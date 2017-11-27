@@ -78,7 +78,7 @@ public class MatchesActivity extends AppCompatActivity {
         switch (AppCompatDelegate.getDefaultNightMode()) {
             case AppCompatDelegate.MODE_NIGHT_YES:
                 setTheme(R.style.AppThemeDark);
-                rv.setBackgroundColor(getResources().getColor(R.color.night_background));
+                rv.setBackgroundColor(getResources().getColor(R.color.match_pager));
                 fab.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
                 refresh_layout.setColorSchemeColors(Color.BLACK);
                 mEmptyView.setTextColor(Color.WHITE);

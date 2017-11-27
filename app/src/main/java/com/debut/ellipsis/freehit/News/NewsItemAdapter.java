@@ -87,7 +87,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
 
         switch (AppCompatDelegate.getDefaultNightMode()) {
             case AppCompatDelegate.MODE_NIGHT_YES:
-                holder.cardView.setBackgroundColor(Color.parseColor("#484a4f"));
+                holder.cardView.setBackgroundColor(Color.parseColor("#33343b"));
                 holder.title.setTextColor(Color.WHITE);
                 holder.desc.setTextColor(Color.WHITE);
                 holder.news_tag.setColorFilter(Color.WHITE);
