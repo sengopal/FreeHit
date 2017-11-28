@@ -157,7 +157,7 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
                     context.startActivity(UpcomingIntent);
                 } else {
 
-                    Toast.makeText(context, "\t \t \t \t Match Stars on \n \t \t \t" + formattedDate + "\n" + " At " + formattedTime + " Local Time", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "\t \t \t \t Match Starts on \n \t \t \t" + formattedDate + "\n" + " At " + formattedTime + " Local Time", Toast.LENGTH_SHORT).show();
                 }
             }
         });

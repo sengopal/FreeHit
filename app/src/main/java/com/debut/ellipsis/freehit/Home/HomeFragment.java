@@ -4,6 +4,7 @@ package com.debut.ellipsis.freehit.Home;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -59,7 +60,7 @@ public class HomeFragment extends Fragment {
 
         prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         CountryName = prefs.getString("country_name", "null");
-
+        Boolean AutoRereshState = prefs.getBoolean("auto_refresh", false);
         View rootView = null;
 
         switch (AppCompatDelegate.getDefaultNightMode()) {
@@ -108,6 +109,19 @@ public class HomeFragment extends Fragment {
 
         homeCall();
 
+        if(AutoRereshState) {
+            //Auto Refresh after every 15 seconds
+            final Handler refreshHandler = new Handler();
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    homeMatchesCall();
+                    refreshHandler.postDelayed(this, 15 * 1000);
+                }
+            };
+            refreshHandler.postDelayed(runnable, 15 * 1000);
+        }
+
         refreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
                                                @Override
                                                public void onRefresh() {
@@ -137,6 +151,81 @@ public class HomeFragment extends Fragment {
         }
         indicator.setInteractiveAnimation(true);
         indicator.setAnimationDuration(500);
+
+    }
+
+    void homeMatchesCall() {
+        Call<RecentItem> call = MainActivity.apiInterface.doGetRecentResources();
+        call.enqueue(new Callback<RecentItem>() {
+            @Override
+            public void onResponse(Call<RecentItem> call, Response<RecentItem> response) {
+                if (response.isSuccessful()) {
+                    common_match_cards.setVisibility(View.VISIBLE);
+                    no_internet_connection.setVisibility(View.INVISIBLE);
+                    indicator.setVisibility(View.VISIBLE);
+                    indicator.setViewPager(vp);
+                    List<RecentItem> RecentMatches = response.body().getResults();
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    if (getActivity() != null) {
+                        if (RecentMatches.size() == 0) {
+                            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                                NoRecentMatchesText.setTextColor(Color.WHITE);
+                                NoRecentMatchesButton.setBackgroundResource(R.drawable.button_shape_dark);
+                                NoRecentMatchesButton.setTextColor(Color.BLACK);
+                            }
+                            No_Recent_matches_news.setVisibility(View.VISIBLE);
+                            NoRecentMatchesButton.setOnClickListener(new View.OnClickListener() {
+
+                                public void onClick(View v) {
+
+                                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                    ft.detach(HomeFragment.this).attach(HomeFragment.this).commit();
+                                }
+                            });
+
+                        }
+                        mAdapter = new RecentMatchAdapter(getActivity(), RecentMatches);
+                        indicator.setViewPager(vp);
+                        indicator.setCount(mAdapter.getCount());
+                        IndicatorConfig();
+                        vp.setAdapter(mAdapter);
+                    }
+                } else {
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    no_internet_connection.setVisibility(View.VISIBLE);
+                    common_match_cards.setVisibility(View.INVISIBLE);
+                    NoConnectionText.setText(R.string.server_issues);
+                    NoConnectionButton.setOnClickListener(new View.OnClickListener() {
+
+                        public void onClick(View v) {
+
+                            FragmentTransaction ft = getFragmentManager().beginTransaction();
+                            ft.detach(HomeFragment.this).attach(HomeFragment.this).commit();
+
+                        }
+                    });
+                    call.cancel();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RecentItem> call, Throwable t) {
+                mProgressBar.setVisibility(View.INVISIBLE);
+                no_internet_connection.setVisibility(View.VISIBLE);
+                common_match_cards.setVisibility(View.INVISIBLE);
+                NoConnectionButton.setOnClickListener(new View.OnClickListener() {
+
+                    public void onClick(View v) {
+
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.detach(HomeFragment.this).attach(HomeFragment.this).commit();
+
+                    }
+                });
+                call.cancel();
+            }
+        });
 
     }
 

@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.baoyz.widget.PullRefreshLayout;
 import com.debut.ellipsis.freehit.MainActivity;
@@ -130,8 +129,6 @@ public class PastMatchCard extends Fragment {
                 mProgressBar.setVisibility(View.GONE);
                 no_internet_connection.setVisibility(View.INVISIBLE);
                 common_match_cards.setVisibility(View.INVISIBLE);
-                Toast toast = Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT);
-                toast.show();
                 call.cancel();
             }
         });

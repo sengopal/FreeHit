@@ -93,7 +93,7 @@ public class LiveMatchCard extends Fragment {
         liveCall();
 
         if(AutoRereshState) {
-            //Auto Refresh after every 5 minutes
+            //Auto Refresh after every 15 seconds
             final Handler refreshHandler = new Handler();
             Runnable runnable = new Runnable() {
                 @Override

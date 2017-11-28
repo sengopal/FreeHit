@@ -21,9 +21,9 @@
 
         <TextView
             android:id="@+id/rank"
-            android:layout_width="@dimen/_33sdp"
+            android:layout_width="@dimen/_35sdp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_7sdp"
             android:text="@string/rank"
             android:textAlignment="viewStart"
             android:layout_weight="0.1"
