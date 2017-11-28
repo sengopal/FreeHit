@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.CardView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -156,8 +157,10 @@ public class UpcomingMatchesItemAdapter extends PagerAdapter {
                     // Start the new activity
                     context.startActivity(UpcomingIntent);
                 } else {
-
-                    Toast.makeText(context, "\t \t \t \t Match Starts on \n \t \t \t" + formattedDate + "\n" + " At " + formattedTime + " Local Time", Toast.LENGTH_SHORT).show();
+                    Toast toast = Toast.makeText(context, "Match Starts on"+ "\n" + formattedDate + "\n" + " At " + formattedTime + " Local Time", Toast.LENGTH_SHORT);
+                    TextView v1 = toast.getView().findViewById(android.R.id.message);
+                    if( v1 != null) v1.setGravity(Gravity.CENTER);
+                    toast.show();
                 }
             }
         });

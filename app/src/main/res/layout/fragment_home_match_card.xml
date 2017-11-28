@@ -14,16 +14,16 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_150sdp"
+            android:layout_height="@dimen/_155sdp"
             android:background="@color/background"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <com.rd.PageIndicatorView
             android:id="@+id/indicator"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/_20sdp"
+            android:layout_height="@dimen/_10sdp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/_150sdp"
+            android:layout_marginTop="@dimen/_155sdp"
             android:visibility="invisible" />
 
 
