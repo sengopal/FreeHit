@@ -86,6 +86,8 @@ public class PastMatchCardItem {
         private String inn1;
         @SerializedName("inn2")
         private String inn2;
+        @SerializedName("name")
+        private String name;
 
 
         public String getSn() {
@@ -100,7 +102,9 @@ public class PastMatchCardItem {
             return inn2;
         }
 
-
+        public String getName() {
+            return name;
+        }
     }
 
 }

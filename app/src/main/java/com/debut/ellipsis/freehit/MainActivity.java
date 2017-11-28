@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.bumptech.glide.RequestBuilder;
+import com.debut.ellipsis.freehit.Home.HomeFragment;
 import com.debut.ellipsis.freehit.Matches.MatchesFragment;
 import com.debut.ellipsis.freehit.More.MoreMain.MoreFragment;
 import com.debut.ellipsis.freehit.News.NewsFragment;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private int[] tabIcons = {
+            R.drawable.home_vector,
             R.drawable.matches_vector,
             R.drawable.news_vector,
             R.drawable.social_vector,
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
-        View viewMainPager = findViewById(R.id.main_viewpager);
+        final View viewMainPager = findViewById(R.id.main_viewpager);
 
 
         viewPager = viewMainPager.findViewById(R.id.viewpager);
@@ -87,8 +89,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        viewPager.setOffscreenPageLimit(4);
-
+        viewPager.setOffscreenPageLimit(5);
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -109,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
         });
 
@@ -122,6 +122,11 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
         tabLayout.getTabAt(2).setIcon(tabIcons[2]);
         tabLayout.getTabAt(3).setIcon(tabIcons[3]);
+        tabLayout.getTabAt(4).setIcon(tabIcons[4]);
+
+       /* for (int i = 0; i < tabLayout.getTabCount(); i++) {
+            tabLayout.getTabAt(i).getIcon().setBounds(5, 5, 5, 5);
+        }*/
 
         tabLayout.getTabAt(0).getIcon().setColorFilter(Color.parseColor("#f5f5f5"), PorterDuff.Mode.SRC_IN);
 
@@ -129,16 +134,19 @@ public class MainActivity extends AppCompatActivity {
             tabLayout.getTabAt(1).getIcon().setColorFilter(Color.parseColor("#6c6c6d"), PorterDuff.Mode.SRC_IN);
             tabLayout.getTabAt(2).getIcon().setColorFilter(Color.parseColor("#6c6c6d"), PorterDuff.Mode.SRC_IN);
             tabLayout.getTabAt(3).getIcon().setColorFilter(Color.parseColor("#6c6c6d"), PorterDuff.Mode.SRC_IN);
+            tabLayout.getTabAt(4).getIcon().setColorFilter(Color.parseColor("#6c6c6d"), PorterDuff.Mode.SRC_IN);
         } else if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
             tabLayout.getTabAt(1).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
             tabLayout.getTabAt(2).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
             tabLayout.getTabAt(3).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+            tabLayout.getTabAt(4).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
         }
 
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFrag(new HomeFragment(), "HOME");
         adapter.addFrag(new MatchesFragment(), "MATCHES");
         adapter.addFrag(new NewsFragment(), "NEWS");
         adapter.addFrag(new SocialMainFragment(), "SOCIAL");

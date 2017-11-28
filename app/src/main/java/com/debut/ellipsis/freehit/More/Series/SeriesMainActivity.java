@@ -42,6 +42,11 @@ public class SeriesMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+        {
+            setTheme(R.style.AppThemeDark);
+        }
+
         setContentView(R.layout.fragment_more_series_listview);
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
 
@@ -55,6 +60,9 @@ public class SeriesMainActivity extends AppCompatActivity {
 
         View emptyView = findViewById(R.id.empty);
         mEmptyView = emptyView.findViewById(R.id.empty_view);
+
+        View ProgressView = findViewById(R.id.progress);
+        mProgressbar = ProgressView.findViewById(R.id.progress_bar);
 
         View viewRecycler = findViewById(R.id.series_list);
 
@@ -80,8 +88,6 @@ public class SeriesMainActivity extends AppCompatActivity {
                 break;
         }
 
-        View ProgressView = findViewById(R.id.progress);
-        mProgressbar = ProgressView.findViewById(R.id.progress_bar);
 
         MainActivity.apiInterface = ApiClient.getClient().create(APIInterface.class);
 

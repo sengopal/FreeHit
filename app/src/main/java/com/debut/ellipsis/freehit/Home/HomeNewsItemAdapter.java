@@ -1,4 +1,5 @@
-package com.debut.ellipsis.freehit.News;
+package com.debut.ellipsis.freehit.Home;
+
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,12 +17,13 @@ import android.widget.TextView;
 import com.bumptech.glide.load.DecodeFormat;
 import com.debut.ellipsis.freehit.Glide.GlideApp;
 import com.debut.ellipsis.freehit.MainActivity;
+import com.debut.ellipsis.freehit.News.NewsArticle;
+import com.debut.ellipsis.freehit.News.NewsItem;
 import com.debut.ellipsis.freehit.R;
 
 import java.util.List;
 
-
-public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsViewHolder> {
+public class HomeNewsItemAdapter extends RecyclerView.Adapter<HomeNewsItemAdapter.NewsViewHolder> {
 
     private List<NewsItem> newsItems;
     private int rowLayout;
@@ -52,7 +54,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
         }
     }
 
-    public NewsItemAdapter(List<NewsItem> news, int rowLayout, Context context) {
+    public HomeNewsItemAdapter(List<NewsItem> news, int rowLayout, Context context) {
         this.newsItems = news;
         this.rowLayout = rowLayout;
         this.context = context;
@@ -60,18 +62,18 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
 
 
     @Override
-    public NewsItemAdapter.NewsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public HomeNewsItemAdapter.NewsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = null;
         if (viewType == 0) {
             view = LayoutInflater.from(parent.getContext()).inflate(rowLayout, parent, false);
         }
-        return new NewsItemAdapter.NewsViewHolder(view);
+        return new HomeNewsItemAdapter.NewsViewHolder(view);
 
     }
 
 
     @Override
-    public void onBindViewHolder(NewsItemAdapter.NewsViewHolder holder, int position) {
+    public void onBindViewHolder(HomeNewsItemAdapter.NewsViewHolder holder, int position) {
         holder.title.setText(newsItems.get(position).getTitle());
         holder.desc.setText(newsItems.get(position).getDesc());
         holder.date.setText(newsItems.get(position).getDate());
@@ -119,7 +121,6 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsVi
             }
         };
         RLContainer.setOnClickListener(mClickListener);
-
 
     }
 

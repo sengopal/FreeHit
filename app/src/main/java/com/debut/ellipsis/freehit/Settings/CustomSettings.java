@@ -183,6 +183,8 @@ public class CustomSettings extends AppCompatActivity {
             night_mode.setVisibility(View.INVISIBLE);
             NightMode.setVisibility(View.INVISIBLE);
             country_select.setVisibility(View.INVISIBLE);
+            auto_refresh.setVisibility(View.INVISIBLE);
+            auto_refresh_mode.setVisibility(View.INVISIBLE);
             no_internet_connection.setVisibility(View.VISIBLE);
             NoConnectionButton.setOnClickListener(new View.OnClickListener() {
 

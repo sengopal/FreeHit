@@ -40,7 +40,7 @@ public class PastMatchScoreCard extends AppCompatActivity {
     public static List<ScoreCardItem> scoreCardItems;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             setTheme(R.style.AppThemeDark);
         }
@@ -76,9 +76,41 @@ public class PastMatchScoreCard extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     no_data_no_connection.setVisibility(View.INVISIBLE);
                     scoreCardItems = response.body().getResults();
-                    mProgressBar.setVisibility(View.INVISIBLE);
-                    setupViewPager(viewPager);
-                    viewPager.setOffscreenPageLimit(3);
+                    if(scoreCardItems.get(2).getH2h()==null||scoreCardItems.get(1).getInfo()==null||scoreCardItems.get(0).getScorecard()==null)
+                    {
+                        Toast.makeText(getBaseContext(),"Redirecting you to faster different server",Toast.LENGTH_SHORT).show();
+                        Call<ScoreCardItem> call1 = MainActivity.apiInterface.doGetMatchScoreCardCache(match_id,"selfcall");
+                        call1.enqueue(new Callback<ScoreCardItem>() {
+                            @Override
+                            public void onResponse(Call<ScoreCardItem> call, Response<ScoreCardItem> response) {
+                                if (response.isSuccessful()) {
+                                    no_data_no_connection.setVisibility(View.INVISIBLE);
+                                    scoreCardItems = response.body().getResults();
+                                    mProgressBar.setVisibility(View.INVISIBLE);
+                                    setupViewPager(viewPager);
+                                    viewPager.setOffscreenPageLimit(3);
+                                } else {
+                                    mProgressBar.setVisibility(View.INVISIBLE);
+                                    no_data_no_connection.setText(R.string.server_issues);
+                                    Toast.makeText(getBaseContext(), R.string.server_issues, Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ScoreCardItem> call, Throwable t) {
+                                call.cancel();
+                                mProgressBar.setVisibility(View.GONE);
+                                no_data_no_connection.setText(R.string.no_internet_connection);
+                                Toast.makeText(getBaseContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                    }
+                    else {
+                        mProgressBar.setVisibility(View.INVISIBLE);
+                        setupViewPager(viewPager);
+                        viewPager.setOffscreenPageLimit(3);
+                    }
 
                 } else {
                     mProgressBar.setVisibility(View.INVISIBLE);

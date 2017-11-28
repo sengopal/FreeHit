@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background">
+
+    <com.baoyz.widget.PullRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:refreshType="ring">
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <include
+                    android:id="@+id/common_match_cards"
+                    layout="@layout/fragment_home_match_card" />
+
+                <TextView
+                    android:id="@+id/home_news"
+                    android:textColor="@android:color/white"
+                    android:layout_below="@id/common_match_cards"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:gravity="center_horizontal"
+                    android:background="@color/colorPrimary"
+                    tools:text="News about india"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/fav_team_news_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/home_news"
+                    android:background="@color/background">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </RelativeLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+    </com.baoyz.widget.PullRefreshLayout>
+
+    <include
+        android:id="@+id/Unavailable_connection"
+        layout="@layout/no_internet_connection"
+        android:visibility="invisible" />
+
+    <include
+        android:id="@+id/progress"
+        layout="@layout/common_progressbar" />
+
+    <include
+        android:id="@+id/No_recent_Matches_News"
+        layout="@layout/empty_view_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_70sdp"
+        android:visibility="invisible" />
+
+</RelativeLayout>

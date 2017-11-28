@@ -10,9 +10,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:paddingStart="@dimen/_8sdp"
+        android:paddingEnd="@dimen/_8sdp"
         android:text="@string/EmptyLiveMatches"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/_20sdp" />
+        android:textSize="@dimen/_15sdp" />
 
 
     <Button

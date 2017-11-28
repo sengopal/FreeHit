@@ -73,10 +73,44 @@ public class RankingActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<RankingItem> call, Response<RankingItem> response) {
                 if (response.isSuccessful()) {
-                    mProgressBar.setVisibility(View.INVISIBLE);
                     QueryList = response.body().getResults();
-                    setupViewPager(viewPager);
-                    viewPager.setOffscreenPageLimit(3);
+                    if(QueryList.get(0).getOdi().getAllRounders().size()<10)
+                    {
+                        Toast.makeText(getBaseContext(),"Redirecting you to faster different server",Toast.LENGTH_SHORT).show();
+                        Call<RankingItem> call1 = MainActivity.apiInterface.doGetRankingCache("selfcall");
+                        call1.enqueue(new Callback<RankingItem>() {
+                            @Override
+                            public void onResponse(Call<RankingItem> call, Response<RankingItem> response) {
+                                if (response.isSuccessful()) {
+                                    mProgressBar.setVisibility(View.INVISIBLE);
+                                    setupViewPager(viewPager);
+                                    QueryList = response.body().getResults();
+                                    viewPager.setOffscreenPageLimit(3);
+                                }
+                                else {
+                                    mEmptyView.setVisibility(View.VISIBLE);
+                                    mEmptyView.setText(R.string.server_issues);
+                                    mProgressBar.setVisibility(View.GONE);
+                                    Toast.makeText(getBaseContext(), R.string.server_issues, Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<RankingItem> call, Throwable t) {
+                                call.cancel();
+                                mEmptyView.setVisibility(View.VISIBLE);
+                                mEmptyView.setText(R.string.no_internet_connection);
+                                mProgressBar.setVisibility(View.GONE);
+                                Toast.makeText(getBaseContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+                    }
+                    else {
+                        mProgressBar.setVisibility(View.INVISIBLE);
+                        setupViewPager(viewPager);
+                        viewPager.setOffscreenPageLimit(3);
+                    }
                 } else {
                     mEmptyView.setVisibility(View.VISIBLE);
                     mEmptyView.setText(R.string.server_issues);

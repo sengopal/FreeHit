@@ -49,7 +49,7 @@ public class LiveMatchScoreCard extends AppCompatActivity {
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
 
         String match_name = getIntent().getStringExtra("match_name");
-        String match_id = getIntent().getStringExtra("match_id");
+        final String match_id = getIntent().getStringExtra("match_id");
 
         setTitle(match_name);
 
@@ -75,9 +75,40 @@ public class LiveMatchScoreCard extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     no_data_no_connection.setVisibility(View.INVISIBLE);
                     LivescoreCardItems = response.body().getResults();
-                    mProgressBar.setVisibility(View.INVISIBLE);
-                    setupViewPager(viewPager);
-                    viewPager.setOffscreenPageLimit(5);
+                    if(LivescoreCardItems.get(2).getH2h()==null||LivescoreCardItems.get(1).getInfo()==null||LivescoreCardItems.get(0).getScorecard()==null)
+                    {
+                        Toast.makeText(getBaseContext(),"Redirecting you to faster different server",Toast.LENGTH_SHORT);
+                        Call<ScoreCardItem> call1 = MainActivity.apiInterface.doGetLiveMatchScoreCardCache(match_id,"selfcall");
+                        call1.enqueue(new Callback<ScoreCardItem>() {
+                            @Override
+                            public void onResponse(Call<ScoreCardItem> call, Response<ScoreCardItem> response) {
+                                if (response.isSuccessful()) {
+                                    no_data_no_connection.setVisibility(View.INVISIBLE);
+                                    LivescoreCardItems = response.body().getResults();
+                                    mProgressBar.setVisibility(View.INVISIBLE);
+                                    setupViewPager(viewPager);
+                                    viewPager.setOffscreenPageLimit(3);
+                                } else {
+                                    mProgressBar.setVisibility(View.INVISIBLE);
+                                    no_data_no_connection.setText(R.string.server_issues);
+                                    Toast.makeText(getBaseContext(), R.string.server_issues, Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ScoreCardItem> call, Throwable t) {
+                                call.cancel();
+                                mProgressBar.setVisibility(View.GONE);
+                                no_data_no_connection.setText(R.string.no_internet_connection);
+                                Toast.makeText(getBaseContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                    else {
+                        mProgressBar.setVisibility(View.INVISIBLE);
+                        setupViewPager(viewPager);
+                        viewPager.setOffscreenPageLimit(3);
+                    }
 
                 } else {
                     mProgressBar.setVisibility(View.INVISIBLE);

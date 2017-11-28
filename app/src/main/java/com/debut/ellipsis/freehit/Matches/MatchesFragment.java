@@ -21,7 +21,6 @@ import java.util.List;
 public class MatchesFragment extends Fragment {
 
     public ViewPager viewPager;
-    private TabLayout tabLayout;
 
     public MatchesFragment() {
         // Required empty public constructor
@@ -39,7 +38,7 @@ public class MatchesFragment extends Fragment {
         setupViewPager(viewPager);
 
         View viewMatchCardTabs = rootView.findViewById(R.id.match_card_tabs);
-        tabLayout = viewMatchCardTabs.findViewById(R.id.tabs);
+        TabLayout tabLayout = viewMatchCardTabs.findViewById(R.id.tabs);
 
         tabLayout.setupWithViewPager(viewPager);
 

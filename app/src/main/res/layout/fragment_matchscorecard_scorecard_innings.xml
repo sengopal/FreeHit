@@ -42,7 +42,7 @@
                     android:layout_marginStart="@dimen/_2sdp"
                     android:text="@string/batsman"
                     android:textAlignment="viewStart"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="@dimen/_12sdp" />
 
                 <TextView
@@ -52,7 +52,7 @@
                     android:layout_marginStart="@dimen/_1sdp"
                     android:text="R"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="@dimen/_12sdp" />
 
                 <TextView
@@ -62,7 +62,7 @@
                     android:layout_marginStart="@dimen/_1sdp"
                     android:text="B"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="@dimen/_12sdp" />
 
                 <TextView
@@ -72,7 +72,7 @@
                     android:layout_marginStart="@dimen/_3sdp"
                     android:text="4s"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="@dimen/_12sdp" />
 
                 <TextView
@@ -82,7 +82,7 @@
                     android:layout_marginStart="@dimen/_1sdp"
                     android:text="6s"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="@dimen/_12sdp" />
 
                 <TextView
@@ -92,7 +92,7 @@
                     android:layout_marginStart="@dimen/_1sdp"
                     android:text="SR"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="@dimen/_12sdp" />
 
 
@@ -214,7 +214,7 @@
                     android:layout_marginStart="@dimen/_2sdp"
                     android:text="@string/bowler"
                     android:textAlignment="viewStart"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="@dimen/_12sdp" />
 
                 <TextView
@@ -224,7 +224,7 @@
                     android:layout_marginStart="@dimen/_5sdp"
                     android:text="O"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="@dimen/_12sdp" />
 
                 <TextView
@@ -234,7 +234,7 @@
                     android:layout_marginStart="@dimen/_1sdp"
                     android:text="M"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="@dimen/_12sdp" />
 
                 <TextView
@@ -244,7 +244,7 @@
                     android:layout_marginStart="@dimen/_1sdp"
                     android:text="R"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="@dimen/_12sdp" />
 
                 <TextView
@@ -254,7 +254,7 @@
                     android:layout_marginStart="@dimen/_1sdp"
                     android:text="W"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="@dimen/_12sdp" />
 
                 <TextView
@@ -264,7 +264,7 @@
                     android:layout_marginStart="@dimen/_1sdp"
                     android:text="ER"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="@dimen/_12sdp" />
 
 
@@ -317,7 +317,7 @@
                     android:layout_marginStart="@dimen/_2sdp"
                     android:text="@string/fall_of_wicket"
                     android:textAlignment="viewStart"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="@dimen/_12sdp" />
 
                 <TextView
@@ -327,7 +327,7 @@
                     android:layout_marginStart="@dimen/_10sdp"
                     android:text="Overs"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="@dimen/_12sdp" />
 
                 <TextView
@@ -337,7 +337,7 @@
                     android:layout_marginStart="@dimen/_10sdp"
                     android:text="Score"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="@dimen/_12sdp" />
 
 

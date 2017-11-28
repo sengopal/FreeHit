@@ -1,5 +1,6 @@
 package com.debut.ellipsis.freehit;
 
+import com.debut.ellipsis.freehit.Home.RecentItem;
 import com.debut.ellipsis.freehit.Matches.LiveMatches.LiveMatchCardItem;
 import com.debut.ellipsis.freehit.Matches.PastMatches.PastMatchCardItem;
 import com.debut.ellipsis.freehit.Matches.ScoreCard.CommentaryElements.CommentaryItem;
@@ -82,16 +83,35 @@ public interface APIInterface {
     @GET("scorecard?")
     Call<ScoreCardItem> doGetMatchScoreCard(@Query("ndid") String match_id);
 
+    @GET("scorecard?")
+    Call<ScoreCardItem> doGetMatchScoreCardCache(@Query("ndid") String match_id,@Query("cache") String cahceCall);
+
     @GET("scorecardlive?")
     Call<ScoreCardItem> doGetLiveMatchScoreCard(@Query("ndid") String match_id);
 
+    @GET("scorecardlive?")
+    Call<ScoreCardItem> doGetLiveMatchScoreCardCache(@Query("ndid") String match_id,@Query("cache") String cacheCall);
+
     @GET("ranking")
     Call<RankingItem> doGetRankingResources();
+
+    @GET("ranking?")
+    Call<RankingItem> doGetRankingCache(@Query("cache") String cacheCall);
 
     @GET("series?")
     Call<PerformanceItem> doGetSeriesPerformance(@Query("id") String id);
 
     @GET("comm?")
     Call<CommentaryItem> doGetLiveMatchCommentary(@Query("ndid") String match_id );
+
+    @GET("home")
+    Call<RecentItem> doGetRecentResources();
+
+    @GET("news?")
+    Call<NewsItem> doGetHomeFavNews(@Query("max") int value,@Query("fav") String favTeam);
+
+    @GET("news?max=5")
+    Call<NewsItem> doGetHomeNews();
+
 
 }

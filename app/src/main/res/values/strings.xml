@@ -50,7 +50,7 @@
     <string name="EmptyPolls">Come Back Later For More !</string>
 
     <!--FOR EMPTY VIEW LIVE MATCHES -->
-    <string name="EmptyLiveMatches">NO LIVE MATCHES</string>
+    <string name="EmptyLiveMatches">NO LIVE MATCH AT THE MOMENT</string>
 
     <string name="EmptyMatches">NO MATCHES FOUND</string>
 

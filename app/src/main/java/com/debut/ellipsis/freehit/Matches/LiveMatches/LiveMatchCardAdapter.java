@@ -203,5 +203,4 @@ public class LiveMatchCardAdapter extends PagerAdapter {
         container.removeView((View) object);
     }
 
-
 }
